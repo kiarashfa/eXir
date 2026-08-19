@@ -1,0 +1,29 @@
+# --- Build output ---
+dist/
+.astro/
+node_modules/
+
+# --- Logs ---
+
+
+# --- Environment ---
+.env
+
+
+# --- Editor / OS cruft ---
+.DS_Store
+.idea/
+.claude/
+
+# --- Working notes ---
+CLAUDE.md
+
+# Editorial planning
+catalogue/
+
+# Scratch analysis and checkup output. 
+scratch/
+*.local.md
+
+# Image curation scratch
+image-review/
