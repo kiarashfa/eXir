@@ -1,0 +1,64 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let an in-flight deploy finish rather than cancelling it, so Pages is never
+# left serving a half-published build.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # Confirms the integrity checks still catch known-bad content. A check
+      # that has stopped matching looks exactly like a clean content set.
+      - name: Integrity checks self-test
+        run: npm run check:self
+      # The engine fixtures must stay clean: they are what proves the maths,
+      # the transclusion merge and the service modes still behave.
+      - name: Engine fixtures
+        run: npm run check:fixtures
+      - name: Unit tests
+        run: npm test
+      - name: Type check
+        run: npm run check
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # Runs `npm run build`, which gates on the content integrity checks and
+      # indexes the output with Pagefind before uploading. No API key is needed
+      # or supplied: composition data is read from the cache in src/data/.
+      - uses: withastro/action@v6
+        with:
+          node-version: 24
+
+  deploy:
+    name: Deploy
+    needs: [verify, build]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

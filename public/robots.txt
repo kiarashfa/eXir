@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# The user-state pages carry a noindex tag instead of a Disallow. A blocked path
+# is never fetched, so the tag would never be read and the page can end up
+# indexed anyway.
+
+Sitemap: https://kiarashfa.github.io/eXir/sitemap-index.xml

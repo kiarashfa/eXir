@@ -4,26 +4,45 @@ dist/
 node_modules/
 
 # --- Logs ---
-
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
 # --- Environment ---
 .env
-
+.env.*
+!.env.example
 
 # --- Editor / OS cruft ---
 .DS_Store
+Thumbs.db
 .idea/
 .claude/
 
 # --- Working notes ---
+# Planning and handover documents. The build never reads them.
 CLAUDE.md
+SPEC.md
+INSTRUCTIONS.md
+HANDOFF.md
+ADDING_NEW.md
+AGENT_BRIEF.md
+ver1.html
 
-# Editorial planning
+# Editorial planning: the catalogue list and its supporting files. The build
+# never reads them; they decide what gets written, not what gets shipped.
 catalogue/
 
-# Scratch analysis and checkup output. 
+# Scratch analysis and checkup output. Build-critical scripts under scripts/
+# are tracked; ad-hoc investigation is not.
 scratch/
 *.local.md
 
-# Image curation scratch
+# Image curation scratch — downloaded candidates, reviewed then discarded.
 image-review/
+
+# The fixtures are tracked on purpose. They are what proves the engine and the
+# integrity checks still behave, so they belong to the build, not to scratch.
+!test-fixtures/
+!test-fixtures/**

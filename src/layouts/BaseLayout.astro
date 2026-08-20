@@ -1,0 +1,37 @@
+---
+/**
+ * The document shell. Every route renders through it, so the head is stated in
+ * exactly one place.
+ */
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** User-state pages hold nothing crawlable and opt out of indexing. */
+  noindex?: boolean;
+}
+
+const { title, description, noindex = false } = Astro.props;
+
+// Canonical URLs are absolute and carry the base path. Astro.url is already
+// base-aware, so resolving it against the configured site gives the deployed
+// address rather than the dev server's.
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark" data-glass="on">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

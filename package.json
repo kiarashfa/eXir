@@ -1,0 +1,40 @@
+{
+  "name": "exir",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "test": "node --test \"src/**/*.test.ts\" \"scripts/**/*.test.ts\"",
+    "build": "npm run test && npm run check:content && astro build && npm run postbuild:index && npm run check:site && npm run check:images",
+    "postbuild:index": "pagefind --site dist",
+    "check:content": "node scripts/integrity/run.ts",
+    "check:site": "node scripts/integrity/site.ts",
+    "check:images": "node scripts/integrity/images.ts",
+    "check:self": "node scripts/integrity/run.ts --content test-fixtures/broken-content --expect-failure",
+    "check:fixtures": "node scripts/integrity/run.ts --content test-fixtures/engine-content"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^7.0.7",
+    "@astrojs/sitemap": "^3.7.3",
+    "@astrojs/svelte": "^9.0.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.2.4",
+    "nanostores": "^1.5.1",
+    "svelte": "^5.56.9",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "pagefind": "^1.5.2",
+    "sharp": "^0.35.3",
+    "tinyglobby": "^0.2.17"
+  }
+}
