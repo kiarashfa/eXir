@@ -1,0 +1,48 @@
+{
+  "id": "gin",
+  "name": "Gin",
+  "kind": "ingredient",
+  "category": "gin",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Genever",
+        "note": "The Dutch malt-wine spirit gin descends from: heavier, faintly sweet and grain-forward, where gin is a neutral spirit carrying botanicals."
+      }
+    ]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "vodka",
+      "note": "Removes the botanicals rather than replacing them; a drink built on gin's juniper backbone loses its structure and becomes a plainer one."
+    }
+  ],
+  "forms": [
+    {
+      "id": "london-dry",
+      "label": "London dry",
+      "proseName": "London dry gin",
+      "abvPercent": 40,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174815",
+      "sourceNote": "Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof. Public domain, and generic by design: the record covers any neutral-based spirit at that strength. 80 US proof is 40% alcohol by volume by definition, which is where the strength here comes from; the record's own measured ethanol content against its measured density works out at 39.8%, which is the cross-check. Bottles run from 37.5% upwards and a stronger one moves every figure it touches."
+    }
+  ]
+}

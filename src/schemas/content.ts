@@ -63,6 +63,9 @@ export const allergen = z.enum([
 
 export const animalOrigin = z.enum([
   'none',
+  // Checked, and the answer depends on the bottle rather than on the
+  // ingredient. See the note on the engine's AnimalOrigin type.
+  'varies',
   'dairy',
   'egg',
   'honey',
@@ -180,6 +183,16 @@ export const form = z
         path: ['animalOrigin'],
       });
     }
+    // "varies" is a claim that the question was asked and has no single answer.
+    // Without the condition stated it is indistinguishable from a shrug, and a
+    // shrug is what leaving the field out already means.
+    if (v.animalOrigin === 'varies' && !v.animalOriginNote) {
+      ctx.addIssue({
+        code: 'custom',
+        message: '"varies" has to say what it varies with, in an animalOriginNote',
+        path: ['animalOriginNote'],
+      });
+    }
   });
 
 const substitute = z.object({
@@ -206,7 +219,6 @@ export const ingredient = z
     names: names.optional(),
     generalSubstitutes: z.array(substitute).optional(),
     forms: z.array(form).min(1, 'an ingredient with no Form has no composition data'),
-    image: z.object({ src: z.string(), alt: z.string().min(1) }).optional(),
   })
   .strict();
 
@@ -242,8 +254,23 @@ export const ingredientLine = z
     amount: z.number().positive(),
     unit: baseUnit,
     portions: z.array(portion).min(1).optional(),
-    /** Strictly greater than zero: a line that contributes nothing is not a line. */
-    consumedFraction: z.number().gt(0).lte(1).optional(),
+    /**
+     * How much of the authored amount reaches the glass. Default 1.
+     *
+     * Zero is allowed and means something specific: the line is a purchase and
+     * an instruction, not an input. An expressed citrus twist is the case that
+     * forced it — a Negroni needs an orange bought and a peel cut, and nothing
+     * measurable from that peel dissolves into the drink. Authoring the orange
+     * at its full 140 g would have put eleven grams of sugar into a drink that
+     * never received any, and the smallest fraction the old floor allowed was
+     * still a modelled contribution, which marked the whole spec an estimate on
+     * account of a garnish.
+     *
+     * So zero is exact rather than modelled, and the engine treats it that way.
+     * It requires a note, because "this is not an input" is a claim about the
+     * drink that a reader is entitled to see stated.
+     */
+    consumedFraction: z.number().gte(0).lte(1).optional(),
     consumedFractionNote: z.string().optional(),
     garnish: z.boolean().optional(),
     note: z.string().optional(),
@@ -267,6 +294,14 @@ export const ingredientLine = z
         code: 'custom',
         message: 'a consumedFractionNote without a consumedFraction explains nothing',
         path: ['consumedFraction'],
+      });
+    }
+    if (v.consumedFraction === 0 && !v.consumedFractionNote) {
+      ctx.addIssue({
+        code: 'custom',
+        message:
+          'a line that reaches the glass not at all has to say so in a consumedFractionNote',
+        path: ['consumedFractionNote'],
       });
     }
   });
@@ -309,6 +344,54 @@ export const stepMeta = z
   });
 
 // ---------------------------------------------------------------------------
+// Notes and substitutions
+// ---------------------------------------------------------------------------
+
+/**
+ * Exactly two purpose-typed categories, both hard-capped.
+ *
+ * The cap is the policy. Notes without one grow into a second, unstructured
+ * recipe running alongside the real one, and the categories stop meaning
+ * anything because everything ends up in whichever is least specific.
+ *
+ * A third category exists only for fermentation, only where physical safety
+ * applies, and lives on the `ferment` block because that is where the build can
+ * insist on it.
+ */
+export const drinkNote = z
+  .object({
+    kind: z.enum(['technique', 'pitfall']),
+    /** Which step it sits beside. Optional: some notes are about the drink. */
+    stepRef: authoredId.optional(),
+    text: z.string().min(1),
+  })
+  .strict();
+
+/**
+ * A per-line substitution, and the reason it can recompute rather than merely
+ * describe: the substitute names a real Ingredient, so its actual strength and
+ * sugar are known. A free-text substitute could not, which is why one is not
+ * allowed.
+ */
+export const substitution = z
+  .object({
+    lineRef: authoredId,
+    substitute: slug,
+    formRef: z.string().optional(),
+    ratio: z.string().optional(),
+    note: z.string().min(1),
+    impact: z
+      .object({
+        flavour: z.string().optional(),
+        strength: z.string().optional(),
+        sweetness: z.string().optional(),
+      })
+      .strict()
+      .optional(),
+  })
+  .strict();
+
+// ---------------------------------------------------------------------------
 // About
 // ---------------------------------------------------------------------------
 
@@ -348,7 +431,9 @@ export const glassware = z
     shapeFamily: z.string().optional(),
     /** Modelled displacement per ice style, so the fit check has a figure. */
     iceDisplacementMl: z.record(z.string(), z.number().nonnegative()).optional(),
-    image: z.object({ src: z.string(), alt: z.string().min(1) }).optional(),
+    /** How the displacement figures were arrived at. They are models, not measurements. */
+    iceDisplacementNote: z.string().optional(),
+    note: z.string().optional(),
   })
   .strict();
 
@@ -396,10 +481,16 @@ export const drinkVersion = z
       })
       .strict()
       .optional(),
-    difficulty: z.enum(['Easy', 'Medium', 'Hard']).optional(),
-    image: z.object({ src: z.string(), alt: z.string().min(1) }).optional(),
+    /**
+     * Required. Every drink is one of the three, and leaving it out is not an
+     * absent fact but an editorial judgement nobody made — which is also what
+     * kept the hero fact row a different shape on different drinks.
+     */
+    difficulty: z.enum(['Easy', 'Medium', 'Hard']),
     ingredients: z.array(ingredientLine).min(1),
     steps: z.array(stepMeta).min(1),
+    notes: z.array(drinkNote).optional(),
+    substitutions: z.array(substitution).optional(),
     about: about.optional(),
     makeAhead: z
       .object({
@@ -414,8 +505,19 @@ export const drinkVersion = z
     brew: z
       .object({
         method: z.enum(['pour-over', 'immersion', 'espresso', 'moka', 'cold-brew', 'steep', 'gongfu']),
-        doseG: z.number().positive(),
-        waterMl: z.number().positive(),
+        /**
+         * The dose and the brew water are LINES, named here rather than
+         * restated.
+         *
+         * They were authored twice at first — once as `doseG` and `waterMl` on
+         * this block and once as amounts in the ingredient list — and nothing
+         * compared them. Two authored copies of one figure is exactly what the
+         * rest of this site exists to prevent, and the ratio is the headline
+         * number on a brewed drink, so the copy that drifted would be the one on
+         * display. The line is the single source; the block points at it.
+         */
+        doseRef: authoredId,
+        waterRef: authoredId,
         waterTempC: z.number(),
         grind: z.string().optional(),
         contactSec: z.number().nonnegative().optional(),
@@ -484,6 +586,16 @@ export const drinkVersion = z
         message: 'descent is recorded within a family, so derivedFrom needs one',
         path: ['family'],
       });
+    }
+    for (const kind of ['technique', 'pitfall'] as const) {
+      const n = (v.notes ?? []).filter((note) => note.kind === kind).length;
+      if (n > 2) {
+        ctx.addIssue({
+          code: 'custom',
+          message: `${n} ${kind} notes; the cap is two, and the cap is the policy`,
+          path: ['notes'],
+        });
+      }
     }
   });
 

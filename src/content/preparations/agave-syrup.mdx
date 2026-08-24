@@ -1,0 +1,60 @@
+---
+id: agave-syrup
+name: Agave Syrup
+kind: preparation
+category: sweetener
+names:
+  notToBeConfusedWith:
+    - name: Agave nectar
+      note: The undiluted bottled sweetener this is made from; it is thicker and about half as much again as sweet by volume.
+purchasable: false
+purchaseNote: >-
+  What is sold as agave syrup is the undiluted nectar. This is that let down with water so it
+  measures and mixes.
+yieldMl: 360
+shelfLife:
+  days: 30
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Two to one
+    proseName: agave syrup
+    abvPercent: 0
+    densityGPerMl: 1.2359
+    densitySource: estimated
+    sugarGPer100: 56.02
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 255
+      carbohydrateG: 62.89
+      sugarsG: 56.02
+      proteinG: 0.07
+      fatG: 0.37
+      fibreG: 0.16
+      sodiumMg: 4.12
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      Every figure here is derived from the ingredient records this recipe names, not measured in
+      a bottle: mass and volume are summed over the lines and the density falls out of the two.
+      The method is worth one check - a one-to-one syrup comes out at 1.228 g/ml against the 1.230
+      published for a 50% sucrose solution at 20 degrees, a difference of 0.15%. It is marked
+      estimated because a derivation is not a measurement.
+ingredients:
+  - id: agave
+    ingredientRef: agave-nectar
+    amount: 300
+    unit: g
+  - id: water
+    ingredientRef: water
+    amount: 150
+    unit: ml
+steps:
+  - { id: mix, durationSec: 90, type: active, phase: make }
+---
+
+<Step id="mix">
+  Stir the <Qty ref="agave"/> into the <Qty ref="water"/> until it is evenly combined. No heat is needed; the nectar is already a syrup and only wants thinning.
+</Step>

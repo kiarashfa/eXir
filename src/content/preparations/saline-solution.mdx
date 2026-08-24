@@ -1,0 +1,62 @@
+---
+id: saline-solution
+name: Saline Solution
+kind: preparation
+category: tincture
+names:
+  alsoKnownAs:
+    - name: Salt solution
+  searchOnly:
+    - 20% saline
+    - salt tincture
+purchasable: false
+purchaseNote: >-
+  Nobody sells it. It is salt and water, and it exists so that a very small amount of salt can
+  be measured at all.
+yieldMl: 90
+shelfLife:
+  days: 90
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: One in five
+    proseName: saline solution
+    abvPercent: 0
+    densityGPerMl: 1.1219
+    densitySource: estimated
+    sugarGPer100: 0.0
+    acidPercent: 0.0
+    countUnit: { singular: drop, plural: drops, ml: 0.05, snap: whole }
+    nutritionPer100g:
+      sodiumMg: 8686.16
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      A drop is taken as a twentieth of a millilitre, the conventional metric drop, because that
+      is how this is dosed and nobody measures it any other way. The density comes out a little
+      low against published figures for salt solutions of this strength - volume additivity
+      assumes the crystal and the water simply share the space, and dissolved salt contracts a
+      fraction more than that. It moves nothing at these amounts. Every figure here is derived
+      from the ingredient records this recipe names, not measured in a bottle: mass and volume are
+      summed over the lines and the density falls out of the two. The method is worth one check -
+      a one-to-one syrup comes out at 1.228 g/ml against the 1.230 published for a 50% sucrose
+      solution at 20 degrees, a difference of 0.15%. It is marked estimated because a derivation
+      is not a measurement.
+ingredients:
+  - id: salt
+    ingredientRef: salt
+    amount: 20
+    unit: g
+  - id: water
+    ingredientRef: water
+    amount: 80
+    unit: ml
+steps:
+  - { id: dissolve, durationSec: 120, type: active, phase: make }
+---
+
+<Step id="dissolve">
+  Stir the <Qty ref="salt"/> into the <Qty ref="water"/> until it has completely gone. Warm water is faster and changes nothing else.
+</Step>

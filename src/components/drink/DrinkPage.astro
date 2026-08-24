@@ -20,21 +20,69 @@ import { computeBatch, linesForService } from '../../lib/math/spec.ts';
 import { glassFit } from '../../lib/math/glassware.ts';
 import { ALLERGEN_DISCLAIMER } from '../../lib/math/facets.ts';
 import { DILUTION_DENOMINATOR_NOTE } from '../../lib/math/dilution.ts';
+import { renderAbout, type AboutSource } from '../../lib/render/about.ts';
+import attributions from '../../data/image-attributions.json' with { type: 'json' };
 import type { ResolvedVersion } from '../../lib/content/resolve.ts';
 
+interface ImageRecord {
+  alt: string;
+  renditions: Record<string, { file: string; width: number; height: number }>;
+  attribution: { author?: string; source: string; license: string; licenseUrl?: string };
+}
+
 interface Props {
+  slug: string;
   name: string;
   subtitle?: string;
   versions: ResolvedVersion[];
   eyebrow?: string;
-  about?: { html: string } | null;
+  about?: { body: string; frontmatter: Record<string, unknown> } | null;
 }
 
-const { name, subtitle, versions, eyebrow, about } = Astro.props;
+const { slug, name, subtitle, versions, eyebrow, about } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const primary = versions[0]!;
 const system = 'metric' as const;
+
+/** Editorial frontmatter the maths has no use for and the page does. */
+const fm = primary.frontmatter;
+
+/**
+ * The image comes from the attribution manifest, not from the drink's own
+ * frontmatter.
+ *
+ * The manifest already holds the alt text and the licence, written there by the
+ * adoption step, so a `src` and an `alt` on the drink would be a second copy of
+ * both — and the copy on the drink is the one that would go stale when an image
+ * is re-adopted. It also means the only way an image reaches a page is by having
+ * been adopted, which is where the licence and the credit are recorded.
+ */
+const media = (attributions as Record<string, ImageRecord>)[`drink:${slug}`];
+const hero = media?.renditions['hero'];
+// No fallback. A default credit under an empty frame credits somebody for
+// nothing, which is the placeholder the attribution rules exist to forbid.
+const credit = media
+  ? [media.attribution.author, media.attribution.source, media.attribution.license]
+      .filter(Boolean)
+      .join(' · ')
+  : null;
+const names = fm['names'] as
+  | {
+      alsoKnownAs?: Array<{ name: string; region?: string; note?: string }>;
+      notToBeConfusedWith?: Array<{ name: string; note: string; slugRef?: string }>;
+    }
+  | undefined;
+
+// Capped at four and two. The block is absent rather than placeholdered when
+// there is nothing to say, which for most drinks is the case.
+const alsoKnownAs = (names?.alsoKnownAs ?? []).slice(0, 4);
+const confusables = (names?.notToBeConfusedWith ?? []).slice(0, 2);
+
+const aboutRendered = about
+  ? renderAbout(about.body, (about.frontmatter['sources'] as AboutSource[]) ?? [])
+  : null;
+const aboutSummary = about ? String(about.frontmatter['summary'] ?? '') : '';
 
 /** Everything a version needs, computed once at build time. */
 const built = versions.map((v) => {
@@ -57,14 +105,31 @@ const built = versions.map((v) => {
   };
 });
 
-const one = built[0]!;
-const facts = [
-  ['Style', primary.version.label, false],
-  ['Method', primary.version.method, false],
-  ['Served', one.spec.facets.servingTemp, false],
-  ['Strength', one.spec.facets.strength, false],
-  ['Bitterness', primary.version.bitterness, true],
-] as const;
+/**
+ * The fact row belongs to the VERSION, not to the drink.
+ *
+ * Style is the version's own label by definition, and method, serving
+ * temperature, strength and bitterness can all differ between two versions of
+ * one drink — an egg-white sour finishes several points weaker than the plain
+ * one purely because it is shaken longer. Rendering the row once from the
+ * default left it stating the wrong thing the moment a reader changed tab.
+ *
+ * One row per version, all in the HTML, hidden by the same `data-version`
+ * attribute the panels use, so the tab strip already switches them.
+ */
+const factRows = built.map(({ v, spec }) => ({
+  id: v.version.id,
+  facts: [
+    ['Style', v.version.label, false],
+    ['Method', v.version.method, false],
+    ['Served', spec.facets.servingTemp, false],
+    ['Strength', spec.facets.strength, false],
+    ['Bitterness', v.version.bitterness, true],
+    ...(v.frontmatter['difficulty']
+      ? [['Difficulty', String(v.frontmatter['difficulty']), true] as const]
+      : []),
+  ] as ReadonlyArray<readonly [string, string, boolean]>,
+}));
 ---
 
 <div
@@ -83,25 +148,68 @@ const facts = [
         </ol>
       </nav>
 
-      <div class="hero-grid">
+      <div class={hero ? 'hero-grid' : 'hero-grid hero-grid--text-only'}>
         <div>
           {eyebrow && <div class="eyebrow">{eyebrow}</div>}
           <h1>{name}</h1>
           {subtitle && <p class="subtitle">{subtitle}</p>}
 
-          <div class="facts">
-            {facts.map(([label, value, editorial]) => (
-              <div class={editorial ? 'fact fact--editorial' : 'fact'}>
-                <span class="fact-label">{label}</span>
-                <span class="fact-value">{value}</span>
-              </div>
-            ))}
-          </div>
+          {(alsoKnownAs.length > 0 || confusables.length > 0) && (
+            <div class="naming">
+              {alsoKnownAs.length > 0 && (
+                <div class="naming-row">
+                  <span class="naming-label">Also called</span>
+                  <span>
+                    {alsoKnownAs.map((n, i) => (
+                      <>
+                        {i > 0 && <span> · </span>}
+                        <em>{n.name}</em>
+                        {n.region && <span> ({n.region})</span>}
+                      </>
+                    ))}
+                  </span>
+                </div>
+              )}
+              {confusables.length > 0 && (
+                <div class="naming-row">
+                  <span class="naming-label">Not to be confused with</span>
+                  <span>
+                    {confusables.map((n, i) => (
+                      <>
+                        {i > 0 && <span> · </span>}
+                        <em>{n.name}</em>
+                        <span> — {n.note}</span>
+                      </>
+                    ))}
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {factRows.map((row, i) => (
+            <div class="facts" data-version={row.id} hidden={i > 0}>
+              {row.facts.map(([label, value, editorial]) => (
+                <div class={editorial ? 'fact fact--editorial' : 'fact'}>
+                  <span class="fact-label">{label}</span>
+                  <span class="fact-value">{value}</span>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
 
-        <figure class="hero-figure">
-          <figcaption class="figure-note glass">Photograph · Wikimedia Commons</figcaption>
-        </figure>
+        {hero && media && (
+          <figure class="hero-figure">
+            <img
+              src={`${base}${hero.file}`}
+              alt={media.alt}
+              width={hero.width}
+              height={hero.height}
+            />
+            {credit && <figcaption class="figure-note glass">{credit}</figcaption>}
+          </figure>
+        )}
       </div>
     </div>
   </section>
@@ -153,14 +261,15 @@ const facts = [
               </div>
               <span class="control-reason" data-service-reason hidden></span>
 
-              <div class="control-row" data-ice-row>
+              {/* A drink that never meets ice has no ice to choose. */}
+              <div class="control-row" data-ice-row hidden={fit?.iceMl === 0}>
                 <span class="control-label">Ice</span>
                 <div class="segmented" role="group" aria-label="Ice style" data-ice>
                   <button type="button" data-value="cubed" aria-pressed="true">Cubed</button>
                   <button type="button" data-value="block" aria-pressed="false">Block</button>
                 </div>
               </div>
-              <span class="control-reason" data-ice-reason hidden>
+              <span class="control-reason" data-ice-reason hidden={true}>
                 Nothing meets ice at service in a batch, so the ice choice does not apply.
               </span>
 
@@ -184,8 +293,13 @@ const facts = [
                 <div class="spec-cell">
                   <span class="spec-key">Final volume</span>
                   <span class="spec-val">
-                    <span class={spec.alcohol.abvEstimated ? 'est' : ''} title={spec.dilution.note}>
-                      {spec.alcohol.abvEstimated && '~'}{Math.round(spec.finalVolumeMl)}
+                    <span
+                      class={spec.finalVolumeEstimated ? 'est' : ''}
+                      title={v.brew
+                        ? 'What reaches the cup, after the bed and the filter hold the rest back.'
+                        : spec.dilution.note}
+                    >
+                      {spec.finalVolumeEstimated && '~'}{Math.round(spec.finalVolumeMl)}
                     </span><small>ml</small>
                   </span>
                 </div>
@@ -278,6 +392,83 @@ const facts = [
               )}
             </div>
 
+            {/* ---- extraction ----
+                 Shown instead of a dilution figure, because a brewed drink
+                 gains no water from ice: it loses some to the bed. */}
+            {v.brew && (
+              <div class="card glass">
+                <h2 class="card-title">Extraction</h2>
+
+                <div class="spec-grid">
+                  <div class="spec-cell">
+                    <span class="spec-key">Ratio</span>
+                    <span class="spec-val">{v.brew.ratioDisplay}<small>water : coffee</small></span>
+                  </div>
+                  <div class="spec-cell">
+                    <span class="spec-key">Water</span>
+                    <span class="spec-val">
+                      {Math.round(v.brew.waterTempC)}<small>°C · {formatDuration(v.brew.contactSec)}</small>
+                    </span>
+                  </div>
+                  <div class="spec-cell">
+                    <span class="spec-key">Retention</span>
+                    <span class="spec-val">{Math.round(v.brew.retentionMl)}<small>ml held back</small></span>
+                  </div>
+                  {v.version.brew?.grind && (
+                    <div class="spec-cell">
+                      <span class="spec-key">Grind</span>
+                      <span class="spec-val spec-val--word">{v.version.brew.grind}</span>
+                    </div>
+                  )}
+                </div>
+
+                {v.brew.infusions.length > 0 && (
+                  <ul class="infusions">
+                    {v.brew.infusions.map((inf) => (
+                      <li>
+                        <span class="control-label">Infusion {inf.n}</span>
+                        <span class="value">{formatDuration(inf.contactSec)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {v.brew.standard && (
+                  <>
+                    <div class="control-row">
+                      <span class="control-label">{v.brew.standard.label}</span>
+                      <span class="value">{v.brew.standard.ratioDisplay}</span>
+                    </div>
+                    <p class="disclaimer">
+                      This brew works out at {v.brew.standard.gPerLitre.toFixed(1)} g of coffee
+                      per litre of water, against the {v.brew.standard.gPerLitreRange[0].toFixed(1)}
+                      {' '}to {v.brew.standard.gPerLitreRange[1].toFixed(1)} g/L the standard allows —
+                      {v.brew.standard.direction === 'within'
+                        ? ' inside it.'
+                        : v.brew.standard.direction === 'strong'
+                          ? ' stronger than it.'
+                          : ' weaker than it.'}
+                      {' '}The comparison is made in grams per litre and not on the ratio, because a
+                      ratio is the reciprocal of a strength and a symmetric band on one is an
+                      asymmetric band on the other.
+                      {!v.brew.standard.waterTempWithinTolerance &&
+                        ' The water temperature also sits outside the standard.'}
+                      {' '}Source: {v.brew.standard.source.title}, {v.brew.standard.source.publisher}.
+                    </p>
+                  </>
+                )}
+
+                {v.brew.extractionYieldPercent === null && (
+                  <p class="disclaimer">
+                    No extraction yield is shown. It needs a measured dissolved-solids figure from
+                    the finished cup, nothing on a bag of coffee supplies one, and estimating it
+                    from the method would be inventing the single number the calculation exists to
+                    establish.
+                  </p>
+                )}
+              </div>
+            )}
+
             {/* ---- ingredients ---- */}
             <div class="card glass">
               <h2 class="card-title">Ingredients</h2>
@@ -336,9 +527,18 @@ const facts = [
                 </div>
 
                 <p class="disclaimer" data-when-service="order">
-                  {Math.round(fit.liquidMl)} ml of liquid plus {fit.iceMl} ml of {fit.iceStyle} ice
-                  occupies about {Math.round(fit.neededMl)} ml, inside the {v.glass.capacityMl} ml
-                  the glass holds. The build fails if a recipe ever exceeds its stated vessel.
+                  {fit.iceMl > 0 ? (
+                    <>
+                      {Math.round(fit.liquidMl)} ml of liquid plus {fit.iceMl} ml of {fit.iceStyle}
+                      {' '}ice occupies about {Math.round(fit.neededMl)} ml, inside the
+                      {' '}{v.glass.capacityMl} ml the glass holds.
+                    </>
+                  ) : (
+                    <>
+                      {Math.round(fit.liquidMl)} ml of liquid, served without ice, inside the
+                      {' '}{v.glass.capacityMl} ml the glass holds.
+                    </>
+                  )} The build fails if a recipe ever exceeds its stated vessel.
                 </p>
                 <p class="disclaimer" data-when-service="batch" hidden>
                   A batch needs a vessel that closes and fits a fridge shelf.
@@ -371,10 +571,27 @@ const facts = [
                       {step.phase} · {formatDuration(step.durationSec)}
                     </div>
                     <p class="step-body" set:html={html} />
+                    {/* A technique note explains one step and belongs beside it. */}
+                    {v.notes
+                      .filter((n) => n.kind === 'technique' && n.stepRef === step.id)
+                      .map((n) => <p class="callout" set:html={n.html} />)}
                   </div>
                 </li>
               ))}
             </ol>
+
+            {v.notes
+              .filter((n) => n.kind === 'technique' && !n.stepRef)
+              .map((n) => <p class="callout" set:html={n.html} />)}
+
+            {v.notes
+              .filter((n) => n.kind === 'pitfall')
+              .map((n) => (
+                <p class="callout callout--pitfall">
+                  <b>Common pitfall</b>
+                  <span set:html={n.html} />
+                </p>
+              ))}
 
             {v.version.ferment?.safetyNote && (
               <p class="callout callout--safety">
@@ -407,8 +624,33 @@ const facts = [
       <div></div>
       <div class="right-col">
         <div class="section-head"><h2>About</h2></div>
-        {about ? (
-          <div class="step-body" set:html={about.html} />
+        {aboutRendered ? (
+          <>
+            {aboutSummary && <p class="subtitle">{aboutSummary}</p>}
+            <div class="about-body" set:html={aboutRendered.html} />
+
+            {/* Numbered where the reader met them, so the list reads in the
+                order the prose asks for it. */}
+            <ol class="sources">
+              {aboutRendered.cited.map(({ n, source }) => (
+                <li id={`source-${source.id}`}>
+                  <span class="source-n">{n}</span>
+                  <span>
+                    <em>{source.title}</em>
+                    <span class="source-meta">
+                      {source.publisher}
+                      {source.year && <> · {source.year}</>}
+                    </span>
+                    {source.url && (
+                      <a class="source-link" href={source.url} rel="nofollow noopener">
+                        {new URL(source.url).hostname.replace(/^www\./, '')}
+                      </a>
+                    )}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </>
         ) : (
           <p class="step-body">
             No sourced reference prose has been written for this drink yet. A shorter About

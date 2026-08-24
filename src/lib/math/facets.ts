@@ -159,6 +159,12 @@ export function deriveDiet(lines: ResolvedLine[]): DietResult {
       undeclared.push(line.id);
       vegan = false;
       vegetarian = false;
+    } else if (origin === 'varies') {
+      // Checked, and the answer genuinely depends on the bottle. Same effect on
+      // the labels as an undeclared origin, and deliberately not reported as one:
+      // the note explains the condition and there is nothing left to fill in.
+      vegan = false;
+      vegetarian = false;
     } else {
       if (origin !== 'none') vegan = false;
       if (!VEGETARIAN_ORIGINS.has(origin)) vegetarian = false;

@@ -1,0 +1,107 @@
+---
+id: cone
+label: Cone
+name: Pour-Over Coffee
+subtitle: Ground coffee, a paper filter and a kettle. The bed deepens as the cone narrows.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Coffee is brewed to order. A batch held warm keeps oxidising and is a different
+  and worse drink within twenty minutes.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [coffee]
+  origin: [international]
+  method: [brewed]
+names:
+  alsoKnownAs:
+    - name: Filter coffee
+    - name: Drip coffee
+      region: United States
+  notToBeConfusedWith:
+    - name: Cold brew
+      note: Also unpressurised and filtered, but steeped for hours in cold water, which extracts different compounds entirely.
+  searchOnly:
+    - v60
+    - hand brew
+    - pourover
+brew:
+  method: pour-over
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 94
+  grind: medium-fine
+  contactSec: 180
+  yieldMl: 320
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 22
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves and the rest stays in the filter. The
+      figure is the middle of the extraction band the Specialty Coffee
+      Association publishes for a well-brewed cup, not a measurement of this one.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 360
+    unit: ml
+    portions:
+      - { id: bloom-water, amount: 50 }
+      - { id: brew-water, amount: 310, note: in three additions }
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: rinse, durationSec: 30, type: active, phase: prep }
+  - { id: bloom, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 150, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: bloom
+    text: >-
+      Fresh coffee carries dissolved carbon dioxide from roasting, and it comes
+      out as gas the moment it meets hot water. Gas in the bed pushes water away
+      from the grounds, so wetting the dose and waiting is what lets the rest of
+      the brew extract evenly instead of channelling around a foaming crust.
+  - kind: pitfall
+    text: >-
+      Pouring hard enough to dig a crater in the bed sends water down the sides
+      of the filter rather than through the grounds. The cup then tastes thin and
+      sour and the usual response is to grind finer, which makes it worse.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead beyond grinding, and even that is better done at
+    the last moment: ground coffee loses its aromatics within minutes.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> to a medium-fine texture, a little coarser than
+  table salt.
+</Step>
+
+<Step id="rinse">
+  Set the paper filter in the cone and rinse it through with hot water, then
+  discard what collects underneath. This washes the paper and warms the vessel;
+  an unrinsed filter tastes of itself.
+</Step>
+
+<Step id="bloom">
+  Pour the <Qty ref="bloom-water"/> at <Temp c={94}/> over the grounds, wetting
+  all of them, and leave it for <Dur step="bloom"/>. The bed will swell and
+  foam.
+</Step>
+
+<Step id="pour">
+  Add the <Qty ref="brew-water"/> over <Dur step="pour"/>, pouring in a slow
+  spiral and keeping the bed level. The drawdown should finish shortly after the
+  last of the water goes in.
+</Step>

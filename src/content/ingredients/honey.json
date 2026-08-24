@@ -1,0 +1,33 @@
+{
+  "id": "honey",
+  "name": "Honey",
+  "kind": "ingredient",
+  "category": "sweetener",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.4329,
+      "densitySource": "measured",
+      "sugarGPer100": 82.12,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 304,
+        "carbohydrateG": 82.4,
+        "sugarsG": 82.12,
+        "proteinG": 0.3,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0.2,
+        "sodiumMg": 4
+      },
+      "animalOrigin": "honey",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169640",
+      "sourceNote": "Honey. Public domain. The cup portion is adopted as a true density because honey is poured."
+    }
+  ]
+}

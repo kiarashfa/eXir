@@ -54,6 +54,18 @@
       "gPerMl": 1.0,
       "reference": "Water at 20 °C",
       "note": "Brewed coffee and tea are close enough to water that the difference never reaches a displayed figure."
+    },
+    "solid-sugar": {
+      "label": "Sugar crystal",
+      "gPerMl": 1.587,
+      "reference": "Crystalline sucrose at 20 °C",
+      "note": "The crystal, not the jar. Granulated sugar POURS at roughly 0.8 to 0.95 g/ml depending on grain size and packing, and every one of those figures is mostly the air between grains. This class is what the sugar itself displaces once it is in the drink, which is the only thing the engine ever asks a density for. Applies to granulated, caster, demerara and turbinado alike: the crystal is the same compound whatever colour the molasses film on it is."
+    },
+    "solid-salt": {
+      "label": "Salt crystal",
+      "gPerMl": 2.16,
+      "reference": "Crystalline sodium chloride at 20 °C",
+      "note": "Same distinction as the sugar class. Table salt measures near 1.2 g/ml out of a cup and that figure is packing, not the crystal."
     }
   }
 }

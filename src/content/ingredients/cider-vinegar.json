@@ -1,0 +1,38 @@
+{
+  "id": "cider-vinegar",
+  "name": "Cider Vinegar",
+  "kind": "ingredient",
+  "category": "vinegar",
+  "names": {
+    "alsoKnownAs": [
+      {
+        "name": "Apple cider vinegar",
+        "region": "United States"
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0144,
+      "densitySource": "measured",
+      "sugarGPer100": 0.4,
+      "acidPercent": 5,
+      "nutritionPer100g": {
+        "kcal": 21,
+        "carbohydrateG": 0.93,
+        "sugarsG": 0.4,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 5
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "173469",
+      "sourceNote": "Vinegar, cider, for the composition; the teaspoon portion is adopted as a true density because vinegar is poured. The acidity is the strength vinegar is sold at rather than a measurement of one bottle: United States labelling requires at least 4 g of acetic acid per 100 ml, and table vinegar is conventionally standardised to 5%."
+    }
+  ]
+}

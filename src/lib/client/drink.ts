@@ -72,7 +72,9 @@ function paintService(root: HTMLElement, mode: ServiceMode, count: number): void
   iceRow?.classList.toggle('is-disabled', effective === 'batch');
   const iceReason = document.querySelector<HTMLElement>('[data-ice-reason]');
   if (iceReason) {
-    iceReason.hidden = effective !== 'batch';
+    // A drink that never meets ice renders no ice row at all, and an explanation
+    // of why a control is unavailable is nonsense where there is no control.
+    iceReason.hidden = effective !== 'batch' || iceRow?.hidden === true;
   }
   for (const button of all<HTMLButtonElement>('[data-ice] button')) {
     button.disabled = effective === 'batch';

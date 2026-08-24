@@ -1,0 +1,63 @@
+---
+id: demerara-syrup
+name: Demerara Syrup
+kind: preparation
+category: sweetener
+names:
+  alsoKnownAs:
+    - name: Turbinado syrup
+      region: United States
+purchasable: true
+purchaseNote: >-
+  Sold by specialist suppliers. The commercial versions vary in strength, which matters in a
+  drink built on two parts spirit to one part syrup.
+yieldMl: 405
+shelfLife:
+  days: 30
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: One to one
+    proseName: demerara syrup
+    abvPercent: 0
+    densityGPerMl: 1.2279
+    densitySource: estimated
+    sugarGPer100: 60.85
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 245
+      carbohydrateG: 61.22
+      sugarsG: 60.85
+      sodiumMg: 3.07
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      The sugar is stated as the sucrose the recipe dissolves. Every figure here is derived from
+      the ingredient records this recipe names, not measured in a bottle: mass and volume are
+      summed over the lines and the density falls out of the two. The method is worth one check -
+      a one-to-one syrup comes out at 1.228 g/ml against the 1.230 published for a 50% sucrose
+      solution at 20 degrees, a difference of 0.15%. It is marked estimated because a derivation
+      is not a measurement.
+ingredients:
+  - id: sugar
+    ingredientRef: demerara-sugar
+    amount: 250
+    unit: g
+  - id: water
+    ingredientRef: water
+    amount: 250
+    unit: ml
+steps:
+  - { id: dissolve, durationSec: 240, type: active, phase: make }
+  - { id: cool, durationSec: 1800, type: passive, phase: rest }
+---
+
+<Step id="dissolve">
+  Warm the <Qty ref="water"/> and stir in the <Qty ref="sugar"/> until clear. The larger crystals take longer to go than white sugar and the syrup stays faintly cloudy, which is the molasses still on them rather than undissolved sugar.
+</Step>
+
+<Step id="cool">
+  Cool to room temperature and bottle.
+</Step>

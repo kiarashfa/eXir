@@ -139,9 +139,14 @@ export function computeComposition(lines: ResolvedLine[]): Composition {
           line.consumedFractionNote ??
           'Only part of this line reaches the glass, so the composition is a model of what does.',
       });
-      // A drink with any partial-use line has a computed composition that is an
-      // estimate, and the reason has to be visible.
-      estimated = true;
+      // A drink with a partly-consumed line has a computed composition that is a
+      // model of what reaches the glass, and the reason has to be visible.
+      //
+      // Exactly zero is the exception, and it is not a rounding of the rule: a
+      // fraction between the two is an estimate of a real contribution, whereas
+      // zero states that the line is not an input at all. An expressed twist
+      // does not make a drink's sugar figure less certain.
+      if (line.consumedFraction > 0) estimated = true;
     }
 
     // --- volume -----------------------------------------------------------

@@ -1,0 +1,72 @@
+---
+id: ginger-syrup
+name: Ginger Syrup
+kind: preparation
+category: sweetener
+purchasable: true
+purchaseNote: >-
+  Sold, and usually much milder than a fresh one. Commercial bottles are built to keep, which
+  means less raw root and more sugar.
+yieldMl: 365
+shelfLife:
+  days: 14
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Fresh root
+    proseName: ginger syrup
+    abvPercent: 0
+    densityGPerMl: 1.2279
+    densitySource: estimated
+    sugarGPer100: 61.22
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 237
+      carbohydrateG: 61.33
+      sugarsG: 61.22
+      sodiumMg: 1.84
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      The sugar is stated as the sucrose the recipe dissolves. The root itself is strained out and
+      contributes nothing measurable. Every figure here is derived from the ingredient records
+      this recipe names, not measured in a bottle: mass and volume are summed over the lines and
+      the density falls out of the two. The method is worth one check - a one-to-one syrup comes
+      out at 1.228 g/ml against the 1.230 published for a 50% sucrose solution at 20 degrees, a
+      difference of 0.15%. It is marked estimated because a derivation is not a measurement.
+ingredients:
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 250
+    unit: g
+  - id: water
+    ingredientRef: water
+    amount: 250
+    unit: ml
+  - id: ginger
+    ingredientRef: ginger
+    amount: 120
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The root is grated for its flavour and strained out again. What it leaves behind is aromatic
+      rather than weighable, and the syrup is the sugar and water it was made from.
+steps:
+  - { id: grate, durationSec: 240, type: active, phase: prep }
+  - { id: dissolve, durationSec: 180, type: active, phase: make }
+  - { id: steep, durationSec: 3600, type: passive, phase: rest }
+---
+
+<Step id="grate">
+  Grate the <Qty ref="ginger"/> coarsely, skin and all. Peeling costs flavour and buys nothing here, because none of it stays in the bottle.
+</Step>
+
+<Step id="dissolve">
+  Warm the <Qty ref="water"/> with the <Qty ref="sugar"/> until clear, then stir the grated root through and take the pan off the heat.
+</Step>
+
+<Step id="steep">
+  Leave to steep as it cools, then strain through a fine sieve, pressing the pulp to get the syrup back out of it.
+</Step>

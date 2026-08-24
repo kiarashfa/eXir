@@ -1,0 +1,45 @@
+{
+  "id": "orange",
+  "name": "Orange",
+  "kind": "ingredient",
+  "category": "citrus",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Bitter orange",
+        "note": "Seville and its relatives are too sour to eat and are grown for marmalade, liqueur and peel; a recipe calling for orange means the sweet kind unless it says otherwise."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Sweet, whole",
+      "abvPercent": 0,
+      "sugarGPer100": 8.5,
+      "acidPercent": 0,
+      "countUnit": {
+        "singular": "orange",
+        "plural": "oranges",
+        "g": 140,
+        "snap": "half"
+      },
+      "nutritionPer100g": {
+        "kcal": 49,
+        "carbohydrateG": 12.54,
+        "sugarsG": 8.5,
+        "proteinG": 0.91,
+        "fatG": 0.15,
+        "saturatedFatG": 0.017,
+        "fibreG": 2.2,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169917",
+      "sourceNote": "Oranges, raw, navels. Public domain. One orange is the record's own 2 7/8 inch fruit portion. No density is carried: an orange is not poured, and where a recipe uses only the peel the line states how little of the fruit reaches the drink."
+    }
+  ]
+}

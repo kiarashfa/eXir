@@ -1,0 +1,39 @@
+{
+  "id": "demerara-sugar",
+  "name": "Demerara Sugar",
+  "kind": "ingredient",
+  "category": "sweetener",
+  "names": {
+    "alsoKnownAs": [
+      {
+        "name": "Turbinado sugar",
+        "region": "United States",
+        "note": "The name the same partly-refined cane sugar is usually sold under there; the crystals are often finer."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.587,
+      "densitySource": "estimated",
+      "sugarGPer100": 99.19,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 399,
+        "carbohydrateG": 99.8,
+        "sugarsG": 99.19,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 3
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170674",
+      "sourceNote": "Sugar, turbinado. Public domain. FoodData Central carries no separate demerara record; the two are the same partly-refined cane sugar, differing in crystal size rather than in composition. The density is the solid-sugar class, not the record's teaspoon figure, which measures packing."
+    }
+  ]
+}

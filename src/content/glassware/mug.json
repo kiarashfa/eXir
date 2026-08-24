@@ -1,0 +1,8 @@
+{
+  "id": "mug",
+  "name": "Mug",
+  "capacityMl": 350,
+  "shapeFamily": "handled",
+  "note": "The everyday hot-drink vessel. The handle is the specification.",
+  "iceDisplacementMl": { "none": 0 }
+}

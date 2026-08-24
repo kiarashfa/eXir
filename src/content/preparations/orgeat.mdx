@@ -1,0 +1,94 @@
+---
+id: orgeat
+name: Orgeat
+kind: preparation
+category: syrup
+names:
+  searchOnly:
+    - orzata
+    - almond syrup
+purchasable: true
+purchaseNote: >-
+  Widely sold. Commercial bottles are usually almond-flavoured rather than almond-based, which
+  shows in the texture as much as the taste.
+yieldMl: 530
+shelfLife:
+  days: 14
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Almond
+    proseName: orgeat
+    abvPercent: 0
+    densityGPerMl: 1.26
+    densitySource: estimated
+    sugarGPer100: 59.66
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 261
+      carbohydrateG: 60.49
+      sugarsG: 59.66
+      proteinG: 1.09
+      fatG: 2.68
+      saturatedFatG: 0.2
+      fibreG: 0.51
+      sodiumMg: 2.76
+    animalOrigin: none
+    allergenTags: [nuts]
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      Two things here are modelled rather than derived. The density is the syrup-like class,
+      because the almond solids suspended in it have no measured density anywhere and volume
+      additivity would therefore understate the volume they occupy. And the share of the almonds
+      that carries through the press is a stated fraction. Everything else follows from the
+      ingredient records. Every figure here is derived from the ingredient records this recipe
+      names, not measured in a bottle: mass and volume are summed over the lines and the density
+      falls out of the two. The method is worth one check - a one-to-one syrup comes out at 1.228
+      g/ml against the 1.230 published for a 50% sucrose solution at 20 degrees, a difference of
+      0.15%. It is marked estimated because a derivation is not a measurement.
+ingredients:
+  - id: almonds
+    ingredientRef: almonds
+    formRef: blanched
+    amount: 200
+    unit: g
+    consumedFraction: 0.15
+    consumedFractionNote: >-
+      The ground almonds are steeped and pressed and the spent meal is discarded. Roughly a
+      seventh of them carries through as the emulsion that makes orgeat cloudy, and that fraction
+      is a model rather than a measurement.
+  - id: water
+    ingredientRef: water
+    amount: 350
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 350
+    unit: g
+  - id: flower-water
+    ingredientRef: orange-flower-water
+    amount: 10
+    unit: ml
+steps:
+  - { id: grind, durationSec: 180, type: active, phase: prep }
+  - { id: steep, durationSec: 7200, type: passive, phase: rest }
+  - { id: press, durationSec: 420, type: active, phase: make }
+  - { id: sweeten, durationSec: 240, type: active, phase: make }
+---
+
+<Step id="grind">
+  Grind the <Qty ref="almonds"/> to a coarse meal. Fine enough to give up their oil, coarse enough to strain.
+</Step>
+
+<Step id="steep">
+  Cover the meal with the <Qty ref="water"/>, warmed to about <Temp c={60}/>, and leave it to steep until cool.
+</Step>
+
+<Step id="press">
+  Strain through muslin and wring the meal out hard. The last of what comes through is the richest part of it.
+</Step>
+
+<Step id="sweeten">
+  Stir the <Qty ref="sugar"/> into the almond milk until it is completely dissolved, then stir the <Qty ref="flower-water"/> through at the end, off the heat, where its aroma survives.
+</Step>

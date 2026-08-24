@@ -1,0 +1,32 @@
+{
+  "id": "ginger",
+  "name": "Ginger",
+  "kind": "ingredient",
+  "category": "botanical",
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Fresh root",
+      "proseName": "fresh ginger",
+      "abvPercent": 0,
+      "sugarGPer100": 1.7,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 80,
+        "carbohydrateG": 17.77,
+        "sugarsG": 1.7,
+        "proteinG": 1.82,
+        "fatG": 0.75,
+        "saturatedFatG": 0.203,
+        "fibreG": 2,
+        "sodiumMg": 13
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169231",
+      "sourceNote": "Ginger root, raw. Public domain. No density: the root is grated or sliced and then strained out, and the record's own figure is a teaspoon of chopped root, which is mostly the air between the pieces."
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+---
+id: cinnamon-syrup
+name: Cinnamon Syrup
+kind: preparation
+category: sweetener
+purchasable: false
+purchaseNote: >-
+  Sold mostly as a coffee flavouring, which is a different and much sweeter product.
+yieldMl: 390
+shelfLife:
+  days: 30
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Steeped bark
+    proseName: cinnamon syrup
+    abvPercent: 0
+    densityGPerMl: 1.2279
+    densitySource: estimated
+    sugarGPer100: 61.22
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 237
+      carbohydrateG: 61.33
+      sugarsG: 61.22
+      sodiumMg: 1.84
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      The sugar is stated as the sucrose the recipe dissolves. The bark is strained out and
+      contributes nothing measurable. Every figure here is derived from the ingredient records
+      this recipe names, not measured in a bottle: mass and volume are summed over the lines and
+      the density falls out of the two. The method is worth one check - a one-to-one syrup comes
+      out at 1.228 g/ml against the 1.230 published for a 50% sucrose solution at 20 degrees, a
+      difference of 0.15%. It is marked estimated because a derivation is not a measurement.
+ingredients:
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 250
+    unit: g
+  - id: water
+    ingredientRef: water
+    amount: 250
+    unit: ml
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 12
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The bark is broken up, steeped and strained out. It gives up oil and colour and no
+      measurable solids.
+steps:
+  - { id: break, durationSec: 60, type: active, phase: prep }
+  - { id: dissolve, durationSec: 180, type: active, phase: make }
+  - { id: steep, durationSec: 7200, type: passive, phase: rest }
+---
+
+<Step id="break">
+  Break the <Qty ref="cinnamon"/> into pieces. Broken bark gives up far more than whole sticks do, which is the difference between a syrup that tastes of cinnamon and one that smells faintly of it.
+</Step>
+
+<Step id="dissolve">
+  Warm the <Qty ref="water"/> with the <Qty ref="sugar"/> until clear, add the bark and take the pan off the heat.
+</Step>
+
+<Step id="steep">
+  Leave to steep as it cools, then strain. Steeping longer keeps deepening it, so taste it before straining rather than working to the clock.
+</Step>

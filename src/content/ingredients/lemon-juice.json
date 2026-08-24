@@ -1,0 +1,42 @@
+{
+  "id": "lemon-juice",
+  "name": "Lemon Juice",
+  "kind": "ingredient",
+  "category": "citrus-juice",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Lemon squash",
+        "note": "A sweetened, diluted cordial rather than juice; it carries sugar and a fraction of the acid."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "fresh",
+      "label": "Freshly squeezed",
+      "proseName": "fresh lemon juice",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0313,
+      "densitySource": "measured",
+      "sugarGPer100": 2.52,
+      "acidPercent": 6,
+      "nutritionPer100g": {
+        "kcal": 22,
+        "carbohydrateG": 6.9,
+        "sugarsG": 2.52,
+        "proteinG": 0.35,
+        "fatG": 0.24,
+        "saturatedFatG": 0.04,
+        "fibreG": 0.3,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "167747",
+      "sourceNote": "Lemon juice, raw, for everything but the acidity; the cup portion is adopted as a true density because juice is poured. FoodData Central does not report titratable acidity, so the acid figure is Dave Arnold's measured value for lemon juice in Liquid Intelligence, which is almost entirely citric acid."
+    }
+  ]
+}

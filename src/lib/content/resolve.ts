@@ -32,6 +32,7 @@ export interface ResolveIssue {
     | 'unresolved-ingredient'
     | 'unresolved-form'
     | 'unresolved-glassware'
+    | 'unresolved-brew-ref'
     | FlattenIssue['kind'];
   where: string;
   ref: string;
@@ -45,10 +46,40 @@ export interface Glass {
   iceDisplacementMl?: Record<string, number>;
 }
 
+/**
+ * A note goes through the same prose renderer as a step, so a note may name a
+ * quantity the same way a step does — and so the literal-number rule reaches it.
+ * A note is the obvious place for a stray "about 30 ml" to survive otherwise.
+ */
+export interface ResolvedNote {
+  kind: 'technique' | 'pitfall';
+  stepRef?: string;
+  html: string;
+}
+
+export interface ResolvedSubstitution {
+  lineRef: string;
+  substitute: string;
+  formRef?: string;
+  ratio?: string;
+  note: string;
+  impact?: { flavour?: string; strength?: string; sweetness?: string };
+}
+
 export interface ResolvedVersion {
   slug: string;
   file: string;
+  /**
+   * The authored frontmatter, kept alongside the engine's view of it.
+   *
+   * The engine's DrinkVersion is deliberately only what the maths needs, so
+   * everything editorial — names, tags, image, subtitle, difficulty — has no
+   * home there and would otherwise be re-found by filename at every call site.
+   */
+  frontmatter: Record<string, unknown>;
   version: DrinkVersion;
+  notes: ResolvedNote[];
+  substitutions: ResolvedSubstitution[];
   lines: ResolvedLine[];
   spec: DrinkSpec;
   timing: Timing;
@@ -89,11 +120,68 @@ const asGlass = (record: Record<string, unknown>): Glass => ({
     : {}),
 });
 
+/** The authored brew block, before its dose and water are read off the lines. */
+interface AuthoredBrew extends Omit<Brew, 'doseG' | 'waterMl'> {
+  doseRef: string;
+  waterRef: string;
+}
+
+/**
+ * Fill in the brew figures from the lines the block names.
+ *
+ * A brewed drink's ratio is its headline number, and it used to be computable
+ * from two places at once — the brew block and the ingredient list — with
+ * nothing comparing them. Now the list is the only place either figure is
+ * written down.
+ *
+ * A dose has to be a mass and brew water a volume, because that is what a ratio
+ * of g to ml means. Anything else is reported rather than converted: converting
+ * would silently accept a line that says something different from what the
+ * author meant.
+ */
+function resolveBrew(
+  authored: AuthoredBrew,
+  lines: IngredientLine[],
+  where: string,
+  issues: ResolveIssue[],
+): Brew | null {
+  const read = (ref: string, unit: 'g' | 'ml', role: string): number | null => {
+    const line = lines.find((l) => l.id === ref);
+    if (!line) {
+      issues.push({
+        kind: 'unresolved-brew-ref',
+        where,
+        ref,
+        message: `The brew block's ${role} names line "${ref}", which is not a line in this version.`,
+      });
+      return null;
+    }
+    if (line.unit !== unit) {
+      issues.push({
+        kind: 'unresolved-brew-ref',
+        where,
+        ref,
+        message: `The brew block's ${role} names line "${ref}", which is authored in ${line.unit}. A ${role} is measured in ${unit}.`,
+      });
+      return null;
+    }
+    return line.amount;
+  };
+
+  const doseG = read(authored.doseRef, 'g', 'dose');
+  const waterMl = read(authored.waterRef, 'ml', 'water');
+  if (doseG === null || waterMl === null) return null;
+
+  const { doseRef: _dose, waterRef: _water, ...rest } = authored;
+  return { ...rest, doseG, waterMl };
+}
+
 /** Frontmatter to the engine's own DrinkVersion, with the flattened result. */
 function toVersion(
   fm: Record<string, unknown>,
   lines: IngredientLine[],
   steps: Step[],
+  brew: Brew | null,
 ): DrinkVersion {
   return {
     id: String(fm['id'] ?? 'default'),
@@ -112,8 +200,8 @@ function toVersion(
     ...(fm['batchNote'] ? { batchNote: String(fm['batchNote']) } : {}),
     ...(fm['zeroProof'] !== undefined ? { zeroProof: Boolean(fm['zeroProof']) } : {}),
     ...(fm['highProof'] !== undefined ? { highProof: Boolean(fm['highProof']) } : {}),
-    ...(fm['brew'] ? { brew: fm['brew'] as Brew } : {}),
     ...(fm['ferment'] ? { ferment: fm['ferment'] as DrinkVersion['ferment'] } : {}),
+    ...(brew ? { brew } : {}),
   };
 }
 
@@ -163,7 +251,11 @@ export function resolveSite(content: LoadedContent): ResolvedSite {
       lines.push({ line, ingredient, form });
     }
 
-    const version = toVersion(fm, flat.lines, flat.steps);
+    const brew = fm['brew']
+      ? resolveBrew(fm['brew'] as AuthoredBrew, flat.lines, where, issues)
+      : null;
+
+    const version = toVersion(fm, flat.lines, flat.steps, brew);
 
     let glass: Glass | null = null;
     if (version.glasswareRef) {
@@ -181,10 +273,23 @@ export function resolveSite(content: LoadedContent): ResolvedSite {
     const spec = computeDrinkSpec(version, lines);
     const source = { lines, steps: version.steps, defaultDrinks: version.defaultDrinks };
 
+    const rawNotes = (fm['notes'] as Array<Record<string, unknown>> | undefined) ?? [];
+
     versions.push({
       slug: file.slug,
       file: where,
+      frontmatter: fm,
       version,
+      notes: rawNotes.map((n) => ({
+        kind: n['kind'] as ResolvedNote['kind'],
+        ...(n['stepRef'] ? { stepRef: String(n['stepRef']) } : {}),
+        html: renderProse(String(n['text'] ?? ''), {
+          source,
+          drinks: version.defaultDrinks,
+          system: 'metric',
+        }),
+      })),
+      substitutions: (fm['substitutions'] as ResolvedSubstitution[] | undefined) ?? [],
       lines,
       spec,
       timing: computeTiming(version.steps),

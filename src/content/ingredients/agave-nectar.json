@@ -1,0 +1,39 @@
+{
+  "id": "agave-nectar",
+  "name": "Agave Nectar",
+  "kind": "ingredient",
+  "category": "sweetener",
+  "names": {
+    "alsoKnownAs": [
+      {
+        "name": "Agave syrup"
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.3999,
+      "densitySource": "measured",
+      "sugarGPer100": 68.03,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 310,
+        "carbohydrateG": 76.37,
+        "sugarsG": 68.03,
+        "proteinG": 0.09,
+        "fatG": 0.45,
+        "saturatedFatG": 0,
+        "fibreG": 0.2,
+        "sodiumMg": 4
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170277",
+      "sourceNote": "Sweetener, syrup, agave. Public domain. The teaspoon portion is adopted as a true density because the syrup is poured."
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "sweet-vermouth",
+  "name": "Sweet Vermouth",
+  "kind": "ingredient",
+  "category": "vermouth",
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Rosso", "region": "Italy", "lang": "it" },
+      { "name": "Red vermouth" }
+    ],
+    "notToBeConfusedWith": [
+      {
+        "name": "Dry vermouth",
+        "note": "Pale, barely sweetened and usually a little lower in strength; swapping one for the other changes what the drink is rather than adjusting it."
+      },
+      {
+        "name": "Bianco vermouth",
+        "note": "Sweet like this one but pale and vanilla-led rather than bitter and caramel-led."
+      }
+    ],
+    "searchOnly": ["vermut", "vermouth rosso", "italian vermouth"]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Rosso",
+      "proseName": "sweet vermouth",
+      "abvPercent": 16,
+      "densityGPerMl": 1.03,
+      "densitySource": "estimated",
+      "sugarGPer100": 15.3,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 144,
+        "carbohydrateG": 15.3,
+        "sugarsG": 15.3,
+        "proteinG": 0,
+        "fatG": 0
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "Vermouth is wine-based, and wine may be clarified with isinglass, made from fish, or with gelatine. Neither is a declarable allergen and neither has to appear on a label, so whether a particular bottle is vegan is a question about that producer rather than about vermouth.",
+      "allergenTags": ["sulphites"],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "camparigroup.info/usa/cinzano/1757-vermouth-di-torino-rosso",
+      "sourceNote": "Vermouth is not a standardised product and FoodData Central carries nothing closer than dessert wine, which is a different drink at a different strength. The figures here are one producer's published declaration for a Vermouth di Torino rosso - 16% alc./vol., and per 1.5 fl oz serving 64 calories and 6.8 g of carbohydrate, restated per 100 ml - taken as the reference for the category rather than as a measurement of every bottle. Sweet vermouths run from about 15% to 18% and from roughly 130 to 180 g of sugar per litre, and a bottle at the other end of either range moves this drink's figures. The sulphite flag is the producer's own declaration."
+    }
+  ]
+}

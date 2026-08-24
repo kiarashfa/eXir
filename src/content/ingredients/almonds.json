@@ -1,0 +1,34 @@
+{
+  "id": "almonds",
+  "name": "Almonds",
+  "kind": "ingredient",
+  "category": "nut",
+  "forms": [
+    {
+      "id": "blanched",
+      "label": "Blanched",
+      "proseName": "blanched almonds",
+      "abvPercent": 0,
+      "sugarGPer100": 4.63,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 590,
+        "carbohydrateG": 18.67,
+        "sugarsG": 4.63,
+        "proteinG": 21.4,
+        "fatG": 52.52,
+        "saturatedFatG": 3.953,
+        "fibreG": 9.9,
+        "sodiumMg": 19
+      },
+      "animalOrigin": "none",
+      "allergenTags": [
+        "nuts"
+      ],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170568",
+      "sourceNote": "Nuts, almonds, blanched. Public domain. No density: the almonds are ground, steeped and strained out, and the record's own figure is a tablespoon of whole nuts."
+    }
+  ]
+}

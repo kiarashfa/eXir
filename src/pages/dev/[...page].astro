@@ -2,10 +2,10 @@
 /**
  * The rendered QA surface.
  *
- * Renders the real drink template against the engine fixtures, so the design
- * system can be seen and driven before any content exists. Phase 7 swaps the
- * fixtures for authored drinks at their real routes; this route keeps doing the
- * same job for the fixtures.
+ * Renders the real drink template against BOTH the engine fixtures and whatever
+ * has actually been authored, so a change can be seen rather than inferred from
+ * a test name. The authored drinks get their real routes in the site-assembly
+ * phase; until then this is where they are looked at.
  *
  * Emits no route at all in a production build unless EXIR_DEV=1.
  */
@@ -20,40 +20,62 @@ export async function getStaticPaths() {
   // emits nothing unless it is asked to in so many words.
   if (!import.meta.env.DEV && process.env['EXIR_DEV'] !== '1') return [];
 
-  const content = await loadContent(path.resolve('test-fixtures/engine-content'));
-  const site = resolveSite(content);
+  const sources = [
+    { prefix: '', dir: path.resolve('src/content') },
+    { prefix: 'fixture-', dir: path.resolve('test-fixtures/engine-content') },
+  ];
 
-  return site.drinks.map((drink) => ({
-    params: { page: drink.slug },
-    props: {
-      slug: drink.slug,
-      name: drink.name,
-      versions: drink.versions,
-      issues: site.issues.filter((i) => i.where.includes(drink.slug)),
-    },
-  }));
+  const routes = [];
+  for (const { prefix, dir } of sources) {
+    const site = resolveSite(await loadContent(dir));
+    for (const drink of site.drinks) {
+      routes.push({
+        params: { page: `${prefix}${drink.slug}` },
+        props: {
+          slug: drink.slug,
+          name: drink.name,
+          versions: drink.versions,
+          about: drink.about,
+          fixture: prefix !== '',
+          issues: site.issues.filter((i) => i.where.includes(drink.slug)),
+        },
+      });
+    }
+  }
+  return routes;
 }
 
-const { slug, name, versions, issues } = Astro.props;
+const { slug, name, versions, about, fixture, issues } = Astro.props;
 const primary = versions[0]!;
 
-const eyebrow = [primary.version.method, primary.spec.facets.baseSpirits[0]?.spirit]
+const fm = primary.frontmatter;
+const origin = (fm['tags'] as { origin?: string[] } | undefined)?.origin?.[0];
+const category = (fm['tags'] as { category?: string[] } | undefined)?.category?.[0];
+
+const eyebrow = [origin, category, primary.version.method]
   .filter((v) => v && v !== 'none')
   .join(' · ');
+
+const subtitle = fixture
+  ? `Fixture ${slug}. Every number on this page is computed from structured data.`
+  : (fm['subtitle'] as string | undefined);
 ---
 
 <BaseLayout
   title={`${name} — eXir`}
-  description={`A ${primary.version.method} drink. Every figure on this page is computed.`}
+  description={
+    about ? String(about.frontmatter['summary'] ?? '') : `A ${primary.version.method} drink.`
+  }
   noindex
   current="drinks"
 >
   <DrinkPage
+    slug={slug}
     name={name}
-    subtitle={`Fixture ${slug}. Every number on this page is computed from structured data.`}
+    subtitle={subtitle}
     versions={versions}
     eyebrow={eyebrow}
-    about={null}
+    about={about}
   />
 
   {issues.length > 0 && (

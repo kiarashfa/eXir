@@ -1,0 +1,29 @@
+{
+  "id": "orange-flower-water",
+  "name": "Orange Flower Water",
+  "kind": "ingredient",
+  "category": "flavouring",
+  "names": {
+    "alsoKnownAs": [
+      {
+        "name": "Orange blossom water"
+      }
+    ],
+    "searchOnly": [
+      "orangeflower water",
+      "eau de fleur d oranger"
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0,
+      "densitySource": "estimated",
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "A distillate of bitter orange blossom in water. No dataset consulted carries it, and no sugar, acid or energy figure is claimed here rather than estimated: the product is water and aroma, and a fabricated zero would be indistinguishable on the page from a measured one. The density is the water-like class."
+    }
+  ]
+}

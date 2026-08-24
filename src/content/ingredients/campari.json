@@ -1,0 +1,54 @@
+{
+  "id": "campari",
+  "name": "Campari",
+  "kind": "ingredient",
+  "category": "bitter-aperitivo",
+  "proprietary": true,
+  "producer": "Davide Campari-Milano",
+  "countryOfOrigin": "Italy",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Aperol",
+        "note": "From the same owner and the same shelf, and not interchangeable: roughly half the strength, considerably sweeter and far less bitter."
+      },
+      {
+        "name": "Bitter",
+        "note": "The generic category name in Italy, where several producers make one; a recipe naming Campari means this bottle rather than the category."
+      }
+    ],
+    "searchOnly": ["campari bitter", "bitter campari"]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "aperol",
+      "note": "Lower in strength and higher in sugar, so a drink built on it comes out longer, sweeter and much less bitter. Widely done, and closer to a different drink than to a substitution."
+    }
+  ],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 25,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "sugarGPer100": 25.9,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 243,
+        "carbohydrateG": 25.9,
+        "sugarsG": 25.9,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "The red was carmine, a colourant made from insects, until the producer moved to synthetic colourants in the mid-2000s. The European label cached here lists E122, E102 and E133 and no carmine, and the United States bottling uses Red 40; reporting on the change describes it as not having reached every market at once, so which colourant is in a given bottle depends on where it was made.",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "camparigroup.info",
+      "sourceNote": "The producer's own consumer-information page states 25% alc./vol. and, per 1.5 fl oz serving, 108 calories and 11.5 g of carbohydrate; those are restated here per 100 ml. The carbohydrate is taken as sugar because the product carries no other kind. FoodData Central has no record for Campari at all. Cross-checked against the site's own energy arithmetic: 25% alcohol plus 25.9 g of sugar comes to 242 kcal against the 243 the producer publishes, which is what makes the 25% credible - an Open Food Facts entry files the same product at 20%, and at 20% the arithmetic misses by fourteen per cent."
+    }
+  ]
+}

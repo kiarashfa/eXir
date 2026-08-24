@@ -373,9 +373,18 @@ async function emitForm(fdcId: number, argv: string[], key: string): Promise<voi
   describe(record);
 
   const found = flagSet('no-density', argv) ? null : densityFrom(record);
-  // A rejected density is not attached. A wrong density is worse than none:
-  // none is honestly estimated from a class, wrong is silently believed.
-  const density = found?.usable ? found : null;
+  // Only a figure derived from a LIQUID measure goes into the block. A rejected
+  // one is not attached at all, and a suspect one is printed beside the block
+  // rather than in it.
+  //
+  // A wrong density is worse than none — none is honestly estimated from a class
+  // and marked, wrong is silently believed — so the default has to be that
+  // adopting one is a decision rather than the result of not noticing. Measured
+  // here: turbinado sugar comes out of a teaspoon at 0.933 g/ml and table salt
+  // out of a cup at 1.234, both comfortably above the packing-density floor and
+  // both bulk figures. The crystals are 1.59 and 2.16.
+  const density = found?.kind === 'liquid' ? found : null;
+  const candidate = found?.usable && found.kind !== 'liquid' ? found : null;
   const alcohol = amountOf(record, NUTRIENTS.alcohol);
   const explicitAbv = arg('abv', argv);
 
@@ -424,11 +433,14 @@ async function emitForm(fdcId: number, argv: string[], key: string): Promise<voi
   console.log('  · acidPercent is 0 here because USDA does not report titratable acidity.');
   console.log('    Citrus and vinegar need it filled in from a cited source.');
   if (!density) {
-    console.log('  · No usable measured density. Use a class from density-classes.json and mark it estimated.');
+    console.log('  · No measured LIQUID density in the block. Use a class from density-classes.json and mark it estimated,');
+    console.log('    unless you are confirming the candidate below.');
     if (found && !found.usable) console.log(`  · The record's own figure was rejected: ${found.note}`);
   }
-  if (density?.kind === 'suspect') {
-    console.log(`  · ${density.note}`);
+  if (candidate) {
+    console.log(`  · CANDIDATE, deliberately NOT in the block: ${candidate.gPerMl.toFixed(4)} g/ml (${candidate.from}).`);
+    console.log(`    ${candidate.note}`);
+    console.log('    Paste it in only if this food is poured rather than packed. A crystal or a leaf is packed.');
   }
   if (abvPercent === 0 && alcohol !== undefined) {
     console.log('  · Alcohol is present but no ABV could be derived. Pass --abv with the bottle strength.');

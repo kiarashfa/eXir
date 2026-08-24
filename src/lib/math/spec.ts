@@ -54,6 +54,16 @@ export interface DrinkSpec {
   bars: Bar[];
   /** Per drink, after dilution. */
   finalVolumeMl: number;
+  /**
+   * Whether the final volume itself is modelled.
+   *
+   * Not the same question as whether the composition is. A brewed drink's yield
+   * is authored - it is what the recipe says reaches the cup - so it carries no
+   * estimate marker even where the dose is only partly extracted and the
+   * composition therefore is a model. The marker means the true figure is not
+   * on the page, and for a yield it is.
+   */
+  finalVolumeEstimated: boolean;
   sugarGPerL: number;
   acidPercentFinal: number;
   facets: {
@@ -163,6 +173,7 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
     nutrition,
     bars,
     finalVolumeMl,
+    finalVolumeEstimated: version.brew ? false : volumeEstimated,
     sugarGPerL,
     acidPercentFinal,
     facets: {

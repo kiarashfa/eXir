@@ -1,0 +1,100 @@
+---
+id: egg-white
+label: With egg white
+name: Whiskey Sour
+subtitle: The same build with a white in it, shaken twice, for a drink with a head on it.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken-long
+glasswareRef: double-rocks
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The bourbon, lemon and syrup batch. The white has to go in at service — it will
+  not foam once it has sat in acid, and it will not keep.
+difficulty: Medium
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [shaken]
+names:
+  alsoKnownAs:
+    - name: Boston Sour
+      note: The name this version is listed under where the two are distinguished.
+ingredients:
+  - id: bourbon
+    ingredientRef: bourbon
+    formRef: standard
+    amount: 60
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 22.5
+    unit: ml
+  - id: white
+    ingredientRef: egg
+    formRef: white
+    amount: 15
+    unit: ml
+steps:
+  - { id: juice, durationSec: 60, type: active, phase: prep }
+  - { id: build, durationSec: 30, type: active, phase: make }
+  - { id: dry-shake, durationSec: 20, type: active, phase: make }
+  - { id: wet-shake, durationSec: 14, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: dry-shake
+    text: >-
+      The first shake has no ice in it on purpose. Protein unfolds and traps air
+      far more readily warm than cold, so a shake without ice builds the foam and
+      the shake with ice then chills it without knocking it back down. Doing it
+      the other way round gives a thin, short-lived head.
+  - kind: pitfall
+    text: >-
+      A white that has been sitting in the lemon juice will not whip. Acid starts
+      denaturing the protein straight away, so the white goes in with everything
+      else and the shaker closes immediately.
+makeAhead:
+  aheadInstructions: >-
+    Everything but the white batches, and the water the shaking would have added
+    goes in with it. Add the white to each drink at service and dry-shake it
+    there.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="bourbon"/>, the <Qty ref="lemon"/>, the
+  <Qty ref="syrup"/> and the <Qty ref="white"/> in a shaker. Close it straight
+  away; the white should not sit in the acid.
+</Step>
+
+<Step id="dry-shake">
+  Shake with no ice at all for <Dur step="dry-shake"/>, until the shaker feels
+  heavier than it should and the sound goes soft.
+</Step>
+
+<Step id="wet-shake">
+  Open it, fill it with cubed ice and shake again for <Dur step="wet-shake"/>.
+</Step>
+
+<Step id="strain">
+  Double strain into a double old fashioned glass over fresh cubed ice, pouring
+  slowly so the foam settles on top rather than folding into the drink.
+</Step>

@@ -1,0 +1,42 @@
+{
+  "id": "lime-juice",
+  "name": "Lime Juice",
+  "kind": "ingredient",
+  "category": "citrus-juice",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Lime cordial",
+        "note": "A sweetened, preserved concentrate used in drinks like the Gimlet, not juice; it carries added sugar and only a fraction of the acid."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "fresh",
+      "label": "Freshly squeezed",
+      "proseName": "fresh lime juice",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0229,
+      "densitySource": "measured",
+      "sugarGPer100": 1.69,
+      "acidPercent": 6,
+      "nutritionPer100g": {
+        "kcal": 25,
+        "carbohydrateG": 8.42,
+        "sugarsG": 1.69,
+        "proteinG": 0.42,
+        "fatG": 0.07,
+        "saturatedFatG": 0.008,
+        "fibreG": 0.4,
+        "sodiumMg": 2
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "168156",
+      "sourceNote": "Lime juice, raw, for everything but the acidity; the cup portion is adopted as a true density because juice is poured. FoodData Central does not report titratable acidity, so the acid figure is Dave Arnold's measured value for lime juice in Liquid Intelligence. Lime reaches the same total acidity as lemon by a different route: roughly two thirds of it is citric and most of the rest malic, where lemon is almost all citric."
+    }
+  ]
+}

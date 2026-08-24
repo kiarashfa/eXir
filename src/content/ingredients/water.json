@@ -1,0 +1,31 @@
+{
+  "id": "water",
+  "name": "Water",
+  "kind": "ingredient",
+  "category": "water",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Still",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0017,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "nutritionPer100g": {
+        "kcal": 0,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 2
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174158",
+      "sourceNote": "Water, bottled, generic. The density is the record's own cup portion, adopted because water is poured rather than packed and the figure is therefore a true density. Public domain."
+    }
+  ]
+}

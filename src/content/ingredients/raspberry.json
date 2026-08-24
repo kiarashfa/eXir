@@ -1,0 +1,32 @@
+{
+  "id": "raspberry",
+  "name": "Raspberry",
+  "kind": "ingredient",
+  "category": "fruit",
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Fresh",
+      "proseName": "raspberries",
+      "abvPercent": 0,
+      "sugarGPer100": 4.42,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 52,
+        "carbohydrateG": 11.94,
+        "sugarsG": 4.42,
+        "proteinG": 1.2,
+        "fatG": 0.65,
+        "saturatedFatG": 0.019,
+        "fibreG": 6.5,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "167755",
+      "sourceNote": "Raspberries, raw. Public domain. No density: the fruit is macerated and strained out, and the record's own figure is a cup of whole berries."
+    }
+  ]
+}

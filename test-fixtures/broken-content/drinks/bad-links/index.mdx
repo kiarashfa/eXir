@@ -24,6 +24,20 @@ ingredients:
 steps:
   - { componentRef: no-such-component }
   - { id: stir, durationSec: 25, type: active, phase: make }
+brew:
+  method: pour-over
+  doseRef: no-such-line
+  waterRef: ghost
+  waterTempC: 94
+  yieldMl: 300
+notes:
+  - kind: technique
+    stepRef: no-such-step
+    text: A note hanging off a step that is not here renders detached from whatever it explains.
+substitutions:
+  - lineRef: no-such-line
+    substitute: no-such-ingredient
+    note: A substitute that resolves to nothing cannot recompute anything.
 ---
 
 <Step id="stir">

@@ -16,6 +16,7 @@ import { z } from 'astro/zod';
 import { allBarsInOneQuartile } from '../../src/lib/math/balance.ts';
 import { dilutionClass, dilutionClassIds } from '../../src/lib/math/dilution.ts';
 import { glassFit } from '../../src/lib/math/glassware.ts';
+import { aboutWordCount } from '../../src/lib/render/about.ts';
 import { literalDigitsInProse } from '../../src/lib/render/prose.ts';
 import { extractQtyRefs, portionsSum } from '../../src/lib/transclusion/merge.ts';
 import type { ResolvedSite, ResolvedVersion } from '../../src/lib/content/resolve.ts';
@@ -151,6 +152,34 @@ const ingredientAndFormRefs: Check = {
       if (issue.kind !== 'unresolved-ingredient' && issue.kind !== 'unresolved-form') continue;
       report.error('c4-ingredient-form-refs', issue.where, issue.message);
     }
+
+    // A Preparation's own lines never pass through a drink's resolution, because
+    // a Preparation is referenced as an ingredient and its steps are never
+    // walked. Everything in its recipe is therefore unchecked unless it is
+    // checked here, and a syrup pointing at an ingredient that does not exist
+    // looks from every other angle like a syrup that works.
+    for (const [id, ingredient] of site.ingredients) {
+      if (ingredient.kind !== 'preparation') continue;
+      for (const line of ingredient.ingredients ?? []) {
+        const target = site.ingredients.get(line.ingredientRef);
+        if (!target) {
+          report.error(
+            'c4-ingredient-form-refs',
+            `preparations/${id}.mdx`,
+            `Line "${line.id}" names an ingredient that does not exist: "${line.ingredientRef}".`,
+          );
+          continue;
+        }
+        const wanted = line.formRef ?? 'standard';
+        if (!target.forms.some((f) => f.id === wanted)) {
+          report.error(
+            'c4-ingredient-form-refs',
+            `preparations/${id}.mdx`,
+            `Line "${line.id}" wants Form "${wanted}" of "${line.ingredientRef}", which has no such Form.`,
+          );
+        }
+      }
+    }
   },
 };
 
@@ -194,12 +223,19 @@ const literalNumbers: Check = {
   description: 'No literal number in step prose outside a live-value component.',
   run({ site, report }) {
     for (const v of site.versions) {
-      for (const { step, html } of v.renderedSteps) {
+      // Notes render through the same prose path as steps and sit on the same
+      // page, so the rule reaches them too. A note is otherwise the easiest
+      // place on a drink page for a typed "about 30 ml" to survive.
+      const surfaces: Array<{ id: string; html: string }> = [
+        ...v.renderedSteps.map(({ step, html }) => ({ id: step.id, html })),
+        ...v.notes.map((n, i) => ({ id: `note ${i + 1} (${n.kind})`, html: n.html })),
+      ];
+      for (const { id, html } of surfaces) {
         for (const digits of literalDigitsInProse(html)) {
-          if (ALLOWED_LITERALS.has(`${where(v)}·${step.id}·${digits}`)) continue;
+          if (ALLOWED_LITERALS.has(`${where(v)}·${id}·${digits}`)) continue;
           report.error(
             'c6-literal-numbers',
-            `${where(v)} · ${step.id}`,
+            `${where(v)} · ${id}`,
             `"${digits}" is typed into the prose. Wrap it in <Qty>, <Temp>, <Len>, <Dur> or <Abv>.`,
           );
         }
@@ -279,17 +315,26 @@ const idCollisions: Check = {
 
 const consumedFractionRange: Check = {
   id: 'c9-consumed-fraction',
-  description: 'Every consumedFraction sits in 0 < x <= 1.',
+  description: 'Every consumedFraction sits in 0 <= x <= 1, and a zero says why.',
   run({ site, report }) {
     for (const v of site.versions) {
       for (const { line } of v.lines) {
         const f = line.consumedFraction;
         if (f === undefined) continue;
-        if (!(f > 0 && f <= 1)) {
+        if (!(f >= 0 && f <= 1)) {
           report.error(
             'c9-consumed-fraction',
             `${where(v)} · ${line.id}`,
-            `consumedFraction is ${f}; it must be greater than 0 and at most 1.`,
+            `consumedFraction is ${f}; it must be between 0 and 1.`,
+          );
+        }
+        // Zero claims the line is a purchase rather than an input. Unstated,
+        // that reads to a check as a line quietly deleted from the composition.
+        if (f === 0 && !line.consumedFractionNote) {
+          report.error(
+            'c9-consumed-fraction',
+            `${where(v)} · ${line.id}`,
+            'consumedFraction is 0 with no note. A line that reaches the glass not at all has to say so.',
           );
         }
       }
@@ -462,15 +507,13 @@ const familyRefs: Check = {
   run({ site, report }) {
     const familyOf = new Map<string, string>();
     for (const v of site.versions) {
-      const fm = site.content.drinks.find((d) => d.file === v.file)?.frontmatter;
-      const fam = fm?.['family'];
+      const fam = v.frontmatter['family'];
       if (typeof fam === 'string') familyOf.set(v.slug, fam);
     }
 
     for (const v of site.versions) {
-      const fm = site.content.drinks.find((d) => d.file === v.file)?.frontmatter;
-      const fam = fm?.['family'];
-      const from = fm?.['derivedFrom'];
+      const fam = v.frontmatter['family'];
+      const from = v.frontmatter['derivedFrom'];
 
       if (typeof fam === 'string' && !site.families.has(fam)) {
         report.error('c18-families', where(v), `family "${fam}" is not a family page.`);
@@ -629,13 +672,6 @@ const uncitedSources: Check = {
   },
 };
 
-/** Strip the components so a citation marker never counts as a word. */
-const aboutWordCount = (body: string): number =>
-  body
-    .replace(/<[^>]+>/g, ' ')
-    .split(/\s+/)
-    .filter(Boolean).length;
-
 const aboutLength: Check = {
   id: 'c24-about-length',
   description: 'An About section runs between 150 and 500 words.',
@@ -731,6 +767,68 @@ const undeclaredAnimalOrigin: Check = {
   },
 };
 
+/**
+ * Notes and substitutions point at things, and a pointer that misses is silent.
+ *
+ * A note attached to a step that no longer exists renders detached from what it
+ * explains. A substitution is worse: it names an Ingredient because the site
+ * swaps in that ingredient's real strength and sugar and recomputes the spec in
+ * front of the reader, so a substitute that resolves to nothing is a recompute
+ * that cannot happen — and the failure appears only when someone clicks it.
+ */
+const noteAndSubstitutionRefs: Check = {
+  id: 'c29-note-sub-refs',
+  description: 'Every note, substitution and brew reference resolves.',
+  run({ site, report }) {
+    for (const issue of site.issues) {
+      if (issue.kind !== 'unresolved-brew-ref') continue;
+      report.error('c29-note-sub-refs', issue.where, issue.message);
+    }
+
+    for (const v of site.versions) {
+      const stepIds = new Set(v.version.steps.map((s) => s.id));
+      const lineIds = new Set(v.lines.map((l) => l.line.id));
+
+      for (const note of v.notes) {
+        if (note.stepRef && !stepIds.has(note.stepRef)) {
+          report.error(
+            'c29-note-sub-refs',
+            where(v),
+            `A ${note.kind} note names step "${note.stepRef}", which is not a step in this version.`,
+          );
+        }
+      }
+
+      for (const sub of v.substitutions) {
+        if (!lineIds.has(sub.lineRef)) {
+          report.error(
+            'c29-note-sub-refs',
+            where(v),
+            `A substitution names line "${sub.lineRef}", which is not a line in this version.`,
+          );
+        }
+        const ingredient = site.ingredients.get(sub.substitute);
+        if (!ingredient) {
+          report.error(
+            'c29-note-sub-refs',
+            where(v),
+            `Substitute "${sub.substitute}" is not an ingredient on the site, so its composition is unknown and the spec cannot be recomputed.`,
+          );
+          continue;
+        }
+        const wanted = sub.formRef ?? 'standard';
+        if (!ingredient.forms.some((f) => f.id === wanted)) {
+          report.error(
+            'c29-note-sub-refs',
+            where(v),
+            `Substitute "${sub.substitute}" has no Form "${wanted}".`,
+          );
+        }
+      }
+    }
+  },
+};
+
 export const checks: Check[] = [
   schemaCheck,
   portionsSumCheck,
@@ -760,4 +858,5 @@ export const checks: Check[] = [
   compositionSanity,
   balanceSanity,
   undeclaredAnimalOrigin,
+  noteAndSubstitutionRefs,
 ];

@@ -1,0 +1,53 @@
+{
+  "id": "white-rum",
+  "name": "White Rum",
+  "kind": "ingredient",
+  "category": "rum",
+  "names": {
+    "alsoKnownAs": [
+      {
+        "name": "Light rum"
+      }
+    ],
+    "notToBeConfusedWith": [
+      {
+        "name": "Rhum agricole",
+        "note": "Distilled from fresh-pressed cane juice rather than molasses, under its own appellation rules in the French Caribbean; it carries a grassy, vegetal character white rum does not."
+      }
+    ]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "cachaca",
+      "note": "Brazil's own unaged cane spirit, distilled from fresh cane juice rather than molasses; it brings a grassy, vegetal note white rum doesn't have, changing the drink's character rather than just its strength."
+    }
+  ],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard strength",
+      "proseName": "white rum",
+      "abvPercent": 40,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174817",
+      "sourceNote": "Alcoholic beverage, distilled, rum, 80 proof. Public domain. 80 US proof is 40% alcohol by volume by definition, which is where the strength here comes from; the record's own measured ethanol content against its measured density works out at 39.8%, which is the cross-check. White rum is bottled at 40% almost universally, occasionally higher for an overproof style."
+    }
+  ]
+}

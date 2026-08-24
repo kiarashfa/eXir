@@ -12,21 +12,14 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { loadContent, type DrinkFile } from './disk.ts';
-import { flatten } from '../transclusion/flatten.ts';
+import { loadContent } from './disk.ts';
+import { resolveSite } from './resolve.ts';
 import { computeBatch, computeDrinkSpec, linesForService } from '../math/spec.ts';
 import { computeScaledTiming, computeTiming } from '../math/timing.ts';
 import { computeBrew } from '../math/brewing.ts';
 import { glassFit } from '../math/glassware.ts';
 import { literalDigitsInProse, renderProse } from '../render/prose.ts';
-import type {
-  Bitterness,
-  Brew,
-  DrinkVersion,
-  Ingredient,
-  IngredientLine,
-  ResolvedLine,
-} from '../math/types.ts';
+import type { DrinkVersion, ResolvedLine } from '../math/types.ts';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const FIXTURES = path.resolve(here, '../../../test-fixtures/engine-content');
@@ -36,53 +29,27 @@ const content = await loadContent(FIXTURES);
 const close = (a: number, b: number, tol = 1e-3) =>
   assert.ok(Math.abs(a - b) < tol, `${a} !== ${b} within ${tol}`);
 
-const drinkNamed = (slug: string): DrinkFile => {
-  const found = content.drinks.find((d) => d.slug === slug);
-  assert.ok(found, `fixture ${slug} loaded`);
-  return found;
-};
+/**
+ * The resolved fixture site, built once.
+ *
+ * This file used to carry its own frontmatter-to-DrinkVersion mapper beside the
+ * one in `resolve.ts`, and the two drifted the moment the brew block started
+ * reading its dose off the ingredient lines: the tests kept passing a raw
+ * authored block through and got a ratio of zero out. Two mappers is the same
+ * mistake the checks avoid by not recomputing what the engine already computed.
+ */
+const site = resolveSite(content);
+assert.deepEqual(site.issues, [], 'the fixtures resolve cleanly');
 
-/** Flatten a fixture and resolve every line against its ingredient and form. */
+/** One resolved fixture version, with its lines already joined to their Forms. */
 function build(slug: string): {
   version: DrinkVersion;
   lines: ResolvedLine[];
   steps: DrinkVersion['steps'];
 } {
-  const file = drinkNamed(slug);
-  const fm = file.frontmatter;
-  const flat = flatten(
-    { lines: (fm['ingredients'] as IngredientLine[]) ?? [], slots: file.slots },
-    content.components,
-  );
-  assert.deepEqual(flat.issues, [], `${slug} flattens cleanly`);
-
-  const lines: ResolvedLine[] = flat.lines.map((line) => {
-    const ingredient = content.ingredients.get(line.ingredientRef);
-    assert.ok(ingredient, `${slug}: ingredient "${line.ingredientRef}" resolves`);
-    const form =
-      ingredient.forms.find((f) => f.id === (line.formRef ?? 'standard')) ?? ingredient.forms[0];
-    assert.ok(form, `${slug}: form "${line.formRef}" resolves on ${line.ingredientRef}`);
-    return { line, ingredient: ingredient as Ingredient, form };
-  });
-
-  const version: DrinkVersion = {
-    id: String(fm['id'] ?? 'default'),
-    label: String(fm['label'] ?? ''),
-    defaultDrinks: Number(fm['defaultDrinks'] ?? 1),
-    method: String(fm['method'] ?? ''),
-    dilutionClass: String(fm['dilutionClass'] ?? 'none'),
-    bitterness: fm['bitterness'] as Bitterness,
-    batchable: (fm['batchable'] as DrinkVersion['batchable']) ?? 'none',
-    lines: flat.lines,
-    steps: flat.steps,
-    ...(fm['glasswareRef'] ? { glasswareRef: String(fm['glasswareRef']) } : {}),
-    ...(fm['servedOverIce'] !== undefined ? { servedOverIce: Boolean(fm['servedOverIce']) } : {}),
-    ...(fm['zeroProof'] !== undefined ? { zeroProof: Boolean(fm['zeroProof']) } : {}),
-    ...(fm['brew'] ? { brew: fm['brew'] as Brew } : {}),
-    ...(fm['ferment'] ? { ferment: fm['ferment'] as DrinkVersion['ferment'] } : {}),
-  };
-
-  return { version, lines, steps: flat.steps };
+  const found = site.versions.find((v) => v.slug === slug);
+  assert.ok(found, `fixture ${slug} resolves`);
+  return { version: found.version, lines: found.lines, steps: found.version.steps };
 }
 
 // ---------------------------------------------------------------------------

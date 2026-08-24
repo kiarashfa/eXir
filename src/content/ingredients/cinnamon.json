@@ -1,0 +1,41 @@
+{
+  "id": "cinnamon",
+  "name": "Cinnamon",
+  "kind": "ingredient",
+  "category": "spice",
+  "pantryStaple": true,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Cassia",
+        "note": "The bark most cinnamon sold outside specialist shops actually is: darker, harder and hotter than Ceylon cinnamon, and rolled in one thick layer rather than many thin ones."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "stick",
+      "label": "Stick",
+      "proseName": "cinnamon bark",
+      "abvPercent": 0,
+      "sugarGPer100": 2.17,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 247,
+        "carbohydrateG": 80.59,
+        "sugarsG": 2.17,
+        "proteinG": 3.99,
+        "fatG": 1.24,
+        "saturatedFatG": 0.345,
+        "fibreG": 53.1,
+        "sodiumMg": 10
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "171320",
+      "sourceNote": "Spices, cinnamon, ground. Public domain; the bark and the ground spice are the same material. No density is carried: the bark is strained out of everything it is used in, so it displaces nothing in the finished drink, and the record's own figure is a teaspoon of powder."
+    }
+  ]
+}

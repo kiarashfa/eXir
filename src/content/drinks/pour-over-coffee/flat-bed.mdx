@@ -1,0 +1,81 @@
+---
+id: flat-bed
+label: Flat bed
+name: Pour-Over Coffee
+subtitle: The same brew in a flat-bottomed dripper, where the bed stays the same depth throughout.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: Brewed to order, like the cone.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [coffee]
+  origin: [international]
+  method: [brewed]
+brew:
+  method: pour-over
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 93
+  grind: medium
+  contactSec: 210
+  yieldMl: 310
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 22
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves and the rest stays in the filter. The
+      figure is the middle of the extraction band the Specialty Coffee
+      Association publishes for a well-brewed cup, not a measurement of this one.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 350
+    unit: ml
+    portions:
+      - { id: bloom-water, amount: 50 }
+      - { id: brew-water, amount: 300, note: in three additions }
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: rinse, durationSec: 30, type: active, phase: prep }
+  - { id: bloom, durationSec: 40, type: active, phase: make }
+  - { id: pour, durationSec: 170, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: pour
+    text: >-
+      A flat bottom holds the grounds at one depth across the whole bed, so water
+      passes through the same amount of coffee wherever it enters. A cone piles
+      the grounds deeper in the middle, which is why it rewards a careful pour
+      and this shape forgives a careless one.
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> a shade coarser than you would for a cone. A flat
+  bed drains more slowly at the same grind, and the extra contact is already in
+  the recipe.
+</Step>
+
+<Step id="rinse">
+  Set the wave filter in the dripper, open its pleats and rinse it through with
+  hot water. Discard what collects underneath.
+</Step>
+
+<Step id="bloom">
+  Pour the <Qty ref="bloom-water"/> at <Temp c={93}/> over the grounds and leave
+  it for <Dur step="bloom"/>.
+</Step>
+
+<Step id="pour">
+  Add the <Qty ref="brew-water"/> over <Dur step="pour"/> in three even
+  additions, pouring into the middle and letting the level fall between them.
+</Step>

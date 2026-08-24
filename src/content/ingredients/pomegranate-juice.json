@@ -1,0 +1,31 @@
+{
+  "id": "pomegranate-juice",
+  "name": "Pomegranate Juice",
+  "kind": "ingredient",
+  "category": "juice",
+  "forms": [
+    {
+      "id": "standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0525,
+      "densitySource": "measured",
+      "sugarGPer100": 12.65,
+      "nutritionPer100g": {
+        "kcal": 54,
+        "carbohydrateG": 13.13,
+        "sugarsG": 12.65,
+        "proteinG": 0.15,
+        "fatG": 0.29,
+        "saturatedFatG": 0.077,
+        "fibreG": 0.1,
+        "sodiumMg": 9
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "167787",
+      "sourceNote": "Pomegranate juice, bottled. Public domain. The cup portion is adopted as a true density. No acidity figure is carried: pomegranate juice is meaningfully acidic, no source consulted reports its titratable acidity, and a figure invented here would move a balance bar."
+    }
+  ]
+}

@@ -170,6 +170,12 @@
   align-items: center;
 }
 
+/* A drink with no adopted photograph gets the whole width rather than a gap
+   where the frame would have been. */
+.hero-grid--text-only {
+  grid-template-columns: 1fr;
+}
+
 .eyebrow {
   font: 500 11px/1 var(--font-body);
   letter-spacing: 0.17em;
@@ -204,16 +210,14 @@
   color: var(--muted);
 }
 .naming-row {
-  display: flex;
-  gap: 12px;
-  align-items: baseline;
+  display: block;
 }
 .naming-label {
-  flex: 0 0 auto;
+  display: block;
   font: 500 10px/1.7 var(--font-body);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  width: 11ch;
+  margin-bottom: 1px;
 }
 .naming em {
   font-family: var(--font-display);
@@ -222,11 +226,13 @@
   font-style: italic;
 }
 
-/* The fact row wraps as a grid of equal columns rather than a fixed four, so
-   it stays symmetric — at mobile width a 2x2, never a 3+1. */
+/* Three columns, then two. Not auto-fit: auto-fit packs as many as will fit and
+   leaves the remainder short, which turned a six-fact row into four and two.
+   The count is stable at six because every fact in it is either computed or
+   required, so the column count can be stated rather than inferred. */
 .facts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px 34px;
   margin-top: 30px;
   padding-top: 24px;
@@ -1027,6 +1033,89 @@
 }
 
 /* ---------------------------------------------------------------------------
+   About — reference prose and its sources.
+
+   The one place on the site where a number is the content rather than a
+   computed display, which is why every checkable claim here carries a citation
+   and why the citation markers are deliberately visible rather than discreet.
+   --------------------------------------------------------------------------- */
+
+.about-body p {
+  font-size: 15.5px;
+  line-height: 1.72;
+  max-width: var(--measure);
+  color: var(--ink-soft);
+  margin: 0 0 15px;
+}
+.about-body em {
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+/* Not a dotted underline and not the estimate affordance: this is a link to a
+   source, and one affordance means one thing site-wide. */
+.cite {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 0;
+  margin-left: 1px;
+}
+.cite a {
+  color: var(--accent-ink);
+  text-decoration: none;
+  padding: 0 2px;
+  border-radius: 3px;
+  background: var(--accent-soft);
+}
+.cite a:hover {
+  color: var(--ink);
+}
+.cite.is-unresolved {
+  color: var(--bitter);
+}
+
+.sources {
+  margin: 28px 0 0;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+  display: grid;
+  gap: 13px;
+  max-width: var(--measure);
+}
+.sources li {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.sources em {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-soft);
+  display: block;
+}
+.source-n {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-ink);
+  width: 2ch;
+}
+.source-meta {
+  display: block;
+}
+.source-link {
+  display: inline-block;
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--accent-ink);
+}
+
+/* ---------------------------------------------------------------------------
    Responsive
    --------------------------------------------------------------------------- */
 
@@ -1047,6 +1136,9 @@
    specificity, so a later media query reliably wins. They never share a base
    class that also carries display-relevant styling. */
 @media (max-width: 700px) {
+  .facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .nav {
     display: none;
   }
@@ -1061,4 +1153,27 @@
   .nav-mobile {
     display: none;
   }
+}
+
+/* A brewed drink states parameters rather than proportions, so a couple of its
+   cells carry a word where the others carry a numeral. */
+.spec-val--word {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 20px;
+}
+
+.infusions {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.infusions li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
 }

@@ -1,0 +1,8 @@
+{
+  "id": "nick-and-nora",
+  "name": "Nick & Nora",
+  "capacityMl": 150,
+  "shapeFamily": "stemmed",
+  "note": "Smaller than a coupe and with an inward curve, so it carries a full measure without threatening to spill it.",
+  "iceDisplacementMl": { "none": 0 }
+}

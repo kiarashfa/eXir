@@ -1,0 +1,108 @@
+---
+id: classic
+label: Classic
+name: Whiskey Sour
+subtitle: Bourbon, lemon and sugar in the proportion the whole sour family is built on.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: double-rocks
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: full
+difficulty: Easy
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [shaken]
+names:
+  alsoKnownAs:
+    - name: Bourbon Sour
+      note: The name used where the whiskey is specified rather than assumed.
+  notToBeConfusedWith:
+    - name: New York Sour
+      note: This drink with red wine floated on top, which changes it enough to have its own name.
+  searchOnly:
+    - whisky sour
+    - whiskysour
+ingredients:
+  - id: bourbon
+    ingredientRef: bourbon
+    formRef: standard
+    amount: 60
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 22.5
+    unit: ml
+steps:
+  - { id: juice, durationSec: 60, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: shake
+    text: >-
+      Shaken rather than stirred because there is juice in it. Stirring a drink
+      with citrus leaves it heavy and flat; the shake aerates it, and the
+      lightness that comes from that is half of why a sour reads as refreshing
+      when it is mostly spirit.
+  - kind: pitfall
+    text: >-
+      Bottled lemon juice is the one substitution that ruins this drink outright.
+      It is preserved, and what preserves it is cooked, dulled acid that reads as
+      sour without reading as lemon. The juice has to be squeezed the same day.
+substitutions:
+  - lineRef: syrup
+    substitute: demerara-syrup
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume and almost identical in sugar, so the arithmetic
+      barely moves. What changes is the molasses left on the crystals, which
+      lands squarely on the bourbon's own caramel and makes a rounder, darker
+      drink.
+    impact:
+      flavour: moderate change
+      strength: no change
+      sweetness: minor change
+makeAhead:
+  aheadInstructions: >-
+    The whole drink batches, and the site adds the water the shake would have
+    contributed. Fresh citrus is the limit rather than the alcohol: juice loses
+    its aromatics within hours of being squeezed, so a batch made in the morning
+    is at its best that evening and tired the next day.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and strain out the pips and pulp. Juice that has
+  been sitting since yesterday makes a duller drink than anything else you could
+  get wrong here.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="bourbon"/>, the <Qty ref="lemon"/> and the
+  <Qty ref="syrup"/> in a shaker and fill it with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>. Short and violent; the aim is to chill and
+  aerate, not to melt the ice.
+</Step>
+
+<Step id="strain">
+  Strain into a double old fashioned glass over fresh cubed ice. The ice in the
+  shaker has done its work and is half water by now.
+</Step>

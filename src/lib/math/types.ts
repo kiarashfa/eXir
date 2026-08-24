@@ -51,8 +51,23 @@ export interface NutritionPer100 {
   sodiumMg?: number;
 }
 
+/**
+ * `varies` is the checked-and-genuinely-unknowable case, and it is not the same
+ * as leaving the field out.
+ *
+ * Wine, beer and cider may be fined with isinglass or gelatine, and neither is a
+ * declarable allergen anywhere, so no label states it and no producer has to.
+ * Whether a given bottle is vegan therefore depends on the bottle. Declaring
+ * `none` would state as a fact the one thing nobody can check; leaving the field
+ * out says only that nobody filled it in. `varies` says it was looked at, and
+ * carries the reason in `animalOriginNote`.
+ *
+ * Both withhold the vegan and vegetarian labels. Only the missing field is a
+ * defect.
+ */
 export type AnimalOrigin =
   | 'none'
+  | 'varies'
   | 'dairy'
   | 'egg'
   | 'honey'
@@ -165,6 +180,14 @@ export interface Ingredient {
   yieldMl?: number;
   shelfLife?: { days: number; storage: string };
   purchasable?: boolean;
+  /**
+   * A Preparation's own recipe lines.
+   *
+   * Nothing resolves these on the way to a drink — a Preparation is referenced
+   * as an ingredient, so its steps are never walked — which is exactly why they
+   * have to be checked in their own right.
+   */
+  ingredients?: IngredientLine[];
 }
 
 export interface Portion {
@@ -246,6 +269,11 @@ export interface Infusion {
 
 export interface Brew {
   method: BrewMethod;
+  /**
+   * Both are resolved from the ingredient lines the authored block names, never
+   * authored here. The engine still works in figures; what it must not do is
+   * work from a second copy of them.
+   */
   doseG: number;
   waterMl: number;
   waterTempC: number;

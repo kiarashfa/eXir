@@ -1,0 +1,9 @@
+{
+  "id": "collins",
+  "name": "Collins",
+  "capacityMl": 400,
+  "shapeFamily": "tall",
+  "note": "Taller and narrower than a highball, for the same reason and more of it.",
+  "iceDisplacementMl": { "cubed": 230, "block": 220, "crushed": 285, "none": 0 },
+  "iceDisplacementNote": "Solid ice only, filled to the top as a highball is."
+}

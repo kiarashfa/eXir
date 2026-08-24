@@ -1,0 +1,48 @@
+{
+  "id": "bourbon",
+  "name": "Bourbon",
+  "kind": "ingredient",
+  "category": "bourbon",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Tennessee whiskey",
+        "note": "Made to the same rules and then filtered through sugar-maple charcoal before barrelling, which is the step its makers treat as the distinction."
+      }
+    ]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "rye",
+      "note": "Drier and sharper in the same place bourbon is round and sweet; a sour made with it reads leaner and needs no other adjustment."
+    }
+  ],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard strength",
+      "proseName": "bourbon",
+      "abvPercent": 43,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0.1,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 250,
+        "carbohydrateG": 0.1,
+        "sugarsG": 0.1,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174819",
+      "sourceNote": "Alcoholic beverage, distilled, whiskey, 86 proof. Public domain. 86 US proof is 43% alcohol by volume by definition; the record's measured ethanol against its measured density gives 42.9%. Bourbon is bottled at 40% and upwards, and 86 proof is the commonest strength above the legal floor. Gluten is not flagged: the spirit is distilled from grain and carries no protein through the still."
+    }
+  ]
+}

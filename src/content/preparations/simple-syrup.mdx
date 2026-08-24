@@ -1,0 +1,67 @@
+---
+id: simple-syrup
+name: Simple Syrup
+kind: preparation
+category: sweetener
+names:
+  alsoKnownAs:
+    - name: Sugar syrup
+    - name: Gomme syrup
+      note: Strictly a syrup with gum arabic in it for texture; the name is used loosely for plain syrup too.
+  searchOnly:
+    - 1:1 syrup
+    - bar syrup
+purchasable: true
+purchaseNote: >-
+  Sold everywhere, and it is sugar and water. Making it takes about as long as finding the
+  bottle.
+yieldMl: 405
+shelfLife:
+  days: 30
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: One to one
+    proseName: simple syrup
+    abvPercent: 0
+    densityGPerMl: 1.2279
+    densitySource: estimated
+    sugarGPer100: 61.22
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 237
+      carbohydrateG: 61.33
+      sugarsG: 61.22
+      sodiumMg: 1.84
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      The sugar is stated as the sucrose the recipe dissolves. Every figure here is derived from
+      the ingredient records this recipe names, not measured in a bottle: mass and volume are
+      summed over the lines and the density falls out of the two. The method is worth one check -
+      a one-to-one syrup comes out at 1.228 g/ml against the 1.230 published for a 50% sucrose
+      solution at 20 degrees, a difference of 0.15%. It is marked estimated because a derivation
+      is not a measurement.
+ingredients:
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 250
+    unit: g
+  - id: water
+    ingredientRef: water
+    amount: 250
+    unit: ml
+steps:
+  - { id: dissolve, durationSec: 180, type: active, phase: make }
+  - { id: cool, durationSec: 1800, type: passive, phase: rest }
+---
+
+<Step id="dissolve">
+  Warm the <Qty ref="water"/> until it steams, take it off the heat and stir in the <Qty ref="sugar"/> until the liquid runs completely clear. It does not need to boil, and boiling it only drives off water and concentrates the syrup past what the recipe says it is.
+</Step>
+
+<Step id="cool">
+  Cool to room temperature before bottling. Warm syrup going into a cold drink melts ice that the dilution model has already accounted for.
+</Step>

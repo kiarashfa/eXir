@@ -1,0 +1,43 @@
+{
+  "id": "egg",
+  "name": "Egg",
+  "kind": "ingredient",
+  "category": "egg",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "white",
+      "label": "White, raw",
+      "proseName": "egg white",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0271,
+      "densitySource": "measured",
+      "sugarGPer100": 0.71,
+      "acidPercent": 0,
+      "countUnit": {
+        "singular": "white",
+        "plural": "whites",
+        "ml": 32.1,
+        "snap": "half"
+      },
+      "nutritionPer100g": {
+        "kcal": 52,
+        "carbohydrateG": 0.73,
+        "sugarsG": 0.71,
+        "proteinG": 10.9,
+        "fatG": 0.17,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 166
+      },
+      "animalOrigin": "egg",
+      "allergenTags": [
+        "egg"
+      ],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "172183",
+      "sourceNote": "Egg, white, raw, fresh. Public domain. The cup portion is adopted as a true density because a white is poured. One white is the record's 33 g large-egg portion carried through that density."
+    }
+  ]
+}

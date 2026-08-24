@@ -12,6 +12,18 @@ forms:
     acidPercent: 0
     animalOrigin: none
     allergenTags: []
+ingredients:
+  - id: sugar
+    ingredientRef: no-such-sweetener
+    amount: 250
+    unit: g
+  - id: water
+    ingredientRef: gin
+    formRef: no-such-form
+    amount: 250
+    unit: ml
+steps:
+  - { id: dissolve, durationSec: 180, type: active, phase: make }
 ---
 
 <Step id="dissolve">

@@ -1,0 +1,32 @@
+{
+  "id": "salt",
+  "name": "Salt",
+  "kind": "ingredient",
+  "category": "seasoning",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Fine table salt",
+      "abvPercent": 0,
+      "densityGPerMl": 2.16,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 0,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 38758
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "173468",
+      "sourceNote": "Salt, table. Public domain. The density is the solid-salt class rather than the record's cup portion, which measures the packing and not the crystal."
+    }
+  ]
+}

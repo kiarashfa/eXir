@@ -1,0 +1,66 @@
+---
+id: rich-simple-syrup
+name: Rich Simple Syrup
+kind: preparation
+category: sweetener
+names:
+  alsoKnownAs:
+    - name: Rich syrup
+    - name: Double syrup
+  searchOnly:
+    - 2:1 syrup
+purchasable: false
+purchaseNote: >-
+  Rarely sold. What is on a shelf labelled sugar syrup is almost always the one-to-one.
+yieldMl: 335
+shelfLife:
+  days: 180
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Two to one
+    proseName: rich syrup
+    abvPercent: 0
+    densityGPerMl: 1.328
+    densitySource: estimated
+    sugarGPer100: 88.31
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 342
+      carbohydrateG: 88.47
+      sugarsG: 88.31
+      sodiumMg: 1.77
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      The sugar is stated as the sucrose the recipe dissolves. This one sits within a percentage
+      point of the solubility limit of sucrose at room temperature, which is why it needs heat to
+      dissolve and why it can crystallise in a cold fridge. Every figure here is derived from the
+      ingredient records this recipe names, not measured in a bottle: mass and volume are summed
+      over the lines and the density falls out of the two. The method is worth one check - a one-
+      to-one syrup comes out at 1.228 g/ml against the 1.230 published for a 50% sucrose solution
+      at 20 degrees, a difference of 0.15%. It is marked estimated because a derivation is not a
+      measurement.
+ingredients:
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 300
+    unit: g
+  - id: water
+    ingredientRef: water
+    amount: 150
+    unit: ml
+steps:
+  - { id: dissolve, durationSec: 300, type: active, phase: make }
+  - { id: cool, durationSec: 1800, type: passive, phase: rest }
+---
+
+<Step id="dissolve">
+  Warm the <Qty ref="water"/> and stir in the <Qty ref="sugar"/> in two or three additions, waiting for each to go clear before the next. This is close to as much sugar as water will hold, so it wants heat and patience rather than more stirring.
+</Step>
+
+<Step id="cool">
+  Cool completely and bottle. If crystals form on the shoulder of the bottle in the fridge, warming it gently takes them back into solution.
+</Step>

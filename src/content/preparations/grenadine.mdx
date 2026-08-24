@@ -1,0 +1,69 @@
+---
+id: grenadine
+name: Grenadine
+kind: preparation
+category: syrup
+names:
+  notToBeConfusedWith:
+    - name: Grenadine cordial
+      note: The bright red bottle sold under the name in most shops is usually flavoured, coloured sugar syrup with no pomegranate in it at all.
+purchasable: true
+purchaseNote: >-
+  Widely sold and usually neither pomegranate nor much of a syrup. Reading the ingredients is
+  worth the ten seconds.
+yieldMl: 405
+shelfLife:
+  days: 21
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Pomegranate
+    proseName: grenadine
+    abvPercent: 0
+    densityGPerMl: 1.2591
+    densitySource: estimated
+    sugarGPer100: 68.98
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 271
+      carbohydrateG: 69.39
+      sugarsG: 68.98
+      proteinG: 0.09
+      fatG: 0.18
+      saturatedFatG: 0.05
+      fibreG: 0.06
+      sodiumMg: 6.13
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      The sugar figure is the sucrose dissolved plus the sugar already in the juice. No acidity is
+      carried, because none is carried on the juice: pomegranate is meaningfully acidic and no
+      source consulted reports its titratable acidity, so this syrup reads as less sour than it
+      is. Every figure here is derived from the ingredient records this recipe names, not measured
+      in a bottle: mass and volume are summed over the lines and the density falls out of the two.
+      The method is worth one check - a one-to-one syrup comes out at 1.228 g/ml against the 1.230
+      published for a 50% sucrose solution at 20 degrees, a difference of 0.15%. It is marked
+      estimated because a derivation is not a measurement.
+ingredients:
+  - id: juice
+    ingredientRef: pomegranate-juice
+    amount: 250
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 250
+    unit: g
+steps:
+  - { id: dissolve, durationSec: 300, type: active, phase: make }
+  - { id: cool, durationSec: 1800, type: passive, phase: rest }
+---
+
+<Step id="dissolve">
+  Warm the <Qty ref="juice"/> gently and stir in the <Qty ref="sugar"/> until it has gone. Keep it below a simmer; reducing it makes a thicker syrup than the recipe describes and every figure on this page then understates it.
+</Step>
+
+<Step id="cool">
+  Cool and bottle. It keeps less well than a plain syrup because the juice in it is food as well as sugar.
+</Step>

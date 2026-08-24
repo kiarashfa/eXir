@@ -1,0 +1,9 @@
+{
+  "id": "highball",
+  "name": "Highball",
+  "capacityMl": 350,
+  "shapeFamily": "tall",
+  "note": "Tall and narrow, so the carbonation has less surface to escape from.",
+  "iceDisplacementMl": { "cubed": 200, "block": 190, "crushed": 250, "none": 0 },
+  "iceDisplacementNote": "Solid ice only. A highball is filled with ice rather than given a piece of it, which is the point: a full glass of ice melts more slowly than a half-empty one."
+}

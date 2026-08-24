@@ -1,0 +1,8 @@
+{
+  "id": "gaiwan",
+  "name": "Gaiwan",
+  "capacityMl": 120,
+  "shapeFamily": "lidded",
+  "note": "A lidded bowl used to brew and pour from in the same movement. Small on purpose: gongfu brewing takes many short infusions from one leaf rather than one long one.",
+  "iceDisplacementMl": { "none": 0 }
+}

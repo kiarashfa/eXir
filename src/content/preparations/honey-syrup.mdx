@@ -1,0 +1,61 @@
+---
+id: honey-syrup
+name: Honey Syrup
+kind: preparation
+category: sweetener
+purchasable: false
+purchaseNote: >-
+  Nobody sells it. It is honey let down with water so that it pours and measures, which is the
+  whole point of making it.
+yieldMl: 355
+shelfLife:
+  days: 30
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Two to one
+    proseName: honey syrup
+    abvPercent: 0
+    densityGPerMl: 1.2529
+    densitySource: estimated
+    sugarGPer100: 68.55
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 254
+      carbohydrateG: 68.79
+      sugarsG: 68.55
+      proteinG: 0.25
+      fibreG: 0.17
+      sodiumMg: 4.17
+    animalOrigin: honey
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      The sugar figure is honey's own, diluted. Every figure here is derived from the ingredient
+      records this recipe names, not measured in a bottle: mass and volume are summed over the
+      lines and the density falls out of the two. The method is worth one check - a one-to-one
+      syrup comes out at 1.228 g/ml against the 1.230 published for a 50% sucrose solution at 20
+      degrees, a difference of 0.15%. It is marked estimated because a derivation is not a
+      measurement.
+ingredients:
+  - id: honey
+    ingredientRef: honey
+    amount: 300
+    unit: g
+  - id: water
+    ingredientRef: water
+    amount: 150
+    unit: ml
+steps:
+  - { id: warm, durationSec: 120, type: active, phase: make }
+  - { id: cool, durationSec: 1200, type: passive, phase: rest }
+---
+
+<Step id="warm">
+  Warm the <Qty ref="water"/> to no more than <Temp c={50}/> and whisk in the <Qty ref="honey"/> until it is evenly mixed. Honey is worth keeping below a simmer: heat drives off the volatile aromatics that were the reason for reaching for honey rather than sugar.
+</Step>
+
+<Step id="cool">
+  Cool and bottle. It separates slightly on standing and needs a shake before use.
+</Step>

@@ -1,0 +1,25 @@
+{
+  "id": "coffee-beans",
+  "name": "Coffee",
+  "kind": "ingredient",
+  "category": "coffee",
+  "names": {
+    "searchOnly": [
+      "coffee beans",
+      "ground coffee",
+      "roast coffee"
+    ]
+  },
+  "forms": [
+    {
+      "id": "roasted",
+      "label": "Roasted",
+      "proseName": "coffee",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": true,
+      "sourceNote": "FoodData Central carries brewed coffee, instant coffee and coffee substitutes, and no record at all for roasted whole or ground beans. No composition is claimed here rather than estimated. It matters less than it looks: about a fifth of the dose dissolves and the rest stays in the filter, and the brewed cup measures at 1 kcal per 100 ml."
+    }
+  ]
+}

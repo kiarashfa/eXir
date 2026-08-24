@@ -1,0 +1,48 @@
+{
+  "id": "granulated-sugar",
+  "name": "Granulated Sugar",
+  "kind": "ingredient",
+  "category": "sweetener",
+  "pantryStaple": true,
+  "names": {
+    "alsoKnownAs": [
+      {
+        "name": "White sugar"
+      },
+      {
+        "name": "Caster sugar",
+        "note": "The same sucrose milled finer, which dissolves faster but weighs the same."
+      }
+    ],
+    "searchOnly": [
+      "sucrose",
+      "table sugar"
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.587,
+      "densitySource": "estimated",
+      "sugarGPer100": 99.8,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 387,
+        "carbohydrateG": 99.98,
+        "sugarsG": 99.8,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169655",
+      "sourceNote": "Sugars, granulated. Public domain. The record's own portion works out at 0.85 g/ml, which is a cup of sugar rather than the sugar in it; the density here is the solid-sugar class, the crystal itself, because that is what dissolves into a drink."
+    }
+  ]
+}

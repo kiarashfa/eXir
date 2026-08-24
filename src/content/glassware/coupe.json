@@ -1,0 +1,8 @@
+{
+  "id": "coupe",
+  "name": "Coupe",
+  "capacityMl": 180,
+  "shapeFamily": "stemmed",
+  "note": "The default for a drink served up. The stem keeps a hand off the bowl, which is most of what the shape is for.",
+  "iceDisplacementMl": { "none": 0 }
+}
