@@ -37,6 +37,10 @@ jobs:
         run: npm run check:fixtures
       - name: Unit tests
         run: npm test
+      # Colours that fail routinely look completely fine, so the floor is
+      # enforced rather than remembered.
+      - name: Contrast
+        run: npm run check:contrast
       - name: Type check
         run: npm run check
 

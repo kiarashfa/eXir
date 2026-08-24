@@ -1,0 +1,1064 @@
+/* ============================================================================
+   THE DESIGN SYSTEM
+
+   Tokens only. No component below declares a colour, a font stack or a spacing
+   value of its own — if something needs a value no token covers, that is a
+   signal to add a token or to reconsider the component, never to reach for a
+   literal.
+
+   Departures from the reference mockup are deliberate and noted where they
+   occur. The two structural ones: the masthead does not stick, and every
+   control boundary uses --control-edge rather than --line-strong.
+   ============================================================================ */
+
+/* ---------------------------------------------------------------------------
+   Page container. Full-bleed washes may span the viewport; text never does.
+   --------------------------------------------------------------------------- */
+
+.page {
+  position: relative;
+  z-index: 1;
+}
+
+.wrap {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------------------------------------------------------------------------
+   Header
+
+   NOT sticky. A full-height sticky column is taller than a laptop viewport, so
+   it either clips itself or needs a second scrollbar inside a reading page,
+   and a masthead that follows the reader down an encyclopedia article earns
+   nothing for the space it takes. The reference mockup sticks it; this does
+   not, and that is the intended behaviour rather than an omission.
+   --------------------------------------------------------------------------- */
+
+.masthead {
+  padding: 10px 0;
+}
+
+.masthead-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 10px 20px;
+  border-radius: 18px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 25px;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+}
+.logo b {
+  font-weight: 600;
+  color: var(--accent);
+  font-style: italic;
+}
+
+.nav {
+  display: flex;
+  gap: 22px;
+  margin-left: auto;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+.nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  padding: 4px 0;
+  border-bottom: 1px solid transparent;
+  transition:
+    color 0.35s var(--ease),
+    border-color 0.35s var(--ease);
+}
+.nav a:hover,
+.nav a:focus-visible,
+.nav a[aria-current] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* The My Bar count occupies its space before hydration. A nav item that grows
+   after load is a layout shift on every page of the site, and the inventory
+   can reach two digits. */
+.nav-count {
+  display: inline-block;
+  min-width: 2.2ch;
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.chip-row {
+  display: flex;
+  gap: 8px;
+}
+
+.chip {
+  font: 500 11px/1 var(--font-body);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--control-edge);
+  border-radius: 999px;
+  padding: 7px 11px;
+  cursor: pointer;
+  transition:
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    background 0.3s var(--ease);
+}
+.chip:hover,
+.chip:focus-visible {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+.chip[aria-pressed='true'] {
+  color: var(--accent-ink);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* ---------------------------------------------------------------------------
+   Breadcrumb — real links, for internal-linking rather than decoration.
+   --------------------------------------------------------------------------- */
+
+.breadcrumb {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 8px 0 0;
+}
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.breadcrumb li + li::before {
+  content: '·';
+  margin-right: 8px;
+  color: var(--line-strong);
+}
+.breadcrumb a {
+  text-decoration: none;
+}
+.breadcrumb a:hover {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
+
+/* ---------------------------------------------------------------------------
+   Hero
+   --------------------------------------------------------------------------- */
+
+.hero {
+  padding: 40px 0 34px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 52px;
+  align-items: center;
+}
+
+.eyebrow {
+  font: 500 11px/1 var(--font-body);
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: clamp(46px, 6.4vw, 76px);
+  line-height: 0.96;
+  letter-spacing: -0.018em;
+}
+
+.subtitle {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  margin: 18px 0 0;
+  max-width: 42ch;
+}
+
+/* Most drinks render no naming line at all. Empty is the default; the block is
+   absent rather than placeholdered. */
+.naming {
+  margin-top: 22px;
+  display: grid;
+  gap: 6px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.naming-row {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+}
+.naming-label {
+  flex: 0 0 auto;
+  font: 500 10px/1.7 var(--font-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  width: 11ch;
+}
+.naming em {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* The fact row wraps as a grid of equal columns rather than a fixed four, so
+   it stays symmetric — at mobile width a 2x2, never a 3+1. */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 24px 34px;
+  margin-top: 30px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.fact-label {
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 8px;
+}
+.fact-value {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 19px;
+}
+
+/* Difficulty and bitterness are editorial assessments rather than computed
+   values, and the difference in KIND has to be visible. A dot, and a colour
+   that is not the one computed figures use. */
+.fact--editorial .fact-value {
+  color: var(--accent-ink);
+}
+.fact--editorial .fact-value::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 8px;
+  vertical-align: 0.18em;
+}
+
+.hero-figure {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--surface-2);
+  box-shadow: 0 30px 70px -28px var(--shadow);
+}
+.hero-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--ease);
+}
+.hero-figure:hover img {
+  transform: scale(1.03);
+}
+
+.figure-note {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 2;
+  border-radius: 999px;
+  padding: 7px 13px;
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-media);
+  border: 0;
+  background: rgb(0 0 0 / 0.45);
+  cursor: help;
+}
+
+/* ---------------------------------------------------------------------------
+   Panel switch and version tabs
+
+   Designed together, because they are adjacent controls at different levels of
+   the same page and a reader has to be able to tell at a glance which changes
+   what. So they are deliberately NOT the same shape: the panel switch is a
+   segmented pill that swaps the whole body, and the version strip is a row of
+   underlined text tabs that lives INSIDE the recipe panel and changes only the
+   recipe. Two tab strips of the same shape competing to be the same control is
+   the failure this avoids.
+   --------------------------------------------------------------------------- */
+
+.panel-switch {
+  display: inline-flex;
+  border: 1px solid var(--control-edge);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 8px 0 22px;
+}
+.panel-switch button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: 500 12px/1 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  cursor: pointer;
+  transition:
+    color 0.3s var(--ease),
+    background 0.3s var(--ease);
+}
+.panel-switch button[aria-selected='true'] {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.version-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 26px;
+}
+.version-strip button {
+  border: 0;
+  background: transparent;
+  padding: 0 0 10px;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition:
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+.version-strip button[aria-selected='true'] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* Both panels ship in the built HTML. The switch is client-side state on one
+   canonical URL, so hiding is presentational and the markup stays crawlable. */
+[hidden] {
+  display: none !important;
+}
+
+/* ---------------------------------------------------------------------------
+   Body grid
+   --------------------------------------------------------------------------- */
+
+.body-grid {
+  display: grid;
+  grid-template-columns: 372px 1fr;
+  gap: 44px;
+  padding: 12px 0 72px;
+  align-items: start;
+}
+.left-col {
+  display: grid;
+  gap: 20px;
+}
+.right-col {
+  display: grid;
+  gap: 26px;
+}
+
+.card {
+  border-radius: 18px;
+  padding: 22px;
+}
+.card-title {
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+/* ---------------------------------------------------------------------------
+   Controls
+   --------------------------------------------------------------------------- */
+
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+/* General sibling, not adjacent: a control that shows a reason has that text
+   between it and the next row, and an adjacent-sibling selector silently drops
+   the divider for every row after it. */
+.control-row ~ .control-row {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.control-label {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.step-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--control-edge);
+  background: transparent;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 0.3s var(--ease),
+    color 0.3s var(--ease),
+    background 0.3s var(--ease);
+}
+.step-btn:hover,
+.step-btn:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+}
+.step-btn[disabled] {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+.step-count {
+  font-family: var(--font-data);
+  font-size: 19px;
+  font-weight: 500;
+  min-width: 2ch;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.segmented {
+  display: flex;
+  border: 1px solid var(--control-edge);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.segmented button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: 500 11px/1 var(--font-body);
+  letter-spacing: 0.06em;
+  padding: 9px 14px;
+  cursor: pointer;
+  transition:
+    color 0.3s var(--ease),
+    background 0.3s var(--ease);
+}
+.segmented button[aria-pressed='true'] {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+/* A disabled control says why rather than simply going quiet. */
+.control-row.is-disabled {
+  opacity: 0.45;
+}
+.control-row.is-disabled .segmented button {
+  cursor: not-allowed;
+}
+.control-reason {
+  display: block;
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+/* ---------------------------------------------------------------------------
+   The drink spec — the flagship panel
+
+   Every figure here sits on an opaque surface. Glass never goes behind a
+   number, so the spec cells keep --surface-2 whether the material is on or off.
+   --------------------------------------------------------------------------- */
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.spec-cell {
+  background: var(--surface-2);
+  padding: 14px 15px;
+}
+.spec-key {
+  font: 500 9.5px/1 var(--font-body);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 8px;
+}
+.spec-val {
+  font-family: var(--font-data);
+  font-size: 21px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.spec-val small {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 3px;
+  letter-spacing: 0;
+  /* Keeps "US · 2.4 UK" together, so the second denominator never orphans its
+     unit onto a line of its own in a narrow cell. */
+  white-space: nowrap;
+}
+
+/* --bitter is reserved for alcohol and strength figures and for the computed
+   water line. It is not spent on anything else. */
+.spec-cell--alcohol .spec-val {
+  color: var(--bitter);
+}
+
+/* One affordance, one meaning, site-wide: a dotted underline means the figure
+   descends from an estimate, and it means nothing else anywhere. */
+.est {
+  border-bottom: 1px dotted currentColor;
+  cursor: help;
+}
+
+.yield-line {
+  margin-top: 14px;
+  padding: 13px 15px;
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  background: var(--accent-soft);
+}
+.yield-line .spec-key,
+.yield-line .spec-val {
+  color: var(--accent-ink);
+}
+
+.disclaimer {
+  margin: 18px 0 0;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: var(--measure);
+}
+.disclaimer strong {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------------
+   Balance bars
+
+   Three are computed and one is not, and the difference has to be visible.
+   Bitterness gets the editorial dot and a hatched fill; the computed bars get
+   a solid one. A value that looks computed and is not is the one thing this
+   site cannot ship.
+   --------------------------------------------------------------------------- */
+
+.balance {
+  margin-top: 20px;
+  display: grid;
+  gap: 11px;
+}
+.bar-row {
+  display: grid;
+  grid-template-columns: 8ch 1fr 7ch;
+  gap: 12px;
+  align-items: center;
+}
+.bar-name {
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.bar-track {
+  height: 5px;
+  border-radius: 999px;
+  background: var(--line);
+  overflow: hidden;
+}
+.bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+}
+.bar-fill--alcohol {
+  background: var(--bitter);
+}
+
+.bar-row--editorial .bar-name::after {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-left: 6px;
+  vertical-align: 0.1em;
+}
+.bar-row--editorial .bar-fill {
+  background: repeating-linear-gradient(
+    115deg,
+    var(--accent) 0 3px,
+    var(--accent-soft) 3px 6px
+  );
+}
+
+.bar-num {
+  font-family: var(--font-data);
+  font-size: 11.5px;
+  color: var(--muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------------
+   Ingredients
+   --------------------------------------------------------------------------- */
+
+.ing-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+.ing-item {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 9px 6px;
+  border-radius: 9px;
+  transition: background 0.3s var(--ease);
+}
+.ing-item:hover {
+  background: var(--accent-soft);
+}
+
+.tick {
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  margin: 3px 0 0;
+  border: 1px solid var(--control-edge);
+  border-radius: 5px;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  transition:
+    background 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+.tick:checked {
+  background: var(--botanical);
+  border-color: var(--botanical);
+}
+.tick:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 9px;
+  border: solid var(--surface);
+  border-width: 0 2px 2px 0;
+  transform: rotate(42deg);
+}
+.tick:checked ~ .ing-body {
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+
+/* A scanning aid for a dense list, not a gallery. Top-aligned so a wrapped
+   line keeps the thumbnail beside its first row. */
+.swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-top: -1px;
+  border: 1px solid var(--line);
+  background: var(--surface-3);
+  object-fit: cover;
+  display: block;
+}
+
+.ing-body {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.ing-meta {
+  display: block;
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.brandmark {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 1px 5px;
+  margin-left: 6px;
+  vertical-align: 1.5px;
+}
+
+/* The line the engine inserted rather than the author writing it. Marked with
+   --bitter because it is alcohol arithmetic made visible, and never editable. */
+.ing-item.is-computed .n {
+  color: var(--bitter);
+}
+.ing-item.is-computed .swatch {
+  border-color: var(--bitter);
+}
+
+.btn-wide {
+  width: 100%;
+  margin-top: 16px;
+  padding: 13px;
+  border-radius: 11px;
+  border: 1px solid var(--control-edge);
+  background: transparent;
+  color: var(--ink);
+  font: 500 13px/1 var(--font-body);
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition:
+    border-color 0.35s var(--ease),
+    color 0.35s var(--ease),
+    background 0.35s var(--ease);
+}
+.btn-wide:hover,
+.btn-wide:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+}
+
+/* ---------------------------------------------------------------------------
+   Method
+   --------------------------------------------------------------------------- */
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+}
+.section-head h2 {
+  font-size: 27px;
+  letter-spacing: -0.01em;
+}
+.section-head .aside {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Tailwind's preflight strips list-style, so an ordered list renders unnumbered.
+   The step badge is drawn deliberately rather than left to the marker. */
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 26px;
+  counter-reset: step;
+}
+.step {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 18px;
+  counter-increment: step;
+}
+.step-mark {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--control-edge);
+  background: transparent;
+  font-family: var(--font-data);
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 1px;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 0.3s var(--ease),
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+.step-mark::before {
+  content: counter(step);
+}
+/* Clicking toggles a class only. Step text stays in the DOM at all times
+   regardless of state — that is an indexing requirement, not a preference. */
+.step.is-done .step-mark {
+  background: var(--botanical);
+  border-color: var(--botanical);
+  color: var(--surface);
+}
+.step.is-done .step-body {
+  opacity: 0.5;
+}
+
+.step-meta {
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 9px;
+}
+.step-body {
+  font-size: 15.5px;
+  line-height: 1.72;
+  max-width: var(--measure);
+  color: var(--ink-soft);
+  margin: 0;
+}
+.step-body strong {
+  color: var(--ink);
+  font-weight: 400;
+}
+
+/* A live value in prose: mono numeral, body-face noun, one span. NO underline —
+   the dotted underline means estimated and nothing else. */
+.q {
+  white-space: nowrap;
+}
+.q .n {
+  font-family: var(--font-data);
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.q .n.is-estimated {
+  border-bottom: 1px dotted currentColor;
+}
+.value {
+  font-family: var(--font-data);
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.is-unresolved {
+  color: var(--bitter);
+  border-bottom: 1px dashed currentColor;
+}
+
+/* ---------------------------------------------------------------------------
+   Callouts — three categories, and they stay distinguishable from each other
+   rather than merely from prose.
+   --------------------------------------------------------------------------- */
+
+.callout {
+  margin-top: 14px;
+  padding: 13px 16px;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 9px 9px 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+
+.callout--pitfall {
+  border-left-color: var(--botanical);
+  background: var(--botanical-soft);
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 14px;
+}
+.callout--pitfall b {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--botanical);
+  margin-bottom: 5px;
+}
+
+/* The only note category with a physical consequence, so it is the only one
+   that gets --bitter and a full border. */
+.callout--safety {
+  border: 1px solid var(--bitter);
+  border-left-width: 3px;
+  background: var(--bitter-soft);
+  border-radius: 9px;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 14px;
+  color: var(--ink);
+}
+.callout--safety b {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bitter);
+  margin-bottom: 5px;
+}
+
+/* Allergen disclosure sits in the technique-rationale family and always
+   carries its disclaimer. Never a bare list, never a tag pill. */
+.allergen-box {
+  margin-top: 14px;
+  padding: 13px 16px;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 9px 9px 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+.allergen-box b {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 5px;
+}
+.allergen-box .disclaimer {
+  margin-top: 8px;
+}
+
+/* ---------------------------------------------------------------------------
+   Keeping — collapsed by default; the content stays in the DOM.
+   --------------------------------------------------------------------------- */
+
+.keeping summary {
+  cursor: pointer;
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.keeping summary:hover {
+  color: var(--ink-soft);
+}
+.keeping-body {
+  font-size: 14px;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+  display: grid;
+  gap: 10px;
+  padding-bottom: 8px;
+}
+
+/* ---------------------------------------------------------------------------
+   Footer
+   --------------------------------------------------------------------------- */
+
+.foot {
+  border-top: 1px solid var(--line);
+  padding: 34px 0 60px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.foot-inner {
+  display: grid;
+  gap: 8px;
+  max-width: var(--measure-intro);
+}
+.foot strong {
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+.foot a {
+  color: var(--ink-soft);
+}
+.foot-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------------------- */
+
+@media (max-width: 1000px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+  .body-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-figure {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* Desktop and mobile navigation are governed by separate classes at the same
+   specificity, so a later media query reliably wins. They never share a base
+   class that also carries display-relevant styling. */
+@media (max-width: 700px) {
+  .nav {
+    display: none;
+  }
+  .nav-mobile {
+    display: flex;
+  }
+  .spec-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 701px) {
+  .nav-mobile {
+    display: none;
+  }
+}

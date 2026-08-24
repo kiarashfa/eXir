@@ -1,0 +1,428 @@
+---
+/**
+ * The drink page — the canonical template every other page type extends.
+ *
+ * Structure follows the specification's own order: hero, then a two-column
+ * body whose left column is one continuous stack of Serving, Drink Spec,
+ * Ingredients and Glass, and whose right column is the method and then the
+ * collapsed Keeping section.
+ *
+ * The Recipe / About switch sits ABOVE the body grid and swaps the whole body.
+ * The version strip lives INSIDE the recipe panel, so the page never shows two
+ * tab strips competing to be the same control.
+ */
+import Qty from '../live/Qty.astro';
+import { formatDuration } from '../../lib/math/units.ts';
+import { formatAbv } from '../../lib/math/quantity.ts';
+import { proseName } from '../../lib/render/prose.ts';
+import { renderProse } from '../../lib/render/prose.ts';
+import { computeBatch, linesForService } from '../../lib/math/spec.ts';
+import { glassFit } from '../../lib/math/glassware.ts';
+import { ALLERGEN_DISCLAIMER } from '../../lib/math/facets.ts';
+import { DILUTION_DENOMINATOR_NOTE } from '../../lib/math/dilution.ts';
+import type { ResolvedVersion } from '../../lib/content/resolve.ts';
+
+interface Props {
+  name: string;
+  subtitle?: string;
+  versions: ResolvedVersion[];
+  eyebrow?: string;
+  about?: { html: string } | null;
+}
+
+const { name, subtitle, versions, eyebrow, about } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const primary = versions[0]!;
+const system = 'metric' as const;
+
+/** Everything a version needs, computed once at build time. */
+const built = versions.map((v) => {
+  const spec = v.spec;
+  const batch = computeBatch(spec, v.version, 12);
+  const source = { lines: v.lines, steps: v.version.steps, defaultDrinks: v.version.defaultDrinks };
+  const fit = v.glass ? glassFit(v.version, spec.finalVolumeMl, v.glass) : null;
+
+  return {
+    v,
+    spec,
+    batch,
+    fit,
+    orderLines: linesForService(v.lines, batch, 'order'),
+    batchLines: linesForService(v.lines, batch, 'batch'),
+    steps: v.version.steps.map((step) => ({
+      step,
+      html: renderProse(step.prose, { source, drinks: v.version.defaultDrinks, system }),
+    })),
+  };
+});
+
+const one = built[0]!;
+const facts = [
+  ['Style', primary.version.label, false],
+  ['Method', primary.version.method, false],
+  ['Served', one.spec.facets.servingTemp, false],
+  ['Strength', one.spec.facets.strength, false],
+  ['Bitterness', primary.version.bitterness, true],
+] as const;
+---
+
+<div
+  data-drink={primary.version.id}
+  data-default-drinks={primary.version.defaultDrinks}
+  data-batchable={primary.version.batchable}
+  data-batch-note={primary.version.batchNote ?? ''}
+  data-service="order"
+>
+  <section class="hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={`${base}/`}>Drinks</a></li>
+          <li><span aria-current="page">{name}</span></li>
+        </ol>
+      </nav>
+
+      <div class="hero-grid">
+        <div>
+          {eyebrow && <div class="eyebrow">{eyebrow}</div>}
+          <h1>{name}</h1>
+          {subtitle && <p class="subtitle">{subtitle}</p>}
+
+          <div class="facts">
+            {facts.map(([label, value, editorial]) => (
+              <div class={editorial ? 'fact fact--editorial' : 'fact'}>
+                <span class="fact-label">{label}</span>
+                <span class="fact-value">{value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <figure class="hero-figure">
+          <figcaption class="figure-note glass">Photograph · Wikimedia Commons</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="panel-switch" role="tablist" aria-label="Recipe or About" data-panel-switch>
+      <button type="button" role="tab" data-value="recipe" aria-selected="true">Recipe</button>
+      <button type="button" role="tab" data-value="about" aria-selected="false">About</button>
+    </div>
+  </div>
+
+  {/* Both panels ship in the built HTML; the switch is client-side state. */}
+  <div class="wrap" data-panel="recipe">
+    {versions.length > 1 && (
+      <div class="version-strip" role="tablist" aria-label="Versions" data-version-strip>
+        {versions.map((v, i) => (
+          <button type="button" role="tab" data-value={v.version.id} aria-selected={i === 0}>
+            {v.version.label}
+          </button>
+        ))}
+      </div>
+    )}
+
+    {built.map(({ v, spec, batch, fit, orderLines, batchLines, steps }, index) => (
+      <div data-version={v.version.id} hidden={index > 0}>
+        <div class="body-grid">
+          <div class="left-col">
+            {/* ---- serving ---- */}
+            <div class="card glass">
+              <h2 class="card-title">Serving</h2>
+
+              <div class="control-row">
+                <span class="control-label" id="drinks-label">Drinks</span>
+                <div class="stepper">
+                  <button class="step-btn" type="button" data-drinks-minus aria-label="Fewer drinks">−</button>
+                  <span class="step-count" data-drink-count aria-live="polite" aria-labelledby="drinks-label">
+                    {v.version.defaultDrinks}
+                  </span>
+                  <button class="step-btn" type="button" data-drinks-plus aria-label="More drinks">+</button>
+                </div>
+              </div>
+
+              <div class="control-row" data-service-row>
+                <span class="control-label">Service</span>
+                <div class="segmented" role="group" aria-label="Service mode" data-service>
+                  <button type="button" data-value="order" aria-pressed="true">Made to order</button>
+                  <button type="button" data-value="batch" aria-pressed="false">Batched ahead</button>
+                </div>
+              </div>
+              <span class="control-reason" data-service-reason hidden></span>
+
+              <div class="control-row" data-ice-row>
+                <span class="control-label">Ice</span>
+                <div class="segmented" role="group" aria-label="Ice style" data-ice>
+                  <button type="button" data-value="cubed" aria-pressed="true">Cubed</button>
+                  <button type="button" data-value="block" aria-pressed="false">Block</button>
+                </div>
+              </div>
+              <span class="control-reason" data-ice-reason hidden>
+                Nothing meets ice at service in a batch, so the ice choice does not apply.
+              </span>
+
+              <div class="control-row">
+                <span class="control-label">Units</span>
+                <div class="segmented" role="group" aria-label="Unit system" data-units>
+                  <button type="button" data-value="metric" aria-pressed="true">ml</button>
+                  <button type="button" data-value="us" aria-pressed="false">oz</button>
+                </div>
+              </div>
+              <span class="control-reason" data-units-note hidden>
+                US measures are rounded to the nearest ⅛ oz, as a jigger is. Metric stays exact.
+              </span>
+            </div>
+
+            {/* ---- the drink spec ---- */}
+            <div class="card glass">
+              <h2 class="card-title">Drink spec — per drink</h2>
+
+              <div class="spec-grid">
+                <div class="spec-cell">
+                  <span class="spec-key">Final volume</span>
+                  <span class="spec-val">
+                    <span class={spec.alcohol.abvEstimated ? 'est' : ''} title={spec.dilution.note}>
+                      {spec.alcohol.abvEstimated && '~'}{Math.round(spec.finalVolumeMl)}
+                    </span><small>ml</small>
+                  </span>
+                </div>
+
+                {spec.panels.alcohol && (
+                  <div class="spec-cell spec-cell--alcohol">
+                    <span class="spec-key">Strength</span>
+                    <span class="spec-val">
+                      <span class={spec.alcohol.abvEstimated ? 'est' : ''} title={DILUTION_DENOMINATOR_NOTE}>
+                        {spec.alcohol.abvEstimated && '~'}{spec.alcohol.finalAbvPercent.toFixed(1)}
+                      </span><small>% ABV</small>
+                    </span>
+                  </div>
+                )}
+
+                {spec.panels.alcohol && (
+                  <div class="spec-cell spec-cell--alcohol">
+                    <span class="spec-key">Pure alcohol</span>
+                    <span class="spec-val">{spec.alcohol.pureAlcoholG.toFixed(1)}<small>g</small></span>
+                  </div>
+                )}
+
+                {spec.panels.alcohol && (
+                  <div class="spec-cell">
+                    <span class="spec-key">Std. drinks</span>
+                    <span class="spec-val">
+                      {spec.alcohol.standardDrinks[0]?.drinks.toFixed(1)}
+                      <small>
+                        US · {spec.alcohol.standardDrinks[1]?.drinks.toFixed(1)} UK
+                      </small>
+                    </span>
+                  </div>
+                )}
+
+                <div class="spec-cell">
+                  <span class="spec-key">Sugar</span>
+                  <span class="spec-val">
+                    {Math.round(spec.composition.sugarG)}
+                    <small>g · {Math.round(spec.sugarGPerL)} g/L</small>
+                  </span>
+                </div>
+
+                <div class="spec-cell">
+                  <span class="spec-key">Energy</span>
+                  <span class="spec-val">{Math.round(spec.nutrition.kcal)}<small>kcal</small></span>
+                </div>
+              </div>
+
+              <div class="balance">
+                {spec.bars.map((bar) => (
+                  <div class={bar.computed ? 'bar-row' : 'bar-row bar-row--editorial'}>
+                    <span class="bar-name">{bar.label}</span>
+                    <span class="bar-track">
+                      <span
+                        class={bar.key === 'strong' ? 'bar-fill bar-fill--alcohol' : 'bar-fill'}
+                        style={`width:${bar.fillPercent.toFixed(0)}%`}
+                      ></span>
+                    </span>
+                    <span class="bar-num">{bar.display}</span>
+                  </div>
+                ))}
+              </div>
+
+              {batch.available && (
+                <div class="yield-line" data-when-service="batch" hidden>
+                  <span class="spec-key">Batch yield</span>
+                  <span class="spec-val">
+                    <span data-per-drink={(batch.yieldMl / 12).toFixed(3)} data-unit="ml">
+                      {Math.round(batch.yieldMl / 12 * v.version.defaultDrinks)} ml
+                    </span>
+                  </span>
+                </div>
+              )}
+
+              <p class="disclaimer">
+                Every figure above is <strong>per drink</strong> and does not move with the
+                count — that is what makes the two service modes comparable.
+                {spec.dilution.fraction > 0 && (
+                  <> Dilution is modelled rather than measured, as a fraction of the poured
+                  volume before any ice; dotted figures descend from that estimate.</>
+                )}
+              </p>
+
+              {spec.facets.diet.allergens.length > 0 && (
+                <div class="allergen-box">
+                  <b>Allergens</b>
+                  {spec.facets.diet.allergens.join(' · ')}
+                  <p class="disclaimer">{ALLERGEN_DISCLAIMER}</p>
+                </div>
+              )}
+            </div>
+
+            {/* ---- ingredients ---- */}
+            <div class="card glass">
+              <h2 class="card-title">Ingredients</h2>
+
+              {(
+                [
+                  ['order', orderLines],
+                  ['batch', batchLines],
+                ] as const
+              ).map(([mode, rows]) => (
+                <ul class="ing-list" data-when-service={mode} hidden={mode === 'batch'}>
+                  {rows.map((r) => (
+                    <li class={r.line.computed ? 'ing-item is-computed' : 'ing-item'}>
+                      <input class="tick" type="checkbox" aria-label={r.ingredient.name} />
+                      <span class="swatch"></span>
+                      <span class="ing-body">
+                        <Qty
+                          data={{
+                            amount: r.line.amount,
+                            unit: r.line.unit,
+                            defaultDrinks: v.version.defaultDrinks,
+                            name: proseName(r),
+                            countUnit: r.form.countUnit,
+                            estimated: r.line.computed === true,
+                          }}
+                          drinks={v.version.defaultDrinks}
+                          system={system}
+                        />
+                        {r.ingredient.proprietary && <span class="brandmark">Proprietary</span>}
+                        <span class="ing-meta">
+                          {r.form.abvPercent > 0 && <>{formatAbv(r.form.abvPercent)}</>}
+                          {r.line.note && <> · {r.line.note}</>}
+                        </span>
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+
+              <button class="btn-wide" type="button">Add to my bar list</button>
+            </div>
+
+            {/* ---- glass / vessel ---- */}
+            {fit && v.glass && (
+              <div class="card glass">
+                <h2 class="card-title" data-when-service="order">Glass</h2>
+                <h2 class="card-title" data-when-service="batch" hidden>Vessel</h2>
+
+                <div class="control-row" data-when-service="order">
+                  <span class="control-label">{v.glass.name}</span>
+                  <span class="value">{v.glass.capacityMl} ml</span>
+                </div>
+                <div class="control-row" data-when-service="batch" hidden>
+                  <span class="control-label">Bottle or sealed jug</span>
+                  <span class="value">{Math.ceil((batch.yieldMl / 250)) * 250} ml</span>
+                </div>
+
+                <p class="disclaimer" data-when-service="order">
+                  {Math.round(fit.liquidMl)} ml of liquid plus {fit.iceMl} ml of {fit.iceStyle} ice
+                  occupies about {Math.round(fit.neededMl)} ml, inside the {v.glass.capacityMl} ml
+                  the glass holds. The build fails if a recipe ever exceeds its stated vessel.
+                </p>
+                <p class="disclaimer" data-when-service="batch" hidden>
+                  A batch needs a vessel that closes and fits a fridge shelf.
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* ---- method ---- */}
+          <div class="right-col">
+            <div class="section-head">
+              <h2>Method</h2>
+              <span class="aside">
+                {v.version.steps.length} steps · {formatDuration(v.timing.totalSec)}
+              </span>
+            </div>
+
+            <ol class="steps">
+              {steps.map(({ step, html }) => (
+                <li class="step">
+                  <button
+                    class="step-mark"
+                    type="button"
+                    data-step-mark
+                    aria-pressed="false"
+                    aria-label="Mark this step done"
+                  ></button>
+                  <div>
+                    <div class="step-meta">
+                      {step.phase} · {formatDuration(step.durationSec)}
+                    </div>
+                    <p class="step-body" set:html={html} />
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            {v.version.ferment?.safetyNote && (
+              <p class="callout callout--safety">
+                <b>Safety</b>
+                {v.version.ferment.safetyNote}
+              </p>
+            )}
+
+            <details class="keeping">
+              <summary>Keeping and make-ahead</summary>
+              <div class="keeping-body">
+                {batch.available ? (
+                  <p>
+                    Batched ahead, this keeps sealed and cold. The water line the engine adds is
+                    the dilution figure from the spec panel — it is not a rule of thumb.
+                  </p>
+                ) : (
+                  <p>{v.version.batchNote ?? 'This drink is made to order.'}</p>
+                )}
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="wrap" data-panel="about" hidden>
+    <div class="body-grid">
+      <div></div>
+      <div class="right-col">
+        <div class="section-head"><h2>About</h2></div>
+        {about ? (
+          <div class="step-body" set:html={about.html} />
+        ) : (
+          <p class="step-body">
+            No sourced reference prose has been written for this drink yet. A shorter About
+            section is not a failure; an invented one is.
+          </p>
+        )}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { initDrink } from '../../lib/client/drink.ts';
+  import { initLiveValues } from '../../lib/client/live-values.ts';
+  initLiveValues();
+  initDrink();
+</script>

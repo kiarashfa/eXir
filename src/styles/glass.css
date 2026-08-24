@@ -1,0 +1,149 @@
+/* ============================================================================
+   LIQUID GLASS
+
+   The UI material is glass, which is also the subject matter. It is the site's
+   strongest single visual idea and the one most capable of damaging it, so it
+   is bounded by one rule above all others:
+
+     GLASS IS CHROME. It never sits behind running prose and never behind a
+     number. Every figure in the drink spec meets its contrast ratio against an
+     opaque token, not against a variable backdrop.
+
+   That rule is empirical rather than theoretical. Apple shipped this material,
+   met sustained legibility criticism, and added a lower-transparency mode
+   within a point release. The material is at its worst behind reading text,
+   which is most of an encyclopedia.
+
+   TWO TIERS SHIP. A third is rejected.
+
+     Tier 1  Translucent tint + backdrop blur and saturate + a 1px edge + an
+             inset rim light + a diagonal specular sweep. Universal support,
+             zero JavaScript. This is the baseline and it is what most readers
+             see.
+     Tier 2  A pre-baked SVG displacement map for true rim refraction, behind
+             @supports. Chromium only — Safari and Firefox do not support SVG
+             filters in backdrop-filter and fall back to Tier 1 with nothing
+             lost but the bend. Still zero runtime JavaScript, because the map
+             is baked rather than generated.
+     Tier 3  WebGL DOM rasterisation. REJECTED. It inverts the premise of a
+             zero-JS-by-default stack. Not to be reintroduced without sign-off.
+
+   AND: when glass is off, NOTHING IN THE LAYOUT MOVES. Surfaces become opaque;
+   spacing, size, radius and position are identical. Glass is a finish, never a
+   load-bearing part of the layout. Every rule below is written so that turning
+   it off changes only paint.
+   ============================================================================ */
+
+.glass {
+  position: relative;
+  isolation: isolate;
+  background: var(--glass-tint);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border: 1px solid var(--glass-edge);
+  box-shadow:
+    inset 0 1px 0 var(--glass-sheen),
+    inset 0 -1px 0 var(--glass-sheen-2),
+    0 18px 48px -20px var(--shadow);
+}
+
+/* The specular sweep. On a pseudo-element so it can be removed without
+   touching the box it sits in. */
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    137deg,
+    var(--glass-sheen) 0%,
+    transparent 34%,
+    transparent 66%,
+    var(--glass-sheen-2) 100%
+  );
+}
+
+/* ----------------------------------------------------------------------------
+   Tier 2 — refraction, Chromium only.
+
+   Guarded twice: on support for an SVG filter in backdrop-filter, and on the
+   reader not having asked for less transparency. The filter reference resolves
+   to a pre-baked map in the document, so there is no script and no resize
+   handler; the cost of that is fixed shapes, which is why it is applied only to
+   a handful of chrome surfaces rather than to every card.
+   ---------------------------------------------------------------------------- */
+
+@supports (backdrop-filter: url(#exir-lens)) {
+  @media (prefers-reduced-transparency: no-preference) {
+    .glass--refract {
+      backdrop-filter: url(#exir-lens) blur(var(--glass-blur)) saturate(180%);
+    }
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   The accessibility floor.
+
+   Honoured automatically where the browser reports the preference, and through
+   the site's own control regardless — support for the media query is still
+   incomplete, and a reader who wants this should not have to wait for their
+   browser to catch up.
+   ---------------------------------------------------------------------------- */
+
+@media (prefers-reduced-transparency: reduce) {
+  :root:not([data-glass='on']) .glass {
+    background: var(--surface-3);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-color: var(--line);
+  }
+  :root:not([data-glass='on']) .glass::before {
+    display: none;
+  }
+  :root:not([data-glass='on']) .ambient {
+    display: none;
+  }
+}
+
+[data-glass='off'] .glass {
+  background: var(--surface-3);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-color: var(--line);
+}
+[data-glass='off'] .glass::before {
+  display: none;
+}
+[data-glass='off'] .ambient {
+  display: none;
+}
+
+/* The sweep is a moving highlight, so it goes with reduced motion even when
+   the glass itself stays. */
+@media (prefers-reduced-motion: reduce) {
+  .glass::before {
+    display: none;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   The ambient wash.
+
+   Glass with nothing behind it is a grey box. On a drink page the photography
+   does this job; this is the fallback for pages that have none, and it sits
+   behind everything at the lowest layer.
+   ---------------------------------------------------------------------------- */
+
+.ambient {
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(48ch 40ch at 18% 12%, var(--amb-1), transparent 62%),
+    radial-gradient(44ch 38ch at 84% 26%, var(--amb-2), transparent 60%),
+    radial-gradient(52ch 44ch at 62% 88%, var(--amb-3), transparent 62%);
+  filter: blur(14px);
+}

@@ -12,13 +12,14 @@
     "astro": "astro",
     "check": "astro check",
     "test": "node --test \"src/**/*.test.ts\" \"scripts/**/*.test.ts\"",
-    "build": "npm run test && npm run check:content && astro build && npm run postbuild:index && npm run check:site && npm run check:images",
+    "build": "npm run test && npm run check:contrast && npm run check:content && astro build && npm run postbuild:index && npm run check:site && npm run check:images",
     "postbuild:index": "pagefind --site dist",
     "check:content": "node scripts/integrity/run.ts",
     "check:site": "node scripts/integrity/site.ts",
     "check:images": "node scripts/integrity/images.ts",
     "check:self": "node scripts/integrity/run.ts --content test-fixtures/broken-content --expect-failure",
-    "check:fixtures": "node scripts/integrity/run.ts --content test-fixtures/engine-content"
+    "check:fixtures": "node scripts/integrity/run.ts --content test-fixtures/engine-content",
+    "check:contrast": "node scripts/integrity/contrast.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.7",

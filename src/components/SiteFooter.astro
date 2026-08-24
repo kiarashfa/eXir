@@ -1,0 +1,37 @@
+---
+/**
+ * Carries the attribution line, the composition-source line and the alcohol
+ * line, which appears on every page of the site.
+ *
+ * It also carries every route the four-item nav has no room for, so nothing on
+ * the site is an orphan. `check:site` verifies that every link resolves; it
+ * cannot tell you a page has no inbound links at all, which is why the list is
+ * written down rather than remembered.
+ */
+import { builtRoutes } from '../data/routes.ts';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const routes = builtRoutes();
+---
+
+<footer class="foot" data-pagefind-ignore>
+  <div class="wrap">
+    <div class="foot-inner">
+      <div>
+        <strong>eXir</strong> — a free, ad-free, login-free drinks encyclopedia. Nothing is
+        remembered anywhere but your own browser.
+      </div>
+      <div>
+        Alcohol figures here are calculated from the stated strength of each bottle. They
+        describe what is in a drink, not what anyone should drink.
+      </div>
+      <div>
+        Composition data from USDA FoodData Central and Open Food Facts. Photography from
+        Wikimedia Commons, credited per image.
+      </div>
+      <nav class="foot-nav" aria-label="All sections">
+        {routes.map((r) => <a href={`${base}${r.path}`}>{r.label}</a>)}
+      </nav>
+    </div>
+  </div>
+</footer>

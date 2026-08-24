@@ -1,4 +1,290 @@
+/* @import hoists to the top of the importing file, so these are emitted before
+   everything below regardless of where they are written. Anything order-
+   dependent and unlayered has to win on selector specificity, not source
+   order. */
 @import 'tailwindcss';
+@import './fonts.css';
+@import './glass.css';
+@import './components.css';
 
-/* The token layer, the glass material and the component system land here as
-   they are built. Nothing in this project declares a colour of its own. */
+/* ============================================================================
+   TOKENS
+
+   Every colour on the site resolves here. Nothing downstream declares one of
+   its own — not a component, not a utility, not an inline style.
+
+   Dark is the base palette and sits on bare :root, because the design is
+   composed for it and glass reads as glass against it. Light is a full,
+   equally-designed peer rather than an inversion, and redefines the same names.
+
+   Contrast is MEASURED, not eyeballed, by scripts/integrity/contrast.ts. It
+   parses this file, so the ratios recorded below are of the values that ship.
+   Colours that fail routinely look completely fine; run `npm run check:contrast`
+   after touching any of them.
+   ============================================================================ */
+
+:root {
+  /* ground: deep blue-slate, the colour of a bar at closing time */
+  --surface: #10141b;
+  --surface-2: #171d26;
+  --surface-3: #1f2733;
+
+  --ink: #eef1f6;
+  --ink-soft: #b6c0ce;
+  --muted: #8895a6;
+
+  --line: #2a3342;
+  --line-strong: #3b4655;
+  /* The edge of anything a reader operates. Separate from --line-strong
+     because a control boundary must clear 3:1 and a divider need not. */
+  --control-edge: #707e90;
+
+  /* brass — the spirit in the glass. Brand emphasis only, never a success state. */
+  --accent: #e9a63f;
+  --accent-soft: rgba(233, 166, 63, 0.13);
+  --accent-ink: #f7cb87;
+
+  /* bitter orange — RESERVED for alcohol and strength figures, and for the
+     computed water line in batch service. It is the site's "this is the
+     alcohol" signal and is not spent on anything else. */
+  --bitter: #e8724a;
+  --bitter-soft: rgba(232, 114, 74, 0.13);
+
+  /* botanical — completion states, checked items, the zero-proof marker */
+  --botanical: #8ecfab;
+  --botanical-soft: rgba(142, 207, 171, 0.13);
+
+  --shadow: rgba(0, 0, 0, 0.55);
+
+  /* Text laid over photography. Theme-independent by design: a caption on a
+     dark photograph is white in both themes, so this is not redefined below. */
+  --on-media: #ffffff;
+
+  /* the glass material */
+  --glass-tint: rgba(255, 255, 255, 0.055);
+  --glass-edge: rgba(255, 255, 255, 0.13);
+  --glass-sheen: rgba(255, 255, 255, 0.16);
+  --glass-sheen-2: rgba(255, 255, 255, 0.04);
+  --glass-blur: 26px;
+
+  /* ambient light for the glass to have something to refract */
+  --amb-1: rgba(233, 166, 63, 0.3);
+  --amb-2: rgba(232, 114, 74, 0.26);
+  --amb-3: rgba(90, 160, 190, 0.22);
+
+  /* layout and motion belong in the same layer as colour */
+  --page-max: 1180px;
+  --gutter: 40px;
+  --measure: 58ch;
+  --measure-intro: 76ch;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --font-display: 'Bodoni Moda', 'Didot', Georgia, serif;
+  --font-body: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-data: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+
+/* Light: a cold zinc counter, not warm paper. */
+:root[data-theme='light'] {
+  --surface: #eef1f5;
+  --surface-2: #e4e9ef;
+  --surface-3: #ffffff;
+
+  --ink: #131920;
+  --ink-soft: #3d4855;
+  --muted: #586371;
+
+  --line: #d2dae3;
+  --line-strong: #9aa7b5;
+  --control-edge: #79838f;
+
+  --accent: #8a5b13;
+  --accent-soft: rgba(138, 91, 19, 0.1);
+  --accent-ink: #6b460d;
+
+  --bitter: #ad421d;
+  --bitter-soft: rgba(173, 66, 29, 0.1);
+
+  --botanical: #2f7551;
+  --botanical-soft: rgba(47, 117, 81, 0.1);
+
+  --shadow: rgba(30, 45, 65, 0.16);
+
+  --glass-tint: rgba(255, 255, 255, 0.55);
+  --glass-edge: rgba(255, 255, 255, 0.85);
+  --glass-sheen: rgba(255, 255, 255, 0.75);
+  --glass-sheen-2: rgba(255, 255, 255, 0.25);
+
+  --amb-1: rgba(233, 166, 63, 0.34);
+  --amb-2: rgba(232, 114, 74, 0.28);
+  --amb-3: rgba(90, 160, 190, 0.26);
+}
+
+/* The reader who has expressed no preference gets the one the OS asks for. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --surface: #eef1f5;
+    --surface-2: #e4e9ef;
+    --surface-3: #ffffff;
+
+    --ink: #131920;
+    --ink-soft: #3d4855;
+    --muted: #586371;
+
+    --line: #d2dae3;
+    --line-strong: #9aa7b5;
+    --control-edge: #79838f;
+
+    --accent: #8a5b13;
+    --accent-soft: rgba(138, 91, 19, 0.1);
+    --accent-ink: #6b460d;
+
+    --bitter: #ad421d;
+    --bitter-soft: rgba(173, 66, 29, 0.1);
+
+    --botanical: #2f7551;
+    --botanical-soft: rgba(47, 117, 81, 0.1);
+
+    --shadow: rgba(30, 45, 65, 0.16);
+
+    --glass-tint: rgba(255, 255, 255, 0.55);
+    --glass-edge: rgba(255, 255, 255, 0.85);
+    --glass-sheen: rgba(255, 255, 255, 0.75);
+    --glass-sheen-2: rgba(255, 255, 255, 0.25);
+
+    --amb-1: rgba(233, 166, 63, 0.34);
+    --amb-2: rgba(232, 114, 74, 0.28);
+    --amb-3: rgba(90, 160, 190, 0.26);
+  }
+}
+
+/* ============================================================================
+   Tailwind bridge
+
+   `@theme inline` rather than `@theme`: a token that references another custom
+   property is otherwise resolved at build time, and every utility bakes in
+   whichever theme happened to be active then. Inline keeps the var() reference
+   in the output so the theme switch reaches it.
+   ============================================================================ */
+
+@theme inline {
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-control-edge: var(--control-edge);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-bitter: var(--bitter);
+  --color-botanical: var(--botanical);
+  --color-on-media: var(--on-media);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-data: var(--font-data);
+}
+
+/* ============================================================================
+   Responsive token overrides
+
+   UNLAYERED, deliberately. Inside @layer these lose to the base token however
+   specific the selector is, and they lose silently.
+   ============================================================================ */
+
+@media (max-width: 860px) {
+  :root {
+    --gutter: 20px;
+  }
+}
+
+/* ============================================================================
+   BASE
+   ============================================================================ */
+
+html {
+  color-scheme: dark;
+}
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    color-scheme: light;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin: 0;
+  text-wrap: balance;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================================
+   MEASURED CONTRAST — pasted from `npm run check:contrast`, which parses this
+   very file. Text clears 4.5:1 against every surface it can sit on; a control
+   edge clears 3:1. Re-run and re-paste after touching any colour.
+
+
+  dark
+    --ink           surface   16.30   surface-2 14.96   surface-3 13.28
+    --ink-soft      surface   10.04   surface-2 9.21   surface-3 8.18
+    --muted         surface   6.06   surface-2 5.56   surface-3 4.94
+    --accent        surface   8.78   surface-2 8.06   surface-3 7.16
+    --accent-ink    surface   12.17   surface-2 11.17   surface-3 9.92
+    --bitter        surface   6.10   surface-2 5.59   surface-3 4.97
+    --botanical     surface   10.25   surface-2 9.40   surface-3 8.35
+    --control-edge  surface   4.46   surface-2 4.09   surface-3 3.64
+    --line          surface   1.45   surface-2 1.33   surface-3 1.18 (decorative)
+    --line-strong   surface   1.93   surface-2 1.77   surface-3 1.57 (decorative)
+
+  light
+    --ink           surface   15.61   surface-2 14.48   surface-3 17.68
+    --ink-soft      surface   8.21   surface-2 7.62   surface-3 9.31
+    --muted         surface   5.39   surface-2 5.00   surface-3 6.11
+    --accent        surface   5.17   surface-2 4.80   surface-3 5.86
+    --accent-ink    surface   7.39   surface-2 6.86   surface-3 8.38
+    --bitter        surface   5.19   surface-2 4.81   surface-3 5.88
+    --botanical     surface   4.90   surface-2 4.55   surface-3 5.55
+    --control-edge  surface   3.40   surface-2 3.15   surface-3 3.85
+    --line          surface   1.25   surface-2 1.16   surface-3 1.41 (decorative)
+    --line-strong   surface   2.16   surface-2 2.01   surface-3 2.45 (decorative)
+   ============================================================================ */

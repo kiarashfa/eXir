@@ -1,0 +1,40 @@
+---
+/**
+ * Nav is four items and that is the ceiling; anything further goes in the
+ * footer. A search affordance is required rather than optional.
+ *
+ * Not sticky — see components.css for why. Routes come from the one registry,
+ * which renders only what exists so nothing in the chrome ever 404s.
+ */
+import { primaryRoutes } from '../data/routes.ts';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const { current } = Astro.props as { current?: string };
+const links = primaryRoutes();
+---
+
+<header class="masthead" data-pagefind-ignore>
+  <div class="wrap">
+    <div class="masthead-inner glass glass--refract">
+      <a class="logo" href={`${base}/`}>e<b>X</b>ir</a>
+
+      <nav class="nav" aria-label="Main">
+        {links.map((l) => (
+          <a
+            href={`${base}${l.path}`}
+            {...(current && l.path.includes(current) ? { 'aria-current': 'page' } : {})}
+          >
+            {l.label}
+            {l.count && <span class="nav-count" data-bar-count aria-hidden="true"></span>}
+          </a>
+        ))}
+      </nav>
+
+      <div class="chip-row">
+        <button class="chip" data-search-open type="button" aria-expanded="false">Search</button>
+        <button class="chip" data-glass-toggle type="button" aria-pressed="true">Glass</button>
+        <button class="chip" data-theme-toggle type="button" aria-pressed="false">Light</button>
+      </div>
+    </div>
+  </div>
+</header>

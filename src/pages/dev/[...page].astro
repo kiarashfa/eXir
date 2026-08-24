@@ -1,264 +1,69 @@
 ---
 /**
- * The rendered QA surface for the engine.
+ * The rendered QA surface.
  *
- * Deliberately unstyled. It exists to show what the maths and the renderers
- * actually produce, so a change can be seen rather than inferred from a test
- * name, and so the client bundle can be inspected on a page that really uses
- * every live value. The design system arrives later and does not belong here.
+ * Renders the real drink template against the engine fixtures, so the design
+ * system can be seen and driven before any content exists. Phase 7 swaps the
+ * fixtures for authored drinks at their real routes; this route keeps doing the
+ * same job for the fixtures.
  *
- * Emits no route at all unless EXIR_DEV=1, so it cannot reach a deployed build.
+ * Emits no route at all in a production build unless EXIR_DEV=1.
  */
 import path from 'node:path';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import LiveValues from '../../components/live/LiveValues.astro';
+import DrinkPage from '../../components/drink/DrinkPage.astro';
 import { loadContent } from '../../lib/content/disk.ts';
-import { flatten } from '../../lib/transclusion/flatten.ts';
-import { computeBatch, computeDrinkSpec, linesForService } from '../../lib/math/spec.ts';
-import { computeScaledTiming } from '../../lib/math/timing.ts';
-import { computeBrew } from '../../lib/math/brewing.ts';
-import { renderProse } from '../../lib/render/prose.ts';
-import { qtyHtml } from '../../lib/render/live-values.ts';
-import { formatDuration } from '../../lib/math/units.ts';
-import { proseName } from '../../lib/render/prose.ts';
-import type {
-  Bitterness,
-  Brew,
-  DrinkVersion,
-  IngredientLine,
-  ResolvedLine,
-} from '../../lib/math/types.ts';
+import { resolveSite } from '../../lib/content/resolve.ts';
 
 export async function getStaticPaths() {
   // Always present in the dev server, where it is the point. A production build
-  // emits nothing unless it is asked to in so many words, so this cannot reach
-  // a deploy by accident.
+  // emits nothing unless it is asked to in so many words.
   if (!import.meta.env.DEV && process.env['EXIR_DEV'] !== '1') return [];
 
   const content = await loadContent(path.resolve('test-fixtures/engine-content'));
+  const site = resolveSite(content);
 
-  return content.drinks.map((file) => {
-    const fm = file.frontmatter;
-    const flat = flatten(
-      { lines: (fm['ingredients'] as IngredientLine[]) ?? [], slots: file.slots },
-      content.components,
-    );
-
-    const lines: ResolvedLine[] = flat.lines.flatMap((line) => {
-      const ingredient = content.ingredients.get(line.ingredientRef);
-      if (!ingredient) return [];
-      const form =
-        ingredient.forms.find((f) => f.id === (line.formRef ?? 'standard')) ?? ingredient.forms[0];
-      return form ? [{ line, ingredient, form }] : [];
-    });
-
-    const version: DrinkVersion = {
-      id: String(fm['id'] ?? 'default'),
-      label: String(fm['label'] ?? ''),
-      defaultDrinks: Number(fm['defaultDrinks'] ?? 1),
-      method: String(fm['method'] ?? ''),
-      dilutionClass: String(fm['dilutionClass'] ?? 'none'),
-      bitterness: fm['bitterness'] as Bitterness,
-      batchable: (fm['batchable'] as DrinkVersion['batchable']) ?? 'none',
-      lines: flat.lines,
-      steps: flat.steps,
-      ...(fm['glasswareRef'] ? { glasswareRef: String(fm['glasswareRef']) } : {}),
-      ...(fm['servedOverIce'] !== undefined
-        ? { servedOverIce: Boolean(fm['servedOverIce']) }
-        : {}),
-      ...(fm['zeroProof'] !== undefined ? { zeroProof: Boolean(fm['zeroProof']) } : {}),
-      ...(fm['brew'] ? { brew: fm['brew'] as Brew } : {}),
-      ...(fm['ferment'] ? { ferment: fm['ferment'] as DrinkVersion['ferment'] } : {}),
-    };
-
-    return {
-      params: { page: file.slug },
-      props: { name: String(fm['name'] ?? file.slug), version, lines, issues: flat.issues },
-    };
-  });
+  return site.drinks.map((drink) => ({
+    params: { page: drink.slug },
+    props: {
+      slug: drink.slug,
+      name: drink.name,
+      versions: drink.versions,
+      issues: site.issues.filter((i) => i.where.includes(drink.slug)),
+    },
+  }));
 }
 
-const { name, version, lines } = Astro.props;
+const { slug, name, versions, issues } = Astro.props;
+const primary = versions[0]!;
 
-const spec = computeDrinkSpec(version, lines);
-const batch = computeBatch(spec, version, 12);
-const orderLines = linesForService(lines, batch, 'order');
-const batchLines = linesForService(lines, batch, 'batch');
-const timing = computeScaledTiming(version.steps, version.defaultDrinks, 'order', version.defaultDrinks);
-const brew = version.brew ? computeBrew(version.brew) : null;
-
-const source = { lines, steps: version.steps, defaultDrinks: version.defaultDrinks };
-const system = 'metric' as const;
-
-const checklist = (rows: ResolvedLine[], drinks: number) =>
-  rows.map((r) => ({
-    computed: r.line.computed === true,
-    html: qtyHtml(
-      {
-        amount: r.line.amount,
-        unit: r.line.unit,
-        defaultDrinks: version.defaultDrinks,
-        name: proseName(r),
-        countUnit: r.form.countUnit,
-        estimated: r.line.computed === true,
-      },
-      drinks,
-      system,
-    ),
-  }));
+const eyebrow = [primary.version.method, primary.spec.facets.baseSpirits[0]?.spirit]
+  .filter((v) => v && v !== 'none')
+  .join(' · ');
 ---
 
-<BaseLayout title={`dev · ${name}`} description="Engine QA surface." noindex>
-  <main data-drink={version.id} data-default-drinks={version.defaultDrinks}>
-    <h1>{name}</h1>
-    <p>
-      <b>{version.label}</b> · {version.method} · dilution <code>{version.dilutionClass}</code> ·
-      default {version.defaultDrinks} drink(s)
-    </p>
+<BaseLayout
+  title={`${name} — eXir`}
+  description={`A ${primary.version.method} drink. Every figure on this page is computed.`}
+  noindex
+  current="drinks"
+>
+  <DrinkPage
+    name={name}
+    subtitle={`Fixture ${slug}. Every number on this page is computed from structured data.`}
+    versions={versions}
+    eyebrow={eyebrow}
+    about={null}
+  />
 
-    <h2>Controls</h2>
-    <p>
-      <button type="button" data-dev="minus">-</button>
-      <output data-dev="count">{version.defaultDrinks}</output>
-      <button type="button" data-dev="plus">+</button>
-      &nbsp;
-      <button type="button" data-dev="units">metric / US</button>
-      &nbsp;
-      <button type="button" data-dev="service">made to order / batched</button>
-      <span data-dev="service-state"></span>
-    </p>
-
-    <h2>Drink spec — per drink</h2>
-    <ul>
-      <li>Final volume: {spec.finalVolumeMl.toFixed(1)} ml {spec.alcohol.abvEstimated && '(estimated)'}</li>
-      <li>Strength: {spec.alcohol.finalAbvPercent.toFixed(1)}% ABV</li>
-      <li>Pure alcohol: {spec.alcohol.pureAlcoholG.toFixed(2)} g</li>
-      {spec.alcohol.standardDrinks.map((d) => (
-        <li>Standard drinks ({d.label}): {d.drinks.toFixed(2)}</li>
-      ))}
-      <li>Sugar: {spec.composition.sugarG.toFixed(1)} g · {spec.sugarGPerL.toFixed(0)} g/L</li>
-      <li>Acid: {spec.acidPercentFinal.toFixed(2)}%</li>
-      <li>Energy: {spec.nutrition.kcal.toFixed(0)} kcal</li>
-      <li>Strength facet: {spec.facets.strength} · served {spec.facets.servingTemp}</li>
-      <li>Base spirit: {spec.facets.baseSpirits.map((s) => s.spirit).join(', ')}</li>
-      <li>Diet: {spec.facets.diet.diets.join(', ') || '—'}</li>
-      <li>Allergens: {spec.facets.diet.allergens.join(', ') || '—'}</li>
-    </ul>
-
-    <h2>Balance</h2>
-    <ul>
-      {spec.bars.map((b) => (
-        <li>
-          {b.label}: {b.display} — {b.fillPercent.toFixed(0)}%
-          {b.computed ? ' (computed)' : ' (authored)'}
-        </li>
-      ))}
-    </ul>
-
-    {brew && (
-      <>
-        <h2>Brew</h2>
-        <ul>
-          <li>Ratio: {brew.ratioDisplay} · retention {brew.retentionMl} ml</li>
-          <li>Contact: {formatDuration(brew.contactSec)} at {brew.waterTempC} °C</li>
-          <li>
-            Extraction yield: {brew.extractionYieldPercent === null
-              ? 'not measured, so not stated'
-              : `${brew.extractionYieldPercent.toFixed(1)}%`}
-          </li>
-          {brew.standard && (
-            <li>
-              {brew.standard.label}: {brew.standard.gPerLitre.toFixed(1)} g/L against{' '}
-              {brew.standard.gPerLitreRange[0].toFixed(1)}–{brew.standard.gPerLitreRange[1].toFixed(1)}
-              {' '}— {brew.standard.direction}
-            </li>
-          )}
+  {issues.length > 0 && (
+    <div class="wrap">
+      <div class="card glass">
+        <h2 class="card-title">Resolve issues</h2>
+        <ul class="keeping-body">
+          {issues.map((i) => <li>{i.where} · {i.message}</li>)}
         </ul>
-      </>
-    )}
-
-    {version.ferment && (
-      <>
-        <h2>Fermentation</h2>
-        <ul>
-          {version.ferment.stages.map((s) => (
-            <li>{s.label}: {s.days} days at {s.tempC[0]}–{s.tempC[1]} °C, {s.sealed ? 'sealed' : 'loosely covered'}</li>
-          ))}
-          <li>Estimated ABV range: {version.ferment.estimatedAbvRange?.join('–')}%</li>
-          {version.ferment.safetyNote && <li><strong>Safety: {version.ferment.safetyNote}</strong></li>}
-        </ul>
-      </>
-    )}
-
-    <h2>Timing</h2>
-    <p>
-      prep {formatDuration(timing.prepSec)} · make {formatDuration(timing.makeSec)} · rest{' '}
-      {formatDuration(timing.restSec)} · total {formatDuration(timing.totalSec)}
-    </p>
-
-    <h2>Ingredients — made to order</h2>
-    <ul>
-      {checklist(orderLines, version.defaultDrinks).map((row) => (
-        <li><Fragment set:html={row.html} /></li>
-      ))}
-    </ul>
-
-    <h2>Ingredients — batched ×12</h2>
-    {batch.available ? (
-      <ul data-live-static>
-        {checklist(batchLines, 12).map((row) => (
-          <li>
-            <Fragment set:html={row.html} />
-            {row.computed && <em> — added by the engine</em>}
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <p><em>{batch.unavailableReason}</em></p>
-    )}
-    {batch.available && <p>Batch yield: {batch.yieldMl.toFixed(0)} ml</p>}
-
-    <h2>Method</h2>
-    <ol>
-      {version.steps.map((step) => (
-        <li>
-          <Fragment set:html={renderProse(step.prose, { source, drinks: version.defaultDrinks, system })} />
-          <small> [{step.id} · {formatDuration(step.durationSec)} · {step.type} · {step.phase}]</small>
-        </li>
-      ))}
-    </ol>
-
-    {spec.warnings.length > 0 && (
-      <>
-        <h2>Warnings</h2>
-        <ul>{spec.warnings.map((w) => <li>{w}</li>)}</ul>
-      </>
-    )}
-  </main>
-
-  <LiveValues />
-
-  <script>
-    // QA-only controls. The real ones arrive with the design system; these
-    // exist so the shared updater can be exercised the way a reader will.
-    import { drinks, service, setDrinks, toggleUnitSystem } from '../../lib/stores/display.ts';
-
-    const el = (name: string) => document.querySelector<HTMLElement>(`[data-dev="${name}"]`);
-    const count = el('count');
-    const state = el('service-state');
-
-    drinks.subscribe((n) => {
-      if (count) count.textContent = String(n);
-    });
-    service.subscribe((mode) => {
-      if (state) state.textContent = ` — ${mode}`;
-    });
-
-    el('minus')?.addEventListener('click', () => setDrinks(drinks.get() - 1));
-    el('plus')?.addEventListener('click', () => setDrinks(drinks.get() + 1));
-    el('units')?.addEventListener('click', () => toggleUnitSystem());
-    el('service')?.addEventListener('click', () =>
-      service.set(service.get() === 'order' ? 'batch' : 'order'),
-    );
-  </script>
+      </div>
+    </div>
+  )}
 </BaseLayout>
