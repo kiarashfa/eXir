@@ -316,12 +316,15 @@
    the failure this avoids.
    --------------------------------------------------------------------------- */
 
+/* The switch sits at the head of the reading column, which is the scope it
+   actually has. Placed above the whole body it claimed to change the serving
+   controls and the checklist as well, and then did not. */
 .panel-switch {
   display: inline-flex;
   border: 1px solid var(--control-edge);
   border-radius: 999px;
   overflow: hidden;
-  margin: 8px 0 22px;
+  margin: 0 0 24px;
 }
 .panel-switch button {
   border: 0;
@@ -341,12 +344,15 @@
   color: var(--accent-ink);
 }
 
+/* The version strip reaches both columns — a version changes the ingredient
+   list and the spec as well as the method — so it sits above the grid rather
+   than inside either half of it. */
 .version-strip {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 26px;
+  margin: 14px 0 4px;
 }
 .version-strip button {
   border: 0;
@@ -384,6 +390,11 @@
   gap: 44px;
   padding: 12px 0 72px;
   align-items: start;
+}
+/* Each column is a stack of per-version blocks, all but one hidden. The grid
+   sees two children whatever the version count is. */
+.col-stack {
+  min-width: 0;
 }
 .left-col {
   display: grid;
@@ -1176,4 +1187,369 @@
   align-items: baseline;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--line);
+}
+
+/* ---------------------------------------------------------------------------
+   Image attribution — an affordance on the image, not a caption under it.
+
+   Cropping and grading make a derivative work, so the licence and the
+   modification travel with every image. Only the fields that exist are shown:
+   never a placeholder standing in for a missing credit.
+   --------------------------------------------------------------------------- */
+
+.attribution {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 3;
+}
+
+.attribution-toggle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  background: rgb(0 0 0 / 0.45);
+  color: var(--on-media);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0.7;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(6px);
+  transition: opacity 0.3s var(--ease);
+}
+.attribution-toggle:hover,
+.attribution-toggle:focus-visible {
+  opacity: 1;
+}
+
+.attribution-popover {
+  position: absolute;
+  right: 0;
+  bottom: 34px;
+  width: 260px;
+  padding: 13px 15px;
+  background: var(--surface-3);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  box-shadow: 0 16px 40px -12px var(--shadow);
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  text-align: left;
+  display: none;
+}
+.attribution-toggle[aria-expanded='true'] + .attribution-popover {
+  display: block;
+}
+.attribution-popover a {
+  color: var(--accent-ink);
+}
+
+/* The alt text is the image's own description and belongs with its credit
+   rather than nowhere: a sighted reader has no other way to see what a screen
+   reader is told. */
+.attribution-alt {
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Off-screen rather than display:none. A hidden node is not indexed, and the
+   whole point of these is that a search engine and Pagefind can read them. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Listing pages — the catalogue, and every index that extends it
+   --------------------------------------------------------------------------- */
+
+.page-head {
+  padding: 46px 0 26px;
+}
+.page-head h1 {
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+.page-head .lede {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 16px 0 0;
+  max-width: var(--measure-intro);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(232px, 1fr));
+  gap: 26px;
+  padding-bottom: 64px;
+}
+
+.drink-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.drink-card figure {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface-2);
+  margin-bottom: 13px;
+}
+.drink-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--ease);
+}
+.drink-card:hover img {
+  transform: scale(1.04);
+}
+.drink-card h2 {
+  font-size: 21px;
+  line-height: 1.2;
+  margin: 0;
+}
+.drink-card .card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-top: 7px;
+  font-family: var(--font-data);
+  font-size: 11.5px;
+  color: var(--muted);
+}
+.drink-card .card-meta .alc {
+  color: var(--bitter);
+}
+.drink-card .card-blank {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 34px;
+  color: var(--line-strong);
+}
+
+/* The dense table is the same dataset for a reader who wants to sort and
+   compare rather than browse. It scrolls inside itself; the page never does. */
+.table-wrap {
+  overflow-x: auto;
+  padding-bottom: 64px;
+}
+.dense {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.dense th,
+.dense td {
+  text-align: left;
+  padding: 10px 14px 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.dense th {
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom-color: var(--control-edge);
+}
+.dense td.num {
+  font-family: var(--font-data);
+  text-align: right;
+  padding-right: 18px;
+}
+.dense a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.dense a:hover {
+  color: var(--accent-ink);
+}
+
+.view-switch {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2px 26px;
+}
+.index-list a {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+.index-list a:hover {
+  color: var(--ink);
+}
+.index-list .aside {
+  font-family: var(--font-data);
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.prose-page {
+  max-width: var(--measure);
+  padding-bottom: 72px;
+}
+.prose-page h2 {
+  font-size: 26px;
+  margin: 40px 0 14px;
+}
+.prose-page p {
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: var(--ink-soft);
+  margin: 0 0 15px;
+}
+.prose-page a {
+  color: var(--accent-ink);
+}
+
+/* ---------------------------------------------------------------------------
+   Attributions
+   --------------------------------------------------------------------------- */
+
+.attribution-list {
+  display: grid;
+  gap: 26px;
+  padding-bottom: 72px;
+  max-width: var(--measure-intro);
+}
+.attribution-row {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding-bottom: 22px;
+  border-bottom: 1px solid var(--line);
+}
+.attribution-thumb img {
+  width: 72px;
+  height: 72px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
+.attribution-row h2 {
+  font-size: 20px;
+  margin: 0 0 5px;
+  text-transform: capitalize;
+}
+.attribution-row h2 a {
+  text-decoration: none;
+}
+.attribution-meta {
+  margin: 0 0 3px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.attribution-meta a {
+  color: var(--accent-ink);
+}
+
+/* ---------------------------------------------------------------------------
+   Search — a drawer under the header
+   --------------------------------------------------------------------------- */
+
+.search-drawer {
+  margin-top: 10px;
+  padding: 16px 18px;
+  border-radius: 18px;
+}
+.search-bar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.search-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  background: var(--surface-2);
+  border: 1px solid var(--control-edge);
+  border-radius: 12px;
+  padding: 12px 15px;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+}
+.search-input::placeholder {
+  color: var(--muted);
+}
+.search-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.search-results {
+  display: grid;
+  gap: 2px;
+}
+.search-results:not(:empty) {
+  margin-top: 14px;
+}
+.search-hit {
+  display: block;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+}
+.search-hit-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--ink);
+}
+.search-hit-excerpt {
+  display: block;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.search-hit mark {
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+.search-status {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--muted);
 }

@@ -1,0 +1,77 @@
+---
+/**
+ * The central image credit manifest, deep-linkable per image.
+ *
+ * Cropping and grading produces an adaptation, so every record names its
+ * licence and what was done to it. Only the fields that exist are shown; there
+ * is no placeholder for a missing credit.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import attributions from '../data/image-attributions.json' with { type: 'json' };
+
+interface Entry {
+  slug: string;
+  kind: string;
+  alt: string;
+  renditions: Record<string, { file: string; width: number; height: number }>;
+  attribution: Record<string, string>;
+}
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const entries = Object.entries(attributions as Record<string, Entry>)
+  .map(([key, value]) => ({ key, ...value }))
+  .sort((a, b) => a.slug.localeCompare(b.slug));
+---
+
+<BaseLayout
+  title="Image attributions — eXir"
+  description="Every photograph on eXir, its author, its licence and what was done to it."
+>
+  <section class="wrap page-head">
+    <h1>Attributions</h1>
+    <p class="lede">
+      Every photograph here is real, sourced from Wikimedia Commons and chosen by hand. Each is
+      cropped, white-balanced, graded and re-encoded, which makes an adaptation — so each record
+      names the original, its author, its licence and the treatment applied.
+    </p>
+  </section>
+
+  <div class="wrap">
+    <div class="attribution-list">
+      {entries.map((e) => (
+        <div class="attribution-row" id={`image-${e.slug}`}>
+          <a href={`${base}/${e.kind}s/${e.slug}/`} class="attribution-thumb">
+            {e.renditions['thumb'] && (
+              <img src={`${base}${e.renditions['thumb'].file}`} alt={e.alt} width="96" height="96" loading="lazy" />
+            )}
+          </a>
+          <div>
+            <h2>
+              <a href={`${base}/${e.kind}s/${e.slug}/`}>{e.slug.replace(/-/g, ' ')}</a>
+            </h2>
+            <p class="attribution-meta">
+              {e.attribution['sourceUrl'] ? (
+                <a href={e.attribution['sourceUrl']} rel="nofollow noopener">
+                  {(e.attribution['file'] ?? e.attribution['source']).replace('File:', '')}
+                </a>
+              ) : (
+                <span>{e.attribution['source']}</span>
+              )}
+              {e.attribution['author'] && <> — {e.attribution['author']}</>}
+              {' · '}
+              {e.attribution['licenseUrl'] ? (
+                <a href={e.attribution['licenseUrl']} rel="nofollow noopener">
+                  {e.attribution['license']}
+                </a>
+              ) : (
+                <span>{e.attribution['license']}</span>
+              )}
+            </p>
+            {e.attribution['modified'] && <p class="attribution-meta">{e.attribution['modified']}</p>}
+            <p class="attribution-alt">{e.alt}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { published, site } from '../lib/content/site.ts';
+
+const resolved = await site();
+const drinks = published(resolved);
+const ingredients = [...resolved.ingredients.values()];
+---
+
+<BaseLayout
+  title="About eXir"
+  description="What eXir is, how its numbers are worked out, and where its figures come from."
+>
+  <section class="wrap page-head">
+    <h1>About</h1>
+    <p class="lede">
+      A free, ad-free, login-free, cookie-free drinks encyclopedia. No accounts, no analytics,
+      no advertising, and nothing to sign up to.
+    </p>
+  </section>
+
+  <div class="wrap prose-page">
+    <h2>No number here is typed by hand</h2>
+    <p>
+      Every quantity, dilution, final volume, strength, standard-drink figure, sugar figure and
+      energy figure on this site is computed from structured data. Amounts are authored in
+      millilitres and grams; ounces, temperatures in Fahrenheit, counts of dashes and limes, and
+      every total are display layers worked out at the moment you read them.
+    </p>
+    <p>
+      That means a page cannot contradict itself. Change the drink count, the service mode or
+      the units, and the arithmetic follows — including the water that shaking or stirring adds,
+      which is an ingredient in a batched drink and an accident in an unbatched one.
+    </p>
+    <p>
+      For a food site that discipline is a purity principle. For a drinks site it is the
+      product, because the arithmetic <em>is</em> the craft: dilution, batching, strength and
+      brew ratio are calculations working bartenders do constantly and home drinkers get wrong.
+    </p>
+
+    <h2>What is measured, what is modelled</h2>
+    <p>
+      A figure taken from a dataset or a producer's own label is stated. A figure that comes
+      out of a model is marked with a dotted underline and a tilde, and that marker means one
+      thing everywhere on the site: the true value is not on this page.
+    </p>
+    <p>
+      Dilution is the main one. How much water a drink takes on from ice is modelled, not
+      measured, and every figure descending from it — the final volume, the strength, the sugar
+      per litre — is marked accordingly. The fraction is always a fraction of the poured volume
+      <em>before</em> any ice, and the site says so wherever it appears, because published
+      figures disagree with one another on precisely that point.
+    </p>
+    <p>
+      Bitterness is the other. There is no bitterness figure on any bottle and no unit for it,
+      so it is an editorial judgement, and it is drawn differently from the three bars beside it
+      for exactly that reason. Difficulty is the same kind of thing.
+    </p>
+
+    <h2>Where the figures come from</h2>
+    <p>
+      Composition data comes from the United States Department of Agriculture's FoodData
+      Central, which is public domain, from producers' own published figures where a product is
+      proprietary and nothing else carries it, and from Open Food Facts for branded products
+      neither covers. Every Form on every ingredient page names its source.
+    </p>
+    <p>
+      Nothing computed is ever imported. A third party's arithmetic for a finished drink's
+      strength or calories would undo the only thing that makes this site worth building.
+    </p>
+    <p>
+      Photography comes from Wikimedia Commons, curated by hand and credited per image. Cropping
+      and grading makes a derivative work, so each image carries its licence and a note of what
+      was done to it, on the image and again on the
+      <a href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/attributions/`}>attributions</a>
+      page.
+    </p>
+
+    <h2>On alcohol</h2>
+    <p>
+      Roughly half of what eXir documents contains alcohol, and the site states how much — in
+      grams of pure alcohol, and in the standard-drink measures used in the United States and
+      the United Kingdom. Those figures are here because a drink's strength is a fact about the
+      drink, and a reference work that computes everything else while staying quiet about that
+      one would be making a choice.
+    </p>
+    <p>
+      They are calculations, not measurements. Each is derived from the stated strength of the
+      bottles a recipe names, adjusted for the water the method adds. A different bottle, a
+      longer stir, or a heavier pour changes the answer, and the site marks every figure that
+      descends from an estimate.
+    </p>
+    <p>
+      eXir does not recommend drinking, does not suggest quantities, and holds no view on what
+      anyone's limit should be. Guidance on that comes from health authorities in your own
+      country, who publish it freely and revise it as the evidence changes. Legal drinking ages
+      differ too, and the site assumes nothing about where you are. Every drink here that can be
+      made without alcohol says so, and a large part of the catalogue never contained any.
+    </p>
+    <p>
+      If alcohol is causing harm to you or to someone close to you, help exists and it is local.
+      National health services and support organisations in your own country are the place to
+      start.
+    </p>
+
+    <h2>Where it stands</h2>
+    <p>
+      {drinks.length} drinks, {ingredients.filter((i) => i.kind !== 'preparation').length}{' '}
+      ingredients and {ingredients.filter((i) => i.kind === 'preparation').length} preparations
+      are published so far. The catalogue is being written; what is here is written rather than
+      generated, and each page's figures are checked by the same build that publishes it.
+    </p>
+  </div>
+</BaseLayout>

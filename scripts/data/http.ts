@@ -44,6 +44,22 @@ export interface FetchOptions {
 
 const sleep = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
 
+/**
+ * Wikimedia requires a descriptive User-Agent and answers 429 without one.
+ *
+ * Found the expensive way: every image request in a batch failed with 429 four
+ * times over and looked exactly like ordinary rate limiting, because a default
+ * agent string is what their policy rejects rather than the request rate. It
+ * costs nothing to send on every request, and identifying a script honestly to
+ * the service it is reading is right anyway.
+ */
+const USER_AGENT = 'eXir/0.1 (https://kiarashfa.github.io/eXir/; a non-commercial drinks reference)';
+
+const withAgent = (init: RequestInit = {}): RequestInit => ({
+  ...init,
+  headers: { 'user-agent': USER_AGENT, ...(init.headers ?? {}) },
+});
+
 /** Anything that is plainly a web page rather than an API response. */
 const looksLikeHtml = (body: string): boolean =>
   /^\s*<(?:!doctype|html|\?xml)/i.test(body) || /<html[\s>]/i.test(body.slice(0, 400));
@@ -57,7 +73,7 @@ export async function fetchJson<T>(url: string, options: FetchOptions = {}): Pro
     let status = 0;
     let body = '';
     try {
-      const response = await fetch(url, options.init ?? {});
+      const response = await fetch(url, withAgent(options.init));
       status = response.status;
       body = await response.text();
 
@@ -105,7 +121,7 @@ export async function fetchBinary(url: string, options: FetchOptions = {}): Prom
 
   for (let attempt = 1; attempt <= attempts; attempt++) {
     try {
-      const response = await fetch(url, options.init ?? {});
+      const response = await fetch(url, withAgent(options.init));
       if (!response.ok) {
         last = `HTTP ${response.status}`;
       } else {

@@ -1,0 +1,71 @@
+---
+/**
+ * The drink page. One canonical URL per drink; every version ships in the HTML
+ * and the tabs are client-side state, so all of it is crawlable.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DrinkPage from '../../components/drink/DrinkPage.astro';
+import { defaultVersion, published, site } from '../../lib/content/site.ts';
+import { recipeJsonLd } from '../../lib/render/jsonld.ts';
+import attributions from '../../data/image-attributions.json' with { type: 'json' };
+
+export async function getStaticPaths() {
+  const resolved = await site();
+  return published(resolved).map((drink) => ({
+    params: { slug: drink.slug },
+    props: { drink },
+  }));
+}
+
+const { drink } = Astro.props;
+const primary = defaultVersion(drink);
+const fm = primary.frontmatter;
+
+const tags = fm['tags'] as Record<string, string[]> | undefined;
+const eyebrow = [tags?.['origin']?.[0], tags?.['category']?.[0], primary.version.method]
+  .filter((v) => v && v !== 'none')
+  .join(' · ');
+
+const description = String(
+  drink.about?.frontmatter['summary'] ??
+    fm['subtitle'] ??
+    `A ${primary.version.method} drink. Every figure on this page is computed.`,
+);
+
+const manifest = attributions as Record<string, { renditions: Record<string, { file: string }> }>;
+// BASE_URL ends in a slash and a manifest path starts with one.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const card = manifest[`drink:${drink.slug}`]?.renditions['card']?.file;
+
+const jsonLd = recipeJsonLd({
+  drink,
+  version: primary,
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  ...(card ? { imageUrl: new URL(base + card, Astro.site).href } : {}),
+});
+
+/** Searchable but not displayed: a misspelling is a way of typing a name. */
+const searchOnly = (fm['names'] as { searchOnly?: string[] } | undefined)?.searchOnly ?? [];
+---
+
+<BaseLayout title={`${drink.name} — eXir`} description={description} current="drinks">
+  <script type="application/ld+json" slot="head" set:html={jsonLd} is:inline />
+
+  <DrinkPage
+    slug={drink.slug}
+    name={drink.name}
+    subtitle={fm['subtitle'] as string | undefined}
+    versions={drink.versions}
+    eyebrow={eyebrow}
+    about={drink.about}
+  />
+
+  {/*
+    Pagefind indexes rendered HTML rather than frontmatter, so a search-only
+    name has to reach the document to be findable at all. Off-screen rather
+    than display:none, because a hidden node is not indexed.
+  */}
+  {searchOnly.length > 0 && (
+    <div class="visually-hidden">{searchOnly.join(' ')}</div>
+  )}
+</BaseLayout>

@@ -1,0 +1,92 @@
+---
+/**
+ * A preparation is an ingredient AND a recipe, so its page is the ingredient
+ * page with its own method underneath.
+ *
+ * Its steps go through the same prose renderer a drink's do, and its lines
+ * resolve against the same ingredient map, so a quantity in a syrup's method is
+ * live for exactly the same reasons one in a cocktail is.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IngredientPage from '../../components/IngredientPage.astro';
+import { site, usedIn } from '../../lib/content/site.ts';
+import { formatDuration } from '../../lib/math/units.ts';
+import { renderProse } from '../../lib/render/prose.ts';
+import { computeTiming } from '../../lib/math/timing.ts';
+import type { ResolvedLine } from '../../lib/math/types.ts';
+
+export async function getStaticPaths() {
+  const resolved = await site();
+  const known = new Set(
+    [...resolved.ingredients.values()].filter((i) => i.kind !== 'preparation').map((i) => i.id),
+  );
+  const out = [];
+
+  for (const ingredient of resolved.ingredients.values()) {
+    if (ingredient.kind !== 'preparation') continue;
+    const recipe = resolved.content.preparations.get(ingredient.id);
+    const steps = recipe?.steps ?? [];
+
+    const lines: ResolvedLine[] = (ingredient.ingredients ?? []).flatMap((line) => {
+      const target = resolved.ingredients.get(line.ingredientRef);
+      const form = target?.forms.find((f) => f.id === (line.formRef ?? 'standard'));
+      return target && form ? [{ line, ingredient: target, form }] : [];
+    });
+
+    const source = { lines, steps, defaultDrinks: 1 };
+
+    out.push({
+      params: { slug: ingredient.id },
+      props: {
+        ingredient,
+        known,
+        usages: usedIn(resolved, ingredient.id),
+        timing: computeTiming(steps),
+        rendered: steps.map((step) => ({
+          step,
+          html: renderProse(step.prose, { source, drinks: 1, system: 'metric' }),
+        })),
+      },
+    });
+  }
+  return out;
+}
+
+const { ingredient, usages, timing, rendered, known } = Astro.props;
+---
+
+<BaseLayout
+  title={`${ingredient.name} — eXir`}
+  description={`How to make ${ingredient.name}, what it yields, how long it keeps, and the drinks on eXir that use it.`}
+  current="preparations"
+>
+  <IngredientPage
+    ingredient={ingredient}
+    usages={usages}
+    known={known}
+    yieldMl={ingredient.yieldMl}
+    shelfLife={ingredient.shelfLife}
+  >
+    <div class="section-head">
+      <h2>Method</h2>
+      <span class="aside">{rendered.length} steps · {formatDuration(timing.totalSec)}</span>
+    </div>
+
+    <ol class="steps">
+      {rendered.map(({ step, html }) => (
+        <li class="step">
+          <span class="step-mark" aria-hidden="true"></span>
+          <div>
+            <div class="step-meta">{step.phase} · {formatDuration(step.durationSec)}</div>
+            <p class="step-body" set:html={html} />
+          </div>
+        </li>
+      ))}
+    </ol>
+
+    <p class="disclaimer">
+      The amounts above are the batch this recipe makes, not a portion of it, and they do not
+      scale with any drink count — a preparation is made once and then measured out of.
+    </p>
+  </IngredientPage>
+</BaseLayout>

@@ -7,11 +7,15 @@
  * Ingredients and Glass, and whose right column is the method and then the
  * collapsed Keeping section.
  *
- * The Recipe / About switch sits ABOVE the body grid and swaps the whole body.
- * The version strip lives INSIDE the recipe panel, so the page never shows two
- * tab strips competing to be the same control.
+ * The version strip sits above the body grid because it changes both columns.
+ * The Recipe / About switch sits at the head of the reading column because it
+ * changes only that one — the serving controls, the spec and the checklist stay
+ * put while a reader looks something up. They are deliberately different kinds
+ * of control, a segmented pill and a row of underlined tabs, so that which one
+ * changes what is legible at a glance.
  */
 import Qty from '../live/Qty.astro';
+import Measure from '../live/Measure.astro';
 import { formatDuration } from '../../lib/math/units.ts';
 import { formatAbv } from '../../lib/math/quantity.ts';
 import { proseName } from '../../lib/render/prose.ts';
@@ -27,7 +31,17 @@ import type { ResolvedVersion } from '../../lib/content/resolve.ts';
 interface ImageRecord {
   alt: string;
   renditions: Record<string, { file: string; width: number; height: number }>;
-  attribution: { author?: string; source: string; license: string; licenseUrl?: string };
+  attribution: {
+    source: string;
+    file?: string;
+    sourceUrl?: string;
+    author?: string;
+    credit?: string;
+    license: string;
+    licenseUrl?: string;
+    /** Cropping and grading make a derivative, and ShareAlike wants it named. */
+    modified?: string;
+  };
 }
 
 interface Props {
@@ -60,13 +74,6 @@ const fm = primary.frontmatter;
  */
 const media = (attributions as Record<string, ImageRecord>)[`drink:${slug}`];
 const hero = media?.renditions['hero'];
-// No fallback. A default credit under an empty frame credits somebody for
-// nothing, which is the placeholder the attribution rules exist to forbid.
-const credit = media
-  ? [media.attribution.author, media.attribution.source, media.attribution.license]
-      .filter(Boolean)
-      .join(' · ')
-  : null;
 const names = fm['names'] as
   | {
       alsoKnownAs?: Array<{ name: string; region?: string; note?: string }>;
@@ -104,6 +111,8 @@ const built = versions.map((v) => {
     })),
   };
 });
+
+const one = built[0]!;
 
 /**
  * The fact row belongs to the VERSION, not to the drink.
@@ -201,28 +210,64 @@ const factRows = built.map(({ v, spec }) => ({
 
         {hero && media && (
           <figure class="hero-figure">
+            {/* Almost always the page's largest contentful paint. */}
             <img
               src={`${base}${hero.file}`}
               alt={media.alt}
               width={hero.width}
               height={hero.height}
+              fetchpriority="high"
             />
-            {credit && <figcaption class="figure-note glass">{credit}</figcaption>}
+            {/* The credit is an affordance rather than a caption: it belongs to
+                the image and it is not what the page is about, so it sits on the
+                image and opens when asked. Only the fields that exist are
+                shown — never a placeholder standing in for a missing one. */}
+            <div class="attribution">
+              <button
+                class="attribution-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-label="Image credit"
+                data-attribution-toggle
+              >i</button>
+              <div class="attribution-popover" data-attribution-popover>
+                {media.attribution.sourceUrl ? (
+                  <a href={media.attribution.sourceUrl} rel="nofollow noopener">
+                    {(media.attribution.file ?? media.attribution.source).replace('File:', '')}
+                  </a>
+                ) : (
+                  <span>{media.attribution.source}</span>
+                )}
+                {media.attribution.author && <> — {media.attribution.author}</>}
+                <br />
+                {media.attribution.licenseUrl ? (
+                  <a href={media.attribution.licenseUrl} rel="nofollow noopener">
+                    {media.attribution.license}
+                  </a>
+                ) : (
+                  <span>{media.attribution.license}</span>
+                )}
+                {media.attribution.modified && <> · {media.attribution.modified}</>}
+                <p class="attribution-alt">{media.alt}</p>
+              </div>
+            </div>
           </figure>
         )}
       </div>
     </div>
   </section>
 
-  <div class="wrap">
-    <div class="panel-switch" role="tablist" aria-label="Recipe or About" data-panel-switch>
-      <button type="button" role="tab" data-value="recipe" aria-selected="true">Recipe</button>
-      <button type="button" role="tab" data-value="about" aria-selected="false">About</button>
-    </div>
-  </div>
+  {/*
+    Two controls at two different scopes, and each is placed where its scope is.
 
-  {/* Both panels ship in the built HTML; the switch is client-side state. */}
-  <div class="wrap" data-panel="recipe">
+    The version strip changes the whole drink — the ingredient list, the spec
+    and the method all move with it — so it sits above the body grid. The
+    Recipe / About switch changes only what is being read, so it sits at the
+    head of the reading column: the serving controls, the spec and the checklist
+    stay exactly where they are while a reader looks something up. A switch
+    placed above everything would claim to change more than it does.
+  */}
+  <div class="wrap">
     {versions.length > 1 && (
       <div class="version-strip" role="tablist" aria-label="Versions" data-version-strip>
         {versions.map((v, i) => (
@@ -233,11 +278,14 @@ const factRows = built.map(({ v, spec }) => ({
       </div>
     )}
 
-    {built.map(({ v, spec, batch, fit, orderLines, batchLines, steps }, index) => (
-      <div data-version={v.version.id} hidden={index > 0}>
-        <div class="body-grid">
-          <div class="left-col">
-            {/* ---- serving ---- */}
+    <div class="body-grid">
+      <div class="col-stack">
+        <div class="left-col">
+            {/* ---- serving ----
+                 One card for the page. There is one drink count, one service
+                 mode and one unit system, and a second copy of the controls
+                 would be a second copy that nothing is listening to. What
+                 varies by version is read off the version block instead. */}
             <div class="card glass">
               <h2 class="card-title">Serving</h2>
 
@@ -246,7 +294,7 @@ const factRows = built.map(({ v, spec }) => ({
                 <div class="stepper">
                   <button class="step-btn" type="button" data-drinks-minus aria-label="Fewer drinks">−</button>
                   <span class="step-count" data-drink-count aria-live="polite" aria-labelledby="drinks-label">
-                    {v.version.defaultDrinks}
+                    {primary.version.defaultDrinks}
                   </span>
                   <button class="step-btn" type="button" data-drinks-plus aria-label="More drinks">+</button>
                 </div>
@@ -254,7 +302,7 @@ const factRows = built.map(({ v, spec }) => ({
 
               <div class="control-row" data-service-row>
                 <span class="control-label">Service</span>
-                <div class="segmented" role="group" aria-label="Service mode" data-service>
+                <div class="segmented" role="group" aria-label="Service mode" data-service-control>
                   <button type="button" data-value="order" aria-pressed="true">Made to order</button>
                   <button type="button" data-value="batch" aria-pressed="false">Batched ahead</button>
                 </div>
@@ -262,7 +310,7 @@ const factRows = built.map(({ v, spec }) => ({
               <span class="control-reason" data-service-reason hidden></span>
 
               {/* A drink that never meets ice has no ice to choose. */}
-              <div class="control-row" data-ice-row hidden={fit?.iceMl === 0}>
+              <div class="control-row" data-ice-row hidden={one.fit?.iceMl === 0}>
                 <span class="control-label">Ice</span>
                 <div class="segmented" role="group" aria-label="Ice style" data-ice>
                   <button type="button" data-value="cubed" aria-pressed="true">Cubed</button>
@@ -284,7 +332,18 @@ const factRows = built.map(({ v, spec }) => ({
                 US measures are rounded to the nearest ⅛ oz, as a jigger is. Metric stays exact.
               </span>
             </div>
+        </div>
 
+        {built.map(({ v, spec, batch, fit, orderLines, batchLines }, index) => (
+          <div
+            data-version={v.version.id}
+            data-default-drinks={v.version.defaultDrinks}
+            data-batchable={v.version.batchable}
+            data-batch-note={v.version.batchNote ?? ''}
+            data-has-ice={fit && fit.iceMl > 0 ? '' : undefined}
+            hidden={index > 0}
+          >
+          <div class="left-col">
             {/* ---- the drink spec ---- */}
             <div class="card glass">
               <h2 class="card-title">Drink spec — per drink</h2>
@@ -292,16 +351,15 @@ const factRows = built.map(({ v, spec }) => ({
               <div class="spec-grid">
                 <div class="spec-cell">
                   <span class="spec-key">Final volume</span>
-                  <span class="spec-val">
-                    <span
-                      class={spec.finalVolumeEstimated ? 'est' : ''}
-                      title={v.brew
-                        ? 'What reaches the cup, after the bed and the filter hold the rest back.'
-                        : spec.dilution.note}
-                    >
-                      {spec.finalVolumeEstimated && '~'}{Math.round(spec.finalVolumeMl)}
-                    </span><small>ml</small>
-                  </span>
+                  <Measure
+                    amount={spec.finalVolumeMl}
+                    unit="ml"
+                    system={system}
+                    estimated={spec.finalVolumeEstimated}
+                    title={v.brew
+                      ? 'What reaches the cup, after the bed and the filter hold the rest back.'
+                      : spec.dilution.note}
+                  />
                 </div>
 
                 {spec.panels.alcohol && (
@@ -318,7 +376,7 @@ const factRows = built.map(({ v, spec }) => ({
                 {spec.panels.alcohol && (
                   <div class="spec-cell spec-cell--alcohol">
                     <span class="spec-key">Pure alcohol</span>
-                    <span class="spec-val">{spec.alcohol.pureAlcoholG.toFixed(1)}<small>g</small></span>
+                    <Measure amount={spec.alcohol.pureAlcoholG} unit="g" system={system} />
                   </div>
                 )}
 
@@ -336,10 +394,12 @@ const factRows = built.map(({ v, spec }) => ({
 
                 <div class="spec-cell">
                   <span class="spec-key">Sugar</span>
-                  <span class="spec-val">
-                    {Math.round(spec.composition.sugarG)}
-                    <small>g · {Math.round(spec.sugarGPerL)} g/L</small>
-                  </span>
+                  <Measure
+                    amount={spec.composition.sugarG}
+                    unit="g"
+                    system={system}
+                    suffix={`· ${Math.round(spec.sugarGPerL)} g/L`}
+                  />
                 </div>
 
                 <div class="spec-cell">
@@ -376,7 +436,9 @@ const factRows = built.map(({ v, spec }) => ({
 
               <p class="disclaimer">
                 Every figure above is <strong>per drink</strong> and does not move with the
-                count — that is what makes the two service modes comparable.
+                count — that is what makes the two service modes comparable. Sugar per litre,
+                strength and standard drinks stay in the units their own authorities publish,
+                because they are figures for comparing rather than for pouring.
                 {spec.dilution.fraction > 0 && (
                   <> Dilution is modelled rather than measured, as a fraction of the poured
                   volume before any ice; dotted figures descend from that estimate.</>
@@ -412,7 +474,12 @@ const factRows = built.map(({ v, spec }) => ({
                   </div>
                   <div class="spec-cell">
                     <span class="spec-key">Retention</span>
-                    <span class="spec-val">{Math.round(v.brew.retentionMl)}<small>ml held back</small></span>
+                    <Measure
+                      amount={v.brew.retentionMl}
+                      unit="ml"
+                      system={system}
+                      suffix="held back"
+                    />
                   </div>
                   {v.version.brew?.grind && (
                     <div class="spec-cell">
@@ -519,11 +586,15 @@ const factRows = built.map(({ v, spec }) => ({
 
                 <div class="control-row" data-when-service="order">
                   <span class="control-label">{v.glass.name}</span>
-                  <span class="value">{v.glass.capacityMl} ml</span>
+                  <Measure amount={v.glass.capacityMl} unit="ml" system={system} />
                 </div>
                 <div class="control-row" data-when-service="batch" hidden>
                   <span class="control-label">Bottle or sealed jug</span>
-                  <span class="value">{Math.ceil((batch.yieldMl / 250)) * 250} ml</span>
+                  <Measure
+                    amount={Math.ceil(batch.yieldMl / 250) * 250}
+                    unit="ml"
+                    system={system}
+                  />
                 </div>
 
                 <p class="disclaimer" data-when-service="order">
@@ -546,8 +617,20 @@ const factRows = built.map(({ v, spec }) => ({
               </div>
             )}
           </div>
+          </div>
+        ))}
+      </div>
 
-          {/* ---- method ---- */}
+      <div class="col-stack">
+        <div class="panel-switch" role="tablist" aria-label="Recipe or About" data-panel-switch>
+          <button type="button" role="tab" data-value="recipe" aria-selected="true">Recipe</button>
+          <button type="button" role="tab" data-value="about" aria-selected="false">About</button>
+        </div>
+
+        {/* Both panels ship in the built HTML; the switch is client-side state. */}
+        <div data-panel="recipe">
+        {built.map(({ v, batch, steps }, index) => (
+          <div data-version={v.version.id} hidden={index > 0}>
           <div class="right-col">
             <div class="section-head">
               <h2>Method</h2>
@@ -614,15 +697,13 @@ const factRows = built.map(({ v, spec }) => ({
               </div>
             </details>
           </div>
+          </div>
+        ))}
         </div>
-      </div>
-    ))}
-  </div>
 
-  <div class="wrap" data-panel="about" hidden>
-    <div class="body-grid">
-      <div></div>
-      <div class="right-col">
+        {/* One About for the drink, not one per version: where a drink comes
+            from does not change because its ratio does. */}
+        <div class="right-col" data-panel="about" hidden>
         <div class="section-head"><h2>About</h2></div>
         {aboutRendered ? (
           <>
@@ -657,6 +738,7 @@ const factRows = built.map(({ v, spec }) => ({
             section is not a failure; an invented one is.
           </p>
         )}
+        </div>
       </div>
     </div>
   </div>

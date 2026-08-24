@@ -110,6 +110,34 @@ export function groupThousands(value: number): string {
 export const formatMetric = (value: number, unit: 'ml' | 'g'): string =>
   `${groupThousands(roundBase(value))} ${unit}`;
 
+/**
+ * A computed figure in either system, with the number and its unit kept apart.
+ *
+ * Deliberately NOT the same path as a pourable quantity. A pour snaps to the
+ * eighths a jigger has, because an unroundable figure is not pourable — but a
+ * final volume, a mass of alcohol or a weight of sugar is a measurement of the
+ * drink rather than an instruction, and snapping one to ¾ oz would state a
+ * precision the arithmetic never had and lose the precision it did.
+ *
+ * The number and the label come back separately because both change with the
+ * system and the page renders them in different faces.
+ */
+export function formatMeasure(
+  amount: number,
+  unit: 'ml' | 'g',
+  system: UnitSystem,
+): { value: string; label: string } {
+  if (system === 'metric') {
+    return { value: groupThousands(roundBase(amount)), label: unit };
+  }
+  const converted = unit === 'ml' ? mlToFlOz(amount) : gToOz(amount);
+  const label = unit === 'ml' ? 'fl oz' : 'oz';
+  // Under an ounce a single decimal throws away most of what is there; over ten
+  // a decimal is noise on a figure nobody measures that finely.
+  const places = converted < 1 ? 2 : converted < 10 ? 1 : 0;
+  return { value: groupThousands(Number(converted.toFixed(places))), label };
+}
+
 // ---------------------------------------------------------------------------
 // Temperature, length, duration
 // ---------------------------------------------------------------------------

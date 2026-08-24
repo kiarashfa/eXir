@@ -1,0 +1,59 @@
+---
+/**
+ * A taxonomy listing. The ids come from the drinks themselves rather than from
+ * a maintained vocabulary file, so a listing cannot exist for a value nothing
+ * carries and cannot go missing for one that something does.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Catalogue from '../../components/Catalogue.astro';
+import { catalogEntry, published, site } from '../../lib/content/site.ts';
+import attributions from '../../data/image-attributions.json' with { type: 'json' };
+
+export async function getStaticPaths() {
+  const resolved = await site();
+  const entries = published(resolved).map((d) =>
+    catalogEntry(d, resolved.ingredients, attributions as never),
+  );
+
+  const byId = new Map<string, typeof entries>();
+  for (const entry of entries) {
+    for (const id of entry.origin) {
+      byId.set(id, [...(byId.get(id) ?? []), entry]);
+    }
+  }
+
+  return [...byId].map(([id, rows]) => ({
+    params: { slug: id },
+    props: { id, entries: rows.sort((a, b) => a.title.localeCompare(b.title)) },
+  }));
+}
+
+const { id, entries } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const label = id.replace(/-/g, ' ').replace(/^./, (c: string) => c.toUpperCase());
+---
+
+<BaseLayout
+  title={`Origins — ${label} — eXir`}
+  description={`Every drink on eXir from ${label}.`}
+  current="drinks"
+>
+  <section class="wrap page-head" data-pagefind-ignore>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href={`${base}/`}>Drinks</a></li>
+        <li><a href={`${base}/origins/`}>Origins</a></li>
+        <li><span aria-current="page">{label}</span></li>
+      </ol>
+    </nav>
+    <h1>{label}</h1>
+    <p class="lede">Where a drink belongs, which is a drinking tradition rather than a border.</p>
+  </section>
+
+  <Catalogue entries={entries} />
+</BaseLayout>
+
+<script>
+  import { initCatalogue } from '../../lib/client/catalogue.ts';
+  initCatalogue();
+</script>

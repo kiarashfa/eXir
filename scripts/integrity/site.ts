@@ -30,6 +30,7 @@ const report = new Report();
 report.ran('links');
 report.ran('images');
 report.ran('anchors');
+report.ran('orphans');
 
 if (!existsSync(distDir)) {
   console.error(`No build output at ${distDir}. Run \`astro build\` first.`);
@@ -72,6 +73,13 @@ function fileExists(p: string): boolean {
   return found;
 }
 
+/**
+ * Every page something links to. An orphan is the failure the link check cannot
+ * see: every link IT looks at resolves by definition, so a page nothing points
+ * at passes silently and is reachable only by typing its address.
+ */
+const linkedTo = new Set<string>();
+
 for (const page of pages) {
   const html = await readFile(path.join(distDir, page), 'utf8');
   const ids = anchorTargets(html);
@@ -101,6 +109,11 @@ for (const page of pages) {
       continue;
     }
 
+    if (kind === 'link') {
+      const withinBase = url.startsWith(base) ? url.slice(base.length) || '/' : null;
+      if (withinBase) linkedTo.add(withinBase.split(/[?#]/)[0] ?? withinBase);
+    }
+
     const file = resolveInternal(url);
     if (file === null) {
       report.error(
@@ -114,6 +127,20 @@ for (const page of pages) {
       report.error(kind === 'image' ? 'images' : 'links', page, `"${url}" resolves to nothing (${file}).`);
     }
   }
+}
+
+// The home page is reachable without a link to it, and a 404 is reached by
+// failing to reach anything else.
+const ROOTS = new Set(['/', '/404/']);
+for (const page of pages) {
+  const route = '/' + page.split(path.sep).join('/').replace(/index\.html$/, '');
+  const normalised = route.endsWith('/') ? route : route + '/';
+  if (ROOTS.has(normalised) || linkedTo.has(normalised)) continue;
+  report.error(
+    'orphans',
+    page,
+    'Nothing on the site links to this page. It exists and is reachable only by typing its address.',
+  );
 }
 
 report.print(`Site integrity (${pages.length} pages)`);

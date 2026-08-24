@@ -107,6 +107,7 @@ export interface ResolvedSite {
   ingredients: Map<string, Ingredient>;
   glassware: Map<string, Glass>;
   families: Map<string, FamilyFile>;
+  techniques: Map<string, FamilyFile>;
   content: LoadedContent;
   issues: ResolveIssue[];
 }
@@ -334,6 +335,7 @@ export function resolveSite(content: LoadedContent): ResolvedSite {
     ingredients: content.ingredients,
     glassware,
     families: content.families,
+    techniques: content.techniques,
     content,
     issues,
   };

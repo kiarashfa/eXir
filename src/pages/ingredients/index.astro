@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site, usedIn } from '../../lib/content/site.ts';
+
+const resolved = await site();
+const rows = [...resolved.ingredients.values()]
+  .filter((i) => i.kind !== 'preparation')
+  .map((i) => ({ id: i.id, name: i.name, uses: usedIn(resolved, i.id).length }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="Ingredients — eXir"
+  description="Every ingredient on eXir, with its composition, its sourcing and the drinks that use it."
+  current="ingredients"
+>
+  <section class="wrap page-head" data-pagefind-ignore>
+    <h1>Ingredients</h1>
+    <p class="lede">
+      One page per thing, never split by form. Each carries its strength, density, sugar and
+      acid with the source of every figure beside it, and the drinks that use it sorted by how
+      much they use.
+    </p>
+  </section>
+
+  <div class="wrap">
+    <ul class="index-list" data-pagefind-ignore>
+      {rows.map((r) => (
+        <li>
+          <a href={`${base}/ingredients/${r.id}/`}>
+            <span>{r.name}</span>
+            <span class="aside">{r.uses || '—'}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

@@ -1,0 +1,101 @@
+---
+/**
+ * The catalogue: a photo-forward card grid and a dense sortable table over the
+ * same rows.
+ *
+ * Both views ship in the HTML and the switch is presentational, so everything
+ * is crawlable and every drink has a real `<a>` pointing at it from the
+ * homepage whichever view a reader is in.
+ *
+ * Filtering is Phase 9's island. What is here is the data and both surfaces,
+ * which is what the routes and the internal linking need.
+ */
+import type { CatalogEntry } from '../lib/content/site.ts';
+
+interface Props {
+  entries: CatalogEntry[];
+}
+
+const { entries } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const cap = (s: string): string => s.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
+---
+
+<div class="wrap">
+  <div class="view-switch" role="group" aria-label="Catalogue view" data-pagefind-ignore>
+    <div class="segmented" data-catalogue-view>
+      <button type="button" data-value="cards" aria-pressed="true">Cards</button>
+      <button type="button" data-value="table" aria-pressed="false">Table</button>
+    </div>
+    <span class="aside">{entries.length} drinks</span>
+  </div>
+</div>
+
+<div class="wrap" data-catalogue-panel="cards" data-pagefind-ignore>
+  <div class="card-grid">
+    {entries.map((e) => (
+      <a class="drink-card" href={`${base}/drinks/${e.slug}/`}>
+        <figure>
+          {e.image ? (
+            <img src={`${base}${e.image.card}`} alt={e.image.alt} width="800" height="1000" loading="lazy" />
+          ) : (
+            <span class="card-blank" aria-hidden="true">{e.title.slice(0, 1)}</span>
+          )}
+        </figure>
+        <h2>{e.title}</h2>
+        <div class="card-meta">
+          <span>{e.style}</span>
+          {e.abvPercent > 0 && <span class="alc">{e.abvPercent.toFixed(1)}% ABV</span>}
+          {e.abvPercent === 0 && <span>Zero-proof</span>}
+          <span>{e.totalTime}</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</div>
+
+<div class="wrap" data-catalogue-panel="table" data-pagefind-ignore hidden>
+  <div class="table-wrap">
+    <table class="dense">
+      <thead>
+        <tr>
+          <th scope="col">Drink</th>
+          <th scope="col">Style</th>
+          <th scope="col">Category</th>
+          <th scope="col">Base</th>
+          <th scope="col">Origin</th>
+          <th scope="col">Method</th>
+          <th scope="col">Strength</th>
+          <th scope="col" class="num">ABV</th>
+          <th scope="col">Served</th>
+          <th scope="col" class="num">Time</th>
+          <th scope="col" class="num">kcal</th>
+          <th scope="col">Difficulty</th>
+          <th scope="col">Diet</th>
+          <th scope="col">Allergens</th>
+        </tr>
+      </thead>
+      <tbody>
+        {entries.map((e) => (
+          <tr>
+            <th scope="row"><a href={`${base}/drinks/${e.slug}/`}>{e.title}</a></th>
+            <td>{e.style}</td>
+            <td>{e.category.map(cap).join(', ')}</td>
+            <td>{e.baseSpirits.map(cap).join(', ') || '—'}</td>
+            <td>{e.origin.map(cap).join(', ')}</td>
+            <td>{e.method.map(cap).join(', ')}</td>
+            <td>{cap(e.strength)}</td>
+            <td class="num">{e.abvPercent > 0 ? e.abvPercent.toFixed(1) : '—'}</td>
+            <td>{cap(e.servingTemp)}</td>
+            <td class="num">{e.totalTime}</td>
+            <td class="num">{e.kcal}</td>
+            <td>{e.difficulty}</td>
+            <td>{e.diets.map(cap).join(', ') || '—'}</td>
+            <td>{e.allergens.map(cap).join(', ') || '—'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>

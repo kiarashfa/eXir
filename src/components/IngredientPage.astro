@@ -1,0 +1,257 @@
+---
+/**
+ * The ingredient page, and the preparation page extends it.
+ *
+ * Every ingredient renders something worth reading with zero hand-authored
+ * enrichment: a composed descriptive sentence, a per-Form composition table
+ * with each figure's source beside it, and the drinks that use it sorted by how
+ * much they use. Template-identical thin content across hundreds of pages is
+ * the failure this shape exists to avoid.
+ */
+import { formatAbv } from '../lib/math/quantity.ts';
+import { formatMeasure } from '../lib/math/units.ts';
+import type { Ingredient } from '../lib/math/types.ts';
+import type { Usage } from '../lib/content/site.ts';
+
+interface Props {
+  ingredient: Ingredient;
+  usages: Usage[];
+  /** Which substitute slugs have a page, so the rest render as plain text. */
+  known?: Set<string>;
+  /** Preparations only. */
+  yieldMl?: number;
+  shelfLife?: { days: number; storage: string };
+}
+
+const { ingredient, usages, yieldMl, shelfLife, known } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const record = ingredient as Ingredient & Record<string, unknown>;
+const substitutes = (record['generalSubstitutes'] ?? []) as Array<{
+  substitute: string;
+  note: string;
+}>;
+
+const names = record['names'] as
+  | {
+      alsoKnownAs?: Array<{ name: string; region?: string }>;
+      notToBeConfusedWith?: Array<{ name: string; note: string }>;
+      searchOnly?: string[];
+    }
+  | undefined;
+
+const cap = (s: string): string => s.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
+
+/**
+ * One sentence, composed from the record rather than written.
+ *
+ * The point is that no two ingredient pages open identically even where nobody
+ * has written a word about either — an identical opening across five hundred
+ * pages is thin content whatever else is on them.
+ */
+const forms = ingredient.forms;
+const strengths = forms.filter((f) => f.abvPercent > 0);
+const sentence = [
+  `${ingredient.name} is`,
+  record['proprietary']
+    ? `a ${cap(ingredient.category ?? 'drinks ingredient').toLowerCase()} made by ${String(record['producer'] ?? 'its producer')}`
+    : `a ${cap(ingredient.category ?? 'drinks ingredient').toLowerCase()}`,
+  record['countryOfOrigin'] ? `of ${String(record['countryOfOrigin'])}` : '',
+  strengths.length === 1
+    ? `at ${formatAbv(strengths[0]!.abvPercent)}`
+    : strengths.length > 1
+      ? `carried here in ${forms.length} forms from ${formatAbv(Math.min(...strengths.map((f) => f.abvPercent)))} to ${formatAbv(Math.max(...strengths.map((f) => f.abvPercent)))}`
+      : forms.length > 1
+        ? `carried here in ${forms.length} forms`
+        : 'with no alcohol in it',
+  usages.length
+    ? `, used in ${usages.length} drink${usages.length === 1 ? '' : 's'} on this site.`
+    : ', not yet used in a drink on this site.',
+]
+  .filter(Boolean)
+  .join(' ')
+  .replace(' ,', ',');
+
+const rows = (form: (typeof forms)[number]) =>
+  [
+    ['Strength', form.abvPercent > 0 ? formatAbv(form.abvPercent) : '—'],
+    [
+      'Density',
+      form.densityGPerMl
+        ? `${form.densityGPerMl} g/ml${form.densitySource === 'estimated' ? ' (estimated)' : ''}`
+        : 'not carried',
+    ],
+    ['Sugar', form.sugarGPer100 != null ? `${form.sugarGPer100} g per 100` : 'not carried'],
+    ['Acid', form.acidPercent ? `${form.acidPercent}% w/v` : '—'],
+    ['Energy', form.nutritionPer100g?.kcal != null ? `${form.nutritionPer100g.kcal} kcal per 100` : '—'],
+    ['Animal origin', form.animalOrigin ? cap(form.animalOrigin) : 'not declared'],
+    ['Allergens', form.allergenTags?.length ? form.allergenTags.map(cap).join(' · ') : 'none listed'],
+  ] as const;
+---
+
+<section class="hero">
+  <div class="wrap">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href={`${base}/`}>Drinks</a></li>
+        <li>
+          <a href={`${base}/${ingredient.kind === 'preparation' ? 'preparations' : 'ingredients'}/`}>
+            {ingredient.kind === 'preparation' ? 'Preparations' : 'Ingredients'}
+          </a>
+        </li>
+        <li><span aria-current="page">{ingredient.name}</span></li>
+      </ol>
+    </nav>
+
+    <div class="hero-grid hero-grid--text-only">
+      <div>
+        {ingredient.category && <div class="eyebrow">{cap(ingredient.category)}</div>}
+        <h1>{ingredient.name}</h1>
+        <p class="subtitle">{sentence}</p>
+
+        {(names?.alsoKnownAs?.length || names?.notToBeConfusedWith?.length) && (
+          <div class="naming">
+            {names.alsoKnownAs?.length && (
+              <div class="naming-row">
+                <span class="naming-label">Also called</span>
+                <span>
+                  {names.alsoKnownAs.slice(0, 4).map((n, i) => (
+                    <>
+                      {i > 0 && <span> · </span>}
+                      <em>{n.name}</em>
+                      {n.region && <span> ({n.region})</span>}
+                    </>
+                  ))}
+                </span>
+              </div>
+            )}
+            {names.notToBeConfusedWith?.length && (
+              <div class="naming-row">
+                <span class="naming-label">Not to be confused with</span>
+                <span>
+                  {names.notToBeConfusedWith.slice(0, 2).map((n, i) => (
+                    <>
+                      {i > 0 && <span> · </span>}
+                      <em>{n.name}</em>
+                      <span> — {n.note}</span>
+                    </>
+                  ))}
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="body-grid">
+    <div class="col-stack">
+      <div class="left-col">
+        {yieldMl && shelfLife && (
+          <div class="card glass">
+            <h2 class="card-title">Making it</h2>
+            <div class="control-row">
+              <span class="control-label">Yield</span>
+              <span class="value">{formatMeasure(yieldMl, 'ml', 'metric').value} ml</span>
+            </div>
+            <div class="control-row">
+              <span class="control-label">Keeps</span>
+              <span class="value">{shelfLife.days} days</span>
+            </div>
+            <p class="disclaimer">
+              {shelfLife.storage}. A shelf life here is conservative bar practice rather than a
+              food-safety authority's figure, and it assumes the preparation was bottled clean
+              and cold.
+            </p>
+            {record['purchasable'] === true && record['purchaseNote'] && (
+              <p class="disclaimer">{String(record['purchaseNote'])}</p>
+            )}
+          </div>
+        )}
+
+        {forms.map((form) => (
+          <div class="card glass">
+            <h2 class="card-title">
+              Composition{forms.length > 1 ? ` — ${form.label ?? form.id}` : ''}
+            </h2>
+            {rows(form).map(([key, value]) => (
+              <div class="control-row">
+                <span class="control-label">{key}</span>
+                <span class="value">{value}</span>
+              </div>
+            ))}
+            {form.animalOriginNote && <p class="disclaimer">{form.animalOriginNote}</p>}
+            {form.sourceNote && (
+              <p class="disclaimer">
+                {form.sourceDataset && <strong>{form.sourceDataset}</strong>}
+                {form.sourceId && <> · {form.sourceId}</>}
+                {(form.sourceDataset || form.sourceId) && <> — </>}
+                {form.sourceNote}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="col-stack">
+      <div class="right-col">
+        <div class="section-head">
+          <h2>Used in these drinks</h2>
+          <span class="aside">most first</span>
+        </div>
+
+        {usages.length ? (
+          <ul class="index-list">
+            {usages.map((u) => (
+              <li>
+                <a href={`${base}/drinks/${u.slug}/`}>
+                  <span>{u.name}</span>
+                  <span class="aside">
+                    {formatMeasure(u.amount, u.unit, 'metric').value} {u.unit}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="step-body">
+            Nothing on the site uses this yet. It is here because a preparation or a drink
+            names it.
+          </p>
+        )}
+
+        {substitutes.length > 0 && (
+          <>
+            <div class="section-head"><h2>Substitutes</h2></div>
+            {/* A substitute the site does not carry yet is still worth naming,
+                but it is named rather than linked: a link to nothing is worse
+                than no link. */}
+            {substitutes.map((sub) => (
+              <p class="callout">
+                {known?.has(sub.substitute) ? (
+                  <a href={`${base}/ingredients/${sub.substitute}/`}>{cap(sub.substitute)}</a>
+                ) : (
+                  <strong>{cap(sub.substitute)}</strong>
+                )}
+                {' — '}{sub.note}
+              </p>
+            ))}
+            <p class="disclaimer">
+              A general substitute is a browsing aid rather than a drink-specific claim. Where a
+              particular drink has a substitution worth making, it says so on its own page and
+              recomputes the spec for it.
+            </p>
+          </>
+        )}
+
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>
+
+{names?.searchOnly?.length && <div class="visually-hidden">{names.searchOnly.join(' ')}</div>}

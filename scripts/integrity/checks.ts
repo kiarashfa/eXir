@@ -780,6 +780,23 @@ const noteAndSubstitutionRefs: Check = {
   id: 'c29-note-sub-refs',
   description: 'Every note, substitution and brew reference resolves.',
   run({ site, report }) {
+    // An ingredient-level substitute is a browsing aid rather than something the
+    // engine recomputes, so naming one the site does not carry yet is allowed —
+    // the page names it instead of linking it. It still warns, because the gap
+    // is worth seeing and because it is how a typo hides.
+    for (const [id, ingredient] of site.ingredients) {
+      const subs = (ingredient as { generalSubstitutes?: Array<{ substitute: string }> })
+        .generalSubstitutes;
+      for (const sub of subs ?? []) {
+        if (site.ingredients.has(sub.substitute)) continue;
+        report.warn(
+          'c29-note-sub-refs',
+          id,
+          `generalSubstitutes names "${sub.substitute}", which has no record. It will be named on the page rather than linked.`,
+        );
+      }
+    }
+
     for (const issue of site.issues) {
       if (issue.kind !== 'unresolved-brew-ref') continue;
       report.error('c29-note-sub-refs', issue.where, issue.message);

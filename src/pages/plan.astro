@@ -1,0 +1,30 @@
+---
+/**
+ * A user-state page. Everything on it comes out of the reader's own browser and
+ * none of it exists at build time, so it carries noindex, is excluded from the
+ * sitemap, and is deliberately NOT disallowed in robots.txt — a blocked path is
+ * never fetched, so the tag would never be read.
+ *
+ * The empty state is the design rather than an afterthought: it is what a first
+ * visit looks like, which is the most common time this page is seen.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Plan — eXir" description="Plan an occasion and get the shopping list that follows from it." noindex current="plan">
+  <section class="wrap page-head">
+    <h1>Plan</h1>
+    <p class="lede">What to make, how much of it, and what to buy — worked out from the drinks rather than guessed.</p>
+  </section>
+
+  <div class="wrap prose-page">
+    <p class="callout">
+      The planner and the shopping list are not built yet. When they are, this page will hold an occasion, work out the totals in base units, expand any preparation into what it is made of, and tell you the one thing hosts get most wrong: twelve drinks made to order is twelve stirs, and twelve batched is one.
+    </p>
+    <p>
+      Nothing on this page will ever leave your browser. There are no accounts here and nothing
+      to sign in to, which also means what you save lives in one browser on one device and the
+      site cannot move it for you.
+    </p>
+  </div>
+</BaseLayout>

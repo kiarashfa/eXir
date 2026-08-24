@@ -24,7 +24,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en" data-glass="on">
+<html lang="en" data-glass="on" data-base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -88,7 +88,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
     <script>
       import { initChrome } from '../lib/client/chrome.ts';
+      import { initSearch } from '../lib/client/search.ts';
       initChrome();
+      initSearch();
     </script>
   </body>
 </html>

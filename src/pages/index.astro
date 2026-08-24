@@ -1,16 +1,37 @@
 ---
+/**
+ * The homepage is the master catalogue. Drinks is the first nav item and it
+ * points here rather than at a second listing: one catalogue, one URL.
+ */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Catalogue from '../components/Catalogue.astro';
+import { catalogEntry, published, site } from '../lib/content/site.ts';
+import attributions from '../data/image-attributions.json' with { type: 'json' };
+
+const resolved = await site();
+const entries = published(resolved)
+  .map((d) => catalogEntry(d, resolved.ingredients, attributions as never))
+  .sort((a, b) => a.title.localeCompare(b.title));
 ---
 
 <BaseLayout
   title="eXir — a drinks encyclopedia"
   description="A free, ad-free, login-free drinks encyclopedia where every figure on the page is computed rather than typed."
+  current="drinks"
 >
-  <main>
-    <h1>eXir</h1>
-    <p>
-      A free, ad-free, login-free drinks encyclopedia. Every quantity, strength,
-      dilution and total on this site is computed from structured data.
+  <section class="wrap page-head" data-pagefind-ignore>
+    <h1>Drinks</h1>
+    <p class="lede">
+      Every quantity, strength, dilution, sugar figure and total on this site is computed from
+      structured data rather than typed. Change the drink count, the service mode or the units
+      and the arithmetic follows.
     </p>
-  </main>
+  </section>
+
+  <Catalogue entries={entries} />
 </BaseLayout>
+
+<script>
+  import { initCatalogue } from '../lib/client/catalogue.ts';
+  initCatalogue();
+</script>

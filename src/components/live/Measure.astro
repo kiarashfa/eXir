@@ -1,0 +1,39 @@
+---
+import { formatMeasure } from '../../lib/math/units.ts';
+import type { BaseUnit, UnitSystem } from '../../lib/math/types.ts';
+
+/**
+ * A computed figure that follows the unit system and NOT the drink count.
+ *
+ * The distinction is the whole point of the spec panel: an ingredient amount
+ * multiplies when a reader asks for twelve drinks, and the final volume of one
+ * drink does not. Both have to answer the ml/oz toggle, so they need different
+ * attributes rather than the same one — `data-qty` scales, `data-measure` only
+ * converts.
+ */
+interface Props {
+  amount: number;
+  unit: BaseUnit;
+  system: UnitSystem;
+  /** Prefixes `~` and carries the estimate marker. */
+  estimated?: boolean;
+  /** Follows the unit, unconverted: "· 98 g/L", "kcal". */
+  suffix?: string;
+  title?: string;
+}
+
+const { amount, unit, system, estimated = false, suffix, title } = Astro.props;
+const { value, label } = formatMeasure(amount, unit, system);
+---
+
+<span class="spec-val">
+  <span
+    class={estimated ? 'est' : ''}
+    data-measure={amount}
+    data-unit={unit}
+    data-estimated={estimated ? '' : undefined}
+    title={title}
+  >
+    <span class="n">{estimated ? `~${value}` : value}</span><small class="u">{label}</small>
+  </span>{suffix && <small>{` ${suffix}`}</small>}
+</span>

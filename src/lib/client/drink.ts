@@ -28,9 +28,23 @@ function pressOne(group: HTMLElement | null, value: string): void {
   }
 }
 
+/**
+ * Which version is on screen.
+ *
+ * Batching, the batch note and whether there is any ice are properties of the
+ * VERSION, and the Serving card is one card for the page — so the card reads
+ * them off whichever version block is currently showing rather than carrying a
+ * copy of them.
+ */
+function activeVersion(): HTMLElement | null {
+  return document.querySelector<HTMLElement>('.left-col [data-version]:not([hidden])')
+    ?? document.querySelector<HTMLElement>('[data-version]:not([hidden])');
+}
+
 /** Batched service is unavailable below two drinks, and the control says so. */
 function paintService(root: HTMLElement, mode: ServiceMode, count: number): void {
-  const batchable = root.dataset['batchable'] ?? 'none';
+  const version = activeVersion();
+  const batchable = version?.dataset['batchable'] ?? root.dataset['batchable'] ?? 'none';
   /**
    * Two different unavailabilities, and only one of them is permanent.
    *
@@ -51,24 +65,29 @@ function paintService(root: HTMLElement, mode: ServiceMode, count: number): void
   if (reason) {
     reason.textContent =
       batchable === 'none'
-        ? (root.dataset['batchNote'] ?? 'This drink takes no dilution from ice, so there is nothing to batch.')
+        ? (version?.dataset['batchNote'] ||
+           root.dataset['batchNote'] ||
+           'This drink takes no dilution from ice, so there is nothing to batch.')
         : count < MIN_BATCH_DRINKS
           ? `Batching starts at ${MIN_BATCH_DRINKS} drinks.`
           : '';
     reason.hidden = reason.textContent === '';
   }
 
-  for (const button of all<HTMLButtonElement>('[data-service] button')) {
+  for (const button of all<HTMLButtonElement>('[data-service-control] button')) {
     button.disabled = !possible && button.dataset['value'] === 'batch';
   }
 
   const effective: ServiceMode = allowed ? mode : 'order';
   root.dataset['service'] = effective;
-  pressOne(document.querySelector('[data-service]'), effective);
+  pressOne(document.querySelector('[data-service-control]'), effective);
 
   // Ice is a made-to-order control. In a batch nothing meets ice at service, so
   // it is disabled with a visible reason rather than silently ignored.
+  // Ice is a per-version fact: the same drink served up in one version and over
+  // ice in another has a control in one and none in the other.
   const iceRow = document.querySelector<HTMLElement>('[data-ice-row]');
+  if (iceRow && version) iceRow.hidden = version.dataset['hasIce'] === undefined;
   iceRow?.classList.toggle('is-disabled', effective === 'batch');
   const iceReason = document.querySelector<HTMLElement>('[data-ice-reason]');
   if (iceReason) {
@@ -109,7 +128,7 @@ export function initDrink(): void {
     ?.addEventListener('click', () => setDrinks(drinks.get() + 1));
 
   // --- service ---------------------------------------------------------------
-  document.querySelector('[data-service]')?.addEventListener('click', (event) => {
+  document.querySelector('[data-service-control]')?.addEventListener('click', (event) => {
     const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button');
     if (!button || button.disabled) return;
     const mode = (button.dataset['value'] ?? 'order') as ServiceMode;
@@ -158,9 +177,35 @@ export function initDrink(): void {
     });
   }
 
+  // --- image credit ----------------------------------------------------------
+  // Click, not hover: on a touch screen there is no hover, and a credit that
+  // only appears to a mouse is not an attribution.
+  for (const toggle of all<HTMLButtonElement>('[data-attribution-toggle]')) {
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+    });
+  }
+  document.addEventListener('click', (event) => {
+    for (const toggle of all<HTMLButtonElement>('[data-attribution-toggle]')) {
+      if (toggle.parentElement?.contains(event.target as Node)) continue;
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    for (const toggle of all<HTMLButtonElement>('[data-attribution-toggle]')) {
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
   // --- the Recipe / About switch and the version strip -----------------------
   wireTabs('[data-panel-switch]', '[data-panel]');
-  wireTabs('[data-version-strip]', '[data-version]');
+  wireTabs('[data-version-strip]', '[data-version]', () => {
+    // A version can differ in whether it batches and whether it meets ice, and
+    // the one Serving card describes whichever is on screen.
+    paintService(root, service.get(), drinks.get());
+  });
 
   paintService(root, service.get(), defaultDrinks);
   applyDisplayState();
@@ -171,16 +216,18 @@ export function initDrink(): void {
  * list is supposed to have. Every panel ships in the HTML and hiding is
  * presentational, so nothing here affects what a crawler reads.
  */
-function wireTabs(stripSelector: string, panelSelector: string): void {
+function wireTabs(stripSelector: string, panelSelector: string, after?: () => void): void {
   const strip = document.querySelector<HTMLElement>(stripSelector);
   if (!strip) return;
   const tabs = all<HTMLButtonElement>('button', strip);
+  const key = panelSelector.includes('version') ? 'version' : 'panel';
 
   const select = (value: string): void => {
     for (const tab of tabs) tab.setAttribute('aria-selected', String(tab.dataset['value'] === value));
     for (const panel of all<HTMLElement>(panelSelector)) {
-      panel.hidden = panel.dataset[panelSelector.includes('version') ? 'version' : 'panel'] !== value;
+      panel.hidden = panel.dataset[key] !== value;
     }
+    after?.();
   };
 
   strip.addEventListener('click', (event) => {

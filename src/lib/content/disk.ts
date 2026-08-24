@@ -173,12 +173,30 @@ export interface AboutFile {
   body: string;
 }
 
+/**
+ * A Preparation's own recipe, with its step prose joined to its step metadata.
+ *
+ * The ingredients map carries the composition half of a Preparation, because
+ * that is how a drink reaches it. This is the recipe half, which only the
+ * preparation's own page needs — and it has to be loaded the same way a drink's
+ * is, or a syrup's method is authored and never rendered.
+ */
+export interface PreparationFile {
+  id: string;
+  file: string;
+  frontmatter: Record<string, unknown>;
+  steps: Step[];
+}
+
 export interface FamilyFile {
   id: string;
   file: string;
   frontmatter: Record<string, unknown>;
   body: string;
 }
+
+/** A standalone technique explainer. Same shape as a family: prose and sources. */
+export type TechniqueFile = FamilyFile;
 
 export interface RawRecord {
   file: string;
@@ -187,11 +205,13 @@ export interface RawRecord {
 
 export interface LoadedContent {
   ingredients: Map<string, Ingredient>;
+  preparations: Map<string, PreparationFile>;
   components: Map<string, Component>;
   glassware: Map<string, Record<string, unknown>>;
   drinks: DrinkFile[];
   abouts: Map<string, AboutFile>;
   families: Map<string, FamilyFile>;
+  techniques: Map<string, TechniqueFile>;
   /** Untouched frontmatter, kept so the schemas can validate what was authored. */
   raw: {
     ingredients: RawRecord[];
@@ -201,6 +221,7 @@ export interface LoadedContent {
     drinks: RawRecord[];
     abouts: RawRecord[];
     families: RawRecord[];
+    techniques: RawRecord[];
   };
   issues: LoadIssue[];
 }
@@ -218,6 +239,7 @@ export async function loadContent(contentDir: string): Promise<LoadedContent> {
     drinks: [],
     abouts: [],
     families: [],
+    techniques: [],
   };
 
   const ingredients = new Map<string, Ingredient>();
@@ -226,8 +248,11 @@ export async function loadContent(contentDir: string): Promise<LoadedContent> {
     raw.ingredients.push({ file: rel, data: record });
     ingredients.set(record.id, record);
   }
-  // A Preparation is an ingredient that also has a recipe, so it lands in the
-  // same lookup. Nothing downstream needs to know which kind it is to use it.
+  // A Preparation is an ingredient that also has a recipe, so its composition
+  // half lands in the same lookup and nothing downstream needs to know which
+  // kind it is to use it. Its recipe half is kept separately, because only its
+  // own page walks it.
+  const preparations = new Map<string, PreparationFile>();
   for (const rel of await glob('preparations/*.mdx', { cwd: contentDir })) {
     const file = path.join(contentDir, rel);
     const parsed = parseFrontmatter<Ingredient & { steps?: StepMeta[] }>(
@@ -238,6 +263,14 @@ export async function loadContent(contentDir: string): Promise<LoadedContent> {
     if (!parsed) continue;
     raw.preparations.push({ file: rel, data: { ...parsed.data, kind: 'preparation' } });
     ingredients.set(parsed.data.id, { ...parsed.data, kind: 'preparation' });
+
+    const slots = joinSteps(parsed.data.steps ?? [], extractSteps(parsed.body), rel, issues);
+    preparations.set(parsed.data.id, {
+      id: parsed.data.id,
+      file: rel,
+      frontmatter: parsed.data as unknown as Record<string, unknown>,
+      steps: slots.flatMap((s) => (s.kind === 'inline' ? [s.step] : [])),
+    });
   }
 
   const glassware = new Map<string, Record<string, unknown>>();
@@ -282,6 +315,22 @@ export async function loadContent(contentDir: string): Promise<LoadedContent> {
     families.set(id, { id, file: rel, frontmatter: parsed.data, body: parsed.body });
   }
 
+  // Same shape as a family: authored prose with optional sources, and no
+  // structured recipe of its own.
+  const techniques = new Map<string, TechniqueFile>();
+  for (const rel of await glob('techniques/*.mdx', { cwd: contentDir })) {
+    const file = path.join(contentDir, rel);
+    const parsed = parseFrontmatter<Record<string, unknown>>(
+      await readFile(file, 'utf8'),
+      rel,
+      issues,
+    );
+    if (!parsed) continue;
+    raw.techniques.push({ file: rel, data: parsed.data });
+    const id = String(parsed.data['id'] ?? path.basename(rel, '.mdx'));
+    techniques.set(id, { id, file: rel, frontmatter: parsed.data, body: parsed.body });
+  }
+
   const drinks: DrinkFile[] = [];
   const abouts = new Map<string, AboutFile>();
 
@@ -317,5 +366,16 @@ export async function loadContent(contentDir: string): Promise<LoadedContent> {
     });
   }
 
-  return { ingredients, components, glassware, drinks, abouts, families, raw, issues };
+  return {
+    ingredients,
+    preparations,
+    components,
+    glassware,
+    drinks,
+    abouts,
+    families,
+    techniques,
+    raw,
+    issues,
+  };
 }

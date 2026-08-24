@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { defaultVersion, published, site } from '../../lib/content/site.ts';
+
+const resolved = await site();
+const drinks = published(resolved);
+const rows = [...resolved.families.values()]
+  .map((f) => ({
+    id: f.id,
+    name: String(f.frontmatter['name'] ?? f.id),
+    summary: String(f.frontmatter['summary'] ?? ''),
+    members: drinks.filter((d) => defaultVersion(d).frontmatter['family'] === f.id).length,
+  }))
+  .sort((a, b) => a.name.localeCompare(b.name));
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="Families — eXir"
+  description="The parametric shapes drinks descend from: the sour, the highball, the old fashioned."
+  current="families"
+>
+  <section class="wrap page-head" data-pagefind-ignore>
+    <h1>Families</h1>
+    <p class="lede">
+      Drinks have canonical formulas in a way dishes do not. A sour is two parts to three
+      quarters to three quarters; an old fashioned is spirit, sugar, bitters and water. This is
+      how the field organises its own knowledge.
+    </p>
+  </section>
+
+  <div class="wrap">
+    <ul class="index-list" data-pagefind-ignore>
+      {rows.map((r) => (
+        <li>
+          <a href={`${base}/families/${r.id}/`}>
+            <span>{r.name}</span>
+            <span class="aside">{r.members} on site</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

@@ -14,7 +14,7 @@
 
 import { formatCountUnit, formatQuantity } from '../math/quantity.ts';
 import type { BaseUnit, CountUnit, UnitSystem } from '../math/types.ts';
-import { formatLength, formatTemperature } from '../math/units.ts';
+import { formatLength, formatMeasure, formatTemperature } from '../math/units.ts';
 import { drinks, service, unitSystem } from '../stores/display.ts';
 
 const num = (el: HTMLElement, name: string): number | undefined => {
@@ -60,6 +60,26 @@ function updateQuantity(el: HTMLElement, count: number, system: UnitSystem): voi
 
   const { text } = formatQuantity(scaled, unit, system, { estimated });
   target.textContent = estimated ? `~${text}` : text;
+}
+
+/**
+ * A computed figure that converts with the unit system and does not scale.
+ *
+ * The spec panel is per drink and invariant under the stepper — that invariance
+ * is what makes the two service modes comparable — but it still has to answer
+ * the ml/oz toggle, so it needs its own attribute rather than sharing the one
+ * that multiplies.
+ */
+function updateMeasure(el: HTMLElement, system: UnitSystem): void {
+  const amount = num(el, 'measure');
+  const unit = el.dataset.unit as BaseUnit | undefined;
+  if (amount == null || !unit) return;
+
+  const { value, label } = formatMeasure(amount, unit, system);
+  const n = el.querySelector<HTMLElement>('.n');
+  const u = el.querySelector<HTMLElement>('.u');
+  if (n) n.textContent = el.dataset.estimated !== undefined ? `~${value}` : value;
+  if (u) u.textContent = label;
 }
 
 /**
@@ -109,6 +129,12 @@ export function applyDisplayState(root: ParentNode = document): void {
     for (const el of root.querySelectorAll<HTMLElement>('[data-per-drink]')) {
       if (!isStatic(el)) updatePerDrink(el, count, system);
     }
+  }
+
+  // Outside the count guard: a spec figure is correct before a count exists,
+  // because it never depended on one.
+  for (const el of root.querySelectorAll<HTMLElement>('[data-measure]')) {
+    if (!isStatic(el)) updateMeasure(el, system);
   }
 
   for (const el of root.querySelectorAll<HTMLElement>('[data-temp-c]')) {

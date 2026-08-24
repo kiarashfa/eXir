@@ -27,19 +27,19 @@ export interface SiteRoute {
 
 export const ROUTES: SiteRoute[] = [
   { label: 'Drinks', path: '/', built: true, primary: true },
-  { label: 'Ingredients', path: '/ingredients/', built: false, primary: true },
-  { label: 'Techniques', path: '/techniques/', built: false, primary: true },
-  { label: 'My Bar', path: '/my-bar/', built: false, primary: true, count: true },
-  { label: 'Preparations', path: '/preparations/', built: false },
-  { label: 'Families', path: '/families/', built: false },
-  { label: 'Glassware', path: '/glassware/', built: false },
-  { label: 'Categories', path: '/categories/', built: false },
-  { label: 'Origins', path: '/origins/', built: false },
-  { label: 'Methods', path: '/methods/', built: false },
-  { label: 'Spirits', path: '/spirits/', built: false },
-  { label: 'Plan', path: '/plan/', built: false },
-  { label: 'Attributions', path: '/attributions/', built: false },
-  { label: 'About', path: '/about/', built: false },
+  { label: 'Ingredients', path: '/ingredients/', built: true, primary: true },
+  { label: 'Techniques', path: '/techniques/', built: true, primary: true },
+  { label: 'My Bar', path: '/my-bar/', built: true, primary: true, count: true },
+  { label: 'Preparations', path: '/preparations/', built: true },
+  { label: 'Families', path: '/families/', built: true },
+  { label: 'Glassware', path: '/glassware/', built: true },
+  { label: 'Categories', path: '/categories/', built: true },
+  { label: 'Origins', path: '/origins/', built: true },
+  { label: 'Methods', path: '/methods/', built: true },
+  { label: 'Spirits', path: '/spirits/', built: true },
+  { label: 'Plan', path: '/plan/', built: true },
+  { label: 'Attributions', path: '/attributions/', built: true },
+  { label: 'About', path: '/about/', built: true },
 ];
 
 export const builtRoutes = (): SiteRoute[] => ROUTES.filter((r) => r.built);

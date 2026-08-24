@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../lib/content/site.ts';
+import { renderAbout, type AboutSource } from '../../lib/render/about.ts';
+
+export async function getStaticPaths() {
+  const resolved = await site();
+  return [...resolved.techniques.values()].map((t) => ({
+    params: { slug: t.id },
+    props: { technique: t.frontmatter, body: t.body },
+  }));
+}
+
+const { technique, body } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const about = technique['about'] as { sources?: AboutSource[] } | undefined;
+const rendered = body ? renderAbout(body, about?.sources ?? []) : null;
+---
+
+<BaseLayout
+  title={`${String(technique['name'])} — eXir`}
+  description={String(technique['summary'] ?? '')}
+  current="techniques"
+>
+  <section class="hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={`${base}/`}>Drinks</a></li>
+          <li><a href={`${base}/techniques/`}>Techniques</a></li>
+          <li><span aria-current="page">{String(technique['name'])}</span></li>
+        </ol>
+      </nav>
+      <div class="hero-grid hero-grid--text-only">
+        <div>
+          <div class="eyebrow">Technique</div>
+          <h1>{String(technique['name'])}</h1>
+          <p class="subtitle">{String(technique['summary'] ?? '')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap prose-page">
+    {rendered && <div class="about-body" set:html={rendered.html} />}
+  </div>
+</BaseLayout>

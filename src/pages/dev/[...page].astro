@@ -2,10 +2,10 @@
 /**
  * The rendered QA surface.
  *
- * Renders the real drink template against BOTH the engine fixtures and whatever
- * has actually been authored, so a change can be seen rather than inferred from
- * a test name. The authored drinks get their real routes in the site-assembly
- * phase; until then this is where they are looked at.
+ * Renders the real drink template against the engine fixtures — invented drinks
+ * that exercise every shape the engine handles, including several no authored
+ * drink covers yet. Authored drinks have their own routes; this is for seeing a
+ * template change against the awkward cases rather than the tidy ones.
  *
  * Emits no route at all in a production build unless EXIR_DEV=1.
  */
@@ -20,29 +20,19 @@ export async function getStaticPaths() {
   // emits nothing unless it is asked to in so many words.
   if (!import.meta.env.DEV && process.env['EXIR_DEV'] !== '1') return [];
 
-  const sources = [
-    { prefix: '', dir: path.resolve('src/content') },
-    { prefix: 'fixture-', dir: path.resolve('test-fixtures/engine-content') },
-  ];
+  const site = resolveSite(await loadContent(path.resolve('test-fixtures/engine-content')));
 
-  const routes = [];
-  for (const { prefix, dir } of sources) {
-    const site = resolveSite(await loadContent(dir));
-    for (const drink of site.drinks) {
-      routes.push({
-        params: { page: `${prefix}${drink.slug}` },
-        props: {
-          slug: drink.slug,
-          name: drink.name,
-          versions: drink.versions,
-          about: drink.about,
-          fixture: prefix !== '',
-          issues: site.issues.filter((i) => i.where.includes(drink.slug)),
-        },
-      });
-    }
-  }
-  return routes;
+  return site.drinks.map((drink) => ({
+    params: { page: drink.slug },
+    props: {
+      slug: drink.slug,
+      name: drink.name,
+      versions: drink.versions,
+      about: drink.about,
+      fixture: true,
+      issues: site.issues.filter((i) => i.where.includes(drink.slug)),
+    },
+  }));
 }
 
 const { slug, name, versions, about, fixture, issues } = Astro.props;

@@ -1,0 +1,151 @@
+---
+/**
+ * A family page: the authored explanation of a shape, and the computed list of
+ * the drinks that share it, grouped by what each is within the family.
+ *
+ * The member list is computed from `family` references on the drinks
+ * themselves, never maintained here — a family that had to be told about its
+ * own members would go stale the first time one was added.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { defaultVersion, published, site } from '../../lib/content/site.ts';
+
+const ROLE_ORDER = ['origin', 'canonical', 'descendant', 'riff'] as const;
+const ROLE_LABEL: Record<string, string> = {
+  origin: 'The origin',
+  canonical: 'Canonical members',
+  descendant: 'Descended from another member',
+  riff: 'Riffs',
+  '': 'Members',
+};
+
+export async function getStaticPaths() {
+  const resolved = await site();
+
+  return [...resolved.families.values()].map((family) => {
+    const members = published(resolved)
+      .map((drink) => ({ drink, v: defaultVersion(drink) }))
+      .filter(({ v }) => v.frontmatter['family'] === family.id)
+      .map(({ drink, v }) => ({
+        slug: drink.slug,
+        name: drink.name,
+        role: String(v.frontmatter['familyRole'] ?? ''),
+        derivedFrom: (v.frontmatter['derivedFrom'] as string | undefined) ?? null,
+        abv: v.spec.alcohol.finalAbvPercent,
+        method: v.version.method,
+      }));
+
+    return { params: { slug: family.id }, props: { family, members } };
+  });
+}
+
+const { family, members } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const summary = String(family.frontmatter['summary'] ?? '');
+const name = String(family.frontmatter['name'] ?? family.id);
+
+const paragraphs = family.body
+  .trim()
+  .split(/\n\s*\n/)
+  .filter(Boolean);
+
+const groups = ROLE_ORDER.map((role) => ({
+  role,
+  label: ROLE_LABEL[role] ?? role,
+  items: members.filter((m) => m.role === role),
+})).filter((g) => g.items.length > 0);
+
+const ungrouped = members.filter((m) => !ROLE_ORDER.includes(m.role as never));
+---
+
+<BaseLayout title={`${name} — eXir`} description={summary} current="families">
+  <section class="hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={`${base}/`}>Drinks</a></li>
+          <li><a href={`${base}/families/`}>Families</a></li>
+          <li><span aria-current="page">{name}</span></li>
+        </ol>
+      </nav>
+      <div class="hero-grid hero-grid--text-only">
+        <div>
+          <div class="eyebrow">Family</div>
+          <h1>{name}</h1>
+          <p class="subtitle">{summary}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="body-grid">
+      <div class="col-stack">
+        <div class="left-col">
+          <div class="card glass">
+            <h2 class="card-title">Members on this site</h2>
+            {[...groups, ...(ungrouped.length ? [{ role: '', label: ROLE_LABEL[''] as string, items: ungrouped }] : [])].map(
+              (group) => (
+                <>
+                  <div class="control-row">
+                    <span class="control-label">{group.label}</span>
+                    <span class="value">{group.items.length}</span>
+                  </div>
+                  <ul class="index-list">
+                    {group.items.map((m) => (
+                      <li>
+                        <a href={`${base}/drinks/${m.slug}/`}>
+                          <span>{m.name}</span>
+                          <span class="aside">
+                            {m.abv > 0 ? `${m.abv.toFixed(1)}%` : m.method}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              ),
+            )}
+            {members.length === 0 && (
+              <p class="disclaimer">
+                Nothing on the site declares this family yet. The page exists because the shape
+                does.
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-stack">
+        <div class="right-col">
+          <div class="about-body">
+            {paragraphs.map((p) => <p>{p.replace(/\s*\n\s*/g, ' ')}</p>)}
+          </div>
+
+          {members.some((m) => m.derivedFrom) && (
+            <>
+              <div class="section-head"><h2>Descent</h2></div>
+              <ul class="index-list">
+                {members
+                  .filter((m) => m.derivedFrom)
+                  .map((m) => (
+                    <li>
+                      <a href={`${base}/drinks/${m.slug}/`}>
+                        <span>{m.name}</span>
+                        <span class="aside">from {m.derivedFrom}</span>
+                      </a>
+                    </li>
+                  ))}
+              </ul>
+              <p class="disclaimer">
+                Descent is recorded within a family. A resemblance that crosses one is an
+                ordinary cross-link rather than a lineage, and the build enforces the
+                difference.
+              </p>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

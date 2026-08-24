@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { catalogEntry, published, site } from '../../lib/content/site.ts';
+import attributions from '../../data/image-attributions.json' with { type: 'json' };
+
+const resolved = await site();
+const entries = published(resolved).map((d) =>
+  catalogEntry(d, resolved.ingredients, attributions as never),
+);
+
+const counts = new Map<string, number>();
+for (const e of entries) for (const id of e.method) counts.set(id, (counts.get(id) ?? 0) + 1);
+const rows = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const cap = (s: string) => s.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
+---
+
+<BaseLayout title="Methods — eXir" description="Every method used on eXir." current="drinks">
+  <section class="wrap page-head" data-pagefind-ignore>
+    <h1>Methods</h1>
+    <p class="lede">How the drink is made — and, since the method decides how much water it takes on from the ice, the single largest influence on what ends up in the glass.</p>
+  </section>
+
+  <div class="wrap">
+    <ul class="index-list" data-pagefind-ignore>
+      {rows.map(([id, n]) => (
+        <li>
+          <a href={`${base}/methods/${id}/`}>
+            <span>{cap(id)}</span>
+            <span class="aside">{n}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { published, site } from '../../lib/content/site.ts';
+
+const resolved = await site();
+const used = new Map<string, number>();
+for (const drink of published(resolved)) {
+  for (const v of drink.versions) {
+    const ref = v.version.glasswareRef;
+    if (ref) used.set(ref, (used.get(ref) ?? 0) + 1);
+  }
+}
+const rows = [...resolved.glassware.values()]
+  .map((g) => ({ ...g, uses: used.get(g.id) ?? 0 }))
+  .sort((a, b) => a.capacityMl - b.capacityMl);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="Glassware — eXir"
+  description="Every glass on eXir with its capacity in millilitres, which is what the build-time fit check reads."
+  current="glassware"
+>
+  <section class="wrap page-head" data-pagefind-ignore>
+    <h1>Glassware</h1>
+    <p class="lede">
+      A glass here is an entity with a capacity, and the capacity does real work: a recipe whose
+      finished volume and serving ice exceed the glass it names fails the build rather than
+      shipping.
+    </p>
+  </section>
+
+  <div class="wrap">
+    <ul class="index-list" data-pagefind-ignore>
+      {rows.map((g) => (
+        <li>
+          <a href={`${base}/glassware/${g.id}/`}>
+            <span>{g.name}</span>
+            <span class="aside">{g.capacityMl} ml</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

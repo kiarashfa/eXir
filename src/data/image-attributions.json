@@ -1,4 +1,39 @@
 {
+  "drink:daiquiri": {
+    "slug": "daiquiri",
+    "kind": "drink",
+    "alt": "A Daiquiri served up in a coupe, pale and faintly cloudy under a thin white foam, on a dark grey counter",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/daiquiri-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 70250
+      },
+      "card": {
+        "file": "/images/drinks/daiquiri-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 23156
+      },
+      "thumb": {
+        "file": "/images/drinks/daiquiri-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 886
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Daiquiri-classic.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Daiquiri-classic.jpg",
+      "author": "Jay Hung",
+      "credit": "https://bevvy.co/cocktail/daiquiri",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:negroni": {
     "slug": "negroni",
     "kind": "drink",
@@ -28,6 +63,76 @@
       "file": "File:Negroni (cocktail).jpg",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Negroni_(cocktail).jpg",
       "author": "Sudhertzen",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:pour-over-coffee": {
+    "slug": "pour-over-coffee",
+    "kind": "drink",
+    "alt": "Water poured from a gooseneck kettle onto a bed of coffee grounds in a cone dripper set over a mug, seen from above",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/pour-over-coffee-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 67244
+      },
+      "card": {
+        "file": "/images/drinks/pour-over-coffee-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 25880
+      },
+      "thumb": {
+        "file": "/images/drinks/pour-over-coffee-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1552
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Manual drip (pour-over) coffee.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Manual_drip_(pour-over)_coffee.jpg",
+      "author": "Kim Sanso",
+      "credit": "https://pixabay.com/photo-2431162/ archive copy at the Wayback Machine",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:whiskey-sour": {
+    "slug": "whiskey-sour",
+    "kind": "drink",
+    "alt": "A Whiskey Sour in a heavy tumbler over ice, pale gold under a thin white head, with a lemon wheel and two cherries on a pick",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/whiskey-sour-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 86762
+      },
+      "card": {
+        "file": "/images/drinks/whiskey-sour-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 24912
+      },
+      "thumb": {
+        "file": "/images/drinks/whiskey-sour-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1072
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Whiskey sour.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Whiskey_sour.jpg",
+      "author": "Gingalain",
       "credit": "Own work",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",

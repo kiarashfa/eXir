@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IngredientPage from '../../components/IngredientPage.astro';
+import { site, usedIn } from '../../lib/content/site.ts';
+
+export async function getStaticPaths() {
+  const resolved = await site();
+  const known = new Set(
+    [...resolved.ingredients.values()].filter((i) => i.kind !== 'preparation').map((i) => i.id),
+  );
+  return [...resolved.ingredients.values()]
+    .filter((i) => i.kind !== 'preparation')
+    .map((ingredient) => ({
+      params: { slug: ingredient.id },
+      props: { ingredient, usages: usedIn(resolved, ingredient.id), known },
+    }));
+}
+
+const { ingredient, usages, known } = Astro.props;
+const strengths = ingredient.forms.filter((f) => f.abvPercent > 0);
+const description =
+  `${ingredient.name}: composition, strength and sourcing, and the drinks on eXir that use it` +
+  (strengths.length ? `. ${strengths[0].abvPercent}% ABV.` : '.');
+---
+
+<BaseLayout title={`${ingredient.name} — eXir`} description={description} current="ingredients">
+  <IngredientPage ingredient={ingredient} usages={usages} known={known} />
+</BaseLayout>

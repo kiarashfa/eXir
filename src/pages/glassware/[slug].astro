@@ -1,0 +1,119 @@
+---
+/**
+ * A glass is an entity with a capacity, and the capacity is load-bearing: it
+ * drives the build-time fit check that decides whether a drink can be served in
+ * it at all. The page shows what that check saw.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { defaultVersion, published, site } from '../../lib/content/site.ts';
+import { glassFit } from '../../lib/math/glassware.ts';
+
+export async function getStaticPaths() {
+  const resolved = await site();
+
+  return [...resolved.glassware.values()].map((glass) => {
+    const record = resolved.content.glassware.get(glass.id) ?? {};
+    const drinks = published(resolved)
+      .flatMap((drink) => drink.versions.map((v) => ({ drink, v })))
+      .filter(({ v }) => v.version.glasswareRef === glass.id)
+      .map(({ drink, v }) => {
+        const fit = glassFit(v.version, v.spec.finalVolumeMl, glass);
+        return {
+          slug: drink.slug,
+          name: drink.name + (v.isDefault ? '' : ` · ${v.version.label}`),
+          neededMl: Math.round(fit.neededMl),
+          iceMl: fit.iceMl,
+          iceStyle: fit.iceStyle,
+        };
+      })
+      .sort((a, b) => b.neededMl - a.neededMl);
+
+    return { params: { slug: glass.id }, props: { glass, record, drinks } };
+  });
+}
+
+const { glass, record, drinks } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const note = record['note'] ? String(record['note']) : '';
+const iceNote = record['iceDisplacementNote'] ? String(record['iceDisplacementNote']) : '';
+const displacement = (record['iceDisplacementMl'] ?? {}) as Record<string, number>;
+---
+
+<BaseLayout
+  title={`${glass.name} — eXir`}
+  description={`${glass.name}: ${glass.capacityMl} ml, and the drinks on eXir served in it.`}
+  current="glassware"
+>
+  <section class="hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href={`${base}/`}>Drinks</a></li>
+          <li><a href={`${base}/glassware/`}>Glassware</a></li>
+          <li><span aria-current="page">{glass.name}</span></li>
+        </ol>
+      </nav>
+      <div class="hero-grid hero-grid--text-only">
+        <div>
+          <div class="eyebrow">Glassware</div>
+          <h1>{glass.name}</h1>
+          <p class="subtitle">{note}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="body-grid">
+      <div class="col-stack">
+        <div class="left-col">
+          <div class="card glass">
+            <h2 class="card-title">Capacity</h2>
+            <div class="control-row">
+              <span class="control-label">To the brim</span>
+              <span class="value">{glass.capacityMl} ml</span>
+            </div>
+            {Object.entries(displacement)
+              .filter(([style]) => style !== 'none')
+              .map(([style, ml]) => (
+                <div class="control-row">
+                  <span class="control-label">{style} ice displaces</span>
+                  <span class="value">{ml} ml</span>
+                </div>
+              ))}
+            {iceNote && <p class="disclaimer">{iceNote}</p>}
+            <p class="disclaimer">
+              Every drink below was checked against this figure at build time. A recipe that
+              does not fit its stated vessel fails the build rather than shipping.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-stack">
+        <div class="right-col">
+          <div class="section-head">
+            <h2>Served in this glass</h2>
+            <span class="aside">fullest first</span>
+          </div>
+          {drinks.length ? (
+            <ul class="index-list">
+              {drinks.map((d) => (
+                <li>
+                  <a href={`${base}/drinks/${d.slug}/`}>
+                    <span>{d.name}</span>
+                    <span class="aside">
+                      {d.neededMl} ml{d.iceMl > 0 ? ` with ${d.iceStyle} ice` : ''}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="step-body">Nothing on the site is served in this yet.</p>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

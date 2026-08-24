@@ -1,0 +1,30 @@
+---
+/**
+ * A user-state page. Everything on it comes out of the reader's own browser and
+ * none of it exists at build time, so it carries noindex, is excluded from the
+ * sitemap, and is deliberately NOT disallowed in robots.txt — a blocked path is
+ * never fetched, so the tag would never be read.
+ *
+ * The empty state is the design rather than an afterthought: it is what a first
+ * visit looks like, which is the most common time this page is seen.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="My Bar — eXir" description="Tell eXir what is on your shelf and it will tell you what you can make." noindex current="my-bar">
+  <section class="wrap page-head">
+    <h1>My Bar</h1>
+    <p class="lede">What you can make from what you already have, and which single bottle would unlock the most.</p>
+  </section>
+
+  <div class="wrap prose-page">
+    <p class="callout">
+      The inventory and the reverse search are not built yet. When they are, this page will match your shelf against every drink on the site, rank the results by how close each is, and name the one bottle that would complete the most of them.
+    </p>
+    <p>
+      Nothing on this page will ever leave your browser. There are no accounts here and nothing
+      to sign in to, which also means what you save lives in one browser on one device and the
+      site cannot move it for you.
+    </p>
+  </div>
+</BaseLayout>

@@ -31,10 +31,35 @@ const links = primaryRoutes();
       </nav>
 
       <div class="chip-row">
-        <button class="chip" data-search-open type="button" aria-expanded="false">Search</button>
+        <button
+          class="chip"
+          data-search-open
+          type="button"
+          aria-expanded="false"
+          aria-controls="search-drawer"
+        >Search</button>
         <button class="chip" data-glass-toggle type="button" aria-pressed="true">Glass</button>
         <button class="chip" data-theme-toggle type="button" aria-pressed="false">Light</button>
       </div>
+    </div>
+
+    {/* A drawer under the header rather than a page: searching happens from
+        wherever the reader already is, and losing the page they were on to do
+        it is a worse trade than the space this takes. */}
+    <div class="search-drawer card glass" id="search-drawer" data-search-drawer hidden>
+      <div class="search-bar">
+        <label class="visually-hidden" for="search-input">Search eXir</label>
+        <input
+          class="search-input"
+          id="search-input"
+          type="search"
+          placeholder="Search drinks, ingredients, techniques"
+          autocomplete="off"
+          data-search-input
+        />
+        <button class="chip" type="button" data-search-close>Close</button>
+      </div>
+      <div class="search-results" data-search-results></div>
     </div>
   </div>
 </header>
