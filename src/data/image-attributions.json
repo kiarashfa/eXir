@@ -1,0 +1,37 @@
+{
+  "drink:negroni": {
+    "slug": "negroni",
+    "kind": "drink",
+    "alt": "A Negroni in a rocks glass over ice, with a slice of orange and a stirrer, lit warmly against a dark bar",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/negroni-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 79558
+      },
+      "card": {
+        "file": "/images/drinks/negroni-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 27754
+      },
+      "thumb": {
+        "file": "/images/drinks/negroni-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1098
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Negroni (cocktail).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Negroni_(cocktail).jpg",
+      "author": "Sudhertzen",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  }
+}

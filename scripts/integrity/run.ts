@@ -33,7 +33,15 @@ async function main(): Promise<void> {
   const report = new Report();
 
   if (!existsSync(contentDir)) {
-    console.error(`No content directory at ${contentDir}.`);
+    // The directory tree is part of the repository, not something a build
+    // creates, so its absence means it was deleted or never checked out — not
+    // that there is no content yet. Each content folder carries a README for
+    // exactly this reason: git does not track an empty directory, and one that
+    // silently vanishes from a clone takes the checks with it.
+    console.error(
+      `No content directory at ${contentDir}.\n` +
+        'Every src/content subfolder should carry a README so the tree survives a clone.',
+    );
     process.exit(1);
   }
 
@@ -54,6 +62,23 @@ async function main(): Promise<void> {
     // identically otherwise, and only one of those is good news.
     report.ran(check.id);
     check.run({ site, report });
+  }
+
+  // What the run actually looked at. Twenty-eight checks reporting no errors
+  // over nothing at all is vacuously true, and reads identically to a clean
+  // pass over the whole site — so the census prints alongside the count rather
+  // than leaving the two indistinguishable.
+  const census = [
+    `${site.drinks.length} drinks`,
+    `${site.versions.length} versions`,
+    `${content.ingredients.size} ingredients`,
+    `${content.components.size} components`,
+    `${content.families.size} families`,
+    `${content.glassware.size} glasses`,
+  ].join(' · ');
+  console.log(`\nContent: ${census}`);
+  if (site.versions.length === 0) {
+    console.log('  Nothing authored yet, so the checks below assert nothing about content.');
   }
 
   report.print(`Content integrity (${contentDir})`);

@@ -1,0 +1,168 @@
+/**
+ * Fetch and self-host the three typefaces.
+ *
+ *   node scripts/data/fonts.ts
+ *
+ * Run rarely — only when a face changes. It writes woff2 files into
+ * `src/assets/fonts/` and generates `src/styles/fonts.css` beside them.
+ *
+ * Self-hosted rather than linked, because cross-site font caching no longer
+ * exists in any current browser: a CDN link buys nothing at all and costs a
+ * third-party connection on every page. Routing the files through `src/assets/`
+ * lets the bundler hash them, which keeps the base path correct on a project
+ * site served from a subdirectory.
+ *
+ * Bodoni Moda (display), Archivo (body and UI), IBM Plex Mono (every measurement).
+ * All three are SIL Open Font License 1.1.
+ */
+
+import { mkdir, writeFile } from 'node:fs/promises';
+import path from 'node:path';
+
+import { fetchBinary } from './http.ts';
+
+const FONT_DIR = 'src/assets/fonts';
+const CSS_FILE = 'src/styles/fonts.css';
+
+/**
+ * A browser UA that supports woff2 and unicode-range. Google Fonts serves a
+ * different, much larger stylesheet to anything it does not recognise, so
+ * asking as a current browser is what gets the modern files.
+ */
+const UA =
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36';
+
+interface FaceRequest {
+  /** The family as Google Fonts spells it. */
+  family: string;
+  /** Google Fonts axis/variant spec, e.g. `ital,opsz,wght@0,6..96,400..700`. */
+  spec: string;
+  /** Short slug used in the written filenames. */
+  slug: string;
+}
+
+const FACES: FaceRequest[] = [
+  {
+    family: 'Bodoni Moda',
+    slug: 'bodoni-moda',
+    spec: 'ital,opsz,wght@0,6..96,400..700;1,6..96,400..600',
+  },
+  { family: 'Archivo', slug: 'archivo', spec: 'wght@400..600' },
+  { family: 'IBM Plex Mono', slug: 'ibm-plex-mono', spec: 'wght@400;500;600' },
+];
+
+/** Only the ranges the site actually needs. Cyrillic and Greek are dead weight. */
+const WANTED_SUBSETS = new Set(['latin', 'latin-ext']);
+
+interface ParsedFace {
+  family: string;
+  style: string;
+  weight: string;
+  stretch?: string;
+  unicodeRange: string;
+  url: string;
+  subset: string;
+}
+
+/**
+ * Google Fonts labels each `@font-face` with a comment naming its subset —
+ * `/* latin *\/` — immediately before the block. That comment is the only thing
+ * identifying which unicode-range is which, so the parse keeps it.
+ */
+function parseCss(css: string): ParsedFace[] {
+  const faces: ParsedFace[] = [];
+  const pattern = /\/\*\s*([a-z0-9-]+)\s*\*\/\s*@font-face\s*\{([^}]+)\}/g;
+
+  for (const match of css.matchAll(pattern)) {
+    const subset = match[1] ?? '';
+    const block = match[2] ?? '';
+    const field = (name: string): string =>
+      block.match(new RegExp(`${name}:\\s*([^;]+);`))?.[1]?.trim() ?? '';
+
+    const url = block.match(/url\(([^)]+)\)/)?.[1] ?? '';
+    if (!url) continue;
+
+    faces.push({
+      family: field('font-family').replace(/^['"]|['"]$/g, ''),
+      style: field('font-style') || 'normal',
+      weight: field('font-weight') || '400',
+      stretch: field('font-stretch') || undefined,
+      unicodeRange: field('unicode-range'),
+      url,
+      subset,
+    });
+  }
+  return faces;
+}
+
+async function main(): Promise<void> {
+  await mkdir(FONT_DIR, { recursive: true });
+
+  const blocks: string[] = [];
+  const written: string[] = [];
+
+  for (const face of FACES) {
+    const url = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(face.family)}:${face.spec}&display=swap`;
+    console.log(`\n${face.family}`);
+
+    const css = await fetchText(url);
+    const parsed = parseCss(css).filter((f) => WANTED_SUBSETS.has(f.subset));
+    if (parsed.length === 0) {
+      console.error(`  no latin faces parsed — the stylesheet shape may have changed`);
+      continue;
+    }
+
+    for (const [index, f] of parsed.entries()) {
+      const name = `${face.slug}-${f.subset}-${f.style}-${f.weight.replace(/\s+/g, '_')}-${index}.woff2`;
+      const buffer = await fetchBinary(f.url, {
+        onRetry: (n, why) => console.error(`  retry ${n}: ${why}`),
+      });
+      await writeFile(path.join(FONT_DIR, name), buffer);
+      written.push(name);
+      console.log(`  ${name.padEnd(52)} ${(buffer.length / 1024).toFixed(1)} kB`);
+
+      blocks.push(
+        [
+          '@font-face {',
+          `  font-family: '${f.family}';`,
+          `  font-style: ${f.style};`,
+          `  font-weight: ${f.weight};`,
+          ...(f.stretch ? [`  font-stretch: ${f.stretch};`] : []),
+          // swap, so text is readable immediately rather than invisible while
+          // the face loads. A blank measurement is worse than an unstyled one.
+          '  font-display: swap;',
+          `  src: url('../assets/fonts/${name}') format('woff2');`,
+          `  unicode-range: ${f.unicodeRange};`,
+          '}',
+        ].join('\n'),
+      );
+    }
+  }
+
+  const header = [
+    '/*',
+    ' * Generated by scripts/data/fonts.ts. Do not edit by hand.',
+    ' *',
+    ' * Self-hosted rather than linked: cross-site font caching no longer exists',
+    ' * in any current browser, so a CDN link buys nothing and costs a third-party',
+    ' * connection on every page. The files live in src/assets/ so the bundler',
+    ' * hashes them and the base path stays correct on a project site.',
+    ' *',
+    ' * Bodoni Moda, Archivo and IBM Plex Mono are all SIL Open Font License 1.1.',
+    ' */',
+    '',
+  ].join('\n');
+
+  await writeFile(CSS_FILE, `${header}\n${blocks.join('\n\n')}\n`, 'utf8');
+  console.log(`\n${written.length} files, stylesheet written to ${CSS_FILE}`);
+}
+
+async function fetchText(url: string): Promise<string> {
+  // The stylesheet is CSS, not JSON, so it goes around fetchJson — but it keeps
+  // the same courtesy of identifying itself as a real browser.
+  const response = await fetch(url, { headers: { 'User-Agent': UA } });
+  if (!response.ok) throw new Error(`${url} -> HTTP ${response.status}`);
+  return response.text();
+}
+
+await main();

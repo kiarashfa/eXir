@@ -1,0 +1,22 @@
+{
+  "note": "Reference amounts for adults and children of four years and older, used only to express a nutrient as a share of a daily reference. Nutrition is secondary on this site — it matters for smoothies, shakes, lattes and juices and is close to meaningless for a Martini beyond its energy — so these figures label a figure, they never evaluate a reader against one.",
+  "source": {
+    "title": "Daily Value on the Nutrition and Supplement Facts Labels",
+    "publisher": "U.S. Food and Drug Administration",
+    "url": "https://www.fda.gov/food/nutrition-facts-label/daily-value-nutrition-and-supplement-facts-labels"
+  },
+  "energyReferenceKcal": 2000,
+  "energyNote": "2,000 kcal is a labelling convention, not a recommendation, and individual needs vary. It is stated so the percentage beside it means something, not as advice.",
+  "values": {
+    "carbohydrateG": 275,
+    "sugarsAddedG": 50,
+    "proteinG": 50,
+    "fatG": 78,
+    "saturatedFatG": 20,
+    "fibreG": 28,
+    "sodiumMg": 2300
+  },
+  "deliberatelyAbsent": {
+    "alcohol": "There is no daily value for alcohol and eXir does not invent one. The site states how much alcohol a drink contains, in grams and in both standard-drink measures, and holds no view on what anyone's limit should be. Guidance on that comes from health authorities in the reader's own country."
+  }
+}
