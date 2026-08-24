@@ -1,0 +1,26 @@
+---
+id: classic
+label: Classic
+name: Bad fit
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: coupe
+bitterness: none
+batchable: none
+batchNote: Nothing to batch.
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: standard
+    amount: 200
+    unit: ml
+steps:
+  - { id: shake, durationSec: 12, type: active, phase: make }
+---
+
+<Step id="shake">
+  Shake the <Qty ref="gin"/> and strain into a glass far too small for it. This
+  drink is deliberately not a draft, so it must also be caught for having no
+  About section.
+</Step>

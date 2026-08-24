@@ -17,6 +17,7 @@ import { flatten } from '../transclusion/flatten.ts';
 import { computeBatch, computeDrinkSpec, linesForService } from '../math/spec.ts';
 import { computeScaledTiming, computeTiming } from '../math/timing.ts';
 import { computeBrew } from '../math/brewing.ts';
+import { glassFit } from '../math/glassware.ts';
 import { literalDigitsInProse, renderProse } from '../render/prose.ts';
 import type {
   Bitterness,
@@ -125,10 +126,9 @@ test('the stirred reference computes the figures it is named for', () => {
   assert.equal(spec.facets.servingTemp, 'iced');
   assert.equal(spec.facets.baseSpirits[0]?.spirit, 'gin');
 
-  // 19.3% lands just under the 20% spirit-forward threshold, so the archetypal
-  // stirred aperitivo classifies as medium. The thresholds are fixed and this
-  // is what they say; recorded here so the result is deliberate rather than a
-  // surprise on a catalogue facet.
+  // 19.3% is genuinely below a Manhattan or a Martini, both of which finish
+  // above 24%. Strength is a measurement band, not a style label, and style
+  // lives on the authored category axis.
   assert.equal(spec.facets.strength, 'medium');
 });
 
@@ -360,15 +360,19 @@ test('every fixture fits the glass it names', () => {
     assert.ok(glass, `${file.slug}: glassware "${version.glasswareRef}" resolves`);
 
     const spec = computeDrinkSpec(version, lines);
-    const displacement =
-      (glass['iceDisplacementMl'] as Record<string, number> | undefined)?.[
-        String(file.frontmatter['iceStyle'] ?? 'none')
-      ] ?? 0;
-    const needed = spec.finalVolumeMl + displacement;
+    // The same helper the integrity check calls. Two copies of "what does the
+    // ice displace" would eventually disagree about whether a drink fits.
+    const fit = glassFit(version, spec.finalVolumeMl, {
+      capacityMl: Number(glass['capacityMl']),
+      ...(glass['iceDisplacementMl']
+        ? { iceDisplacementMl: glass['iceDisplacementMl'] as Record<string, number> }
+        : {}),
+    });
 
+    assert.equal(fit.unmodelledIce, false, `${file.slug}: ice style "${fit.iceStyle}" has no figure`);
     assert.ok(
-      needed <= Number(glass['capacityMl']),
-      `${file.slug}: needs ${needed.toFixed(0)} ml but ${String(glass['name'])} holds ${String(glass['capacityMl'])} ml`,
+      fit.fits,
+      `${file.slug}: needs ${fit.neededMl.toFixed(0)} ml but ${String(glass['name'])} holds ${fit.capacityMl} ml`,
     );
   }
 });

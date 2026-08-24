@@ -1,75 +1,95 @@
 /**
  * Content integrity runner.
  *
- * Walks a content directory and applies every registered check to it. The checks
- * import the site's own schemas, so a rule exists in exactly one place and both
- * the build and this runner read it from there.
+ * Loads and resolves the content once, then applies every registered check to
+ * the result. The checks import the site's own schemas and the site's own
+ * engine, so a rule exists in exactly one place and both the build and this
+ * runner read it from there.
  *
  *   node scripts/integrity/run.ts [--content <dir>] [--expect-failure] [--strict]
  *
- * --expect-failure inverts the exit code. It is how the self-test asserts that
- * the checks still catch deliberately-broken fixtures: a check that has quietly
+ * --expect-failure inverts the exit code. It is how the self-test asserts the
+ * checks still catch deliberately-broken fixtures: a check that has quietly
  * stopped matching looks exactly like a clean content set.
  * --strict promotes warnings to errors.
  */
 
+import { existsSync } from 'node:fs';
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
+
+import { loadContent } from '../../src/lib/content/disk.ts';
+import { resolveSite } from '../../src/lib/content/resolve.ts';
+import { checks } from './checks.ts';
 import { Report, parseArgs } from './report.ts';
-
-export interface CheckContext {
-  contentDir: string;
-  report: Report;
-}
-
-export interface Check {
-  /** Stable id, quoted in output and in SPEC's numbered list. */
-  id: string;
-  description: string;
-  run(ctx: CheckContext): Promise<void> | void;
-}
-
-/**
- * The registry. Empty until the checks are written; the runner reports that
- * fact rather than exiting green on nothing.
- */
-const checks: Check[] = [];
 
 async function main(): Promise<void> {
   const args = parseArgs(process.argv.slice(2));
-  const contentDir = typeof args.get('content') === 'string' ? (args.get('content') as string) : 'src/content';
+  const contentDir =
+    typeof args.get('content') === 'string' ? (args.get('content') as string) : 'src/content';
   const expectFailure = args.get('expect-failure') === true;
   const strict = args.get('strict') === true;
 
   const report = new Report();
 
+  if (!existsSync(contentDir)) {
+    console.error(`No content directory at ${contentDir}.`);
+    process.exit(1);
+  }
+
+  const content = await loadContent(contentDir);
+
+  // Loading problems are reported as errors of their own rather than left to
+  // surface as puzzling absences later: a step with prose and no metadata
+  // contributes no time to a card that claims to be complete.
+  for (const issue of content.issues) {
+    report.error('c0-load', issue.file, issue.message);
+  }
+
+  const site = resolveSite(content);
+
   for (const check of checks) {
+    // Declared before it runs, so a clean pass still reports what it looked at.
+    // A check that ran and found nothing and a check that never ran read
+    // identically otherwise, and only one of those is good news.
     report.ran(check.id);
-    await check.run({ contentDir, report });
+    check.run({ site, report });
   }
 
   report.print(`Content integrity (${contentDir})`);
-
-  // ---------------------------------------------------------------------
-  // No checks are registered yet. Reporting that plainly is the only honest
-  // option: exiting 0 on an empty registry under --expect-failure would be a
-  // self-test that asserts nothing while looking like it passed. This branch
-  // is removed the moment the first check lands.
-  // ---------------------------------------------------------------------
-  if (checks.length === 0) {
-    console.log(
-      '\n  PENDING — no content checks are registered yet, so this run proves\n' +
-        '  nothing about the content. The self-test is vacuous until they exist.',
-    );
-    process.exit(0);
-  }
 
   const failed = report.errors.length > 0 || (strict && report.warnings.length > 0);
 
   if (expectFailure) {
     if (!failed) {
-      console.error('\nSELF-TEST FAILED: the broken fixtures produced no errors.');
+      console.error(
+        '\nSELF-TEST FAILED: the broken fixtures produced no errors, which means a check ' +
+          'has stopped matching. That looks exactly like a clean content set.',
+      );
       process.exit(1);
     }
-    console.log('\nSelf-test passed: the broken fixtures were caught.');
+
+    // Failing is not enough. The fixtures exist to exercise specific rules, and
+    // a self-test that passed because ONE check caught everything would hide
+    // every other check going quiet. So the exact set is asserted.
+    const expectedPath = path.join(contentDir, 'EXPECTED.json');
+    const fired = new Set(report.findings.map((f) => f.check));
+
+    if (existsSync(expectedPath)) {
+      const expected = JSON.parse(await readFile(expectedPath, 'utf8')) as { mustFire: string[] };
+      const silent = expected.mustFire.filter((id) => !fired.has(id));
+      if (silent.length > 0) {
+        console.error(
+          `\nSELF-TEST FAILED: ${silent.length} check(s) that should have fired did not:\n` +
+            silent.map((id) => `  ${id}`).join('\n') +
+            '\n\nEither the check stopped matching, or the fixture that broke it was repaired.',
+        );
+        process.exit(1);
+      }
+      console.log(`\nSelf-test passed: all ${expected.mustFire.length} expected checks fired.`);
+    } else {
+      console.log(`\nSelf-test passed. Checks that fired: ${[...fired].sort().join(', ')}`);
+    }
     process.exit(0);
   }
 

@@ -1,0 +1,26 @@
+---
+id: classic
+label: Classic
+name: Bad refs
+draft: true
+defaultDrinks: 1
+method: stirred
+dilutionClass: stirred
+glasswareRef: coupe
+bitterness: none
+batchable: none
+batchNote: Nothing to batch.
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: standard
+    amount: 60
+    unit: ml
+steps:
+  - { id: stir, durationSec: 25, type: active, phase: make }
+---
+
+<Step id="stir">
+  Combine the <Qty ref="whisky"/> and stir for <Dur step="shake"/>, then add
+  30 ml of water.
+</Step>

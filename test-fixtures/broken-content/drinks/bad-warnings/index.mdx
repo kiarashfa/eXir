@@ -1,0 +1,41 @@
+---
+id: classic
+label: Classic
+name: Bad warnings
+draft: true
+defaultDrinks: 1
+method: stirred
+dilutionClass: none
+glasswareRef: coupe
+bitterness: none
+batchable: none
+batchNote: Nothing to batch.
+ingredients:
+  - id: rinse
+    ingredientRef: absinthe
+    formRef: standard
+    amount: 90
+    unit: ml
+  - id: wine
+    ingredientRef: undeclared-wine
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: gin
+    ingredientRef: gin
+    formRef: standard
+    amount: 100
+    unit: ml
+steps:
+  - { id: stir, durationSec: 25, type: active, phase: make }
+  - { id: dangle, durationSec: 20, type: "parallel-with:nowhere", phase: make }
+---
+
+<Step id="stir">
+  Stir the <Qty ref="gin"/>, the <Qty ref="wine"/> and the <Qty ref="rinse"/>
+  down together. No dilution at all, so this computes far too strong.
+</Step>
+
+<Step id="dangle">
+  This step claims to run in parallel with a step that does not exist.
+</Step>

@@ -1,0 +1,10 @@
+{
+  "id": "undeclared-wine",
+  "name": "Wine of unknown fining",
+  "kind": "ingredient",
+  "category": "wine",
+  "forms": [
+    { "id": "standard", "abvPercent": 12, "densityGPerMl": 0.99, "densitySource": "estimated",
+      "sugarGPer100": 1, "acidPercent": 0.6, "allergenTags": ["sulphites"] }
+  ]
+}

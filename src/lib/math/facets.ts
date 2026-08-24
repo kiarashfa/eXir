@@ -76,7 +76,7 @@ export function deriveStrength(finalAbvPercent: number): Strength {
   if (finalAbvPercent < ZERO_PROOF_MAX_ABV) return 'zero-proof';
   if (finalAbvPercent < 10) return 'low';
   if (finalAbvPercent < 20) return 'medium';
-  return 'spirit-forward';
+  return 'strong';
 }
 
 export interface ServingTempInput {

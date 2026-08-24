@@ -1,0 +1,10 @@
+{
+  "id": "absinthe",
+  "name": "Absinthe",
+  "kind": "ingredient",
+  "category": "absinthe",
+  "forms": [
+    { "id": "standard", "abvPercent": 68, "densityGPerMl": 0.9, "densitySource": "measured",
+      "sugarGPer100": 0, "acidPercent": 0, "animalOrigin": "none", "allergenTags": [] }
+  ]
+}

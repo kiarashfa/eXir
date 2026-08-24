@@ -1,0 +1,10 @@
+{
+  "id": "mystery-liqueur",
+  "name": "Mystery liqueur",
+  "kind": "ingredient",
+  "category": "liqueur",
+  "forms": [
+    { "id": "standard", "abvPercent": 30, "sugarGPer100": 20, "acidPercent": 0,
+      "animalOrigin": "none", "allergenTags": [] }
+  ]
+}

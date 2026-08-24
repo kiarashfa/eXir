@@ -1,0 +1,32 @@
+---
+id: classic
+label: Classic
+name: Bad naming
+draft: true
+defaultDrinks: 1
+method: stirred
+dilutionClass: stirred
+glasswareRef: coupe
+bitterness: none
+batchable: none
+batchNote: Nothing to batch.
+family: no-such-family
+derivedFrom: bad-fit
+names:
+  notToBeConfusedWith:
+    - name: Something else
+      note: A genuinely different drink.
+      slugRef: no-such-drink
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: standard
+    amount: 30
+    unit: ml
+steps:
+  - { id: stir, durationSec: 25, type: active, phase: make }
+---
+
+<Step id="stir">
+  Stir the <Qty ref="gin"/> down over ice.
+</Step>

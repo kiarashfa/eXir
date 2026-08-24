@@ -100,7 +100,15 @@ export type BaseSpirit =
   | 'sake'
   | 'none';
 
-export type Strength = 'zero-proof' | 'low' | 'medium' | 'spirit-forward';
+/**
+ * A strength band, not a style. The top band is named for what it measures:
+ * the balance bar reading the identical figure is already labelled "Strong",
+ * and one fact should not carry two names. "Spirit-forward" would also be a
+ * claim the number cannot support — an equal-parts aperitivo build finishes
+ * genuinely weaker than a Manhattan or a Martini. Style is the authored
+ * category axis, which is where a reader browsing by it should be looking.
+ */
+export type Strength = 'zero-proof' | 'low' | 'medium' | 'strong';
 
 export type ServingTemp = 'hot' | 'warm' | 'room' | 'chilled' | 'iced' | 'frozen';
 

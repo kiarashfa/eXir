@@ -1,0 +1,34 @@
+---
+id: classic
+label: Classic
+name: Bad structure
+draft: true
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: coupe
+bitterness: none
+batchable: none
+batchNote: Nothing to batch.
+ingredients:
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 30
+    unit: ml
+    portions:
+      - { id: lime-a, amount: 20 }
+      - { id: lime-b, amount: 5 }
+  - id: gin__self
+    ingredientRef: gin
+    formRef: standard
+    amount: 45
+    unit: ml
+    consumedFraction: 1.5
+steps:
+  - { id: shake, durationSec: 12, type: active, phase: make }
+---
+
+<Step id="shake">
+  Shake the <Qty ref="lime-a"/> and the <Qty ref="lime-b"/> together.
+</Step>

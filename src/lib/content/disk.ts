@@ -160,11 +160,48 @@ export interface DrinkFile {
   slots: StepSlot[];
 }
 
+/**
+ * The About section is per DRINK, not per version.
+ *
+ * Where a drink comes from does not change because its ratio does, and one
+ * history stated twice is one history that can end up stated two ways.
+ */
+export interface AboutFile {
+  slug: string;
+  file: string;
+  frontmatter: Record<string, unknown>;
+  body: string;
+}
+
+export interface FamilyFile {
+  id: string;
+  file: string;
+  frontmatter: Record<string, unknown>;
+  body: string;
+}
+
+export interface RawRecord {
+  file: string;
+  data: unknown;
+}
+
 export interface LoadedContent {
   ingredients: Map<string, Ingredient>;
   components: Map<string, Component>;
   glassware: Map<string, Record<string, unknown>>;
   drinks: DrinkFile[];
+  abouts: Map<string, AboutFile>;
+  families: Map<string, FamilyFile>;
+  /** Untouched frontmatter, kept so the schemas can validate what was authored. */
+  raw: {
+    ingredients: RawRecord[];
+    preparations: RawRecord[];
+    glassware: RawRecord[];
+    components: RawRecord[];
+    drinks: RawRecord[];
+    abouts: RawRecord[];
+    families: RawRecord[];
+  };
   issues: LoadIssue[];
 }
 
@@ -173,10 +210,20 @@ const readJson = async <T>(file: string): Promise<T> =>
 
 export async function loadContent(contentDir: string): Promise<LoadedContent> {
   const issues: LoadIssue[] = [];
+  const raw: LoadedContent['raw'] = {
+    ingredients: [],
+    preparations: [],
+    glassware: [],
+    components: [],
+    drinks: [],
+    abouts: [],
+    families: [],
+  };
 
   const ingredients = new Map<string, Ingredient>();
   for (const rel of await glob('ingredients/*.json', { cwd: contentDir })) {
     const record = await readJson<Ingredient>(path.join(contentDir, rel));
+    raw.ingredients.push({ file: rel, data: record });
     ingredients.set(record.id, record);
   }
   // A Preparation is an ingredient that also has a recipe, so it lands in the
@@ -189,12 +236,14 @@ export async function loadContent(contentDir: string): Promise<LoadedContent> {
       issues,
     );
     if (!parsed) continue;
+    raw.preparations.push({ file: rel, data: { ...parsed.data, kind: 'preparation' } });
     ingredients.set(parsed.data.id, { ...parsed.data, kind: 'preparation' });
   }
 
   const glassware = new Map<string, Record<string, unknown>>();
   for (const rel of await glob('glassware/*.json', { cwd: contentDir })) {
     const record = await readJson<{ id: string }>(path.join(contentDir, rel));
+    raw.glassware.push({ file: rel, data: record });
     glassware.set(record.id, record as Record<string, unknown>);
   }
 
@@ -209,6 +258,7 @@ export async function loadContent(contentDir: string): Promise<LoadedContent> {
     }>(await readFile(file, 'utf8'), rel, issues);
     if (!parsed) continue;
 
+    raw.components.push({ file: rel, data: parsed.data });
     const slots = joinSteps(parsed.data.steps ?? [], extractSteps(parsed.body), rel, issues);
     components.set(parsed.data.id, {
       id: parsed.data.id,
@@ -218,7 +268,23 @@ export async function loadContent(contentDir: string): Promise<LoadedContent> {
     });
   }
 
+  const families = new Map<string, FamilyFile>();
+  for (const rel of await glob('families/*.mdx', { cwd: contentDir })) {
+    const file = path.join(contentDir, rel);
+    const parsed = parseFrontmatter<Record<string, unknown>>(
+      await readFile(file, 'utf8'),
+      rel,
+      issues,
+    );
+    if (!parsed) continue;
+    raw.families.push({ file: rel, data: parsed.data });
+    const id = String(parsed.data['id'] ?? path.basename(rel, '.mdx'));
+    families.set(id, { id, file: rel, frontmatter: parsed.data, body: parsed.body });
+  }
+
   const drinks: DrinkFile[] = [];
+  const abouts = new Map<string, AboutFile>();
+
   for (const rel of await glob('drinks/*/*.mdx', { cwd: contentDir })) {
     const file = path.join(contentDir, rel);
     const parsed = parseFrontmatter<Record<string, unknown> & { steps?: StepMeta[] }>(
@@ -231,6 +297,16 @@ export async function loadContent(contentDir: string): Promise<LoadedContent> {
     const parts = rel.split(/[\\/]/);
     const slug = parts[1] ?? '';
     const base = (parts[2] ?? '').replace(/\.mdx$/, '');
+
+    // About is per drink, not per version: where a drink comes from does not
+    // change because its ratio does.
+    if (base === 'about') {
+      raw.abouts.push({ file: rel, data: parsed.data });
+      abouts.set(slug, { slug, file: rel, frontmatter: parsed.data, body: parsed.body });
+      continue;
+    }
+
+    raw.drinks.push({ file: rel, data: parsed.data });
     drinks.push({
       slug,
       // index.mdx is the default version; its id comes from the frontmatter.
@@ -241,5 +317,5 @@ export async function loadContent(contentDir: string): Promise<LoadedContent> {
     });
   }
 
-  return { ingredients, components, glassware, drinks, issues };
+  return { ingredients, components, glassware, drinks, abouts, families, raw, issues };
 }

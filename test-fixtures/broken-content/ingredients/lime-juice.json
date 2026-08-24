@@ -1,0 +1,18 @@
+{
+  "id": "lime-juice",
+  "name": "Lime juice",
+  "kind": "ingredient",
+  "category": "citrus-juice",
+  "forms": [
+    { "id": "fresh", "abvPercent": 0, "densityGPerMl": 1.03, "densitySource": "measured",
+      "sugarGPer100": 1.7, "acidPercent": 6, "animalOrigin": "none", "allergenTags": [] }
+  ],
+  "names": {
+    "notToBeConfusedWith": [
+      { "name": "Lime cordial", "note": "Sweetened and much less acidic.", "slugRef": "no-such-drink" }
+    ],
+    "alsoKnownAs": [
+      { "name": "Fresh lime", "formRef": "no-such-form" }
+    ]
+  }
+}

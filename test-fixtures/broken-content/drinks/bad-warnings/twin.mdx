@@ -1,0 +1,27 @@
+---
+id: twin
+label: Classic
+name: Bad warnings
+draft: true
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: coupe
+bitterness: none
+batchable: none
+batchNote: Nothing to batch.
+ingredients:
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 25
+    unit: ml
+steps:
+  - { id: shake, durationSec: 12, type: active, phase: make }
+---
+
+<Step id="shake">
+  Shares a label with the default version and almost none of its ingredients,
+  so it is probably a separate drink rather than a tab. Shake the
+  <Qty ref="lime"/>.
+</Step>

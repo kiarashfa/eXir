@@ -138,9 +138,18 @@ export function formatLength(cm: number, system: UnitSystem): string {
   return `${formatEighths(eighths)} in`;
 }
 
+/** Two days. Below it people count in hours; above it they count in days. */
+const DAY_BAND_SEC = 48 * 3600;
+
 /**
  * Seconds up, never down. A shake is 12 seconds and a stir is 25, and rounding
  * those to minutes destroys the information the figure exists to carry.
+ *
+ * The day band exists for fermentation. A ten-day ferment rendered as "240h" is
+ * technically the same fact and useless to plan around. It starts at two days
+ * rather than one because a single-day process — a cold brew, an overnight
+ * infusion — is still naturally thought of in hours, and "1d 6h" is a worse way
+ * to say "30h".
  */
 export function formatDuration(totalSec: number): string {
   const sec = Math.max(0, Math.round(totalSec));
@@ -153,9 +162,17 @@ export function formatDuration(totalSec: number): string {
     return s > 0 && sec < 300 ? `${m}m ${s}s` : `${m}m`;
   }
 
-  const h = Math.floor(sec / 3600);
-  const m = Math.round((sec % 3600) / 60);
-  return m > 0 ? `${h}h ${m}m` : `${h}h`;
+  if (sec < DAY_BAND_SEC) {
+    const h = Math.floor(sec / 3600);
+    const m = Math.round((sec % 3600) / 60);
+    return m > 0 ? `${h}h ${m}m` : `${h}h`;
+  }
+
+  const d = Math.floor(sec / 86400);
+  const h = Math.round((sec % 86400) / 3600);
+  // 47 hours rounding up to a whole day would print "10d 24h".
+  if (h === 24) return `${d + 1}d`;
+  return h > 0 ? `${d}d ${h}h` : `${d}d`;
 }
 
 /** Ratios are unitless and never converted. `1 : 16.4`, the field's convention. */

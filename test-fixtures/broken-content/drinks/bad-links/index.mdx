@@ -1,0 +1,31 @@
+---
+id: classic
+label: Classic
+name: Bad links
+draft: true
+defaultDrinks: 1
+method: stirred
+dilutionClass: swizzled
+glasswareRef: no-such-glass
+bitterness: none
+batchable: none
+batchNote: Nothing to batch.
+ingredients:
+  - id: ghost
+    ingredientRef: no-such-ingredient
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: wrongform
+    ingredientRef: gin
+    formRef: barrel-aged
+    amount: 30
+    unit: ml
+steps:
+  - { componentRef: no-such-component }
+  - { id: stir, durationSec: 25, type: active, phase: make }
+---
+
+<Step id="stir">
+  Stir it all down.
+</Step>

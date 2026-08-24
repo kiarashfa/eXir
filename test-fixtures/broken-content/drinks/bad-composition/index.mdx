@@ -1,0 +1,30 @@
+---
+id: classic
+label: Classic
+name: Bad composition
+draft: true
+defaultDrinks: 1
+method: stirred
+dilutionClass: stirred
+glasswareRef: coupe
+bitterness: none
+batchable: none
+batchNote: Nothing to batch.
+ingredients:
+  - id: solid-booze
+    ingredientRef: mystery-liqueur
+    formRef: standard
+    amount: 40
+    unit: g
+  - id: syrup
+    ingredientRef: no-yield-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+steps:
+  - { id: stir, durationSec: 25, type: active, phase: make }
+---
+
+<Step id="stir">
+  Stir the <Qty ref="solid-booze"/> and the <Qty ref="syrup"/> down over ice.
+</Step>

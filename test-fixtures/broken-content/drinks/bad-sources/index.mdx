@@ -1,0 +1,24 @@
+---
+id: classic
+label: Classic
+name: Bad sources
+defaultDrinks: 1
+method: stirred
+dilutionClass: stirred
+glasswareRef: coupe
+bitterness: none
+batchable: none
+batchNote: Nothing to batch.
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: standard
+    amount: 30
+    unit: ml
+steps:
+  - { id: stir, durationSec: 25, type: active, phase: make }
+---
+
+<Step id="stir">
+  Stir the <Qty ref="gin"/> down over ice.
+</Step>

@@ -87,6 +87,23 @@ test('duration display steps up through the three bands', () => {
   assert.equal(formatDuration(14400), '4h');
 });
 
+test('long rests cross into days, but only past two of them', () => {
+  // A single-day process is still naturally counted in hours: "30h" beats
+  // "1d 6h" for an overnight infusion.
+  assert.equal(formatDuration(30 * 3600), '30h');
+  assert.equal(formatDuration(47 * 3600), '47h');
+
+  // Past that, days are the unit anyone plans a ferment around.
+  assert.equal(formatDuration(48 * 3600), '2d');
+  assert.equal(formatDuration(240 * 3600), '10d');
+  assert.equal(formatDuration(241.9 * 3600), '10d 2h');
+});
+
+test('an hour rounding up to a full day rolls into the day', () => {
+  // Otherwise a ten-day ferment plus 23.8 hours prints "10d 24h".
+  assert.equal(formatDuration((10 * 24 + 23.8) * 3600), '11d');
+});
+
 test('an unround computed total is not tidied', () => {
   // A rounded total is a hand-typed number wearing a computed one's clothes.
   assert.equal(formatDuration(77), '1m 17s');
