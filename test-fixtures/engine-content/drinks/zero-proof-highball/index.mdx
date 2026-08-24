@@ -1,0 +1,44 @@
+---
+id: classic
+label: Classic
+name: Zero-proof highball
+defaultDrinks: 1
+method: built
+dilutionClass: built-over-ice
+glasswareRef: highball
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: none
+batchNote: Built in the glass and topped at service; there is nothing to combine ahead.
+zeroProof: true
+ingredients:
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 20
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: soda
+    ingredientRef: soda-water
+    formRef: standard
+    amount: 140
+    unit: ml
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 10, type: active, phase: make }
+---
+
+<Step id="build">
+  Fill a highball with cubed ice and add the <Qty ref="lime"/> and the
+  <Qty ref="syrup"/>.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/> and stir once, from the bottom, to lift the
+  syrup off the base without knocking the gas out.
+</Step>

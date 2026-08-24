@@ -1,0 +1,12 @@
+{
+  "id": "sweet-vermouth",
+  "name": "Sweet vermouth",
+  "kind": "ingredient",
+  "category": "vermouth",
+  "pantryStaple": false,
+  "forms": [
+    { "id": "standard", "abvPercent": 16, "densityGPerMl": 1.03,
+      "densitySource": "estimated", "sugarGPer100": 13, "acidPercent": 0.4,
+      "animalOrigin": "none", "allergenTags": ["sulphites"], "containsCaffeine": false }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "id": "highball",
+  "name": "Highball",
+  "capacityMl": 350,
+  "shapeFamily": "tall",
+  "iceDisplacementMl": { "cubed": 120, "none": 0 }
+}

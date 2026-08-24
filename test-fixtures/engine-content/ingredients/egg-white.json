@@ -1,0 +1,13 @@
+{
+  "id": "egg-white",
+  "name": "Egg white",
+  "kind": "ingredient",
+  "category": "egg",
+  "forms": [
+    { "id": "fresh", "abvPercent": 0, "densityGPerMl": 1.04, "densitySource": "measured",
+      "sugarGPer100": 0.7, "acidPercent": 0,
+      "nutritionPer100g": { "kcal": 52, "carbohydrateG": 0.7, "proteinG": 10.9, "fatG": 0.2 },
+      "animalOrigin": "egg", "allergenTags": ["egg"],
+      "countUnit": { "singular": "egg white", "plural": "egg whites", "ml": 30, "snap": "half" } }
+  ]
+}

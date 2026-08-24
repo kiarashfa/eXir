@@ -1,0 +1,24 @@
+{
+  "id": "ginger",
+  "name": "Fresh ginger",
+  "kind": "ingredient",
+  "category": "botanical",
+  "forms": [
+    {
+      "id": "fresh",
+      "abvPercent": 0,
+      "densityGPerMl": 1.02,
+      "densitySource": "estimated",
+      "sugarGPer100": 1.7,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 80,
+        "carbohydrateG": 17.8,
+        "proteinG": 1.8,
+        "fatG": 0.8
+      },
+      "animalOrigin": "none",
+      "allergenTags": []
+    }
+  ]
+}

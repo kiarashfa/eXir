@@ -1,0 +1,22 @@
+---
+import { qtyHtml, type QtyData } from '../../lib/render/live-values.ts';
+import type { UnitSystem } from '../../lib/math/types.ts';
+
+/**
+ * A live quantity for use outside step prose — the ingredient checklist, the
+ * batch yield, anywhere a page composes one directly. Inside step prose the
+ * same markup comes from the prose renderer, which handles the authored
+ * `<Qty ref="…"/>` form. Both call the one render function.
+ */
+interface Props {
+  data: QtyData;
+  drinks: number;
+  system: UnitSystem;
+  /** Off in the checklist, where the row already names the ingredient. */
+  showName?: boolean;
+}
+
+const { data, drinks, system, showName = true } = Astro.props;
+---
+
+<Fragment set:html={qtyHtml(data, drinks, system, { showName })} />

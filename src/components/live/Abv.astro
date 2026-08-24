@@ -1,0 +1,17 @@
+---
+import { abvHtml } from '../../lib/render/live-values.ts';
+
+/**
+ * A bottle strength read from the Form. Ref-only for the same reason a quantity
+ * is: the figure already exists in structured data, and typing it again creates
+ * a second copy that can drift.
+ */
+interface Props {
+  abvPercent: number;
+  ref: string;
+}
+
+const { abvPercent, ref } = Astro.props;
+---
+
+<Fragment set:html={abvHtml(abvPercent, ref)} />

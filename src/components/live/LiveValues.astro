@@ -1,0 +1,11 @@
+---
+/**
+ * Mounts the one shared updater. Included once per page that carries live
+ * values — never once per value.
+ */
+---
+
+<script>
+  import { initLiveValues } from '../../lib/client/live-values.ts';
+  initLiveValues();
+</script>

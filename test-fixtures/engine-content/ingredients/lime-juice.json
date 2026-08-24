@@ -1,0 +1,17 @@
+{
+  "id": "lime-juice",
+  "name": "Lime juice",
+  "kind": "ingredient",
+  "category": "citrus-juice",
+  "pantryStaple": false,
+  "forms": [
+    { "id": "fresh", "label": "Freshly squeezed", "abvPercent": 0, "densityGPerMl": 1.03,
+      "densitySource": "measured", "sugarGPer100": 1.7, "acidPercent": 6,
+      "nutritionPer100g": { "kcal": 25, "carbohydrateG": 8.4, "proteinG": 0.4, "fatG": 0.1 },
+      "animalOrigin": "none", "allergenTags": [],
+      "countUnit": { "singular": "lime", "plural": "limes", "ml": 30, "snap": "half" } },
+    { "id": "cordial", "label": "Bottled cordial", "abvPercent": 0, "densityGPerMl": 1.14,
+      "densitySource": "estimated", "sugarGPer100": 42, "acidPercent": 2.2,
+      "animalOrigin": "none", "allergenTags": ["sulphites"] }
+  ]
+}

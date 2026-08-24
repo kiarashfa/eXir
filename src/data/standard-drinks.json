@@ -1,0 +1,28 @@
+{
+  "ethanolDensityGPerMl": 0.789,
+  "ethanolKcalPerG": 7.0,
+  "ethanolNote": "Density of ethanol at 20 °C. The energy figure is the conventional Atwater factor for alcohol and is what every published drink-energy figure is built on.",
+  "denominators": [
+    {
+      "id": "us",
+      "label": "US",
+      "gramsPerDrink": 14,
+      "source": {
+        "title": "What Is A Standard Drink?",
+        "publisher": "National Institute on Alcohol Abuse and Alcoholism (NIAAA), US National Institutes of Health",
+        "url": "https://www.niaaa.nih.gov/alcohols-effects-health/what-standard-drink"
+      }
+    },
+    {
+      "id": "uk",
+      "label": "UK",
+      "gramsPerDrink": 8,
+      "source": {
+        "title": "Alcohol units",
+        "publisher": "National Health Service (NHS), United Kingdom",
+        "url": "https://www.nhs.uk/live-well/alcohol-advice/calculating-alcohol-units/"
+      }
+    }
+  ],
+  "policyNote": "Both are shown on every alcoholic drink, and neither is preferred. The audience is global-English and the two authorities genuinely differ; picking one would be presenting a national convention as a fact. A third may be added only with its own citation."
+}

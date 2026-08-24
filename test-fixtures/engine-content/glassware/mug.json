@@ -1,0 +1,7 @@
+{
+  "id": "mug",
+  "name": "Mug",
+  "capacityMl": 350,
+  "shapeFamily": "handled",
+  "iceDisplacementMl": { "none": 0 }
+}

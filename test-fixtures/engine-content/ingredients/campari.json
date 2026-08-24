@@ -1,0 +1,14 @@
+{
+  "id": "campari",
+  "name": "Campari",
+  "kind": "ingredient",
+  "category": "bitter-aperitivo",
+  "proprietary": true,
+  "pantryStaple": false,
+  "forms": [
+    { "id": "standard", "abvPercent": 25, "densityGPerMl": 1.06,
+      "densitySource": "measured", "sugarGPer100": 24, "acidPercent": 0,
+      "nutritionPer100g": { "kcal": 240, "carbohydrateG": 24, "proteinG": 0, "fatG": 0 },
+      "animalOrigin": "none", "allergenTags": [], "containsCaffeine": false }
+  ]
+}

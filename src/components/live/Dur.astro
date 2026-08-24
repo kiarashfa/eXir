@@ -1,0 +1,17 @@
+---
+import { durHtml } from '../../lib/render/live-values.ts';
+
+/**
+ * Reads a step's own declared duration, so the sentence and the timing card
+ * cannot disagree. Never scales with the drink count: twelve drinks made to
+ * order is twelve separate stirs, not one very long one.
+ */
+interface Props {
+  durationSec: number;
+  stepId: string;
+}
+
+const { durationSec, stepId } = Astro.props;
+---
+
+<Fragment set:html={durHtml(durationSec, stepId)} />

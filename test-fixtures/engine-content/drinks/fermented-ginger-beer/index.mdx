@@ -1,0 +1,71 @@
+---
+id: classic
+label: Classic
+name: Fermented ginger beer
+defaultDrinks: 6
+method: fermented
+dilutionClass: none
+glasswareRef: highball
+servedOverIce: true
+bitterness: low
+batchable: none
+batchNote: The whole drink is a batch by nature; the ferment is the recipe.
+ferment:
+  developsAlcohol: true
+  estimatedAbvRange: [0.5, 2.0]
+  safetyNote: Sealed secondary fermentation builds real pressure. Use bottles rated for it, keep them out of direct sun, and vent daily until the fizz settles.
+  stages:
+    - { id: primary, label: Primary, days: 7, tempC: [20, 26], sealed: false }
+    - { id: secondary, label: Secondary, days: 3, tempC: [18, 24], sealed: true }
+ingredients:
+  - id: ginger
+    ingredientRef: ginger
+    formRef: fresh
+    amount: 120
+    unit: g
+    consumedFraction: 0.15
+    consumedFractionNote: The grated ginger is strained out before bottling; what stays behind is what it gave up to the water.
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 150
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1400
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 40
+    unit: ml
+steps:
+  - { id: grate, durationSec: 300, type: active, phase: prep }
+  - { id: combine, durationSec: 240, type: active, phase: make }
+  - { id: primary, durationSec: 604800, type: passive, phase: rest }
+  - { id: bottle, durationSec: 600, type: active, phase: make }
+  - { id: secondary, durationSec: 259200, type: passive, phase: rest }
+---
+
+<Step id="grate">
+  Grate the <Qty ref="ginger"/> coarsely, skin and all, over <Dur step="grate"/>.
+</Step>
+
+<Step id="combine">
+  Stir the <Qty ref="sugar"/> into the <Qty ref="water"/> until it has gone,
+  then add the ginger and the <Qty ref="lime"/>.
+</Step>
+
+<Step id="primary">
+  Cover loosely and leave at room temperature, stirring once a day, until it
+  smells yeasty and tastes dry rather than sweet.
+</Step>
+
+<Step id="bottle">
+  Strain and bottle, leaving a finger of headroom in each.
+</Step>
+
+<Step id="secondary">
+  Seal and leave to carbonate, venting once a day.
+</Step>

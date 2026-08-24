@@ -1,0 +1,11 @@
+{
+  "id": "white-rum",
+  "name": "White rum",
+  "kind": "ingredient",
+  "category": "rum",
+  "forms": [
+    { "id": "standard", "abvPercent": 40, "densityGPerMl": 0.94,
+      "densitySource": "measured", "sugarGPer100": 0, "acidPercent": 0,
+      "animalOrigin": "none", "allergenTags": [] }
+  ]
+}

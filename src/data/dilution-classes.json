@@ -1,0 +1,83 @@
+{
+  "denominator": "poured",
+  "denominatorNote": "Every fraction in this file is a fraction of the PRE-DILUTION poured volume, never of the finished drink. Published figures disagree with one another on exactly this point — the same drink is described as taking 25% and 50% dilution depending on which volume the percentage is of. Stating the denominator once, here, is what makes the numbers comparable. To read any entry against a final-volume figure, divide by (1 + fraction).",
+  "classes": {
+    "stirred": {
+      "label": "Stirred over ice",
+      "model": "formula-stirred",
+      "estimated": true,
+      "formula": "d = -1.21a^2 + 1.26a + 0.145",
+      "coefficients": { "a2": -1.21, "a1": 1.26, "a0": 0.145 },
+      "source": {
+        "title": "Liquid Intelligence: The Art and Science of the Perfect Cocktail",
+        "author": "Dave Arnold",
+        "publisher": "W. W. Norton & Company",
+        "year": 2014
+      },
+      "note": "A closed form in the alcohol by volume of the combined pre-dilution liquid, expressed as a fraction from 0 to 1. At the 27% ABV of an equal-parts spirit-and-aperitivo build it returns 0.397, which is 28% of the finished drink — the same figure other sources report as 'about a quarter' when they measure against the glass rather than the pour."
+    },
+    "shaken": {
+      "label": "Shaken with ice",
+      "model": "fixed",
+      "fraction": 0.5,
+      "estimated": true,
+      "source": {
+        "title": "Liquid Intelligence: The Art and Science of the Perfect Cocktail",
+        "author": "Dave Arnold",
+        "publisher": "W. W. Norton & Company",
+        "year": 2014
+      },
+      "note": "No closed form comparable to the stirred one has been published for shaking, so this is a stated figure rather than a model. Shaking is far more violent than stirring and takes on correspondingly more water at the same starting strength, and the published band for a standard shake runs from half to three-fifths of the poured volume. The low end of that band is used here."
+    },
+    "shaken-long": {
+      "label": "Shaken long — egg, cream or a dry shake first",
+      "model": "fixed",
+      "fraction": 0.55,
+      "estimated": true,
+      "source": {
+        "title": "Liquid Intelligence: The Art and Science of the Perfect Cocktail",
+        "author": "Dave Arnold",
+        "publisher": "W. W. Norton & Company",
+        "year": 2014
+      },
+      "note": "A drink shaken to emulsify runs longer than one shaken only to chill, and takes on more water for it. The upper end of the published shaken band."
+    },
+    "built-over-ice": {
+      "label": "Built over ice in the glass",
+      "model": "fixed",
+      "fraction": 0.25,
+      "estimated": true,
+      "risesOverTime": true,
+      "source": {
+        "title": "Liquid Intelligence: The Art and Science of the Perfect Cocktail",
+        "author": "Dave Arnold",
+        "publisher": "W. W. Norton & Company",
+        "year": 2014
+      },
+      "note": "A built drink is never stirred to equilibrium, so it starts less diluted than a stirred one and keeps diluting in the hand. This figure is the drink as served; a highball finished over twenty minutes ends up well past it."
+    },
+    "blended-with-ice": {
+      "label": "Blended with ice",
+      "model": "authored-ice",
+      "estimated": false,
+      "source": {
+        "title": "Liquid Intelligence: The Art and Science of the Perfect Cocktail",
+        "author": "Dave Arnold",
+        "publisher": "W. W. Norton & Company",
+        "year": 2014
+      },
+      "note": "The dilution model does not apply. All of the ice goes into the glass, so it is an authored ingredient line with a mass, not a percentage — and the figure is then measured rather than modelled."
+    },
+    "none": {
+      "label": "No ice",
+      "model": "none",
+      "fraction": 0,
+      "estimated": false,
+      "source": {
+        "title": "eXir editorial",
+        "note": "Not an external claim: a drink that never meets ice gains no water."
+      },
+      "note": "Hot drinks, brewed drinks and anything poured from a batch at service. Any water in the drink is an authored ingredient line, so the figure is stated rather than modelled and carries no estimate marker."
+    }
+  }
+}

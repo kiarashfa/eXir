@@ -1,0 +1,7 @@
+{
+  "id": "rocks",
+  "name": "Rocks / Old Fashioned",
+  "capacityMl": 300,
+  "shapeFamily": "tumbler",
+  "iceDisplacementMl": { "cubed": 90, "block": 65, "none": 0 }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "rye",
+  "name": "Rye whiskey",
+  "kind": "ingredient",
+  "category": "rye",
+  "forms": [
+    { "id": "standard", "abvPercent": 45, "densityGPerMl": 0.93, "densitySource": "measured",
+      "sugarGPer100": 0, "acidPercent": 0, "animalOrigin": "none",
+      "allergenTags": ["gluten"], "containsGluten": true }
+  ]
+}

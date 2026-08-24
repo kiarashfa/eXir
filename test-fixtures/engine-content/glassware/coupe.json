@@ -1,0 +1,7 @@
+{
+  "id": "coupe",
+  "name": "Coupe",
+  "capacityMl": 180,
+  "shapeFamily": "stemmed",
+  "iceDisplacementMl": { "none": 0 }
+}

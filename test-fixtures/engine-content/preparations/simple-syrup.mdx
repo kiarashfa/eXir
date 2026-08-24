@@ -1,0 +1,49 @@
+---
+id: simple-syrup
+name: Simple syrup
+kind: preparation
+category: sweetener
+purchasable: true
+purchaseNote: Widely sold, though it is sugar and water and keeps two weeks.
+yieldMl: 400
+shelfLife:
+  days: 14
+  storage: refrigerated, sealed
+forms:
+  - id: standard
+    abvPercent: 0
+    densityGPerMl: 1.26
+    densitySource: measured
+    sugarGPer100: 62
+    acidPercent: 0
+    nutritionPer100g:
+      kcal: 248
+      carbohydrateG: 62
+      proteinG: 0
+      fatG: 0
+    animalOrigin: none
+    allergenTags: []
+ingredients:
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 250
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 250
+    unit: ml
+steps:
+  - { id: dissolve, durationSec: 180, type: active, phase: make }
+  - { id: cool, durationSec: 1800, type: passive, phase: rest }
+---
+
+<Step id="dissolve">
+  Warm the <Qty ref="water"/> and stir in the <Qty ref="sugar"/> until the
+  liquid runs completely clear.
+</Step>
+
+<Step id="cool">
+  Cool to room temperature before bottling. Keeps two weeks refrigerated.
+</Step>

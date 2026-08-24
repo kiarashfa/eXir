@@ -1,0 +1,47 @@
+---
+id: classic
+label: Classic
+name: Brewed pour-over
+defaultDrinks: 1
+method: pour-over
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: Coffee is brewed to order; a batch held warm is a different and worse drink.
+zeroProof: true
+brew:
+  method: pour-over
+  doseG: 22
+  waterMl: 360
+  waterTempC: 94
+  grind: medium-fine
+  contactSec: 180
+  yieldMl: 320
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 22
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 360
+    unit: ml
+steps:
+  - { id: bloom, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 150, type: active, phase: make }
+---
+
+<Step id="bloom">
+  Wet the <Qty ref="coffee"/> with roughly twice its weight of the
+  <Qty ref="water"/> at <Temp c={94}/> and leave it to bloom for
+  <Dur step="bloom"/>.
+</Step>
+
+<Step id="pour">
+  Pour the rest in three additions over <Dur step="pour"/>, keeping the bed
+  level. The ratio matters more than the pattern.
+</Step>

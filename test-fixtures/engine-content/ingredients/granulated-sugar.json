@@ -1,0 +1,25 @@
+{
+  "id": "granulated-sugar",
+  "name": "Granulated sugar",
+  "kind": "ingredient",
+  "category": "sweetener",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.587,
+      "densitySource": "estimated",
+      "sugarGPer100": 100,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 387,
+        "carbohydrateG": 100,
+        "proteinG": 0,
+        "fatG": 0
+      },
+      "animalOrigin": "none",
+      "allergenTags": []
+    }
+  ]
+}

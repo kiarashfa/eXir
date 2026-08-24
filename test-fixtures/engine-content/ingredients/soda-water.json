@@ -1,0 +1,11 @@
+{
+  "id": "soda-water",
+  "name": "Soda water",
+  "kind": "ingredient",
+  "category": "mixer",
+  "pantryStaple": true,
+  "forms": [
+    { "id": "standard", "abvPercent": 0, "densityGPerMl": 1, "densitySource": "measured",
+      "sugarGPer100": 0, "acidPercent": 0, "animalOrigin": "none", "allergenTags": [] }
+  ]
+}

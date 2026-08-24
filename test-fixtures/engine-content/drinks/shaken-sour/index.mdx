@@ -1,0 +1,55 @@
+---
+id: classic
+label: Classic
+name: Shaken sour
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken-long
+glasswareRef: coupe
+servedOverIce: false
+bitterness: none
+batchable: partial
+batchNote: The spirit, juice and syrup batch; the egg white has to go in at service or it will not foam.
+ingredients:
+  - id: rum
+    ingredientRef: white-rum
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+    portions:
+      - { id: lime-shake, amount: 20 }
+      - { id: lime-rim, amount: 2.5, note: for the rim }
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: white
+    ingredientRef: egg-white
+    formRef: fresh
+    amount: 15
+    unit: ml
+steps:
+  - { id: rim, durationSec: 20, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 27, type: active, phase: make }
+---
+
+<Step id="rim">
+  Wipe the rim of a chilled coupe with the <Qty ref="lime-rim"/>.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="rum"/>, the <Qty ref="lime-shake"/>, the
+  <Qty ref="syrup"/> and the <Qty ref="white"/> in a shaker.
+</Step>
+
+<Step id="shake">
+  Shake without ice, then again with it, for <Dur step="shake"/> in total.
+  Double strain into the coupe.
+</Step>

@@ -1,0 +1,12 @@
+{
+  "id": "gin",
+  "name": "London dry gin",
+  "kind": "ingredient",
+  "category": "gin",
+  "pantryStaple": false,
+  "forms": [
+    { "id": "standard", "label": "Standard", "abvPercent": 40, "densityGPerMl": 0.94,
+      "densitySource": "measured", "sugarGPer100": 0, "acidPercent": 0,
+      "animalOrigin": "none", "allergenTags": [], "containsCaffeine": false }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "note": "Published brewing standards, carried so a drink's own ratio can be shown against one. eXir computes every ratio itself; these are the reference points it is compared to, never a substitute for the calculation.",
+  "standards": {
+    "sca-golden-cup": {
+      "label": "SCA Golden Cup",
+      "appliesTo": ["pour-over", "immersion", "moka"],
+      "gPerLitre": 55,
+      "tolerancePercent": 10,
+      "ratio": 18.2,
+      "waterTempC": 93,
+      "waterTempToleranceC": 3,
+      "targetTdsPercent": [1.15, 1.35],
+      "targetExtractionYieldPercent": [18, 22],
+      "source": {
+        "title": "Golden Cup Standard",
+        "publisher": "Specialty Coffee Association",
+        "url": "https://sca.coffee/"
+      },
+      "note": "55 g of coffee per litre of water, plus or minus 10%, brewed at 93 °C plus or minus 3. Reaching the stated 18–22% extraction yield requires a measured total dissolved solids figure; without one, a ratio can be compared to the standard but an extraction yield cannot be claimed."
+    }
+  },
+  "extractionYield": {
+    "formula": "extractionYieldPercent = (tdsPercent * beverageMassG) / doseG",
+    "note": "Computable only where someone has measured the total dissolved solids of the finished cup with a refractometer. Nothing on a bag of coffee supplies it, and estimating it from the method would be inventing the one figure the calculation exists to establish. Where no measurement is authored, eXir shows the ratio and the retention and says nothing about extraction."
+  }
+}

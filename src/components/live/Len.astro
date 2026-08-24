@@ -1,0 +1,13 @@
+---
+import { lenHtml } from '../../lib/render/live-values.ts';
+import type { UnitSystem } from '../../lib/math/types.ts';
+
+interface Props {
+  cm: number;
+  system: UnitSystem;
+}
+
+const { cm, system } = Astro.props;
+---
+
+<Fragment set:html={lenHtml(cm, system)} />

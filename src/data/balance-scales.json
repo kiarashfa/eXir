@@ -1,0 +1,39 @@
+{
+  "note": "Fixed site-wide so that two drinks can be compared. A bar is never scaled to its own drink — a scale that moves per page makes every drink look balanced and tells the reader nothing. Values above a ceiling clamp to a full bar rather than extending it.",
+  "emptyFillPercent": 2,
+  "emptyFillNote": "A bar reading zero still draws a sliver, so an absent value is legible as absent rather than as a missing element.",
+  "scales": {
+    "strong": {
+      "label": "Strong",
+      "reads": "finalAbvPercent",
+      "unit": "% ABV",
+      "max": 30,
+      "computed": true,
+      "note": "A finished drink above 30% ABV is close to undiluted spirit; the integrity checks warn above 45%."
+    },
+    "sweet": {
+      "label": "Sweet",
+      "reads": "sugarGPerL",
+      "unit": "g/L",
+      "max": 200,
+      "computed": true,
+      "note": "200 g/L is liqueur territory. A cocktail usually sits between 40 and 120."
+    },
+    "sour": {
+      "label": "Sour",
+      "reads": "acidPercentFinal",
+      "unit": "%",
+      "max": 1.5,
+      "computed": true,
+      "note": "A citrus-forward sour lands near 1.0–1.3% titratable acidity in the finished drink."
+    },
+    "bitter": {
+      "label": "Bitter",
+      "reads": "bitterness",
+      "unit": "",
+      "computed": false,
+      "levels": { "none": 0.02, "low": 0.3, "medium": 0.55, "high": 0.81 },
+      "note": "Authored, not computed. There is no bitterness figure on any bottle and no measurable unit for it in the data, so this is an editorial assessment and must be rendered so that it cannot be mistaken for the three computed bars."
+    }
+  }
+}

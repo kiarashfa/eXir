@@ -1,0 +1,31 @@
+{
+  "id": "mint",
+  "name": "Fresh mint",
+  "kind": "ingredient",
+  "category": "botanical",
+  "forms": [
+    {
+      "id": "leaves",
+      "label": "Leaves",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 44,
+        "carbohydrateG": 8.4,
+        "proteinG": 3.3,
+        "fatG": 0.7
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "countUnit": {
+        "singular": "sprig",
+        "plural": "sprigs",
+        "g": 2,
+        "snap": "whole"
+      }
+    }
+  ]
+}

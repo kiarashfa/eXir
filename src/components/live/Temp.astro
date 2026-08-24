@@ -1,0 +1,15 @@
+---
+import { tempHtml } from '../../lib/render/live-values.ts';
+import type { UnitSystem } from '../../lib/math/types.ts';
+
+interface Props {
+  c: number;
+  system: UnitSystem;
+  /** Coarse for a kettle, fine for a brew. Brewing is the common case. */
+  precision?: 'coarse' | 'fine';
+}
+
+const { c, system, precision = 'fine' } = Astro.props;
+---
+
+<Fragment set:html={tempHtml(c, system, precision)} />

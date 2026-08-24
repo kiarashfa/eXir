@@ -1,0 +1,48 @@
+---
+id: classic
+label: Classic
+name: Stirred reference
+defaultDrinks: 1
+method: stirred
+dilutionClass: stirred
+glasswareRef: rocks
+iceStyle: block
+servedOverIce: true
+bitterness: high
+batchable: full
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: campari
+    ingredientRef: campari
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: vermouth
+    ingredientRef: sweet-vermouth
+    formRef: standard
+    amount: 30
+    unit: ml
+steps:
+  - { id: chill, durationSec: 30, type: active, phase: prep }
+  - { id: combine, durationSec: 20, type: active, phase: make }
+  - { id: stir, durationSec: 25, type: active, phase: make }
+---
+
+<Step id="chill">
+  Chill a rocks glass and drop in a single large cube. One large piece melts
+  slower than the same mass in small ones.
+</Step>
+
+<Step id="combine">
+  Combine the <Qty ref="gin"/>, <Qty ref="campari"/> and <Qty ref="vermouth"/>
+  in a mixing glass filled with cubed ice.
+</Step>
+
+<Step id="stir">
+  Stir for <Dur step="stir"/>, then strain over the waiting cube and express an
+  orange twist across the surface.
+</Step>

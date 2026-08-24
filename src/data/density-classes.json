@@ -1,0 +1,59 @@
+{
+  "note": "Used only where no direct density source exists for a Form. Every figure interpolated from a class is tagged densitySource: estimated, and every display that descends from one carries the estimate marker. A measured density from a real dataset record always wins.",
+  "classes": {
+    "spirit-40": {
+      "label": "Distilled spirit near 40% ABV",
+      "gPerMl": 0.95,
+      "reference": "Ethanol-water solution at 40% ABV, 20 °C",
+      "note": "Alcohol is lighter than water, so a spirit sits well below 1.0."
+    },
+    "spirit-high": {
+      "label": "Overproof spirit, 50% ABV and above",
+      "gPerMl": 0.93,
+      "reference": "Ethanol-water solution at 55% ABV, 20 °C"
+    },
+    "liqueur-sweet": {
+      "label": "Sweetened liqueur",
+      "gPerMl": 1.09,
+      "reference": "Sugar-dominant liqueur near 25% ABV",
+      "note": "Sugar outweighs the alcohol, so these sit above water despite the spirit content."
+    },
+    "fortified-wine": {
+      "label": "Vermouth, sherry, port",
+      "gPerMl": 1.03,
+      "reference": "Sweet vermouth near 16% ABV"
+    },
+    "wine": {
+      "label": "Still wine",
+      "gPerMl": 0.99,
+      "reference": "Dry table wine near 12% ABV"
+    },
+    "juice-citrus": {
+      "label": "Fresh citrus juice",
+      "gPerMl": 1.03,
+      "reference": "Lemon and lime juice, raw"
+    },
+    "juice-sweet": {
+      "label": "Sweet fruit juice",
+      "gPerMl": 1.05,
+      "reference": "Orange and pineapple juice"
+    },
+    "syrup-like": {
+      "label": "Sugar syrup",
+      "gPerMl": 1.26,
+      "reference": "1:1 simple syrup by weight",
+      "note": "A 2:1 rich syrup runs higher still and should carry its own figure rather than this class."
+    },
+    "dairy-whole": {
+      "label": "Whole milk and cream",
+      "gPerMl": 1.03,
+      "reference": "Whole cow's milk, 3.5% fat"
+    },
+    "water-like": {
+      "label": "Water, soda, brewed tea and coffee",
+      "gPerMl": 1.0,
+      "reference": "Water at 20 °C",
+      "note": "Brewed coffee and tea are close enough to water that the difference never reaches a displayed figure."
+    }
+  }
+}
