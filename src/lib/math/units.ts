@@ -203,6 +203,30 @@ export function formatDuration(totalSec: number): string {
   return h > 0 ? `${d}d ${h}h` : `${d}d`;
 }
 
+export const G_PER_LB = 453.59237;
+
+/**
+ * A weight somebody buys rather than measures — ice, sugar for a batch of syrup.
+ *
+ * Its own formatter because the two that already exist both answer a different
+ * question. `formatQuantity` snaps to the eighths of an ounce a jigger has,
+ * which turns four kilos of ice into a hundred and forty-eight of them; and
+ * `formatMeasure` states four thousand two hundred grams, which is the same
+ * fact in a form no shop sells. Above a kilogram, and above a pound, the larger
+ * unit is the one on the bag.
+ */
+export function formatBulkWeight(grams: number, system: UnitSystem): string {
+  if (system === 'metric') {
+    return grams >= 1000
+      ? `${groupThousands(roundBase(grams / 1000))} kg`
+      : `${groupThousands(Math.round(grams))} g`;
+  }
+  const pounds = grams / G_PER_LB;
+  return pounds >= 1
+    ? `${groupThousands(roundBase(pounds))} lb`
+    : `${roundBase(gToOz(grams))} oz`;
+}
+
 /** Ratios are unitless and never converted. `1 : 16.4`, the field's convention. */
 export function formatRatio(parts: number): string {
   const rounded = parts >= 100 ? Math.round(parts) : Math.round(parts * 10) / 10;

@@ -5,9 +5,10 @@
  * sitemap, and is deliberately NOT disallowed in robots.txt — a blocked path is
  * never fetched, so the tag would never be read.
  *
- * The empty state is the design rather than an afterthought: it is what a first
- * visit looks like, which is the most common time this page is seen.
+ * `client:only` for the same reason: SSR-ing an empty plan is a layout shift
+ * for markup nobody reads.
  */
+import PlanPage from '../components/plan/PlanPage.svelte';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -17,14 +18,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p class="lede">What to make, how much of it, and what to buy — worked out from the drinks rather than guessed.</p>
   </section>
 
+  <PlanPage client:only="svelte" />
+
   <div class="wrap prose-page">
-    <p class="callout">
-      The planner and the shopping list are not built yet. When they are, this page will hold an occasion, work out the totals in base units, expand any preparation into what it is made of, and tell you the one thing hosts get most wrong: twelve drinks made to order is twelve stirs, and twelve batched is one.
+    <p>
+      Nothing on this page leaves your browser. There are no accounts here and nothing to sign in
+      to, which also means what you save lives in one browser on one device and the site cannot
+      move it for you.
     </p>
     <p>
-      Nothing on this page will ever leave your browser. There are no accounts here and nothing
-      to sign in to, which also means what you save lives in one browser on one device and the
-      site cannot move it for you.
+      A plan holds references, never figures. Every quantity above is recomputed from the drinks as
+      they are today, so a plan saved a month ago quietly gains every correction made since. The
+      link you can copy carries the same references and nothing else — not what you already have at
+      home, and not the list itself.
     </p>
   </div>
 </BaseLayout>

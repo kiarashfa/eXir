@@ -15,7 +15,10 @@ import path from 'node:path';
 import { loadContent } from './disk.ts';
 import { resolveSite, type ResolvedDrink, type ResolvedSite, type ResolvedVersion } from './resolve.ts';
 import { formatDuration } from '../math/units.ts';
-import type { Ingredient } from '../math/types.ts';
+import type { CatalogEntry } from '../catalog.ts';
+import type { Allergen, Diet, Ingredient } from '../math/types.ts';
+
+export type { CatalogEntry };
 
 let cached: ResolvedSite | null = null;
 
@@ -42,35 +45,6 @@ export const defaultVersion = (drink: ResolvedDrink): ResolvedVersion =>
  * non-default version gets no row of its own. Everything here is either
  * authored once or computed by the engine; nothing is restated.
  */
-export interface CatalogEntry {
-  slug: string;
-  title: string;
-  style: string;
-  version: string;
-  category: string[];
-  origin: string[];
-  method: string[];
-  occasion: string[];
-  baseSpirits: string[];
-  strength: string;
-  servingTemp: string;
-  diets: string[];
-  allergens: string[];
-  abvPercent: number;
-  kcal: number;
-  sugarGPerL: number;
-  totalSec: number;
-  totalTime: string;
-  difficulty: string;
-  steps: number;
-  glass: string | null;
-  family: string | null;
-  preparations: number;
-  ingredients: string[];
-  summary: string;
-  image: { card: string; thumb: string; alt: string } | null;
-}
-
 type Manifest = Record<
   string,
   { alt: string; renditions: Record<string, { file: string }> }
@@ -89,6 +63,22 @@ export function catalogEntry(
   const v = defaultVersion(drink);
   const media = manifest[`drink:${drink.slug}`];
 
+  // The reverse search matches against ingredient IDENTITY, so two Forms of one
+  // ingredient are one thing to own. The checklist keeps them apart because
+  // their composition differs; a shelf does not.
+  const lineIds = [...new Set(v.lines.map((l) => l.line.ingredientRef))];
+
+  // Flattened onto the row so a match never has to fetch a detail file per
+  // drink. At sixteen hundred drinks that would be sixteen hundred requests to
+  // answer one question.
+  const substitutes: Record<string, string[]> = {};
+  for (const substitution of v.substitutions) {
+    const line = v.lines.find((l) => l.line.id === substitution.lineRef);
+    if (!line) continue;
+    const key = line.line.ingredientRef;
+    substitutes[key] = [...new Set([...(substitutes[key] ?? []), substitution.substitute])];
+  }
+
   return {
     slug: drink.slug,
     title: drink.name,
@@ -101,8 +91,8 @@ export function catalogEntry(
     baseSpirits: v.spec.facets.baseSpirits.map((s) => s.spirit).filter((s) => s !== 'none'),
     strength: v.spec.facets.strength,
     servingTemp: v.spec.facets.servingTemp,
-    diets: v.spec.facets.diet.diets,
-    allergens: v.spec.facets.diet.allergens,
+    diets: v.spec.facets.diet.diets as Diet[],
+    allergens: v.spec.facets.diet.allergens as Allergen[],
     abvPercent: Number(v.spec.alcohol.finalAbvPercent.toFixed(1)),
     kcal: Math.round(v.spec.nutrition.kcal),
     sugarGPerL: Math.round(v.spec.sugarGPerL),
@@ -117,7 +107,11 @@ export function catalogEntry(
     preparations: v.lines.filter(
       (l) => ingredients.get(l.line.ingredientRef)?.kind === 'preparation',
     ).length,
-    ingredients: v.lines.map((l) => l.line.ingredientRef),
+    ingredients: lineIds,
+    garnishes: [
+      ...new Set(v.lines.filter((l) => l.line.garnish === true).map((l) => l.line.ingredientRef)),
+    ],
+    substitutes,
     summary: String(drink.about?.frontmatter['summary'] ?? v.frontmatter['subtitle'] ?? ''),
     image: media?.renditions['card']
       ? {

@@ -331,6 +331,12 @@ const factRows = built.map(({ v, spec }) => ({
               <span class="control-reason" data-units-note hidden>
                 US measures are rounded to the nearest ⅛ oz, as a jigger is. Metric stays exact.
               </span>
+
+              {/* The way into the Plan. It carries the count and the mode that
+                  are set here rather than opening the planner on a blank row,
+                  because the reader has already answered both questions. */}
+              <button class="btn-wide" type="button" data-add-to-plan>Add to the plan</button>
+              <span class="control-reason" data-plan-added hidden></span>
             </div>
         </div>
 

@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {
   ML_PER_FL_OZ,
   celsiusToFahrenheit,
+  formatBulkWeight,
   formatCount,
   formatDuration,
   formatEighths,
@@ -145,4 +146,13 @@ test('a count never rounds down to nothing', () => {
 test('ratios are unitless and use the field convention', () => {
   assert.equal(formatRatio(360 / 22), '1 : 16.4');
   assert.equal(formatRatio(16), '1 : 16');
+});
+
+test('a bulk weight uses the unit the shop sells it in', () => {
+  // Not the eighths of an ounce a jigger has, and not four thousand grams.
+  assert.equal(formatBulkWeight(4200, 'metric'), '4.2 kg');
+  assert.equal(formatBulkWeight(840, 'metric'), '840 g');
+  assert.equal(formatBulkWeight(12000, 'metric'), '12 kg');
+  assert.equal(formatBulkWeight(4200, 'us'), '9.3 lb');
+  assert.equal(formatBulkWeight(200, 'us'), '7.1 oz');
 });

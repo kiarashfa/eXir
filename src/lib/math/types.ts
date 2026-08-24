@@ -173,6 +173,12 @@ export interface Ingredient {
   /** Feeds the base-spirit derivation and the My Bar grouping. */
   category?: string;
   proprietary?: boolean;
+  /**
+   * Where the product is made. Read by the occasion view's bottle estimate,
+   * because the standard retail bottle is 700 ml under the EU nominal
+   * quantities and 750 ml under the US standards of fill.
+   */
+  countryOfOrigin?: string;
   pantryStaple?: boolean;
   proseName?: string;
   forms: Form[];

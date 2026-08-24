@@ -1553,3 +1553,301 @@
   font-size: 13px;
   color: var(--muted);
 }
+
+/* ---------------------------------------------------------------------------
+   The client-side tools — My Bar and the Plan.
+
+   Deliberately built out of the drink page's own furniture: cards, control
+   rows, segmented controls, steppers, spec cells and the ingredient tick. These
+   are extensions of one system rather than a second visual language for the two
+   pages a reader reaches last.
+   --------------------------------------------------------------------------- */
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 32px;
+  align-items: start;
+  padding-bottom: 72px;
+}
+.tool-grid > .col-stack {
+  display: grid;
+  gap: 24px;
+}
+@media (max-width: 980px) {
+  .tool-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.empty-lede {
+  margin: 0 0 16px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.list-head {
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 26px 0 12px;
+}
+.card > .list-head:first-of-type {
+  margin-top: 0;
+}
+
+/* A button that reads as text. Used where the action is secondary to the row it
+   sits in — removing one bottle, clearing a shelf — and a second bordered chip
+   would compete with the primary control beside it. */
+.link-button {
+  font: inherit;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+  text-underline-offset: 3px;
+}
+.link-button:hover,
+.link-button:focus-visible {
+  color: var(--accent-ink);
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* --- the shelf ------------------------------------------------------------ */
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+}
+.chip--held {
+  text-transform: none;
+  letter-spacing: 0.01em;
+  font-size: 12.5px;
+  color: var(--ink);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.chip--held span[aria-hidden] {
+  margin-left: 7px;
+  color: var(--muted);
+}
+
+.picker {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+/* Bounded rather than endless: the picker will eventually list four hundred
+   ingredients, and a page that scrolls past all of them to reach the results
+   has buried the answer under the question. */
+.picker-body {
+  max-height: 420px;
+  overflow-y: auto;
+  margin-top: 14px;
+}
+.picker-group {
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 18px 0 8px;
+  position: relative;
+}
+.picker-group:first-child {
+  margin-top: 0;
+}
+.picker-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- what you can make ---------------------------------------------------- */
+
+.match-list,
+.unlock-list,
+.plan-items,
+.prep-list,
+.shop-list,
+.host-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.match,
+.unlock,
+.plan-item,
+.prep {
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+}
+.match:last-child,
+.unlock:last-child,
+.plan-item:last-child,
+.prep:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.match-head,
+.unlock-head,
+.prep-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+}
+.match-title,
+.unlock-name,
+.plan-item-title,
+.prep-name {
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.match-title:hover,
+.unlock-name:hover,
+.plan-item-title:hover,
+.prep-name:hover {
+  color: var(--accent-ink);
+}
+
+.match-pct {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  color: var(--muted);
+}
+.match-pct.is-complete {
+  color: var(--botanical);
+}
+
+.match-meta,
+.match-missing,
+.match-sub,
+.match-also,
+.unlock-drinks,
+.prep-inputs {
+  margin: 5px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.match-meta .alc {
+  color: var(--bitter);
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+}
+.match-missing {
+  color: var(--ink-soft);
+}
+.match .chip,
+.unlock .chip {
+  margin-top: 10px;
+}
+
+.unlock-count {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.unlock-count b {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-ink);
+}
+
+/* --- the plan ------------------------------------------------------------- */
+
+.plan-item-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.plan-item-head .link-button {
+  margin-left: auto;
+  font-size: 12.5px;
+}
+.plan-item-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.shop-line {
+  align-items: flex-start;
+}
+.shop-qty {
+  display: inline-block;
+  min-width: 8ch;
+  margin-right: 10px;
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.shop-line a {
+  color: inherit;
+}
+/* A staple is listed for completeness and is not a task, so it carries no
+   checkbox and takes the indent the ticked rows have. */
+.shop-line--plain {
+  padding: 7px 0 7px 30px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.staples summary {
+  font-size: 13px;
+}
+.staple-toggle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.host-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--ink-soft);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+}
+.host-list li:last-child {
+  border-bottom: 0;
+}
+.host-list b {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  color: var(--ink);
+}
+.host-list .aside {
+  margin-left: auto;
+}
+.host-list a {
+  color: inherit;
+}

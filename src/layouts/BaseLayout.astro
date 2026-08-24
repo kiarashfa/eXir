@@ -89,6 +89,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <script>
       import { initChrome } from '../lib/client/chrome.ts';
       import { initSearch } from '../lib/client/search.ts';
+      import { initUnits } from '../lib/client/units.ts';
+      // Units first: the drink page's own script subscribes to the same atom and
+      // presses whichever button matches whatever this restores.
+      initUnits();
       initChrome();
       initSearch();
     </script>

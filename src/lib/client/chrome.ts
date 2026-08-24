@@ -10,6 +10,8 @@
  * throwing on the way in.
  */
 
+import { barStore } from '../bar/inventory.ts';
+
 const THEME_KEY = 'exir.theme.v1';
 const GLASS_KEY = 'exir.glass.v1';
 
@@ -82,4 +84,38 @@ export function initChrome(): void {
       write(GLASS_KEY, next ? 'on' : 'off');
     });
   }
+
+  paintBarCount();
+}
+
+/**
+ * The My Bar count in the navigation.
+ *
+ * Its space is reserved in CSS for two digits before this ever runs, because a
+ * nav item that grows on hydration is a layout shift on every page of the site
+ * — and this is the one piece of reader state that appears in the chrome.
+ *
+ * It subscribes rather than reading once, so adding a bottle in one tab updates
+ * the count in the others, and adding one on the My Bar page updates the header
+ * above it without a reload.
+ */
+function paintBarCount(): void {
+  const targets = document.querySelectorAll<HTMLElement>('[data-bar-count]');
+  if (!targets.length) return;
+
+  const paint = (count: number): void => {
+    for (const target of targets) {
+      target.textContent = count > 0 ? String(count) : '';
+      // Announced on the link itself: a bare numeral read out after a nav label
+      // is not a sentence.
+      const link = target.closest('a');
+      if (link) {
+        if (count > 0) link.setAttribute('aria-label', `My Bar, ${count} on the shelf`);
+        else link.removeAttribute('aria-label');
+      }
+    }
+  };
+
+  paint(barStore.load().value.have.length);
+  barStore.subscribe((value) => paint(value.have.length));
 }

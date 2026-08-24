@@ -14,6 +14,8 @@
 
 import { drinks, service, setDrinks, unitSystem } from '../stores/display.ts';
 import { applyDisplayState } from './live-values.ts';
+import { addItem, planStore } from '../plan/store.ts';
+import { base } from './data.ts';
 import type { ServiceMode, UnitSystem } from '../math/types.ts';
 
 const MIN_BATCH_DRINKS = 2;
@@ -158,6 +160,32 @@ export function initDrink(): void {
     const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button');
     if (!button || button.disabled) return;
     pressOne(document.querySelector('[data-ice]'), button.dataset['value'] ?? '');
+  });
+
+  // --- into the plan ---------------------------------------------------------
+  // Carries the count and the mode that are already set on this page. Sending a
+  // reader to the planner to restate two things they have just chosen is how a
+  // feature ends up unused.
+  document.querySelector('[data-add-to-plan]')?.addEventListener('click', () => {
+    const version = activeVersion()?.dataset['version'] ?? root.dataset['drink'] ?? '';
+    const slug = location.pathname.replace(/\/$/, '').split('/').pop() ?? '';
+    if (!slug || !version) return;
+
+    const saved = planStore.save(
+      addItem(planStore.load().value, {
+        drink: slug,
+        version,
+        drinks: drinks.get(),
+        service: service.get(),
+      }),
+    );
+
+    const note = document.querySelector<HTMLElement>('[data-plan-added]');
+    if (!note) return;
+    note.innerHTML = saved
+      ? `Added. <a href="${base()}/plan/">Open the plan</a>.`
+      : 'Added for this visit — this browser is not letting the site store anything.';
+    note.hidden = false;
   });
 
   // --- step completion -------------------------------------------------------

@@ -5,9 +5,10 @@
  * sitemap, and is deliberately NOT disallowed in robots.txt — a blocked path is
  * never fetched, so the tag would never be read.
  *
- * The empty state is the design rather than an afterthought: it is what a first
- * visit looks like, which is the most common time this page is seen.
+ * `client:only` for the same reason: rendering an empty shelf on the server and
+ * replacing it a moment later is a layout shift for markup nobody reads.
  */
+import MyBar from '../components/bar/MyBar.svelte';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -17,14 +18,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p class="lede">What you can make from what you already have, and which single bottle would unlock the most.</p>
   </section>
 
+  <MyBar client:only="svelte" />
+
   <div class="wrap prose-page">
-    <p class="callout">
-      The inventory and the reverse search are not built yet. When they are, this page will match your shelf against every drink on the site, rank the results by how close each is, and name the one bottle that would complete the most of them.
+    <p>
+      Nothing on this page leaves your browser. There are no accounts here and nothing to sign in
+      to, which also means what you save lives in one browser on one device and the site cannot
+      move it for you.
     </p>
     <p>
-      Nothing on this page will ever leave your browser. There are no accounts here and nothing
-      to sign in to, which also means what you save lives in one browser on one device and the
-      site cannot move it for you.
+      Pantry staples — sugar, water, salt, a lemon — are assumed rather than matched, so they are
+      not on the list above and never count against a drink. Garnishes never block a match either:
+      nobody is stopped from making a Negroni by having no orange.
     </p>
   </div>
 </BaseLayout>

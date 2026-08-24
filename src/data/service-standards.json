@@ -1,0 +1,40 @@
+{
+  "note": "The stated denominators behind the occasion view. Every figure a host is given is computed from something here, and the page shows which — a bottle count with no stated bottle size, or an ice figure with no stated allowance, is an invented number wearing a computed one's clothes.",
+  "bottle": {
+    "note": "Applied only to lines whose Form carries alcohol. Everything else — juice, syrup, sugar, a lemon — has no standard package, and inferring one would be exactly the packaging guess the shopping list refuses to make.",
+    "defaultMl": 700,
+    "defaultSource": {
+      "title": "Directive 2007/45/EC laying down rules on nominal quantities for prepacked products",
+      "publisher": "European Parliament and Council",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32007L0045",
+      "note": "Spirit drinks are prepacked in a fixed range of nominal quantities across the EU, of which 700 ml is the standard retail bottle."
+    },
+    "byCountry": {
+      "United States": 750
+    },
+    "countrySource": {
+      "title": "27 CFR 5.203 — Standards of fill for distilled spirits",
+      "publisher": "Alcohol and Tobacco Tax and Trade Bureau",
+      "url": "https://www.ecfr.gov/current/title-27/chapter-I/subchapter-A/part-5/subpart-I/section-5.203",
+      "note": "750 ml is the standard US retail bottle; the metric standards of fill differ from the EU list."
+    }
+  },
+  "ice": {
+    "note": "Three contributions, shown separately so the arithmetic is visible. The first is computed from the dilution model; the other two are stated allowances, and are labelled as such wherever they appear.",
+    "densityGPerMl": 0.917,
+    "densitySource": {
+      "title": "Density of ice Ih at 0 °C",
+      "publisher": "CRC Handbook of Chemistry and Physics",
+      "note": "Used to weigh a modelled ice volume. Serving ice is modelled as a volume in the glassware records; ice is bought by weight."
+    },
+    "mixingGPerDrink": 200,
+    "mixingNote": "A stated allowance, not a measurement. A shaker or mixing glass is charged with roughly this much cubed ice for one drink and the ice is discarded afterwards, so it is consumed whether or not it melts. Batched service uses none of it: the dilution is added as water instead, which is why batching roughly halves what a host has to buy.",
+    "meltAllowance": 0.5,
+    "meltNote": "A stated allowance for what melts in the cooler and on the bar before it reaches a drink, expressed as a share of everything above it."
+  },
+  "occasion": {
+    "note": "The default occasion. Both figures are the reader's to change; they exist so the page opens with something rather than with two empty fields.",
+    "guests": 6,
+    "drinksPerGuest": 2
+  }
+}
