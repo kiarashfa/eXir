@@ -205,28 +205,6 @@ export function initDrink(): void {
     });
   }
 
-  // --- image credit ----------------------------------------------------------
-  // Click, not hover: on a touch screen there is no hover, and a credit that
-  // only appears to a mouse is not an attribution.
-  for (const toggle of all<HTMLButtonElement>('[data-attribution-toggle]')) {
-    toggle.addEventListener('click', () => {
-      const open = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!open));
-    });
-  }
-  document.addEventListener('click', (event) => {
-    for (const toggle of all<HTMLButtonElement>('[data-attribution-toggle]')) {
-      if (toggle.parentElement?.contains(event.target as Node)) continue;
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-  document.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape') return;
-    for (const toggle of all<HTMLButtonElement>('[data-attribution-toggle]')) {
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-
   // --- the Recipe / About switch and the version strip -----------------------
   wireTabs('[data-panel-switch]', '[data-panel]');
   wireTabs('[data-version-strip]', '[data-version]', () => {

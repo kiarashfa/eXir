@@ -137,7 +137,7 @@
     <!-- ---------------------------------------------------------------- -->
     <!-- The shelf                                                         -->
     <!-- ---------------------------------------------------------------- -->
-    <section class="card shelf" aria-labelledby="shelf-head">
+    <section class="card glass shelf" aria-labelledby="shelf-head">
       <h2 class="card-title" id="shelf-head">Your shelf</h2>
 
       {#if bar.have.length === 0}
@@ -217,7 +217,7 @@
     <!-- What you can make, and what one more bottle unlocks               -->
     <!-- ---------------------------------------------------------------- -->
     <div class="col-stack">
-      <section class="card" aria-labelledby="make-head">
+      <section class="card glass" aria-labelledby="make-head">
         <h2 class="card-title" id="make-head">What you can make now</h2>
 
         {#if reachable.length === 0}
@@ -276,7 +276,7 @@
         {/if}
       </section>
 
-      <section class="card" aria-labelledby="unlock-head">
+      <section class="card glass" aria-labelledby="unlock-head">
         <h2 class="card-title" id="unlock-head">What one more bottle unlocks</h2>
 
         {#if unlocks.length === 0}

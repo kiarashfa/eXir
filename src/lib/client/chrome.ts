@@ -87,6 +87,102 @@ export function initChrome(): void {
 
   paintBarCount();
   wirePrint();
+  wireImageCredits();
+  wireShare();
+}
+
+/**
+ * The share block, on every page that carries one.
+ *
+ * Plain DOM rather than an island: the destinations are ordinary links that
+ * work with no script at all, and the only things needing one are the collapse,
+ * the clipboard and the device's own share sheet. Shipping a framework runtime
+ * to every content page to open a row of links would be the most expensive
+ * thing on those pages.
+ */
+function wireShare(): void {
+  const block = document.querySelector<HTMLElement>('[data-share]');
+  if (!block) return;
+
+  const toggle = block.querySelector<HTMLButtonElement>('[data-share-toggle]');
+  const body = block.querySelector<HTMLElement>('[data-share-body]');
+  const status = block.querySelector<HTMLElement>('[data-share-status]');
+  const url = block.dataset['shareUrl'] ?? location.href;
+  const title = block.dataset['shareTitle'] ?? document.title;
+  const text = block.dataset['shareText'] ?? title;
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    if (body) body.hidden = open;
+  });
+
+  const say = (message: string): void => {
+    if (!status) return;
+    status.textContent = message;
+    setTimeout(() => (status.textContent = ''), 3200);
+  };
+
+  const native = block.querySelector<HTMLButtonElement>('[data-share-native]');
+  // Revealed rather than rendered: there is no media query for "this device has
+  // a share sheet", so the button ships hidden and the script shows it.
+  if (native && typeof navigator.share === 'function') {
+    native.hidden = false;
+    native.addEventListener('click', () => {
+      // A cancelled share is the ordinary case and is not an error.
+      void navigator.share({ title, text, url }).catch(() => {});
+    });
+  }
+
+  block.querySelector('[data-share-copy]')?.addEventListener('click', () => {
+    navigator.clipboard
+      ?.writeText(url)
+      .then(() => say('Link copied.'))
+      .catch(() => say('This browser would not let the page copy for you.'));
+  });
+}
+
+/**
+ * The "i" on a photograph, on EVERY page that has one.
+ *
+ * This lived in the drink page's own script, which is why the credit on an
+ * ingredient or a glassware page did nothing at all when the first non-drink
+ * images were adopted — the markup was there and nothing was listening. A
+ * credit that cannot be opened is not an attribution, and the licences here
+ * oblige one, so it belongs with the chrome rather than with one template.
+ *
+ * Click rather than hover: a touch screen has no hover, and a credit only a
+ * mouse can reach is not an attribution either.
+ */
+function wireImageCredits(): void {
+  const toggles = [...document.querySelectorAll<HTMLButtonElement>('[data-attribution-toggle]')];
+  if (!toggles.length) return;
+
+  const closeAll = (): void => {
+    for (const toggle of toggles) toggle.setAttribute('aria-expanded', 'false');
+  };
+
+  for (const toggle of toggles) {
+    toggle.addEventListener('click', (event) => {
+      // Without this the document listener below sees the same click and shuts
+      // the popover in the same tick it was opened.
+      event.stopPropagation();
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      closeAll();
+      toggle.setAttribute('aria-expanded', String(!open));
+    });
+  }
+
+  document.addEventListener('click', (event) => {
+    for (const toggle of toggles) {
+      if (toggle.parentElement?.contains(event.target as Node)) return;
+    }
+    closeAll();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeAll();
+  });
 }
 
 /**

@@ -242,7 +242,7 @@
     <!-- The occasion and the drinks in it                                 -->
     <!-- ---------------------------------------------------------------- -->
     <div class="col-stack">
-      <section class="card" aria-labelledby="occ-head">
+      <section class="card glass" aria-labelledby="occ-head">
         <h2 class="card-title" id="occ-head">The occasion</h2>
 
         <div class="control-row">
@@ -318,7 +318,7 @@
         </div>
       </section>
 
-      <section class="card" aria-labelledby="items-head">
+      <section class="card glass" aria-labelledby="items-head">
         <h2 class="card-title" id="items-head">Drinks</h2>
 
         {#if resolvedPlan.items.length === 0}
@@ -416,7 +416,7 @@
     <!-- The shopping list                                                 -->
     <!-- ---------------------------------------------------------------- -->
     <div class="col-stack">
-      <section class="card" aria-labelledby="shop-head">
+      <section class="card glass" aria-labelledby="shop-head">
         <h2 class="card-title" id="shop-head">Shopping list</h2>
 
         {#if list.buy.length === 0 && list.staples.length === 0}
@@ -562,7 +562,7 @@
       <!-- What a host actually needs                                      -->
       <!-- -------------------------------------------------------------- -->
       {#if resolvedPlan.items.length}
-        <section class="card" aria-labelledby="host-head">
+        <section class="card glass" aria-labelledby="host-head">
           <h2 class="card-title" id="host-head">What you'll need on the day</h2>
 
           <h3 class="list-head">Time</h3>

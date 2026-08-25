@@ -43,6 +43,13 @@
   --control-edge: #707e90;
 
   /* brass — the spirit in the glass. Brand emphasis only, never a success state. */
+  /* The mark's own brass, identical in both themes and used for one thing: the
+     X in the wordmark, which sits beside a favicon painted in exactly this.
+     Deliberately NOT `--accent`, which the light theme darkens to carry text.
+     A logotype is exempt from the contrast floor precisely because it is a mark
+     rather than something to read, and the letters either side of it are
+     `--ink`, so the word is legible whatever the X does. */
+  --brand-mark: #e9a63f;
   --accent: #e9a63f;
   --accent-soft: rgba(233, 166, 63, 0.13);
   --accent-ink: #f7cb87;

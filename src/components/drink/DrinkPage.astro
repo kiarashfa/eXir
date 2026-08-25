@@ -16,7 +16,8 @@
  */
 import Qty from '../live/Qty.astro';
 import Measure from '../live/Measure.astro';
-import ImageCredit from '../ImageCredit.astro';
+import HeroFigure from '../HeroFigure.astro';
+import ShareBlock from '../ShareBlock.astro';
 import { formatDuration } from '../../lib/math/units.ts';
 import { formatAbv } from '../../lib/math/quantity.ts';
 import { proseName } from '../../lib/render/prose.ts';
@@ -78,6 +79,12 @@ const fm = primary.frontmatter;
  * been adopted, which is where the licence and the credit are recorded.
  */
 const media = (attributions as Record<string, ImageRecord>)[`drink:${slug}`];
+
+/** Absolute, because an intent has to have something to point at. */
+const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
+const shareImage = media?.renditions['card']
+  ? new URL(base + media.renditions['card'].file, Astro.site).href
+  : '';
 
 /**
  * The thumbnail beside each checklist line, and where it links.
@@ -229,18 +236,16 @@ const factRows = built.map(({ v, spec }) => ({
           ))}
         </div>
 
+        {/* Almost always the page's largest contentful paint. */}
         {hero && media && (
-          <figure class="hero-figure">
-            {/* Almost always the page's largest contentful paint. */}
-            <img
-              src={`${base}${hero.file}`}
-              alt={media.alt}
-              width={hero.width}
-              height={hero.height}
-              fetchpriority="high"
-            />
-            <ImageCredit attribution={media.attribution} alt={media.alt} />
-          </figure>
+          <HeroFigure
+            src={`${base}${hero.file}`}
+            alt={media.alt}
+            width={hero.width}
+            height={hero.height}
+            attribution={media.attribution}
+            priority
+          />
         )}
       </div>
     </div>
@@ -579,8 +584,7 @@ const factRows = built.map(({ v, spec }) => ({
                         <a
                           class="swatch-link"
                           href={`${base}/${r.ingredient.kind === 'preparation' ? 'preparations' : 'ingredients'}/${r.ingredient.id}/`}
-                          tabindex="-1"
-                          aria-hidden="true"
+                          aria-label={r.ingredient.name}
                         >
                           {thumbFor(r.ingredient) ? (
                             <img class="swatch" src={`${base}${thumbFor(r.ingredient)}`} alt="" width="96" height="96" loading="lazy" />
@@ -712,6 +716,16 @@ const factRows = built.map(({ v, spec }) => ({
           </div>
           </div>
         ))}
+
+        {/* Once, outside the version loop: a drink is one page whatever tab is
+            showing, so there is one address to share and one card for it. */}
+        <ShareBlock
+          title={name}
+          subtitle={subtitle ?? aboutSummary}
+          url={shareUrl}
+          image={shareImage}
+          noun="drink"
+        />
       </div>
 
       <div class="col-stack">

@@ -1,0 +1,46 @@
+---
+/**
+ * A photograph and the credit that belongs to it.
+ *
+ * One component for every page type that shows one — drink, ingredient,
+ * preparation, glassware — because the last two bugs here were both "this works
+ * on the drink page and nowhere else": the credit toggle was wired only in the
+ * drink page's script, and the popover was clipped by every figure smaller than
+ * a drink's hero. Both are the same failure, and the fix for both is that there
+ * is only one of these.
+ *
+ * The clipping is why the frame is a separate element inside the figure. The
+ * image scales on hover and must be cut to the rounded corners, so something
+ * has to carry `overflow: hidden` — but the credit popover is wider than a
+ * small figure and has to escape it. So the FRAME clips and the FIGURE does
+ * not, and the popover is a child of the figure rather than of the frame.
+ */
+import ImageCredit, { type ImageAttribution } from './ImageCredit.astro';
+
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  attribution: ImageAttribution;
+  /** Square for an ingredient or a glass; the hero's own 4:5 for a drink. */
+  square?: boolean;
+  /** Only the drink's hero is the page's largest contentful paint. */
+  priority?: boolean;
+}
+
+const { src, alt, width, height, attribution, square = false, priority = false } = Astro.props;
+---
+
+<figure class={square ? 'hero-figure hero-figure--square' : 'hero-figure'}>
+  <span class="figure-frame">
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      {...(priority ? { fetchpriority: 'high' as const } : { loading: 'lazy' as const })}
+    />
+  </span>
+  <ImageCredit attribution={attribution} alt={alt} />
+</figure>

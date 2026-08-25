@@ -5,7 +5,8 @@
  * it at all. The page shows what that check saw.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ImageCredit, { type ImageAttribution } from '../../components/ImageCredit.astro';
+import HeroFigure from '../../components/HeroFigure.astro';
+import type { ImageAttribution } from '../../components/ImageCredit.astro';
 import attributions from '../../data/image-attributions.json' with { type: 'json' };
 import { published, site } from '../../lib/content/site.ts';
 import { glassFit } from '../../lib/math/glassware.ts';
@@ -71,16 +72,15 @@ const card = media?.renditions['card'];
           <p class="subtitle">{note}</p>
         </div>
         {card && (
-          <figure class="hero-figure hero-figure--square">
-            <img
-              src={`${base}${card.file}`}
-              alt={media!.alt}
-              width={card.width}
-              height={card.height}
-              fetchpriority="high"
-            />
-            <ImageCredit attribution={media!.attribution} alt={media!.alt} />
-          </figure>
+          <HeroFigure
+            src={`${base}${card.file}`}
+            alt={media!.alt}
+            width={card.width}
+            height={card.height}
+            attribution={media!.attribution}
+            square
+            priority
+          />
         )}
       </div>
     </div>

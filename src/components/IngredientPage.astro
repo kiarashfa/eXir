@@ -8,7 +8,9 @@
  * much they use. Template-identical thin content across hundreds of pages is
  * the failure this shape exists to avoid.
  */
-import ImageCredit, { type ImageAttribution } from './ImageCredit.astro';
+import HeroFigure from './HeroFigure.astro';
+import ShareBlock from './ShareBlock.astro';
+import type { ImageAttribution } from './ImageCredit.astro';
 import attributions from '../data/image-attributions.json' with { type: 'json' };
 import { formatAbv } from '../lib/math/quantity.ts';
 import { formatMeasure } from '../lib/math/units.ts';
@@ -61,6 +63,9 @@ const media = (attributions as Record<string, ImageRecord>)[
   `${ingredient.kind === 'preparation' ? 'preparation' : 'ingredient'}:${ingredient.id}`
 ];
 const card = media?.renditions['card'];
+
+const shareUrl = new URL(Astro.url.pathname, Astro.site).href;
+const shareImage = card ? new URL(base + card.file, Astro.site).href : '';
 
 /**
  * One sentence, composed from the record rather than written.
@@ -163,16 +168,15 @@ const rows = (form: (typeof forms)[number]) =>
         )}
       </div>
       {card && (
-        <figure class="hero-figure hero-figure--square">
-          <img
-            src={`${base}${card.file}`}
-            alt={media!.alt}
-            width={card.width}
-            height={card.height}
-            fetchpriority="high"
-          />
-          <ImageCredit attribution={media!.attribution} alt={media!.alt} />
-        </figure>
+        <HeroFigure
+          src={`${base}${card.file}`}
+          alt={media!.alt}
+          width={card.width}
+          height={card.height}
+          attribution={media!.attribution}
+          square
+          priority
+        />
       )}
     </div>
   </div>
@@ -227,6 +231,13 @@ const rows = (form: (typeof forms)[number]) =>
           </div>
         ))}
       </div>
+      <ShareBlock
+        title={ingredient.name}
+        subtitle={sentence}
+        url={shareUrl}
+        image={shareImage}
+        noun={ingredient.kind === 'preparation' ? 'preparation' : 'ingredient'}
+      />
     </div>
 
     <div class="col-stack">

@@ -34,16 +34,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <MyBar client:only="svelte" />
   </div>
 
-  <div class="wrap prose-page">
-    <p>
-      Nothing on this page leaves your browser. There are no accounts here and nothing to sign in
-      to, which also means what you save lives in one browser on one device and the site cannot
-      move it for you.
-    </p>
-    <p>
-      Pantry staples — sugar, water, salt, a lemon — are assumed rather than matched, so they are
-      not on the list above and never count against a drink. Garnishes never block a match either:
-      nobody is stopped from making a Negroni by having no orange.
-    </p>
+  <div class="wrap notes">
+    <div class="card glass note-card">
+      <h2 class="card-title">What this remembers</h2>
+      <p>
+        Nothing on this page leaves your browser. There are no accounts here and nothing to sign
+        in to, which also means what you save lives in one browser on one device and the site
+        cannot move it for you.
+      </p>
+    </div>
+    <div class="card glass note-card">
+      <h2 class="card-title">What is not counted</h2>
+      <p>
+        Pantry staples — sugar, water, salt, a lemon — are assumed rather than matched, so they
+        are not on the list above and never count against a drink. Garnishes never block a match
+        either: nobody is stopped from making a Negroni by having no orange.
+      </p>
+    </div>
   </div>
 </BaseLayout>

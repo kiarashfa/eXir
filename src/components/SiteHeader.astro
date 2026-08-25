@@ -30,7 +30,7 @@ const links = primaryRoutes();
             href={`${base}${l.path}`}
             {...(current && l.path.includes(current) ? { 'aria-current': 'page' } : {})}
           >
-            {l.label}
+            <span class="nav-label">{l.label}</span>
             {l.count && <span class="nav-count" data-bar-count aria-hidden="true"></span>}
           </a>
         ))}

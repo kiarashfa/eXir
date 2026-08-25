@@ -68,10 +68,20 @@
   margin-top: -2px;
   flex: 0 0 auto;
 }
+/* The letters lean and the X stands still. A didone italic against its own
+   roman is the whole trick, and the upright letter is the one that reads as
+   the mark. */
+.logo span {
+  font-style: italic;
+}
+/* `--brand-mark`, not `--accent`. The accent is darkened in the light theme so
+   it can carry TEXT at 4.5:1; the wordmark's X is not text but half of a
+   lockup, and darkening one half of a lockup while the badge beside it stays
+   bright brass made them read as two different brands. */
 .logo b {
   font-weight: 600;
-  color: var(--accent);
-  font-style: italic;
+  color: var(--brand-mark);
+  font-style: normal;
 }
 
 .nav {
@@ -82,18 +92,30 @@
   letter-spacing: 0.01em;
 }
 .nav a {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
   text-decoration: none;
   color: var(--ink-soft);
   padding: 4px 0;
+  transition: color 0.35s var(--ease);
+}
+/* The rule sits on the LABEL rather than on the link, because the My Bar link
+   also contains its count — and an underline drawn across the whole link ran
+   past the end of the word by the width of a two-digit reservation. */
+.nav a .nav-label {
   border-bottom: 1px solid transparent;
-  transition:
-    color 0.35s var(--ease),
-    border-color 0.35s var(--ease);
+  padding-bottom: 3px;
+  transition: border-color 0.35s var(--ease);
 }
 .nav a:hover,
 .nav a:focus-visible,
 .nav a[aria-current] {
   color: var(--ink);
+}
+.nav a:hover .nav-label,
+.nav a:focus-visible .nav-label,
+.nav a[aria-current] .nav-label {
   border-bottom-color: var(--accent);
 }
 
@@ -196,7 +218,6 @@
   align-items: center;
 }
 .hero-figure--square {
-  aspect-ratio: 1;
   max-width: 260px;
   margin-left: auto;
 }
@@ -303,13 +324,25 @@
   vertical-align: 0.18em;
 }
 
+/* The FIGURE does not clip; the frame inside it does. The image scales on hover
+   and has to be cut to the rounded corners, but the credit popover is wider
+   than a small figure and has to escape one — so the two jobs are on two
+   elements. Clipping both was why the credit was cut off on every page whose
+   photograph is smaller than a drink's hero. */
 .hero-figure {
   position: relative;
-  aspect-ratio: 4 / 5;
   border-radius: 20px;
-  overflow: hidden;
   background: var(--surface-2);
   box-shadow: 0 30px 70px -28px var(--shadow);
+}
+.figure-frame {
+  display: block;
+  aspect-ratio: 4 / 5;
+  border-radius: inherit;
+  overflow: hidden;
+}
+.hero-figure--square .figure-frame {
+  aspect-ratio: 1;
 }
 .hero-figure img {
   width: 100%;
@@ -428,13 +461,17 @@
 /* Each column is a stack of per-version blocks, all but one hidden. The grid
    sees two children whatever the version count is.
 
-   The gap is on the STACK, not only inside `.left-col`. The Serving card is
-   rendered once, outside the version loop, so it lives in its own `.left-col`
-   and the spec cards live in another — two siblings of the stack with nothing
-   between them, which is why Serving and Drink Spec sat flush against each
-   other while Ingredients and Glass, inside one `.left-col`, did not. */
+   The gap is on the LEFT stack only. The Serving card is rendered once, outside
+   the version loop, so it lives in its own `.left-col` and the spec cards live
+   in another — two siblings with nothing between them, which is why Serving and
+   Drink Spec sat flush while Ingredients and Glass, inside one `.left-col`, did
+   not. The right stack holds the Recipe / About switch above its panels and was
+   already spaced correctly; giving it the same grid changed a column that had
+   nothing wrong with it. */
 .col-stack {
   min-width: 0;
+}
+.body-grid > .col-stack:first-child {
   display: grid;
   align-content: start;
   gap: 20px;
@@ -522,7 +559,12 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Content-sized, in every container. Inside a `.control-row` the flex parent
+   already did this, which is why nothing noticed until one was dropped into a
+   block context and stretched to the full width of its card. A control that
+   changes shape with its parent is not one control. */
 .segmented {
+  width: fit-content;
   display: flex;
   border: 1px solid var(--control-edge);
   border-radius: 999px;
@@ -574,6 +616,19 @@
   border: 1px solid var(--line);
   border-radius: 12px;
   overflow: hidden;
+}
+/* A control row above it is a row of buttons with no bottom padding of its own,
+   so without this the stepper's circles sit on the panel's top edge. Only
+   applied after a control, because in the Drink Spec the panel is the first
+   thing in the card and needs nothing. */
+.control-row + .spec-grid,
+.control-reason + .spec-grid {
+  margin-top: 18px;
+}
+.spec-grid + .control-row {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
 }
 .spec-cell {
   background: var(--surface-2);
@@ -635,12 +690,14 @@
   color: var(--accent-ink);
 }
 
+/* No reading measure. These sit inside cards, and a card is already the
+   measure — clamping them again left a ragged right edge in any card wider than
+   the drink page's narrow left column, which is every card on the Plan. */
 .disclaimer {
   margin: 18px 0 0;
   font-size: 11.5px;
   line-height: 1.55;
   color: var(--muted);
-  max-width: var(--measure);
 }
 .disclaimer strong {
   color: var(--ink-soft);
@@ -973,6 +1030,12 @@
   font-size: 14.5px;
   line-height: 1.6;
   color: var(--ink-soft);
+}
+/* The reading measure only where there is reading to do. A callout beside a
+   method step is prose and wants a column; the same callout inside a card is
+   part of the card and wants its width. */
+.steps .callout,
+.about-body .callout {
   max-width: var(--measure);
 }
 
@@ -1023,7 +1086,6 @@
   border-radius: 0 9px 9px 0;
   font-size: 13px;
   color: var(--ink-soft);
-  max-width: var(--measure);
 }
 .allergen-box b {
   display: block;
@@ -1033,7 +1095,10 @@
   color: var(--accent-ink);
   margin-bottom: 5px;
 }
-.allergen-box .disclaimer {
+.allergen-box /* No reading measure. These sit inside cards, and a card is already the
+   measure — clamping them again left a ragged right edge in any card wider than
+   the drink page's narrow left column, which is every card on the Plan. */
+.disclaimer {
   margin-top: 8px;
 }
 
@@ -1277,11 +1342,16 @@
   opacity: 1;
 }
 
+/* Sized to its content down to a floor, not to its figure. A fixed width wider
+   than the picture used to hang off the left edge and get cut; now it grows
+   leftwards from the button and stops at the viewport. */
 .attribution-popover {
   position: absolute;
   right: 0;
   bottom: 34px;
-  width: 260px;
+  width: max-content;
+  min-width: 210px;
+  max-width: min(310px, 74vw);
   padding: 13px 15px;
   background: var(--surface-3);
   border: 1px solid var(--line);
@@ -1436,26 +1506,68 @@
 .dense th,
 .dense td {
   text-align: left;
-  padding: 10px 14px 10px 0;
-  border-bottom: 1px solid var(--line);
+  padding: 11px 16px 11px 0;
+  vertical-align: baseline;
 }
-.dense th {
+/* Scoped to `thead`. Unscoped, this also caught every row's name cell — which
+   is a `th` too — and gave the first column a heavier rule than the eleven
+   beside it, so each row looked broken in two. */
+.dense thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
   font: 500 10px/1 var(--font-body);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
-  border-bottom-color: var(--control-edge);
+  background: var(--surface);
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--control-edge);
+  white-space: nowrap;
+}
+/* One rule per ROW rather than per cell, so nothing can differ across a row.
+   The last row has none: a table ends at its last row, not at a line under it. */
+.dense tbody tr {
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s var(--ease);
+}
+.dense tbody tr:last-child {
+  border-bottom: 0;
+}
+.dense tbody tr:hover {
+  background: var(--surface-2);
+}
+.dense tbody th {
+  font-weight: 400;
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--ink);
+  padding-right: 22px;
+}
+.dense td {
+  color: var(--ink-soft);
 }
 .dense td.num {
   font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
   text-align: right;
-  padding-right: 18px;
+  padding-right: 20px;
+  color: var(--ink);
+}
+/* The hover band has to reach the edges of the row, which cell padding alone
+   does not do at either end. */
+.dense tbody th:first-child,
+.dense thead th:first-child {
+  padding-left: 12px;
+}
+.dense tr > *:last-child {
+  padding-right: 12px;
 }
 .dense a {
-  color: var(--ink);
+  color: inherit;
   text-decoration: none;
 }
-.dense a:hover {
+.dense tbody tr:hover a {
   color: var(--accent-ink);
 }
 
@@ -1518,51 +1630,54 @@
    Attributions
    --------------------------------------------------------------------------- */
 
-.attribution-list {
-  display: grid;
-  gap: 26px;
-  padding-bottom: 72px;
-  max-width: var(--measure-intro);
-}
-.attribution-row {
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  padding-bottom: 22px;
-  border-bottom: 1px solid var(--line);
-}
-.attribution-thumb img {
-  width: 72px;
-  height: 72px;
-  border-radius: 10px;
-  object-fit: cover;
-  display: block;
-}
-.attribution-row h2 {
-  font-size: 20px;
-  margin: 0 0 5px;
-  text-transform: capitalize;
-}
-.attribution-row h2 a {
-  text-decoration: none;
-}
-.attribution-meta {
-  margin: 0 0 3px;
-  font-size: 12.5px;
-  color: var(--muted);
-}
-.attribution-meta a {
-  color: var(--accent-ink);
-}
 
 /* ---------------------------------------------------------------------------
    Search — a drawer under the header
    --------------------------------------------------------------------------- */
 
+/* Opened rather than switched on.
+   `hidden` sets `display: none`, which no transition can cross on its own —
+   so `display` is transitioned as a discrete property and `@starting-style`
+   gives the entry animation a state to come from. An engine without either
+   ignores all of it and gets the instant show it had before, which is the
+   right degradation for a search panel. */
 .search-drawer {
   margin-top: 10px;
   padding: 16px 18px;
   border-radius: 18px;
+  opacity: 1;
+  transform: translateY(0);
+  transform-origin: top center;
+  transition:
+    opacity 0.26s var(--ease),
+    transform 0.26s var(--ease),
+    display 0.26s var(--ease) allow-discrete;
+}
+.search-drawer[hidden] {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+/* The entry is a keyframe animation rather than a transition, and deliberately.
+   A transition into view needs `@starting-style` to have a state to come from,
+   which only the newest engines have; an animation simply runs whenever the
+   element begins matching the selector after being `display: none`, which every
+   engine has done for years. The exit keeps the transition, because that is the
+   direction `allow-discrete` exists for — it holds `display: block` until the
+   fade finishes. */
+.search-drawer:not([hidden]) {
+  animation: drawer-in 0.26s var(--ease);
+}
+@keyframes drawer-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .search-drawer {
+    transition: none;
+    animation: none;
+  }
 }
 .search-bar {
   display: flex;
@@ -2223,36 +2338,81 @@
 
 /* ---------------------------------------------------------------------------
    404
+
+   Centred and quiet. Everything a working page needs — a grid, cards, a spec
+   panel — is scaffolding for content, and this page has none: a status, a line,
+   and four ways out. Borrowing the card system here would dress an empty page
+   up as a full one.
    --------------------------------------------------------------------------- */
 
 .notfound {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  padding-bottom: 80px;
-  align-items: start;
+  justify-items: center;
+  text-align: center;
+  padding: 90px 0 120px;
+  max-width: 44rem;
 }
-.notfound-list {
-  padding-bottom: 0;
-  grid-template-columns: 1fr;
-  gap: 0;
+.notfound-code {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+  letter-spacing: 0.34em;
+  color: var(--accent);
+  margin: 0 0 18px;
 }
-.notfound-list li {
-  border-bottom: 1px solid var(--line);
-}
-.notfound-list li:last-child {
-  border-bottom: 0;
-}
-.notfound-list a {
-  display: block;
-  padding: 11px 0;
+.notfound h1 {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-weight: 400;
+  font-size: clamp(42px, 7vw, 68px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+}
+.notfound-quip {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 18px 0 0;
+  max-width: 34rem;
+  text-wrap: balance;
+}
+
+.notfound-ways {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 26px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  width: 100%;
+}
+.notfound-ways a {
+  font-family: var(--font-display);
+  font-size: 19px;
   color: var(--ink);
   text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 3px;
+  transition:
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
 }
-.notfound-list a:hover {
+.notfound-ways a:hover,
+.notfound-ways a:focus-visible {
   color: var(--accent-ink);
+  border-bottom-color: var(--accent);
+}
+
+.notfound-note {
+  margin: 28px 0 0;
+  max-width: 38rem;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
 }
 
 /* ---------------------------------------------------------------------------
@@ -2374,10 +2534,11 @@
   padding-bottom: 72px;
 }
 
-/* The checklist thumbnail links to the ingredient, and is deliberately NOT a
-   tab stop: the line's own text already links there in prose, and a second
-   stop per line would double the keyboard cost of a checklist to reach nothing
-   new. It is hidden from assistive tech for the same reason. */
+/* The checklist thumbnail is the ONLY route from a line to its ingredient page
+   — the quantity beside it is live text, not a link — so it is a real tab stop
+   with a real name. It was briefly hidden from assistive technology on the
+   assumption that the line text linked there too, which it does not; that took
+   the route away from exactly the readers who had no other one. */
 .swatch-link {
   display: block;
   flex: 0 0 auto;
@@ -2386,6 +2547,220 @@
 .swatch-link .swatch {
   transition: border-color 0.3s var(--ease);
 }
-.swatch-link:hover .swatch {
+.swatch-link:hover .swatch,
+.swatch-link:focus-visible .swatch {
   border-color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Share
+
+   Collapsed by default: a secondary action on a page whose job is to be made
+   from. The destinations are ordinary links and work with no script at all;
+   only the collapse, the clipboard and the device's own sheet need one.
+   --------------------------------------------------------------------------- */
+
+.share {
+  padding: 0;
+}
+.share-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  width: 100%;
+  padding: 20px 22px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+.share-toggle .card-title {
+  margin: 0;
+  transition: color 0.3s var(--ease);
+}
+.share-toggle:hover .card-title,
+.share-toggle:focus-visible .card-title {
+  color: var(--accent-ink);
+}
+.share-chevron {
+  font-size: 11px;
+  color: var(--muted);
+  transition: transform 0.3s var(--ease);
+}
+.share-toggle[aria-expanded='true'] .share-chevron {
+  transform: rotate(180deg);
+}
+.share-body {
+  padding: 0 22px 22px;
+}
+.share-body .button-row {
+  margin-top: 0;
+}
+.share-status {
+  margin: 12px 0 0;
+  min-height: 1.2em;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.share-targets {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  gap: 8px;
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+}
+.share-targets a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 11px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  text-decoration: none;
+  transition:
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+.share-targets a:hover,
+.share-targets a:focus-visible {
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+.share-targets svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+  flex: 0 0 auto;
+}
+
+/* ---------------------------------------------------------------------------
+   Page notes.
+
+   The loose paragraphs that used to sit at the foot of a page in no container
+   at all. On a site built entirely out of cards, unhoused prose reads as
+   something that was left behind rather than something that was placed — so
+   these are cards, with a label, like everything else.
+   --------------------------------------------------------------------------- */
+
+.notes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 20px;
+  padding: 12px 0 80px;
+  align-items: start;
+}
+.note-card p {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.68;
+  color: var(--ink-soft);
+}
+.note-card p:last-child {
+  margin-bottom: 0;
+}
+.note-card a {
+  color: var(--accent-ink);
+}
+
+/* ---------------------------------------------------------------------------
+   Sources and licences.
+
+   Eleven sources, each with a name, what it gives and what it costs. That is a
+   table's worth of information, so it is built as one shape repeated rather
+   than as prose: a reader comparing two sources compares the same two fields
+   instead of two paragraphs.
+   --------------------------------------------------------------------------- */
+
+.source-lead {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding-bottom: 16px;
+  align-items: start;
+}
+
+.source-group {
+  padding-top: 30px;
+}
+.source-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 18px;
+  padding-bottom: 14px;
+  align-items: start;
+}
+
+.source-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.source-head h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;
+}
+.source-head a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-strong);
+}
+.source-head a:hover {
+  color: var(--accent-ink);
+  border-bottom-color: var(--accent);
+}
+/* The licence in one word, in the data face, so a column of cards can be
+   scanned on terms alone without reading any of them. */
+.source-tag {
+  flex: 0 0 auto;
+  font: 400 10px/1 var(--font-data);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 9px;
+  white-space: nowrap;
+}
+
+.source-facts {
+  display: grid;
+  grid-template-columns: 62px 1fr;
+  gap: 10px 14px;
+  margin: 0;
+}
+.source-facts dt {
+  font: 500 9.5px/1.5 var(--font-body);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-top: 3px;
+}
+.source-facts dd {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+@media (max-width: 520px) {
+  .source-facts {
+    grid-template-columns: 1fr;
+    gap: 4px 0;
+  }
+  .source-facts dd {
+    margin-bottom: 10px;
+  }
 }

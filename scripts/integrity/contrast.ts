@@ -42,6 +42,18 @@ const CONTROL_EDGES = ['control-edge'];
  * and that distinction is the whole reason these are two tokens.
  */
 const DECORATIVE = ['line', 'line-strong'];
+
+/**
+ * A logotype. Measured and printed, and held to no floor, because WCAG exempts
+ * a mark that identifies an organisation from the contrast requirement — the
+ * word it belongs to is set in `--ink` and carries the meaning.
+ *
+ * It is listed here rather than left out because the point of this check is
+ * that a colour cannot enter the token layer without its ratio being recorded.
+ * A token nothing measures is exactly the gap this script exists to close, and
+ * an unmeasured exemption is indistinguishable from an oversight.
+ */
+const LOGOTYPE = ['brand-mark'];
 /** Everything a foreground can be laid on. */
 const SURFACES = ['surface', 'surface-2', 'surface-3'];
 
@@ -143,6 +155,7 @@ async function main(): Promise<void> {
       [FOREGROUNDS, TEXT_MIN],
       [CONTROL_EDGES, CONTROL_MIN],
       [DECORATIVE, 0],
+      [LOGOTYPE, 0],
     ] as const) {
       for (const fg of group) {
         const fgColour = parseHex(tokens.get(fg) ?? '');
@@ -168,7 +181,8 @@ async function main(): Promise<void> {
             );
           }
         }
-        const label = min === 0 ? ' (decorative)' : '';
+        const label =
+          min > 0 ? '' : (LOGOTYPE as readonly string[]).includes(fg) ? ' (logotype)' : ' (decorative)';
         measured.push(`    --${fg.padEnd(13)} ${ratios.join('   ')}${label}`);
       }
     }

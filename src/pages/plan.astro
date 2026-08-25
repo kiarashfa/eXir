@@ -34,17 +34,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <PlanPage client:only="svelte" />
   </div>
 
-  <div class="wrap prose-page">
-    <p>
-      Nothing on this page leaves your browser. There are no accounts here and nothing to sign in
-      to, which also means what you save lives in one browser on one device and the site cannot
-      move it for you.
-    </p>
-    <p>
-      A plan holds references, never figures. Every quantity above is recomputed from the drinks as
-      they are today, so a plan saved a month ago quietly gains every correction made since. The
-      link you can copy carries the same references and nothing else — not what you already have at
-      home, and not the list itself.
-    </p>
+  <div class="wrap notes">
+    <div class="card glass note-card">
+      <h2 class="card-title">What this remembers</h2>
+      <p>
+        Nothing on this page leaves your browser. There are no accounts here and nothing to sign
+        in to, which also means what you save lives in one browser on one device and the site
+        cannot move it for you.
+      </p>
+    </div>
+    <div class="card glass note-card">
+      <h2 class="card-title">Why the figures move</h2>
+      <p>
+        A plan holds references, never figures. Every quantity above is recomputed from the drinks
+        as they are today, so a plan saved a month ago quietly gains every correction made since.
+        The link you can copy carries the same references and nothing else — not what you already
+        have at home, and not the list itself.
+      </p>
+    </div>
   </div>
 </BaseLayout>
