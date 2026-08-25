@@ -369,7 +369,7 @@
     color 0.3s var(--ease),
     border-color 0.3s var(--ease);
 }
-.version-strip button[aria-selected='true'] {
+.version-strip button[aria-pressed='true'] {
   color: var(--ink);
   border-bottom-color: var(--accent);
 }
@@ -1279,8 +1279,13 @@
    Listing pages — the catalogue, and every index that extends it
    --------------------------------------------------------------------------- */
 
+/* `padding-block`, NOT the shorthand. This class is always worn together with
+   `.wrap`, and a `padding` shorthand resets `padding-inline` to zero — which
+   silently deleted the page gutter on every viewport narrower than
+   `--page-max`, so the heading and its lede ran to both edges of a phone. The
+   same trap waits for any rule that shares an element with `.wrap`. */
 .page-head {
-  padding: 46px 0 26px;
+  padding-block: 46px 26px;
 }
 .page-head h1 {
   font-size: clamp(38px, 5vw, 60px);
@@ -1850,4 +1855,292 @@
 }
 .host-list a {
   color: inherit;
+}
+
+/* ---------------------------------------------------------------------------
+   Catalogue filters.
+
+   Rows are filtered in place rather than rebuilt, so nothing here is a list —
+   it is a set of controls over a list that already exists in the markup.
+   --------------------------------------------------------------------------- */
+
+.filters {
+  padding: 18px 20px;
+  border-radius: 16px;
+  margin-bottom: 18px;
+}
+.filter-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+.filter-search {
+  flex: 1 1 260px;
+  min-width: 0;
+}
+
+/* Prominent rather than folded into the Strength axis: a first-class filter
+   that has to be hunted for is not first-class. */
+.zero-proof {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  border: 1px solid var(--control-edge);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.zero-proof:has(input:checked) {
+  color: var(--botanical);
+  border-color: var(--botanical);
+  background: var(--botanical-soft);
+}
+.zero-proof input {
+  accent-color: var(--botanical);
+}
+
+.filter-sort {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.filter-sort select {
+  font: inherit;
+  font-size: 13.5px;
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 1px solid var(--control-edge);
+  border-radius: 9px;
+  padding: 7px 10px;
+}
+
+.filter-more {
+  margin-top: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+.filter-more summary {
+  font: 500 11px/1 var(--font-body);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+}
+.filter-more summary:hover {
+  color: var(--accent-ink);
+}
+
+.filter-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 20px;
+  margin-top: 18px;
+}
+.filter-group {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.filter-group legend {
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 0 9px;
+}
+.filter-group--exclude legend,
+.filter-group--exclude .filter-note {
+  color: var(--bitter);
+}
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 3px 0;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.filter-option:hover {
+  color: var(--ink);
+}
+.filter-option input {
+  accent-color: var(--accent);
+}
+.filter-note {
+  margin: 9px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.filter-range {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 9px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.filter-range-label {
+  flex: 0 0 68px;
+  color: var(--ink-soft);
+}
+.range-input {
+  width: 62px;
+  font: 400 13px/1 var(--font-data);
+  color: var(--ink);
+  background: var(--surface-2);
+  border: 1px solid var(--control-edge);
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+.filter-range-unit {
+  font-size: 11.5px;
+}
+
+.no-results {
+  margin: 32px 0 0;
+  font-size: 14.5px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.view-switch .link-button {
+  font-size: 12.5px;
+}
+.drink-card .card-meta .zero {
+  color: var(--botanical);
+}
+
+/* ---------------------------------------------------------------------------
+   Substitutions — collapsed, opt-in, and honest about what it did.
+
+   Selecting one recomputes the Drink Spec above, so the card has to say it is
+   showing a recomputed figure and offer the way back. A recomputed spec that
+   looked identical to an authored one would be the most misleading thing this
+   page could show.
+   --------------------------------------------------------------------------- */
+
+.subs {
+  display: block;
+  margin-top: 7px;
+}
+.sub-toggle {
+  font: 500 10.5px/1 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  border-bottom: 1px dashed var(--control-edge);
+  padding: 0 0 2px;
+  cursor: pointer;
+}
+.sub-toggle:hover,
+.sub-toggle:focus-visible {
+  color: var(--accent-ink);
+  border-bottom-color: var(--accent);
+}
+.sub-toggle[aria-expanded='true'] {
+  color: var(--accent-ink);
+}
+
+.subs-body {
+  display: block;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-left: 2px solid var(--line-strong);
+  background: var(--surface-2);
+  border-radius: 0 10px 10px 0;
+}
+.sub-choice {
+  display: block;
+  margin-top: 10px;
+}
+.sub-option {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.sub-option input {
+  accent-color: var(--accent);
+}
+.sub-ratio {
+  margin-left: 7px;
+  font-family: var(--font-data);
+  font-style: normal;
+  font-size: 12px;
+  color: var(--muted);
+}
+.sub-note,
+.sub-impact {
+  display: block;
+  margin-top: 4px;
+  padding-left: 22px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.sub-impact {
+  font-family: var(--font-data);
+  font-size: 11.5px;
+  letter-spacing: 0.01em;
+}
+
+/* The banner uses --bitter rather than --accent: it is a statement about the
+   arithmetic having changed, and the alcohol figures are what changed most. */
+.sub-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  background: var(--bitter-soft);
+  border-left: 2px solid var(--bitter);
+  border-radius: 0 9px 9px 0;
+}
+.sub-banner b {
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bitter);
+}
+.sub-banner [data-sub-names] {
+  font-family: var(--font-display);
+  font-style: italic;
+}
+.sub-banner .link-button {
+  margin-left: auto;
+  font-size: 12.5px;
+}
+.card.is-substituted {
+  outline: 1px solid var(--bitter);
+  outline-offset: -1px;
+}
+
+/* Space reserved for a `client:only` island before it hydrates.
+   A full viewport, so whatever the island turns out to be, the footer starts
+   below the fold and its arrival is never a visible shift. These pages are
+   tall in ordinary use; on a nearly-empty one this leaves some white above the
+   footer, which costs a reader nothing and buys back half a viewport of jump. */
+.tool-shell {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+.tool-shell [data-tool-placeholder] {
+  padding-top: 12px;
 }

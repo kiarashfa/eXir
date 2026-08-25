@@ -1,16 +1,22 @@
 ---
 /**
  * The catalogue: a photo-forward card grid and a dense sortable table over the
- * same rows.
+ * same rows, with filtering and sorting over both.
  *
  * Both views ship in the HTML and the switch is presentational, so everything
  * is crawlable and every drink has a real `<a>` pointing at it from the
  * homepage whichever view a reader is in.
  *
- * Filtering is Phase 9's island. What is here is the data and both surfaces,
- * which is what the routes and the internal linking need.
+ * **Filtering hides rows rather than rebuilding them from JSON.** Rendering the
+ * catalogue client-side from `catalog-index.json` would be less code and would
+ * throw away the thing the static HTML exists for — a real `<a>` per drink in
+ * the served markup. A crawler that has to run the filter island to find any
+ * drink at all is a crawler that finds none. So every row is rendered once,
+ * carries its own facets as data attributes, and the island only decides what
+ * is visible.
  */
 import type { CatalogEntry } from '../lib/content/site.ts';
+import { humanise } from '../lib/catalog.ts';
 
 interface Props {
   entries: CatalogEntry[];
@@ -19,23 +25,185 @@ interface Props {
 const { entries } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
-const cap = (s: string): string => s.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
+/**
+ * One token list per drink, read by one filter engine.
+ *
+ * Prefixed rather than split across eight attributes so a new axis costs a
+ * prefix and nothing else, and so the client has a single string to test.
+ */
+const facetsOf = (e: CatalogEntry): string =>
+  [
+    ...e.category.map((v) => `cat:${v}`),
+    ...e.baseSpirits.map((v) => `spirit:${v}`),
+    ...e.origin.map((v) => `origin:${v}`),
+    ...e.method.map((v) => `method:${v}`),
+    `strength:${e.strength}`,
+    `temp:${e.servingTemp}`,
+    `diff:${e.difficulty.toLowerCase()}`,
+    ...e.diets.map((v) => `diet:${v}`),
+    ...e.allergens.map((v) => `allergen:${v}`),
+  ].join(' ');
+
+/** The vocabulary actually present, so no filter offers an empty result. */
+const collect = (pick: (e: CatalogEntry) => string[]): string[] =>
+  [...new Set(entries.flatMap(pick))].filter(Boolean).sort();
+
+const groups = [
+  { key: 'cat', label: 'Category', values: collect((e) => e.category) },
+  { key: 'spirit', label: 'Base spirit', values: collect((e) => e.baseSpirits) },
+  { key: 'origin', label: 'Origin', values: collect((e) => e.origin) },
+  { key: 'method', label: 'Method', values: collect((e) => e.method) },
+  { key: 'strength', label: 'Strength', values: collect((e) => [e.strength]) },
+  { key: 'temp', label: 'Served', values: collect((e) => [e.servingTemp]) },
+  { key: 'diff', label: 'Difficulty', values: collect((e) => [e.difficulty.toLowerCase()]) },
+  { key: 'diet', label: 'Diet', values: collect((e) => e.diets) },
+].filter((g) => g.values.length > 1);
+
+const allergens = collect((e) => e.allergens);
+
+const ranges = [
+  { key: 'abv', label: 'ABV', unit: '%' },
+  { key: 'time', label: 'Total time', unit: 'min' },
+  { key: 'kcal', label: 'Energy', unit: 'kcal' },
+];
+
+const sorts = [
+  { value: 'title', label: 'Name' },
+  { value: 'abv', label: 'Strength' },
+  { value: 'time', label: 'Total time' },
+  { value: 'kcal', label: 'Energy' },
+  { value: 'diff', label: 'Difficulty' },
+];
+
+const cap = (s: string): string => humanise(s);
 ---
 
-<div class="wrap">
-  <div class="view-switch" role="group" aria-label="Catalogue view" data-pagefind-ignore>
+<div class="wrap" data-pagefind-ignore>
+  <form class="filters card glass" data-catalogue-filters>
+    <div class="filter-top">
+      <div class="filter-search">
+        <label class="visually-hidden" for="cat-search">Find a drink</label>
+        <input
+          class="search-input"
+          id="cat-search"
+          type="search"
+          placeholder="Find a drink by name"
+          autocomplete="off"
+          data-filter-search
+        />
+      </div>
+
+      {/* First-class rather than a sub-option of Strength. A meaningful share
+          of readers come for exactly this, and making them open a panel and
+          find it inside another axis undercuts the claim that the coverage is
+          first-class. */}
+      <label class="zero-proof">
+        <input type="checkbox" data-filter-zero-proof />
+        <span>Zero-proof only</span>
+      </label>
+
+      <div class="filter-sort">
+        <label for="cat-sort">Sort</label>
+        <select id="cat-sort" data-filter-sort>
+          {sorts.map((s) => <option value={s.value}>{s.label}</option>)}
+        </select>
+        <button class="chip" type="button" data-filter-direction aria-pressed="false">
+          <span data-direction-label>A–Z</span>
+        </button>
+      </div>
+    </div>
+
+    <details class="filter-more">
+      <summary>More filters</summary>
+      <div class="filter-groups">
+        {groups.map((group) => (
+          <fieldset class="filter-group">
+            <legend>{group.label}</legend>
+            {group.values.map((value) => (
+              <label class="filter-option">
+                <input type="checkbox" data-filter-facet={`${group.key}:${value}`} />
+                <span>{cap(value)}</span>
+              </label>
+            ))}
+          </fieldset>
+        ))}
+
+        {allergens.length > 0 && (
+          <fieldset class="filter-group filter-group--exclude">
+            <legend>Exclude allergens</legend>
+            {allergens.map((value) => (
+              <label class="filter-option">
+                <input type="checkbox" data-filter-exclude={`allergen:${value}`} />
+                <span>{cap(value)}</span>
+              </label>
+            ))}
+            <p class="filter-note">
+              Computed from the listed ingredients only. It cannot account for cross-contamination
+              or for the particular product you buy, and it is not medical or safety guidance.
+            </p>
+          </fieldset>
+        )}
+
+        <fieldset class="filter-group filter-group--ranges">
+          <legend>Ranges</legend>
+          {ranges.map((range) => (
+            <div class="filter-range">
+              <span class="filter-range-label">{range.label}</span>
+              <label class="visually-hidden" for={`min-${range.key}`}>
+                Minimum {range.label} in {range.unit}
+              </label>
+              <input
+                class="range-input"
+                id={`min-${range.key}`}
+                type="number"
+                inputmode="numeric"
+                placeholder="min"
+                data-filter-min={range.key}
+              />
+              <span aria-hidden="true">–</span>
+              <label class="visually-hidden" for={`max-${range.key}`}>
+                Maximum {range.label} in {range.unit}
+              </label>
+              <input
+                class="range-input"
+                id={`max-${range.key}`}
+                type="number"
+                inputmode="numeric"
+                placeholder="max"
+                data-filter-max={range.key}
+              />
+              <span class="filter-range-unit">{range.unit}</span>
+            </div>
+          ))}
+        </fieldset>
+      </div>
+    </details>
+  </form>
+
+  <div class="view-switch" role="group" aria-label="Catalogue view">
     <div class="segmented" data-catalogue-view>
       <button type="button" data-value="cards" aria-pressed="true">Cards</button>
       <button type="button" data-value="table" aria-pressed="false">Table</button>
     </div>
-    <span class="aside">{entries.length} drinks</span>
+    <span class="aside" data-filter-count aria-live="polite">{entries.length} drinks</span>
+    <button class="link-button" type="button" data-filter-clear hidden>Clear filters</button>
   </div>
 </div>
 
 <div class="wrap" data-catalogue-panel="cards" data-pagefind-ignore>
-  <div class="card-grid">
+  <div class="card-grid" data-filter-list>
     {entries.map((e) => (
-      <a class="drink-card" href={`${base}/drinks/${e.slug}/`}>
+      <a
+        class="drink-card"
+        href={`${base}/drinks/${e.slug}/`}
+        data-slug={e.slug}
+        data-facets={facetsOf(e)}
+        data-title={e.title}
+        data-abv={e.abvPercent}
+        data-time={Math.round(e.totalSec / 60)}
+        data-kcal={e.kcal}
+        data-diff={['easy', 'medium', 'hard'].indexOf(e.difficulty.toLowerCase())}
+      >
         <figure>
           {e.image ? (
             <img src={`${base}${e.image.card}`} alt={e.image.alt} width="800" height="1000" loading="lazy" />
@@ -47,12 +215,15 @@ const cap = (s: string): string => s.replace(/-/g, ' ').replace(/^./, (c) => c.t
         <div class="card-meta">
           <span>{e.style}</span>
           {e.abvPercent > 0 && <span class="alc">{e.abvPercent.toFixed(1)}% ABV</span>}
-          {e.abvPercent === 0 && <span>Zero-proof</span>}
+          {e.abvPercent === 0 && <span class="zero">Zero-proof</span>}
           <span>{e.totalTime}</span>
         </div>
       </a>
     ))}
   </div>
+  <p class="no-results" data-filter-empty hidden>
+    Nothing matches all of those at once. Clearing one filter is usually enough.
+  </p>
 </div>
 
 <div class="wrap" data-catalogue-panel="table" data-pagefind-ignore hidden>
@@ -76,9 +247,17 @@ const cap = (s: string): string => s.replace(/-/g, ' ').replace(/^./, (c) => c.t
           <th scope="col">Allergens</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody data-filter-list>
         {entries.map((e) => (
-          <tr>
+          <tr
+            data-slug={e.slug}
+            data-facets={facetsOf(e)}
+            data-title={e.title}
+            data-abv={e.abvPercent}
+            data-time={Math.round(e.totalSec / 60)}
+            data-kcal={e.kcal}
+            data-diff={['easy', 'medium', 'hard'].indexOf(e.difficulty.toLowerCase())}
+          >
             <th scope="row"><a href={`${base}/drinks/${e.slug}/`}>{e.title}</a></th>
             <td>{e.style}</td>
             <td>{e.category.map(cap).join(', ')}</td>

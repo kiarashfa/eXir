@@ -40,11 +40,16 @@ const entries = Object.entries(attributions as Record<string, Entry>)
     <div class="attribution-list">
       {entries.map((e) => (
         <div class="attribution-row" id={`image-${e.slug}`}>
-          <a href={`${base}/${e.kind}s/${e.slug}/`} class="attribution-thumb">
+          {/* Not a link. The heading beside it already points at the same page,
+              and a second link to one destination is a second tab stop whose
+              only accessible name is the photograph's description — which
+              describes the picture rather than where the link goes. The image
+              is the subject of this row, so it keeps its real alt text. */}
+          <div class="attribution-thumb">
             {e.renditions['thumb'] && (
               <img src={`${base}${e.renditions['thumb'].file}`} alt={e.alt} width="96" height="96" loading="lazy" />
             )}
-          </a>
+          </div>
           <div>
             <h2>
               <a href={`${base}/${e.kind}s/${e.slug}/`}>{e.slug.replace(/-/g, ' ')}</a>

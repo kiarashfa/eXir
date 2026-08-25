@@ -1,0 +1,29 @@
+---
+id: base-syrup
+name: The bottom layer
+kind: preparation
+category: syrup
+yieldMl: 500
+shelfLife: { days: 30, storage: refrigerated and sealed }
+purchasable: false
+forms:
+  - id: standard
+    abvPercent: 0
+    densityGPerMl: 1.23
+    densitySource: measured
+    sugarGPer100: 61
+    acidPercent: 0
+    animalOrigin: none
+    allergenTags: []
+ingredients:
+  - id: loop
+    ingredientRef: loop-syrup
+    amount: 100
+    unit: ml
+steps:
+  - { id: stir, durationSec: 120, type: active, phase: make }
+---
+
+<Step id="stir">
+  The third level, and it names a syrup made out of itself.
+</Step>

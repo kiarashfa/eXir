@@ -1,0 +1,29 @@
+---
+id: loop-syrup
+name: Syrup made out of itself
+kind: preparation
+category: syrup
+yieldMl: 200
+shelfLife: { days: 7, storage: refrigerated and sealed }
+purchasable: false
+forms:
+  - id: standard
+    abvPercent: 0
+    densityGPerMl: 1.2
+    densitySource: measured
+    sugarGPer100: 50
+    acidPercent: 0
+    animalOrigin: none
+    allergenTags: []
+ingredients:
+  - id: self
+    ingredientRef: loop-syrup
+    amount: 100
+    unit: ml
+steps:
+  - { id: stir, durationSec: 120, type: active, phase: make }
+---
+
+<Step id="stir">
+  A preparation made out of itself has no batch count at all.
+</Step>

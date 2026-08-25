@@ -1,0 +1,29 @@
+---
+id: deep-cordial
+name: Cordial nested three deep
+kind: preparation
+category: syrup
+yieldMl: 300
+shelfLife: { days: 7, storage: refrigerated and sealed }
+purchasable: false
+forms:
+  - id: standard
+    abvPercent: 0
+    densityGPerMl: 1.2
+    densitySource: measured
+    sugarGPer100: 55
+    acidPercent: 0
+    animalOrigin: none
+    allergenTags: []
+ingredients:
+  - id: middle
+    ingredientRef: middle-syrup
+    amount: 200
+    unit: ml
+steps:
+  - { id: stir, durationSec: 120, type: active, phase: make }
+---
+
+<Step id="stir">
+  Deliberately three preparations deep, which the shopping list cannot expand in one pass.
+</Step>

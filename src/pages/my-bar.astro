@@ -18,7 +18,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p class="lede">What you can make from what you already have, and which single bottle would unlock the most.</p>
   </section>
 
-  <MyBar client:only="svelte" />
+  {/* The island renders nothing until it hydrates, so its slot is zero-high
+      and everything below it — the footer, the explanatory prose — starts at
+      the top of the page and drops into place a moment later. That is a
+      layout shift of almost half a viewport, measured, and it is the cost of
+      `client:only` rather than an argument against it: none of this page is
+      true at build time, so there is nothing honest to server-render.
+
+      The space is reserved instead, the same way the navigation count reserves
+      two digits before it knows the number. The placeholder is real markup so
+      the area is not blank while the module arrives, and the island removes it
+      on mount. */}
+  <div class="tool-shell">
+    <p class="wrap aside" data-tool-placeholder>Reading your shelf…</p>
+    <MyBar client:only="svelte" />
+  </div>
 
   <div class="wrap prose-page">
     <p>

@@ -1,0 +1,241 @@
+/* ============================================================================
+   PRINT
+
+   People print recipes, and what they want on paper is the opposite of what
+   they want on screen: no chrome, no controls, no glass, and the numbers as
+   they currently stand rather than as they were authored.
+
+   Two rules govern everything here.
+
+   **The sheet prints the CURRENT state.** Whatever count, service mode and
+   units the reader has set is what comes out, because the live values are text
+   in the DOM by the time the print dialog opens. Nothing is reset for printing,
+   and nothing is recomputed for it.
+
+   **Nothing is hidden that carries a fact.** Controls go, because paper cannot
+   be operated. Panels do not: the About text, the sources, the keeping section
+   and the allergen box all print, since a reader with the page in their hand
+   has no way to expand anything.
+
+   To check it, flip `@media print` to `@media screen` and load a drink page.
+   ============================================================================ */
+
+@media print {
+  /* --- ink, not light ----------------------------------------------------
+     The dark theme is composed for a screen. On paper it is a solid black
+     rectangle with white text, which wastes a cartridge and reads worse than
+     the light one. The tokens are overridden rather than the components,
+     which is what the token layer is for. */
+  :root,
+  :root[data-theme='dark'],
+  :root[data-theme='light'] {
+    --surface: #ffffff;
+    --surface-2: #ffffff;
+    --surface-3: #ffffff;
+    --ink: #000000;
+    --ink-soft: #1a1a1a;
+    --muted: #444444;
+    --line: #cccccc;
+    --line-strong: #999999;
+    --control-edge: #666666;
+    --accent: #000000;
+    --accent-ink: #000000;
+    --accent-soft: transparent;
+    --bitter: #000000;
+    --bitter-soft: transparent;
+    --botanical: #000000;
+    --botanical-soft: transparent;
+    --shadow: transparent;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000;
+  }
+
+  /* Glass is a finish and paper has none. Turning it off here rather than
+     letting `backdrop-filter` degrade means the surfaces are opaque white
+     instead of whatever the printer decides a blur is. */
+  .glass,
+  .glass--refract,
+  .card {
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    border: 1px solid var(--line) !important;
+    box-shadow: none !important;
+  }
+  .glass::before,
+  .glass::after,
+  .ambient {
+    display: none !important;
+  }
+
+  /* --- what does not print ------------------------------------------------
+     Chrome and controls only. Every one of these is something a reader
+     operates, and none of them states a fact the page does not state
+     elsewhere. */
+  .masthead,
+  .foot,
+  .breadcrumb,
+  .search-drawer,
+  .chip-row,
+  .stepper,
+  .segmented,
+  .control-reason,
+  .view-switch,
+  .filters,
+  .no-results,
+  .panel-switch,
+  .version-strip,
+  .btn-wide,
+  .chip,
+  .link-button,
+  .attribution-toggle,
+  .attribution-popover,
+  .sub-toggle,
+  .subs-body,
+  .picker,
+  .tick,
+  .step-mark,
+  .card-blank,
+  /* Off-screen search text. It is clipped rather than hidden so a crawler
+     reads it, which means a printer would set aside a line for nothing. */
+  .visually-hidden {
+    display: none !important;
+  }
+
+  /* The Serving card is nothing but controls once they are gone. The count and
+     the mode it describes are already in the quantities themselves. */
+  .left-col > .card:first-child:has(.stepper) {
+    display: none !important;
+  }
+
+  /* --- what prints even though the screen hides it ------------------------
+     A collapsed section on paper is a section the reader cannot open, so every
+     `<details>` is opened before printing — by script, in `chrome.ts`, because
+     CSS cannot do it. A closed `<details>` is not hidden with `display: none`;
+     the browser's own stylesheet hides its content with `content-visibility`
+     on a pseudo-element, and no author rule reaches it reliably across
+     engines. These rules cover the parts that ARE author-styled. */
+  .keeping .keeping-body,
+  .filter-more .filter-groups {
+    display: block !important;
+  }
+  details::details-content {
+    content-visibility: visible !important;
+  }
+  .keeping summary {
+    list-style: none;
+    cursor: default;
+  }
+  .keeping summary::marker,
+  .keeping summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* What is on screen is what is on paper: the version showing, and the panel
+     showing. Both are client-side state on one URL, so a reader who wants the
+     About text prints it by switching to it first.
+     
+     This is deliberately NOT done by un-hiding the other panel. An attempt to
+     override `[hidden]` from here cannot work: the framework's reset declares
+     `display: none !important` inside a cascade LAYER, and among important
+     declarations a layered one beats an unlayered one regardless of
+     specificity — the reverse of the ordinary rule. It is also the wrong
+     feature. A printed sheet is the recipe at the count and mode in front of
+     the reader, not every panel the page can show at once. */
+
+  /* --- layout ------------------------------------------------------------- */
+  .page,
+  .wrap {
+    max-width: none;
+    padding: 0;
+    margin: 0;
+  }
+  .body-grid,
+  .tool-grid {
+    display: block;
+  }
+  .left-col,
+  .right-col {
+    display: block;
+  }
+  /* The reserve exists so a hydrating island does not shove the footer down a
+     screen. Paper has no hydration and no fold, so the reserve is a blank page. */
+  .tool-shell {
+    min-height: 0;
+  }
+  .card {
+    border-radius: 0;
+    padding: 12px 0;
+    margin-bottom: 12px;
+    break-inside: avoid;
+  }
+  .hero-grid {
+    display: block;
+  }
+  .hero-figure {
+    display: none;
+  }
+
+  /* A step should not be split across a page break, and neither should a
+     checklist line. Both are single instructions. */
+  .step,
+  .ing-item,
+  .spec-cell,
+  .bar-row,
+  .sources li {
+    break-inside: avoid;
+  }
+  h1,
+  h2,
+  .section-head {
+    break-after: avoid;
+  }
+
+  /* Numbered steps still need their number once the clickable badge is gone. */
+  .steps {
+    counter-reset: exir-step;
+  }
+  .step {
+    counter-increment: exir-step;
+    position: relative;
+    padding-left: 26px;
+  }
+  .step::before {
+    content: counter(exir-step);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-family: var(--font-data);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  /* A ticked-off ingredient is struck through on screen, which is a working
+     state rather than a fact about the drink. On paper the list is the thing
+     being taken to the kitchen, so every line prints intact. */
+  .tick:checked ~ .ing-body {
+    opacity: 1;
+    text-decoration: none;
+  }
+  .step.is-done .step-body {
+    opacity: 1;
+  }
+
+  /* --- links -------------------------------------------------------------
+     A printed link with no destination is a dead end, so anything pointing off
+     this page prints its URL. Internal links do not: this is one page of a
+     site, and printing a hundred eXir URLs beside every ingredient would drown
+     the recipe. */
+  a[href^='http']::after {
+    content: ' (' attr(href) ')';
+    font-size: 10px;
+    color: var(--muted);
+    word-break: break-all;
+  }
+
+  @page {
+    margin: 16mm;
+  }
+}

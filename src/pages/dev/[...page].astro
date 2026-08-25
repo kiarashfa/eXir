@@ -29,13 +29,16 @@ export async function getStaticPaths() {
       name: drink.name,
       versions: drink.versions,
       about: drink.about,
+      // The fixtures resolve against their OWN ingredient set, not the site's:
+      // they are invented drinks made of invented things.
+      ingredients: site.ingredients,
       fixture: true,
       issues: site.issues.filter((i) => i.where.includes(drink.slug)),
     },
   }));
 }
 
-const { slug, name, versions, about, fixture, issues } = Astro.props;
+const { slug, name, versions, about, ingredients, fixture, issues } = Astro.props;
 const primary = versions[0]!;
 
 const fm = primary.frontmatter;
@@ -66,6 +69,7 @@ const subtitle = fixture
     versions={versions}
     eyebrow={eyebrow}
     about={about}
+    ingredients={ingredients}
   />
 
   {issues.length > 0 && (

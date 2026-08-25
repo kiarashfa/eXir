@@ -1,0 +1,29 @@
+---
+id: middle-syrup
+name: The middle layer
+kind: preparation
+category: syrup
+yieldMl: 400
+shelfLife: { days: 14, storage: refrigerated and sealed }
+purchasable: false
+forms:
+  - id: standard
+    abvPercent: 0
+    densityGPerMl: 1.22
+    densitySource: measured
+    sugarGPer100: 58
+    acidPercent: 0
+    animalOrigin: none
+    allergenTags: []
+ingredients:
+  - id: base
+    ingredientRef: base-syrup
+    amount: 300
+    unit: ml
+steps:
+  - { id: stir, durationSec: 120, type: active, phase: make }
+---
+
+<Step id="stir">
+  The second of three levels.
+</Step>

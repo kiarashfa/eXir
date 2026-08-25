@@ -240,18 +240,36 @@ export function initDrink(): void {
 }
 
 /**
- * Both strips are real tab lists, so they carry the keyboard behaviour a tab
- * list is supposed to have. Every panel ships in the HTML and hiding is
- * presentational, so nothing here affects what a crawler reads.
+ * Wire a strip of mutually exclusive controls to the panels it shows.
+ *
+ * The two strips on this page are deliberately different KINDS of control and
+ * carry different semantics. The Recipe / About switch is a real tab list: two
+ * controls, one panel each, panels adjacent to the strip — so it gets
+ * `aria-selected`, a roving tabindex and arrow-key movement, which is the
+ * pattern a screen reader announces as tabs.
+ *
+ * The version strip is a group of toggle buttons. It changes the fact row, the
+ * left column and the right column at once, in three different grid cells, so
+ * there is no single panel for a tab to point at. It gets `aria-pressed`, and
+ * Tab moves between its buttons like any other group. Arrow keys still work,
+ * because a row of related controls should answer them either way.
  */
 function wireTabs(stripSelector: string, panelSelector: string, after?: () => void): void {
   const strip = document.querySelector<HTMLElement>(stripSelector);
   if (!strip) return;
   const tabs = all<HTMLButtonElement>('button', strip);
   const key = panelSelector.includes('version') ? 'version' : 'panel';
+  const isTabList = strip.getAttribute('role') === 'tablist';
+  const state = isTabList ? 'aria-selected' : 'aria-pressed';
 
   const select = (value: string): void => {
-    for (const tab of tabs) tab.setAttribute('aria-selected', String(tab.dataset['value'] === value));
+    for (const tab of tabs) {
+      const on = tab.dataset['value'] === value;
+      tab.setAttribute(state, String(on));
+      // A tab list is one Tab stop; the arrows move within it. A group of
+      // toggles is not, so every button stays reachable by Tab.
+      if (isTabList) tab.tabIndex = on ? 0 : -1;
+    }
     for (const panel of all<HTMLElement>(panelSelector)) {
       panel.hidden = panel.dataset[key] !== value;
     }

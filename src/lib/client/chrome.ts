@@ -86,6 +86,33 @@ export function initChrome(): void {
   }
 
   paintBarCount();
+  wirePrint();
+}
+
+/**
+ * Open every collapsed section before printing, and put it back afterwards.
+ *
+ * A `<details>` on paper is a section the reader cannot open, so the Keeping
+ * notes would print as a heading with nothing under it. CSS cannot fix this:
+ * the browser hides the content with `content-visibility` on its own
+ * pseudo-element rather than with a rule an author stylesheet can outrank.
+ *
+ * Only ones that were closed are reopened and then re-closed, so a reader who
+ * had already expanded something finds it still expanded when the dialog
+ * closes.
+ */
+function wirePrint(): void {
+  let reopened: HTMLDetailsElement[] = [];
+
+  globalThis.addEventListener('beforeprint', () => {
+    reopened = [...document.querySelectorAll<HTMLDetailsElement>('details:not([open])')];
+    for (const details of reopened) details.open = true;
+  });
+
+  globalThis.addEventListener('afterprint', () => {
+    for (const details of reopened) details.open = false;
+    reopened = [];
+  });
 }
 
 /**

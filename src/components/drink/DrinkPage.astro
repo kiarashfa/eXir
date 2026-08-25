@@ -25,8 +25,10 @@ import { glassFit } from '../../lib/math/glassware.ts';
 import { ALLERGEN_DISCLAIMER } from '../../lib/math/facets.ts';
 import { DILUTION_DENOMINATOR_NOTE } from '../../lib/math/dilution.ts';
 import { renderAbout, type AboutSource } from '../../lib/render/about.ts';
+import { buildSubPayload } from '../../lib/render/substitutions.ts';
 import attributions from '../../data/image-attributions.json' with { type: 'json' };
 import type { ResolvedVersion } from '../../lib/content/resolve.ts';
+import type { Ingredient } from '../../lib/math/types.ts';
 
 interface ImageRecord {
   alt: string;
@@ -51,9 +53,11 @@ interface Props {
   versions: ResolvedVersion[];
   eyebrow?: string;
   about?: { body: string; frontmatter: Record<string, unknown> } | null;
+  /** Every ingredient on the site, so a substitution can name a real record. */
+  ingredients: Map<string, Ingredient>;
 }
 
-const { slug, name, subtitle, versions, eyebrow, about } = Astro.props;
+const { slug, name, subtitle, versions, eyebrow, about, ingredients } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const primary = versions[0]!;
@@ -103,6 +107,9 @@ const built = versions.map((v) => {
     spec,
     batch,
     fit,
+    // Null where nothing is substitutable, which is most drinks. The control
+    // and its payload are then absent rather than empty.
+    subs: buildSubPayload(v, ingredients),
     orderLines: linesForService(v.lines, batch, 'order'),
     batchLines: linesForService(v.lines, batch, 'batch'),
     steps: v.version.steps.map((step) => ({
@@ -268,10 +275,16 @@ const factRows = built.map(({ v, spec }) => ({
     placed above everything would claim to change more than it does.
   */}
   <div class="wrap">
+    {/* A group of mutually exclusive toggles, NOT a tab list. A tab controls
+        one panel; this changes the fact row, the left column and the right
+        column at once, which are three regions in three grid cells. Claiming
+        the tab role would promise a screen reader a single panel relationship
+        that does not exist. It is the same kind of control as Service and
+        Units, and carries the same semantics. */}
     {versions.length > 1 && (
-      <div class="version-strip" role="tablist" aria-label="Versions" data-version-strip>
+      <div class="version-strip" role="group" aria-label="Versions" data-version-strip>
         {versions.map((v, i) => (
-          <button type="button" role="tab" data-value={v.version.id} aria-selected={i === 0}>
+          <button type="button" data-value={v.version.id} aria-pressed={i === 0}>
             {v.version.label}
           </button>
         ))}
@@ -340,7 +353,7 @@ const factRows = built.map(({ v, spec }) => ({
             </div>
         </div>
 
-        {built.map(({ v, spec, batch, fit, orderLines, batchLines }, index) => (
+        {built.map(({ v, spec, batch, fit, orderLines, batchLines, subs }, index) => (
           <div
             data-version={v.version.id}
             data-default-drinks={v.version.defaultDrinks}
@@ -349,13 +362,30 @@ const factRows = built.map(({ v, spec }) => ({
             data-has-ice={fit && fit.iceMl > 0 ? '' : undefined}
             hidden={index > 0}
           >
+          {/* Data, not code. `is:inline` keeps the bundler from treating a
+              JSON island as a module to process. A JSX comment cannot be the
+              first thing inside `cond && ( … )` — the parenthesis then opens an
+              object literal — so it sits outside the guard. */}
+          {subs && (
+            <script type="application/json" data-sub-payload set:html={JSON.stringify(subs)} is:inline />
+          )}
           <div class="left-col">
             {/* ---- the drink spec ---- */}
-            <div class="card glass">
+            <div class="card glass" data-spec-card>
               <h2 class="card-title">Drink spec — per drink</h2>
 
+              {subs && (
+                <p class="sub-banner" data-sub-banner hidden>
+                  <b>Substituted</b>
+                  Recomputed with <span data-sub-names></span> in place of what the recipe names.
+                  <button class="link-button" type="button" data-sub-reset hidden>
+                    Back to as written
+                  </button>
+                </p>
+              )}
+
               <div class="spec-grid">
-                <div class="spec-cell">
+                <div class="spec-cell" data-spec="final-volume">
                   <span class="spec-key">Final volume</span>
                   <Measure
                     amount={spec.finalVolumeMl}
@@ -369,10 +399,14 @@ const factRows = built.map(({ v, spec }) => ({
                 </div>
 
                 {spec.panels.alcohol && (
-                  <div class="spec-cell spec-cell--alcohol">
+                  <div class="spec-cell spec-cell--alcohol" data-spec="abv">
                     <span class="spec-key">Strength</span>
                     <span class="spec-val">
-                      <span class={spec.alcohol.abvEstimated ? 'est' : ''} title={DILUTION_DENOMINATOR_NOTE}>
+                      <span
+                        class={spec.alcohol.abvEstimated ? 'est' : ''}
+                        data-abv-figure
+                        title={DILUTION_DENOMINATOR_NOTE}
+                      >
                         {spec.alcohol.abvEstimated && '~'}{spec.alcohol.finalAbvPercent.toFixed(1)}
                       </span><small>% ABV</small>
                     </span>
@@ -380,43 +414,44 @@ const factRows = built.map(({ v, spec }) => ({
                 )}
 
                 {spec.panels.alcohol && (
-                  <div class="spec-cell spec-cell--alcohol">
+                  <div class="spec-cell spec-cell--alcohol" data-spec="pure-alcohol">
                     <span class="spec-key">Pure alcohol</span>
                     <Measure amount={spec.alcohol.pureAlcoholG} unit="g" system={system} />
                   </div>
                 )}
 
                 {spec.panels.alcohol && (
-                  <div class="spec-cell">
+                  <div class="spec-cell" data-spec="standard-drinks">
                     <span class="spec-key">Std. drinks</span>
                     <span class="spec-val">
-                      {spec.alcohol.standardDrinks[0]?.drinks.toFixed(1)}
+                      <span data-std-us>{spec.alcohol.standardDrinks[0]?.drinks.toFixed(1)}</span>
                       <small>
-                        US · {spec.alcohol.standardDrinks[1]?.drinks.toFixed(1)} UK
+                        US · <span data-std-uk>{spec.alcohol.standardDrinks[1]?.drinks.toFixed(1)}</span> UK
                       </small>
                     </span>
                   </div>
                 )}
 
-                <div class="spec-cell">
+                <div class="spec-cell" data-spec="sugar">
                   <span class="spec-key">Sugar</span>
                   <Measure
                     amount={spec.composition.sugarG}
                     unit="g"
                     system={system}
                     suffix={`· ${Math.round(spec.sugarGPerL)} g/L`}
+                    suffixAttr="data-sugar-per-litre"
                   />
                 </div>
 
-                <div class="spec-cell">
+                <div class="spec-cell" data-spec="energy">
                   <span class="spec-key">Energy</span>
-                  <span class="spec-val">{Math.round(spec.nutrition.kcal)}<small>kcal</small></span>
+                  <span class="spec-val"><span data-energy-figure>{Math.round(spec.nutrition.kcal)}</span><small>kcal</small></span>
                 </div>
               </div>
 
               <div class="balance">
                 {spec.bars.map((bar) => (
-                  <div class={bar.computed ? 'bar-row' : 'bar-row bar-row--editorial'}>
+                  <div class={bar.computed ? 'bar-row' : 'bar-row bar-row--editorial'} data-bar={bar.key}>
                     <span class="bar-name">{bar.label}</span>
                     <span class="bar-track">
                       <span
@@ -575,13 +610,68 @@ const factRows = built.map(({ v, spec }) => ({
                           {r.form.abvPercent > 0 && <>{formatAbv(r.form.abvPercent)}</>}
                           {r.line.note && <> · {r.line.note}</>}
                         </span>
+
+                        {/* Collapsed and opt-in per row, never expanded by
+                            default. Choosing one recomputes the spec above:
+                            a substitute here has its own strength and its own
+                            sugar, so the arithmetic genuinely moves, and that
+                            is what makes this different from a note. */}
+                        {mode === 'order' && subs?.options[r.line.id] && (
+                          <span class="subs">
+                            <button class="sub-toggle" type="button" data-sub-toggle aria-expanded="false">
+                              {subs.options[r.line.id]!.length === 1
+                                ? '1 substitution'
+                                : `${subs.options[r.line.id]!.length} substitutions`}
+                            </button>
+                            <span class="subs-body" hidden>
+                              <label class="sub-option">
+                                <input
+                                  type="radio"
+                                  name={`sub-${v.version.id}-${r.line.id}`}
+                                  value=""
+                                  data-sub-choice
+                                  data-line={r.line.id}
+                                  checked
+                                />
+                                <span>As written — {r.ingredient.name}</span>
+                              </label>
+                              {subs.options[r.line.id]!.map((option) => (
+                                <span class="sub-choice">
+                                  <label class="sub-option">
+                                    <input
+                                      type="radio"
+                                      name={`sub-${v.version.id}-${r.line.id}`}
+                                      value={option.id}
+                                      data-sub-choice
+                                      data-line={r.line.id}
+                                      data-name={option.name}
+                                    />
+                                    <span>
+                                      {option.name}
+                                      {option.ratio && option.ratio !== '1:1' && (
+                                        <em class="sub-ratio">{option.ratio}</em>
+                                      )}
+                                    </span>
+                                  </label>
+                                  <span class="sub-note">{option.note}</span>
+                                  {option.impact && (
+                                    <span class="sub-impact">
+                                      {Object.entries(option.impact)
+                                        .filter(([, value]) => value)
+                                        .map(([key, value]) => `${key}: ${value}`)
+                                        .join(' · ')}
+                                    </span>
+                                  )}
+                                </span>
+                              ))}
+                            </span>
+                          </span>
+                        )}
                       </span>
                     </li>
                   ))}
                 </ul>
               ))}
-
-              <button class="btn-wide" type="button">Add to my bar list</button>
             </div>
 
             {/* ---- glass / vessel ---- */}
@@ -628,13 +718,17 @@ const factRows = built.map(({ v, spec }) => ({
       </div>
 
       <div class="col-stack">
+        {/* This one genuinely is a tab list: two controls, one panel each, and
+            the panels are siblings of the strip. So it carries the whole
+            pattern — aria-controls, tabpanel roles, and a roving tabindex so
+            Tab enters the strip once and the arrows move within it. */}
         <div class="panel-switch" role="tablist" aria-label="Recipe or About" data-panel-switch>
-          <button type="button" role="tab" data-value="recipe" aria-selected="true">Recipe</button>
-          <button type="button" role="tab" data-value="about" aria-selected="false">About</button>
+          <button type="button" role="tab" id="tab-recipe" aria-controls="panel-recipe" data-value="recipe" aria-selected="true" tabindex="0">Recipe</button>
+          <button type="button" role="tab" id="tab-about" aria-controls="panel-about" data-value="about" aria-selected="false" tabindex="-1">About</button>
         </div>
 
         {/* Both panels ship in the built HTML; the switch is client-side state. */}
-        <div data-panel="recipe">
+        <div data-panel="recipe" id="panel-recipe" role="tabpanel" aria-labelledby="tab-recipe" tabindex="0">
         {built.map(({ v, batch, steps }, index) => (
           <div data-version={v.version.id} hidden={index > 0}>
           <div class="right-col">
@@ -709,7 +803,7 @@ const factRows = built.map(({ v, spec }) => ({
 
         {/* One About for the drink, not one per version: where a drink comes
             from does not change because its ratio does. */}
-        <div class="right-col" data-panel="about" hidden>
+        <div class="right-col" data-panel="about" id="panel-about" role="tabpanel" aria-labelledby="tab-about" tabindex="0" hidden>
         <div class="section-head"><h2>About</h2></div>
         {aboutRendered ? (
           <>
@@ -753,6 +847,11 @@ const factRows = built.map(({ v, spec }) => ({
 <script>
   import { initDrink } from '../../lib/client/drink.ts';
   import { initLiveValues } from '../../lib/client/live-values.ts';
+  import { initSubstitutions } from '../../lib/client/substitutions.ts';
   initLiveValues();
   initDrink();
+  // Wires the toggles only. The engine it needs to recompute the spec arrives
+  // as its own chunk on the first click, so a reader who never opens a
+  // substitution never downloads it.
+  initSubstitutions();
 </script>

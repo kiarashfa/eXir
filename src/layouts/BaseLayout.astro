@@ -80,7 +80,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 
     <div class="page">
       <SiteHeader current={current} />
-      <main id="main">
+      {/*
+        A noindex page is kept out of the SEARCH index too, in the same place
+        and from the same flag. Marking it per page is how one of them ends up
+        indexed anyway: the user-state pages carry prose that names drinks, so
+        they turn up under a drink's own name and outrank nothing useful. One
+        decision, one attribute, and `check:site` asserts the pair stays
+        together.
+      */}
+      <main id="main" {...(noindex ? { 'data-pagefind-ignore': '' } : {})}>
         <slot />
       </main>
       <SiteFooter />

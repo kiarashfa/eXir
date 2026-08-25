@@ -18,6 +18,9 @@ export async function getStaticPaths() {
 }
 
 const { drink } = Astro.props;
+// Cached for the whole build, so asking again costs nothing and keeps the page
+// body from depending on a binding that only exists inside getStaticPaths.
+const { ingredients } = await site();
 const primary = defaultVersion(drink);
 const fm = primary.frontmatter;
 
@@ -58,6 +61,7 @@ const searchOnly = (fm['names'] as { searchOnly?: string[] } | undefined)?.searc
     versions={drink.versions}
     eyebrow={eyebrow}
     about={drink.about}
+    ingredients={ingredients}
   />
 
   {/*

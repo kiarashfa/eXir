@@ -59,6 +59,10 @@
   }
 
   onMount(async () => {
+    // The reserved-space placeholder lives outside this component, in the page
+    // that hosts it, because it has to exist before this module arrives.
+    document.querySelector('[data-tool-placeholder]')?.remove();
+
     const loaded = planStore.load();
     plan = loaded.value;
     notice = loaded.notice;

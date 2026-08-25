@@ -19,10 +19,12 @@ interface Props {
   estimated?: boolean;
   /** Follows the unit, unconverted: "· 98 g/L", "kcal". */
   suffix?: string;
+  /** A hook on the suffix, for anything that has to rewrite it in place. */
+  suffixAttr?: string;
   title?: string;
 }
 
-const { amount, unit, system, estimated = false, suffix, title } = Astro.props;
+const { amount, unit, system, estimated = false, suffix, suffixAttr, title } = Astro.props;
 const { value, label } = formatMeasure(amount, unit, system);
 ---
 
@@ -35,5 +37,5 @@ const { value, label } = formatMeasure(amount, unit, system);
     title={title}
   >
     <span class="n">{estimated ? `~${value}` : value}</span><small class="u">{label}</small>
-  </span>{suffix && <small>{` ${suffix}`}</small>}
+  </span>{suffix && <small {...(suffixAttr ? { [suffixAttr]: '' } : {})}>{` ${suffix}`}</small>}
 </span>

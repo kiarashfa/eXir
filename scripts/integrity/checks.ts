@@ -846,6 +846,64 @@ const noteAndSubstitutionRefs: Check = {
   },
 };
 
+/**
+ * A Preparation referencing another is normal — an orgeat wants a syrup. Three
+ * levels is almost always a modelling error, and the shopping list is where it
+ * shows: expansion stops one level deep by default, so a reader chasing a third
+ * level has to open two controls before the list is complete, and the yields
+ * multiply against each other on the way down.
+ *
+ * A LOOP is an error rather than a warning. A preparation made out of itself
+ * has no batch count, so the shopping list has nothing to compute.
+ */
+const preparationNesting: Check = {
+  id: 'c30-preparation-nesting',
+  description: 'Preparations do not nest three deep and never reference themselves.',
+  run({ site, report }) {
+    const preparations = [...site.ingredients.values()].filter((i) => i.kind === 'preparation');
+    // One loop, one report. Every preparation upstream of a cycle walks into it,
+    // so without this the same loop is named once per path that reaches it.
+    const reported = new Set<string>();
+
+    /** Depth measured in preparations, so a syrup inside a syrup is two. */
+    const depthOf = (id: string, seen: string[]): number => {
+      const ingredient = site.ingredients.get(id);
+      if (!ingredient || ingredient.kind !== 'preparation') return 0;
+
+      if (seen.includes(id)) {
+        const cycle = seen.slice(seen.indexOf(id));
+        const key = [...cycle].sort().join('|');
+        if (!reported.has(key)) {
+          reported.add(key);
+          report.error(
+            'c30-preparation-nesting',
+            id,
+            `Preparations reference each other in a loop: ${[...cycle, id].join(' -> ')}. A preparation made out of itself has no batch count, so a shopping list cannot expand it.`,
+          );
+        }
+        return 0;
+      }
+
+      let deepest = 0;
+      for (const line of ingredient.ingredients ?? []) {
+        deepest = Math.max(deepest, depthOf(line.ingredientRef, [...seen, id]));
+      }
+      return deepest + 1;
+    };
+
+    for (const preparation of preparations) {
+      const depth = depthOf(preparation.id, []);
+      if (depth >= 3) {
+        report.warn(
+          'c30-preparation-nesting',
+          preparation.id,
+          `Its own recipe nests preparations ${depth} deep. The shopping list expands one level by default, so anything past two is a modelling error far more often than it is a real recipe.`,
+        );
+      }
+    }
+  },
+};
+
 export const checks: Check[] = [
   schemaCheck,
   portionsSumCheck,
@@ -876,4 +934,5 @@ export const checks: Check[] = [
   balanceSanity,
   undeclaredAnimalOrigin,
   noteAndSubstitutionRefs,
+  preparationNesting,
 ];

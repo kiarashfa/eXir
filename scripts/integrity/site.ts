@@ -31,6 +31,7 @@ report.ran('links');
 report.ran('images');
 report.ran('anchors');
 report.ran('orphans');
+report.ran('noindex');
 
 if (!existsSync(distDir)) {
   console.error(`No build output at ${distDir}. Run \`astro build\` first.`);
@@ -83,6 +84,31 @@ const linkedTo = new Set<string>();
 for (const page of pages) {
   const html = await readFile(path.join(distDir, page), 'utf8');
   const ids = anchorTargets(html);
+
+  /**
+   * A page kept out of the crawl index has to be kept out of the SEARCH index
+   * too, and the two are set in different places — a meta tag in the head and
+   * an attribute on the body.
+   *
+   * The failure this catches is quiet and specific: the user-state pages carry
+   * prose that names real drinks, so without the attribute they are indexed and
+   * turn up under a drink's own name, above nothing useful. Pagefind reports
+   * only how many pages it indexed, never which, so nothing else would say so.
+   */
+  // Matched on `<main>` specifically, not anywhere in the document: the
+  // masthead and every listing already carry the attribute, so a document-wide
+  // search finds it on every page and the check asserts nothing. Sabotage
+  // proved exactly that before this was narrowed.
+  if (
+    /<meta[^>]+name="robots"[^>]+noindex/i.test(html) &&
+    !/<main[^>]*\sdata-pagefind-ignore/i.test(html)
+  ) {
+    report.error(
+      'noindex',
+      page,
+      'Carries a noindex tag but nothing on it is marked data-pagefind-ignore, so it will be in the search index.',
+    );
+  }
 
   const refs = [
     ...[...html.matchAll(/<a[^>]+href="([^"]+)"/g)].map((m) => ({ kind: 'link', url: m[1]! })),
