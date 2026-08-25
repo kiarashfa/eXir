@@ -476,6 +476,15 @@
   align-content: start;
   gap: 20px;
 }
+/* A grid item's automatic minimum size is its MIN-CONTENT size, which can exceed
+   the track it sits in — so one control too wide for the left column silently
+   widened the whole column and pushed the reading column over with it, on one
+   page only. The track is a fixed 372px and both columns are told to honour it,
+   so a future control that does not fit is clipped or wrapped where it lives
+   rather than moving the page around it. */
+.body-grid > .col-stack {
+  min-width: 0;
+}
 .left-col {
   display: grid;
   gap: 20px;
@@ -559,6 +568,69 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* The brew scale: two figures either side of the ratio that binds them.
+   Content-sized like every other control in this card, for the reason recorded
+   on `.segmented` below. */
+.brew-scale {
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px 12px;
+}
+.brew-scale label {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.brew-scale-key {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.brew-scale input {
+  /* Wide enough for four digits AND the spinner a number input reserves space
+     for. At 5ch the spinner ate the last digit of a four-figure yield. */
+  width: 7ch;
+  min-width: 0;
+  padding: 5px 6px;
+  border: 1px solid var(--control-edge);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-data);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  transition:
+    border-color 0.3s var(--ease),
+    background 0.3s var(--ease);
+}
+/* No spinner. It reserves about a fifth of the field's width, which clipped the
+   last digit of a four-figure yield, and it buys nothing here: the reader types
+   a target rather than nudging one. Arrow keys still step by the `step` value on
+   a focused number input, so the keyboard affordance survives. */
+.brew-scale input {
+  appearance: textfield;
+}
+.brew-scale input::-webkit-outer-spin-button,
+.brew-scale input::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+.brew-scale input:hover,
+.brew-scale input:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.brew-scale-unit {
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: var(--muted);
+}
 /* Content-sized, in every container. Inside a `.control-row` the flex parent
    already did this, which is why nothing noticed until one was dropped into a
    block context and stretched to the full width of its card. A control that
@@ -1094,6 +1166,12 @@
   text-transform: uppercase;
   color: var(--accent-ink);
   margin-bottom: 5px;
+}
+/* The box carries two labelled rows — Diet and Allergens. Each row's values are
+   a text node rather than an element, so the two headings are element siblings
+   and without this the second sits flush against the first row's list. */
+.allergen-box b + b {
+  margin-top: 11px;
 }
 .allergen-box /* No reading measure. These sit inside cards, and a card is already the
    measure — clamping them again left a ragged right edge in any card wider than
@@ -2763,4 +2841,44 @@
   .source-facts dd {
     margin-bottom: 10px;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   The family formula — a shape stated as real measures, not as a typed ratio
+   --------------------------------------------------------------------------- */
+
+.formula-line {
+  margin: 0 0 20px;
+  font-size: 21px;
+  line-height: 1.5;
+}
+.formula-line .q .n {
+  font-size: 21px;
+}
+/* The colons carry the meaning of the line and should read as structure rather
+   than as punctuation inside a number. */
+.formula-sep {
+  font-family: var(--font-data);
+  color: var(--accent-ink);
+  padding: 0 2px;
+}
+
+.formula-slots {
+  margin: 18px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 12px 14px;
+}
+.formula-slots dt {
+  font: 500 10px/1.4 var(--font-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+.formula-slots dd {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
 }

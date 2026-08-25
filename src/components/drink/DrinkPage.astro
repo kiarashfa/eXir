@@ -142,6 +142,11 @@ const built = versions.map((v) => {
 
 const one = built[0]!;
 
+/** The same rounding a displayed measure gets, so the field and the checklist
+    below it never state one quantity two ways. */
+const roundedBase = (value: number): number =>
+  value >= 10 ? Math.round(value) : Math.round(value * 10) / 10;
+
 /**
  * The fact row belongs to the VERSION, not to the drink.
  *
@@ -289,7 +294,11 @@ const factRows = built.map(({ v, spec }) => ({
             <div class="card glass">
               <h2 class="card-title">Serving</h2>
 
-              <div class="control-row">
+              {/* The default version decides which of the two ships visible, so a
+                   brewed drink never renders a drink stepper — not for a frame,
+                   and not at all with no script running. The client only ever
+                   swaps them on a version change, which is an interaction. */}
+              <div class="control-row" data-drinks-row hidden={Boolean(one.v.brew)}>
                 <span class="control-label" id="drinks-label">Drinks</span>
                 <div class="stepper">
                   <button class="step-btn" type="button" data-drinks-minus aria-label="Fewer drinks">−</button>
@@ -299,6 +308,49 @@ const factRows = built.map(({ v, spec }) => ({
                   <button class="step-btn" type="button" data-drinks-plus aria-label="More drinks">+</button>
                 </div>
               </div>
+
+              {/* ---- brew scale ----
+                   A cocktail scales by drink count and a brew scales by ratio,
+                   and this is the one place that difference is visible. The
+                   ratio is the fixed thing: set the dose or set the yield and
+                   the other follows from it. Both write the same page
+                   multiplier the stepper writes, so nothing downstream has to
+                   know which control the reader used — the difference is only in
+                   which question it asks.
+
+                   Rendered whenever any version brews, shown when the version on
+                   screen does. A drink whose versions differ on this shows one
+                   control or the other, never both. */}
+              {built.some(({ v }) => v.brew) && (
+                <div class="control-row" data-brew-row hidden={!one.v.brew}>
+                  {/* Values are rendered, not left to hydration, so the fields
+                      carry the recipe's own figures with no script running. */}
+                  <span class="control-label" id="brew-label">Brew</span>
+                  <div class="brew-scale" role="group" aria-labelledby="brew-label">
+                    <label>
+                      <span class="brew-scale-key">Dose</span>
+                      <input type="number" min="1" step="0.5" inputmode="decimal"
+                             value={one.v.brew ? roundedBase(one.v.brew.doseG) : ''}
+                             data-brew-dose-input aria-label="Dose in grams" />
+                      <span class="brew-scale-unit">g</span>
+                    </label>
+                    <label>
+                      <span class="brew-scale-key">Yield</span>
+                      <input type="number" min="1" step="10" inputmode="decimal"
+                             value={one.v.brew ? roundedBase(one.v.brew.yieldMl) : ''}
+                             data-brew-yield-input aria-label="Yield in millilitres" />
+                      <span class="brew-scale-unit">ml</span>
+                    </label>
+                  </div>
+                </div>
+              )}
+              <span class="control-reason" data-brew-reason hidden={!one.v.brew}>
+                The ratio between them is locked — it is in the Extraction panel below and
+                does not move — so setting either of these moves the other. Water
+                temperature, grind and contact time do not scale with it, and a larger brew is
+                still one brew rather than several. The spec below stays per serving: brewing
+                more makes more servings rather than a bigger drink.
+              </span>
 
               <div class="control-row" data-service-row>
                 <span class="control-label">Service</span>
@@ -347,6 +399,8 @@ const factRows = built.map(({ v, spec }) => ({
             data-batchable={v.version.batchable}
             data-batch-note={v.version.batchNote ?? ''}
             data-has-ice={fit && fit.iceMl > 0 ? '' : undefined}
+            data-brew-dose={v.brew ? v.brew.doseG : undefined}
+            data-brew-yield={v.brew ? v.brew.yieldMl : undefined}
             hidden={index > 0}
           >
           {/* Data, not code. `is:inline` keeps the bundler from treating a
@@ -473,10 +527,39 @@ const factRows = built.map(({ v, spec }) => ({
                 )}
               </p>
 
-              {spec.facets.diet.allergens.length > 0 && (
+              {/* Diet and allergens are the same derivation read two ways — both
+                  come out of the ingredients' declared properties, and neither is
+                  ever tagged on the drink. They share one box because they share
+                  one disclaimer: a label computed from a listed ingredient cannot
+                  know which bottle a reader buys. A diet label absent from the
+                  row means the site declines to claim it, which is not the same
+                  as a claim to the contrary — the note says which. */}
+              {(spec.facets.diet.diets.length > 0
+                || spec.facets.diet.allergens.length > 0
+                || spec.facets.diet.animalOriginNotes.length > 0) && (
                 <div class="allergen-box">
-                  <b>Allergens</b>
-                  {spec.facets.diet.allergens.join(' · ')}
+                  {spec.facets.diet.diets.length > 0 && (
+                    <>
+                      <b>Diet</b>
+                      {spec.facets.diet.diets.join(' · ')}
+                    </>
+                  )}
+                  {spec.facets.diet.allergens.length > 0 && (
+                    <>
+                      <b>Allergens</b>
+                      {spec.facets.diet.allergens.join(' · ')}
+                    </>
+                  )}
+                  {spec.facets.diet.animalOriginNotes.map((n) => (
+                    <p class="disclaimer">{n.note}</p>
+                  ))}
+                  {spec.facets.diet.undeclaredAnimalOrigin.length > 0 && (
+                    <p class="disclaimer">
+                      Vegan and vegetarian are withheld here because at least one ingredient
+                      record does not state whether it has an animal input. Withholding the
+                      label is the honest answer to an unanswered question.
+                    </p>
+                  )}
                   <p class="disclaimer">{ALLERGEN_DISCLAIMER}</p>
                 </div>
               )}

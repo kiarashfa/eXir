@@ -439,11 +439,56 @@ export const glassware = z
 
 export const familyRole = z.enum(['origin', 'canonical', 'descendant', 'riff']);
 
+/**
+ * One slot in a family's parametric formula.
+ *
+ * The amount is a real measure in the base units, not a ratio number, for the
+ * same reason every other quantity on the site is: a ratio typed as `2 : ¾ : ¾`
+ * is already a US display of something, and it could not answer the unit toggle
+ * or be checked against the drinks that claim to follow it. Stated as ml the
+ * formula renders through the same machinery a recipe does.
+ */
+export const formulaSlot = z
+  .object({
+    id: authoredId,
+    /** The slot, not the bottle: "Spirit", "Citrus", "Sweetener". */
+    label: z.string().min(1),
+    amount: z.number().positive(),
+    unit: z.enum(['ml', 'g']),
+    /**
+     * A slot whose measure is counted rather than poured.
+     *
+     * Not a second copy of a Form's `countUnit`: a formula names a SLOT rather
+     * than a bottle, and "two dashes" is a property of the bitters slot itself —
+     * Angostura, Peychaud's and orange bitters all dash at about the same
+     * volume. Without it a bitters slot renders as a bare decimal beside three
+     * snapped fractions, because there is no eighth of an ounce small enough to
+     * hold it, and the odd figure reads as an error rather than as a count.
+     */
+    countUnit: countUnit.optional(),
+    /** One sentence on what the slot does and what moving it costs. */
+    role: z.string().min(1),
+  })
+  .strict();
+
 export const family = z
   .object({
     id: slug,
     name: z.string().min(1),
     summary: z.string().min(1),
+    /**
+     * Optional, because not every shape has a numeric one. A steeped infusion is
+     * leaf, water, temperature and time, and reducing it to two volumes would
+     * state a formula the family does not have. The page says so where it is
+     * absent rather than leaving a blank panel.
+     */
+    formula: z
+      .object({
+        slots: z.array(formulaSlot).min(2),
+        note: z.string().optional(),
+      })
+      .strict()
+      .optional(),
     about: about.optional(),
   })
   .strict();

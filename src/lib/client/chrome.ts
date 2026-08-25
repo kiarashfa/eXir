@@ -11,6 +11,8 @@
  */
 
 import { barStore } from '../bar/inventory.ts';
+import { unitSystem } from '../stores/display.ts';
+import type { UnitSystem } from '../math/types.ts';
 
 const THEME_KEY = 'exir.theme.v1';
 const GLASS_KEY = 'exir.glass.v1';
@@ -89,6 +91,38 @@ export function initChrome(): void {
   wirePrint();
   wireImageCredits();
   wireShare();
+  wireUnits();
+}
+
+/**
+ * The ml / oz control, on EVERY page that carries one.
+ *
+ * It lived in the drink page's own script, which was correct while the drink
+ * page was the only page with a live quantity on it. A family's parametric
+ * formula is a live quantity too, and the same markup there would have been a
+ * control nothing was listening to — the third time this project has shipped a
+ * feature that worked on one template and nowhere else. The store is already
+ * shared and already persisted; only the wiring was in the wrong file.
+ */
+function wireUnits(): void {
+  const group = document.querySelector<HTMLElement>('[data-units]');
+  if (!group) return;
+
+  group.addEventListener('click', (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button');
+    if (!button) return;
+    unitSystem.set((button.dataset['value'] ?? 'metric') as UnitSystem);
+  });
+
+  unitSystem.subscribe((system) => {
+    for (const button of group.querySelectorAll<HTMLButtonElement>('button')) {
+      button.setAttribute('aria-pressed', String(button.dataset['value'] === system));
+    }
+    const note = document.querySelector<HTMLElement>('[data-units-note]');
+    // The one place the site rounds a figure it could state exactly, disclosed
+    // where the choice is made rather than in a footnote nobody reaches.
+    if (note) note.hidden = system !== 'us';
+  });
 }
 
 /**

@@ -8,7 +8,28 @@
  * own members would go stale the first time one was added.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import LiveValues from '../../components/live/LiveValues.astro';
+import Qty from '../../components/live/Qty.astro';
 import { defaultVersion, published, site } from '../../lib/content/site.ts';
+import type { BaseUnit, CountUnit } from '../../lib/math/types.ts';
+
+/**
+ * A slot in the parametric formula.
+ *
+ * Authored as a real measure in ml or g rather than as a ratio number, so it
+ * renders through the same `<Qty>` machinery a recipe does and answers the unit
+ * toggle: `60 ml : 22.5 ml : 22.5 ml` in metric is `2 : ¾ : ¾ oz` in US, which
+ * is how the field itself writes it.
+ */
+interface FormulaSlot {
+  id: string;
+  label: string;
+  amount: number;
+  unit: BaseUnit;
+  /** Where the slot is counted rather than poured — bitters, in dashes. */
+  countUnit?: CountUnit;
+  role: string;
+}
 
 const ROLE_ORDER = ['origin', 'canonical', 'descendant', 'riff'] as const;
 const ROLE_LABEL: Record<string, string> = {
@@ -49,6 +70,10 @@ const paragraphs = family.body
   .split(/\n\s*\n/)
   .filter(Boolean);
 
+const formula = family.frontmatter['formula'] as
+  | { slots: FormulaSlot[]; note?: string }
+  | undefined;
+
 const groups = ROLE_ORDER.map((role) => ({
   role,
   label: ROLE_LABEL[role] ?? role,
@@ -82,6 +107,69 @@ const ungrouped = members.filter((m) => !ROLE_ORDER.includes(m.role as never));
     <div class="body-grid">
       <div class="col-stack">
         <div class="left-col">
+          {/* ---- the formula ----
+               The one thing a family page exists to show. It is the same live
+               quantity a recipe carries, so it converts with the reader's units
+               and cannot be a hand-typed ratio that drifts from the drinks
+               claiming to follow it. Nothing scales it: a formula is a shape,
+               not a batch, and there is no drink count on this page. */}
+          {formula ? (
+            <div class="card glass">
+              <h2 class="card-title">The formula</h2>
+
+              <p class="formula-line">
+                {formula.slots.map((slot, i) => (
+                  <>
+                    {i > 0 && <span class="formula-sep"> : </span>}
+                    <Qty
+                      data={{
+                        amount: slot.amount,
+                        unit: slot.unit,
+                        defaultDrinks: 1,
+                        name: '',
+                        ...(slot.countUnit ? { countUnit: slot.countUnit } : {}),
+                      }}
+                      drinks={1}
+                      system="metric"
+                      showName={false}
+                    />
+                  </>
+                ))}
+              </p>
+
+              <div class="control-row">
+                <span class="control-label">Units</span>
+                <div class="segmented" role="group" aria-label="Unit system" data-units>
+                  <button type="button" data-value="metric" aria-pressed="true">ml</button>
+                  <button type="button" data-value="us" aria-pressed="false">oz</button>
+                </div>
+              </div>
+              <span class="control-reason" data-units-note hidden>
+                US measures are rounded to the nearest ⅛ oz, as a jigger is. Metric stays exact.
+              </span>
+
+              <dl class="formula-slots">
+                {formula.slots.map((slot) => (
+                  <>
+                    <dt>{slot.label}</dt>
+                    <dd>{slot.role}</dd>
+                  </>
+                ))}
+              </dl>
+
+              {formula.note && <p class="disclaimer">{formula.note}</p>}
+            </div>
+          ) : (
+            <div class="card glass">
+              <h2 class="card-title">The formula</h2>
+              <p class="disclaimer">
+                This shape has no single numeric formula. What binds its members is a
+                sequence and a set of conditions rather than a ratio of volumes, and
+                stating one would be inventing the thing the page is for.
+              </p>
+            </div>
+          )}
+
           <div class="card glass">
             <h2 class="card-title">Members on this site</h2>
             {[...groups, ...(ungrouped.length ? [{ role: '', label: ROLE_LABEL[''] as string, items: ungrouped }] : [])].map(
@@ -148,4 +236,6 @@ const ungrouped = members.filter((m) => !ROLE_ORDER.includes(m.role as never));
       </div>
     </div>
   </div>
+
+  <LiveValues />
 </BaseLayout>

@@ -12,11 +12,11 @@
  * than asserting it.
  */
 
-import { drinks, service, setDrinks, unitSystem } from '../stores/display.ts';
+import { drinks, service, setDrinks, setScale } from '../stores/display.ts';
 import { applyDisplayState } from './live-values.ts';
 import { addItem, planStore } from '../plan/store.ts';
 import { base } from './data.ts';
-import type { ServiceMode, UnitSystem } from '../math/types.ts';
+import type { ServiceMode } from '../math/types.ts';
 
 const MIN_BATCH_DRINKS = 2;
 
@@ -33,14 +33,27 @@ function pressOne(group: HTMLElement | null, value: string): void {
 /**
  * Which version is on screen.
  *
- * Batching, the batch note and whether there is any ice are properties of the
- * VERSION, and the Serving card is one card for the page — so the card reads
- * them off whichever version block is currently showing rather than carrying a
- * copy of them.
+ * Batching, the batch note, whether there is any ice and a brew's dose and yield
+ * are all properties of the VERSION, and the Serving card is one card for the
+ * page — so the card reads them off whichever version block is currently
+ * showing rather than carrying a copy of them.
+ *
+ * Three separate elements carry `data-version` for one version — the fact row,
+ * the left column's block and the right column's — and only the middle one
+ * carries the data. So this names what it is looking for INSIDE the block rather
+ * than trusting document order: an earlier selector went looking for a
+ * `[data-version]` inside a `.left-col`, which is the relationship the other way
+ * round and matched nothing, so every read here silently fell back to the fact
+ * row, which declares none of these, and then to the page root. A single-version
+ * drink was unaffected because the root carries the same values; a two-version
+ * drink that DIFFERED on any of them — the case this function exists for — got
+ * the default version's answer on both tabs.
  */
 function activeVersion(): HTMLElement | null {
-  return document.querySelector<HTMLElement>('.left-col [data-version]:not([hidden])')
-    ?? document.querySelector<HTMLElement>('[data-version]:not([hidden])');
+  for (const el of document.querySelectorAll<HTMLElement>('[data-version]')) {
+    if (!el.hidden && el.querySelector('.left-col')) return el;
+  }
+  return document.querySelector<HTMLElement>('[data-version]:not([hidden])');
 }
 
 /** Batched service is unavailable below two drinks, and the control says so. */
@@ -104,6 +117,61 @@ function paintService(root: HTMLElement, mode: ServiceMode, count: number): void
   for (const el of all<HTMLElement>('[data-when-service]')) {
     el.hidden = el.dataset['whenService'] !== effective;
   }
+
+  paintScaleControl(version, count);
+}
+
+/**
+ * Show the count stepper or the brew inputs, whichever asks this version's
+ * question, and keep the one on screen current.
+ *
+ * They are two faces of one multiplier rather than two counts — §19.5's rule
+ * that a fact gets exactly one display slot is why only ever one of them is
+ * visible.
+ */
+function paintScaleControl(version: HTMLElement | null, count: number): void {
+  const { dose, yieldMl, factor } = brewScale(version, count);
+  const brewed = dose > 0 && yieldMl > 0;
+
+  const drinksRow = document.querySelector<HTMLElement>('[data-drinks-row]');
+  const brewRow = document.querySelector<HTMLElement>('[data-brew-row]');
+  const brewReason = document.querySelector<HTMLElement>('[data-brew-reason]');
+  if (drinksRow) drinksRow.hidden = brewed;
+  if (brewRow) brewRow.hidden = !brewed;
+  if (brewReason) brewReason.hidden = !brewed;
+  if (!brewed || !brewRow) return;
+
+  // Never while it is being typed into: rewriting the field under the cursor
+  // eats the second digit of every two-digit number.
+  //
+  // Rounded the way `roundBase` rounds a displayed measure, so the figure in the
+  // field and the same figure in the checklist below it agree. They are the one
+  // quantity seen twice, and a reader who saw 17.2 here and 17 g there would be
+  // right to wonder which the recipe meant.
+  const write = (selector: string, value: number): void => {
+    const input = document.querySelector<HTMLInputElement>(selector);
+    if (!input || input === document.activeElement) return;
+    input.value = String(value >= 10 ? Math.round(value) : Math.round(value * 10) / 10);
+  };
+  write('[data-brew-dose-input]', dose * factor);
+  write('[data-brew-yield-input]', yieldMl * factor);
+}
+
+/**
+ * The brew block's authored figures, which are for the whole recipe rather than
+ * for one cup, and the multiple of it currently on screen.
+ */
+function brewScale(
+  version: HTMLElement | null,
+  count: number,
+): { dose: number; yieldMl: number; factor: number; defaultDrinks: number } {
+  const defaultDrinks = Number(version?.dataset['defaultDrinks'] ?? '1') || 1;
+  return {
+    dose: Number(version?.dataset['brewDose'] ?? '') || 0,
+    yieldMl: Number(version?.dataset['brewYield'] ?? '') || 0,
+    factor: count / defaultDrinks,
+    defaultDrinks,
+  };
 }
 
 export function initDrink(): void {
@@ -116,7 +184,10 @@ export function initDrink(): void {
   // --- the stepper -----------------------------------------------------------
   const count = document.querySelector<HTMLElement>('[data-drink-count]');
   drinks.subscribe((n) => {
-    if (count) count.textContent = String(n);
+    // The brew scale can put a fraction in the store. The stepper is hidden on a
+    // brewed version, but a drink with one brewed version and one that is not
+    // shows this again on the way back, and "1.5625" is not a number of drinks.
+    if (count) count.textContent = String(Number(n.toFixed(2)));
     const minus = document.querySelector<HTMLButtonElement>('[data-drinks-minus]');
     if (minus) minus.disabled = n <= 1;
     paintService(root, service.get(), n);
@@ -128,6 +199,23 @@ export function initDrink(): void {
   document
     .querySelector('[data-drinks-plus]')
     ?.addEventListener('click', () => setDrinks(drinks.get() + 1));
+
+  // --- the brew scale --------------------------------------------------------
+  // Each input answers the same question in its own terms, so each converts its
+  // own figure back to the page multiplier and lets the shared updater rewrite
+  // everything, the other input included.
+  const wireBrewInput = (selector: string, key: 'dose' | 'yieldMl'): void => {
+    document.querySelector<HTMLInputElement>(selector)?.addEventListener('input', (event) => {
+      const target = event.target as HTMLInputElement;
+      const wanted = Number(target.value);
+      if (!Number.isFinite(wanted) || wanted <= 0) return;
+      const { defaultDrinks, ...authored } = brewScale(activeVersion(), drinks.get());
+      const base = authored[key];
+      if (base > 0) setScale((wanted / base) * defaultDrinks);
+    });
+  };
+  wireBrewInput('[data-brew-dose-input]', 'dose');
+  wireBrewInput('[data-brew-yield-input]', 'yieldMl');
 
   // --- service ---------------------------------------------------------------
   document.querySelector('[data-service-control]')?.addEventListener('click', (event) => {
@@ -141,19 +229,8 @@ export function initDrink(): void {
   });
   service.subscribe((mode) => paintService(root, mode, drinks.get()));
 
-  // --- units -----------------------------------------------------------------
-  document.querySelector('[data-units]')?.addEventListener('click', (event) => {
-    const button = (event.target as HTMLElement).closest<HTMLButtonElement>('button');
-    if (!button) return;
-    unitSystem.set((button.dataset['value'] ?? 'metric') as UnitSystem);
-  });
-  unitSystem.subscribe((system) => {
-    pressOne(document.querySelector('[data-units]'), system);
-    const note = document.querySelector<HTMLElement>('[data-units-note]');
-    // The one place the site rounds a figure it could state exactly, disclosed
-    // where the choice is made rather than in a footnote nobody reaches.
-    if (note) note.hidden = system !== 'us';
-  });
+  // Units are wired in `chrome.ts`, because a family's formula carries the same
+  // control and this page is not the only one that converts.
 
   // --- ice -------------------------------------------------------------------
   document.querySelector('[data-ice]')?.addEventListener('click', (event) => {
@@ -171,19 +248,28 @@ export function initDrink(): void {
     const slug = location.pathname.replace(/\/$/, '').split('/').pop() ?? '';
     if (!slug || !version) return;
 
+    // A brew scale can leave the multiplier on a fraction — a reader asking for
+    // 500 ml out of a recipe that yields 320 is asking for a part of a second
+    // brew. The plan counts servings, and a fifth of a cup is not one, so it
+    // rounds up and says it did rather than quietly buying too little.
+    const exact = drinks.get();
+    const planned = Math.max(1, Math.ceil(exact));
+    const rounded = planned !== exact;
+
     const saved = planStore.save(
       addItem(planStore.load().value, {
         drink: slug,
         version,
-        drinks: drinks.get(),
+        drinks: planned,
         service: service.get(),
       }),
     );
 
     const note = document.querySelector<HTMLElement>('[data-plan-added]');
     if (!note) return;
+    const roundedNote = rounded ? ` Rounded up to ${planned} — the plan counts servings.` : '';
     note.innerHTML = saved
-      ? `Added. <a href="${base()}/plan/">Open the plan</a>.`
+      ? `Added.${roundedNote} <a href="${base()}/plan/">Open the plan</a>.`
       : 'Added for this visit — this browser is not letting the site store anything.';
     note.hidden = false;
   });

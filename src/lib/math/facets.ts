@@ -198,12 +198,13 @@ export function deriveDiet(lines: ResolvedLine[]): DietResult {
 }
 
 /**
- * Shown wherever a computed allergen label appears. Never a bare list.
+ * Shown wherever a computed diet or allergen label appears. Never a bare list.
  *
- * These flags come from the listed ingredients only. They cannot account for
- * cross-contamination or for the specific product a reader buys.
+ * Both labels come out of the same derivation over the listed ingredients, so
+ * both carry the same caveat: neither can account for cross-contamination or for
+ * the specific product a reader buys.
  */
 export const ALLERGEN_DISCLAIMER =
-  'Allergen flags are computed from the ingredients listed on this page and nothing else. ' +
-  'They cannot account for cross-contamination or for the particular product you buy, and ' +
-  'they are not medical or safety guidance.';
+  'Diet and allergen labels are computed from the ingredients listed on this page and ' +
+  'nothing else. They cannot account for cross-contamination or for the particular product ' +
+  'you buy, and they are not medical or safety guidance.';
