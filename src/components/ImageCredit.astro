@@ -1,0 +1,65 @@
+---
+/**
+ * The credit that travels with an image.
+ *
+ * An affordance rather than a caption: it belongs to the photograph and it is
+ * not what the page is about, so it sits on the image and opens when asked.
+ * Click rather than hover — a credit only a mouse can reach is not an
+ * attribution — and the alt text is in it, because a sighted reader otherwise
+ * has no way to see what was written for a reader who cannot see the picture.
+ *
+ * Only the fields that exist are shown. There is never a placeholder standing
+ * in for a missing one: "credit: unknown" asserts that somebody looked and
+ * found nothing, which is not the same as nobody having filled it in.
+ *
+ * Written once and used by every page that shows a photograph, so a drink, an
+ * ingredient and a glass all credit the same way — and a change to what a
+ * credit says is one edit rather than four.
+ */
+export interface ImageAttribution {
+  source: string;
+  file?: string;
+  sourceUrl?: string;
+  author?: string;
+  credit?: string;
+  license: string;
+  licenseUrl?: string;
+  /** Cropping and grading make a derivative, and share-alike wants it named. */
+  modified?: string;
+}
+
+interface Props {
+  attribution: ImageAttribution;
+  alt: string;
+}
+
+const { attribution, alt } = Astro.props;
+---
+
+<div class="attribution">
+  <button
+    class="attribution-toggle"
+    type="button"
+    aria-expanded="false"
+    aria-label="Image credit"
+    data-attribution-toggle
+  >i</button>
+  <div class="attribution-popover" data-attribution-popover>
+    {attribution.sourceUrl ? (
+      <a href={attribution.sourceUrl} rel="nofollow noopener">
+        {(attribution.file ?? attribution.source).replace('File:', '')}
+      </a>
+    ) : (
+      <span>{attribution.source}</span>
+    )}
+    {attribution.author && <> — {attribution.author}</>}
+    <br />
+    {attribution.licenseUrl ? (
+      <a href={attribution.licenseUrl} rel="nofollow noopener">{attribution.license}</a>
+    ) : (
+      <span>{attribution.license}</span>
+    )}
+    {attribution.modified && <> · {attribution.modified}</>}
+    <p class="attribution-alt">{alt}</p>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+---
+/**
+ * The 404.
+ *
+ * GitHub Pages serves `/404.html` for any path it cannot resolve, including
+ * under a project prefix, so this needs no configuration beyond existing at the
+ * root of the build.
+ *
+ * It carries `noindex` for the same reason the user-state pages do — a soft 404
+ * indexed under its own title is worse than none — and therefore also carries
+ * the `data-pagefind-ignore` the layout stamps alongside it, so the joke below
+ * never turns up as a search result for a real drink.
+ *
+ * The tone is the one place on the site that is allowed to be funny, and it
+ * stays inside §20: nothing here frames drinking as a solution, a competition
+ * or a quantity to maximise. The joke is about the SITE losing a page, not
+ * about anybody drinking.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { builtRoutes } from '../data/routes.ts';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+/**
+ * One line, chosen at BUILD time rather than in the browser.
+ *
+ * A line picked on the client would need JavaScript to say anything at all, and
+ * a 404 is the one page most likely to be reached by something that runs none.
+ * Picking here means the page is complete in its own HTML; the cost is that
+ * every visit in one build sees the same line, which nobody will ever notice.
+ */
+const lines = [
+  {
+    quip: 'Nothing here. Somebody drank it.',
+    note: 'This address does not resolve to a page, which on a drinks site is at least thematically appropriate.',
+  },
+  {
+    quip: 'This one has been strained off.',
+    note: 'The page you asked for is not on the site. Like the ice a drink is stirred over, it did its work somewhere else and did not make it into the glass.',
+  },
+  {
+    quip: 'Not on the shelf.',
+    note: 'Nothing lives at this address. The bottle is either finished, never bought, or spelled differently.',
+  },
+  {
+    quip: 'Diluted past the point of usefulness.',
+    note: 'There is no page here. Every figure on this site is computed from something real, and there was nothing real to compute this one from.',
+  },
+  {
+    quip: 'The recipe called for a page. We were out.',
+    note: 'This address resolves to nothing. There is no substitution that recomputes it, which is the one thing this site is normally quite good at.',
+  },
+];
+const pick = lines[Math.floor(Math.random() * lines.length)]!;
+
+/** The four routes worth offering somebody who has just landed nowhere. */
+const WAYS_OUT = ['/', '/ingredients/', '/families/', '/about/'];
+const routes = builtRoutes().filter((r) => WAYS_OUT.includes(r.path));
+---
+
+<BaseLayout
+  title="Not found — eXir"
+  description="No page lives at this address."
+  noindex
+>
+  <section class="wrap page-head">
+    <p class="eyebrow">404 · Not found</p>
+    <h1>{pick.quip}</h1>
+    <p class="lede">{pick.note}</p>
+  </section>
+
+  <div class="wrap notfound">
+    <div class="card glass">
+      <h2 class="card-title">What went wrong</h2>
+      <div class="spec-grid">
+        <div class="spec-cell">
+          <span class="spec-key">Pages on the site</span>
+          <span class="spec-val">many</span>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-key">Pages at this address</span>
+          <span class="spec-val spec-val--word">none</span>
+        </div>
+        <div class="spec-cell">
+          <span class="spec-key">Dilution</span>
+          <span class="spec-val spec-val--word">total</span>
+        </div>
+      </div>
+      <p class="disclaimer">
+        <strong>Every figure on eXir is computed rather than typed.</strong>{' '}
+        The three above are the exception, and they are the only numbers on the site that were not
+        worth computing.
+      </p>
+    </div>
+
+    <div class="card glass">
+      <h2 class="card-title">Ways out</h2>
+      <ul class="index-list notfound-list">
+        {routes.map((route) => (
+          <li>
+            <a href={`${base}${route.path}`}>{route.label}</a>
+          </li>
+        ))}
+      </ul>
+      <p class="disclaimer">
+        Or search — the field is in the header, and it reaches misspellings and regional names as
+        well as titles, which is very likely what brought you here.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

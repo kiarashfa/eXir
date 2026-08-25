@@ -78,8 +78,15 @@
   /* layout and motion belong in the same layer as colour */
   --page-max: 1180px;
   --gutter: 40px;
-  --measure: 58ch;
-  --measure-intro: 76ch;
+  /* ABSOLUTE, not `ch`, and that is the whole point.
+     `ch` resolves against the ELEMENT's own font size, so one token produced a
+     380px column on an 11.5px disclaimer, a 515px one on 15.5px body prose and
+     an 895px one on the 19px lede — three different measures from one name.
+     The footer wore the wide token at 12.5px and came out at 544px of an
+     1180px page, which is what "broken at half the page" looked like. A measure
+     is a width; it means one width wherever it is used. */
+  --measure: 33rem;
+  --measure-intro: 55rem;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
   --font-display: 'Bodoni Moda', 'Didot', Georgia, serif;

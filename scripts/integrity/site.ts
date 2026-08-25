@@ -157,7 +157,9 @@ for (const page of pages) {
 
 // The home page is reachable without a link to it, and a 404 is reached by
 // failing to reach anything else.
-const ROOTS = new Set(['/', '/404/']);
+// The 404 is emitted as a file rather than a directory, because that is what a
+// static host looks for when it cannot resolve a path.
+const ROOTS = new Set(['/', '/404/', '/404.html/']);
 for (const page of pages) {
   const route = '/' + page.split(path.sep).join('/').replace(/index\.html$/, '');
   const normalised = route.endsWith('/') ? route : route + '/';

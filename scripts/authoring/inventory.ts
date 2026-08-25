@@ -3,6 +3,7 @@
  *
  *   node scripts/authoring/inventory.ts
  *   node scripts/authoring/inventory.ts --ingredients
+ *   node scripts/authoring/inventory.ts --images
  *
  * Reuse is the rule that keeps the shopping list, the reverse search and every
  * computed figure coherent, and an author can only reuse what they know is
@@ -15,9 +16,11 @@
  */
 
 import { readdir, readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 const CONTENT = 'src/content';
+const MANIFEST = 'src/data/image-attributions.json';
 
 const wrap = (items: string[], width = 92): string[] => {
   const lines: string[] = [];
@@ -113,6 +116,46 @@ async function main(): Promise<void> {
     for (const line of wrap(slugs.sort())) console.log('  ' + line);
   }
 
+  if (want('images')) {
+    /**
+     * What still has no photograph.
+     *
+     * The gap an author leaves here is not on their own drink's page — it is a
+     * blank circle on the checklist of every OTHER drink that names the same
+     * ingredient, and an empty glassware page nobody else will think to fill.
+     * So it is printed as a list of work rather than as a count.
+     */
+    const manifest: Record<string, unknown> = existsSync(MANIFEST)
+      ? (JSON.parse(await readFile(MANIFEST, 'utf8')) as Record<string, unknown>)
+      : {};
+    const has = (kind: string, id: string): boolean => `${kind}:${id}` in manifest;
+
+    const ingredients = await jsonRecords('ingredients');
+    const preps = await mdxHeads('preparations');
+    const glasses = await jsonRecords('glassware');
+    const drinkDirs = await readdir(path.join(CONTENT, 'drinks'), { withFileTypes: true }).catch(
+      () => [],
+    );
+
+    const missing: Array<[string, string[]]> = [
+      ['drink', drinkDirs.filter((d) => d.isDirectory() && !has('drink', d.name)).map((d) => d.name)],
+      ['ingredient', ingredients.map((i) => String(i['id'])).filter((id) => !has('ingredient', id))],
+      [
+        'preparation',
+        preps.map((p) => String(p['id'] ?? '')).filter((id) => id && !has('preparation', id)),
+      ],
+      ['glassware', glasses.map((g) => String(g['id'])).filter((id) => !has('glassware', id))],
+    ];
+
+    const total = missing.reduce((n, [, ids]) => n + ids.length, 0);
+    console.log(`\nWITHOUT A PHOTOGRAPH (${total}) — adopt with --kind matching the heading`);
+    for (const [kind, ids] of missing) {
+      if (!ids.length) continue;
+      console.log(`  --kind ${kind} (${ids.length})`);
+      for (const line of wrap(ids.sort(), 86)) console.log('    ' + line);
+    }
+    if (total === 0) console.log('  Nothing. Every record on the site has one.');
+  }
   console.log('\nReuse what is here. A near-duplicate poisons every figure that reads it.\n');
 }
 

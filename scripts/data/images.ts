@@ -26,6 +26,21 @@ import { RENDITIONS, contactSheet, render, treat } from './image-treatment.ts';
 
 const REVIEW_DIR = 'image-review';
 const PUBLIC_DIR = 'public/images';
+
+/**
+ * Where each kind's files live.
+ *
+ * A map rather than `${kind}s`, because "glassware" is already a mass noun and
+ * appending an s to it produced a `glasswares/` folder that matched neither the
+ * repository structure nor English. Four entries is cheaper than the class of
+ * bug where a path is assembled by guessing at grammar.
+ */
+const FOLDER: Record<string, string> = {
+  drink: 'drinks',
+  ingredient: 'ingredients',
+  preparation: 'preparations',
+  glassware: 'glassware',
+};
 const MANIFEST = 'src/data/image-attributions.json';
 
 type Kind = keyof typeof RENDITIONS;
@@ -140,7 +155,7 @@ async function doAdopt(title: string, argv: string[]): Promise<void> {
   });
   const { image, report } = await treat(original);
 
-  const outDir = path.join(PUBLIC_DIR, `${kind}s`);
+  const outDir = path.join(PUBLIC_DIR, FOLDER[kind] ?? kind);
   await mkdir(outDir, { recursive: true });
 
   const renditions: ManifestEntry['renditions'] = {};
@@ -150,7 +165,7 @@ async function doAdopt(title: string, argv: string[]): Promise<void> {
     const file = `${slug}-${spec.name}.webp`;
     await writeFile(path.join(outDir, file), buffer);
     renditions[spec.name] = {
-      file: `/images/${kind}s/${file}`,
+      file: `/images/${FOLDER[kind] ?? kind}/${file}`,
       width,
       height,
       bytes: buffer.length,

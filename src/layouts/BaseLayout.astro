@@ -21,6 +21,7 @@ interface Props {
 const { title, description, noindex = false, current, ambient = true } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <!doctype html>
@@ -31,6 +32,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical.href} />
+
+    {/*
+      One SVG, served as the favicon and used again beside the wordmark, so the
+      mark in the tab and the mark in the header are literally the same file
+      rather than two drawings that can drift. The PNG exists only for iOS,
+      which wants a raster with a solid ground behind it.
+    */}
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="apple-touch-icon" href={`${base}/apple-touch-icon.png`} />
+    <meta name="theme-color" content="#10141b" />
     {noindex && <meta name="robots" content="noindex, follow" />}
 
     {/*

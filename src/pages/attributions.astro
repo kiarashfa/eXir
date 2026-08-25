@@ -1,82 +1,207 @@
 ---
 /**
- * The central image credit manifest, deep-linkable per image.
+ * Where the site's material comes from — the sources, not the files.
  *
- * Cropping and grading produces an adaptation, so every record names its
- * licence and what was done to it. Only the fields that exist are shown; there
- * is no placeholder for a missing credit.
+ * This page used to list every photograph individually. That does not scale
+ * past a few dozen: at sixteen hundred drinks it becomes a thousand-row index
+ * nobody reads, whose only real job is already done better elsewhere. **Each
+ * image carries its own credit** in the popover behind the "i" on the image
+ * itself, beside the picture it belongs to, where somebody looking at a
+ * photograph can actually reach it.
+ *
+ * What genuinely belongs in one place is the licence and attribution owed to
+ * each SOURCE as a whole, and the terms that come with it — ODbL's attribution
+ * requirement, CC-BY-SA's share-alike obligation, the public-domain status of a
+ * US federal dataset. Those are conditions on the site rather than on a file.
+ *
+ * The one image figure kept here is the count, because it is computed from the
+ * manifest and tells a reader how much material each licence covers.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import attributions from '../data/image-attributions.json' with { type: 'json' };
+import standards from '../data/service-standards.json' with { type: 'json' };
+import dailyValues from '../data/daily-values.json' with { type: 'json' };
+import dilution from '../data/dilution-classes.json' with { type: 'json' };
+import brewing from '../data/brewing-standards.json' with { type: 'json' };
+import standardDrinks from '../data/standard-drinks.json' with { type: 'json' };
 
 interface Entry {
-  slug: string;
-  kind: string;
-  alt: string;
-  renditions: Record<string, { file: string; width: number; height: number }>;
   attribution: Record<string, string>;
 }
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const entries = Object.entries(attributions as Record<string, Entry>)
-  .map(([key, value]) => ({ key, ...value }))
-  .sort((a, b) => a.slug.localeCompare(b.slug));
+
+/** Counted from the manifest, so the figure cannot drift from what is adopted. */
+const records = Object.values(attributions as Record<string, Entry>);
+const byLicence = new Map<string, number>();
+for (const record of records) {
+  const licence = record.attribution['license'] ?? 'licence not recorded';
+  byLicence.set(licence, (byLicence.get(licence) ?? 0) + 1);
+}
+const licences = [...byLicence.entries()].sort((a, b) => b[1] - a[1]);
+
+interface Source {
+  name: string;
+  url?: string;
+  what: string;
+  terms: string;
+}
+
+const imagery: Source[] = [
+  {
+    name: 'Wikimedia Commons',
+    url: 'https://commons.wikimedia.org/',
+    what: 'Every photograph on the site. Each file is chosen by hand, then cropped, white-balanced, graded and re-encoded to a common treatment.',
+    terms:
+      'Per-file licences, from public domain to CC-BY-SA. The treatment makes an adaptation, so a share-alike file obliges the result and the modification is named in that image’s own credit.',
+  },
+  {
+    name: 'Open Food Facts',
+    url: 'https://world.openfoodfacts.org/',
+    what: 'Composition figures for branded products USDA does not carry, and photography where Commons has none.',
+    terms:
+      'Database contents under the Open Database Licence, which requires attribution and share-alike on the database; individual images under their own licences.',
+  },
+];
+
+const data: Source[] = [
+  {
+    name: 'USDA FoodData Central',
+    url: 'https://fdc.nal.usda.gov/',
+    what: 'Measured composition for spirits by proof, wine, beer, juices, dairy, sugars, syrups, brewed coffee and tea. Every figure the site computes from starts here where a record exists.',
+    terms: 'Work of the United States federal government; public domain.',
+  },
+  {
+    name: 'Producers’ own published figures',
+    what: 'Alcohol content and sugar for proprietary products, where the producer publishes them and no dataset carries the product. Named per ingredient, on that ingredient’s page.',
+    terms:
+      'Cited as published. The site restates them and computes from them; it never reproduces a producer’s own arithmetic.',
+  },
+  {
+    name: 'Wikidata',
+    url: 'https://www.wikidata.org/',
+    what: 'Brand metadata — producer, country of origin, founding year — and cross-checking the catalogue.',
+    terms: 'CC0. No attribution required; given anyway.',
+  },
+];
+
+const published: Source[] = [
+  {
+    name: `${dilution.classes.stirred.source.title} — ${dilution.classes.stirred.source.author}`,
+    what: 'The closed-form stirred-dilution model, and the constants behind it. Every final volume and every ABV on the site descends from it.',
+    terms: 'Cited, not reproduced. The formula is applied; the text is not copied.',
+  },
+  {
+    name: brewing.standards['sca-golden-cup'].source.title,
+    url: brewing.standards['sca-golden-cup'].source.url,
+    what: 'The brewing-ratio standard a coffee page is shown against.',
+    terms: 'Cited as a published standard.',
+  },
+  {
+    name: 'Standard-drink definitions',
+    what: `The two denominators shown on every alcoholic drink — ${standardDrinks.denominators
+      .map((d) => `${d.label} at ${d.gramsPerDrink} g`)
+      .join(', ')}. Both are shown because the authorities differ and picking one would be a choice.`,
+    terms: 'Public health guidance, cited per denominator in the data file.',
+  },
+  {
+    name: 'FDA reference daily values',
+    url: (dailyValues.source as { url?: string }).url,
+    what: 'The reference amounts any percentage of a daily value is stated against.',
+    terms: 'Work of the United States federal government; public domain.',
+  },
+  {
+    name: 'EU and US standards of fill',
+    url: standards.bottle.defaultSource.url,
+    what: `The bottle sizes the party planner divides by — ${standards.bottle.defaultMl} ml as the European standard and ${standards.bottle.byCountry['United States']} ml as the American one. It is the only place the site divides by a package size, and it states which.`,
+    terms: 'Legislation and federal regulation; public domain.',
+  },
+];
+
+const groups = [
+  { title: 'Photography', note: 'Every image is credited individually, on the image.', sources: imagery },
+  { title: 'Measured data', note: 'Where the numbers the site computes from come from.', sources: data },
+  {
+    title: 'Published standards',
+    note: 'Documents rather than datasets: models, definitions and denominators, each applied rather than reproduced.',
+    sources: published,
+  },
+];
 ---
 
 <BaseLayout
-  title="Image attributions — eXir"
-  description="Every photograph on eXir, its author, its licence and what was done to it."
+  title="Sources and licences — eXir"
+  description="Where eXir's photography, measured data and published standards come from, and the terms they carry."
 >
   <section class="wrap page-head">
-    <h1>Attributions</h1>
+    <h1>Sources and licences</h1>
     <p class="lede">
-      Every photograph here is real, sourced from Wikimedia Commons and chosen by hand. Each is
-      cropped, white-balanced, graded and re-encoded, which makes an adaptation — so each record
-      names the original, its author, its licence and the treatment applied.
+      eXir computes rather than copies, but everything it computes from came from somewhere. These
+      are the sources, and the terms each one carries.
     </p>
   </section>
 
-  <div class="wrap">
-    <div class="attribution-list">
-      {entries.map((e) => (
-        <div class="attribution-row" id={`image-${e.slug}`}>
-          {/* Not a link. The heading beside it already points at the same page,
-              and a second link to one destination is a second tab stop whose
-              only accessible name is the photograph's description — which
-              describes the picture rather than where the link goes. The image
-              is the subject of this row, so it keeps its real alt text. */}
-          <div class="attribution-thumb">
-            {e.renditions['thumb'] && (
-              <img src={`${base}${e.renditions['thumb'].file}`} alt={e.alt} width="96" height="96" loading="lazy" />
-            )}
-          </div>
-          <div>
-            <h2>
-              <a href={`${base}/${e.kind}s/${e.slug}/`}>{e.slug.replace(/-/g, ' ')}</a>
-            </h2>
-            <p class="attribution-meta">
-              {e.attribution['sourceUrl'] ? (
-                <a href={e.attribution['sourceUrl']} rel="nofollow noopener">
-                  {(e.attribution['file'] ?? e.attribution['source']).replace('File:', '')}
-                </a>
+  <div class="wrap prose-page">
+    <p>
+      <strong>Individual photographs are credited on the photograph.</strong> Every image carries an
+      &ldquo;i&rdquo; that opens its own record — the file, the author, the licence, the treatment
+      applied and the alt text — beside the picture it belongs to rather than in a list somewhere
+      else. This page is for the terms that apply to a whole source, which no single image can
+      state on its own.
+    </p>
+  </div>
+
+  {groups.map((group) => (
+    <div class="wrap source-group">
+      <div class="section-head">
+        <h2>{group.title}</h2>
+        <span class="aside">{group.note}</span>
+      </div>
+      <ul class="source-list">
+        {group.sources.map((source) => (
+          <li class="source-item">
+            <h3>
+              {source.url ? (
+                <a href={source.url} rel="nofollow noopener">{source.name}</a>
               ) : (
-                <span>{e.attribution['source']}</span>
+                source.name
               )}
-              {e.attribution['author'] && <> — {e.attribution['author']}</>}
-              {' · '}
-              {e.attribution['licenseUrl'] ? (
-                <a href={e.attribution['licenseUrl']} rel="nofollow noopener">
-                  {e.attribution['license']}
-                </a>
-              ) : (
-                <span>{e.attribution['license']}</span>
-              )}
-            </p>
-            {e.attribution['modified'] && <p class="attribution-meta">{e.attribution['modified']}</p>}
-            <p class="attribution-alt">{e.alt}</p>
-          </div>
+            </h3>
+            <p class="source-what">{source.what}</p>
+            <p class="source-terms">{source.terms}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+
+  <div class="wrap source-group">
+    <div class="section-head">
+      <h2>Images on the site</h2>
+      <span class="aside">Counted from the manifest, not stated</span>
+    </div>
+    <div class="spec-grid">
+      {licences.map(([licence, count]) => (
+        <div class="spec-cell">
+          <span class="spec-key">{licence}</span>
+          <span class="spec-val">{count}</span>
         </div>
       ))}
     </div>
+    <p class="disclaimer">
+      <strong>Cropping and grading makes an adaptation.</strong>
+      Where a file is share-alike, the treated version is offered on the same terms, and the
+      modification is named in that image&rsquo;s own credit. Public domain and CC-BY files are
+      preferred over share-alike ones wherever the quality is comparable.
+    </p>
+  </div>
+
+  <div class="wrap prose-page">
+    <p>
+      If a credit here is wrong, or an image should not be on the site,
+      <a href="mailto:kiarashfa@gmail.com">say so</a> and it will be corrected or removed. Trademarks
+      are used nominatively, to identify a product; no brand endorses or is affiliated with this
+      site. See <a href={`${base}/about/`}>About</a> for what eXir is and how the arithmetic works.
+    </p>
   </div>
 </BaseLayout>

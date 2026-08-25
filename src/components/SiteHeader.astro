@@ -16,7 +16,13 @@ const links = primaryRoutes();
 <header class="masthead" data-pagefind-ignore>
   <div class="wrap">
     <div class="masthead-inner glass glass--refract">
-      <a class="logo" href={`${base}/`}>e<b>X</b>ir</a>
+      {/* The same file the tab shows. An `<img>` rather than an inline copy so
+          the two cannot drift apart, and so the glass stays a hole — on the
+          masthead that hole shows the frosted surface behind it. */}
+      <a class="logo" href={`${base}/`}>
+        <img class="logo-mark" src={`${base}/favicon.svg`} alt="" width="26" height="26" />
+        <span>e<b>X</b>ir</span>
+      </a>
 
       <nav class="nav" aria-label="Main">
         {links.map((l) => (

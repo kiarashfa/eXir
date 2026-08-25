@@ -59,7 +59,23 @@ const groups = [
   { key: 'diet', label: 'Diet', values: collect((e) => e.diets) },
 ].filter((g) => g.values.length > 1);
 
-const allergens = collect((e) => e.allergens);
+/**
+ * The five that matter here, not all fourteen.
+ *
+ * Ranked by how many drinks carry each, so the list is the catalogue's own
+ * answer rather than a remembered one, and capped so the exclusion group stays
+ * one column beside the rest. The vocabulary is fixed at fourteen and most of
+ * it will never appear in a drink; a filter offering twelve options nobody can
+ * use buries the two they can.
+ */
+const allergenCounts = new Map<string, number>();
+for (const entry of entries) {
+  for (const a of entry.allergens) allergenCounts.set(a, (allergenCounts.get(a) ?? 0) + 1);
+}
+const allergens = [...allergenCounts.entries()]
+  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+  .slice(0, 5)
+  .map(([id]) => id);
 
 const ranges = [
   { key: 'abv', label: 'ABV', unit: '%' },
@@ -137,10 +153,6 @@ const cap = (s: string): string => humanise(s);
                 <span>{cap(value)}</span>
               </label>
             ))}
-            <p class="filter-note">
-              Computed from the listed ingredients only. It cannot account for cross-contamination
-              or for the particular product you buy, and it is not medical or safety guidance.
-            </p>
           </fieldset>
         )}
 
@@ -177,6 +189,17 @@ const cap = (s: string): string => humanise(s);
           ))}
         </fieldset>
       </div>
+
+      {/* Under the whole grid rather than inside the allergen column: the
+          disclaimer is required wherever allergens appear, and stacking it in
+          one narrow track pushed the options it belongs to off the card. */}
+      {allergens.length > 0 && (
+        <p class="filter-note">
+          Allergen flags are computed from the ingredients listed on each page and nothing else.
+          They cannot account for cross-contamination or for the particular product you buy, and
+          they are not medical or safety guidance.
+        </p>
+      )}
     </details>
   </form>
 
@@ -211,12 +234,20 @@ const cap = (s: string): string => humanise(s);
             <span class="card-blank" aria-hidden="true">{e.title.slice(0, 1)}</span>
           )}
         </figure>
+        {/* Three rows, not two: where a drink is from and what kind of drink it
+            is, then its name, then what the engine computed about it. The
+            eyebrow is the same pair the drink page's own hero leads with, so a
+            card and the page it opens introduce the drink the same way. */}
+        <div class="card-eyebrow">
+          {[...e.origin, ...e.category].map(cap).join(' · ')}
+        </div>
         <h2>{e.title}</h2>
         <div class="card-meta">
           <span>{e.style}</span>
           {e.abvPercent > 0 && <span class="alc">{e.abvPercent.toFixed(1)}% ABV</span>}
           {e.abvPercent === 0 && <span class="zero">Zero-proof</span>}
           <span>{e.totalTime}</span>
+          <span>{e.kcal} kcal</span>
         </div>
       </a>
     ))}
@@ -229,6 +260,12 @@ const cap = (s: string): string => humanise(s);
 <div class="wrap" data-catalogue-panel="table" data-pagefind-ignore hidden>
   <div class="table-wrap">
     <table class="dense">
+      {/* Diet and allergens are deliberately absent as COLUMNS. Both are lists,
+          so both are wide, and together they pushed the table past the page
+          into a horizontal scroll on a desktop screen — which costs every
+          reader something to serve the few filtering on them. Both are still
+          filterable: the filters read the row's own facet attribute, not its
+          cells, so nothing was lost by not printing them. */}
       <thead>
         <tr>
           <th scope="col">Drink</th>
@@ -243,8 +280,6 @@ const cap = (s: string): string => humanise(s);
           <th scope="col" class="num">Time</th>
           <th scope="col" class="num">kcal</th>
           <th scope="col">Difficulty</th>
-          <th scope="col">Diet</th>
-          <th scope="col">Allergens</th>
         </tr>
       </thead>
       <tbody data-filter-list>
@@ -270,8 +305,6 @@ const cap = (s: string): string => humanise(s);
             <td class="num">{e.totalTime}</td>
             <td class="num">{e.kcal}</td>
             <td>{e.difficulty}</td>
-            <td>{e.diets.map(cap).join(', ') || '—'}</td>
-            <td>{e.allergens.map(cap).join(', ') || '—'}</td>
           </tr>
         ))}
       </tbody>

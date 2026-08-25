@@ -5,6 +5,8 @@
  * it at all. The page shows what that check saw.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ImageCredit, { type ImageAttribution } from '../../components/ImageCredit.astro';
+import attributions from '../../data/image-attributions.json' with { type: 'json' };
 import { published, site } from '../../lib/content/site.ts';
 import { glassFit } from '../../lib/math/glassware.ts';
 
@@ -37,6 +39,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const note = record['note'] ? String(record['note']) : '';
 const iceNote = record['iceDisplacementNote'] ? String(record['iceDisplacementNote']) : '';
 const displacement = (record['iceDisplacementMl'] ?? {}) as Record<string, number>;
+
+/** From the manifest, like every other photograph — never from the record. */
+interface ImageRecord {
+  alt: string;
+  renditions: Record<string, { file: string; width: number; height: number }>;
+  attribution: ImageAttribution;
+}
+const media = (attributions as Record<string, ImageRecord>)[`glassware:${glass.id}`];
+const card = media?.renditions['card'];
 ---
 
 <BaseLayout
@@ -53,12 +64,24 @@ const displacement = (record['iceDisplacementMl'] ?? {}) as Record<string, numbe
           <li><span aria-current="page">{glass.name}</span></li>
         </ol>
       </nav>
-      <div class="hero-grid hero-grid--text-only">
+      <div class={card ? 'hero-grid hero-grid--square' : 'hero-grid hero-grid--text-only'}>
         <div>
           <div class="eyebrow">Glassware</div>
           <h1>{glass.name}</h1>
           <p class="subtitle">{note}</p>
         </div>
+        {card && (
+          <figure class="hero-figure hero-figure--square">
+            <img
+              src={`${base}${card.file}`}
+              alt={media!.alt}
+              width={card.width}
+              height={card.height}
+              fetchpriority="high"
+            />
+            <ImageCredit attribution={media!.attribution} alt={media!.alt} />
+          </figure>
+        )}
       </div>
     </div>
   </section>

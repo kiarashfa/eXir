@@ -588,25 +588,41 @@
 
           <h3 class="list-head">Ice</h3>
           <div class="spec-grid">
+            <!-- Every dotted figure carries the note that explains it. The
+                 marker means "the true figure is not on this page", so hovering
+                 has to say what it rests on instead - and the notes are the
+                 ones already written and cited in the standards file, not a
+                 second copy of them. -->
             <div class="spec-cell">
               <span class="spec-key">Chilling</span>
-              <span class="spec-val">{formatBulkWeight(occasion.ice.chillingG, system)}</span>
+              <span
+                class="spec-val"
+                title="Computed from the dilution model: a millilitre of water the drinks take on is a gram of ice gone. Batched drinks contribute none — their dilution is bought as water instead."
+              >{formatBulkWeight(occasion.ice.chillingG, system)}</span>
             </div>
             <div class="spec-cell">
               <span class="spec-key">In the shaker</span>
-              <span class="spec-val est">{formatBulkWeight(occasion.ice.mixingG, system)}</span>
+              <span class="spec-val est" title={ICE.mixingNote}
+                >{formatBulkWeight(occasion.ice.mixingG, system)}</span>
             </div>
             <div class="spec-cell">
               <span class="spec-key">In the glass</span>
-              <span class="spec-val">{formatBulkWeight(occasion.ice.servingG, system)}</span>
+              <span
+                class="spec-val"
+                title="Weighed from the ice volume each glass displaces — the same figure the glassware fit check reads — at the density of ice."
+              >{formatBulkWeight(occasion.ice.servingG, system)}</span>
             </div>
             <div class="spec-cell">
               <span class="spec-key">Melt allowance</span>
-              <span class="spec-val est">{formatBulkWeight(occasion.ice.meltG, system)}</span>
+              <span class="spec-val est" title={ICE.meltNote}
+                >{formatBulkWeight(occasion.ice.meltG, system)}</span>
             </div>
             <div class="spec-cell spec-cell--alcohol">
               <span class="spec-key">Buy</span>
-              <span class="spec-val est">{formatBulkWeight(occasion.ice.totalG, system)}</span>
+              <span
+                class="spec-val est"
+                title="Everything above it, added up. Two of the four parts are stated allowances rather than measurements, so the total is an estimate."
+              >{formatBulkWeight(occasion.ice.totalG, system)}</span>
             </div>
           </div>
           <p class="aside">
@@ -629,7 +645,10 @@
             <ul class="host-list">
               {#each occasion.bottles as bottle (bottle.ingredientRef)}
                 <li>
-                  <b class="est">{bottle.bottles}</b>
+                  <b
+                    class="est"
+                    title={`${bottle.totalMl.toFixed(0)} ml divided by a stated ${bottle.bottleMl} ml ${bottle.basis} and rounded up. It is the one place the site divides by a package size, and the denominator is stated rather than guessed.`}
+                  >{bottle.bottles}</b>
                   {bottle.bottles === 1 ? 'bottle' : 'bottles'} of {bottle.name}
                   <span class="aside">
                     {formatMetric(bottle.totalMl, 'ml')} at a {bottle.bottleMl} ml {bottle.basis}

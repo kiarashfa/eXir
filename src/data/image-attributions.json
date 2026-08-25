@@ -138,5 +138,737 @@
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
+  },
+  "glassware:gaiwan": {
+    "slug": "gaiwan",
+    "kind": "glassware",
+    "alt": "A yellow porcelain gaiwan painted with flowers, its lid in place, sitting on its matching saucer",
+    "renditions": {
+      "card": {
+        "file": "/images/glassware/gaiwan-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 23332
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Chinese gaiwan (cropped).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chinese_gaiwan_(cropped).jpg",
+      "author": "Gary Stevens",
+      "credit": "Flickr: T Cups at Red Blossom",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "glassware:mug": {
+    "slug": "mug",
+    "kind": "glassware",
+    "alt": "A thick white ceramic mug of black coffee with a rounded handle, standing on a wooden table",
+    "renditions": {
+      "card": {
+        "file": "/images/glassware/mug-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 37078
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Coffee mug on table.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffee_mug_on_table.jpg",
+      "author": "Adam S. Keck",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "glassware:rocks": {
+    "slug": "rocks",
+    "kind": "glassware",
+    "alt": "An empty heavy-based tumbler in smoke-grey glass, straight-sided, photographed against a pale ground",
+    "renditions": {
+      "card": {
+        "file": "/images/glassware/rocks-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 18070
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Whiskey Tumbler MET 176273.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Whiskey_Tumbler_MET_176273.jpg",
+      "author": "New England Glass Company",
+      "credit": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:agave-nectar": {
+    "slug": "agave-nectar",
+    "kind": "ingredient",
+    "alt": "An inverted squeeze bottle of pale gold agave syrup standing on its cap",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/agave-nectar-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 40360
+      },
+      "thumb": {
+        "file": "/images/ingredients/agave-nectar-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1540
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Agave Syrup.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Agave_Syrup.jpg",
+      "author": "Sharky78",
+      "credit": "Own work",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:almonds": {
+    "slug": "almonds",
+    "kind": "ingredient",
+    "alt": "Blanched almonds, skinned and pale, heaped in a white dish",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/almonds-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 25530
+      },
+      "thumb": {
+        "file": "/images/ingredients/almonds-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1608
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Blanched almonds.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Blanched_almonds.jpg",
+      "author": "Nadiatalent",
+      "credit": "Own work",
+      "license": "Public domain",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:bourbon": {
+    "slug": "bourbon",
+    "kind": "ingredient",
+    "alt": "A tulip-shaped nosing glass of amber bourbon standing beside its bottle",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/bourbon-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 12740
+      },
+      "thumb": {
+        "file": "/images/ingredients/bourbon-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 892
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Bourbon Whiskey glass and bottle 08.09.2015 13-20-57.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bourbon_Whiskey_glass_and_bottle_08.09.2015_13-20-57.jpg",
+      "author": "Dirk Ingo Franke",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:campari": {
+    "slug": "campari",
+    "kind": "ingredient",
+    "alt": "A bottle of Campari, deep red behind clear glass, with its white and blue label, on a green background",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/campari-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 22420
+      },
+      "thumb": {
+        "file": "/images/ingredients/campari-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1064
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Bottle of Campari (United States).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bottle_of_Campari_(United_States).jpg",
+      "author": "Kenneth C. Zirkel",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:cider-vinegar": {
+    "slug": "cider-vinegar",
+    "kind": "ingredient",
+    "alt": "Green glass bottles of unpasteurised apple cider vinegar on a market stall, with apples beside them",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/cider-vinegar-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 59776
+      },
+      "thumb": {
+        "file": "/images/ingredients/cider-vinegar-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2644
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:02023 0257 Apple cider vinegar.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:02023_0257_Apple_cider_vinegar.jpg",
+      "author": "Silar",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:cinnamon": {
+    "slug": "cinnamon",
+    "kind": "ingredient",
+    "alt": "Rolled cinnamon quills on white marble beside a spoon of ground cinnamon",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/cinnamon-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 26296
+      },
+      "thumb": {
+        "file": "/images/ingredients/cinnamon-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 972
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Ground Cinnamon Powder and a Cinnamon Stick.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ground_Cinnamon_Powder_and_a_Cinnamon_Stick.jpg",
+      "author": "formulatehealth",
+      "credit": "https://www.flickr.com/photos/189590028@N07/50381022213/",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:coffee-beans": {
+    "slug": "coffee-beans",
+    "kind": "ingredient",
+    "alt": "A close view of whole roasted coffee beans, dark brown and glossy, each showing its centre crease",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/coffee-beans-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 70354
+      },
+      "thumb": {
+        "file": "/images/ingredients/coffee-beans-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2878
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Roasted coffee beans.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Roasted_coffee_beans.jpg",
+      "author": "MarkSweep",
+      "credit": "Own work",
+      "license": "Public domain",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:demerara-sugar": {
+    "slug": "demerara-sugar",
+    "kind": "ingredient",
+    "alt": "Coarse pale gold demerara sugar crystals in a small glass bowl",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/demerara-sugar-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 47294
+      },
+      "thumb": {
+        "file": "/images/ingredients/demerara-sugar-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1440
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:King's Cross Central Coal Drops Yard cafe demerara sugar, London, England.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:King%27s_Cross_Central_Coal_Drops_Yard_cafe_demerara_sugar,_London,_England.jpg",
+      "author": "Acabashi",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:egg": {
+    "slug": "egg",
+    "kind": "ingredient",
+    "alt": "Six chicken eggs, three brown and three white, in an open moulded pulp carton",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/egg-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 25610
+      },
+      "thumb": {
+        "file": "/images/ingredients/egg-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1230
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:6-Pack-Chicken-Eggs.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:6-Pack-Chicken-Eggs.jpg",
+      "author": "Evan-Amos",
+      "credit": "Own work",
+      "license": "Public domain",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:gin": {
+    "slug": "gin",
+    "kind": "ingredient",
+    "alt": "An antique square-shouldered case-gin bottle in green glass, lying on its side with its cork beside it",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/gin-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 13696
+      },
+      "thumb": {
+        "file": "/images/ingredients/gin-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 572
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Bottle, gin (AM 616677-2).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bottle,_gin_(AM_616677-2).jpg",
+      "author": "Udolpho Wolfe",
+      "credit": "API data Catalogue record Photo",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:ginger": {
+    "slug": "ginger",
+    "kind": "ingredient",
+    "alt": "A knobbly hand of fresh ginger root, pale gold and unpeeled, on a plain surface",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/ginger-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 34304
+      },
+      "thumb": {
+        "file": "/images/ingredients/ginger-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1594
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Fresh Ginger.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fresh_Ginger.JPG",
+      "author": "Miansari66",
+      "credit": "Own work",
+      "license": "Public domain",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:granulated-sugar": {
+    "slug": "granulated-sugar",
+    "kind": "ingredient",
+    "alt": "A close view of coarse white sugar crystals lit from the front, each crystal catching the light",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/granulated-sugar-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 41722
+      },
+      "thumb": {
+        "file": "/images/ingredients/granulated-sugar-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1648
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Granulated White Sugar with Large Crystals, Bright Front Light.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Granulated_White_Sugar_with_Large_Crystals,_Bright_Front_Light.jpg",
+      "author": "Tobias Erbsland",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:honey": {
+    "slug": "honey",
+    "kind": "ingredient",
+    "alt": "A wooden honey dipper resting on cut honeycomb beside open jars of honey, with spring flowers alongside",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/honey-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 45718
+      },
+      "thumb": {
+        "file": "/images/ingredients/honey-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2722
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Dipper stick and honey in a jar.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dipper_stick_and_honey_in_a_jar.jpg",
+      "author": "Shixart1985",
+      "credit": "Own work",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:lemon-juice": {
+    "slug": "lemon-juice",
+    "kind": "ingredient",
+    "alt": "A whole lemon beside a cut half on a black ground, the pale flesh and its segments facing the camera",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/lemon-juice-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 25760
+      },
+      "thumb": {
+        "file": "/images/ingredients/lemon-juice-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1126
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Lemon - whole and split.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lemon_-_whole_and_split.jpg",
+      "author": "Ivar Leidus",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:lime-juice": {
+    "slug": "lime-juice",
+    "kind": "ingredient",
+    "alt": "A lime cut in half on a white ground, the pale green flesh and its segments facing the camera",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/lime-juice-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 33522
+      },
+      "thumb": {
+        "file": "/images/ingredients/lime-juice-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1082
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Lime-Whole-Split.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lime-Whole-Split.jpg",
+      "author": "Evan-Amos",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:orange": {
+    "slug": "orange",
+    "kind": "ingredient",
+    "alt": "A whole orange on a white ground with a cut half and two wedges beside it, the segments showing",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/orange-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 30342
+      },
+      "thumb": {
+        "file": "/images/ingredients/orange-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1426
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Orange-Fruit-Pieces.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Orange-Fruit-Pieces.jpg",
+      "author": "Evan-Amos",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:pomegranate-juice": {
+    "slug": "pomegranate-juice",
+    "kind": "ingredient",
+    "alt": "A pomegranate broken open against a green ground, its garnet seeds packed in pale pith",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/pomegranate-juice-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 36308
+      },
+      "thumb": {
+        "file": "/images/ingredients/pomegranate-juice-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2192
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:An opened pomegranate.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:An_opened_pomegranate.JPG",
+      "author": "Anton Croos",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:raspberry": {
+    "slug": "raspberry",
+    "kind": "ingredient",
+    "alt": "A heap of ripe red raspberries, each drupelet catching the light",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/raspberry-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 117580
+      },
+      "thumb": {
+        "file": "/images/ingredients/raspberry-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2440
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Raspberries (Rubus idaeus).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Raspberries_(Rubus_idaeus).jpg",
+      "author": "Ivar Leidus",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:salt": {
+    "slug": "salt",
+    "kind": "ingredient",
+    "alt": "A glass salt shaker on a black ground with a small heap of fine white salt spilled beside it",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/salt-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 13610
+      },
+      "thumb": {
+        "file": "/images/ingredients/salt-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 634
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Table salt with salt shaker V1.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Table_salt_with_salt_shaker_V1.jpg",
+      "author": "Poyraz 72",
+      "credit": "https://www.edirnemarket.com.tr/billur-iyotlu-sofra-tuzu-750-gr",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:sweet-vermouth": {
+    "slug": "sweet-vermouth",
+    "kind": "ingredient",
+    "alt": "Four bottles of vermouth standing in a row, three dark and one green, each with a different producer's label",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/sweet-vermouth-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 76666
+      },
+      "thumb": {
+        "file": "/images/ingredients/sweet-vermouth-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2504
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Four bottles of vermouth.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Four_bottles_of_vermouth.jpg",
+      "author": "Kenneth C. Zirkel",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:water": {
+    "slug": "water",
+    "kind": "ingredient",
+    "alt": "A blue glass seen from above, filled with clear carbonated water carrying fine bubbles",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/water-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 51252
+      },
+      "thumb": {
+        "file": "/images/ingredients/water-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1916
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Blue glass with carbonated water.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Blue_glass_with_carbonated_water.jpg",
+      "author": "W.carter",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "preparation:grenadine": {
+    "slug": "grenadine",
+    "kind": "preparation",
+    "alt": "A stoppered glass bottle of dark red grenadine beside a small glass holding a measure of it",
+    "renditions": {
+      "card": {
+        "file": "/images/preparations/grenadine-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 33408
+      },
+      "thumb": {
+        "file": "/images/preparations/grenadine-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1430
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Grenadinesyrup.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Grenadinesyrup.jpg",
+      "author": "Badagnani",
+      "credit": "Own work",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "preparation:orgeat": {
+    "slug": "orgeat",
+    "kind": "preparation",
+    "alt": "Jars and a bottle of cloudy pale orgeat standing on a kitchen counter",
+    "renditions": {
+      "card": {
+        "file": "/images/preparations/orgeat-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 16880
+      },
+      "thumb": {
+        "file": "/images/preparations/orgeat-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 924
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Orgeatsyrup.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Orgeatsyrup.jpg",
+      "author": "Kevin Bryant (Flickr user: sultmhoor) ( https://www.flickr.com/photos/sultmhoor/ )",
+      "credit": "https://www.flickr.com/photos/sultmhoor/2620757246/",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
   }
 }

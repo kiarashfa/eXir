@@ -8,6 +8,8 @@
  * much they use. Template-identical thin content across hundreds of pages is
  * the failure this shape exists to avoid.
  */
+import ImageCredit, { type ImageAttribution } from './ImageCredit.astro';
+import attributions from '../data/image-attributions.json' with { type: 'json' };
 import { formatAbv } from '../lib/math/quantity.ts';
 import { formatMeasure } from '../lib/math/units.ts';
 import type { Ingredient } from '../lib/math/types.ts';
@@ -41,6 +43,24 @@ const names = record['names'] as
   | undefined;
 
 const cap = (s: string): string => s.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
+
+/**
+ * The photograph, from the attribution manifest rather than from the record.
+ *
+ * Same rule as a drink's: the manifest already holds the file, the alt text and
+ * the licence, so a second copy on the ingredient would be the one that goes
+ * stale when the image is re-adopted. It also means the only way a picture
+ * reaches a page is by having been adopted, which is where the credit lives.
+ */
+interface ImageRecord {
+  alt: string;
+  renditions: Record<string, { file: string; width: number; height: number }>;
+  attribution: ImageAttribution;
+}
+const media = (attributions as Record<string, ImageRecord>)[
+  `${ingredient.kind === 'preparation' ? 'preparation' : 'ingredient'}:${ingredient.id}`
+];
+const card = media?.renditions['card'];
 
 /**
  * One sentence, composed from the record rather than written.
@@ -103,7 +123,7 @@ const rows = (form: (typeof forms)[number]) =>
       </ol>
     </nav>
 
-    <div class="hero-grid hero-grid--text-only">
+    <div class={card ? 'hero-grid hero-grid--square' : 'hero-grid hero-grid--text-only'}>
       <div>
         {ingredient.category && <div class="eyebrow">{cap(ingredient.category)}</div>}
         <h1>{ingredient.name}</h1>
@@ -142,6 +162,18 @@ const rows = (form: (typeof forms)[number]) =>
           </div>
         )}
       </div>
+      {card && (
+        <figure class="hero-figure hero-figure--square">
+          <img
+            src={`${base}${card.file}`}
+            alt={media!.alt}
+            width={card.width}
+            height={card.height}
+            fetchpriority="high"
+          />
+          <ImageCredit attribution={media!.attribution} alt={media!.alt} />
+        </figure>
+      )}
     </div>
   </div>
 </section>

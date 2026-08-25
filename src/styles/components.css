@@ -49,11 +49,24 @@
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-display);
   font-size: 25px;
   letter-spacing: -0.01em;
   line-height: 1;
   text-decoration: none;
+}
+/* Optically aligned rather than baseline-aligned: the badge is a square and the
+   wordmark is a didone with a high cap height, so matching their boxes leaves
+   the mark sitting low. */
+.logo-mark {
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin-top: -2px;
+  flex: 0 0 auto;
 }
 .logo b {
   font-weight: 600;
@@ -174,6 +187,27 @@
    where the frame would have been. */
 .hero-grid--text-only {
   grid-template-columns: 1fr;
+}
+
+/* An ingredient's photograph is square rather than 4:5 — a lemon has no tall
+   axis to fill — so it takes less of the row than a drink's hero does. */
+.hero-grid--square {
+  grid-template-columns: 1.5fr 0.5fr;
+  align-items: center;
+}
+.hero-figure--square {
+  aspect-ratio: 1;
+  max-width: 260px;
+  margin-left: auto;
+}
+@media (max-width: 700px) {
+  .hero-grid--square {
+    grid-template-columns: 1fr;
+  }
+  .hero-figure--square {
+    margin-left: 0;
+    max-width: 180px;
+  }
 }
 
 .eyebrow {
@@ -392,9 +426,18 @@
   align-items: start;
 }
 /* Each column is a stack of per-version blocks, all but one hidden. The grid
-   sees two children whatever the version count is. */
+   sees two children whatever the version count is.
+
+   The gap is on the STACK, not only inside `.left-col`. The Serving card is
+   rendered once, outside the version loop, so it lives in its own `.left-col`
+   and the spec cards live in another — two siblings of the stack with nothing
+   between them, which is why Serving and Drink Spec sat flush against each
+   other while Ingredients and Glass, inside one `.left-col`, did not. */
 .col-stack {
   min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 20px;
 }
 .left-col {
   display: grid;
@@ -572,6 +615,11 @@
    descends from an estimate, and it means nothing else anywhere. */
 .est {
   border-bottom: 1px dotted currentColor;
+}
+/* The help cursor is a promise that hovering explains something, so it is
+   scoped to the figures that actually carry the explanation. A question-mark
+   pointer over a figure with no note is a control that does nothing. */
+.est[title] {
   cursor: help;
 }
 
@@ -1024,10 +1072,12 @@
   font-size: 12.5px;
   color: var(--muted);
 }
+/* No reading measure. A footer is chrome rather than prose: three short lines
+   of 12.5px text, which a measure intended for a paragraph cuts to less than
+   half the page and leaves stranded on the left. */
 .foot-inner {
   display: grid;
   gap: 8px;
-  max-width: var(--measure-intro);
 }
 .foot strong {
   color: var(--ink-soft);
@@ -1332,6 +1382,18 @@
 .drink-card:hover img {
   transform: scale(1.04);
 }
+/* Above the name, in the same pair the drink page's hero leads with, so a card
+   and the page it opens introduce the drink the same way. */
+.drink-card .card-eyebrow {
+  font: 500 9.5px/1.3 var(--font-body);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 5px;
+}
+.drink-card .card-eyebrow:empty {
+  display: none;
+}
 .drink-card h2 {
   font-size: 21px;
   line-height: 1.2;
@@ -1431,8 +1493,11 @@
   color: var(--muted);
 }
 
+/* The wider measure. This is used for a page's closing notes as often as for
+   its body, and a reading column stranded under a full-width tool grid reads
+   as a mistake rather than as a column. */
 .prose-page {
-  max-width: var(--measure);
+  max-width: var(--measure-intro);
   padding-bottom: 72px;
 }
 .prose-page h2 {
@@ -1975,25 +2040,36 @@
   accent-color: var(--accent);
 }
 .filter-note {
-  margin: 9px 0 0;
+  margin: 16px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
   font-size: 11.5px;
   line-height: 1.5;
+  color: var(--muted);
+  max-width: var(--measure-intro);
 }
 
 .filter-range {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   margin-bottom: 9px;
   font-size: 13px;
   color: var(--muted);
+  /* The row is inside an auto-fill grid track, so it has to be allowed to
+     shrink. Without this the fixed-width number inputs set the track's minimum
+     and the whole row pushed out of the filter card. */
+  min-width: 0;
+  flex-wrap: wrap;
 }
 .filter-range-label {
-  flex: 0 0 68px;
+  flex: 1 0 100%;
   color: var(--ink-soft);
 }
 .range-input {
-  width: 62px;
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
   font: 400 13px/1 var(--font-data);
   color: var(--ink);
   background: var(--surface-2);
@@ -2143,4 +2219,173 @@
 }
 .tool-shell [data-tool-placeholder] {
   padding-top: 12px;
+}
+
+/* ---------------------------------------------------------------------------
+   404
+   --------------------------------------------------------------------------- */
+
+.notfound {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding-bottom: 80px;
+  align-items: start;
+}
+.notfound-list {
+  padding-bottom: 0;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+.notfound-list li {
+  border-bottom: 1px solid var(--line);
+}
+.notfound-list li:last-child {
+  border-bottom: 0;
+}
+.notfound-list a {
+  display: block;
+  padding: 11px 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.notfound-list a:hover {
+  color: var(--accent-ink);
+}
+
+/* ---------------------------------------------------------------------------
+   About — the person behind it, the contact card and the support links.
+
+   Built out of the drink page's own furniture rather than a fresh vocabulary:
+   the body grid, the glass card, the spec cells, the About panel's reading
+   measure. The one new control is the support link, which is the outlined chip
+   carried in the accent wash.
+   --------------------------------------------------------------------------- */
+
+.author-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.author-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid var(--line-strong);
+  flex: 0 0 auto;
+}
+.author-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.author-role {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.author-bio,
+.support-note {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.contact-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.contact-list li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.contact-list a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-strong);
+}
+.contact-list a:hover {
+  color: var(--accent-ink);
+  border-bottom-color: var(--accent);
+}
+
+.support-links {
+  display: grid;
+  gap: 9px;
+  margin-top: 14px;
+}
+.support-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 13px;
+  border: 1px solid var(--control-edge);
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  text-decoration: none;
+  transition:
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+.support-link:hover,
+.support-link:focus-visible {
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+.support-link svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+  flex: 0 0 auto;
+}
+
+/* The reading column. `.about-body` already carries the measure and the
+   paragraph rhythm; this adds the headings a standalone page needs and that a
+   drink's About panel does not. */
+.about-page-body h2 {
+  font-family: var(--font-display);
+  font-size: 25px;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 38px 0 14px;
+}
+.about-page-body h2:first-child {
+  margin-top: 0;
+}
+.about-page-body {
+  padding-bottom: 72px;
+}
+
+/* The checklist thumbnail links to the ingredient, and is deliberately NOT a
+   tab stop: the line's own text already links there in prose, and a second
+   stop per line would double the keyboard cost of a checklist to reach nothing
+   new. It is hidden from assistive tech for the same reason. */
+.swatch-link {
+  display: block;
+  flex: 0 0 auto;
+  border-radius: 50%;
+}
+.swatch-link .swatch {
+  transition: border-color 0.3s var(--ease);
+}
+.swatch-link:hover .swatch {
+  border-color: var(--accent);
 }

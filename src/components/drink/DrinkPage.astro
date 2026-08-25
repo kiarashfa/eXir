@@ -16,6 +16,7 @@
  */
 import Qty from '../live/Qty.astro';
 import Measure from '../live/Measure.astro';
+import ImageCredit from '../ImageCredit.astro';
 import { formatDuration } from '../../lib/math/units.ts';
 import { formatAbv } from '../../lib/math/quantity.ts';
 import { proseName } from '../../lib/render/prose.ts';
@@ -77,6 +78,19 @@ const fm = primary.frontmatter;
  * been adopted, which is where the licence and the credit are recorded.
  */
 const media = (attributions as Record<string, ImageRecord>)[`drink:${slug}`];
+
+/**
+ * The thumbnail beside each checklist line, and where it links.
+ *
+ * A scanning aid for a dense list rather than a gallery: the eye finds "the
+ * red one" faster than it reads a name. Line order is checkbox, thumbnail,
+ * text. An ingredient with no photograph keeps the empty circle rather than
+ * collapsing the column, so the lines stay aligned with each other.
+ */
+const manifest = attributions as Record<string, ImageRecord>;
+const thumbFor = (ingredient: { id: string; kind: string }): string | null =>
+  manifest[`${ingredient.kind === 'preparation' ? 'preparation' : 'ingredient'}:${ingredient.id}`]
+    ?.renditions['thumb']?.file ?? null;
 const hero = media?.renditions['hero'];
 const names = fm['names'] as
   | {
@@ -225,39 +239,7 @@ const factRows = built.map(({ v, spec }) => ({
               height={hero.height}
               fetchpriority="high"
             />
-            {/* The credit is an affordance rather than a caption: it belongs to
-                the image and it is not what the page is about, so it sits on the
-                image and opens when asked. Only the fields that exist are
-                shown — never a placeholder standing in for a missing one. */}
-            <div class="attribution">
-              <button
-                class="attribution-toggle"
-                type="button"
-                aria-expanded="false"
-                aria-label="Image credit"
-                data-attribution-toggle
-              >i</button>
-              <div class="attribution-popover" data-attribution-popover>
-                {media.attribution.sourceUrl ? (
-                  <a href={media.attribution.sourceUrl} rel="nofollow noopener">
-                    {(media.attribution.file ?? media.attribution.source).replace('File:', '')}
-                  </a>
-                ) : (
-                  <span>{media.attribution.source}</span>
-                )}
-                {media.attribution.author && <> — {media.attribution.author}</>}
-                <br />
-                {media.attribution.licenseUrl ? (
-                  <a href={media.attribution.licenseUrl} rel="nofollow noopener">
-                    {media.attribution.license}
-                  </a>
-                ) : (
-                  <span>{media.attribution.license}</span>
-                )}
-                {media.attribution.modified && <> · {media.attribution.modified}</>}
-                <p class="attribution-alt">{media.alt}</p>
-              </div>
-            </div>
+            <ImageCredit attribution={media.attribution} alt={media.alt} />
           </figure>
         )}
       </div>
@@ -591,7 +573,22 @@ const factRows = built.map(({ v, spec }) => ({
                   {rows.map((r) => (
                     <li class={r.line.computed ? 'ing-item is-computed' : 'ing-item'}>
                       <input class="tick" type="checkbox" aria-label={r.ingredient.name} />
-                      <span class="swatch"></span>
+                      {r.line.computed ? (
+                        <span class="swatch"></span>
+                      ) : (
+                        <a
+                          class="swatch-link"
+                          href={`${base}/${r.ingredient.kind === 'preparation' ? 'preparations' : 'ingredients'}/${r.ingredient.id}/`}
+                          tabindex="-1"
+                          aria-hidden="true"
+                        >
+                          {thumbFor(r.ingredient) ? (
+                            <img class="swatch" src={`${base}${thumbFor(r.ingredient)}`} alt="" width="96" height="96" loading="lazy" />
+                          ) : (
+                            <span class="swatch"></span>
+                          )}
+                        </a>
+                      )}
                       <span class="ing-body">
                         <Qty
                           data={{

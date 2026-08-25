@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="eXir">
+  <title>eXir</title>
+  <!--
+    The mark: a brass badge with the glass cut out of it.
+
+    Everything that is not brass is a HOLE, not a dark shape — the bowl, the
+    stem, the foot, the cocktail pick and the ring of the olive are all removed
+    from the badge rather than painted over it. That is what makes the mark work
+    on both browser chromes without a media query: the cut-out takes whatever
+    colour is behind the tab, so the glass and the pick are dark together on a
+    dark strip and light together on a light one, and never one of each.
+
+    Mostly-solid colour is also what survives sixteen pixels. A stroke is the
+    first thing a downscale eats; a hole in a solid field is the last.
+  -->
+  <defs>
+    <mask id="exir-cut">
+      <rect width="32" height="32" fill="#fff"/>
+      <path d="M7 9h18l-7.4 9.4V24H21a1.2 1.2 0 0 1 0 2.4h-10a1.2 1.2 0 0 1 0-2.4h3.4v-5.6L7 9Z" fill="#000"/>
+      <path d="M23.5 5.6 19.2 11.4" stroke="#000" stroke-width="1.9" stroke-linecap="round"/>
+      <circle cx="24.4" cy="4.8" r="3" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="32" height="32" rx="4" fill="#e9a63f" mask="url(#exir-cut)"/>
+  <!-- The pimento, and the only element that is painted rather than cut. -->
+  <circle cx="24.4" cy="4.8" r="1.15" fill="#8ecfab"/>
+</svg>
