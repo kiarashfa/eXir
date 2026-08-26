@@ -50,9 +50,13 @@ function updateQuantity(el: HTMLElement, count: number, system: UnitSystem): voi
     const counted = formatCountUnit(scaled, unit, countUnit);
     if (counted) {
       const countEl = el.querySelector<HTMLElement>('.q-count');
-      const nameEl = el.querySelector<HTMLElement>('.q-name');
+      // The noun, not the name. Only the count noun agrees with the number —
+      // "2 dashes" — and the ingredient's own name beside it never changes, so
+      // rewriting `.q-name` here would overwrite "Angostura Aromatic Bitters"
+      // with the word "dashes" on the first press of the stepper.
+      const nounEl = el.querySelector<HTMLElement>('.q-noun');
       if (countEl) countEl.textContent = counted.count;
-      if (nameEl) nameEl.textContent = counted.label;
+      if (nounEl) nounEl.textContent = counted.label;
       target.textContent = estimated ? `~${counted.measure}` : counted.measure;
       return;
     }

@@ -86,10 +86,25 @@ export function qtyHtml(
       // shown, count first, and the measure stays in the base unit in either
       // system — a converted bracket beside a count leaves the reader two
       // approximations and no fact.
+      //
+      // The count noun is a UNIT and not a name, so the ingredient still has to
+      // be named: "2 dashes" is not something anybody can shop for. It only ever
+      // looked right because the one countUnit in existence was the orange's,
+      // where the noun and the ingredient's name are the same word — and where
+      // repeating it would give "1 orange orange". So the name is added unless
+      // the noun already IS the name.
+      const noun = counted.label.toLowerCase();
+      const name = data.name.toLowerCase();
+      const nounIsName =
+        noun === name ||
+        data.countUnit.singular.toLowerCase() === name ||
+        data.countUnit.plural.toLowerCase() === name;
+
       return (
         `<span ${attrs.join(' ')}>` +
         `<span class="q-count">${escapeHtml(counted.count)}</span> ` +
-        `<span class="q-name">${escapeHtml(counted.label)}</span> ` +
+        `<span class="q-noun">${escapeHtml(counted.label)}</span> ` +
+        (showName && !nounIsName ? `<span class="q-name">${escapeHtml(data.name)}</span> ` : '') +
         `<span class="q-measure">(${amountSpan(counted.measure, estimated)})</span>` +
         `</span>`
       );

@@ -43,6 +43,21 @@
       "sourceDataset": "USDA FoodData Central (SR Legacy)",
       "sourceId": "174815",
       "sourceNote": "Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof. Public domain, and generic by design: the record covers any neutral-based spirit at that strength. 80 US proof is 40% alcohol by volume by definition, which is where the strength here comes from; the record's own measured ethanol content against its measured density works out at 39.8%, which is the cross-check. Bottles run from 37.5% upwards and a stronger one moves every figure it touches."
+    },
+    {
+      "id": "old-tom",
+      "label": "Old Tom",
+      "proseName": "Old Tom gin",
+      "abvPercent": 41.4,
+      "densityGPerMl": 0.95,
+      "densitySource": "estimated",
+      "acidPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "haymansgin.com/product/old-tom-gin",
+      "sourceNote": "Hayman's is taken as the reference bottle: it is the product most Martinez recipes assume by name, and its own page states 41.4% alc./vol. No sugar or nutrition figure is published for it or for any other Old Tom - the style is traditionally lightly sweetened, but 'lightly' is not a number, and USDA and Open Food Facts both carry nothing under this name. sugarGPer100 and nutritionPer100g are left off rather than estimated, so this Form's composition understates the style's real sweetness by whatever the undisclosed addition is. Density has no measured source and is taken from the density-classes.json 'spirit-40' class."
     }
   ]
 }

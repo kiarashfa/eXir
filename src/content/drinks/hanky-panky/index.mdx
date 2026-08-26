@@ -1,0 +1,85 @@
+---
+id: classic
+label: Classic
+name: Hanky Panky
+subtitle: Gin and sweet vermouth in equal measure, with a dash of Fernet-Branca.
+defaultDrinks: 1
+method: stirred
+dilutionClass: stirred
+glasswareRef: coupe
+iceStyle: none
+servedOverIce: false
+bitterness: medium
+batchable: full
+difficulty: Easy
+family: old-fashioned
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [british-isles]
+  method: [stirred]
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 45
+    unit: ml
+  - id: vermouth
+    ingredientRef: sweet-vermouth
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: fernet
+    ingredientRef: fernet-branca
+    formRef: standard
+    amount: 1.8
+    unit: ml
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 140
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A swathe of peel is cut, expressed over the surface and dropped in. The
+      rest of the fruit is not part of the drink but still has to be bought, so
+      the checklist still asks for it.
+steps:
+  - { id: chill, durationSec: 30, type: active, phase: prep }
+  - { id: combine, durationSec: 20, type: active, phase: make }
+  - { id: stir, durationSec: 25, type: active, phase: make }
+  - { id: garnish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: combine
+    text: >-
+      The Fernet-Branca is measured by the dash rather than poured like the
+      gin and vermouth, because the herbal bitterness it carries would
+      overwhelm the drink at anything close to a full measure.
+  - kind: pitfall
+    text: >-
+      Sweet vermouth is close to half this drink by volume, more than in most
+      stirred cocktails, so a bottle that has oxidised on the shelf ruins it
+      faster and more obviously than it would elsewhere.
+---
+
+<Step id="chill">
+  Chill a coupe.
+</Step>
+
+<Step id="combine">
+  Combine the <Qty ref="gin"/>, the <Qty ref="vermouth"/> and the
+  <Qty ref="fernet"/> in a mixing glass filled with cubed ice.
+</Step>
+
+<Step id="stir">
+  Stir for <Dur step="stir"/>, until the outside of the glass is frosted, and
+  strain into the chilled coupe.
+</Step>
+
+<Step id="garnish">
+  Cut a <Len cm={4}/> swathe of orange peel, hold it skin-outwards over the
+  surface and squeeze so the oil lands on the drink. Rub it around the rim and
+  drop it in.
+</Step>

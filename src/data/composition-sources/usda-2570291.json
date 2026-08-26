@@ -1,0 +1,160 @@
+{
+  "discontinuedDate": "",
+  "foodComponents": [],
+  "foodAttributes": [
+    {
+      "id": 3024044,
+      "value": 10,
+      "name": "Added Brand/Sub Brand Information"
+    }
+  ],
+  "foodPortions": [],
+  "fdcId": 2570291,
+  "description": "AROMATIC BITTERS",
+  "publicationDate": "6/29/2023",
+  "foodNutrients": [
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1005,
+        "number": "205",
+        "name": "Carbohydrate, by difference",
+        "rank": 1110,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 32033804,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1003,
+        "number": "203",
+        "name": "Protein",
+        "rank": 600,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 32033802,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1008,
+        "number": "208",
+        "name": "Energy",
+        "rank": 300,
+        "unitName": "kcal"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 32033805,
+      "amount": 200
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1004,
+        "number": "204",
+        "name": "Total lipid (fat)",
+        "rank": 800,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 32033803,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1093,
+        "number": "307",
+        "name": "Sodium, Na",
+        "rank": 5800,
+        "unitName": "mg"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 32033806,
+      "amount": 0
+    }
+  ],
+  "dataType": "Branded",
+  "foodClass": "Branded",
+  "shortDescription": "",
+  "modifiedDate": "5/23/2023",
+  "availableDate": "5/23/2023",
+  "brandOwner": "Angostura Int'L Ltd/usa Div.",
+  "brandName": "ANGOSTURA",
+  "dataSource": "LI",
+  "brandedFoodCategory": "Alcohol",
+  "gtinUpc": "0075496000407",
+  "householdServingFullText": "1/2 Teaspoon (2.5ml)",
+  "ingredients": "ALCOHOL, WATER, SUGAR, GENTIAN, NATURAL FLAVORS, CARAMEL COLOR",
+  "marketCountry": "United States",
+  "servingSize": 2.5,
+  "servingSizeUnit": "MLT",
+  "packageWeight": "4 fl oz",
+  "foodUpdateLog": [
+    {
+      "discontinuedDate": "",
+      "foodAttributes": [],
+      "fdcId": 2570291,
+      "description": "AROMATIC BITTERS",
+      "publicationDate": "6/29/2023",
+      "dataType": "Branded",
+      "foodClass": "Branded",
+      "shortDescription": "",
+      "modifiedDate": "5/23/2023",
+      "availableDate": "5/23/2023",
+      "brandOwner": "Angostura Int'L Ltd/usa Div.",
+      "brandName": "ANGOSTURA",
+      "dataSource": "LI",
+      "brandedFoodCategory": "Alcohol",
+      "gtinUpc": "0075496000407",
+      "householdServingFullText": "1/2 Teaspoon (2.5ml)",
+      "ingredients": "ALCOHOL, WATER, SUGAR, GENTIAN, NATURAL FLAVORS, CARAMEL COLOR",
+      "marketCountry": "United States",
+      "servingSize": 2.5,
+      "servingSizeUnit": "MLT",
+      "packageWeight": "4 fl oz"
+    }
+  ],
+  "labelNutrients": {
+    "fat": {
+      "value": 0
+    },
+    "sodium": {
+      "value": 0
+    },
+    "carbohydrates": {
+      "value": 0
+    },
+    "protein": {
+      "value": 0
+    },
+    "calories": {
+      "value": 5
+    }
+  }
+}

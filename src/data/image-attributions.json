@@ -1,4 +1,39 @@
 {
+  "drink:boulevardier": {
+    "slug": "boulevardier",
+    "kind": "drink",
+    "alt": "A Boulevardier served up in a coupe, deep amber-red, with an orange twist resting against the rim.",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/boulevardier-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 224312
+      },
+      "card": {
+        "file": "/images/drinks/boulevardier-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 33330
+      },
+      "thumb": {
+        "file": "/images/drinks/boulevardier-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1778
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:SOHO - Boulevardier.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:SOHO_-_Boulevardier.jpg",
+      "author": "Edsel Little",
+      "credit": "https://www.flickr.com/photos/edsel_/16671072060/",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:daiquiri": {
     "slug": "daiquiri",
     "kind": "drink",
@@ -31,6 +66,41 @@
       "credit": "https://bevvy.co/cocktail/daiquiri",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:martinez": {
+    "slug": "martinez",
+    "kind": "drink",
+    "alt": "A Martinez served up in a coupe, deep amber-red, with a citrus twist resting on the rim.",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/martinez-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 75616
+      },
+      "card": {
+        "file": "/images/drinks/martinez-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 27650
+      },
+      "thumb": {
+        "file": "/images/drinks/martinez-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1358
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Martinez Cocktail.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Martinez_Cocktail.jpg",
+      "author": "Will Shenton",
+      "credit": "https://bevvy.co/cocktail/martinez/jyea",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -265,6 +335,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:angostura-bitters": {
+    "slug": "angostura-bitters",
+    "kind": "ingredient",
+    "alt": "A bottle of Angostura aromatic bitters, oversized white label wrapped around dark glass, yellow foil cap, against a plain background.",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/angostura-bitters-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 42102
+      },
+      "thumb": {
+        "file": "/images/ingredients/angostura-bitters-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 768
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Angostura bottle.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Angostura_bottle.jpg",
+      "author": "Clément Bucco-Lechat",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:bourbon": {
     "slug": "bourbon",
     "kind": "ingredient",
@@ -466,6 +565,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:fernet-branca": {
+    "slug": "fernet-branca",
+    "kind": "ingredient",
+    "alt": "A bottle of Fernet-Branca with its cream label and eagle emblem, beside a small glass poured from it, against a grey studio background.",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/fernet-branca-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 38528
+      },
+      "thumb": {
+        "file": "/images/ingredients/fernet-branca-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 928
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Fernetbranca.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fernetbranca.jpg",
+      "author": "Didier Descouens",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:gin": {
     "slug": "gin",
     "kind": "ingredient",
@@ -636,6 +764,35 @@
       "credit": "Own work",
       "license": "CC0",
       "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:maraschino-liqueur": {
+    "slug": "maraschino-liqueur",
+    "kind": "ingredient",
+    "alt": "Three bottles of Luxardo Maraschino liqueur, green glass wrapped in straw with a red cap, side by side against a plain background.",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/maraschino-liqueur-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 68318
+      },
+      "thumb": {
+        "file": "/images/ingredients/maraschino-liqueur-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1858
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Luxardo Maraschino three bottles.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Luxardo_Maraschino_three_bottles.jpg",
+      "author": "Kenneth C. Zirkel",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },

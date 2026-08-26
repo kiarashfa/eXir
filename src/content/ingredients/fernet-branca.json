@@ -1,0 +1,39 @@
+{
+  "id": "fernet-branca",
+  "name": "Fernet-Branca",
+  "kind": "ingredient",
+  "category": "amaro",
+  "proprietary": true,
+  "producer": "Fratelli Branca Distillerie",
+  "countryOfOrigin": "Italy",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Branca Menta",
+        "note": "The same producer's mint-flavoured, lower-proof liqueur, sold alongside it and easy to grab by mistake; it does not carry the bitterness this drink is built on."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 39,
+      "densityGPerMl": 0.95,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "carbohydrateG": 0,
+        "sugarsG": 0
+      },
+      "animalOrigin": "honey",
+      "animalOriginNote": "Honey is not listed among the botanicals the producer publicises, but the producer told the vegan-tracking site Barnivore by email in August 2021 that the formula contains honey in a very low proportion, which is enough to withhold the vegan label. Honey is inside the vegetarian line, so that label stands.",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Open Food Facts, cross-checked",
+      "sourceId": "8004400001317",
+      "sourceNote": "ABV is the producer's own labelled 39% alc./vol. (78 proof), reported uniformly across retailers and reference sources. Two independent Open Food Facts entries for the product agree on 0 g sugar, which matches the amaro's own reputation as unusually dry for the category. FoodData Central carries no record for Fernet-Branca at all - the branded database has amari from other producers but not this one. No energy figure is stated: nothing in either dataset gives a reliable kcal/100g, so the figure is left for the engine to derive from the alcohol content alone rather than guessed. Density has no measured source and is taken from the density-classes.json 'spirit-40' class, since the confirmed zero sugar puts this closer to a plain spirit than to a sugar-heavy liqueur."
+    }
+  ]
+}

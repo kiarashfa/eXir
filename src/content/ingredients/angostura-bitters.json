@@ -1,0 +1,48 @@
+{
+  "id": "angostura-bitters",
+  "name": "Angostura Aromatic Bitters",
+  "kind": "ingredient",
+  "category": "bitters",
+  "proprietary": true,
+  "producer": "Angostura Limited",
+  "countryOfOrigin": "Trinidad and Tobago",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Angostura bark",
+        "note": "The product is named for the Venezuelan town where it was first made, not for the bark; the published account of its own history states the bark is not one of its ingredients."
+      },
+      {
+        "name": "Orange bitters",
+        "note": "A different, citrus-peel bitters, pale rather than reddish-brown, and not what this drink's aromatic dash is."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 44.7,
+      "densityGPerMl": 0.95,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 200,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "none",
+      "animalOriginNote": "The producer's own product page states the bitters are 100% vegan and gluten-free.",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "countUnit": { "singular": "dash", "plural": "dashes", "ml": 0.9, "snap": "whole" },
+      "sourceDataset": "USDA FoodData Central (Branded), cross-checked",
+      "sourceId": "2570291",
+      "sourceNote": "FoodData Central's branded record for this exact product gives 200 kcal/100 g and 0 g carbohydrate; an independent Open Food Facts entry for the same product agrees on both figures, which is what makes them credible. Neither dataset carries an alcohol figure, because a bottled bitters sold in the US is not required to carry the Nutrition Facts panel that would state one - the 200 kcal/100 g figure is a lab analysis of the food-labelling side only. The 44.7% alc./vol. is the producer's own labelled strength, reported identically by the producer and by every retailer checked. No measured density exists for a bitters this strong with no sugar; the density-classes.json 'spirit-40' class is used as the nearest fit."
+    }
+  ]
+}

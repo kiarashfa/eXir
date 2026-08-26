@@ -1,0 +1,32 @@
+{
+  "id": "maraschino-liqueur",
+  "name": "Maraschino Liqueur",
+  "kind": "ingredient",
+  "category": "liqueur",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Maraschino cherries",
+        "note": "The bright-red jarred garnish. This is the clear, dry liqueur distilled from the same Marasca cherry - unsweetened-tasting despite its sugar, and nothing like the syrup the cherries sit in."
+      }
+    ],
+    "searchOnly": ["maraschino", "luxardo maraschino"]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 32,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "acidPercent": 0,
+      "animalOrigin": "none",
+      "animalOriginNote": "The recipe is cherry distillate, sugar, alcohol and water; the leading producer states its products contain no animal-derived ingredients.",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "luxardo.it/liqueurs-and-distillates/maraschino-originale",
+      "sourceNote": "Luxardo is the reference producer - by far the most common bottle behind the bar and the one most recipes assume - and states 32% alc./vol., reached by adding a sugar-and-water syrup to the cherry-pit distillate at the final stage. No sugar or energy figure is published, and the two figures found in Open Food Facts for this product disagree with each other and with the product's own stated alcohol content by a wide margin (one record shows a sugar figure that could not coexist with the alcohol on the same label), so sugarGPer100 and nutritionPer100g are left off rather than carrying a figure known to be wrong. Density has no measured source and is taken from the density-classes.json 'liqueur-sweet' class."
+    }
+  ]
+}

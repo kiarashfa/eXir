@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import { literalDigitsInProse, renderProse, type ProseSource } from './prose.ts';
+import { qtyHtml } from './live-values.ts';
 import type { Ingredient, IngredientLine, ResolvedLine, Step } from '../math/types.ts';
 
 const ingredient = (id: string, name: string, abvPercent = 0): Ingredient => ({
@@ -94,8 +95,35 @@ test('a counted ingredient leads with its count and keeps the base measure', () 
   const html = renderProse('Add <Qty ref="bitters"/>.', ctx);
 
   assert.match(html, /<span class="q-count">2<\/span>/);
-  assert.match(html, /<span class="q-name">dashes<\/span>/);
+  assert.match(html, /<span class="q-noun">dashes<\/span>/);
   assert.match(html, /\(<span class="n">1\.8 ml<\/span>\)/);
+});
+
+/**
+ * The count noun is a unit and the ingredient still has to be named. This only
+ * ever looked right because the first countUnit written was the orange's, where
+ * the noun and the name are the same word — so "2 dashes" rendered with no
+ * mention of what was being dashed, and nobody could shop from it.
+ */
+test('a counted ingredient is still named', () => {
+  const html = renderProse('Add <Qty ref="bitters"/>.', ctx);
+  assert.match(html, /<span class="q-noun">dashes<\/span> <span class="q-name">angostura bitters<\/span>/);
+});
+
+test('a count noun that IS the ingredient name is not printed twice', () => {
+  const counted = qtyHtml(
+    {
+      amount: 140,
+      unit: 'g',
+      defaultDrinks: 1,
+      name: 'orange',
+      countUnit: { singular: 'orange', plural: 'oranges', g: 140, snap: 'half' },
+    },
+    1,
+    'metric',
+  );
+  assert.match(counted, /<span class="q-noun">orange<\/span>/);
+  assert.doesNotMatch(counted, /q-name/);
 });
 
 test('a fraction prop takes part of a line without needing a portion', () => {
