@@ -1,0 +1,115 @@
+---
+id: classic
+label: Classic
+name: Corpse Reviver No. 2
+subtitle: Gin, orange liqueur, Lillet Blanc and lemon in equal parts, shaken and poured into an absinthe-rinsed glass.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: coupe
+iceStyle: none
+servedOverIce: false
+bitterness: low
+batchable: partial
+batchNote: >-
+  The gin, orange liqueur, Lillet and lemon batch cleanly. The absinthe rinse
+  cannot: each glass is rinsed and tipped out individually at the moment of
+  service, or it dries and stops coating evenly.
+difficulty: Medium
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [united-kingdom]
+  method: [shaken]
+names:
+  notToBeConfusedWith:
+    - name: Corpse Reviver No. 1
+      note: A brandy, Calvados and sweet vermouth stir from the same book and the same hangover-cure name, with no citrus and no absinthe.
+ingredients:
+  - id: rinse
+    ingredientRef: absinthe
+    formRef: standard
+    amount: 5
+    unit: ml
+    consumedFraction: 0.15
+    consumedFractionNote: >-
+      Poured into the chilled glass, swirled to coat the inside and tipped
+      out before anything else goes in. A film stays behind on the glass; the
+      rest never reaches the drink, so it is bought and measured but mostly
+      discarded rather than drunk.
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 22.5
+    unit: ml
+  - id: liqueur
+    ingredientRef: orange-liqueur
+    formRef: standard
+    amount: 22.5
+    unit: ml
+  - id: lillet
+    ingredientRef: lillet-blanc
+    formRef: standard
+    amount: 22.5
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+steps:
+  - { id: rinse, durationSec: 30, type: active, phase: prep }
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: rinse
+    text: >-
+      Four ingredients in true equal parts is unusual; most sours weight the
+      spirit heaviest. Here the orange liqueur and the Lillet are doing the
+      sweetening a syrup would elsewhere, so the drink stays balanced without
+      one, and the absinthe rinse supplies a top note none of the four would
+      otherwise carry.
+  - kind: pitfall
+    text: >-
+      Lillet Blanc is milder and less bitter than the Kina Lillet the drink
+      was written for, which was discontinued and reformulated decades ago.
+      Made with today's bottle the drink reads a shade sweeter and less
+      bitter than the original did.
+makeAhead:
+  aheadInstructions: >-
+    The gin, orange liqueur, Lillet and lemon can be batched and shaken to
+    order; the site adds the water the shake would have contributed. Fresh
+    lemon is the limit: juice loses its aromatics within hours of being
+    squeezed.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="rinse">
+  Chill a coupe. Pour the <Qty ref="rinse"/> into it, tilt and swirl so the
+  spirit coats the inside completely, then tip it out over the sink.
+</Step>
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="gin"/>, the <Qty ref="liqueur"/>, the
+  <Qty ref="lillet"/> and the <Qty ref="lemon"/> in a shaker and fill it with
+  cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>. Short and violent; the aim is to chill
+  and aerate, not to melt the ice.
+</Step>
+
+<Step id="strain">
+  Double strain into the rinsed coupe, which holds no ice of its own.
+</Step>

@@ -1,0 +1,119 @@
+---
+id: classic
+label: Classic
+name: Planters Punch
+subtitle: Dark rum, lime and rich syrup in the old sour-sweet-strong-weak proportion.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: low
+batchable: full
+difficulty: Easy
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [caribbean]
+  method: [shaken]
+names:
+  notToBeConfusedWith:
+    - name: Caribbean Rum Punch
+      note: A looser, unmeasured family name for built rum-and-juice punches generally; this page is the specific sour-strong-sweet-weak recipe.
+ingredients:
+  - id: rum
+    ingredientRef: dark-rum
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 30
+    unit: ml
+  - id: syrup
+    ingredientRef: rich-simple-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: bitters
+    ingredientRef: angostura-bitters
+    formRef: standard
+    amount: 2.7
+    unit: ml
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 140
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A swathe of peel is cut, expressed over the surface and dropped in. The
+      rest of the fruit is not part of the drink but still has to be bought,
+      so the checklist still asks for it.
+  - id: mint
+    ingredientRef: mint
+    formRef: fresh
+    amount: 2
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A small bouquet set beside the straw for its aroma. It is not stirred
+      through, so none of it reaches the composition even where the guest
+      eats it.
+steps:
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      One of sour, two of sweet, three of strong to four of weak is the old
+      rhyme this drink is built to, and the site's own dilution model
+      supplies the weak part: the shake adds close to its own volume in
+      melted ice, standing in for the water the rhyme names outright.
+  - kind: pitfall
+    text: >-
+      Standard-strength rum reads thinner here than the high-ester pot-still
+      rum the proportion was written around; the ratio was set for a rum
+      strong enough to still taste like rum after being cut four ways.
+makeAhead:
+  aheadInstructions: >-
+    The rum, lime, syrup and bitters batch cleanly, and the site adds the
+    water the shake would have contributed. Fresh lime is the limit: it
+    loses its aromatics within hours of being squeezed, so a batch made in
+    the morning is at its best that evening and tired the next day.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lime"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="rum"/>, the <Qty ref="lime"/>, the
+  <Qty ref="syrup"/> and the <Qty ref="bitters"/> in a shaker and fill it
+  with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>.
+</Step>
+
+<Step id="strain">
+  Strain over fresh cubed ice into a chilled Collins glass.
+</Step>
+
+<Step id="garnish">
+  Cut a swathe of orange peel, express it over the surface and drop it in,
+  then set the <Qty ref="mint"/> beside the straw.
+</Step>

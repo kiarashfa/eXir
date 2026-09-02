@@ -1,0 +1,116 @@
+---
+id: classic
+label: Classic
+name: Penicillin
+subtitle: Blended Scotch, lemon, honey and ginger, floated with a peated single malt.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: rocks
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The Scotch, lemon, honey syrup and ginger syrup batch cleanly. The Islay
+  float does not: it is poured fresh onto each glass at the point of service,
+  because floating it into a batch would mix it straight in.
+difficulty: Medium
+family: sour
+familyRole: descendant
+derivedFrom: gold-rush
+tags:
+  category: [cocktail]
+  origin: [international]
+  method: [shaken]
+ingredients:
+  - id: scotch
+    ingredientRef: scotch
+    formRef: blended
+    amount: 60
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: honey
+    ingredientRef: honey-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: ginger
+    ingredientRef: ginger-syrup
+    formRef: standard
+    amount: 7.5
+    unit: ml
+  - id: float
+    ingredientRef: scotch
+    formRef: islay
+    amount: 7.5
+    unit: ml
+steps:
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: float, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: float
+    text: >-
+      The Islay malt is poured last, over the back of a spoon, so it sits as
+      a layer on the surface rather than mixing straight in. The first sip
+      meets its smoke before the rest of the drink; by the last sip the two
+      have merged.
+  - kind: pitfall
+    text: >-
+      Pouring the float straight down the middle of the glass sinks it into
+      the drink instead of sitting it on top, and the layering that makes the
+      first sip smoky and the rest honeyed is lost in one pour.
+substitutions:
+  - lineRef: honey
+    substitute: rich-simple-syrup
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume, but honey syrup carries its own floral
+      sweetness that a plain sugar syrup does not, so the drink comes out
+      thinner and more purely smoky-sour without it.
+    impact:
+      flavour: moderate change
+      strength: no change
+      sweetness: no change
+makeAhead:
+  aheadInstructions: >-
+    The Scotch, lemon, honey syrup and ginger syrup batch cleanly, and the
+    site adds the water the shake would have contributed. Fresh lemon is the
+    limit: it loses its aromatics within hours of being squeezed, so a batch
+    made in the morning is at its best that evening and tired the next day.
+    The Islay float is added fresh to each glass regardless.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="scotch"/>, the <Qty ref="lemon"/>, the
+  <Qty ref="honey"/> and the <Qty ref="ginger"/> in a shaker and fill it with
+  cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>.
+</Step>
+
+<Step id="strain">
+  Strain over a single large cube in a rocks glass.
+</Step>
+
+<Step id="float">
+  Pour the <Qty ref="float"/> over the back of a spoon so it settles on the
+  surface as its own layer.
+</Step>

@@ -1,0 +1,103 @@
+---
+id: rocks
+label: On the Rocks
+name: Margarita
+subtitle: Tequila, orange liqueur and lime, shaken and poured over fresh ice in a salt-rimmed glass.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: rocks
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: full
+difficulty: Easy
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [mexico]
+  method: [shaken]
+ingredients:
+  - id: salt
+    ingredientRef: salt
+    formRef: standard
+    amount: 2
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Run around the rim before pouring; a rimmed glass is licked rather than
+      drunk from squarely, so the salt is bought and applied but excluded
+      from the drink's own composition.
+  - id: tequila
+    ingredientRef: tequila
+    formRef: blanco
+    amount: 50
+    unit: ml
+  - id: liqueur
+    ingredientRef: orange-liqueur
+    formRef: standard
+    amount: 25
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 25
+    unit: ml
+  - id: wheel
+    ingredientRef: lime
+    formRef: standard
+    amount: 8
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A wheel is cut and set on the rim or dropped in for its look and
+      aroma. It is bought and cut but not eaten, so it stays out of the
+      composition.
+steps:
+  - { id: rim, durationSec: 20, type: active, phase: prep }
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: strain
+    text: >-
+      The shake still does the drink's whole dilution job; the fresh cube
+      poured after is for holding the temperature over the time it takes to
+      drink, not for diluting it further the way a stirred drink's ice would.
+makeAhead:
+  aheadInstructions: >-
+    The whole drink batches, and the site adds the water the shake would
+    have contributed. Fresh lime is the limit: juice loses its aromatics
+    within hours of being squeezed.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="rim">
+  Run a lime wedge around half the rim of a rocks glass and dip that half in
+  salt.
+</Step>
+
+<Step id="juice">
+  Squeeze the <Qty ref="lime"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="tequila"/>, the <Qty ref="liqueur"/> and the
+  <Qty ref="lime"/> in a shaker and fill it with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/> until the tin frosts over.
+</Step>
+
+<Step id="strain">
+  Fill the rimmed glass with fresh cubed ice and strain the drink over it,
+  then set the lime wheel on the rim.
+</Step>

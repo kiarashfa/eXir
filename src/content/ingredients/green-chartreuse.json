@@ -1,0 +1,38 @@
+{
+  "id": "green-chartreuse",
+  "name": "Green Chartreuse",
+  "kind": "ingredient",
+  "category": "herbal-liqueur",
+  "proprietary": true,
+  "producer": "Chartreuse Diffusion",
+  "countryOfOrigin": "France",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Yellow Chartreuse",
+        "note": "A milder, sweeter, lower-proof bottling from the same monastery; the two are not interchangeable in a recipe that names the green one."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "green Chartreuse",
+      "abvPercent": 55,
+      "densityGPerMl": 0.99,
+      "densitySource": "measured",
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 447
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "chartreuse.fr nutritional information",
+      "sourceNote": "The producer's own nutritional-information page states 447 kcal per 100 g and a volumic mass of 0.99, which is adopted as a true density because the liqueur is poured; restated per 100 ml that is about 443 kcal. The 55% ABV is the strength stated on the producer's own Green Chartreuse product page. The page gives no carbohydrate or sugar figure, so both are left off rather than estimated, even though the energy figure implies most of it is sugar."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "id": "flute",
+  "name": "Champagne flute",
+  "capacityMl": 180,
+  "shapeFamily": "stemmed",
+  "note": "Narrow and tall on a stem, so the bead of a sparkling wine has less surface to escape from and lasts longer than in a wider glass.",
+  "iceDisplacementMl": { "none": 0 }
+}

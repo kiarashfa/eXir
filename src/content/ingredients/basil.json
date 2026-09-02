@@ -1,0 +1,31 @@
+{
+  "id": "basil",
+  "name": "Basil",
+  "kind": "ingredient",
+  "category": "botanical",
+  "forms": [
+    {
+      "id": "fresh",
+      "label": "Fresh",
+      "proseName": "basil",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 23,
+        "carbohydrateG": 2.65,
+        "sugarsG": 0.3,
+        "proteinG": 3.15,
+        "fatG": 0.64,
+        "saturatedFatG": 0.041,
+        "fibreG": 1.6,
+        "sodiumMg": 4
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "172232",
+      "sourceNote": "Basil, fresh. Public domain. No density is carried: the leaf is muddled and bruised rather than poured, and the record itself has no liquid measure to derive one from."
+    }
+  ]
+}

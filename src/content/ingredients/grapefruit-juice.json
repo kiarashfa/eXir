@@ -1,0 +1,33 @@
+{
+  "id": "grapefruit-juice",
+  "name": "Grapefruit Juice",
+  "kind": "ingredient",
+  "category": "citrus-juice",
+  "forms": [
+    {
+      "id": "fresh",
+      "label": "Freshly squeezed",
+      "proseName": "fresh grapefruit juice",
+      "abvPercent": 0,
+      "densityGPerMl": 1.044,
+      "densitySource": "measured",
+      "sugarGPer100": 9.1,
+      "nutritionPer100g": {
+        "kcal": 39,
+        "carbohydrateG": 9.2,
+        "sugarsG": 9.1,
+        "proteinG": 0.5,
+        "fatG": 0.1,
+        "saturatedFatG": 0.014,
+        "fibreG": 0.1,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy; Survey (FNDDS))",
+      "sourceId": "167774; 2709176",
+      "sourceNote": "Nutrition and sugar are the FNDDS record for grapefruit juice, 100%, freshly squeezed (2709176), which reports sugars where the SR Legacy pink-raw record does not. Density is that SR Legacy record's own cup portion (167774), 1.044 g/ml, adopted because juice is poured rather than packed. Both public domain. No acid figure is carried: grapefruit's titratable acidity is not covered by the site's lemon/lime convention and no other source was checked, so acidPercent is left off rather than estimated."
+    }
+  ]
+}

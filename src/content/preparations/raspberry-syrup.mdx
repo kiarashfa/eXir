@@ -1,0 +1,72 @@
+---
+id: raspberry-syrup
+name: Raspberry Syrup
+kind: preparation
+category: syrup
+purchasable: false
+purchaseNote: >-
+  Sold under the name occasionally, but usually as a flavoured sugar syrup rather than fruit
+  cooked into one, and the Clover Club is specific enough about its colour and body that the
+  difference shows.
+yieldMl: 475
+shelfLife:
+  days: 21
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Standard
+    proseName: raspberry syrup
+    abvPercent: 0
+    densityGPerMl: 1.264
+    densitySource: estimated
+    sugarGPer100: 52.92
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 214
+      carbohydrateG: 53.99
+      sugarsG: 52.92
+      proteinG: 0.51
+      fatG: 0.44
+      saturatedFatG: 0.03
+      fibreG: 0.45
+      sodiumMg: 2.5
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      Every figure here is derived from the ingredient records this recipe names, not measured in
+      a bottle: mass and volume are summed over the lines and the density falls out of the two,
+      using the raspberry's own seedless-purée Form for the fruit's contribution. No acidity is
+      carried, because none is sourced for raspberry: real syrup reads less sharp than this record
+      states.
+ingredients:
+  - id: raspberries
+    ingredientRef: raspberry
+    formRef: puree-seedless
+    amount: 300
+    unit: g
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 300
+    unit: g
+steps:
+  - { id: cook, durationSec: 300, type: active, phase: make }
+  - { id: strain, durationSec: 60, type: active, phase: make }
+  - { id: cool, durationSec: 1800, type: passive, phase: rest }
+---
+
+<Step id="cook">
+  Warm the <Qty ref="raspberries"/> with the <Qty ref="sugar"/> in a saucepan, crushing the fruit
+  as it softens, until the sugar has fully dissolved.
+</Step>
+
+<Step id="strain">
+  Pass the mixture through a fine sieve, pressing the solids to extract the syrup and discarding
+  the seeds left behind.
+</Step>
+
+<Step id="cool">
+  Cool and bottle.
+</Step>

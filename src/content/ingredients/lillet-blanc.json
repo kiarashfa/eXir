@@ -1,0 +1,52 @@
+{
+  "id": "lillet-blanc",
+  "name": "Lillet Blanc",
+  "kind": "ingredient",
+  "category": "quinquina",
+  "proprietary": true,
+  "producer": "Maison Lillet",
+  "countryOfOrigin": "France",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Kina Lillet",
+        "note": "The original, more bitter quinine-forward formula this bottle replaced in 1986; the recipes that name it were written against the discontinued product, not this one."
+      },
+      {
+        "name": "Cocchi Americano",
+        "note": "A separate producer's quinquina, often used as a closer match to the discontinued Kina Lillet's bitterness; not the same bottle as this record."
+      }
+    ]
+  },
+  "generalSubstitutes": [],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "Lillet Blanc",
+      "abvPercent": 17,
+      "densityGPerMl": 1.03,
+      "densitySource": "estimated",
+      "sugarGPer100": 8.8,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 126,
+        "carbohydrateG": 8.5,
+        "sugarsG": 8.5,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "A wine-based aperitif; wine is routinely fined with isinglass or gelatine and the producer does not publish whether this bottling is animal-fined.",
+      "allergenTags": ["sulphites"],
+      "containsCaffeine": false,
+      "sourceDataset": "Open Food Facts (producer-submitted record)",
+      "sourceId": "3163934314173",
+      "sourceNote": "Open Food Facts record submitted under the Lillet brand account states 17% alc./vol., 8.8 g sugar and 130 kcal per 100 ml, which is internally consistent: 17 ml ethanol/100 ml at 0.789 g/ml is 13.4 g alcohol (94 kcal at 7 kcal/g) plus 8.8 g sugar (35 kcal at 4 kcal/g) totals 129 kcal, matching the stated 130. Density has no measured liquid source and is taken from density-classes.json's 'fortified-wine' class (1.03 g/ml); nutritionPer100g is the per-100-ml figure divided through that density. Lillet Blanc is the modern, lower-quinine reformulation sold since 1986; the original Corpse Reviver No. 2 recipe predates it and named the discontinued Kina Lillet."
+    }
+  ]
+}

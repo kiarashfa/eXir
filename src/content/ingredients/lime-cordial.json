@@ -1,0 +1,51 @@
+{
+  "id": "lime-cordial",
+  "name": "Lime cordial",
+  "kind": "ingredient",
+  "category": "syrup",
+  "proprietary": true,
+  "producer": "Coca-Cola (Rose's)",
+  "countryOfOrigin": "United Kingdom",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Rose's Lime Juice", "region": "United States" },
+      { "name": "Rose's Lime Cordial", "region": "United Kingdom" }
+    ],
+    "notToBeConfusedWith": [
+      {
+        "name": "Fresh lime juice",
+        "note": "A cooked, sweetened, shelf-stable concentrate with a distinct cooked-lime flavour, not a substitute for the fresh juice the site also records."
+      }
+    ]
+  },
+  "generalSubstitutes": [],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "lime cordial",
+      "abvPercent": 0,
+      "densityGPerMl": 1.05,
+      "densitySource": "estimated",
+      "sugarGPer100": 4.9,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 21,
+        "carbohydrateG": 4.9,
+        "sugarsG": 4.9,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "none",
+      "allergenTags": ["sulphites"],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "coca-cola.com/gb/en/brands/roses",
+      "sourceNote": "Coca-Cola GB's own product page states, per 100 ml: 91 kJ/21 kcal, 4.9 g sugar, water/lime juice from concentrate (5%)/sugar/citric acid/flavourings/preservative (sodium metabisulphite, hence the sulphites tag)/colours. A separate secondary listing (Difford's Guide) states 53 kcal per 100 ml for the same product with no sugar figure, which this record does not reconcile; the producer's own page is preferred per house sourcing order. Density has no measured liquid source and is taken from density-classes.json's 'juice-sweet' class (1.05 g/ml). acidPercent is left off: no titratable-acidity figure was found for this specific blend, unlike fresh lime juice."
+    }
+  ]
+}

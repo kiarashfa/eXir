@@ -1,0 +1,349 @@
+{
+  "discontinuedDate": "",
+  "foodComponents": [],
+  "foodAttributes": [],
+  "foodPortions": [],
+  "fdcId": 2181196,
+  "description": "PREMIUM OLIVE BRINE",
+  "publicationDate": "10/28/2021",
+  "foodNutrients": [
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1008,
+        "number": "208",
+        "name": "Energy",
+        "rank": 300,
+        "unitName": "kcal"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 26760640,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1087,
+        "number": "301",
+        "name": "Calcium, Ca",
+        "rank": 5300,
+        "unitName": "mg"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 26760643,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 2000,
+        "number": "269",
+        "name": "Total Sugars",
+        "rank": 1510,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 26760641,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1005,
+        "number": "205",
+        "name": "Carbohydrate, by difference",
+        "rank": 1110,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 26760639,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1257,
+        "number": "605",
+        "name": "Fatty acids, total trans",
+        "rank": 15400,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 26760650,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1258,
+        "number": "606",
+        "name": "Fatty acids, total saturated",
+        "rank": 9700,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 26760651,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1235,
+        "number": "539",
+        "name": "Sugars, added",
+        "rank": 1540,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 26760648,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1093,
+        "number": "307",
+        "name": "Sodium, Na",
+        "rank": 5800,
+        "unitName": "mg"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 26760646,
+      "amount": 300
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1003,
+        "number": "203",
+        "name": "Protein",
+        "rank": 600,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 26760637,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1004,
+        "number": "204",
+        "name": "Total lipid (fat)",
+        "rank": 800,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 26760638,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1092,
+        "number": "306",
+        "name": "Potassium, K",
+        "rank": 5700,
+        "unitName": "mg"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 26760645,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1079,
+        "number": "291",
+        "name": "Fiber, total dietary",
+        "rank": 1200,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 26760642,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1253,
+        "number": "601",
+        "name": "Cholesterol",
+        "rank": 15700,
+        "unitName": "mg"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 26760649,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1110,
+        "number": "324",
+        "name": "Vitamin D (D2 + D3), International Units",
+        "rank": 8650,
+        "unitName": "IU"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 26760647,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1089,
+        "number": "303",
+        "name": "Iron, Fe",
+        "rank": 5400,
+        "unitName": "mg"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 26760644,
+      "amount": 0
+    }
+  ],
+  "dataType": "Branded",
+  "foodClass": "Branded",
+  "modifiedDate": "8/25/2021",
+  "availableDate": "8/25/2021",
+  "brandOwner": "Filthy Food L.L.C.",
+  "brandName": "FILTHY",
+  "dataSource": "LI",
+  "brandedFoodCategory": "Alcohol",
+  "gtinUpc": "899682002286",
+  "householdServingFullText": "1/2 ONZ",
+  "ingredients": "FILTERED WATER, OLIVE JUICE, SALT, LACTIC ACID (PRESERVATIVE), ASCORBIC ACID, VINEGAR, SODIUM BENZOATE (PRESERVATIVE), VERMOUTH",
+  "marketCountry": "United States",
+  "servingSize": 15,
+  "servingSizeUnit": "ml",
+  "packageWeight": "8 fl oz/237 ml",
+  "foodUpdateLog": [
+    {
+      "discontinuedDate": "",
+      "foodAttributes": [],
+      "fdcId": 2181196,
+      "description": "PREMIUM OLIVE BRINE",
+      "publicationDate": "10/28/2021",
+      "dataType": "Branded",
+      "foodClass": "Branded",
+      "modifiedDate": "8/25/2021",
+      "availableDate": "8/25/2021",
+      "brandOwner": "Filthy Food L.L.C.",
+      "brandName": "FILTHY",
+      "dataSource": "LI",
+      "brandedFoodCategory": "Alcohol",
+      "gtinUpc": "899682002286",
+      "householdServingFullText": "1/2 ONZ",
+      "ingredients": "FILTERED WATER, OLIVE JUICE, SALT, LACTIC ACID (PRESERVATIVE), ASCORBIC ACID, VINEGAR, SODIUM BENZOATE (PRESERVATIVE), VERMOUTH",
+      "marketCountry": "United States",
+      "servingSize": 15,
+      "servingSizeUnit": "ml",
+      "packageWeight": "8 fl oz/237 ml"
+    }
+  ],
+  "labelNutrients": {
+    "fat": {
+      "value": 0
+    },
+    "saturatedFat": {
+      "value": 0
+    },
+    "transFat": {
+      "value": 0
+    },
+    "cholesterol": {
+      "value": 0
+    },
+    "sodium": {
+      "value": 45
+    },
+    "carbohydrates": {
+      "value": 0
+    },
+    "fiber": {
+      "value": 0
+    },
+    "sugars": {
+      "value": 0
+    },
+    "protein": {
+      "value": 0
+    },
+    "calcium": {
+      "value": 0
+    },
+    "iron": {
+      "value": 0
+    },
+    "potassium": {
+      "value": 0
+    },
+    "addedSugar": {
+      "value": 0
+    },
+    "calories": {
+      "value": 0
+    }
+  }
+}

@@ -1,0 +1,85 @@
+---
+id: classic
+label: Classic
+name: White Lady
+subtitle: Gin, orange liqueur and lemon, shaken hard and strained up.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: coupe
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: full
+difficulty: Easy
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [united-kingdom]
+  method: [shaken]
+names:
+  notToBeConfusedWith:
+    - name: Sidecar
+      note: The same equal-parts liqueur-and-lemon sour shape built on cognac rather than gin; a related build under a different name rather than the same drink.
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 50
+    unit: ml
+  - id: liqueur
+    ingredientRef: orange-liqueur
+    formRef: standard
+    amount: 25
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 25
+    unit: ml
+steps:
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: shake
+    text: >-
+      No syrup and no rim: the orange liqueur alone carries the drink's
+      sweetness against the lemon, so the balance depends on measuring it as
+      carefully as the gin rather than treating it as a splash.
+  - kind: pitfall
+    text: >-
+      A cheaper, drier triple sec in place of the reference orange liqueur
+      leaves the drink short of sugar against the lemon's acid, and it reads
+      sharp rather than balanced even though the recipe has not changed.
+makeAhead:
+  aheadInstructions: >-
+    The whole drink batches, and the site adds the water the shake would
+    have contributed. Fresh lemon is the limit: juice loses its aromatics
+    within hours of being squeezed.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="gin"/>, the <Qty ref="liqueur"/> and the
+  <Qty ref="lemon"/> in a shaker and fill it with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>. Short and violent; the aim is to chill
+  and aerate, not to melt the ice.
+</Step>
+
+<Step id="strain">
+  Double strain into a chilled coupe, catching the ice shards the shake has
+  broken off.
+</Step>

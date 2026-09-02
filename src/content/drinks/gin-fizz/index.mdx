@@ -1,0 +1,112 @@
+---
+id: classic
+label: Classic
+name: Gin Fizz
+subtitle: Gin, lemon and sugar, shaken and strained up, then topped with soda at the table.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: highball
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: partial
+batchNote: >-
+  The gin, lemon and syrup batch cleanly and can be pre-shaken to order. The
+  soda cannot: it has to be opened and poured at the moment of service, or
+  the drink is flat by the time it reaches the table.
+difficulty: Easy
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [shaken]
+names:
+  notToBeConfusedWith:
+    - name: Tom Collins
+      note: Built directly in a tall glass over ice rather than shaken and strained up; the fizz is drunk at once while it is still lively, the Collins is sipped over its own ice.
+  searchOnly:
+    - gin fizz cocktail
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 60
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 22.5
+    unit: ml
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 90
+    unit: ml
+steps:
+  - { id: juice, durationSec: 60, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: top
+    text: >-
+      The soda is never shaken with the rest. It is poured in afterward,
+      straight into the strained drink, so the bubbles it carries survive to
+      the glass instead of being beaten out of it in the tin.
+  - kind: pitfall
+    text: >-
+      Flat soda is the single most common way this drink goes wrong, and it
+      happens quietly: an open bottle kept in the fridge overnight looks
+      identical to a fresh one and pours the same, but the fizz that gives
+      the drink its name is already half gone.
+substitutions:
+  - lineRef: syrup
+    substitute: demerara-syrup
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume and close in sugar, so the arithmetic barely
+      moves. The molasses note sits oddly against the soda's own cleanness,
+      which is why plain syrup is the usual choice here.
+    impact:
+      flavour: moderate change
+      strength: no change
+      sweetness: minor change
+makeAhead:
+  aheadInstructions: >-
+    The gin, lemon and syrup can be shaken and strained ahead and held cold;
+    the soda is added fresh to each glass at the point of service, never
+    batched with the rest.
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="gin"/>, the <Qty ref="lemon"/> and the
+  <Qty ref="syrup"/> in a shaker and fill it with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/> to chill and aerate the drink before any
+  soda reaches it.
+</Step>
+
+<Step id="strain">
+  Strain up into a chilled highball glass, with no ice in the glass itself.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/>, poured gently down the side of the glass
+  so the foam it raises has somewhere to go, and serve at once.
+</Step>

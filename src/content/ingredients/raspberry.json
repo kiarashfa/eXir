@@ -27,6 +27,32 @@
       "sourceDataset": "USDA FoodData Central (SR Legacy)",
       "sourceId": "167755",
       "sourceNote": "Raspberries, raw. Public domain. No density: the fruit is macerated and strained out, and the record's own figure is a cup of whole berries."
+    },
+    {
+      "id": "puree-seedless",
+      "label": "Purée, seedless",
+      "proseName": "raspberry purée",
+      "abvPercent": 0,
+      "densityGPerMl": 1.05,
+      "densitySource": "estimated",
+      "sugarGPer100": 6.04,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 41,
+        "carbohydrateG": 7.99,
+        "sugarsG": 6.04,
+        "proteinG": 1.02,
+        "fatG": 0.87,
+        "saturatedFatG": 0.064,
+        "fibreG": 0.9,
+        "sodiumMg": 4
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "167808",
+      "sourceNote": "Raspberries, puree, seedless. Public domain. What remains after whole raspberries are cooked briefly and pressed through a fine sieve to remove the seeds, which is the form this record's own syrup preparations use. No measured liquid density is published; the purée is genuinely poured, so the density-classes.json 'juice-sweet' class is adopted and marked estimated."
     }
   ]
 }

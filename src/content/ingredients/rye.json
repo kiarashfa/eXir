@@ -1,0 +1,48 @@
+{
+  "id": "rye",
+  "name": "Rye Whiskey",
+  "kind": "ingredient",
+  "category": "rye",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Bourbon",
+        "note": "Corn-forward and legally at least 51% corn in the mash; rye's mash is majority rye grain instead, which is where its drier, spicier profile comes from."
+      }
+    ]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "bourbon",
+      "note": "Rounder and sweeter where rye is drier and spicier; a Manhattan made with it drinks softer and less peppery, with the vermouth reading sweeter against it."
+    }
+  ],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard strength",
+      "proseName": "rye whiskey",
+      "abvPercent": 43,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0.1,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 250,
+        "carbohydrateG": 0.1,
+        "sugarsG": 0.1,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174819",
+      "sourceNote": "Alcoholic beverage, distilled, whiskey, 86 proof. Public domain. USDA carries no record split out for rye specifically, so the same generic distilled-whiskey record used for this site's bourbon record is used here too. 86 US proof is 43% alcohol by volume by definition, close to the record's own measured ethanol-against-density figure of 42.9%. Standard ryes bottle from about 40% (Wild Turkey Rye) to 50% (Rittenhouse Bonded), and a bottle away from 43% moves every figure a drink using it computes. Gluten is not flagged: the spirit is distilled from grain and carries no protein through the still."
+    }
+  ]
+}

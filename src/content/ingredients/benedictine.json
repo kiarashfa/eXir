@@ -1,0 +1,44 @@
+{
+  "id": "benedictine",
+  "name": "Bénédictine",
+  "kind": "ingredient",
+  "category": "herbal-liqueur",
+  "proprietary": true,
+  "producer": "Bénédictine (Bacardi Limited)",
+  "countryOfOrigin": "France",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "B&B",
+        "note": "The same producer's blend of this liqueur with brandy — drier and lower in sugar than Bénédictine on its own."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "Bénédictine",
+      "abvPercent": 40,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "sugarGPer100": 32.9,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 354,
+        "carbohydrateG": 32.9,
+        "sugarsG": 32.9,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "none",
+      "animalOriginNote": "The producer lists honey among the botanicals steeped in some published accounts of the recipe, but the maker's own current nutrition disclosure lists no animal-derived ingredient. Recorded as none rather than varies because the one figure available is the producer's own.",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "bacardilimited.com/nutrition/benedictine",
+      "sourceNote": "The producer's own nutrition disclosure states 40% alc./vol. and, per a 1.5 fl oz (44.4 ml) serving, 157 kcal and 14.6 g carbohydrate, all of it sugar. Scaled to 100 ml that is 354 kcal and 32.9 g. Density has no measured liquid source; the density-classes.json 'liqueur-sweet' class is used and marked estimated, the same choice made for maraschino liqueur on this site."
+    }
+  ]
+}

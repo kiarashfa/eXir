@@ -1,0 +1,99 @@
+---
+id: classic
+label: Classic
+name: Sidecar
+subtitle: Cognac, orange liqueur and lemon, shaken and strained into a sugar-rimmed glass.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: coupe
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: full
+difficulty: Easy
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [france]
+  method: [shaken]
+names:
+  notToBeConfusedWith:
+    - name: Brandy Crusta
+      note: An earlier sugar-rimmed brandy sour with maraschino and bitters added; the Sidecar is often read as a simplified descendant rather than the same drink.
+ingredients:
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 2
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Run around the rim before pouring; a rimmed glass is licked rather than
+      drunk from squarely, so the sugar is bought and applied but excluded
+      from the drink's own composition.
+  - id: cognac
+    ingredientRef: cognac
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: liqueur
+    ingredientRef: orange-liqueur
+    formRef: standard
+    amount: 25
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 25
+    unit: ml
+steps:
+  - { id: rim, durationSec: 20, type: active, phase: prep }
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: rim
+    text: >-
+      Only half the rim is usually sugared, so the drinker can choose a sip
+      with sugar or without rather than getting it in every mouthful.
+  - kind: pitfall
+    text: >-
+      A cognac too young or too rough shows through this build more than in
+      a stirred drink; the citrus and liqueur do not hide a thin base spirit
+      the way a longer drink might.
+makeAhead:
+  aheadInstructions: >-
+    The whole drink batches, and the site adds the water the shake would
+    have contributed. Fresh lemon is the limit: juice loses its aromatics
+    within hours of being squeezed.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="rim">
+  Run a lemon wedge around half the rim of a coupe and dip that half in
+  sugar.
+</Step>
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="cognac"/>, the <Qty ref="liqueur"/> and the
+  <Qty ref="lemon"/> in a shaker and fill it with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/> until the tin frosts over.
+</Step>
+
+<Step id="strain">
+  Double strain into the rimmed glass, which holds no ice of its own.
+</Step>

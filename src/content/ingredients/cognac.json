@@ -1,0 +1,49 @@
+{
+  "id": "cognac",
+  "name": "Cognac",
+  "kind": "ingredient",
+  "category": "cognac",
+  "countryOfOrigin": "France",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Brandy",
+        "note": "The general category. Cognac is brandy made from grapes grown around the French town of Cognac and distilled twice in copper pot stills under its own legal designation."
+      }
+    ]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "bourbon",
+      "note": "Grain rather than grape, and drier — a drink built on cognac's fruit and oak reads leaner and more spirit-forward with bourbon in its place."
+    }
+  ],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard strength",
+      "proseName": "cognac",
+      "abvPercent": 40,
+      "densityGPerMl": 0.95,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (Survey (FNDDS))",
+      "sourceId": "2710699",
+      "sourceNote": "USDA's Survey (FNDDS) record for brandy gives 231 kcal/100 g with no carbohydrate, sugar or fat, and 33.4 g alcohol per 100 g but no usable liquid density to turn that into an ABV, so the strength here is stated from Cognac's legal minimum bottling proof of 40% rather than derived from the record. Public domain. No measured liquid density is published anywhere in this record; the density-classes.json 'spirit-40' class is taken as the nearest fit and marked estimated."
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+---
+id: classic
+label: Classic
+name: Ramos Gin Fizz
+subtitle: Gin, citrus, cream and egg white, shaken far longer than any other sour before the soda goes in.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken-long
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: partial
+batchNote: >-
+  The gin, citrus, syrup, cream, egg white and orange flower water can be dry
+  shaken ahead and held cold. The soda cannot: it is opened and poured at the
+  moment of service, or the drink is flat by the time it reaches the table.
+difficulty: Hard
+family: sour
+familyRole: descendant
+derivedFrom: gin-fizz
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [shaken]
+names:
+  alsoKnownAs:
+    - name: New Orleans Fizz
+  notToBeConfusedWith:
+    - name: Gin Fizz
+      note: The plainer drink this one elaborates on, with no cream, egg white or orange flower water and a much shorter shake.
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 60
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: flower-water
+    ingredientRef: orange-flower-water
+    formRef: standard
+    amount: 2.7
+    unit: ml
+  - id: cream
+    ingredientRef: cream
+    formRef: heavy
+    amount: 30
+    unit: ml
+  - id: egg
+    ingredientRef: egg
+    formRef: white
+    amount: 32.1
+    unit: ml
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 60
+    unit: ml
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 70
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Half a wheel set on the rim. It is not stirred through, so none of it
+      reaches the composition even where the guest eats it.
+steps:
+  - { id: juice, durationSec: 60, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: dry-shake, durationSec: 60, type: active, phase: make }
+  - { id: wet-shake, durationSec: 20, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: dry-shake
+    text: >-
+      The dry shake here runs far longer than any other sour's: cream and egg
+      white together need real time and force to whip into the dense,
+      standing foam this drink is named for, and cutting the shake short is
+      the single biggest reason a home-made version comes out thin.
+  - kind: pitfall
+    text: >-
+      Adding the soda before the shake, or shaking with it at all, beats the
+      carbonation flat before the drink is even poured. It goes in only after
+      the fizz is strained into the glass.
+makeAhead:
+  aheadInstructions: >-
+    The gin, citrus, syrup, cream, egg white and orange flower water can be
+    dry shaken ahead and held cold in the fridge; the soda is added fresh to
+    each glass at the point of service, never batched with the rest.
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and the <Qty ref="lime"/> and strain out the
+  pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="gin"/>, the <Qty ref="lemon"/>, the <Qty ref="lime"/>,
+  the <Qty ref="syrup"/>, the <Qty ref="flower-water"/>, the
+  <Qty ref="cream"/> and the <Qty ref="egg"/> in a shaker, with no ice yet.
+</Step>
+
+<Step id="dry-shake">
+  Shake hard for <Dur step="dry-shake"/> with no ice. This is the step the
+  drink is named for: the cream and egg white need that much time and force
+  to build the dense foam that holds its shape in the glass.
+</Step>
+
+<Step id="wet-shake">
+  Add cubed ice and shake again for <Dur step="wet-shake"/> to chill the
+  drink and finish the emulsion.
+</Step>
+
+<Step id="strain">
+  Fine strain up into a chilled Collins glass, with no ice in the glass
+  itself.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/>, poured gently down the side of the glass so
+  the foam rises above the rim rather than overflowing it, and serve at once.
+</Step>

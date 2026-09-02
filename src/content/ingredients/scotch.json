@@ -1,0 +1,69 @@
+{
+  "id": "scotch",
+  "name": "Scotch Whisky",
+  "kind": "ingredient",
+  "category": "scotch",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Irish whiskey",
+        "note": "Made across the water under its own rules, usually triple-distilled and rarely peated; the two are not interchangeable where a recipe names Scotch specifically."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "blended",
+      "label": "Blended",
+      "proseName": "blended Scotch",
+      "abvPercent": 40,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174815",
+      "sourceNote": "Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof. Public domain. FoodData Central does not carry a Scotch-specific record; whisky's composition does not vary with grain or region once bottled at the same proof, and blended Scotch is near-universally bottled at 40% ABV, so this generic 80-proof spirit record applies unchanged."
+    },
+    {
+      "id": "islay",
+      "label": "Islay single malt, e.g. Laphroaig 10 Year",
+      "proseName": "Islay single malt",
+      "abvPercent": 40,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174815",
+      "sourceNote": "Same generic 80-proof distilled-spirit record as the blended form: composition does not change with peating or region at a fixed proof. Laphroaig 10 Year, the reference bottle usually named for the peaty float this Form is for, is bottled at 40% ABV, matching the generic record exactly."
+    }
+  ]
+}

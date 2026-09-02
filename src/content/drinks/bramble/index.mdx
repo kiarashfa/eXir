@@ -1,0 +1,108 @@
+---
+id: classic
+label: Classic
+name: Bramble
+subtitle: Gin and lemon built over crushed ice, with blackberry liqueur drizzled over the top rather than shaken in.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: double-rocks
+iceStyle: crushed
+servedOverIce: true
+bitterness: none
+batchable: full
+difficulty: Easy
+family: sour
+familyRole: riff
+tags:
+  category: [cocktail]
+  origin: [international]
+  method: [built-over-ice]
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 60
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: mure
+    ingredientRef: creme-de-mure
+    formRef: standard
+    amount: 15
+    unit: ml
+steps:
+  - { id: juice, durationSec: 60, type: active, phase: prep }
+  - { id: ice, durationSec: 30, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: stir, durationSec: 10, type: active, phase: make }
+  - { id: drizzle, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: drizzle
+    text: >-
+      The crème de mûre goes on last and is never stirred through. Poured
+      slowly over the surface, it sinks in a slow purple trail rather than
+      mixing evenly, so the drink reads pale at the top of the glass and
+      darkens toward the bottom, and each sip changes as the straw draws
+      from a different depth.
+  - kind: pitfall
+    text: >-
+      Crushed ice melts far faster than a cube, so this drink keeps
+      diluting after it is handed over. It is built to be drunk promptly
+      rather than nursed the way a stirred drink over a single large cube
+      can be.
+substitutions:
+  - lineRef: syrup
+    substitute: demerara-syrup
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume and close in sugar, so the arithmetic barely
+      moves. The molasses note it adds sits underneath the crème de mûre
+      rather than competing with it, and darkens the drink slightly.
+    impact:
+      flavour: minor change
+      strength: no change
+      sweetness: no change
+makeAhead:
+  aheadInstructions: >-
+    The gin, lemon and syrup batch, and the site adds the water the build
+    would have contributed; the crème de mûre is still drizzled fresh over
+    each glass at the point of service, because it is the layer the drink is
+    built to show.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="ice">
+  Pack a double rocks glass with crushed ice, mounded above the rim so it
+  will still be visible once the liquid is poured over it.
+</Step>
+
+<Step id="build">
+  Pour the <Qty ref="gin"/>, the <Qty ref="lemon"/> and the <Qty ref="syrup"/> directly over the
+  crushed ice.
+</Step>
+
+<Step id="stir">
+  Stir briefly for <Dur step="stir"/>, just enough to settle the ice and combine the three liquids
+  — this is a build, not a stir to equilibrium, so the drink is still diluting after it is served.
+</Step>
+
+<Step id="drizzle">
+  Pour the <Qty ref="mure"/> over the surface in a slow, circular motion so it sits as a layer and
+  bleeds downward through the ice rather than mixing straight in.
+</Step>

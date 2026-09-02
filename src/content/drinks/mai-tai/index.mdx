@@ -1,0 +1,126 @@
+---
+id: original
+label: 1944 Original
+name: Mai Tai
+subtitle: Aged rum, orange curaçao, orgeat and lime, churned into crushed ice.
+defaultDrinks: 1
+method: swizzled
+dilutionClass: churned-crushed
+glasswareRef: double-rocks
+iceStyle: crushed
+servedOverIce: true
+bitterness: none
+batchable: full
+difficulty: Easy
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [tiki]
+  method: [swizzled]
+names:
+  notToBeConfusedWith:
+    - name: Mai Tai Swizzle
+      note: A name occasionally used for tiki-bar riffs with extra rums and spice; this page is the four-ingredient original shape.
+ingredients:
+  - id: rum
+    ingredientRef: dark-rum
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: curacao
+    ingredientRef: orange-curacao
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: orgeat
+    ingredientRef: orgeat
+    formRef: standard
+    amount: 7.5
+    unit: ml
+  - id: syrup
+    ingredientRef: rich-simple-syrup
+    formRef: standard
+    amount: 7.5
+    unit: ml
+  - id: mint
+    ingredientRef: mint
+    formRef: fresh
+    amount: 2
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A sprig set beside the straw for its aroma. It is not stirred through,
+      so none of it reaches the composition even where the guest eats it.
+steps:
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: churn, durationSec: 12, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: churn
+    text: >-
+      Shaken briefly with crushed rather than cubed ice and poured out
+      unstrained, so the ice that did the chilling stays in the glass and
+      keeps working on the drink as it is drunk. A cube would do the same job
+      more slowly and melt into a puddle instead of a texture.
+  - kind: pitfall
+    text: >-
+      Orgeat separates and thickens in the fridge, and a bottle poured
+      straight from cold measures short and sweetens the drink unevenly. It
+      needs a shake of its own before it goes anywhere near the jigger.
+substitutions:
+  - lineRef: rum
+    substitute: white-rum
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume and at the same strength, so the arithmetic
+      barely moves. The drink loses the molasses and oak notes the orgeat and
+      curaçao are built to sit against and reads considerably thinner.
+    impact:
+      flavour: significant change
+      strength: no change
+      sweetness: no change
+makeAhead:
+  aheadInstructions: >-
+    The rum, curaçao, orgeat and syrup batch cleanly, and the site adds the
+    water the churn would have contributed. Fresh lime is the limit: it loses
+    its aromatics within hours of being squeezed, so a batch made in the
+    morning is at its best that evening and tired the next day.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lime"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="rum"/>, the <Qty ref="lime"/>, the
+  <Qty ref="curacao"/>, the <Qty ref="orgeat"/> and the <Qty ref="syrup"/> in
+  a shaker with a scoop of crushed ice.
+</Step>
+
+<Step id="churn">
+  Shake hard but briefly for <Dur step="churn"/>, just long enough to chill
+  the drink without fully melting the ice it was shaken with.
+</Step>
+
+<Step id="pour">
+  Pour the whole contents, ice and all, into a double old fashioned glass
+  packed with fresh crushed ice.
+</Step>
+
+<Step id="garnish">
+  Set the <Qty ref="mint"/> beside the straw so its aroma reaches the drinker
+  on every sip.
+</Step>

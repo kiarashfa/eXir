@@ -1,0 +1,80 @@
+---
+id: dry
+label: Dry
+name: Martini
+subtitle: Gin and a trace of dry vermouth, stirred and strained up.
+defaultDrinks: 1
+method: stirred
+dilutionClass: stirred
+glasswareRef: martini
+iceStyle: none
+servedOverIce: false
+bitterness: low
+batchable: full
+difficulty: Easy
+family: old-fashioned
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [stirred]
+  occasion: [aperitivo]
+names:
+  notToBeConfusedWith:
+    - name: Martinez
+      note: An earlier, sweeter gin drink with maraschino and a full measure of sweet vermouth; the two are closer to siblings from a shared ancestor than one simplifying into the other.
+    - name: Gibson
+      note: The same gin-and-dry-vermouth build finished with a pickled onion in place of the olive or twist, which changes the aroma rather than the recipe.
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 60
+    unit: ml
+  - id: vermouth
+    ingredientRef: dry-vermouth
+    formRef: standard
+    amount: 10
+    unit: ml
+  - id: olive
+    ingredientRef: olive
+    formRef: green-brined
+    amount: 4
+    unit: g
+    garnish: true
+steps:
+  - { id: chill, durationSec: 30, type: active, phase: prep }
+  - { id: combine, durationSec: 20, type: active, phase: make }
+  - { id: stir, durationSec: 25, type: active, phase: make }
+  - { id: garnish, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: stir
+    text: >-
+      Everything in the glass is spirituous and nothing needs aerating, so it
+      is stirred rather than shaken. Shaking would also beat air into the
+      drink and cloud it, which a gin this pale is meant never to be.
+  - kind: pitfall
+    text: >-
+      This ratio leaves almost nowhere for the vermouth to hide, so a bottle
+      kept warm and half-empty for months oxidises into something flat and
+      papery that no amount of good gin then covers up.
+---
+
+<Step id="chill">
+  Chill a martini glass.
+</Step>
+
+<Step id="combine">
+  Combine the <Qty ref="gin"/> and the <Qty ref="vermouth"/> in a mixing
+  glass filled with cubed ice.
+</Step>
+
+<Step id="stir">
+  Stir for <Dur step="stir"/>, until the outside of the glass is frosted, and
+  strain into the chilled glass.
+</Step>
+
+<Step id="garnish">
+  Skewer the <Qty ref="olive"/> on a pick and drop it in.
+</Step>

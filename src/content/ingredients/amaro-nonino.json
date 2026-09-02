@@ -1,0 +1,32 @@
+{
+  "id": "amaro-nonino",
+  "name": "Amaro Nonino",
+  "kind": "ingredient",
+  "category": "amaro",
+  "proprietary": true,
+  "producer": "Nonino Distillatori",
+  "countryOfOrigin": "Italy",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Amaro Nonino Quintessentia" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Quintessentia",
+      "proseName": "Amaro Nonino",
+      "abvPercent": 35,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "acidPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "grappanonino.it product page",
+      "sourceNote": "The producer's own product page states 35% ABV and gives no calorie, carbohydrate or sugar figure, and none was found from Open Food Facts either, so nutrition is left off entirely rather than estimated. Density is the sweetened-liqueur class from density-classes.json, marked estimated, standing in for a grape-brandy-based amaro of comparable body."
+    }
+  ]
+}

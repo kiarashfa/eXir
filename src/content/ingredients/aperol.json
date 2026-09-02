@@ -1,0 +1,49 @@
+{
+  "id": "aperol",
+  "name": "Aperol",
+  "kind": "ingredient",
+  "category": "bitter-aperitivo",
+  "proprietary": true,
+  "producer": "Davide Campari-Milano",
+  "countryOfOrigin": "Italy",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Campari",
+        "note": "From the same owner and the same shelf, and not interchangeable: roughly twice the strength, considerably less sweet and far more bitter."
+      }
+    ]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "campari",
+      "note": "Higher in strength and considerably more bitter and less sweet, so a drink built on it comes out shorter, drier and much more assertive. Closer to a different drink than to a substitution."
+    }
+  ],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 11,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "sugarGPer100": 26.2,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 167,
+        "carbohydrateG": 26.2,
+        "sugarsG": 26.2,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "camparigroup.info Aperol consumer information",
+      "sourceNote": "The producer's own consumer-information page states 11% alc./vol. and, per 1.5 fl oz serving, 74 calories and 11.6 g of carbohydrate; those are restated here per 100 ml (44.36 ml to the 1.5 fl oz). Carbohydrate is taken as sugar because the product carries no other kind. Cross-checked against the site's own energy arithmetic: 11% alcohol plus 26.2 g of sugar comes to about 165 kcal against the 167 restated here, a match close enough to be credible, unlike the Open Food Facts branded records for this product, which disagree with themselves and with each other on both strength (11%, 12.5% and 15% across listings) and calories, and are not used."
+    }
+  ]
+}

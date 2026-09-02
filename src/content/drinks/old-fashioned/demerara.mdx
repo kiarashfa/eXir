@@ -1,0 +1,91 @@
+---
+id: demerara
+label: Demerara
+name: Old Fashioned
+subtitle: Bourbon and demerara syrup in place of white sugar, built the same way.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: rocks
+iceStyle: block
+servedOverIce: true
+bitterness: low
+batchable: full
+difficulty: Easy
+family: old-fashioned
+familyRole: origin
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+ingredients:
+  - id: syrup
+    ingredientRef: demerara-syrup
+    formRef: standard
+    amount: 7.5
+    unit: ml
+  - id: bitters
+    ingredientRef: angostura-bitters
+    formRef: standard
+    amount: 1.8
+    unit: ml
+  - id: bourbon
+    ingredientRef: bourbon
+    formRef: standard
+    amount: 60
+    unit: ml
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 140
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A swathe of peel is cut, expressed over the surface and dropped in. The
+      rest of the fruit is not part of the drink but still has to be bought,
+      so the checklist still asks for it.
+steps:
+  - { id: chill, durationSec: 45, type: active, phase: prep }
+  - { id: combine, durationSec: 20, type: active, phase: make }
+  - { id: stir, durationSec: 20, type: active, phase: make }
+  - { id: garnish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: combine
+    text: >-
+      Demerara sugar carries molasses that plain white sugar has already had
+      washed out of it, so the sweetener slot here contributes a background
+      note of caramel and dried fruit rather than sweetness alone. The bourbon
+      and the bitters are unchanged, so the difference audible in the glass
+      is entirely this one line.
+  - kind: pitfall
+    text: >-
+      Commercial demerara syrups are made to varying strengths, and a bottle
+      thinner than the one this recipe assumes under-sweetens a drink with
+      only one other slot to carry the balance.
+---
+
+<Step id="chill">
+  Chill a rocks glass and set a single large cube in it. One large piece
+  melts more slowly than the same mass broken into small ones, which keeps
+  the cube working for as long as the drink is on the table.
+</Step>
+
+<Step id="combine">
+  Pour the <Qty ref="syrup"/> and the <Qty ref="bitters"/> over the cube,
+  then add the <Qty ref="bourbon"/>.
+</Step>
+
+<Step id="stir">
+  Stir for <Dur step="stir"/>, just enough to marry the syrup and bitters
+  into the spirit and start the cube working. The syrup is cloudier than the
+  white-sugar version and takes a beat longer to disappear into the spirit.
+</Step>
+
+<Step id="garnish">
+  Cut a <Len cm={4}/> swathe of orange peel, hold it skin-outwards over the
+  surface and squeeze so the oil lands on the drink. Rub it around the rim
+  and drop it in.
+</Step>

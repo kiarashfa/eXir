@@ -7,7 +7,11 @@
       "model": "formula-stirred",
       "estimated": true,
       "formula": "d = -1.21a^2 + 1.26a + 0.145",
-      "coefficients": { "a2": -1.21, "a1": 1.26, "a0": 0.145 },
+      "coefficients": {
+        "a2": -1.21,
+        "a1": 1.26,
+        "a0": 0.145
+      },
       "source": {
         "title": "Liquid Intelligence: The Art and Science of the Perfect Cocktail",
         "author": "Dave Arnold",
@@ -78,6 +82,18 @@
         "note": "Not an external claim: a drink that never meets ice gains no water."
       },
       "note": "Hot drinks, brewed drinks and anything poured from a batch at service. Any water in the drink is an authored ingredient line, so the figure is stated rather than modelled and carries no estimate marker."
+    },
+    "churned-crushed": {
+      "label": "Churned into crushed ice",
+      "model": "fixed",
+      "fraction": 0.9,
+      "estimated": true,
+      "risesOverTime": true,
+      "source": {
+        "title": "eXir editorial",
+        "note": "A stated allowance rather than a measured figure, on the same footing as the ice allowance and the shelf lives elsewhere on the site. Crushed ice carries far more surface area than cubed, and a julep or a swizzle is churned until the vessel frosts rather than stirred to a stopping point, so it takes on roughly its own volume again in water. No published closed form covers it."
+      },
+      "note": "Juleps, swizzles, cobblers and most tiki drinks served over crushed ice. Using the built-over-ice figure here understates the water by more than half and leaves a julep computing near the strength of the bourbon that went into it, which is the opposite of what churning is for."
     }
   }
 }

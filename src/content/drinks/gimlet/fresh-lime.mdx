@@ -1,0 +1,81 @@
+---
+id: fresh-lime
+label: Fresh Lime
+name: Gimlet
+subtitle: Gin, fresh lime juice and sugar syrup, shaken and strained up.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: coupe
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: full
+difficulty: Easy
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [united-kingdom]
+  method: [shaken]
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 60
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 22.5
+    unit: ml
+steps:
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: shake
+    text: >-
+      A plain sour in every proportion: fresh lime in place of the cordial's
+      cooked sweetness means the sugar has to be added back separately, in
+      the same two-part shape as a Daiquiri.
+  - kind: pitfall
+    text: >-
+      This is not the cordial drink with a substitution made to it. Fresh
+      lime and syrup measure differently from a bottled cordial, and pouring
+      one to the other's amounts leaves the drink either thin or cloying.
+makeAhead:
+  aheadInstructions: >-
+    The whole drink batches, and the site adds the water the shake would
+    have contributed. Fresh lime is the limit: juice loses its aromatics
+    within hours of being squeezed.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lime"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="gin"/>, the <Qty ref="lime"/> and the
+  <Qty ref="syrup"/> in a shaker and fill it with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>. Short and violent; the aim is to chill
+  and aerate, not to melt the ice.
+</Step>
+
+<Step id="strain">
+  Double strain into a chilled coupe, catching the ice shards the shake has
+  broken off.
+</Step>

@@ -1,0 +1,45 @@
+{
+  "id": "vodka",
+  "name": "Vodka",
+  "kind": "ingredient",
+  "category": "vodka",
+  "proprietary": false,
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Gin",
+        "note": "Also a neutral spirit at a similar strength, but redistilled or infused with botanicals; vodka is defined by their absence."
+      }
+    ]
+  },
+  "generalSubstitutes": [],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "vodka",
+      "abvPercent": 40,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174818",
+      "sourceNote": "Alcoholic beverage, distilled, vodka, 80 proof. Public domain. 80 US proof is 40% alcohol by volume by definition; the record's own measured ethanol content against its measured density works out at 39.8%, the cross-check. Bottles run from 37.5% upwards and a stronger one moves every figure it touches."
+    }
+  ]
+}

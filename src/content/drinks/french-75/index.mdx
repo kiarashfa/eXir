@@ -1,0 +1,114 @@
+---
+id: classic
+label: Classic
+name: French 75
+subtitle: Gin, lemon and sugar shaken, strained up and topped with sparkling wine.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: flute
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: partial
+batchNote: >-
+  The gin, lemon and syrup batch cleanly and can be pre-shaken to order. The
+  sparkling wine cannot: it is opened and poured at the moment of service or
+  the drink is flat by the time it reaches the table.
+difficulty: Easy
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [france]
+  method: [shaken]
+names:
+  notToBeConfusedWith:
+    - name: French 76
+      note: The same build with vodka in place of gin; a later variant rather than this drink under another name.
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 22.5
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 7.5
+    unit: ml
+  - id: sparkling
+    ingredientRef: sparkling-wine
+    formRef: brut
+    amount: 65
+    unit: ml
+  - id: twist
+    ingredientRef: lemon
+    formRef: standard
+    amount: 58
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A strip of peel is cut and twisted over the drink for its oil, then
+      dropped in. The rest of the fruit is not part of the drink but is still
+      bought.
+steps:
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: top
+    text: >-
+      The sparkling wine is never shaken with the rest. It goes in last,
+      poured gently down the side of the glass, so the bead it carries
+      survives to the drink instead of being beaten out of it in the tin.
+  - kind: pitfall
+    text: >-
+      A gin poured too generously against the sparkling wine turns this into
+      a fizzed-up shaken sour rather than the long drink it is meant to be;
+      the wine is meant to carry the drink's length, not just top it up.
+makeAhead:
+  aheadInstructions: >-
+    The gin, lemon and syrup can be shaken and strained ahead and held cold;
+    the sparkling wine is opened and added fresh to each glass at the point
+    of service, never batched with the rest.
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="gin"/>, the <Qty ref="lemon"/> and the
+  <Qty ref="syrup"/> in a shaker and fill it with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/> to chill and aerate the drink before any
+  wine reaches it.
+</Step>
+
+<Step id="strain">
+  Strain up into a chilled flute, with no ice in the glass itself.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="sparkling"/>, poured gently down the side of the
+  glass so the foam it raises has somewhere to go.
+</Step>
+
+<Step id="garnish">
+  Twist a strip of lemon peel over the surface to release its oil, then drop
+  it in.
+</Step>

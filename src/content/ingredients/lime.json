@@ -1,0 +1,32 @@
+{
+  "id": "lime",
+  "name": "Lime",
+  "kind": "ingredient",
+  "category": "citrus",
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Whole, raw",
+      "abvPercent": 0,
+      "sugarGPer100": 1.69,
+      "acidPercent": 0,
+      "countUnit": { "singular": "lime", "plural": "limes", "g": 67, "snap": "half" },
+      "nutritionPer100g": {
+        "kcal": 30,
+        "carbohydrateG": 10.54,
+        "sugarsG": 1.69,
+        "proteinG": 0.7,
+        "fatG": 0.2,
+        "saturatedFatG": 0.022,
+        "fibreG": 2.8,
+        "sodiumMg": 2
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "168155",
+      "sourceNote": "Limes, raw. Public domain. The one-fruit weight (67 g) is a typical whole-fruit weight for this size of lime. No density: a lime is not poured, and where a recipe uses only a wheel or the peel the line states how little of the fruit reaches the drink."
+    }
+  ]
+}

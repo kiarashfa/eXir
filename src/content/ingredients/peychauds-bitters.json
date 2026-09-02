@@ -1,0 +1,43 @@
+{
+  "id": "peychauds-bitters",
+  "name": "Peychaud's Bitters",
+  "kind": "ingredient",
+  "category": "bitters",
+  "proprietary": true,
+  "producer": "Sazerac Company",
+  "countryOfOrigin": "United States",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Angostura bitters",
+        "note": "A separate aromatic bitters, darker and more clove-forward; this one is lighter, more anise-and-cherry, and is the one named for the New Orleans apothecary who sold it."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 35,
+      "densityGPerMl": 0.95,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 0,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "countUnit": { "singular": "dash", "plural": "dashes", "ml": 0.9, "snap": "whole" },
+      "sourceDataset": "Producer published figures",
+      "sourceId": "sazerac.com/nutrition",
+      "sourceNote": "The producer's own nutrition page states 70 proof (35% alc./vol.) and zero calories, carbohydrate, sugar and fat per one-dash serving. No measured liquid density is published for a bitters this strong with no sugar; the density-classes.json 'spirit-40' class is taken as the nearest fit and marked estimated, matching the approach already used for Angostura on this site."
+    }
+  ]
+}

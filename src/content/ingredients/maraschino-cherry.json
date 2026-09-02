@@ -1,0 +1,41 @@
+{
+  "id": "maraschino-cherry",
+  "name": "Maraschino Cherry",
+  "kind": "ingredient",
+  "category": "fruit",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Maraschino liqueur",
+        "note": "The clear cherry-pit liqueur this cherry was traditionally preserved in and is named after; a modern jarred cherry is sugar-brined rather than liqueur-steeped and the two are not interchangeable."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "In syrup, drained",
+      "proseName": "a maraschino cherry",
+      "abvPercent": 0,
+      "sugarGPer100": 38.77,
+      "acidPercent": 0,
+      "countUnit": { "singular": "cherry", "plural": "cherries", "g": 6, "snap": "whole" },
+      "nutritionPer100g": {
+        "kcal": 165,
+        "carbohydrateG": 41.97,
+        "sugarsG": 38.77,
+        "proteinG": 0.22,
+        "fatG": 0.21,
+        "saturatedFatG": 0.039,
+        "fibreG": 3.2,
+        "sodiumMg": 4
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "167766",
+      "sourceNote": "Maraschino cherries, canned, drained. Public domain. The record reports per-100g figures only; the 6 g per-cherry weight is a rounded average taken from several commercial jars' own stated serving sizes rather than from this record. No density is carried: the cherry is dropped in whole rather than poured."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "id": "martini",
+  "name": "Martini / cocktail",
+  "capacityMl": 180,
+  "shapeFamily": "stemmed",
+  "note": "Conical bowl on a stem, wide enough to open the aroma and keep a hand off the chilled liquid. Named for the drink it is now most associated with, though many stirred-up drinks are served in it.",
+  "iceDisplacementMl": { "none": 0 }
+}

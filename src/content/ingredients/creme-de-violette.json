@@ -1,0 +1,24 @@
+{
+  "id": "creme-de-violette",
+  "name": "Crème de Violette",
+  "kind": "ingredient",
+  "category": "liqueur",
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "crème de violette",
+      "abvPercent": 16,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "acidPercent": 0,
+      "animalOrigin": "none",
+      "animalOriginNote": "Giffard, the reference producer, states its Crème de Violette is vegan, lactose-free and made from natural violet flavouring with no animal-derived ingredient.",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "giffard.com/en/cremes-de-fruits/498-violet-liqueur-creme-de-violette.html",
+      "sourceNote": "Giffard is taken as the reference producer - the bottle most modern recipes assume - and states 16% alc./vol. No sugar or energy figure is published, so sugarGPer100 and nutritionPer100g are left off rather than estimated; this Form's composition understates the liqueur's real sweetness. Density has no measured source and is taken from the density-classes.json 'liqueur-sweet' class."
+    }
+  ]
+}

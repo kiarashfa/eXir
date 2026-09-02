@@ -1,0 +1,41 @@
+{
+  "id": "dry-vermouth",
+  "name": "Dry Vermouth",
+  "kind": "ingredient",
+  "category": "vermouth",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Sweet vermouth",
+        "note": "Red, sugared and higher in extract, where this one is pale, barely sweetened and closer to a fortified white wine."
+      }
+    ],
+    "searchOnly": ["french vermouth", "extra dry vermouth"]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Dry",
+      "proseName": "dry vermouth",
+      "abvPercent": 18,
+      "densityGPerMl": 1.03,
+      "densitySource": "estimated",
+      "sugarGPer100": 2,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 108,
+        "carbohydrateG": 2,
+        "sugarsG": 2,
+        "proteinG": 0,
+        "fatG": 0
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "Vermouth is wine-based, and wine may be clarified with isinglass, made from fish, or with gelatine. Neither is a declarable allergen and neither has to appear on a label, so whether a particular bottle is vegan is a question about that producer rather than about vermouth.",
+      "allergenTags": ["sulphites"],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "bacardilimited.com/nutrition/noilly-prat",
+      "sourceNote": "Noilly Prat Extra Dry is taken as the reference bottle: it is the dry vermouth most Manhattan and Martini recipes assume by style. The producer's own nutrition page states 18% alc./vol. and, per 1.5 fl oz serving, 48 kcal and 0.9 g of carbohydrate (all sugars), restated per 100 ml here. Dry vermouths generally run from about 15% to 18% ABV and carry only a trace of sugar compared with the red style. No measured density is published for a wine this light; the density-classes.json 'fortified-wine' class is used as the nearest fit, the same class used for this site's sweet vermouth record."
+    }
+  ]
+}

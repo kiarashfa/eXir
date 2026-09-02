@@ -1,0 +1,43 @@
+{
+  "id": "cream",
+  "name": "Cream",
+  "kind": "ingredient",
+  "category": "dairy",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Half and half",
+        "note": "A lighter mix of milk and cream at roughly half the fat; it will not build the same head in a long shake."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "heavy",
+      "label": "Heavy cream",
+      "proseName": "heavy cream",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0144,
+      "densitySource": "measured",
+      "sugarGPer100": 2.92,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 340,
+        "carbohydrateG": 2.84,
+        "sugarsG": 2.92,
+        "proteinG": 2.84,
+        "fatG": 36.08,
+        "saturatedFatG": 23.032,
+        "fibreG": 0,
+        "sodiumMg": 27
+      },
+      "animalOrigin": "dairy",
+      "allergenTags": ["dairy"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170859",
+      "sourceNote": "Cream, fluid, heavy whipping. Public domain. The record's own tablespoon portion, 1.0144 g/ml, is adopted as a true density because cream is poured rather than packed."
+    }
+  ]
+}

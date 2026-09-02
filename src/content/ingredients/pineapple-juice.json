@@ -1,0 +1,34 @@
+{
+  "id": "pineapple-juice",
+  "name": "Pineapple Juice",
+  "kind": "ingredient",
+  "category": "juice",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "fresh",
+      "label": "Freshly juiced",
+      "proseName": "fresh pineapple juice",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0584,
+      "densitySource": "measured",
+      "sugarGPer100": 9.98,
+      "nutritionPer100g": {
+        "kcal": 53,
+        "carbohydrateG": 12.9,
+        "sugarsG": 9.98,
+        "proteinG": 0.36,
+        "fatG": 0.12,
+        "saturatedFatG": 0.008,
+        "fibreG": 0.2,
+        "sodiumMg": 2
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (Survey (FNDDS); SR Legacy)",
+      "sourceId": "2709329; 168187",
+      "sourceNote": "Nutrition and sugar are the FNDDS record for pineapple juice, 100% (2709329), which has no density of its own. Density is the SR Legacy canned-and-bottled record's own liquid measure, 1.0584 g/ml (168187), adopted because juice is poured rather than packed; the two records' sugar figures agree. Both public domain. No acid figure is carried: pineapple's titratable acidity falls outside the site's lemon/lime/vinegar convention and no other source was checked, so acidPercent is left off rather than estimated."
+    }
+  ]
+}

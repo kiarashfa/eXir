@@ -1,0 +1,42 @@
+{
+  "id": "olive-brine",
+  "name": "Olive Brine",
+  "kind": "ingredient",
+  "category": "flavouring",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Pickle brine",
+        "note": "The liquid from a jar of cucumber pickles, used in a Pickleback rather than a Dirty Martini; the two are not interchangeable in either drink's flavour."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "olive brine",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "nutritionPer100g": {
+        "kcal": 0,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 300
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (Branded)",
+      "sourceId": "2181196",
+      "sourceNote": "PREMIUM OLIVE BRINE (Filthy Food LLC), taken as the reference bottle: it is sold specifically as a cocktail ingredient for the Dirty Martini rather than being decanted from a jar of eating olives, though the two are close in composition. Public domain figures. No titratable acidity is published, so acidPercent is left off. Density has no measured source and is estimated as water-like, since the liquid is almost entirely brine rather than oil."
+    }
+  ]
+}

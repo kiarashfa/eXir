@@ -1,0 +1,30 @@
+{
+  "id": "mint",
+  "name": "Mint",
+  "kind": "ingredient",
+  "category": "botanical",
+  "forms": [
+    {
+      "id": "fresh",
+      "label": "Fresh",
+      "proseName": "mint",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 44,
+        "carbohydrateG": 8.41,
+        "proteinG": 3.29,
+        "fatG": 0.73,
+        "saturatedFatG": 0.191,
+        "fibreG": 6.8,
+        "sodiumMg": 30
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "173475",
+      "sourceNote": "Spearmint, fresh. Public domain. The record carries no sugars figure, so sugarGPer100 is left off here rather than estimated. No density is carried: the leaf is muddled and bruised rather than poured, and its own record's only volume figure is a packed tablespoon, which is air between leaves rather than what the leaf itself displaces."
+    }
+  ]
+}

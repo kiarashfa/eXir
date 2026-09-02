@@ -1,0 +1,32 @@
+{
+  "id": "lemon",
+  "name": "Lemon",
+  "kind": "ingredient",
+  "category": "citrus",
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Whole, raw",
+      "abvPercent": 0,
+      "sugarGPer100": 2.5,
+      "acidPercent": 0,
+      "countUnit": { "singular": "lemon", "plural": "lemons", "g": 58, "snap": "half" },
+      "nutritionPer100g": {
+        "kcal": 29,
+        "carbohydrateG": 9.32,
+        "sugarsG": 2.5,
+        "proteinG": 1.1,
+        "fatG": 0.3,
+        "saturatedFatG": 0.039,
+        "fibreG": 2.8,
+        "sodiumMg": 2
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "167746",
+      "sourceNote": "Lemons, raw, without peel. Public domain. The one-fruit weight (58 g) is the record's own portion for a whole fruit without seeds; nutrition is the pulp figure, since USDA carries no whole-fruit-with-peel record, which understates fibre slightly for a twist that uses only the peel. No density: a lemon is not poured, and where a recipe uses only the peel the line states how little of the fruit reaches the drink."
+    }
+  ]
+}

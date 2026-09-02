@@ -1,0 +1,75 @@
+{
+  "id": "tequila",
+  "name": "Tequila",
+  "kind": "ingredient",
+  "category": "tequila",
+  "countryOfOrigin": "Mexico",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Mezcal",
+        "note": "Tequila is one specific style of mezcal, made only from blue agave in a defined region and almost always in column stills; mezcal is the wider category and is usually pot-distilled with a smokier roast."
+      }
+    ]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "mezcal",
+      "note": "Both are agave spirits, but mezcal's smoke is a flavour the recipe may not want; using it whole in place of tequila changes the drink rather than merely standing in for it."
+    }
+  ],
+  "forms": [
+    {
+      "id": "blanco",
+      "label": "Blanco",
+      "proseName": "blanco tequila",
+      "abvPercent": 40,
+      "densityGPerMl": 0.95,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (Survey (FNDDS))",
+      "sourceId": "2710705",
+      "sourceNote": "Tequila, a generic survey record rather than a specific brand. Public domain. 40% alc./vol. is the standard bottling strength for tequila under Mexican regulation. Unaged and bottled shortly after distillation, so its own macros are the record's straight figures with no barrel-derived sugar to add. No measured liquid density exists for tequila at this dataset; the density-classes.json 'spirit-40' class is used and marked estimated."
+    },
+    {
+      "id": "reposado",
+      "label": "Reposado",
+      "proseName": "reposado tequila",
+      "abvPercent": 40,
+      "densityGPerMl": 0.95,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (Survey (FNDDS))",
+      "sourceId": "2710705",
+      "sourceNote": "Tequila, a generic survey record rather than a specific brand. Public domain. 40% alc./vol. is the standard bottling strength for tequila under Mexican regulation; reposado bottles vary little from it, unlike mezcal. No measured liquid density exists for tequila at this dataset; the density-classes.json 'spirit-40' class is used and marked estimated."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "orange-curacao",
+  "name": "Orange Curaçao",
+  "kind": "ingredient",
+  "category": "orange-liqueur",
+  "proprietary": false,
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Triple sec",
+        "note": "A drier, usually clear orange liqueur; curaçao is made from bitter Curaçao orange peel and is typically darker and rounder in flavour."
+      }
+    ]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "maraschino-liqueur",
+      "note": "Trades the orange peel character for a stone-fruit one and is considerably drier, so the drink loses both its citrus top note and some of its sweetness."
+    }
+  ],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard, e.g. Pierre Ferrand Dry Curaçao",
+      "proseName": "orange curaçao",
+      "abvPercent": 40,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "acidPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer-stated strength",
+      "sourceId": "Pierre Ferrand Dry Curaçao, retailer product pages",
+      "sourceNote": "Strength taken as Pierre Ferrand Dry Curaçao's own 40% ABV, the modern reference bottle for a Mai Tai and consistently stated across retailer listings of the product. No sugar or energy figure is carried: neither Pierre Ferrand nor the older De Kuyper and Bols orange curaçaos this record also stands in for publish one, and the few third-party figures found for them disagree by a wide margin, so the figure is omitted rather than estimated. Density is the sweetened-liqueur class from density-classes.json, marked estimated, because no liquid-measure source exists for this product."
+    }
+  ]
+}

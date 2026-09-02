@@ -1,0 +1,111 @@
+---
+id: peruvian
+label: Peruvian
+name: Pisco Sour
+subtitle: Pisco, lime and syrup, rounded by egg white and finished with a few drops of bitters.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken-long
+glasswareRef: coupe
+iceStyle: none
+servedOverIce: false
+bitterness: low
+batchable: partial
+batchNote: >-
+  The pisco, lime and syrup batch cleanly. The egg white does not: it has to
+  be dry shaken into each glass fresh to trap the foam it forms, and a jug of
+  it left standing loses the head it exists to make.
+difficulty: Medium
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [south-america]
+  method: [shaken]
+names:
+  notToBeConfusedWith:
+    - name: Chilean Pisco Sour
+      note: Made without egg white and at a drier spirit-forward ratio; see the other tab on this page.
+ingredients:
+  - id: pisco
+    ingredientRef: pisco
+    formRef: standard
+    amount: 52.5
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: egg
+    ingredientRef: egg
+    formRef: white
+    amount: 15
+    unit: ml
+  - id: bitters
+    ingredientRef: angostura-bitters
+    formRef: standard
+    amount: 0.9
+    unit: ml
+steps:
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: dry-shake, durationSec: 20, type: active, phase: make }
+  - { id: wet-shake, durationSec: 14, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: bitters, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: dry-shake
+    text: >-
+      Shaken once without ice before the ice ever goes in. Cold, diluted
+      liquid resists whipping into a foam; the dry shake builds the emulsion
+      while the drink is still warm and full strength, and the second shake
+      only has to chill and finish what the first one started.
+  - kind: pitfall
+    text: >-
+      A short or timid dry shake leaves a thin, fast-collapsing foam rather
+      than the dense head this drink is built around, and it is the step
+      most often rushed because nothing in the shaker seems to be happening
+      yet.
+makeAhead:
+  aheadInstructions: >-
+    The pisco, lime and syrup can be pre-batched and refrigerated; the egg
+    white and bitters are added fresh to each glass at the point of service.
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lime"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="pisco"/>, the <Qty ref="lime"/>, the
+  <Qty ref="syrup"/> and the <Qty ref="egg"/> in a shaker, with no ice yet.
+</Step>
+
+<Step id="dry-shake">
+  Shake hard for <Dur step="dry-shake"/> with no ice, so the egg white has
+  room to whip into a stable foam before any water is added to it.
+</Step>
+
+<Step id="wet-shake">
+  Add cubed ice and shake again for <Dur step="wet-shake"/> to chill the
+  drink and finish the emulsion.
+</Step>
+
+<Step id="strain">
+  Fine strain into a chilled coupe, so none of the ice shards from the second
+  shake reach the glass to break the foam.
+</Step>
+
+<Step id="bitters">
+  Set the <Qty ref="bitters"/> on the foam in a few drops, drawn through with
+  a pick if a pattern is wanted; either way it sits on the surface rather
+  than sinking in.
+</Step>

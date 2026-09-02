@@ -1,0 +1,129 @@
+---
+id: classic
+label: Classic
+name: Clover Club
+subtitle: Gin, lemon and raspberry syrup, rounded by an egg white into a drink built to hold a head of foam.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken-long
+glasswareRef: coupe
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: partial
+batchNote: >-
+  The gin, lemon and raspberry syrup batch cleanly. The egg white does not: it has to be dry
+  shaken into each glass fresh to trap the foam it forms, and a jug of it left standing loses the
+  head it exists to make.
+difficulty: Medium
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [shaken]
+names:
+  notToBeConfusedWith:
+    - name: Clover Leaf
+      note: An earlier print version of the same idea, garnished with mint rather than raspberries, which the Clover Club later dropped.
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 45
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: raspberry
+    ingredientRef: raspberry-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: egg
+    ingredientRef: egg
+    formRef: white
+    amount: 32.1
+    unit: ml
+  - id: garnish
+    ingredientRef: raspberry
+    formRef: standard
+    amount: 10
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A raspberry or two set on a pick across the foam. It rides on top rather than mixing into
+      the drink, so none of it reaches the composition even where the guest eats it.
+steps:
+  - { id: juice, durationSec: 60, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: dry-shake, durationSec: 20, type: active, phase: make }
+  - { id: wet-shake, durationSec: 14, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: dry-shake
+    text: >-
+      Shaken once without ice before the ice ever goes in. Cold, diluted
+      liquid resists whipping into a foam; the dry shake builds the emulsion
+      while the drink is still warm and full strength, and the second shake
+      only has to chill and finish what the first one started.
+  - kind: pitfall
+    text: >-
+      A short or timid dry shake leaves a thin, fast-collapsing foam rather
+      than the dense head this drink is built around, and it is the step
+      most often rushed because nothing in the shaker seems to be happening
+      yet.
+substitutions:
+  - lineRef: raspberry
+    substitute: grenadine
+    ratio: "1:1"
+    note: >-
+      Both are sugar syrups near the same strength, so the arithmetic barely
+      moves, but grenadine is pomegranate rather than raspberry: the drink
+      loses the seedy, slightly tart fruit note the Clover Club is named
+      around and gains a plainer, more purely sweet-tart one.
+    impact:
+      flavour: significant change
+      strength: no change
+      sweetness: no change
+makeAhead:
+  aheadInstructions: >-
+    The gin, lemon and raspberry syrup can be pre-batched and refrigerated;
+    the egg white is added and dry shaken fresh into each glass at the point
+    of service.
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="gin"/>, the <Qty ref="lemon"/>, the <Qty ref="raspberry"/> and the
+  <Qty ref="egg"/> in a shaker, with no ice yet.
+</Step>
+
+<Step id="dry-shake">
+  Shake hard for <Dur step="dry-shake"/> with no ice, so the egg white has room to whip into a
+  stable foam before any water is added to it.
+</Step>
+
+<Step id="wet-shake">
+  Add cubed ice and shake again for <Dur step="wet-shake"/> to chill the drink and finish the
+  emulsion.
+</Step>
+
+<Step id="strain">
+  Fine strain into a chilled coupe, so none of the ice shards from the second shake reach the
+  glass to break the foam.
+</Step>
+
+<Step id="garnish">
+  Set a raspberry or two on a pick laid across the rim, resting on the foam rather than sinking
+  into it.
+</Step>

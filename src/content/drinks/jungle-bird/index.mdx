@@ -1,0 +1,112 @@
+---
+id: classic
+label: Classic
+name: Jungle Bird
+subtitle: Dark rum against Campari, rounded out with pineapple and lime.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: double-rocks
+iceStyle: cubed
+servedOverIce: true
+bitterness: medium
+batchable: full
+difficulty: Easy
+family: sour
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [southeast-asia]
+  method: [shaken]
+names:
+  notToBeConfusedWith:
+    - name: Jungle Juice
+      note: An unrelated, unmeasured party punch; this is a mixed drink built to a fixed recipe.
+ingredients:
+  - id: rum
+    ingredientRef: dark-rum
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: campari
+    ingredientRef: campari
+    formRef: standard
+    amount: 22.5
+    unit: ml
+  - id: pineapple
+    ingredientRef: pineapple-juice
+    formRef: fresh
+    amount: 30
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+steps:
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      Campari goes in before the pineapple rather than after, so it has a
+      moment against the rum alone before the juice's own sugar starts
+      working on it. The order changes nothing in the glass, but it is how a
+      bartender checks the bitter is still pulling its weight before the
+      sweetness arrives.
+  - kind: pitfall
+    text: >-
+      Canned or long-life pineapple juice reads sweeter and flatter than a
+      fresh-pressed one, and it is the substitution most likely to be made
+      without noticing, because the colour and cloudiness look the same on
+      the shelf as through a juicer.
+substitutions:
+  - lineRef: rum
+    substitute: white-rum
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume and at the same strength, so the arithmetic
+      barely moves. The drink loses the molasses and oak notes that stand up
+      to the Campari and reads thinner and more purely fruity.
+    impact:
+      flavour: significant change
+      strength: no change
+      sweetness: no change
+makeAhead:
+  aheadInstructions: >-
+    The whole drink batches, and the site adds the water the shake would have
+    contributed. Fresh lime and pineapple are the limit: both lose their
+    aromatics within hours of being juiced, so a batch made in the morning is
+    at its best that evening and tired the next day.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lime"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="rum"/>, the <Qty ref="campari"/>, the
+  <Qty ref="pineapple"/>, the <Qty ref="lime"/> and the <Qty ref="syrup"/> in
+  a shaker and fill it with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/> to chill and knit the juice's sugar
+  against the Campari's bitterness.
+</Step>
+
+<Step id="strain">
+  Strain over fresh cubed ice in a double old fashioned glass. The pineapple
+  leaves enough pulp behind in the shaker that a fine strain is not needed.
+</Step>

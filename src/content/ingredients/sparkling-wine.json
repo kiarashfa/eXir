@@ -1,0 +1,43 @@
+{
+  "id": "sparkling-wine",
+  "name": "Sparkling wine",
+  "kind": "ingredient",
+  "category": "sparkling-wine",
+  "proprietary": false,
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Champagne", "note": "Where the sparkling wine used is specifically from Champagne, France." }
+    ]
+  },
+  "generalSubstitutes": [],
+  "forms": [
+    {
+      "id": "brut",
+      "label": "Brut",
+      "proseName": "brut sparkling wine",
+      "abvPercent": 12,
+      "densityGPerMl": 0.99,
+      "densitySource": "estimated",
+      "sugarGPer100": 1,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 75,
+        "carbohydrateG": 2.31,
+        "sugarsG": 1,
+        "proteinG": 0.07,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 5
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "Wine is routinely fined with isinglass, gelatine or casein, and a producer rarely states whether a given bottle was.",
+      "allergenTags": ["sulphites"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (Survey (FNDDS))",
+      "sourceId": "2710687",
+      "sourceNote": "Wine, sparkling. Public domain; ABV is not reported directly and is set here at 12%, typical of a dry (brut) Champagne-method wine, so alcohol content is a stated assumption rather than a measured figure. Density has no measured liquid source and is taken from density-classes.json's 'wine' class (0.99 g/ml). acidPercent is left off: no titratable-acidity source was found for sparkling wine specifically."
+    }
+  ]
+}

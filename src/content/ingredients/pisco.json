@@ -1,0 +1,43 @@
+{
+  "id": "pisco",
+  "name": "Pisco",
+  "kind": "ingredient",
+  "category": "pisco",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Grappa",
+        "note": "Also an unaged grape distillate, but made from pomace rather than fresh-pressed juice, under Italian rather than Peruvian or Chilean rules; the two are not the same spirit."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard strength",
+      "proseName": "pisco",
+      "abvPercent": 40,
+      "densityGPerMl": 0.95,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174815",
+      "sourceNote": "FoodData Central carries no pisco record. Pisco is an unaged grape distillate with no residual sugar, so the generic 80-proof distilled-spirit record's energy and macros apply unchanged; only the density is a class estimate (spirit-40 from density-classes.json) rather than a measured figure, because that record's own density is for a grain and cane spirit rather than a grape one. Peru's denomination of origin sets a 38-48% ABV band and Chile's several grades run 30-43%; 40% is used as the strength common to commercial bottlings of both, and the two countries' pisco sours are treated on the same base spirit here, with the difference between them left to technique and citrus rather than to the bottle."
+    }
+  ]
+}

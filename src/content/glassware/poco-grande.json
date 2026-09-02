@@ -1,0 +1,8 @@
+{
+  "id": "poco-grande",
+  "name": "Poco grande",
+  "capacityMl": 350,
+  "shapeFamily": "stemmed",
+  "note": "A tall stemmed bowl wide enough at the rim to hold a blended drink's volume without the ice climbing over the top as it churns.",
+  "iceDisplacementMl": { "none": 0 }
+}

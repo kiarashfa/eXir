@@ -1,0 +1,45 @@
+{
+  "id": "orange-liqueur",
+  "name": "Orange liqueur",
+  "kind": "ingredient",
+  "category": "orange-liqueur",
+  "proprietary": true,
+  "producer": "Rémy Cointreau",
+  "countryOfOrigin": "France",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Triple sec" },
+      { "name": "Cointreau" }
+    ]
+  },
+  "generalSubstitutes": [],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "orange liqueur",
+      "abvPercent": 40,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "sugarGPer100": 23,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 288,
+        "carbohydrateG": 21.1,
+        "sugarsG": 21.1,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "cointreau.com/us/en/what-nutritional-value",
+      "sourceNote": "Cointreau is taken as the reference bottle: it is the orange liqueur most sour-family recipes name specifically, and the category (triple sec) is otherwise generic. The producer's own page states 40% alc./vol. and, per 1 fl oz serving, 93 kcal and 6.8 g carbohydrate (all sugar), which scales to 314 kcal and 23.0 g sugar per 100 ml. Density has no measured liquid source and is taken from density-classes.json's 'liqueur-sweet' class (1.09 g/ml); nutritionPer100g is the per-100-ml figure divided through that density. A different orange liqueur (a cheaper generic triple sec, or Grand Marnier's cognac base) changes the sugar and the colour but the recipes here assume Cointreau's profile."
+    }
+  ]
+}

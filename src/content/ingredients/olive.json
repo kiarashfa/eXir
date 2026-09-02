@@ -1,0 +1,33 @@
+{
+  "id": "olive",
+  "name": "Olive",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "green-brined",
+      "label": "Green, pickled",
+      "proseName": "pickled green olive",
+      "abvPercent": 0,
+      "sugarGPer100": 0.54,
+      "countUnit": { "singular": "olive", "plural": "olives", "g": 4, "snap": "whole" },
+      "nutritionPer100g": {
+        "kcal": 145,
+        "carbohydrateG": 3.84,
+        "sugarsG": 0.54,
+        "proteinG": 1.03,
+        "fatG": 15.32,
+        "saturatedFatG": 2.029,
+        "fibreG": 3.3,
+        "sodiumMg": 1556
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169096",
+      "sourceNote": "Olives, pickled, canned or bottled, green. Public domain. No density is carried: an olive is placed on a pick rather than poured. The single-olive weight is a typical pitted cocktail (queen) olive; acidPercent is left off because USDA does not report titratable acidity for this record and no other source was found."
+    }
+  ]
+}

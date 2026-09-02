@@ -1,0 +1,14 @@
+{
+  "id": "julep-cup",
+  "name": "Julep cup",
+  "capacityMl": 355,
+  "shapeFamily": "tumbler",
+  "note": "The straight-sided metal cup a julep is churned and served in, near always silver or pewter. The metal is the point rather than the shape: it frosts as the crushed ice takes hold, which is how a maker knows the drink is ready and why the cup is held by its base and rim.",
+  "iceDisplacementMl": {
+    "cubed": 155,
+    "block": 155,
+    "crushed": 195,
+    "none": 0
+  },
+  "iceDisplacementNote": "Solid ice only — the liquid fills the gaps between pieces, so what is subtracted is the ice itself. Scaled from the rocks glass on capacity, since the two are the same shape family and a julep cup is packed to the brim with crushed ice by design."
+}

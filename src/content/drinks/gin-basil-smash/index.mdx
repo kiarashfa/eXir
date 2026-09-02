@@ -1,0 +1,102 @@
+---
+id: classic
+label: Classic
+name: Gin Basil Smash
+subtitle: Gin, lemon and a fistful of muddled basil, shaken hard and strained over fresh ice.
+defaultDrinks: 1
+method: muddled
+dilutionClass: shaken
+glasswareRef: double-rocks
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The gin, lemon and syrup batch cleanly. The basil does not: it has to be
+  muddled fresh into each shake, because bruised leaves left standing in a
+  jug turn grassy and dull within the hour.
+difficulty: Easy
+family: sour
+familyRole: riff
+tags:
+  category: [cocktail]
+  origin: [germanic-alpine]
+  method: [muddled, shaken]
+ingredients:
+  - id: basil
+    ingredientRef: basil
+    formRef: fresh
+    amount: 6
+    unit: g
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 22.5
+    unit: ml
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 60
+    unit: ml
+steps:
+  - { id: muddle, durationSec: 20, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: muddle
+    text: >-
+      The basil is pressed rather than pounded, the same restraint a mint
+      julep asks for. A gentle bruise releases the leaf's oil into the lemon
+      and syrup; a hard pounding tears the cell walls and pulls out a bitter,
+      chlorophyll-heavy note along with it.
+  - kind: pitfall
+    text: >-
+      A thin fine strain still lets flecks of torn leaf through, which look
+      like herb but taste like grass by the time the glass is finished. A
+      hard double strain through a tea strainer as well as the shaker's own
+      is worth the extra step.
+substitutions:
+  - lineRef: syrup
+    substitute: demerara-syrup
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume and close in sugar, so the arithmetic barely
+      moves. The molasses note it adds competes with the basil rather than
+      supporting it, which is why plain syrup is the usual choice here.
+    impact:
+      flavour: moderate change
+      strength: no change
+      sweetness: minor change
+makeAhead:
+  aheadInstructions: >-
+    The gin, lemon and syrup can be pre-batched and refrigerated; the basil
+    is muddled fresh into each shake at the point of service.
+  freezable: false
+---
+
+<Step id="muddle">
+  Press the <Qty ref="basil"/> in the bottom of a shaker with the
+  <Qty ref="lemon"/> and the <Qty ref="syrup"/>, just enough to bruise the
+  leaves and release their oil.
+</Step>
+
+<Step id="build">
+  Add the <Qty ref="gin"/> and fill the shaker with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>. Short and violent; the aim is to chill
+  and aerate, not to melt the ice.
+</Step>
+
+<Step id="strain">
+  Double strain into a double old fashioned glass over fresh cubed ice,
+  catching the torn leaf the shake has broken off.
+</Step>

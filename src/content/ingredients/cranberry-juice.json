@@ -1,0 +1,45 @@
+{
+  "id": "cranberry-juice",
+  "name": "Cranberry juice",
+  "kind": "ingredient",
+  "category": "juice",
+  "proprietary": false,
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Cranberry juice, unsweetened",
+        "note": "This record is the sweetened cocktail blend sold as 'cranberry juice' in bars; the unsweetened 100% juice is far more tart and is a different bottle."
+      }
+    ]
+  },
+  "generalSubstitutes": [],
+  "forms": [
+    {
+      "id": "bottled",
+      "label": "Bottled, sweetened",
+      "proseName": "cranberry juice",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0685,
+      "densitySource": "measured",
+      "sugarGPer100": 11.87,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 54,
+        "carbohydrateG": 13.52,
+        "sugarsG": 11.87,
+        "proteinG": 0,
+        "fatG": 0.1,
+        "saturatedFatG": 0.009,
+        "fibreG": 0,
+        "sodiumMg": 2
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "171903",
+      "sourceNote": "Cranberry juice cocktail, bottled. Public domain. This is the sweetened cocktail blend a bar pours, not unsweetened cranberry juice, which USDA carries as a separate, far more tart record. acidPercent is left off: USDA does not report titratable acidity and no measured figure was found for this blend."
+    }
+  ]
+}

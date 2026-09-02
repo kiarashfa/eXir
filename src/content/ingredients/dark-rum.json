@@ -1,0 +1,49 @@
+{
+  "id": "dark-rum",
+  "name": "Dark Rum",
+  "kind": "ingredient",
+  "category": "rum",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "White rum",
+        "note": "Unaged and filtered clear; dark rum carries colour and weight from a cask or added caramel that white rum never picks up."
+      }
+    ]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "white-rum",
+      "note": "Loses the molasses and oak notes a dark or aged rum carries, and the drink reads thinner and less spiced even at the same proof."
+    }
+  ],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard strength",
+      "proseName": "dark rum",
+      "abvPercent": 40,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174817",
+      "sourceNote": "Alcoholic beverage, distilled, rum, 80 proof. Public domain. FoodData Central does not separate dark or aged rum from the white spirit at the same proof, and unflavoured rum's composition does not change with cask colour, so the white rum record's own figures apply unchanged; only the colour, the wood and the price differ. Covers the Jamaican-style pot-still dark and aged rum called for in tiki and punch recipes, standing in for both a young dark rum and a rum aged several years, neither of which FoodData Central lists separately from the other."
+    }
+  ]
+}

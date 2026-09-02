@@ -1,0 +1,92 @@
+---
+id: classic
+label: Classic
+name: Oaxaca Old Fashioned
+subtitle: Reposado tequila and mezcal, stirred with agave and bitters over a single cube.
+defaultDrinks: 1
+method: stirred
+dilutionClass: stirred
+glasswareRef: rocks
+iceStyle: block
+servedOverIce: true
+bitterness: low
+batchable: full
+difficulty: Easy
+family: old-fashioned
+familyRole: riff
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [stirred]
+ingredients:
+  - id: tequila
+    ingredientRef: tequila
+    formRef: reposado
+    amount: 45
+    unit: ml
+  - id: mezcal
+    ingredientRef: mezcal
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: agave
+    ingredientRef: agave-nectar
+    formRef: standard
+    amount: 5
+    unit: ml
+  - id: bitters
+    ingredientRef: angostura-bitters
+    formRef: standard
+    amount: 1.8
+    unit: ml
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 140
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A twist is cut and its oil is flamed and expressed over the drink before
+      it is dropped in. The rest of the fruit is not part of the drink but
+      still has to be bought, so the checklist still asks for it.
+steps:
+  - { id: chill, durationSec: 30, type: active, phase: prep }
+  - { id: combine, durationSec: 20, type: active, phase: make }
+  - { id: stir, durationSec: 25, type: active, phase: make }
+  - { id: garnish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: garnish
+    text: >-
+      The twist is warmed and lit as it is expressed rather than simply
+      squeezed, so the oil that lands on the surface arrives partly toasted.
+      That extra note is what stands in for the char a mezcal gives the drink
+      on its own, brought up rather than duplicated.
+  - kind: pitfall
+    text: >-
+      Mezcal is a supporting measure here rather than the base, and doubling
+      it to taste "more mezcal-forward" changes which spirit the drink
+      actually is rather than intensifying this one.
+---
+
+<Step id="chill">
+  Chill a rocks glass and set a single large cube in it.
+</Step>
+
+<Step id="combine">
+  Combine the <Qty ref="tequila"/>, the <Qty ref="mezcal"/>, the
+  <Qty ref="agave"/> and the <Qty ref="bitters"/> in a mixing glass filled
+  with cubed ice.
+</Step>
+
+<Step id="stir">
+  Stir for <Dur step="stir"/>, until the outside of the glass is frosted, and
+  strain over the waiting cube.
+</Step>
+
+<Step id="garnish">
+  Cut a <Len cm={4}/> swathe of orange peel, warm it briefly skin-side down
+  over a flame and hold it over the drink so the lit oil flares as it lands on
+  the surface. Drop the peel in.
+</Step>

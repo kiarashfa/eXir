@@ -1,0 +1,39 @@
+{
+  "id": "mezcal",
+  "name": "Mezcal",
+  "kind": "ingredient",
+  "category": "mezcal",
+  "countryOfOrigin": "Mexico",
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Tequila",
+        "note": "Tequila is one specific style of mezcal, made only from blue agave in a defined region; mezcal is the wider category, usually pot-distilled from a roasted, often smoky, agave heart."
+      }
+    ]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "tequila",
+      "note": "Removes the smoke rather than replacing it; a drink built to carry a trace of mezcal alongside another spirit reads plainer and cleaner with tequila in its place."
+    }
+  ],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "mezcal",
+      "abvPercent": 42,
+      "densityGPerMl": 0.95,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "delmaguey.com/mezcal/vida (label strength, verified via retailer listing)",
+      "sourceNote": "Del Maguey Vida is taken as the reference bottle: it is the mezcal this drink's originating bar's recipe names by name, bottled at 42% alc./vol. (84 proof). The producer's own page returned a 403 on fetch, so the figure is cross-checked against a retailer's product listing quoting the same label strength rather than against the producer's site directly. No sugar or nutrition figure is published for it; mezcal is an unaged, unsweetened agave distillate, so sugarGPer100 is stated as 0 rather than omitted, but no fuller nutrition panel is available and none is estimated here. Density has no measured source and is taken from the density-classes.json 'spirit-40' class."
+    }
+  ]
+}
