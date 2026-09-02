@@ -221,6 +221,15 @@ export interface IngredientLine {
   garnish?: boolean;
   /** True on the water line the engine inserts for batched service. */
   computed?: boolean;
+  /**
+   * True on a line added after whatever action drives the dilution model —
+   * a shaken drink's sparkling-wine top, most typically. The line still
+   * contributes its own volume and alcohol to the finished drink; it is only
+   * excluded from the volume the dilution fraction is calculated against,
+   * because that fraction models what shaking, stirring or swizzling adds,
+   * and this line was never in the tin for any of those.
+   */
+  addedAfterDilution?: boolean;
   note?: string;
 }
 

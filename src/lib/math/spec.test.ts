@@ -249,6 +249,67 @@ test('the shopping amount is unaffected by partial consumption', () => {
 });
 
 // ---------------------------------------------------------------------------
+// A line added after whatever drives the dilution model — French 75's
+// sparkling-wine top is the first published case. It was never in the tin, so
+// it must not take the fixed shaken fraction, but it still has to reach the
+// final volume and contribute its own alcohol. Figures worked by hand first.
+// ---------------------------------------------------------------------------
+
+test('a line marked addedAfterDilution is excluded from the dilution basis only', () => {
+  const base = ingredient('gin', 'gin', { abvPercent: 40 });
+  const topper = ingredient('sparkling-wine', 'wine', { abvPercent: 12 });
+  const lines = resolve([
+    [line('gin', 'gin', 45), base],
+    [{ ...line('sparkling', 'sparkling-wine', 65), addedAfterDilution: true }, topper],
+  ]);
+
+  const c = computeComposition(lines);
+
+  // Both lines count toward what actually reaches the glass.
+  close(c.pouredVolumeMl, 110);
+  close(c.alcoholMl, 18 + 7.8); // 45 x 40% + 65 x 12%
+
+  // Only the un-flagged 45 ml counts toward the dilution basis.
+  close(c.dilutionBasisVolumeMl, 45);
+  close(c.dilutionBasisAbvPercent, 40);
+});
+
+test('an added-after line skips the shake fraction but still reaches final volume', () => {
+  const base = ingredient('gin', 'gin', { abvPercent: 40 });
+  const topper = ingredient('sparkling-wine', 'wine', { abvPercent: 12 });
+  const lines = resolve([
+    [line('gin', 'gin', 45), base],
+    [{ ...line('sparkling', 'sparkling-wine', 65), addedAfterDilution: true }, topper],
+  ]);
+
+  const shakenTopped: DrinkVersion = { ...version, dilutionClass: 'shaken', lines: lines.map((r) => r.line) };
+  const spec = computeDrinkSpec(shakenTopped, lines);
+
+  // 45 ml shaken at the fixed 50% fraction is 22.5 ml of dilution water — not
+  // the 55 ml a naive 50% of the full 110 ml poured would give.
+  close(spec.dilution.dilutionMl, 22.5);
+  // The topper's own 65 ml still has to be in the glass: 110 + 22.5.
+  close(spec.finalVolumeMl, 132.5);
+});
+
+test('a line without the flag computes exactly as it always has', () => {
+  // Same two ingredients, neither flagged: the whole 110 ml should take the
+  // shake fraction, matching the model's behaviour before this flag existed.
+  const base = ingredient('gin', 'gin', { abvPercent: 40 });
+  const topper = ingredient('sparkling-wine', 'wine', { abvPercent: 12 });
+  const lines = resolve([
+    [line('gin', 'gin', 45), base],
+    [line('sparkling', 'sparkling-wine', 65), topper],
+  ]);
+
+  const shaken: DrinkVersion = { ...version, dilutionClass: 'shaken', lines: lines.map((r) => r.line) };
+  const spec = computeDrinkSpec(shaken, lines);
+
+  close(spec.dilution.dilutionMl, 55); // 50% of the full 110 ml
+  close(spec.finalVolumeMl, 165);
+});
+
+// ---------------------------------------------------------------------------
 // The checks that catch authoring errors at volume
 // ---------------------------------------------------------------------------
 

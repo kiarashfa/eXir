@@ -273,6 +273,12 @@ export const ingredientLine = z
     consumedFraction: z.number().gte(0).lte(1).optional(),
     consumedFractionNote: z.string().optional(),
     garnish: z.boolean().optional(),
+    /**
+     * True on a line added after whatever drives the dilution model — a
+     * shaken drink's sparkling-wine top. Still contributes its own volume and
+     * alcohol; only excluded from the fraction's own volume basis.
+     */
+    addedAfterDilution: z.boolean().optional(),
     note: z.string().optional(),
   })
   .strict()

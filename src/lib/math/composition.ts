@@ -38,6 +38,15 @@ export interface Composition {
   sodiumMg: number;
   /** Water the recipe states outright. Never modelled, so never an estimate. */
   authoredWaterMl: number;
+  /**
+   * The subset of `pouredVolumeMl` the dilution model actually acts on —
+   * everything except a line marked `addedAfterDilution`. Equal to
+   * `pouredVolumeMl` unless a line carries that flag, which is what keeps
+   * every drink without one computing exactly as before.
+   */
+  dilutionBasisVolumeMl: number;
+  /** ABV of the dilution-basis liquid only, as a percentage. See above. */
+  dilutionBasisAbvPercent: number;
   /** True where a figure above descends from an estimate rather than a bottle. */
   estimated: boolean;
   issues: CompositionIssue[];
@@ -106,6 +115,9 @@ export function perDrinkComposition(composition: Composition, defaultDrinks: num
     fibreG: composition.fibreG / n,
     sodiumMg: composition.sodiumMg / n,
     authoredWaterMl: composition.authoredWaterMl / n,
+    // Extensive, so it divides; dilutionBasisAbvPercent is a ratio and does
+    // not, for the same reason pouredAbvPercent above does not.
+    dilutionBasisVolumeMl: composition.dilutionBasisVolumeMl / n,
   };
 }
 
@@ -115,6 +127,8 @@ const WATER_IDS = new Set(['water', 'still-water', 'filtered-water']);
 export function computeComposition(lines: ResolvedLine[]): Composition {
   let pouredVolumeMl = 0;
   let alcoholMl = 0;
+  let dilutionBasisVolumeMl = 0;
+  let dilutionBasisAlcoholMl = 0;
   let sugarG = 0;
   let acidG = 0;
   let macroKcal = 0;
@@ -172,6 +186,7 @@ export function computeComposition(lines: ResolvedLine[]): Composition {
       });
     }
     pouredVolumeMl += volumeMl;
+    if (!line.addedAfterDilution) dilutionBasisVolumeMl += volumeMl;
 
     if (WATER_IDS.has(line.ingredientRef)) authoredWaterMl += volumeMl;
 
@@ -186,7 +201,9 @@ export function computeComposition(lines: ResolvedLine[]): Composition {
             'Alcoholic and authored in grams with no density. The ABV cannot be computed from this.',
         });
       } else {
-        alcoholMl += (volumeMl * form.abvPercent) / 100;
+        const lineAlcoholMl = (volumeMl * form.abvPercent) / 100;
+        alcoholMl += lineAlcoholMl;
+        if (!line.addedAfterDilution) dilutionBasisAlcoholMl += lineAlcoholMl;
       }
     }
 
@@ -212,6 +229,9 @@ export function computeComposition(lines: ResolvedLine[]): Composition {
     pouredVolumeMl,
     alcoholMl,
     pouredAbvPercent: pouredVolumeMl > 0 ? (alcoholMl / pouredVolumeMl) * 100 : 0,
+    dilutionBasisVolumeMl,
+    dilutionBasisAbvPercent:
+      dilutionBasisVolumeMl > 0 ? (dilutionBasisAlcoholMl / dilutionBasisVolumeMl) * 100 : 0,
     sugarG,
     acidG,
     macroKcal,

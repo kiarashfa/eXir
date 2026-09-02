@@ -96,9 +96,14 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
   const drinksPerRecipe = Math.max(1, version.defaultDrinks);
   const totals = computeComposition(lines);
 
+  // The fraction acts on the dilution basis — everything poured EXCEPT a line
+  // marked `addedAfterDilution` (a shaken drink's sparkling-wine top, say),
+  // which was never in the tin for whatever step drives the model. Equal to
+  // the full poured volume unless such a line exists, so this changes nothing
+  // for every drink that doesn't have one.
   const dilutionTotal = computeDilution({
-    pouredVolumeMl: totals.pouredVolumeMl,
-    pouredAbvPercent: totals.pouredAbvPercent,
+    pouredVolumeMl: totals.dilutionBasisVolumeMl,
+    pouredAbvPercent: totals.dilutionBasisAbvPercent,
     classId: version.dilutionClass,
     // Authored water already sits inside the poured volume, so passing it again
     // here would count it twice.
@@ -109,7 +114,9 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
   const dilution: DilutionResult = {
     ...dilutionTotal,
     dilutionMl: dilutionTotal.dilutionMl / drinksPerRecipe,
-    finalVolumeMl: dilutionTotal.finalVolumeMl / drinksPerRecipe,
+    // The FULL poured volume reaches the glass — an added-after line still
+    // has to be in the final volume, it just never took the fraction.
+    finalVolumeMl: (totals.pouredVolumeMl + dilutionTotal.dilutionMl) / drinksPerRecipe,
   };
 
   const volumeEstimated = dilution.estimated || composition.estimated;
