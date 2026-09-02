@@ -1,0 +1,40 @@
+{
+  "id": "cherry-liqueur",
+  "name": "Cherry liqueur",
+  "kind": "ingredient",
+  "category": "liqueur",
+  "proprietary": true,
+  "producer": "De Kuyper Royal Distillers",
+  "countryOfOrigin": "Denmark",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Cherry Heering" }
+    ],
+    "notToBeConfusedWith": [
+      {
+        "name": "Kirschwasser",
+        "note": "A clear, unsweetened cherry eau-de-vie distilled from the fruit and pit rather than a sweetened liqueur; some older recipes calling for 'cherry brandy' mean this instead, and the two are not interchangeable."
+      }
+    ]
+  },
+  "generalSubstitutes": [],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "cherry liqueur",
+      "abvPercent": 24,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "acidPercent": 0,
+      "animalOrigin": "none",
+      "animalOriginNote": "No published account of the production checked (crushed Danish Stevns cherries and stones macerated in neutral spirit, with herbs, spices and oak maturation) names an animal-derived ingredient, and the product carries kosher certification. No producer statement confirming vegan status was opened directly, so this is the honest floor of what was checked rather than a producer confirmation.",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer-adjacent trade reference, cross-checked against regulatory retail listings",
+      "sourceId": "diffordsguide.com/beer-wine-spirits/95/cherry-heering-liqueur; Virginia ABC product #: Heering Cherry Liqueur",
+      "sourceNote": "Heering (the reference bottle: it is the cherry liqueur most Singapore Sling recipes name specifically, and 'cherry brandy' is otherwise ambiguous between this and kirschwasser) publishes no nutrition or sugar figure on its own site, and USDA FoodData Central carries no record for it. 24% alc./vol. is Difford's Guide's stated figure for the product, opened directly, and it agrees with the Virginia ABC regulatory listing (24.0% ABV, 48 proof) and several US retailers' back-label transcriptions, which is what makes it credible; no sugar or calorie figure was found anywhere, so sugarGPer100 and nutritionPer100g are left off rather than estimated, and this Form's composition understates the liqueur's real sweetness by whatever that figure would have been. Density has no measured liquid source and is taken from density-classes.json's 'liqueur-sweet' class (1.09 g/ml), the same choice made for Bénédictine and orange liqueur on this site."
+    }
+  ]
+}

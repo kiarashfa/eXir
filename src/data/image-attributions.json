@@ -139,6 +139,75 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "drink:corpse-reviver-no-2": {
+    "slug": "corpse-reviver-no-2",
+    "kind": "drink",
+    "alt": "A Corpse Reviver No. 2 served up in a coupe with a lemon twist garnish, pale and clear",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/corpse-reviver-no-2-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 44446
+      },
+      "card": {
+        "file": "/images/drinks/corpse-reviver-no-2-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 16628
+      },
+      "thumb": {
+        "file": "/images/drinks/corpse-reviver-no-2-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1474
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Corpse Reviver 2.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Corpse_Reviver_2.jpg",
+      "author": "Will Shenton",
+      "credit": "https://bevvy.co/cocktail/corpse-reviver-2/lisy",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:cosmopolitan": {
+    "slug": "cosmopolitan",
+    "kind": "drink",
+    "alt": "A close view of a Cosmopolitan's deep pink-red colour in a cocktail glass",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/cosmopolitan-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 53264
+      },
+      "card": {
+        "file": "/images/drinks/cosmopolitan-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 18518
+      },
+      "thumb": {
+        "file": "/images/drinks/cosmopolitan-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1050
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Cosmopolitan cocktail drink.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cosmopolitan_cocktail_drink.jpg",
+      "author": "Jon Sullivan",
+      "credit": "https://www.public-domain-image.com/public-domain-images-pictures-free-stock-photos/food-and-drink-public-domain-images-pictures/cocktail-public-domain-images-pictures/cosmopolitan-cocktail-drink.jpg",
+      "license": "Public domain",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:daiquiri": {
     "slug": "daiquiri",
     "kind": "drink",
@@ -171,6 +240,41 @@
       "credit": "https://bevvy.co/cocktail/daiquiri",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:french-75": {
+    "slug": "french-75",
+    "kind": "drink",
+    "alt": "A French 75 served in a champagne flute, pale gold and effervescent, with a lemon twist",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/french-75-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 107250
+      },
+      "card": {
+        "file": "/images/drinks/french-75-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 23082
+      },
+      "thumb": {
+        "file": "/images/drinks/french-75-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1090
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:French 75.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:French_75.jpg",
+      "author": "https://www.flickr.com/people/garyjwood/",
+      "credit": "https://www.flickr.com/photos/garyjwood/5997007332/",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -346,6 +450,41 @@
       "credit": "Mai Tai",
       "license": "CC BY-SA 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:margarita": {
+    "slug": "margarita",
+    "kind": "drink",
+    "alt": "A pale, salt-rimmed Margarita over ice in a tall glass, garnished with a lime wheel",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/margarita-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 46236
+      },
+      "card": {
+        "file": "/images/drinks/margarita-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 15334
+      },
+      "thumb": {
+        "file": "/images/drinks/margarita-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 880
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Margarita de limón, Mazatlán, 23 de noviembre de 2022 12.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Margarita_de_lim%C3%B3n,_Mazatl%C3%A1n,_23_de_noviembre_de_2022_12.jpg",
+      "author": "El Nuevo Doge",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -734,6 +873,76 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "drink:sidecar": {
+    "slug": "sidecar",
+    "kind": "drink",
+    "alt": "A sugar-rimmed Sidecar served up in a coupe, amber-gold, beside a lemon half",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/sidecar-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 150328
+      },
+      "card": {
+        "file": "/images/drinks/sidecar-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 56742
+      },
+      "thumb": {
+        "file": "/images/drinks/sidecar-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2124
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Sidecar Cocktail.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sidecar_Cocktail.jpg",
+      "author": "Achim Schleuning",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:singapore-sling": {
+    "slug": "singapore-sling",
+    "kind": "drink",
+    "alt": "A Singapore Sling in a footed glass on a wooden bar top, its pink-red drink topped with foam and garnished with a pineapple wedge, mint sprig and a cherry on a pick, dark bar shelving blurred behind it",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/singapore-sling-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 114426
+      },
+      "card": {
+        "file": "/images/drinks/singapore-sling-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 32500
+      },
+      "thumb": {
+        "file": "/images/drinks/singapore-sling-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1732
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:SSlingLongBar.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:SSlingLongBar.JPG",
+      "author": "Ypsilon from Finland",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:vieux-carre": {
     "slug": "vieux-carre",
     "kind": "drink",
@@ -804,6 +1013,41 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "drink:white-lady": {
+    "slug": "white-lady",
+    "kind": "drink",
+    "alt": "A pale, milky-white White Lady served up in a cocktail glass on a bar counter",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/white-lady-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 100560
+      },
+      "card": {
+        "file": "/images/drinks/white-lady-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 29876
+      },
+      "thumb": {
+        "file": "/images/drinks/white-lady-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1512
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:White Lady - Beefeater gin, Cointreau, fresh lemon juice (12403540403).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:White_Lady_-_Beefeater_gin,_Cointreau,_fresh_lemon_juice_(12403540403).jpg",
+      "author": "City Foodsters",
+      "credit": "White Lady - Beefeater gin, Cointreau, fresh lemon juice",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "glassware:gaiwan": {
     "slug": "gaiwan",
     "kind": "glassware",
@@ -824,6 +1068,29 @@
       "credit": "Flickr: T Cups at Red Blossom",
       "license": "CC BY 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "glassware:hurricane": {
+    "slug": "hurricane",
+    "kind": "glassware",
+    "alt": "An empty hurricane glass on a white background, showing its tall curved silhouette narrowing at the waist above a short stem and round foot",
+    "renditions": {
+      "card": {
+        "file": "/images/glassware/hurricane-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 6062
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Glas34 (cropped).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Glas34_(cropped).jpg",
+      "author": "Jan Lehnen",
+      "credit": "File:Glas34.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -1125,6 +1392,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:cherry-liqueur": {
+    "slug": "cherry-liqueur",
+    "kind": "ingredient",
+    "alt": "A bottle of Peter Heering cherry liqueur, dark amber glass with a cream label showing a crest and the Cherry Heering name in gold on the neck",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/cherry-liqueur-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 31204
+      },
+      "thumb": {
+        "file": "/images/ingredients/cherry-liqueur-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1262
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Cherry Heering - Peter Heering Liqueur 50cl bottle.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cherry_Heering_-_Peter_Heering_Liqueur_50cl_bottle.jpg",
+      "author": "Alex P. Kok",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:cider-vinegar": {
     "slug": "cider-vinegar",
     "kind": "ingredient",
@@ -1237,6 +1533,35 @@
       "credit": "Own work",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:cranberry-juice": {
+    "slug": "cranberry-juice",
+    "kind": "ingredient",
+    "alt": "Bottles of Ocean Spray cranberry juice on a shelf",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/cranberry-juice-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 58954
+      },
+      "thumb": {
+        "file": "/images/ingredients/cranberry-juice-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2244
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Ocean Spray Cooperative product in Israel.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ocean_Spray_Cooperative_product_in_Israel.jpg",
+      "author": "Nizzan Zvi Cohen",
+      "credit": "Own work",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -1643,6 +1968,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:lime": {
+    "slug": "lime",
+    "kind": "ingredient",
+    "alt": "Two whole limes side by side against a plain background",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/lime-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 26978
+      },
+      "thumb": {
+        "file": "/images/ingredients/lime-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 850
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Two limes.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Two_limes.jpg",
+      "author": "Rhododendrites",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:lime-juice": {
     "slug": "lime-juice",
     "kind": "ingredient",
@@ -1874,6 +2228,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:orange-liqueur": {
+    "slug": "orange-liqueur",
+    "kind": "ingredient",
+    "alt": "A bottle of Cointreau orange liqueur, its neck and shoulder in close view",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/orange-liqueur-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 44162
+      },
+      "thumb": {
+        "file": "/images/ingredients/orange-liqueur-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1588
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Liqueur cointreau.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Liqueur_cointreau.jpg",
+      "author": "Christian \"VisualBeo\" Horvat",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:peychauds-bitters": {
     "slug": "peychauds-bitters",
     "kind": "ingredient",
@@ -1900,6 +2283,35 @@
       "credit": "Own work",
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:pineapple": {
+    "slug": "pineapple",
+    "kind": "ingredient",
+    "alt": "A single ripe whole pineapple with its spiky green crown, standing upright on a rock with the sea and sky blurred behind it",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/pineapple-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 71276
+      },
+      "thumb": {
+        "file": "/images/ingredients/pineapple-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1758
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Pineappple and ocean (Unsplash).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pineappple_and_ocean_(Unsplash).jpg",
+      "author": "Pineapple Supply Co. pineapple",
+      "credit": "https://unsplash.com/photos/KtBngSJzAes Image at the Wayback Machine Gallery at the Wayback Machine",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -2105,6 +2517,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:sparkling-wine": {
+    "slug": "sparkling-wine",
+    "kind": "ingredient",
+    "alt": "A flute of sparkling wine, bubbles rising through the pale gold liquid",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/sparkling-wine-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 30032
+      },
+      "thumb": {
+        "file": "/images/ingredients/sparkling-wine-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1684
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Sparkling wine in a flute.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sparkling_wine_in_a_flute.jpg",
+      "author": "Lachlan Hardy",
+      "credit": "Flickr: Glass 4",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:sweet-vermouth": {
     "slug": "sweet-vermouth",
     "kind": "ingredient",
@@ -2160,6 +2601,35 @@
       "credit": "Own work",
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:vodka": {
+    "slug": "vodka",
+    "kind": "ingredient",
+    "alt": "A large bottle of Tito's Handmade Vodka against a blurred outdoor background",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/vodka-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 35924
+      },
+      "thumb": {
+        "file": "/images/ingredients/vodka-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1510
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Tito's Vodka bottle 1.75L size.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tito%27s_Vodka_bottle_1.75L_size.jpg",
+      "author": "Kenneth C. Zirkel",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -2247,360 +2717,6 @@
       "credit": "https://www.flickr.com/photos/sultmhoor/2620757246/",
       "license": "CC BY-SA 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
-      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
-    }
-  },
-  "drink:corpse-reviver-no-2": {
-    "slug": "corpse-reviver-no-2",
-    "kind": "drink",
-    "alt": "A Corpse Reviver No. 2 served up in a coupe with a lemon twist garnish, pale and clear",
-    "renditions": {
-      "hero": {
-        "file": "/images/drinks/corpse-reviver-no-2-hero.webp",
-        "width": 1600,
-        "height": 2000,
-        "bytes": 44446
-      },
-      "card": {
-        "file": "/images/drinks/corpse-reviver-no-2-card.webp",
-        "width": 800,
-        "height": 1000,
-        "bytes": 16628
-      },
-      "thumb": {
-        "file": "/images/drinks/corpse-reviver-no-2-thumb.webp",
-        "width": 96,
-        "height": 96,
-        "bytes": 1474
-      }
-    },
-    "attribution": {
-      "source": "Wikimedia Commons",
-      "file": "File:Corpse Reviver 2.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Corpse_Reviver_2.jpg",
-      "author": "Will Shenton",
-      "credit": "https://bevvy.co/cocktail/corpse-reviver-2/lisy",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
-      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
-    }
-  },
-  "drink:cosmopolitan": {
-    "slug": "cosmopolitan",
-    "kind": "drink",
-    "alt": "A close view of a Cosmopolitan's deep pink-red colour in a cocktail glass",
-    "renditions": {
-      "hero": {
-        "file": "/images/drinks/cosmopolitan-hero.webp",
-        "width": 1600,
-        "height": 2000,
-        "bytes": 53264
-      },
-      "card": {
-        "file": "/images/drinks/cosmopolitan-card.webp",
-        "width": 800,
-        "height": 1000,
-        "bytes": 18518
-      },
-      "thumb": {
-        "file": "/images/drinks/cosmopolitan-thumb.webp",
-        "width": 96,
-        "height": 96,
-        "bytes": 1050
-      }
-    },
-    "attribution": {
-      "source": "Wikimedia Commons",
-      "file": "File:Cosmopolitan cocktail drink.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cosmopolitan_cocktail_drink.jpg",
-      "author": "Jon Sullivan",
-      "credit": "https://www.public-domain-image.com/public-domain-images-pictures-free-stock-photos/food-and-drink-public-domain-images-pictures/cocktail-public-domain-images-pictures/cosmopolitan-cocktail-drink.jpg",
-      "license": "Public domain",
-      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
-    }
-  },
-  "drink:french-75": {
-    "slug": "french-75",
-    "kind": "drink",
-    "alt": "A French 75 served in a champagne flute, pale gold and effervescent, with a lemon twist",
-    "renditions": {
-      "hero": {
-        "file": "/images/drinks/french-75-hero.webp",
-        "width": 1600,
-        "height": 2000,
-        "bytes": 107250
-      },
-      "card": {
-        "file": "/images/drinks/french-75-card.webp",
-        "width": 800,
-        "height": 1000,
-        "bytes": 23082
-      },
-      "thumb": {
-        "file": "/images/drinks/french-75-thumb.webp",
-        "width": 96,
-        "height": 96,
-        "bytes": 1090
-      }
-    },
-    "attribution": {
-      "source": "Wikimedia Commons",
-      "file": "File:French 75.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:French_75.jpg",
-      "author": "https://www.flickr.com/people/garyjwood/",
-      "credit": "https://www.flickr.com/photos/garyjwood/5997007332/",
-      "license": "CC BY-SA 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
-      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
-    }
-  },
-  "drink:margarita": {
-    "slug": "margarita",
-    "kind": "drink",
-    "alt": "A pale, salt-rimmed Margarita over ice in a tall glass, garnished with a lime wheel",
-    "renditions": {
-      "hero": {
-        "file": "/images/drinks/margarita-hero.webp",
-        "width": 1600,
-        "height": 2000,
-        "bytes": 46236
-      },
-      "card": {
-        "file": "/images/drinks/margarita-card.webp",
-        "width": 800,
-        "height": 1000,
-        "bytes": 15334
-      },
-      "thumb": {
-        "file": "/images/drinks/margarita-thumb.webp",
-        "width": 96,
-        "height": 96,
-        "bytes": 880
-      }
-    },
-    "attribution": {
-      "source": "Wikimedia Commons",
-      "file": "File:Margarita de limón, Mazatlán, 23 de noviembre de 2022 12.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Margarita_de_lim%C3%B3n,_Mazatl%C3%A1n,_23_de_noviembre_de_2022_12.jpg",
-      "author": "El Nuevo Doge",
-      "credit": "Own work",
-      "license": "CC0",
-      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
-    }
-  },
-  "drink:sidecar": {
-    "slug": "sidecar",
-    "kind": "drink",
-    "alt": "A sugar-rimmed Sidecar served up in a coupe, amber-gold, beside a lemon half",
-    "renditions": {
-      "hero": {
-        "file": "/images/drinks/sidecar-hero.webp",
-        "width": 1600,
-        "height": 2000,
-        "bytes": 150328
-      },
-      "card": {
-        "file": "/images/drinks/sidecar-card.webp",
-        "width": 800,
-        "height": 1000,
-        "bytes": 56742
-      },
-      "thumb": {
-        "file": "/images/drinks/sidecar-thumb.webp",
-        "width": 96,
-        "height": 96,
-        "bytes": 2124
-      }
-    },
-    "attribution": {
-      "source": "Wikimedia Commons",
-      "file": "File:Sidecar Cocktail.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sidecar_Cocktail.jpg",
-      "author": "Achim Schleuning",
-      "credit": "Own work",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
-    }
-  },
-  "drink:white-lady": {
-    "slug": "white-lady",
-    "kind": "drink",
-    "alt": "A pale, milky-white White Lady served up in a cocktail glass on a bar counter",
-    "renditions": {
-      "hero": {
-        "file": "/images/drinks/white-lady-hero.webp",
-        "width": 1600,
-        "height": 2000,
-        "bytes": 100560
-      },
-      "card": {
-        "file": "/images/drinks/white-lady-card.webp",
-        "width": 800,
-        "height": 1000,
-        "bytes": 29876
-      },
-      "thumb": {
-        "file": "/images/drinks/white-lady-thumb.webp",
-        "width": 96,
-        "height": 96,
-        "bytes": 1512
-      }
-    },
-    "attribution": {
-      "source": "Wikimedia Commons",
-      "file": "File:White Lady - Beefeater gin, Cointreau, fresh lemon juice (12403540403).jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:White_Lady_-_Beefeater_gin,_Cointreau,_fresh_lemon_juice_(12403540403).jpg",
-      "author": "City Foodsters",
-      "credit": "White Lady - Beefeater gin, Cointreau, fresh lemon juice",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
-    }
-  },
-  "ingredient:cranberry-juice": {
-    "slug": "cranberry-juice",
-    "kind": "ingredient",
-    "alt": "Bottles of Ocean Spray cranberry juice on a shelf",
-    "renditions": {
-      "card": {
-        "file": "/images/ingredients/cranberry-juice-card.webp",
-        "width": 800,
-        "height": 800,
-        "bytes": 58954
-      },
-      "thumb": {
-        "file": "/images/ingredients/cranberry-juice-thumb.webp",
-        "width": 96,
-        "height": 96,
-        "bytes": 2244
-      }
-    },
-    "attribution": {
-      "source": "Wikimedia Commons",
-      "file": "File:Ocean Spray Cooperative product in Israel.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ocean_Spray_Cooperative_product_in_Israel.jpg",
-      "author": "Nizzan Zvi Cohen",
-      "credit": "Own work",
-      "license": "CC BY 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
-    }
-  },
-  "ingredient:lime": {
-    "slug": "lime",
-    "kind": "ingredient",
-    "alt": "Two whole limes side by side against a plain background",
-    "renditions": {
-      "card": {
-        "file": "/images/ingredients/lime-card.webp",
-        "width": 800,
-        "height": 800,
-        "bytes": 26978
-      },
-      "thumb": {
-        "file": "/images/ingredients/lime-thumb.webp",
-        "width": 96,
-        "height": 96,
-        "bytes": 850
-      }
-    },
-    "attribution": {
-      "source": "Wikimedia Commons",
-      "file": "File:Two limes.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Two_limes.jpg",
-      "author": "Rhododendrites",
-      "credit": "Own work",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
-    }
-  },
-  "ingredient:orange-liqueur": {
-    "slug": "orange-liqueur",
-    "kind": "ingredient",
-    "alt": "A bottle of Cointreau orange liqueur, its neck and shoulder in close view",
-    "renditions": {
-      "card": {
-        "file": "/images/ingredients/orange-liqueur-card.webp",
-        "width": 800,
-        "height": 800,
-        "bytes": 44162
-      },
-      "thumb": {
-        "file": "/images/ingredients/orange-liqueur-thumb.webp",
-        "width": 96,
-        "height": 96,
-        "bytes": 1588
-      }
-    },
-    "attribution": {
-      "source": "Wikimedia Commons",
-      "file": "File:Liqueur cointreau.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Liqueur_cointreau.jpg",
-      "author": "Christian \"VisualBeo\" Horvat",
-      "credit": "Own work",
-      "license": "CC BY-SA 3.0",
-      "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
-      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
-    }
-  },
-  "ingredient:sparkling-wine": {
-    "slug": "sparkling-wine",
-    "kind": "ingredient",
-    "alt": "A flute of sparkling wine, bubbles rising through the pale gold liquid",
-    "renditions": {
-      "card": {
-        "file": "/images/ingredients/sparkling-wine-card.webp",
-        "width": 800,
-        "height": 800,
-        "bytes": 30032
-      },
-      "thumb": {
-        "file": "/images/ingredients/sparkling-wine-thumb.webp",
-        "width": 96,
-        "height": 96,
-        "bytes": 1684
-      }
-    },
-    "attribution": {
-      "source": "Wikimedia Commons",
-      "file": "File:Sparkling wine in a flute.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sparkling_wine_in_a_flute.jpg",
-      "author": "Lachlan Hardy",
-      "credit": "Flickr: Glass 4",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
-      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
-    }
-  },
-  "ingredient:vodka": {
-    "slug": "vodka",
-    "kind": "ingredient",
-    "alt": "A large bottle of Tito's Handmade Vodka against a blurred outdoor background",
-    "renditions": {
-      "card": {
-        "file": "/images/ingredients/vodka-card.webp",
-        "width": 800,
-        "height": 800,
-        "bytes": 35924
-      },
-      "thumb": {
-        "file": "/images/ingredients/vodka-thumb.webp",
-        "width": 96,
-        "height": 96,
-        "bytes": 1510
-      }
-    },
-    "attribution": {
-      "source": "Wikimedia Commons",
-      "file": "File:Tito's Vodka bottle 1.75L size.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tito%27s_Vodka_bottle_1.75L_size.jpg",
-      "author": "Kenneth C. Zirkel",
-      "credit": "Own work",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   }

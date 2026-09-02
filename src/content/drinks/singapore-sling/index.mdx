@@ -1,0 +1,159 @@
+---
+id: classic
+label: Classic
+name: Singapore Sling
+subtitle: Gin against pineapple, lime and three liqueurs, shaken and strained into a glass sized to hold all of it.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: hurricane
+iceStyle: none
+servedOverIce: false
+bitterness: low
+batchable: full
+difficulty: Easy
+family: sour
+tags:
+  category: [cocktail]
+  origin: [southeast-asia]
+  method: [shaken]
+names:
+  alsoKnownAs:
+    - name: Straits Sling
+      note: The name used in early references, before "Singapore Sling" became fixed between the 1920s and 1930s.
+  notToBeConfusedWith:
+    - name: Gin Sling
+      note: The older, generic name for the whole category of spirit-citrus-sugar-water drinks this recipe grew out of; early references used it for this specific drink too, before its own name became fixed.
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 30
+    unit: ml
+  - id: cherry
+    ingredientRef: cherry-liqueur
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: cointreau
+    ingredientRef: orange-liqueur
+    formRef: standard
+    amount: 7.5
+    unit: ml
+  - id: benedictine
+    ingredientRef: benedictine
+    formRef: standard
+    amount: 7.5
+    unit: ml
+  - id: pineapple
+    ingredientRef: pineapple-juice
+    formRef: fresh
+    amount: 120
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: grenadine
+    ingredientRef: grenadine
+    formRef: standard
+    amount: 10
+    unit: ml
+  - id: bitters
+    ingredientRef: angostura-bitters
+    formRef: standard
+    amount: 0.9
+    unit: ml
+  - id: garnish-pineapple
+    ingredientRef: pineapple
+    formRef: standard
+    amount: 905
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A wedge is cut from the fruit and set on the rim. The rest of the
+      pineapple is not part of the drink but is still bought whole.
+  - id: garnish-cherry
+    ingredientRef: maraschino-cherry
+    formRef: standard
+    amount: 6
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Speared with the pineapple wedge for colour and eaten separately from
+      the drink rather than as part of it.
+steps:
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      Lime rather than lemon is what sets this apart from most of the sour
+      family, and against the <Qty ref="pineapple"/> its sharper, less
+      rounded acidity is what keeps the drink from reading as simply sweet.
+  - kind: pitfall
+    text: >-
+      The <Qty ref="cherry"/>, the <Qty ref="cointreau"/> and the
+      <Qty ref="benedictine"/> are each a small pour against a large one of
+      juice, and running any single one of them long is the easiest way to
+      tip the drink's balance without changing its colour enough to notice.
+substitutions:
+  - lineRef: cointreau
+    substitute: orange-curacao
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume and at the same strength, so the arithmetic
+      barely moves. Curaçao is made from bitter orange peel rather than
+      distilled sweet-orange oil and reads rounder and less clean than
+      Cointreau, which sits oddly against the pineapple's own brightness.
+    impact:
+      flavour: moderate change
+      strength: no change
+      sweetness: minor change
+makeAhead:
+  aheadInstructions: >-
+    The whole drink batches, and the site adds the water the shake would
+    have contributed. Fresh lime and pineapple juice are the limit rather
+    than the alcohol: both lose their aromatics within hours of being
+    juiced, so a batch made in the morning is at its best that evening and
+    tired the next day.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lime"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="gin"/>, the <Qty ref="cherry"/>, the
+  <Qty ref="cointreau"/>, the <Qty ref="benedictine"/>, the
+  <Qty ref="pineapple"/>, the <Qty ref="lime"/>, the <Qty ref="grenadine"/>
+  and the <Qty ref="bitters"/> in a shaker and fill it with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>. The pineapple juice foams more than a
+  citrus-only sour does, which is a sign the shake is working rather than a
+  fault.
+</Step>
+
+<Step id="strain">
+  Strain up into a hurricane glass, with no ice in the glass itself. Between
+  the juice and the shake's own dilution there is already too much liquid to
+  add a fresh charge of ice without the glass running over.
+</Step>
+
+<Step id="garnish">
+  Cut a wedge from the <Qty ref="garnish-pineapple"/> and spear it on a pick
+  with the <Qty ref="garnish-cherry"/>. Set it across the rim rather than
+  dropping it in.
+</Step>

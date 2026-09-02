@@ -1,0 +1,41 @@
+{
+  "id": "pineapple",
+  "name": "Pineapple",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Pineapple juice",
+        "note": "The pressed juice, sold and used separately; a recipe naming the whole fruit means it as a garnish or a cut piece, not something poured."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Whole, raw",
+      "abvPercent": 0,
+      "sugarGPer100": 9.85,
+      "acidPercent": 0,
+      "countUnit": { "singular": "pineapple", "plural": "pineapples", "g": 905, "snap": "whole" },
+      "nutritionPer100g": {
+        "kcal": 50,
+        "carbohydrateG": 13.12,
+        "sugarsG": 9.85,
+        "proteinG": 0.54,
+        "fatG": 0.12,
+        "saturatedFatG": 0.009,
+        "fibreG": 1.4,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169124",
+      "sourceNote": "Pineapple, raw, all varieties. Public domain. The one-fruit weight (905 g) is the record's own whole-fruit portion. No density is carried: a pineapple is not poured, and where a recipe uses only a wedge for garnish the line states how little of the fruit reaches the drink."
+    }
+  ]
+}

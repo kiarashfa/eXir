@@ -1,0 +1,9 @@
+{
+  "id": "hurricane",
+  "name": "Hurricane",
+  "capacityMl": 470,
+  "shapeFamily": "tall",
+  "note": "A tall, curved-sided glass sized for a long drink with a large juice component, wide enough at the mouth to carry a fruit-wedge garnish.",
+  "iceDisplacementMl": { "cubed": 270, "block": 260, "crushed": 335, "none": 0 },
+  "iceDisplacementNote": "Solid ice only, scaled from the same tall-glass ratios as the highball and Collins on this site rather than measured directly: both land near 57% of capacity displaced by cubed ice and roughly 95% of that figure for a single block, and crushed packs to about a quarter more than cubed. No measured figure exists for this specific shape."
+}
