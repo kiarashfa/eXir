@@ -1,0 +1,105 @@
+---
+id: classic
+label: Classic
+name: Frozen Margarita
+subtitle: Tequila, orange liqueur and lime blended with ice to a slush, in a salt-rimmed glass.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: poco-grande
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: false
+family: blended-frozen
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [blended]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Margarita
+      note: Shaken with ice and strained up rather than blended with it; the frozen version is also the one built around a machine rather than a shaker.
+ingredients:
+  - id: salt
+    ingredientRef: salt
+    formRef: standard
+    amount: 2
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Run around the rim before pouring; a rimmed glass is licked rather than
+      drunk from squarely, so the salt is bought and applied but excluded
+      from the drink's own composition.
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 25
+    unit: ml
+  - id: tequila
+    ingredientRef: tequila
+    formRef: blanco
+    amount: 50
+    unit: ml
+  - id: liqueur
+    ingredientRef: orange-liqueur
+    formRef: standard
+    amount: 20
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 10
+    unit: ml
+  - id: ice
+    ingredientRef: water
+    formRef: standard
+    amount: 190
+    unit: g
+steps:
+  - { id: rim, durationSec: 20, type: active, phase: prep }
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: blend, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: blend
+    text: >-
+      The small syrup line has no place in the shaken Margarita, which
+      balances on the liqueur's own sugar alone. Cold suppresses sweetness
+      sharply enough that the same ratio blended into a slush reads thin
+      without it.
+  - kind: pitfall
+    text: >-
+      Rimming half the glass rather than the whole circumference means every
+      sip can be taken with or without salt, rather than forcing it on a
+      drink that is already balanced.
+makeAhead:
+  freezable: false
+---
+
+<Step id="rim">
+  Run a lime wedge around half the rim of a poco grande glass and dip that
+  half in salt.
+</Step>
+
+<Step id="juice">
+  Squeeze the <Qty ref="lime"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="blend">
+  Combine the <Qty ref="tequila"/>, the <Qty ref="liqueur"/>, the
+  <Qty ref="lime"/> and the <Qty ref="syrup"/> in a blender jug, add the
+  <Qty ref="ice"/> and blend in short bursts for <Dur step="blend"/>, until it
+  forms an even slush with no loose chunks left clicking against the blade.
+</Step>
+
+<Step id="pour">
+  Pour, unstrained, into the rimmed glass and serve with a straw before it
+  starts to separate.
+</Step>
+---

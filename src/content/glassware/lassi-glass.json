@@ -1,0 +1,9 @@
+{
+  "id": "lassi-glass",
+  "name": "Lassi glass",
+  "capacityMl": 350,
+  "shapeFamily": "tall",
+  "note": "A tall, straight-sided glass — often steel rather than glass — for a poured yoghurt drink. Straight sides because the drink is thick enough to leave a wall behind it.",
+  "iceDisplacementMl": { "cubed": 200, "block": 190, "crushed": 250, "none": 0 },
+  "iceDisplacementNote": "Solid ice only, and optional: a lassi is usually chilled rather than iced. The figures are the highball's, which shares this glass's capacity and profile."
+}

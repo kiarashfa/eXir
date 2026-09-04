@@ -1,0 +1,84 @@
+---
+id: spanish
+label: Spanish
+name: Gin and Tonic
+subtitle: A longer, gin-forward build in a wide-bowled glass, over a full load of ice.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: copa
+iceStyle: cubed
+servedOverIce: true
+bitterness: medium
+batchable: full
+zeroProof: false
+family: highball
+tags:
+  category: [cocktail]
+  origin: [iberia]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+difficulty: Easy
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 60
+    unit: ml
+  - id: tonic
+    ingredientRef: tonic-water
+    formRef: standard
+    amount: 200
+    unit: ml
+  - id: lemon-peel
+    ingredientRef: lemon
+    formRef: standard
+    amount: 5
+    unit: g
+    garnish: true
+    consumedFraction: 0.1
+    consumedFractionNote: >-
+      A wide strip of peel is expressed over the glass for its oil and left
+      in; almost none of the fruit's pulp or juice enters the drink.
+steps:
+  - { id: chill, durationSec: 30, type: active, phase: prep }
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: fill
+    text: >-
+      The wide bowl is packed to the rim with ice before anything goes in
+      it, which keeps a much larger glass from working out any warmer than
+      the narrow British build — the point of the extra ice is to hold the
+      same temperature over a longer drink, not to look generous.
+  - kind: pitfall
+    text: >-
+      Poured into a bowl this wide, tonic loses its bead faster than it does
+      in a tall narrow glass, so it goes in last, down the side or over a
+      spoon, and the drink is finished rather than left to stand.
+---
+
+<Step id="chill">
+  Chill the glass.
+</Step>
+
+<Step id="fill">
+  Fill the glass to the rim with ice.
+</Step>
+
+<Step id="pour">
+  Pour in the <Qty ref="gin"/>.
+</Step>
+
+<Step id="garnish">
+  Cut a wide strip of lemon peel, express its oil over the drink and drop it
+  in.
+</Step>
+
+<Step id="top">
+  Top slowly with the <Qty ref="tonic"/>, pouring down the inside of the
+  glass to keep the bead, and lift once with a bar spoon.
+</Step>

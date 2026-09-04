@@ -1,0 +1,70 @@
+{
+  "id": "coconut-cream",
+  "name": "Coconut Cream",
+  "kind": "ingredient",
+  "category": "dairy-alternative",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Cream of coconut", "note": "The canned, sweetened form used in Piña Coladas, sold under brands such as Coco López." }
+    ],
+    "notToBeConfusedWith": [
+      {
+        "name": "Coconut milk",
+        "note": "A thinner, unsweetened blend of coconut flesh and water sold for cooking; coconut cream is the richer liquid pressed from the flesh with little added water."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "raw",
+      "label": "Raw, unsweetened",
+      "proseName": "unsweetened coconut cream",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "densityGPerMl": 1.0144,
+      "densitySource": "estimated",
+      "nutritionPer100g": {
+        "kcal": 330,
+        "carbohydrateG": 6.65,
+        "proteinG": 3.63,
+        "fatG": 34.68,
+        "saturatedFatG": 30.753,
+        "fibreG": 2.2,
+        "sodiumMg": 4
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170580",
+      "sourceNote": "Nuts, coconut cream, raw (liquid expressed from grated meat). Public domain. No sugar figure is published for this record, so sugarGPer100 is left off rather than estimated. The density is the record's own tablespoon portion, adopted because the cream is poured, and marked estimated since a tablespoon can measure either a liquid or a packed solid."
+    },
+    {
+      "id": "canned-sweetened",
+      "label": "Canned, sweetened",
+      "proseName": "cream of coconut",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "densityGPerMl": 1.2849,
+      "densitySource": "estimated",
+      "sugarGPer100": 51.5,
+      "nutritionPer100g": {
+        "kcal": 357,
+        "carbohydrateG": 53.21,
+        "sugarsG": 51.5,
+        "proteinG": 1.17,
+        "fatG": 16.31,
+        "saturatedFatG": 15.472,
+        "fibreG": 0.2,
+        "sodiumMg": 36
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170171",
+      "sourceNote": "Nuts, coconut cream, canned, sweetened. Public domain. This is the sweetened, canned product a Piña Colada recipe means by 'cream of coconut', not the unsweetened raw form. The density is the record's own tablespoon portion, adopted because the cream is poured, and marked estimated for the same reason as the raw form."
+    }
+  ]
+}

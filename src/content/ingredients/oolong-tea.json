@@ -1,0 +1,19 @@
+{
+  "id": "oolong-tea",
+  "name": "Oolong tea",
+  "kind": "ingredient",
+  "category": "tea",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Loose leaf",
+      "proseName": "oolong tea",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": true,
+      "sourceNote": "FoodData Central carries only brewed oolong tea, a finished infusion rather than the dry leaf itself, and no record exists for the unbrewed leaf. No composition is claimed here rather than importing a figure that describes the wrong thing."
+    }
+  ]
+}

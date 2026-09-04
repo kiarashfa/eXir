@@ -1,0 +1,38 @@
+{
+  "id": "yoghurt",
+  "name": "Yoghurt",
+  "kind": "ingredient",
+  "category": "dairy",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [{ "name": "Yogurt", "region": "United States" }]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Plain, whole milk",
+      "proseName": "plain yoghurt",
+      "abvPercent": 0,
+      "densityGPerMl": 1.03,
+      "densitySource": "estimated",
+      "sugarGPer100": 4.66,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 61,
+        "carbohydrateG": 4.66,
+        "sugarsG": 4.66,
+        "proteinG": 3.47,
+        "fatG": 3.25,
+        "saturatedFatG": 2.096,
+        "fibreG": 0,
+        "sodiumMg": 46
+      },
+      "animalOrigin": "dairy",
+      "allergenTags": ["dairy"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "171284",
+      "sourceNote": "Yogurt, plain, whole milk. Public domain. No measured liquid density exists for this record, so the density-classes.json 'dairy-whole' class stands in, since yoghurt is cultured from milk at a similar solids content, and the figure is marked estimated."
+    }
+  ]
+}

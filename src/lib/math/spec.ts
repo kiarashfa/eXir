@@ -24,7 +24,12 @@ import {
   sugarPerLitre,
   type Bar,
 } from './balance.ts';
-import { computeComposition, perDrinkComposition, type Composition } from './composition.ts';
+import {
+  computeComposition,
+  perDrinkComposition,
+  resolvedLineVolumeMl,
+  type Composition,
+} from './composition.ts';
 import { computeDilution, type DilutionResult } from './dilution.ts';
 import {
   deriveBaseSpirits,
@@ -126,8 +131,25 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
   // holds back a further part of the water — so adding the inputs up would
   // describe a vessel nobody drinks out of, and would fail the glassware fit
   // check for a mug that holds the drink perfectly well.
+  //
+  // What the yield does NOT cover is a line that never went through the brew.
+  // Milk stirred into a builder's tea, evaporated milk in a karak chai and
+  // sugar dissolved in the cup all reach the drinker, and counting only the
+  // yield published a karak chai at 100 ml that is 160 ml in the cup — with
+  // every per-litre figure computed against the smaller denominator and so
+  // overstated. Pour-over coffee has no such line, which is why this went two
+  // phases without showing.
+  const postBrewVolumeMl = version.brew
+    ? lines
+        .filter(
+          ({ line }) =>
+            line.id !== version.brew?.doseRef && line.id !== version.brew?.waterRef,
+        )
+        .reduce((sum, resolved) => sum + resolvedLineVolumeMl(resolved), 0)
+    : 0;
+
   const finalVolumeMl = version.brew
-    ? version.brew.yieldMl / drinksPerRecipe
+    ? (version.brew.yieldMl + postBrewVolumeMl) / drinksPerRecipe
     : dilution.finalVolumeMl;
 
   const alcohol = computeAlcohol({
@@ -166,6 +188,17 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
       `Computes at ${alcohol.finalAbvPercent.toFixed(2)}% ABV, below the 0.5% bound, and is not flagged zeroProof.`,
     );
   }
+  // The converse, which was missing and is the half that actually shipped. A
+  // vanilla milkshake carrying 5 ml of extract computes at 0.6% and was flagged
+  // zeroProof, so the page asserted "no alcohol" beside its own 0.6% figure and
+  // nothing objected. The bound is not an opinion — 0.5% is where the label
+  // stops being true — and a drink that crosses it is either mis-flagged or
+  // over-dosed on an extract.
+  if (alcohol.finalAbvPercent >= 0.5 && version.zeroProof) {
+    warnings.push(
+      `Flagged zeroProof but computes at ${alcohol.finalAbvPercent.toFixed(2)}% ABV, at or above the 0.5% bound.`,
+    );
+  }
   const quartile = allBarsInOneQuartile(bars);
   if (quartile) {
     warnings.push(
@@ -180,7 +213,11 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
     nutrition,
     bars,
     finalVolumeMl,
-    finalVolumeEstimated: version.brew ? false : volumeEstimated,
+    // A yield is measured, so a brewed drink's volume is not an estimate — but
+    // only while the yield is the whole of it. Once a post-brew line is in
+    // there, that line's own volume carries whatever uncertainty its density
+    // has, and the figure inherits it.
+    finalVolumeEstimated: version.brew ? postBrewVolumeMl > 0 && volumeEstimated : volumeEstimated,
     sugarGPerL,
     acidPercentFinal,
     facets: {

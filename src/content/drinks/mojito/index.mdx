@@ -1,0 +1,88 @@
+---
+id: classic
+label: Classic
+name: Mojito
+subtitle: White rum, lime and mint, muddled and built over ice, topped with soda.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The rum, syrup and lime can be pre-batched, but the mint has to be muddled
+  to order — bruised ahead of time it turns bitter and dull before the drink
+  is poured.
+zeroProof: false
+family: highball
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [caribbean]
+  method: [muddled]
+  occasion: [aperitivo]
+difficulty: Easy
+ingredients:
+  - id: mint
+    ingredientRef: mint
+    formRef: fresh
+    amount: 5
+    unit: g
+  - id: lime-juice
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 22
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 20
+    unit: ml
+  - id: rum
+    ingredientRef: white-rum
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 75
+    unit: ml
+steps:
+  - { id: muddle, durationSec: 20, type: active, phase: make }
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: combine, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: muddle
+    text: >-
+      The mint is pressed just enough to release its oils, not pounded to a
+      pulp. Torn or shredded leaf turns bitter and clouds the drink for no
+      gain in aroma over a gentler bruise.
+  - kind: pitfall
+    text: >-
+      Built in the glass rather than shaken, the drink relies on the lift
+      after the soda goes in to carry the mint and lime up through the ice;
+      skip that lift and the bottom half of the glass stays flat and sour.
+---
+
+<Step id="muddle">
+  Muddle the <Qty ref="mint"/> gently with the <Qty ref="lime-juice"/> and
+  the <Qty ref="syrup"/> in the base of a Collins glass.
+</Step>
+
+<Step id="fill">
+  Fill the glass with ice.
+</Step>
+
+<Step id="combine">
+  Pour in the <Qty ref="rum"/>.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/> and lift once with a bar spoon to bring the
+  mint and lime up through the ice.
+</Step>

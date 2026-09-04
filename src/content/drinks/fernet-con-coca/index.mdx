@@ -1,0 +1,65 @@
+---
+id: classic
+label: Classic
+name: Fernet con Coca
+subtitle: Fernet-Branca lengthened with cola over ice.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: high
+batchable: full
+zeroProof: false
+family: highball
+tags:
+  category: [cocktail]
+  origin: [south-america]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+difficulty: Easy
+names:
+  alsoKnownAs:
+    - name: Fernandito
+      region: Argentina
+ingredients:
+  - id: fernet
+    ingredientRef: fernet-branca
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: cola
+    ingredientRef: cola
+    formRef: standard
+    amount: 125
+    unit: ml
+steps:
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      The two go in over a full glass of ice rather than a few cubes, because
+      Fernet-Branca's bitterness and menthol carry through cola's sugar
+      easily and the drink is meant to stay long and cold through a slow
+      pour rather than a quick, concentrated one.
+  - kind: pitfall
+    text: >-
+      Poured with too little ice or left to sit, the menthol note turns
+      medicinal rather than refreshing as the drink warms — the opposite
+      fault from most highballs, where warming just makes the drink duller.
+---
+
+<Step id="fill">
+  Fill a Collins glass with ice.
+</Step>
+
+<Step id="pour">
+  Pour in the <Qty ref="fernet"/>.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="cola"/> and lift once with a bar spoon.
+</Step>

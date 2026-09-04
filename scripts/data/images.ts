@@ -3,6 +3,7 @@
  *
  *   node scripts/data/images.ts search "negroni cocktail"
  *   node scripts/data/images.ts review "negroni cocktail" --slug negroni
+ *   node scripts/data/images.ts review "…" --slug <s> --sheet   # one tiled sheet
  *   node scripts/data/images.ts adopt "File:Negroni.jpg" --slug negroni --kind drink \
  *        --alt "A Negroni in a rocks glass over a single large cube, orange twist on the rim"
  *
@@ -22,7 +23,7 @@ import path from 'node:path';
 
 import { attribution, byTitle, search, type Candidate } from './commons.ts';
 import { fetchBinary } from './http.ts';
-import { RENDITIONS, contactSheet, render, treat } from './image-treatment.ts';
+import { RENDITIONS, contactSheet, render, treat, triageSheet } from './image-treatment.ts';
 
 const REVIEW_DIR = 'image-review';
 const PUBLIC_DIR = 'public/images';
@@ -83,23 +84,33 @@ async function doSearch(query: string, limit: number): Promise<Candidate[]> {
  * on a colour-dominant photograph it should have backed most of the way off,
  * and the sheet is where you confirm it did.
  */
-async function doReview(query: string, slug: string, limit: number): Promise<void> {
+async function doReview(
+  query: string,
+  slug: string,
+  limit: number,
+  sheet: boolean,
+): Promise<void> {
   const results = await doSearch(query, limit);
   const dir = path.join(REVIEW_DIR, slug);
   await mkdir(dir, { recursive: true });
 
   console.log(`\nWriting sheets to ${dir}/\n`);
-  for (const [index, candidate] of results.entries()) {
+  const tiles: Buffer[] = [];
+  const index: string[] = [];
+  for (const [i, candidate] of results.entries()) {
     try {
       const original = await fetchBinary(candidate.url, {
         onRetry: (n, why) => console.error(`  retry ${n}: ${why}`),
       });
       const { image, report } = await treat(original);
       const after = await image.clone().webp({ quality: 80 }).toBuffer();
-      const sheet = await contactSheet(original, after);
+      const pair = await contactSheet(original, after);
 
-      const name = `${String(index + 1).padStart(2, '0')}-${candidate.title.replace(/^File:/, '').replace(/[^\w.-]+/g, '_').slice(0, 40)}.webp`;
-      await writeFile(path.join(dir, name), sheet);
+      const n = String(i + 1).padStart(2, '0');
+      const name = `${n}-${candidate.title.replace(/^File:/, '').replace(/[^\w.-]+/g, '_').slice(0, 40)}.webp`;
+      await writeFile(path.join(dir, name), pair);
+      if (sheet) tiles.push(after);
+      index.push(`${n}  ${candidate.title}`);
 
       console.log(
         `  ${name.padEnd(46)} dominance ${report.colourDominance.toFixed(2)} · ` +
@@ -108,6 +119,19 @@ async function doReview(query: string, slug: string, limit: number): Promise<voi
     } catch (error) {
       console.log(`  ${candidate.title}: ${error instanceof Error ? error.message : error}`);
     }
+  }
+
+  if (sheet && tiles.length > 0) {
+    await writeFile(path.join(dir, 'candidates.txt'), `${index.join('\n')}\n`, 'utf8');
+    const file = path.join(dir, 'sheet.webp');
+    await writeFile(file, await triageSheet(tiles));
+    console.log(
+      `\n${tiles.length} candidate(s). Contact sheet: ${file}\n` +
+        `Read the sheet, pick the one that could be right, then open its own ` +
+        `NN-*.webp at full size before adopting — the sheet is triage only and ` +
+        `is too small to show a watermark, a date stamp or the wrong garnish.`,
+    );
+    return;
   }
 
   console.log('\nLeft half is the original, right half is treated. Look before adopting.');
@@ -216,7 +240,7 @@ async function main(): Promise<void> {
     case 'review': {
       const slug = arg('slug', argv);
       if (!target || !slug) return usage();
-      await doReview(target, slug, limit);
+      await doReview(target, slug, limit, process.argv.includes('--sheet'));
       return;
     }
     case 'adopt':

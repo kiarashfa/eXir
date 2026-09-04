@@ -329,7 +329,7 @@ test('every fixture fits the glass it names', () => {
     const spec = computeDrinkSpec(version, lines);
     // The same helper the integrity check calls. Two copies of "what does the
     // ice displace" would eventually disagree about whether a drink fits.
-    const fit = glassFit(version, spec.finalVolumeMl, {
+    const fit = glassFit(version, spec, {
       capacityMl: Number(glass['capacityMl']),
       ...(glass['iceDisplacementMl']
         ? { iceDisplacementMl: glass['iceDisplacementMl'] as Record<string, number> }

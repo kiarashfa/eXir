@@ -20,7 +20,7 @@ export async function getStaticPaths() {
       .flatMap((drink) => drink.versions.map((v) => ({ drink, v })))
       .filter(({ v }) => v.version.glasswareRef === glass.id)
       .map(({ drink, v }) => {
-        const fit = glassFit(v.version, v.spec.finalVolumeMl, glass);
+        const fit = glassFit(v.version, v.spec, glass);
         return {
           slug: drink.slug,
           name: drink.name + (v.isDefault ? '' : ` · ${v.version.label}`),

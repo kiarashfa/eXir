@@ -1,0 +1,9 @@
+{
+  "id": "smoothie-glass",
+  "name": "Smoothie glass",
+  "capacityMl": 450,
+  "shapeFamily": "tall",
+  "note": "Tall with a wide mouth, because a thick pour needs a wide opening at both ends: room for the drink to leave the jug and room for a straw that will not clog.",
+  "iceDisplacementMl": { "cubed": 255, "block": 245, "crushed": 320, "none": 0 },
+  "iceDisplacementNote": "Solid ice only, and rarely used — a blended drink brings its own. The figures are scaled from the same tall-glass ratios as the highball and Collins on this site rather than measured for this shape: cubed near 57% of capacity, a single block about 95% of that, crushed about a quarter more than cubed."
+}

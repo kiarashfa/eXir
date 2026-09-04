@@ -1,0 +1,35 @@
+{
+  "id": "banana",
+  "name": "Banana",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Raw",
+      "proseName": "peeled banana",
+      "abvPercent": 0,
+      "densityGPerMl": 1.05,
+      "densitySource": "estimated",
+      "sugarGPer100": 12.23,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 89,
+        "carbohydrateG": 22.84,
+        "sugarsG": 12.23,
+        "proteinG": 1.09,
+        "fatG": 0.33,
+        "saturatedFatG": 0.112,
+        "fibreG": 2.6,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "173944",
+      "sourceNote": "Bananas, raw. Public domain. Weighed as flesh, so a frozen banana used straight from the freezer carries the same figures — freezing changes texture, not composition. No liquid-measure density exists for this record, so the density-classes.json 'juice-sweet' class stands in as the nearest match for blended fruit flesh and the figure is marked estimated."
+    }
+  ]
+}

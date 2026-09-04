@@ -1,0 +1,88 @@
+---
+id: index
+label: Classic
+name: Hong Kong Milk Tea
+subtitle: A very strong black tea pulled through a cloth sock, finished with evaporated milk.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: high
+batchable: none
+batchNote: >-
+  Steeped and pulled to order. The blend is meant to be brewed hard once, not
+  topped up or reheated.
+zeroProof: true
+family: steeped-infusion
+familyRole: descendant
+derivedFrom: builders-tea
+difficulty: Medium
+tags:
+  category: [tea]
+  origin: [china]
+  method: [steeped]
+brew:
+  method: steep
+  doseRef: tea
+  waterRef: water
+  waterTempC: 100
+  contactSec: 300
+  yieldMl: 280
+ingredients:
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 10
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The leaf is steeped hard for its strength and strained out again; what
+      it leaves behind is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 300
+    unit: ml
+  - id: milk
+    ingredientRef: evaporated-milk
+    amount: 40
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 15
+    unit: g
+steps:
+  - { id: steep, durationSec: 300, type: passive, phase: make }
+  - { id: pull, durationSec: 30, type: active, phase: make }
+  - { id: finish, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: pull
+    text: >-
+      The cloth sock is a fine, deep filter rather than a strainer, and
+      pouring the tea back through it repeatedly — the "pulling" the drink is
+      named for in Cantonese — mixes the leaf's tannin evenly through the
+      liquid so the cup tastes the same from the first sip to the last.
+  - kind: pitfall
+    text: >-
+      Fresh milk curdles faintly against tea this strong and this hot.
+      <Qty ref="milk"/> is evaporated rather than fresh for exactly that
+      reason, and swapping it back in is a real change, not a convenience.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the <Qty ref="tea"/> and
+  leave to steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="pull">
+  Strain the tea through a fine cloth sock into a second vessel, then pour it
+  back through the sock and into the first, back and forth several times, for
+  <Dur step="pull"/>.
+</Step>
+
+<Step id="finish">
+  Stir in the <Qty ref="milk"/> and the <Qty ref="sugar"/> until the sugar has
+  dissolved, and serve hot.
+</Step>

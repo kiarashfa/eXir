@@ -1,0 +1,35 @@
+{
+  "id": "cocoa",
+  "name": "Cocoa Powder",
+  "kind": "ingredient",
+  "category": "chocolate",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "unsweetened",
+      "label": "Unsweetened, dry",
+      "proseName": "cocoa powder",
+      "abvPercent": 0,
+      "densityGPerMl": 1.03,
+      "densitySource": "estimated",
+      "sugarGPer100": 1.75,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 228,
+        "carbohydrateG": 57.9,
+        "sugarsG": 1.75,
+        "proteinG": 19.6,
+        "fatG": 13.7,
+        "saturatedFatG": 8.07,
+        "fibreG": 37,
+        "sodiumMg": 21
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": true,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169593",
+      "sourceNote": "Cocoa, dry powder, unsweetened. Public domain. The record's own tablespoon portion (0.365 g/ml) is a packing density, not a true one — mostly air between the grains. Blended into a milkshake it disperses through the liquid rather than sitting as loose powder, so the density-classes.json 'dairy-whole' class stands in as a rough approximation of what the dispersed solids displace, marked estimated. Cocoa solids carry a small natural amount of caffeine alongside the more abundant theobromine."
+    }
+  ]
+}

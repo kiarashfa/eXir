@@ -121,7 +121,7 @@ const built = versions.map((v) => {
   const spec = v.spec;
   const batch = computeBatch(spec, v.version, 12);
   const source = { lines: v.lines, steps: v.version.steps, defaultDrinks: v.version.defaultDrinks };
-  const fit = v.glass ? glassFit(v.version, spec.finalVolumeMl, v.glass) : null;
+  const fit = v.glass ? glassFit(v.version, spec, v.glass) : null;
 
   return {
     v,

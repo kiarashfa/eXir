@@ -1,0 +1,35 @@
+{
+  "id": "cola",
+  "name": "Cola",
+  "kind": "ingredient",
+  "category": "mixer",
+  "proprietary": false,
+  "pantryStaple": false,
+  "generalSubstitutes": [],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0381,
+      "densitySource": "measured",
+      "sugarGPer100": 9.94,
+      "nutritionPer100g": {
+        "kcal": 42,
+        "carbohydrateG": 10.36,
+        "sugarsG": 9.94,
+        "proteinG": 0,
+        "fatG": 0.25,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 3
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": true,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174852",
+      "sourceNote": "Beverages, carbonated, cola, regular. Public domain. Bottled colas vary by brand and market, but this is the generic USDA figure rather than a single producer's, which is the right basis for a mixer the recipes name generically. acidPercent left off: USDA reports no titratable acidity figure and no other source was found, though cola's tartness is real and comes mostly from phosphoric acid."
+    }
+  ]
+}

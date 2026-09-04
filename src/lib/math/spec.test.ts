@@ -361,3 +361,122 @@ test('a vegan claim is withheld while any form leaves animal origin undeclared',
   assert.equal(spec.facets.diet.diets.includes('vegan'), false);
   assert.deepEqual(spec.facets.diet.undeclaredAnimalOrigin, ['mystery']);
 });
+
+// ---------------------------------------------------------------------------
+// A brewed drink with something stirred in AFTER the brew.
+//
+// The rule "a brewed drink's final volume is its authored yield" was written
+// for pour-over coffee, where the only two lines are the dose and the water and
+// the yield is genuinely the whole of it. The first milk tea broke it: the milk
+// never went through the brew, so it was outside the yield and outside the
+// final volume, and every per-litre figure was computed against a denominator
+// missing a third of the cup.
+// ---------------------------------------------------------------------------
+
+const leaf = ingredient('black-tea', 'tea', {
+  abvPercent: 0,
+  densityGPerMl: 0.4,
+  densitySource: 'estimated',
+});
+const brewWater = ingredient('water', 'water', { abvPercent: 0, densityGPerMl: 1 });
+const dairy = ingredient('milk', 'dairy', {
+  abvPercent: 0,
+  densityGPerMl: 1.0313,
+  sugarGPer100: 5,
+});
+
+const gramLine = (id: string, ingredientRef: string, amount: number): IngredientLine => ({
+  id,
+  ingredientRef,
+  formRef: 'standard',
+  amount,
+  unit: 'g',
+});
+
+const milkTeaLines: ResolvedLine[] = resolve([
+  [gramLine('dose', 'black-tea', 10), leaf],
+  [line('brew-water', 'water', 200), brewWater],
+  [line('milk', 'milk', 60), dairy],
+]);
+
+const milkTea: DrinkVersion = {
+  id: 'classic',
+  label: 'Classic',
+  defaultDrinks: 1,
+  method: 'steeped',
+  dilutionClass: 'none',
+  bitterness: 'low',
+  batchable: 'none',
+  zeroProof: true,
+  lines: milkTeaLines.map((r) => r.line),
+  steps: [],
+  brew: {
+    method: 'steep',
+    doseRef: 'dose',
+    waterRef: 'brew-water',
+    doseG: 10,
+    waterMl: 200,
+    waterTempC: 100,
+    yieldMl: 180,
+  },
+};
+
+test('a brewed drink counts what is added after the brew in its final volume', () => {
+  const spec = computeDrinkSpec(milkTea, milkTeaLines);
+
+  // The yield, plus the milk that never saw the filter. Not 180.
+  close(spec.finalVolumeMl, 240);
+});
+
+test('a brewed drink with nothing added after the brew is still just its yield', () => {
+  const withoutMilk = milkTeaLines.slice(0, 2);
+  const spec = computeDrinkSpec(
+    { ...milkTea, lines: withoutMilk.map((r) => r.line) },
+    withoutMilk,
+  );
+
+  close(spec.finalVolumeMl, 180);
+  // A measured yield is a measurement, so nothing here is an estimate — even
+  // though the dose's own density is one.
+  assert.equal(spec.finalVolumeEstimated, false);
+});
+
+test('a post-brew line carries its own uncertainty into the final volume', () => {
+  const spec = computeDrinkSpec(milkTea, milkTeaLines);
+
+  // The leaf's density is estimated, so the composition is; once a post-brew
+  // line is part of the volume, the volume inherits that rather than claiming
+  // the certainty of the yield alone.
+  assert.equal(spec.finalVolumeEstimated, true);
+});
+
+test('a drink flagged zeroProof that computes above the bound is caught', () => {
+  const extract = ingredient('vanilla', 'flavouring', {
+    abvPercent: 35,
+    densityGPerMl: 0.88,
+  });
+  const lines: ResolvedLine[] = resolve([
+    [line('milk', 'milk', 250), dairy],
+    [line('vanilla', 'vanilla', 5), extract],
+  ]);
+  const shake: DrinkVersion = {
+    id: 'vanilla',
+    label: 'Vanilla',
+    defaultDrinks: 1,
+    method: 'blended',
+    dilutionClass: 'none',
+    bitterness: 'none',
+    batchable: 'none',
+    zeroProof: true,
+    lines: lines.map((r) => r.line),
+    steps: [],
+  };
+
+  const spec = computeDrinkSpec(shake, lines);
+
+  assert.ok(spec.alcohol.finalAbvPercent >= 0.5, 'fixture must cross the bound');
+  assert.ok(
+    spec.warnings.some((w) => w.includes('Flagged zeroProof')),
+    `expected a zeroProof warning, got: ${spec.warnings.join(' | ')}`,
+  );
+});

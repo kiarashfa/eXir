@@ -1,0 +1,43 @@
+{
+  "id": "mango",
+  "name": "Mango",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Mango juice",
+        "note": "The pressed and often diluted drink sold in cartons; a recipe naming the fruit means the flesh, blended in, not the juice poured from a bottle."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Raw",
+      "proseName": "ripe mango",
+      "abvPercent": 0,
+      "densityGPerMl": 1.05,
+      "densitySource": "estimated",
+      "sugarGPer100": 13.66,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 60,
+        "carbohydrateG": 14.98,
+        "sugarsG": 13.66,
+        "proteinG": 0.82,
+        "fatG": 0.38,
+        "saturatedFatG": 0.092,
+        "fibreG": 1.6,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169910",
+      "sourceNote": "Mangos, raw. Public domain. Weighed as peeled flesh, in grams. No liquid-measure density exists for this record, so the density-classes.json 'juice-sweet' class stands in as the nearest match for blended fruit flesh and the figure is marked estimated."
+    }
+  ]
+}

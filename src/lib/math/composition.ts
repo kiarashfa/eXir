@@ -6,7 +6,7 @@
  * about which lines count, and for how much, exists in exactly one place.
  */
 
-import type { NutritionPer100, ResolvedLine } from './types.ts';
+import type { Form, IngredientLine, NutritionPer100, ResolvedLine } from './types.ts';
 
 /** Why a figure on this drink is a modelled one rather than a stated one. */
 export interface CompositionIssue {
@@ -64,6 +64,36 @@ const KCAL_PER_G = { carbohydrate: 4, protein: 4, fat: 9 } as const;
  */
 export const effectiveAmount = (amount: number, consumedFraction?: number): number =>
   amount * (consumedFraction ?? 1);
+
+/**
+ * The volume one line contributes, and how confident that figure is.
+ *
+ * Split out of `computeComposition` because a second caller needs the same
+ * arithmetic on a SUBSET of the lines: a brewed drink's final volume is its
+ * measured yield plus whatever was added after the brew, and answering that
+ * means asking two lines what they are worth without recomputing the whole
+ * composition. Two copies of this rule would drift, and the one that drifted
+ * would be the one nobody was reading.
+ */
+export function lineVolume(
+  line: IngredientLine,
+  form: Form,
+  amount: number,
+): { volumeMl: number; densityEstimated: boolean; noDensity: boolean } {
+  if (line.unit === 'ml') return { volumeMl: amount, densityEstimated: false, noDensity: false };
+  if (form.densityGPerMl != null && form.densityGPerMl > 0) {
+    return {
+      volumeMl: amount / form.densityGPerMl,
+      densityEstimated: form.densitySource === 'estimated',
+      noDensity: false,
+    };
+  }
+  return { volumeMl: 0, densityEstimated: false, noDensity: true };
+}
+
+/** The volume a resolved line contributes, after any partial-use fraction. */
+export const resolvedLineVolumeMl = ({ line, form }: ResolvedLine): number =>
+  lineVolume(line, form, effectiveAmount(line.amount, line.consumedFraction)).volumeMl;
 
 /**
  * Energy from macros, deliberately not from a stated `kcal` figure.
@@ -164,20 +194,16 @@ export function computeComposition(lines: ResolvedLine[]): Composition {
     }
 
     // --- volume -----------------------------------------------------------
-    let volumeMl = 0;
-    if (line.unit === 'ml') {
-      volumeMl = amount;
-    } else if (form.densityGPerMl != null && form.densityGPerMl > 0) {
-      volumeMl = amount / form.densityGPerMl;
-      if (form.densitySource === 'estimated') {
-        estimated = true;
-        issues.push({
-          kind: 'estimated-density',
-          lineId: line.id,
-          message: 'Volume derived through an estimated density.',
-        });
-      }
-    } else {
+    const { volumeMl, densityEstimated, noDensity } = lineVolume(line, form, amount);
+    if (densityEstimated) {
+      estimated = true;
+      issues.push({
+        kind: 'estimated-density',
+        lineId: line.id,
+        message: 'Volume derived through an estimated density.',
+      });
+    }
+    if (noDensity) {
       // A solid with no density contributes no volume rather than a guessed one.
       issues.push({
         kind: 'mass-without-density',

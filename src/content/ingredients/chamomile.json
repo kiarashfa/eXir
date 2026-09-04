@@ -1,0 +1,19 @@
+{
+  "id": "chamomile",
+  "name": "Chamomile",
+  "kind": "ingredient",
+  "category": "tisane",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Dried flowers",
+      "proseName": "dried chamomile flowers",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "FoodData Central carries only brewed chamomile tea, a finished infusion rather than the dried flower itself, and no record exists for the unbrewed flower. No composition is claimed here rather than importing a figure that describes the wrong thing."
+    }
+  ]
+}

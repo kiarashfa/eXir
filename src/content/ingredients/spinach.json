@@ -1,0 +1,35 @@
+{
+  "id": "spinach",
+  "name": "Spinach",
+  "kind": "ingredient",
+  "category": "vegetable",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Raw",
+      "proseName": "baby spinach",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0,
+      "densitySource": "estimated",
+      "sugarGPer100": 0.42,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 23,
+        "carbohydrateG": 3.63,
+        "sugarsG": 0.42,
+        "proteinG": 2.86,
+        "fatG": 0.39,
+        "saturatedFatG": 0.063,
+        "fibreG": 2.2,
+        "sodiumMg": 79
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "168462",
+      "sourceNote": "Spinach, raw. Public domain. The record's own cup portion (0.127 g/ml) is a packing density, not a true one — the volume of a cup of whole leaves, mostly air. Once blended into a smoothie the leaf disperses into the liquid rather than displacing air, so the density-classes.json 'water-like' class stands in, since raw spinach is well over 90% water, and the figure is marked estimated."
+    }
+  ]
+}

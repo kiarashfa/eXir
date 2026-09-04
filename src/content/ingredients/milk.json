@@ -1,0 +1,69 @@
+{
+  "id": "milk",
+  "name": "Milk",
+  "kind": "ingredient",
+  "category": "dairy",
+  "pantryStaple": true,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Evaporated milk",
+        "note": "Milk with about sixty per cent of its water removed; it is roughly twice as concentrated and will not stand in by volume."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "whole",
+      "label": "Whole milk",
+      "proseName": "whole milk",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0313,
+      "densitySource": "measured",
+      "sugarGPer100": 5.05,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 61,
+        "carbohydrateG": 4.8,
+        "sugarsG": 5.05,
+        "proteinG": 3.15,
+        "fatG": 3.25,
+        "saturatedFatG": 1.865,
+        "fibreG": 0,
+        "sodiumMg": 43
+      },
+      "animalOrigin": "dairy",
+      "allergenTags": ["dairy"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "171265",
+      "sourceNote": "Milk, whole, 3.25% milkfat, with added vitamin D. Public domain. The record's own fluid-ounce portion gives 1.0313 g/ml, adopted as a true density because milk is poured rather than packed."
+    },
+    {
+      "id": "semi-skimmed",
+      "label": "Semi-skimmed milk",
+      "proseName": "semi-skimmed milk",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0313,
+      "densitySource": "measured",
+      "sugarGPer100": 5.06,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 50,
+        "carbohydrateG": 4.8,
+        "sugarsG": 5.06,
+        "proteinG": 3.3,
+        "fatG": 1.98,
+        "saturatedFatG": 1.257,
+        "fibreG": 0,
+        "sodiumMg": 47
+      },
+      "animalOrigin": "dairy",
+      "allergenTags": ["dairy"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "171267",
+      "sourceNote": "Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D. Public domain. Sold as semi-skimmed in Britain and Ireland and as 2% or reduced-fat in North America. The density is the record's own quart portion, a liquid measure, so it is a true density."
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "tonic-water",
+  "name": "Tonic water",
+  "kind": "ingredient",
+  "category": "mixer",
+  "proprietary": false,
+  "pantryStaple": false,
+  "generalSubstitutes": [],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0,
+      "densitySource": "estimated",
+      "sugarGPer100": 5.8,
+      "nutritionPer100g": {
+        "kcal": 19,
+        "carbohydrateG": 5.8,
+        "sugarsG": 5.8,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Open Food Facts",
+      "sourceId": "3124480186850",
+      "sourceNote": "USDA carries no generic tonic water. Figures are Schweppes Indian Tonic (Open Food Facts, ODbL) as a representative bottling; the ingredient list (carbonated water, sugar, citric acid, natural flavourings, quinine, sweeteners) is entirely plant-derived, so animalOrigin is none. Sugar varies considerably by brand and by diet/slimline lines, which this record does not attempt to average - it names one real bottle rather than inventing a category mean. Density has no liquid measurement on file and is taken from the water-like class in density-classes.json, marked estimated. acidPercent left off: no titratable acidity source exists for a quinine-and-citric-acid mixer."
+    }
+  ]
+}

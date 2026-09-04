@@ -363,7 +363,7 @@ const glasswareFit: Check = {
       const glass = v.glass;
       if (!glass) continue;
 
-      const fit = glassFit(v.version, v.spec.finalVolumeMl, glass);
+      const fit = glassFit(v.version, v.spec, glass);
 
       if (fit.unmodelledIce) {
         report.error(

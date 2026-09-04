@@ -1,0 +1,9 @@
+{
+  "id": "milkshake-glass",
+  "name": "Milkshake glass",
+  "capacityMl": 470,
+  "shapeFamily": "tall",
+  "note": "The fluted soda-fountain glass: a narrow base flaring to a wide rim, so the drink can be overfilled above the line and still be carried.",
+  "iceDisplacementMl": { "none": 0 },
+  "iceDisplacementNote": "No ice ever goes in it. A milkshake is already frozen and adding ice would thin it."
+}

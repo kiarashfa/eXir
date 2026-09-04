@@ -1,0 +1,84 @@
+---
+id: index
+label: Classic
+name: Agua de Jamaica
+subtitle: Dried hibiscus steeped and sweetened, served cold over ice.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: low
+batchable: none
+batchNote: >-
+  Made a jug at a time in practice, but authored here as one steep to order.
+  Hibiscus left standing on its calyces after the stated time keeps drawing out
+  tannin and turns the drink harsher rather than stronger.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [juice-agua-fresca]
+  origin: [mexico-central-america]
+  method: [steeped]
+brew:
+  method: steep
+  doseRef: hibiscus
+  waterRef: water
+  waterTempC: 100
+  contactSec: 600
+  yieldMl: 130
+ingredients:
+  - id: hibiscus
+    ingredientRef: hibiscus
+    formRef: standard
+    amount: 4
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The calyces are steeped for their colour and tartness and strained out
+      again. What they leave behind is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 140
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 15
+    unit: g
+steps:
+  - { id: steep, durationSec: 600, type: passive, phase: make }
+  - { id: strain, durationSec: 20, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: steep
+    text: >-
+      Hibiscus is a robust calyx rather than a delicate leaf, so it wants
+      water at a full boil to give up its colour. The <Qty ref="sugar"/> goes
+      in while the water is still hot, which dissolves it completely before
+      the liquid ever meets ice.
+  - kind: pitfall
+    text: >-
+      Straining late lets the calyces keep steeping in their own liquid, and
+      the tartness tips from bright into medicinal. Pull them the moment the
+      steep is done.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the <Qty ref="hibiscus"/>
+  and the <Qty ref="sugar"/> and leave to steep for <Dur step="steep"/>. The
+  liquid darkens to a deep red almost at once.
+</Step>
+
+<Step id="strain">
+  Strain out the calyces and discard them.
+</Step>
+
+<Step id="pour">
+  Pour over cubed ice in the glass and serve at once, while it is still cold
+  from the ice rather than from having been chilled beforehand.
+</Step>

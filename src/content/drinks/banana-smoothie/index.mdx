@@ -1,0 +1,77 @@
+---
+id: classic
+label: Classic
+name: Banana Smoothie
+subtitle: Frozen banana blended with milk and honey until smooth and thick enough to hold a straw upright.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: smoothie-glass
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: true
+family: blended-frozen
+familyRole: canonical
+tags:
+  category: [smoothie-shake]
+  origin: [united-states]
+  method: [blended]
+difficulty: Easy
+ingredients:
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 90
+    unit: ml
+  - id: banana
+    ingredientRef: banana
+    formRef: standard
+    amount: 150
+    unit: g
+  - id: honey
+    ingredientRef: honey
+    formRef: standard
+    amount: 15
+    unit: ml
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: blend, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      The banana is peeled, sliced and frozen solid before it goes anywhere
+      near the jug. It is the drink's whole frozen solid slot, doing the work
+      ice does in a frozen cocktail, and a fresh banana blended with ice cubes
+      instead comes back thinner and waterier for it.
+  - kind: pitfall
+    text: >-
+      Frozen banana on its own is thick enough to stall a blender that never
+      built the vortex the milk is there for. Adding the milk first and the
+      fruit after gives the blade something to move through from the start.
+makeAhead:
+  aheadInstructions: >-
+    The banana has to be frozen solid before it reaches the jug, which means
+    peeling and slicing it well ahead of the rest of the recipe; everything
+    else here happens at the last minute.
+  freezable: false
+---
+
+<Step id="build">
+  Add the <Qty ref="milk"/> to the blender jug first, then the frozen
+  <Qty ref="banana"/> and the <Qty ref="honey"/>.
+</Step>
+
+<Step id="blend">
+  Blend for <Dur step="blend"/>, until the banana has broken down completely
+  and the mixture is uniform, thick and pourable rather than churning as
+  loose chunks.
+</Step>
+
+<Step id="pour">
+  Pour into a chilled smoothie glass.
+</Step>
+---

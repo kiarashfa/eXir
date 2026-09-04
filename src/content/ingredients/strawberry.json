@@ -1,0 +1,35 @@
+{
+  "id": "strawberry",
+  "name": "Strawberry",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Raw",
+      "proseName": "fresh strawberries",
+      "abvPercent": 0,
+      "densityGPerMl": 1.05,
+      "densitySource": "estimated",
+      "sugarGPer100": 4.89,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 32,
+        "carbohydrateG": 7.68,
+        "sugarsG": 4.89,
+        "proteinG": 0.67,
+        "fatG": 0.3,
+        "saturatedFatG": 0.015,
+        "fibreG": 2,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "167762",
+      "sourceNote": "Strawberries, raw. Public domain. No liquid-measure density exists for this record, so the density-classes.json 'juice-sweet' class stands in as the nearest match for blended fruit flesh and the figure is marked estimated."
+    }
+  ]
+}

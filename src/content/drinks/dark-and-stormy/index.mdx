@@ -1,0 +1,83 @@
+---
+id: classic
+label: Classic
+name: Dark and Stormy
+subtitle: Dark rum floated over ginger beer, unstirred, over ice.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The ginger beer and ice can be set up ahead, but the rum is floated at
+  service so the cloud it makes is still forming when the drink is served.
+zeroProof: false
+family: highball
+tags:
+  category: [cocktail]
+  origin: [caribbean]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+difficulty: Easy
+ingredients:
+  - id: ginger-beer
+    ingredientRef: ginger-beer
+    formRef: standard
+    amount: 120
+    unit: ml
+  - id: rum
+    ingredientRef: dark-rum
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: lime-wedge
+    ingredientRef: lime
+    formRef: standard
+    amount: 11
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Set on the rim rather than squeezed; the drink's citrus note is a smell
+      rather than a taste here.
+steps:
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: float, durationSec: 20, type: active, phase: make }
+  - { id: garnish, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: float
+    text: >-
+      The rum goes in last, poured slowly over the back of a spoon so it
+      sits on the ginger beer rather than mixing into it, and is left
+      unstirred. The dark cloud sinking through the pale mixer is the drink's
+      whole visual point, and stirring it away loses that for no gain in
+      flavour.
+  - kind: pitfall
+    text: >-
+      The name is a registered trademark of Gosling Brothers, tied to their
+      own Black Seal rum; a bar serving the same build under this name with
+      a different dark rum is using a protected name for a drink the
+      trademark holder does not recognise as the genuine article.
+---
+
+<Step id="fill">
+  Fill a Collins glass with ice.
+</Step>
+
+<Step id="pour">
+  Pour in the <Qty ref="ginger-beer"/>.
+</Step>
+
+<Step id="float">
+  Pour the <Qty ref="rum"/> slowly over the back of a bar spoon so it sits on
+  top rather than mixing in, and leave it unstirred.
+</Step>
+
+<Step id="garnish">
+  Set a lime wedge on the rim.
+</Step>

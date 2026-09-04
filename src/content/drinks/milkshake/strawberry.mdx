@@ -1,0 +1,73 @@
+---
+id: strawberry
+label: Strawberry
+name: Milkshake
+subtitle: Vanilla ice cream blended with milk and fresh strawberries, sweetened by the ice cream alone.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: milkshake-glass
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: true
+family: blended-frozen
+familyRole: canonical
+tags:
+  category: [smoothie-shake]
+  origin: [united-states]
+  method: [blended]
+difficulty: Easy
+ingredients:
+  - id: ice-cream
+    ingredientRef: ice-cream
+    formRef: vanilla
+    amount: 200
+    unit: g
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 90
+    unit: ml
+  - id: strawberry
+    ingredientRef: strawberry
+    formRef: standard
+    amount: 100
+    unit: g
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: blend, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      Fresh strawberries carry far less sugar than the ice cream they are
+      going into, but blending the two together lets the ice cream's own
+      sweetness carry the fruit rather than adding a separate syrup that
+      would dilute its colour.
+  - kind: pitfall
+    text: >-
+      Whole strawberries thrown in with the ice cream can leave visible
+      flecks of skin at this blend time; hulling and roughly chopping them
+      first cuts down what the blade has to fully break apart.
+makeAhead:
+  freezable: false
+---
+
+<Step id="build">
+  Hull and roughly chop the <Qty ref="strawberry"/> and blend briefly with
+  the <Qty ref="milk"/>, then add the <Qty ref="ice-cream"/> straight from
+  the freezer.
+</Step>
+
+<Step id="blend">
+  Blend for <Dur step="blend"/>, until the ice cream and berries have broken
+  down into an even, thick shake with no unmelted lumps or fruit skin left.
+</Step>
+
+<Step id="pour">
+  Pour into a chilled milkshake glass.
+</Step>
+---

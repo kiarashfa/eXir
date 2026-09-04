@@ -1,0 +1,86 @@
+---
+id: classic
+label: Classic
+name: Cuba Libre
+subtitle: White rum and cola over ice, sharpened with fresh lime.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: full
+zeroProof: false
+family: highball
+tags:
+  category: [cocktail]
+  origin: [caribbean]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Rum and Coke
+      note: The same two base ingredients with no lime specified; the lime and its garnish are what a Cuba Libre adds.
+ingredients:
+  - id: rum
+    ingredientRef: white-rum
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: lime-juice
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 10
+    unit: ml
+  - id: cola
+    ingredientRef: cola
+    formRef: standard
+    amount: 115
+    unit: ml
+  - id: lime-wedge
+    ingredientRef: lime
+    formRef: standard
+    amount: 11
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The spent wedge is dropped in for aroma after its juice has already
+      been squeezed into the glass as the line above.
+steps:
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: squeeze, durationSec: 15, type: active, phase: make }
+  - { id: combine, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      The lime goes in before the cola so its oil and juice meet the rum
+      directly rather than getting buried under the last, most delicate part
+      of the pour.
+  - kind: pitfall
+    text: >-
+      Cola poured hard off the bottle knocks its own carbonation flat before
+      it settles, which is the one highball where a heavy hand actually
+      shows up as a duller drink rather than just a wetter one.
+---
+
+<Step id="fill">
+  Fill a Collins glass with ice.
+</Step>
+
+<Step id="squeeze">
+  Squeeze a lime wedge over the ice for the <Qty ref="lime-juice"/> and drop
+  the spent wedge in.
+</Step>
+
+<Step id="combine">
+  Pour in the <Qty ref="rum"/>.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="cola"/> and lift once with a bar spoon rather than
+  stirring, so the bubbles survive the trip to the table.
+</Step>

@@ -1,0 +1,79 @@
+---
+id: classic
+label: Classic
+name: Green Smoothie
+subtitle: Spinach and frozen banana blended with water and honey until the leaf disappears into the colour.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: smoothie-glass
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: true
+family: blended-frozen
+familyRole: riff
+tags:
+  category: [smoothie-shake]
+  origin: [united-states]
+  method: [blended]
+difficulty: Easy
+ingredients:
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 90
+    unit: ml
+  - id: spinach
+    ingredientRef: spinach
+    formRef: standard
+    amount: 40
+    unit: g
+  - id: banana
+    ingredientRef: banana
+    formRef: standard
+    amount: 120
+    unit: g
+  - id: honey
+    ingredientRef: honey
+    formRef: standard
+    amount: 15
+    unit: ml
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: blend, durationSec: 40, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      The spinach goes in with the water rather than on top of the fruit,
+      so the blade shreds the leaf before it ever meets the frozen banana;
+      dropped in last, it tends to catch on the ice instead of breaking down.
+  - kind: pitfall
+    text: >-
+      The blend runs longer than a fruit-only smoothie because raw spinach
+      leaf is fibrous rather than soft; stopping early leaves visible green
+      flecks rather than the even colour the drink is meant to be.
+makeAhead:
+  aheadInstructions: >-
+    The banana has to be frozen solid before it reaches the jug, which means
+    peeling and slicing it well ahead of the rest of the recipe.
+  freezable: false
+---
+
+<Step id="build">
+  Add the <Qty ref="water"/> and the <Qty ref="spinach"/> to the blender jug,
+  then the frozen <Qty ref="banana"/> and the <Qty ref="honey"/>.
+</Step>
+
+<Step id="blend">
+  Blend for <Dur step="blend"/>, until no fleck of leaf remains and the
+  colour is a single even green.
+</Step>
+
+<Step id="pour">
+  Pour into a chilled smoothie glass.
+</Step>
+---

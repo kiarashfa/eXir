@@ -1,0 +1,86 @@
+---
+id: classic
+label: Classic
+name: Americano
+subtitle: Campari and sweet vermouth in equal measure, topped with soda.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: rocks
+iceStyle: cubed
+servedOverIce: true
+bitterness: high
+batchable: full
+zeroProof: false
+family: highball
+tags:
+  category: [cocktail]
+  origin: [italy]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Americano (coffee)
+      note: An espresso lengthened with hot water; this page is the Milanese bitter-and-vermouth highball and shares nothing with it but the name.
+ingredients:
+  - id: campari
+    ingredientRef: campari
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: vermouth
+    ingredientRef: sweet-vermouth
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 40
+    unit: ml
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 140
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A half-wheel is dropped in for aroma and colour rather than expressed;
+      the rest of the fruit is bought but not used.
+steps:
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: combine, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: combine
+    text: >-
+      Two bitter aperitifs stand in for the spirit here, in equal measure
+      rather than the family's usual one part — the drink this family departs
+      from rather than the one it typifies.
+  - kind: pitfall
+    text: >-
+      Stirred hard, the soda goes flat before it reaches the glass. One
+      gentle lift with a bar spoon is enough to marry the two aperitifs; the
+      bubbles do the rest of the work on their own.
+---
+
+<Step id="fill">
+  Fill a rocks glass with ice.
+</Step>
+
+<Step id="combine">
+  Pour the <Qty ref="campari"/> and the <Qty ref="vermouth"/> over the ice.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/> and lift once with a bar spoon rather than
+  stirring — the carbonation is doing work the stir would only knock out.
+</Step>
+
+<Step id="garnish">
+  Drop in a half-wheel of orange.
+</Step>

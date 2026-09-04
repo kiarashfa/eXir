@@ -1,0 +1,31 @@
+{
+  "id": "cardamom",
+  "name": "Cardamom",
+  "kind": "ingredient",
+  "category": "spice",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Whole pods, crushed",
+      "proseName": "crushed cardamom pods",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 311,
+        "carbohydrateG": 68.47,
+        "proteinG": 10.76,
+        "fatG": 6.7,
+        "saturatedFatG": 0.68,
+        "fibreG": 28,
+        "sodiumMg": 18
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170919",
+      "sourceNote": "Spices, cardamom (ground seed). Public domain. Used here for whole pods that are crushed and boiled with the tea, then strained out; the figures describe the seed matter inside the pod. USDA reports no sugars for this record, so sugarGPer100 is left off rather than estimated. No density: a crushed pod is packed, not poured."
+    }
+  ]
+}

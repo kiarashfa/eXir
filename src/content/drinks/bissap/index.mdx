@@ -1,0 +1,100 @@
+---
+id: index
+label: Classic
+name: Bissap
+subtitle: Hibiscus steeped sweet and floral, the West African relative of Jamaica water.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: low
+batchable: none
+batchNote: >-
+  Made a jug at a time in practice, but authored here as one steep to order.
+  Hibiscus left standing on its calyces after the stated time keeps drawing out
+  tannin and turns the drink harsher rather than stronger.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [juice-agua-fresca]
+  origin: [west-africa]
+  method: [steeped]
+brew:
+  method: steep
+  doseRef: hibiscus
+  waterRef: water
+  waterTempC: 100
+  contactSec: 600
+  yieldMl: 130
+ingredients:
+  - id: hibiscus
+    ingredientRef: hibiscus
+    formRef: standard
+    amount: 6
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The calyces are steeped for their colour and tartness and strained out
+      again. What they leave behind is dissolved rather than weighable.
+  - id: mint
+    ingredientRef: mint
+    formRef: fresh
+    amount: 3
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Steeped alongside the hibiscus for its aromatics and strained out with
+      the calyces; it is not eaten.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 140
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 25
+    unit: g
+  - id: flower-water
+    ingredientRef: orange-flower-water
+    amount: 2
+    unit: ml
+steps:
+  - { id: steep, durationSec: 600, type: passive, phase: make }
+  - { id: strain, durationSec: 20, type: active, phase: make }
+  - { id: sweeten, durationSec: 15, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: steep
+    text: >-
+      The same flower as Agua de Jamaica goes in at a higher dose and with far
+      more sugar, which is the difference between the two: a bright, tart
+      Mexican glass against a syrupy, floral West African one.
+  - kind: pitfall
+    text: >-
+      Straining late lets the calyces keep steeping in their own liquid, and
+      the tartness tips from bright into medicinal. Pull them the moment the
+      steep is done.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the <Qty ref="hibiscus"/>
+  and the <Qty ref="mint"/>, and leave to steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="strain">
+  Strain out the calyces and mint and discard them.
+</Step>
+
+<Step id="sweeten">
+  Stir in the <Qty ref="sugar"/> while the liquid is still hot enough to
+  dissolve it, then add the <Qty ref="flower-water"/>.
+</Step>
+
+<Step id="pour">
+  Pour over cubed ice in the glass and serve at once.
+</Step>

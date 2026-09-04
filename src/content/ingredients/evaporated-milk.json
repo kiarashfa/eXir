@@ -1,0 +1,41 @@
+{
+  "id": "evaporated-milk",
+  "name": "Evaporated milk",
+  "kind": "ingredient",
+  "category": "dairy",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Condensed milk",
+        "note": "Also concentrated by evaporation, but sweetened with added sugar; evaporated milk is unsweetened."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Whole, canned",
+      "proseName": "evaporated milk",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0651,
+      "densitySource": "measured",
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 134,
+        "carbohydrateG": 10.04,
+        "proteinG": 6.81,
+        "fatG": 7.56,
+        "saturatedFatG": 4.591,
+        "fibreG": 0,
+        "sodiumMg": 106
+      },
+      "animalOrigin": "dairy",
+      "allergenTags": ["dairy"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "172194",
+      "sourceNote": "Milk, canned, evaporated, with added vitamin A. Public domain. The record's own fluid-ounce portion gives 1.0651 g/ml, adopted as a true density because it is poured. USDA reports no sugars for this record, so sugarGPer100 is left off rather than estimated — the carbohydrate figure is almost entirely the concentrated lactose."
+    }
+  ]
+}

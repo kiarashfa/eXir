@@ -1,0 +1,76 @@
+---
+id: index
+label: Unsweetened
+name: Iced Tea
+subtitle: Black tea steeped hot, then poured straight over ice with no sugar.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: medium
+batchable: none
+batchNote: >-
+  Steeped a glass at a time. A jug held over ice for hours keeps drawing
+  tannin out of the spent leaf if it is not strained promptly.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [tea]
+  origin: [united-states]
+  method: [steeped]
+brew:
+  method: steep
+  doseRef: tea
+  waterRef: water
+  waterTempC: 100
+  contactSec: 300
+  yieldMl: 130
+ingredients:
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 3
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The leaf is steeped for its strength and strained out again; what it
+      leaves behind is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 140
+    unit: ml
+steps:
+  - { id: steep, durationSec: 300, type: passive, phase: make }
+  - { id: strain, durationSec: 20, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: pour
+    text: >-
+      The tea is poured over the ice while still hot from the steep rather
+      than cooled first, which chills it fast enough that it never sits at
+      the lukewarm temperature where black tea turns cloudy.
+  - kind: pitfall
+    text: >-
+      Leaving the leaf in past the stated steep and only straining once the
+      glass is poured makes the last of the pour noticeably more bitter than
+      the first.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the <Qty ref="tea"/> and
+  leave to steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="strain">
+  Strain out the leaf and discard it.
+</Step>
+
+<Step id="pour">
+  Pour over cubed ice in the glass at once, while the tea is still hot.
+</Step>

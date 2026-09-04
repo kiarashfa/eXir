@@ -1,0 +1,80 @@
+---
+id: shaken
+label: Shaken
+name: Pina Colada
+subtitle: The same three ingredients shaken hard and strained up, rather than blended with ice.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken-long
+glasswareRef: hurricane
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: full
+zeroProof: false
+family: blended-frozen
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [caribbean]
+  method: [shaken]
+difficulty: Easy
+ingredients:
+  - id: rum
+    ingredientRef: white-rum
+    formRef: standard
+    amount: 60
+    unit: ml
+  - id: pineapple
+    ingredientRef: pineapple-juice
+    formRef: fresh
+    amount: 90
+    unit: ml
+  - id: cream
+    ingredientRef: coconut-cream
+    formRef: canned-sweetened
+    amount: 60
+    unit: ml
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: shake, durationSec: 14, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: shake
+    text: >-
+      Cream of coconut behaves like the cream or egg white this dilution
+      class is named for: it needs to be worked into the shake rather than
+      merely chilled by it, so the shake runs a beat longer than a clear
+      spirit-and-citrus drink to emulsify the fat through the liquid.
+  - kind: pitfall
+    text: >-
+      This is a different drink from the blended form, not a shortcut to it:
+      the ice here melts at the usual shaken rate rather than entering the
+      glass as a mass, so the two never converge no matter how hard or long
+      the shake runs.
+makeAhead:
+  aheadInstructions: >-
+    The whole drink batches, and the site adds the water the shake would
+    have contributed. Give the batch a stir before pouring, since the cream
+    of coconut settles.
+  batchKeepDays: 2
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="build">
+  Combine the <Qty ref="rum"/>, the <Qty ref="pineapple"/> and the
+  <Qty ref="cream"/> in a shaker and fill it with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/> to fully emulsify the cream of coconut
+  through the juice and rum.
+</Step>
+
+<Step id="strain">
+  Double strain into a chilled hurricane glass, catching the ice shards the
+  shake has broken off.
+</Step>
+---

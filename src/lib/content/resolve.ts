@@ -173,8 +173,9 @@ function resolveBrew(
   const waterMl = read(authored.waterRef, 'ml', 'water');
   if (doseG === null || waterMl === null) return null;
 
-  const { doseRef: _dose, waterRef: _water, ...rest } = authored;
-  return { ...rest, doseG, waterMl };
+  // The refs stay on the resolved block: the engine needs them to tell a brew
+  // input apart from a line added to the cup afterwards.
+  return { ...authored, doseG, waterMl };
 }
 
 /** Frontmatter to the engine's own DrinkVersion, with the flattened result. */

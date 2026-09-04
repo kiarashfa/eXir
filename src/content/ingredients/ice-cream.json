@@ -1,0 +1,36 @@
+{
+  "id": "ice-cream",
+  "name": "Ice Cream",
+  "kind": "ingredient",
+  "category": "frozen",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "vanilla",
+      "label": "Vanilla",
+      "proseName": "vanilla ice cream",
+      "abvPercent": 0,
+      "densityGPerMl": 1.03,
+      "densitySource": "estimated",
+      "sugarGPer100": 21.22,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 207,
+        "carbohydrateG": 23.6,
+        "sugarsG": 21.22,
+        "proteinG": 3.5,
+        "fatG": 11,
+        "saturatedFatG": 6.79,
+        "fibreG": 0.7,
+        "sodiumMg": 80
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "Always dairy. Some vanilla ice cream is churned from an egg-yolk custard base (the French style) and some is egg-free (the Philadelphia style); which one a given tub is depends on the maker.",
+      "allergenTags": ["dairy"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "167575",
+      "sourceNote": "Ice creams, vanilla. Public domain. No measured liquid density exists for this record, so the density-classes.json 'dairy-whole' class stands in and the figure is marked estimated — this is a real simplification, since commercial ice cream is churned with 30 to 50% air by volume that this figure cannot see, so it understates the space a weighed scoop actually occupies before it is blended smooth."
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+---
+id: index
+label: Classic
+name: Ginger Tea
+subtitle: Fresh root simmered rather than steeped, sweetened with honey.
+defaultDrinks: 1
+method: boiled
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Simmered to order. Reheating a made batch drives off the aromatics that
+  carry the heat, leaving a flatter cup behind.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [hot-drink]
+  origin: [international]
+  method: [boiled]
+brew:
+  method: immersion
+  doseRef: ginger
+  waterRef: water
+  waterTempC: 100
+  contactSec: 600
+  yieldMl: 300
+ingredients:
+  - id: ginger
+    ingredientRef: ginger
+    formRef: standard
+    amount: 25
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The root is sliced and simmered for its heat and aroma, then strained
+      out. What it leaves behind is aromatic rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 350
+    unit: ml
+  - id: honey
+    ingredientRef: honey
+    amount: 15
+    unit: g
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 10
+    unit: ml
+steps:
+  - { id: simmer, durationSec: 600, type: passive, phase: make }
+  - { id: strain, durationSec: 20, type: active, phase: make }
+  - { id: finish, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: simmer
+    text: >-
+      Ginger's heat sits in oils that need real time in contact with boiling
+      water to come out, which is why this is simmered rather than steeped
+      off the heat the way a leaf would be — the family's boiled branch, not
+      its steeped one, even without milk in it.
+  - kind: pitfall
+    text: >-
+      Stirring the <Qty ref="honey"/> in while the liquid is still at a full
+      boil scorches its aroma into something flatter and darker than honey
+      should taste of.
+---
+
+<Step id="simmer">
+  Add the sliced <Qty ref="ginger"/> to the <Qty ref="water"/> in a small pan,
+  bring to a boil, then lower the heat and simmer for <Dur step="simmer"/>.
+</Step>
+
+<Step id="strain">
+  Strain into a mug and discard the spent root.
+</Step>
+
+<Step id="finish">
+  Let the liquid cool for a moment off the heat, then stir in the
+  <Qty ref="honey"/> and the <Qty ref="lemon"/>.
+</Step>

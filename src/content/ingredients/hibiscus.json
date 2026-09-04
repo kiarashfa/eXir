@@ -1,0 +1,27 @@
+{
+  "id": "hibiscus",
+  "name": "Hibiscus",
+  "kind": "ingredient",
+  "category": "tisane",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Roselle" },
+      { "name": "Jamaica", "region": "Mexico" },
+      { "name": "Sorrel", "region": "Caribbean" },
+      { "name": "Bissap", "region": "West Africa" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Dried calyces",
+      "proseName": "dried hibiscus calyces",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "FoodData Central carries only brewed hibiscus tea, a finished infusion rather than the dried calyx itself, and no record exists for the unbrewed flower. No composition is claimed here rather than importing a figure that describes the wrong thing — the same gap as coffee beans and loose tea leaf on this site."
+    }
+  ]
+}

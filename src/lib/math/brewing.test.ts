@@ -10,6 +10,8 @@ const close = (a: number, b: number, tol = 1e-3) =>
 
 const pourOver: Brew = {
   method: 'pour-over',
+  doseRef: 'dose',
+  waterRef: 'water',
   doseG: 22,
   waterMl: 360,
   waterTempC: 94,
@@ -112,6 +114,8 @@ test('the same rescale works driven from the cup instead of the scale', () => {
 test('multiple infusions total their contact time', () => {
   const gongfu = computeBrew({
     method: 'gongfu',
+    doseRef: 'dose',
+    waterRef: 'water',
     doseG: 5,
     waterMl: 100,
     waterTempC: 95,

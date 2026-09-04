@@ -1,0 +1,69 @@
+---
+id: index
+label: Classic
+name: Chamomile Tisane
+subtitle: Dried flowers steeped plain, drunk without milk or sugar.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: teacup
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Steeped one cup at a time. Chamomile left on its flowers past the stated
+  time turns from honeyed to hay-like.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [hot-drink]
+  origin: [france]
+  method: [steeped]
+brew:
+  method: steep
+  doseRef: chamomile
+  waterRef: water
+  waterTempC: 100
+  contactSec: 300
+  yieldMl: 190
+ingredients:
+  - id: chamomile
+    ingredientRef: chamomile
+    formRef: standard
+    amount: 2
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The flowers are steeped for their aroma and strained out again; what
+      they leave behind is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 200
+    unit: ml
+steps:
+  - { id: steep, durationSec: 300, type: passive, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: steep
+    text: >-
+      Chamomile is a flower rather than a leaf, but it is not delicate the way
+      a green tea is: it still wants a full boil to release its apple-like
+      aroma, and it takes it without turning harsh the way a black leaf would.
+  - kind: pitfall
+    text: >-
+      A flower left on longer than the stated steep stops smelling of apple
+      and starts tasting of straw, and no amount of honey fixes it afterwards.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the <Qty ref="chamomile"/>
+  and leave to steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="strain">
+  Strain out the flowers and serve.
+</Step>

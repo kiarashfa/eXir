@@ -291,6 +291,18 @@ export interface Brew {
    */
   doseG: number;
   waterMl: number;
+  /**
+   * The lines the two figures above were read off, kept rather than discarded.
+   *
+   * A brewed drink's final volume is its measured yield PLUS anything added
+   * after the brew — the milk in a Hong Kong milk tea, the evaporated milk in a
+   * karak chai — and telling those lines apart from the dose and the brew water
+   * is the only way to know which is which. Without them the engine published a
+   * 100 ml karak chai that is 160 ml in the cup, and a sugar figure computed
+   * against the wrong denominator.
+   */
+  doseRef: string;
+  waterRef: string;
   waterTempC: number;
   grind?: string;
   contactSec?: number;

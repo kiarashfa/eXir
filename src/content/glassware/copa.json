@@ -1,0 +1,9 @@
+{
+  "id": "copa",
+  "name": "Copa de balón",
+  "capacityMl": 650,
+  "shapeFamily": "stemmed",
+  "note": "The large stemmed balloon a Spanish gin and tonic is built in. The size is the technique: it takes a full load of ice and a long pour together, which is what lets the drink stay both strong and cold, and the wide bowl holds the botanicals over the surface where a narrow glass would let them go.",
+  "iceDisplacementMl": { "cubed": 370, "block": 350, "crushed": 460, "none": 0 },
+  "iceDisplacementNote": "Solid ice only, filled as a highball is — a copa is packed, not garnished with a few cubes. The figures are scaled from the same ratios as the highball and Collins on this site rather than measured for this shape: cubed near 57% of capacity, a single block about 95% of that, crushed about a quarter more than cubed."
+}

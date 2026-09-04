@@ -1,0 +1,35 @@
+{
+  "id": "vanilla",
+  "name": "Vanilla Extract",
+  "kind": "ingredient",
+  "category": "spice",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Extract",
+      "proseName": "vanilla extract",
+      "abvPercent": 35,
+      "densityGPerMl": 0.8521,
+      "densitySource": "estimated",
+      "sugarGPer100": 12.65,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 288,
+        "carbohydrateG": 12.65,
+        "sugarsG": 12.65,
+        "proteinG": 0.06,
+        "fatG": 0.06,
+        "saturatedFatG": 0.01,
+        "fibreG": 0,
+        "sodiumMg": 9
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "173471",
+      "sourceNote": "Vanilla extract. Public domain. The strength is set to 35% ABV, the US standard-of-identity minimum for single-fold vanilla extract, rather than the record's own derived 37.2%. The density is the record's own teaspoon portion, adopted because extract is poured, but marked estimated since a teaspoon can measure either a liquid or a packed solid."
+    }
+  ]
+}

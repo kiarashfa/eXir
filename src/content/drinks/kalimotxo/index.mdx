@@ -1,0 +1,61 @@
+---
+id: classic
+label: Classic
+name: Kalimotxo
+subtitle: Red wine and cola in equal parts, over ice.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: full
+zeroProof: false
+family: highball
+tags:
+  category: [cocktail]
+  origin: [iberia]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+difficulty: Easy
+names:
+  alsoKnownAs:
+    - name: Calimocho
+ingredients:
+  - id: wine
+    ingredientRef: red-wine
+    formRef: standard
+    amount: 85
+    unit: ml
+  - id: cola
+    ingredientRef: cola
+    formRef: standard
+    amount: 85
+    unit: ml
+steps:
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: combine, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      Equal parts is the whole recipe, and departs furthest of any highball
+      here from the family's usual one-to-three: a mixer this sweet and
+      acidic needs a full match of wine rather than a smaller pour of it to
+      stay balanced.
+  - kind: pitfall
+    text: >-
+      A wine chosen for its own merits is wasted here — the mixture was
+      devised to rescue wine that had already gone flat or oxidised, and a
+      cheap, straightforward red serves the drink at least as well as a
+      good one.
+---
+
+<Step id="fill">
+  Fill a Collins glass with ice.
+</Step>
+
+<Step id="combine">
+  Pour in the <Qty ref="wine"/> and the <Qty ref="cola"/> together and lift
+  once with a bar spoon.
+</Step>

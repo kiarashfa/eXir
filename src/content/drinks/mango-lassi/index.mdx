@@ -1,0 +1,77 @@
+---
+id: classic
+label: Classic
+name: Mango Lassi
+subtitle: Yoghurt and mango blended with ice and sugar to a thick, cold, pourable drink.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: lassi-glass
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: true
+family: blended-frozen
+familyRole: canonical
+tags:
+  category: [smoothie-shake]
+  origin: [south-asia]
+  method: [blended]
+difficulty: Easy
+ingredients:
+  - id: yoghurt
+    ingredientRef: yoghurt
+    formRef: standard
+    amount: 160
+    unit: g
+  - id: mango
+    ingredientRef: mango
+    formRef: standard
+    amount: 130
+    unit: g
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 15
+    unit: g
+  - id: ice
+    ingredientRef: water
+    formRef: standard
+    amount: 40
+    unit: g
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: blend, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: blend
+    text: >-
+      The ice is there for chill and body rather than to stretch the drink,
+      which is why it is a small fraction of the jug next to the yoghurt and
+      fruit; too much and a lassi thins into a milkshake with none of its own
+      character left.
+  - kind: pitfall
+    text: >-
+      Yoghurt straight from the fridge is thick enough to stall a blender
+      before the mango has broken down; the mango's own water content is
+      what gets the blade moving, so it never goes in after the ice.
+makeAhead:
+  freezable: false
+---
+
+<Step id="build">
+  Combine the <Qty ref="yoghurt"/>, the peeled <Qty ref="mango"/> and the
+  <Qty ref="sugar"/> in a blender jug, then add the <Qty ref="ice"/>.
+</Step>
+
+<Step id="blend">
+  Blend for <Dur step="blend"/>, until the mango is fully broken down and the
+  ice is worked through into an even, pourable thickness.
+</Step>
+
+<Step id="pour">
+  Pour into a chilled lassi glass.
+</Step>
+---

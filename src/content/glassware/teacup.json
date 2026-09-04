@@ -1,0 +1,8 @@
+{
+  "id": "teacup",
+  "name": "Teacup",
+  "capacityMl": 200,
+  "shapeFamily": "handled",
+  "note": "Wide and shallow on a saucer, which cools a brew faster than a mug of the same volume. That is a feature where the tea was made at boiling point.",
+  "iceDisplacementMl": { "none": 0 }
+}

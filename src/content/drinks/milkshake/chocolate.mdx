@@ -1,0 +1,72 @@
+---
+id: chocolate
+label: Chocolate
+name: Milkshake
+subtitle: Vanilla ice cream blended with milk and cocoa powder, sweetened by the ice cream alone.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: milkshake-glass
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: true
+family: blended-frozen
+familyRole: canonical
+tags:
+  category: [smoothie-shake]
+  origin: [united-states]
+  method: [blended]
+difficulty: Easy
+ingredients:
+  - id: ice-cream
+    ingredientRef: ice-cream
+    formRef: vanilla
+    amount: 200
+    unit: g
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 90
+    unit: ml
+  - id: cocoa
+    ingredientRef: cocoa
+    formRef: unsweetened
+    amount: 12
+    unit: g
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: blend, durationSec: 25, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      Unsweetened cocoa powder is used rather than a sweetened drinking
+      chocolate, whose own sugar could not be adjusted separately from the
+      chocolate flavour. The ice cream carries enough sugar on its own to
+      cover a small amount of cocoa without turning bitter.
+  - kind: pitfall
+    text: >-
+      Cocoa powder dropped straight onto ice cream tends to clump rather
+      than disperse; blending it with the milk before the ice cream goes in
+      keeps it from sitting as a dry pocket at the base of the jug.
+makeAhead:
+  freezable: false
+---
+
+<Step id="build">
+  Blend the <Qty ref="milk"/> and the <Qty ref="cocoa"/> briefly to dissolve
+  the powder, then add the <Qty ref="ice-cream"/> straight from the freezer.
+</Step>
+
+<Step id="blend">
+  Blend for <Dur step="blend"/>, until the ice cream has broken down into an
+  even, thick shake with no unmelted lumps or dry cocoa left.
+</Step>
+
+<Step id="pour">
+  Pour into a chilled milkshake glass.
+</Step>
+---

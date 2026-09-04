@@ -1,0 +1,72 @@
+---
+id: virgin
+label: Virgin
+name: Mojito
+subtitle: Lime and mint, muddled and built over ice, lengthened with soda in place of the rum.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The syrup and lime can be pre-batched, but the mint has to be muddled to
+  order — bruised ahead of time it turns bitter and dull before the drink is
+  poured.
+zeroProof: true
+family: highball
+tags:
+  category: [zero-proof]
+  origin: [caribbean]
+  method: [muddled]
+  occasion: [aperitivo]
+difficulty: Easy
+ingredients:
+  - id: mint
+    ingredientRef: mint
+    formRef: fresh
+    amount: 5
+    unit: g
+  - id: lime-juice
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 22
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 20
+    unit: ml
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 125
+    unit: ml
+steps:
+  - { id: muddle, durationSec: 20, type: active, phase: make }
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      Soda water takes the rum's whole volume rather than being added as an
+      afterthought, so the drink stays the same length and the same
+      proportion of mint and lime to liquid — a smaller Mojito with the rum
+      left out would just taste more diluted for its size.
+---
+
+<Step id="muddle">
+  Muddle the <Qty ref="mint"/> gently with the <Qty ref="lime-juice"/> and
+  the <Qty ref="syrup"/> in the base of a Collins glass.
+</Step>
+
+<Step id="fill">
+  Fill the glass with ice.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/> and lift once with a bar spoon to bring the
+  mint and lime up through the ice.
+</Step>

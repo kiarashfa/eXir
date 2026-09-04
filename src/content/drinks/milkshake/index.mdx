@@ -1,0 +1,81 @@
+---
+id: vanilla
+label: Vanilla
+name: Milkshake
+subtitle: Vanilla ice cream blended with milk and a little vanilla extract until it pours through a straw.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: milkshake-glass
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: true
+family: blended-frozen
+familyRole: canonical
+tags:
+  category: [smoothie-shake]
+  origin: [united-states]
+  method: [blended]
+difficulty: Easy
+ingredients:
+  - id: ice-cream
+    ingredientRef: ice-cream
+    formRef: vanilla
+    amount: 200
+    unit: g
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 90
+    unit: ml
+  - id: vanilla
+    ingredientRef: vanilla
+    formRef: standard
+    amount: 2.5
+    unit: ml
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: blend, durationSec: 25, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      The ice cream is the frozen solid slot here, not an addition to a
+      liquid base: the milk exists to give the blade a vortex to work with,
+      and a milkshake carries far less of it than a smoothie does because
+      the ice cream itself is already most of the volume.
+  - kind: pitfall
+    text: >-
+      Ice cream left to soften before it goes in blends smoother but comes
+      back thin, because it has already lost the air and structure that
+      made it a solid rather than a flavoured milk.
+  - kind: technique
+    stepRef: build
+    text: >-
+      The extract is held to half a teaspoon for a reason the label does not
+      explain: vanilla extract is a spirit, bottled at about the strength of
+      a light rum, and a full teaspoon in a shake this size takes the finished
+      drink past the strength at which it stops being non-alcoholic. It reads
+      as flavouring and it is measured like flavouring, but it is the only
+      alcohol in the glass.
+makeAhead:
+  freezable: false
+---
+
+<Step id="build">
+  Add the <Qty ref="milk"/> to the blender jug first, then the
+  <Qty ref="ice-cream"/> straight from the freezer and the <Qty ref="vanilla"/>.
+</Step>
+
+<Step id="blend">
+  Blend for <Dur step="blend"/>, just long enough for the ice cream to break
+  down into an even, thick shake with no unmelted lumps left.
+</Step>
+
+<Step id="pour">
+  Pour into a chilled milkshake glass.
+</Step>
+---

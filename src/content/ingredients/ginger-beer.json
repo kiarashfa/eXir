@@ -1,0 +1,42 @@
+{
+  "id": "ginger-beer",
+  "name": "Ginger beer",
+  "kind": "ingredient",
+  "category": "mixer",
+  "proprietary": false,
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Ginger ale",
+        "note": "A paler, drier, less gingery mixer historically brewed rather than syrup-based; not interchangeable in a drink that names ginger beer specifically."
+      }
+    ]
+  },
+  "generalSubstitutes": [],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0,
+      "densitySource": "estimated",
+      "sugarGPer100": 4.3,
+      "nutritionPer100g": {
+        "kcal": 18,
+        "carbohydrateG": 4.3,
+        "sugarsG": 4.3,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "sodiumMg": 12
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Open Food Facts",
+      "sourceId": "3124480193698",
+      "sourceNote": "USDA carries no generic ginger beer, and bottled ginger beers vary widely by brand - some run past 9 g sugar per 100 ml. Figures are Schweppes Ginger Beer (Open Food Facts, ODbL) as a representative, widely-sold bottling. Its ingredient list (carbonated water, sugar, acidity correctors, acacia gum, natural flavouring) is entirely plant-derived, so animalOrigin is none. Density has no liquid measurement on file and is taken from the water-like class in density-classes.json, marked estimated. acidPercent left off: no titratable acidity source exists."
+    }
+  ]
+}

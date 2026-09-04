@@ -1,0 +1,84 @@
+---
+id: blended
+label: Blended
+name: Pina Colada
+subtitle: White rum, pineapple juice and cream of coconut blended with ice to a slush.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: hurricane
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: false
+family: blended-frozen
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [caribbean]
+  method: [blended]
+difficulty: Easy
+names:
+  alsoKnownAs:
+    - name: Chi Chi
+      note: The same drink made with vodka in place of the rum.
+ingredients:
+  - id: rum
+    ingredientRef: white-rum
+    formRef: standard
+    amount: 60
+    unit: ml
+  - id: pineapple
+    ingredientRef: pineapple-juice
+    formRef: fresh
+    amount: 90
+    unit: ml
+  - id: cream
+    ingredientRef: coconut-cream
+    formRef: canned-sweetened
+    amount: 60
+    unit: ml
+  - id: ice
+    ingredientRef: water
+    formRef: standard
+    amount: 150
+    unit: g
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: blend, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      Cream of coconut is shaken or stirred in its own can before it is
+      measured, because the fat separates and settles in storage; a spoonful
+      taken from the top and a spoonful taken from the bottom are not the
+      same drink.
+  - kind: pitfall
+    text: >-
+      Cream of coconut is not coconut milk or coconut cream sold for cooking:
+      both are thinner and neither carries the added sugar the balance here
+      depends on, so swapping one in without adjusting anything else leaves
+      the drink sour rather than short.
+makeAhead:
+  freezable: false
+---
+
+<Step id="build">
+  Combine the <Qty ref="rum"/>, the <Qty ref="pineapple"/> and the
+  <Qty ref="cream"/> in a blender jug, then add the <Qty ref="ice"/>.
+</Step>
+
+<Step id="blend">
+  Blend in short bursts for <Dur step="blend"/>, until the mixture climbs the
+  sides of the jug as an even, pourable slush with no loose chunks left
+  clicking against the blade.
+</Step>
+
+<Step id="pour">
+  Pour, unstrained, into a chilled hurricane glass and serve with a straw
+  before it starts to separate.
+</Step>
+---

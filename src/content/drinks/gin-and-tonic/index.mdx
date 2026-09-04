@@ -1,0 +1,77 @@
+---
+id: british
+label: British
+name: Gin and Tonic
+subtitle: London dry gin, tonic and ice, built tall.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: medium
+batchable: full
+zeroProof: false
+family: highball
+familyRole: canonical
+tags:
+  category: [cocktail]
+  origin: [anglo-indian]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+difficulty: Easy
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 35
+    unit: ml
+  - id: tonic
+    ingredientRef: tonic-water
+    formRef: standard
+    amount: 130
+    unit: ml
+  - id: lime-wedge
+    ingredientRef: lime
+    formRef: standard
+    amount: 11
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Squeezed lightly and dropped in for aroma rather than for acid; the
+      drink's sourness comes from the tonic's own citric acid, not the lime.
+steps:
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: top
+    text: >-
+      A narrow, tall glass holds the tonic's bead longer than a wide one, so
+      the gin stays under a working carbonation for the length of the drink
+      rather than for its first few minutes.
+  - kind: pitfall
+    text: >-
+      A juniper-forward London dry is chosen here because tonic's quinine
+      and sugar are loud enough to bury a quieter, more citrus-led gin
+      entirely rather than complementing it.
+---
+
+<Step id="fill">
+  Fill a tall Collins glass with ice.
+</Step>
+
+<Step id="pour">
+  Pour in the <Qty ref="gin"/>.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="tonic"/> and lift once with a bar spoon.
+</Step>
+
+<Step id="garnish">
+  Squeeze a lime wedge over the drink and drop it in.
+</Step>

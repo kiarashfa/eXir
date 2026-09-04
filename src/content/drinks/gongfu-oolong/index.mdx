@@ -1,0 +1,86 @@
+---
+id: index
+label: Gongfu
+name: Gongfu Oolong
+subtitle: One leaf, four short infusions, each poured off as soon as it is ready.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: gaiwan
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Poured one short infusion at a time from the same leaf; there is nothing to
+  make ahead.
+zeroProof: true
+family: steeped-infusion
+familyRole: origin
+difficulty: Medium
+tags:
+  category: [tea]
+  origin: [china]
+  method: [gongfu]
+brew:
+  method: gongfu
+  doseRef: tea
+  waterRef: water
+  waterTempC: 95
+  yieldMl: 90
+  infusions:
+    - { n: 1, contactSec: 10 }
+    - { n: 2, contactSec: 15 }
+    - { n: 3, contactSec: 20 }
+    - { n: 4, contactSec: 30 }
+ingredients:
+  - id: tea
+    ingredientRef: oolong-tea
+    formRef: standard
+    amount: 5
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The same leaf is infused four times over and never leaves the gaiwan
+      until the session is over; what it gives up each round is dissolved
+      rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 100
+    unit: ml
+steps:
+  - { id: rinse, durationSec: 10, type: active, phase: prep }
+  - { id: infuse, durationSec: 75, type: passive, phase: make }
+  - { id: pour, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: infuse
+    text: >-
+      This is one dose taken four separate times rather than one steep taken
+      once: the leaf sits in each fresh pour for barely longer than it takes
+      to pour it back out, and every round after the first runs a little
+      longer than the one before it as the leaf gives up less on each pass.
+  - kind: pitfall
+    text: >-
+      Judging the dose against a teapot's ratio makes this look absurdly
+      strong. At this contact time it is not — a gongfu session is stronger
+      by the gram and weaker by the cup, because the leaf barely touches the
+      water before it is poured off again.
+---
+
+<Step id="rinse">
+  Pour a little of the <Qty ref="water"/> over the <Qty ref="tea"/> in the
+  gaiwan and pour it straight off again, to wake the leaf without tasting it.
+</Step>
+
+<Step id="infuse">
+  Pour the <Qty ref="water"/> at <Temp c={95}/> over the same leaf four
+  times over, refilling the gaiwan fresh each round and lengthening the
+  contact a little each time, for <Dur step="infuse"/> in total across the
+  four rounds.
+</Step>
+
+<Step id="pour">
+  Pour each infusion off the leaf into the cup as soon as its time is up; a
+  gaiwan left standing keeps extracting and the next round comes out uneven.
+</Step>

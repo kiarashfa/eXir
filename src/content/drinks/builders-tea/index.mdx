@@ -1,0 +1,86 @@
+---
+id: index
+label: Classic
+name: Builders Tea
+subtitle: A strong, milky, well-sweetened mug — the everyday standard rather than a delicate cup.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: high
+batchable: none
+batchNote: >-
+  Steeped one mug at a time. Leaving the bag in past the stated time keeps
+  drawing out tannin long after the strength is right.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [tea]
+  origin: [british-isles]
+  method: [steeped]
+brew:
+  method: steep
+  doseRef: tea
+  waterRef: water
+  waterTempC: 100
+  contactSec: 240
+  yieldMl: 285
+ingredients:
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 4
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The leaf is steeped for its strength and removed again; what it leaves
+      behind is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 300
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 50
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 8
+    unit: g
+steps:
+  - { id: steep, durationSec: 240, type: passive, phase: make }
+  - { id: remove, durationSec: 15, type: active, phase: make }
+  - { id: finish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: steep
+    text: >-
+      A robust black leaf needs a full boil to open at all, and this dose is
+      well above a delicate cup's — closer to a third again as much leaf for
+      the same water. That strength is the point: it is what stands up to the
+      <Qty ref="milk"/> rather than being flattened by it.
+  - kind: pitfall
+    text: >-
+      A bag left in the mug keeps extracting after the tea is already strong
+      enough, and the tannin that comes out last is what reads as bitter
+      rather than merely strong.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the <Qty ref="tea"/> and
+  leave to steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="remove">
+  Lift out the leaf or bag and discard it.
+</Step>
+
+<Step id="finish">
+  Stir in the <Qty ref="milk"/> and the <Qty ref="sugar"/> until the sugar has
+  dissolved.
+</Step>

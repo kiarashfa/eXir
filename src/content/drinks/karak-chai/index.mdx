@@ -1,0 +1,103 @@
+---
+id: index
+label: Classic
+name: Karak Chai
+subtitle: Black tea, cardamom and evaporated milk boiled together rather than steeped apart.
+defaultDrinks: 1
+method: boiled
+dilutionClass: none
+glasswareRef: teacup
+servedOverIce: false
+bitterness: high
+batchable: none
+batchNote: >-
+  Boiled to order in a small pan. Reheating a made batch splits the milk
+  proteins that the first boil bound successfully.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Medium
+tags:
+  category: [tea]
+  origin: [arabian-gulf]
+  method: [boiled]
+brew:
+  method: immersion
+  doseRef: tea
+  waterRef: water
+  waterTempC: 100
+  contactSec: 300
+  yieldMl: 100
+ingredients:
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 6
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The leaf is boiled hard for its strength and strained out again; what
+      it leaves behind is dissolved rather than weighable.
+  - id: cardamom
+    ingredientRef: cardamom
+    formRef: standard
+    amount: 1
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The crushed pods are boiled with the tea for their aroma and strained
+      out with the leaf; what they leave behind is aromatic rather than
+      weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 120
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 20
+    unit: g
+  - id: milk
+    ingredientRef: evaporated-milk
+    amount: 60
+    unit: ml
+steps:
+  - { id: boil, durationSec: 180, type: passive, phase: make }
+  - { id: addmilk, durationSec: 10, type: active, phase: make }
+  - { id: reboil, durationSec: 120, type: passive, phase: make }
+  - { id: strain, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: reboil
+    text: >-
+      This is boiled rather than steeped, the family's other branch: the tea,
+      cardamom and sugar go into the water from the start and are brought
+      back to a boil a second time after the <Qty ref="milk"/> goes in, which
+      is what gives karak its body and lets a dose this heavy come out smooth
+      rather than merely stewed.
+  - kind: pitfall
+    text: >-
+      Adding the milk before the tea has had its first hard boil leaves the
+      leaf under-extracted, and the second boil then over-extracts a weaker
+      tea trying to catch up — the strength ends up wrong in both directions
+      at once.
+---
+
+<Step id="boil">
+  Combine the <Qty ref="water"/>, the <Qty ref="tea"/>, the
+  <Qty ref="cardamom"/> and the <Qty ref="sugar"/> in a small pan, bring to a
+  boil, then lower the heat and simmer for <Dur step="boil"/>.
+</Step>
+
+<Step id="addmilk">
+  Stir in the <Qty ref="milk"/>.
+</Step>
+
+<Step id="reboil">
+  Bring back to a boil and simmer again for <Dur step="reboil"/>, until the
+  colour is an even, deep tan.
+</Step>
+
+<Step id="strain">
+  Strain into a cup, leaving the leaf and cardamom behind.
+</Step>

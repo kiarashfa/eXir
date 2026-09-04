@@ -180,6 +180,66 @@ export async function render(
  * The only way to know whether the white balance backed off far enough is to
  * look at the two versions next to each other.
  */
+/**
+ * Tile many candidates into ONE numbered sheet, for triage.
+ *
+ * Distinct from `contactSheet` below, and both are needed. `contactSheet` puts
+ * one candidate's before and after side by side, to confirm the treatment did
+ * the right thing; this puts every candidate in a round side by side, to choose
+ * between them.
+ *
+ * The reason is cost, and it is not marginal. A reviewer that opens three to
+ * five 800 px candidates per subject spends most of a photograph round on
+ * images it is about to reject — Xefy measured 321 k tokens for 70 subjects
+ * before it built the equivalent. One small sheet is a single read, and
+ * comparing candidates side by side is a better comparison than looking at them
+ * one after another anyway.
+ *
+ * It is triage ONLY. The tiles are deliberately too small to show a watermark,
+ * a date stamp, or whether the garnish is lemon or grapefruit, so the finalist
+ * still gets opened at full size before it is adopted.
+ *
+ * The number is drawn as an SVG overlay rather than a font dependency: sharp
+ * renders SVG text through librsvg, which is already present.
+ */
+export async function triageSheet(tiles: Buffer[], edge = 200): Promise<Buffer> {
+  const gap = 8;
+  const cols = Math.min(3, tiles.length);
+  const rows = Math.ceil(tiles.length / cols);
+  const width = cols * edge + (cols + 1) * gap;
+  const height = rows * edge + (rows + 1) * gap;
+
+  const label = (n: number): Buffer =>
+    Buffer.from(
+      `<svg width="${edge}" height="${edge}">` +
+        `<rect x="0" y="0" width="34" height="26" fill="#000" opacity="0.72"/>` +
+        `<text x="17" y="19" font-family="sans-serif" font-size="17" font-weight="bold" ` +
+        `fill="#fff" text-anchor="middle">${String(n).padStart(2, '0')}</text></svg>`,
+    );
+
+  const numbered = await Promise.all(
+    tiles.map(async (tile, i) =>
+      sharp(tile)
+        .resize({ width: edge, height: edge, fit: 'cover', position: 'centre' })
+        .composite([{ input: label(i + 1), top: 0, left: 0 }])
+        .toBuffer(),
+    ),
+  );
+
+  return sharp({
+    create: { width, height, channels: 3, background: { r: 16, g: 20, b: 27 } },
+  })
+    .composite(
+      numbered.map((input, i) => ({
+        input,
+        top: gap + Math.floor(i / cols) * (edge + gap),
+        left: gap + (i % cols) * (edge + gap),
+      })),
+    )
+    .webp({ quality: 82 })
+    .toBuffer();
+}
+
 export async function contactSheet(
   before: Buffer,
   after: Buffer,

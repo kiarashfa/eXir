@@ -1,0 +1,36 @@
+{
+  "id": "red-wine",
+  "name": "Red wine",
+  "kind": "ingredient",
+  "category": "wine",
+  "proprietary": false,
+  "pantryStaple": false,
+  "generalSubstitutes": [],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 13.4,
+      "densityGPerMl": 0.9941,
+      "densitySource": "measured",
+      "sugarGPer100": 0.62,
+      "nutritionPer100g": {
+        "kcal": 85,
+        "carbohydrateG": 2.61,
+        "sugarsG": 0.62,
+        "proteinG": 0.07,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 4
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "Many red wines are fined with isinglass, gelatine or egg white or casein; unfiltered or vegan-labelled bottles are not. The finished wine contains at most a trace of the fining agent, but the label is the only way to know which was used for a given bottle.",
+      "allergenTags": ["sulphites"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "173190",
+      "sourceNote": "Alcoholic beverage, wine, table, red. Public domain. A generic dry table red is the right basis for a drink that names 'red wine' rather than a single varietal or producer. acidPercent left off: USDA reports no titratable acidity figure for wine and no other source was found here, though red wine's acidity is real."
+    }
+  ]
+}
