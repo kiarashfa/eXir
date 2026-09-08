@@ -1,0 +1,19 @@
+{
+  "id": "matcha",
+  "name": "Matcha",
+  "kind": "ingredient",
+  "category": "tea",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Ceremonial grade powder",
+      "proseName": "matcha",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": true,
+      "sourceNote": "FoodData Central carries no reliable record for matcha powder itself — its one branded entry reports implausible, self-contradictory macros and is not used. No composition is claimed here rather than importing a wrong figure, the same gap as loose black tea and hibiscus on this site, though matcha is drunk whole rather than strained, so this gap leaves the finished drink's sugar and energy figures blank rather than merely underweighting them."
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+---
+id: classic
+label: Classic
+name: Ethiopian Buna
+subtitle: Green beans roasted, ground and boiled in one sitting, unfiltered.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: cezve-cup
+servedOverIce: false
+bitterness: high
+batchable: none
+batchNote: >-
+  The whole point of the ceremony is that roasting, grinding and brewing
+  happen together in front of the people drinking it; nothing here is made
+  ahead.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [coffee]
+  origin: [east-africa]
+  method: [brewed]
+names:
+  alsoKnownAs:
+    - name: Bunna
+      region: Ethiopia
+  notToBeConfusedWith:
+    - name: Turkish coffee
+      note: Also boiled unfiltered and served with the grounds settled, but brewed from beans already roasted and bought, not roasted fresh at the table.
+brew:
+  method: immersion
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 100
+  grind: fine
+  contactSec: 300
+  yieldMl: 75
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 10
+    unit: g
+    consumedFraction: 0.22
+    consumedFractionNote: >-
+      Boiled rather than filtered, the grounds sit in the water for longer
+      than a drip brew and give up slightly more of themselves before they
+      settle; the figure is toward the top of the Specialty Coffee
+      Association's extraction band rather than its middle.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 90
+    unit: ml
+steps:
+  - { id: roast, durationSec: 600, type: active, phase: prep }
+  - { id: grind, durationSec: 60, type: active, phase: prep }
+  - { id: boil, durationSec: 300, type: active, phase: make }
+  - { id: settle, durationSec: 60, type: passive, phase: make }
+notes:
+  - kind: technique
+    stepRef: boil
+    text: >-
+      The jebena is brought to a boil and pulled back from the heat three
+      separate times rather than left to boil through, which keeps the
+      grounds from scorching and gives the ceremony its three rounds — the
+      same pot poured again and again, each pour weaker than the last.
+  - kind: pitfall
+    text: >-
+      Pouring straight off the boil sends fine grounds into the cup along
+      with the coffee. Standing the jebena upright and letting it settle
+      before the first pour is what keeps the sediment in the pot.
+makeAhead:
+  aheadInstructions: >-
+    None of this is prepared in advance. The beans are green until the fire is
+    lit, and the ceremony is the roasting as much as the drinking.
+  freezable: false
+---
+
+<Step id="roast">
+  Roast the green beans in a flat pan over low heat, shaking constantly, until
+  they darken and turn glossy with their own oil.
+</Step>
+
+<Step id="grind">
+  Grind the roasted beans to a fine powder with a mortar and pestle to make
+  the <Qty ref="coffee"/>.
+</Step>
+
+<Step id="boil">
+  Add the <Qty ref="water"/> to the jebena with the grounds and bring it to a
+  boil over the fire three times, letting it settle back each time, for a
+  total of <Dur step="boil"/>.
+</Step>
+
+<Step id="settle">
+  Stand the jebena upright for <Dur step="settle"/> so the grounds sink to the
+  bottom, then pour from a height into the small cups without disturbing them.
+</Step>

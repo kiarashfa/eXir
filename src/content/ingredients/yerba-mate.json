@@ -1,0 +1,19 @@
+{
+  "id": "yerba-mate",
+  "name": "Yerba mate",
+  "kind": "ingredient",
+  "category": "tisane",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Dried, cut leaf and stem",
+      "proseName": "yerba mate",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": true,
+      "sourceNote": "FoodData Central carries no record for yerba mate, brewed or dry. No composition is claimed here rather than importing a figure that describes the wrong plant — the same gap as black tea and hibiscus on this site."
+    }
+  ]
+}

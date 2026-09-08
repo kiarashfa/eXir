@@ -1,4 +1,39 @@
 {
+  "drink:affogato": {
+    "slug": "affogato",
+    "kind": "drink",
+    "alt": "A scoop of vanilla ice cream melting into espresso in a white cup, affogato al caffè",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/affogato-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 76684
+      },
+      "card": {
+        "file": "/images/drinks/affogato-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 26912
+      },
+      "thumb": {
+        "file": "/images/drinks/affogato-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1474
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Vinoteca, Smithfield, London (4485849609).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vinoteca,_Smithfield,_London_(4485849609).jpg",
+      "author": "Ewan Munro from London, UK",
+      "credit": "Vinoteca, Smithfield, London Uploaded by tm",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:agua-de-jamaica": {
     "slug": "agua-de-jamaica",
     "kind": "drink",
@@ -101,6 +136,41 @@
       "credit": "Own work",
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:atole": {
+    "slug": "atole",
+    "kind": "drink",
+    "alt": "Pale, thick atole in a white mug, dusted with dark ground spice",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/atole-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 71392
+      },
+      "card": {
+        "file": "/images/drinks/atole-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 27888
+      },
+      "thumb": {
+        "file": "/images/drinks/atole-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1064
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Atole de puscua, Mazatlán, 8 de marzo de 2023 02.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Atole_de_puscua,_Mazatl%C3%A1n,_8_de_marzo_de_2023_02.jpg",
+      "author": "El Nuevo Doge",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -314,6 +384,355 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "drink:buna": {
+    "slug": "buna",
+    "kind": "drink",
+    "alt": "A woman in traditional dress pouring buna from a jebena pot into small handleless cups",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/buna-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 551358
+      },
+      "card": {
+        "file": "/images/drinks/buna-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 153402
+      },
+      "thumb": {
+        "file": "/images/drinks/buna-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2620
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Ethiopian coffee ceremony - Addis Ababa.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ethiopian_coffee_ceremony_-_Addis_Ababa.jpg",
+      "author": "Irene2005",
+      "credit": "originally posted to Flickr as Ethiopian coffee ceremony, Addis Ababa",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:ca-phe-sua-da": {
+    "slug": "ca-phe-sua-da",
+    "kind": "drink",
+    "alt": "Vietnamese iced coffee in a glass, dark coffee layered over condensed milk and ice",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/ca-phe-sua-da-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 125338
+      },
+      "card": {
+        "file": "/images/drinks/ca-phe-sua-da-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 44284
+      },
+      "thumb": {
+        "file": "/images/drinks/ca-phe-sua-da-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1426
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Ca Phe Sua Da.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ca_Phe_Sua_Da.jpg",
+      "author": "Clarin",
+      "credit": "Own work",
+      "license": "CC BY 2.5",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.5",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:ca-phe-trung": {
+    "slug": "ca-phe-trung",
+    "kind": "drink",
+    "alt": "A small glass of Vietnamese egg coffee with a whipped, pale foam top, set in a bowl of hot water",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/ca-phe-trung-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 64154
+      },
+      "card": {
+        "file": "/images/drinks/ca-phe-trung-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 22200
+      },
+      "thumb": {
+        "file": "/images/drinks/ca-phe-trung-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1230
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Egg Coffee (6923068614).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Egg_Coffee_(6923068614).jpg",
+      "author": "David McKelvey from Brisbane, Australia",
+      "credit": "Egg Coffee",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:cafe-au-lait": {
+    "slug": "cafe-au-lait",
+    "kind": "drink",
+    "alt": "Milky coffee filling a wide white cup, viewed from above",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/cafe-au-lait-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 68082
+      },
+      "card": {
+        "file": "/images/drinks/cafe-au-lait-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 15610
+      },
+      "thumb": {
+        "file": "/images/drinks/cafe-au-lait-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1032
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Café au lait.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Caf%C3%A9_au_lait.jpg",
+      "author": "Tim Boyd from Brooklyn",
+      "credit": "Flickr",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:cafe-con-leche": {
+    "slug": "cafe-con-leche",
+    "kind": "drink",
+    "alt": "Café con leche with a heart of latte art, in a glass mug on a saucer",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/cafe-con-leche-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 171530
+      },
+      "card": {
+        "file": "/images/drinks/cafe-con-leche-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 64540
+      },
+      "thumb": {
+        "file": "/images/drinks/cafe-con-leche-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1738
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Café con leche - Perch on the Pier 2026-05-07.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Caf%C3%A9_con_leche_-_Perch_on_the_Pier_2026-05-07.jpg",
+      "author": "Andy Li",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:cafe-cubano": {
+    "slug": "cafe-cubano",
+    "kind": "drink",
+    "alt": "Cuban espresso topped with golden crema, in a small white cup on a saucer",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/cafe-cubano-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 53324
+      },
+      "card": {
+        "file": "/images/drinks/cafe-cubano-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 19526
+      },
+      "thumb": {
+        "file": "/images/drinks/cafe-cubano-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1124
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Cafe Cubano in small cup.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cafe_Cubano_in_small_cup.jpg",
+      "author": "Asukite",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:cafe-de-olla": {
+    "slug": "cafe-de-olla",
+    "kind": "drink",
+    "alt": "Dark cinnamon-spiced coffee in a traditional clay mug, a lemon wedge on the saucer",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/cafe-de-olla-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 214138
+      },
+      "card": {
+        "file": "/images/drinks/cafe-de-olla-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 37720
+      },
+      "thumb": {
+        "file": "/images/drinks/cafe-de-olla-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1628
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Café de olla - Restaurante Don Chon, Mexico.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Caf%C3%A9_de_olla_-_Restaurante_Don_Chon,_Mexico.jpg",
+      "author": "Mover el Bigote",
+      "credit": "México DF | Restaurante Don Chon | Café de olla",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:caffe-latte": {
+    "slug": "caffe-latte",
+    "kind": "drink",
+    "alt": "A caffè latte in a glass cup with a leaf pattern in the milk foam",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/caffe-latte-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 141226
+      },
+      "card": {
+        "file": "/images/drinks/caffe-latte-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 45554
+      },
+      "thumb": {
+        "file": "/images/drinks/caffe-latte-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1424
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Caffe Latte at Pulse Cafe.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Caffe_Latte_at_Pulse_Cafe.jpg",
+      "author": "B adger1",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:caipirinha": {
+    "slug": "caipirinha",
+    "kind": "drink",
+    "alt": "A caipirinha in a rocks glass, muddled lime wedges and ice, garnished with a lime wheel",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/caipirinha-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 54540
+      },
+      "card": {
+        "file": "/images/drinks/caipirinha-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 19586
+      },
+      "thumb": {
+        "file": "/images/drinks/caipirinha-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1158
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Caipirinha 2007.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Caipirinha_2007.JPG",
+      "author": "Weetjesman",
+      "credit": "Own work",
+      "license": "Public domain",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:cappuccino": {
+    "slug": "cappuccino",
+    "kind": "drink",
+    "alt": "A cappuccino with thick pale foam, in a dark ceramic cup",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/cappuccino-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 115046
+      },
+      "card": {
+        "file": "/images/drinks/cappuccino-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 34202
+      },
+      "thumb": {
+        "file": "/images/drinks/cappuccino-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1218
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Cappuccino at ARS Cafe.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cappuccino_at_ARS_Cafe.jpg",
+      "author": "Robert Smith",
+      "credit": "https://roamingsmith.files.wordpress.com/2019/10/img_20191015_0939133703010751970128835.jpg",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:chamomile-tisane": {
     "slug": "chamomile-tisane",
     "kind": "drink",
@@ -346,6 +765,146 @@
       "credit": "Kamillete",
       "license": "CC BY-SA 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:champurrado": {
+    "slug": "champurrado",
+    "kind": "drink",
+    "alt": "Thick chocolate-brown champurrado filling a white mug",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/champurrado-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 179012
+      },
+      "card": {
+        "file": "/images/drinks/champurrado-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 41052
+      },
+      "thumb": {
+        "file": "/images/drinks/champurrado-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1048
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Champurrado.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Champurrado.jpg",
+      "author": "Kimberly Vardeman from Lubbock, TX, USA",
+      "credit": "Champurrado",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:cheryomukha": {
+    "slug": "cheryomukha",
+    "kind": "drink",
+    "alt": "Deep red kompot filling a small white cup",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/cheryomukha-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 50448
+      },
+      "card": {
+        "file": "/images/drinks/cheryomukha-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 20826
+      },
+      "thumb": {
+        "file": "/images/drinks/cheryomukha-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1012
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:20221204 kompot.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:20221204_kompot.jpg",
+      "author": "Abraham",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:chicha-morada": {
+    "slug": "chicha-morada",
+    "kind": "drink",
+    "alt": "Deep purple chicha morada in a mason-jar mug, garnished with a lime wheel",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/chicha-morada-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 98706
+      },
+      "card": {
+        "file": "/images/drinks/chicha-morada-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 36994
+      },
+      "thumb": {
+        "file": "/images/drinks/chicha-morada-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1660
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Chicha Morada 2017.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chicha_Morada_2017.jpg",
+      "author": "young shanahan from Bogotá, Colombia",
+      "credit": "Chicha Morada.",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:chocolate-caliente": {
+    "slug": "chocolate-caliente",
+    "kind": "drink",
+    "alt": "Frothy hot chocolate filling a blue ceramic mug on a terracotta saucer",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/chocolate-caliente-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 86410
+      },
+      "card": {
+        "file": "/images/drinks/chocolate-caliente-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 36188
+      },
+      "thumb": {
+        "file": "/images/drinks/chocolate-caliente-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1984
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Dark Hot Chocolate, San Churro Leederville, 2026 (01).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dark_Hot_Chocolate,_San_Churro_Leederville,_2026_(01).jpg",
+      "author": "Bahnfrend",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -384,6 +943,111 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "drink:coconut-water": {
+    "slug": "coconut-water",
+    "kind": "drink",
+    "alt": "A young green coconut opened at the top with a straw, ready to drink",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/coconut-water-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 108528
+      },
+      "card": {
+        "file": "/images/drinks/coconut-water-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 41182
+      },
+      "thumb": {
+        "file": "/images/drinks/coconut-water-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1620
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Coconut Drink, Pangandaran.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coconut_Drink,_Pangandaran.JPG",
+      "author": "Crisco 1492",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:cold-brew-coffee": {
+    "slug": "cold-brew-coffee",
+    "kind": "drink",
+    "alt": "Cold brew coffee in a glass, dark coffee under a pale cream float, with a striped straw",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/cold-brew-coffee-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 100202
+      },
+      "card": {
+        "file": "/images/drinks/cold-brew-coffee-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 36154
+      },
+      "thumb": {
+        "file": "/images/drinks/cold-brew-coffee-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1696
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Maple Cream Cold Brew - Trading Post Coffee Roasters 2026-07-16.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maple_Cream_Cold_Brew_-_Trading_Post_Coffee_Roasters_2026-07-16.jpg",
+      "author": "Andy Li",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:coquito": {
+    "slug": "coquito",
+    "kind": "drink",
+    "alt": "Creamy white coquito in a glass, dusted with ground cinnamon",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/coquito-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 154574
+      },
+      "card": {
+        "file": "/images/drinks/coquito-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 34746
+      },
+      "thumb": {
+        "file": "/images/drinks/coquito-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1226
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Coquito in glass with spices on top.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coquito_in_glass_with_spices_on_top.jpg",
+      "author": "Infrogmation",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:corpse-reviver-no-2": {
     "slug": "corpse-reviver-no-2",
     "kind": "drink",
@@ -416,6 +1080,41 @@
       "credit": "https://bevvy.co/cocktail/corpse-reviver-2/lisy",
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:cortado": {
+    "slug": "cortado",
+    "kind": "drink",
+    "alt": "A cortado in a small glass, espresso cut with steamed milk, a spoon resting inside",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/cortado-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 137376
+      },
+      "card": {
+        "file": "/images/drinks/cortado-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 35008
+      },
+      "thumb": {
+        "file": "/images/drinks/cortado-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1356
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Café cortado - Alfonso Salgueiro.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Caf%C3%A9_cortado_-_Alfonso_Salgueiro.jpg",
+      "author": "Alfonso Salgueiro Lora from Luxembourg, Luxembourg",
+      "credit": "Café cortado",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -1013,6 +1712,41 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "drink:karkade": {
+    "slug": "karkade",
+    "kind": "drink",
+    "alt": "Deep red hibiscus infusion filling a glass teacup on a matching saucer",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/karkade-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 232376
+      },
+      "card": {
+        "file": "/images/drinks/karkade-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 93540
+      },
+      "thumb": {
+        "file": "/images/drinks/karkade-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2800
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Chai torsh - Hibiscus tea.png",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chai_torsh_-_Hibiscus_tea.png",
+      "author": "MRG90",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:last-word": {
     "slug": "last-word",
     "kind": "drink",
@@ -1223,6 +1957,76 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "drink:masala-chai": {
+    "slug": "masala-chai",
+    "kind": "drink",
+    "alt": "Overhead view of masala chai in a glass cup on a saucer, milky tan-coloured with a thin foam",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/masala-chai-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 119116
+      },
+      "card": {
+        "file": "/images/drinks/masala-chai-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 44702
+      },
+      "thumb": {
+        "file": "/images/drinks/masala-chai-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1798
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Milk Masala Tea.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Milk_Masala_Tea.jpg",
+      "author": "Gaurav Dhwaj Khadka",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:matcha": {
+    "slug": "matcha",
+    "kind": "drink",
+    "alt": "Overhead view of whisked usucha matcha in a black chawan, bright green with a fine foam",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/matcha-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 247052
+      },
+      "card": {
+        "file": "/images/drinks/matcha-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 103522
+      },
+      "thumb": {
+        "file": "/images/drinks/matcha-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1458
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Matcha (5026245674).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Matcha_(5026245674).jpg",
+      "author": "rumpleteaser from Nagoya, Japan",
+      "credit": "matcha",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:milkshake": {
     "slug": "milkshake",
     "kind": "drink",
@@ -1327,6 +2131,76 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "drink:moroccan-mint-tea": {
+    "slug": "moroccan-mint-tea",
+    "kind": "drink",
+    "alt": "Two small glasses of Moroccan mint tea on a wooden counter",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/moroccan-mint-tea-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 137264
+      },
+      "card": {
+        "file": "/images/drinks/moroccan-mint-tea-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 48148
+      },
+      "thumb": {
+        "file": "/images/drinks/moroccan-mint-tea-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1928
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Mint Tea at Moroccan Soup Bar.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mint_Tea_at_Moroccan_Soup_Bar.jpg",
+      "author": "Alpha",
+      "credit": "originally posted to Flickr as Mint Tea - Moroccan Soup Bar",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:moscow-mule": {
+    "slug": "moscow-mule",
+    "kind": "drink",
+    "alt": "A Moscow Mule in a copper mug packed with crushed ice, garnished with a lime wheel and a black straw, on a wooden bar counter",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/moscow-mule-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 107804
+      },
+      "card": {
+        "file": "/images/drinks/moscow-mule-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 38370
+      },
+      "thumb": {
+        "file": "/images/drinks/moscow-mule-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1818
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Moscow Mule at Rye, San Francisco.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Moscow_Mule_at_Rye,_San_Francisco.jpg",
+      "author": "Will Shenton",
+      "credit": "https://bevvy.co/cocktail/moscow-mule/gsp",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:negroni": {
     "slug": "negroni",
     "kind": "drink",
@@ -1356,6 +2230,41 @@
       "file": "File:Negroni (cocktail).jpg",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Negroni_(cocktail).jpg",
       "author": "Sudhertzen",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:noon-chai": {
+    "slug": "noon-chai",
+    "kind": "drink",
+    "alt": "Two glasses of pink Kashmiri noon chai, one topped with a knob of butter",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/noon-chai-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 181014
+      },
+      "card": {
+        "file": "/images/drinks/noon-chai-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 61548
+      },
+      "thumb": {
+        "file": "/images/drinks/noon-chai-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1446
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Noon Chai.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Noon_Chai.jpg",
+      "author": "Naryiitmandi",
       "credit": "Own work",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -1394,6 +2303,40 @@
       "credit": "uploaded on behalf of the creator",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:paloma": {
+    "slug": "paloma",
+    "kind": "drink",
+    "alt": "A Paloma in a tall glass over ice, pale yellow-green, garnished with a lime wedge on the rim",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/paloma-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 127882
+      },
+      "card": {
+        "file": "/images/drinks/paloma-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 38444
+      },
+      "thumb": {
+        "file": "/images/drinks/paloma-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 950
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:TequilaPaloma.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:TequilaPaloma.JPG",
+      "author": "Antonio Cavallo",
+      "credit": "Own work",
+      "license": "Public domain",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -1464,6 +2407,76 @@
       "credit": "uploaded on behalf of the creator / hochgeladen im Auftrag des Urhebers",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:peppermint-tisane": {
+    "slug": "peppermint-tisane",
+    "kind": "drink",
+    "alt": "A glass cup of peppermint tea with mint leaves floating in it, pale green-gold",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/peppermint-tisane-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 390882
+      },
+      "card": {
+        "file": "/images/drinks/peppermint-tisane-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 80508
+      },
+      "thumb": {
+        "file": "/images/drinks/peppermint-tisane-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2434
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Peppermint-tea hg.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Peppermint-tea_hg.jpg",
+      "author": "Hannes Grobe/Hannes Grobe (talk)",
+      "credit": "Own work",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:pimms-cup": {
+    "slug": "pimms-cup",
+    "kind": "drink",
+    "alt": "Close overhead view of a Pimm's Cup with mint, cucumber, orange and apple pieces floating in the glass",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/pimms-cup-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 68578
+      },
+      "card": {
+        "file": "/images/drinks/pimms-cup-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 26388
+      },
+      "thumb": {
+        "file": "/images/drinks/pimms-cup-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1368
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Pimms No 1 Cup - close.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pimms_No_1_Cup_-_close.jpg",
+      "author": "Dinner Series",
+      "credit": "https://www.flickr.com/photos/dinnerseries/6106219350/sizes/o/in/set-72157627451906103/",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -1607,6 +2620,41 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "drink:rooibos-tea": {
+    "slug": "rooibos-tea",
+    "kind": "drink",
+    "alt": "A glass cup of freshly brewed rooibos tea, deep amber-red, with a glass teapot behind it",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/rooibos-tea-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 61598
+      },
+      "card": {
+        "file": "/images/drinks/rooibos-tea-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 22880
+      },
+      "thumb": {
+        "file": "/images/drinks/rooibos-tea-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1076
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Frisch aufgebrühter Rooibos.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Frisch_aufgebr%C3%BChter_Rooibos.jpg",
+      "author": "soultea.de/André Helbig",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:sazerac": {
     "slug": "sazerac",
     "kind": "drink",
@@ -1712,6 +2760,216 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "drink:sweet-tea": {
+    "slug": "sweet-tea",
+    "kind": "drink",
+    "alt": "Two mason jars of dark, sweetened iced tea with lids, on a red checked tablecloth",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/sweet-tea-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 66292
+      },
+      "card": {
+        "file": "/images/drinks/sweet-tea-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 22976
+      },
+      "thumb": {
+        "file": "/images/drinks/sweet-tea-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1440
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Sweet Tea in mason jars.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sweet_Tea_in_mason_jars.jpg",
+      "author": "Simon Doggett",
+      "credit": "https://www.flickr.com/photos/simondee/5033675974/",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:teh-tarik": {
+    "slug": "teh-tarik",
+    "kind": "drink",
+    "alt": "A glass mug of teh tarik, milky tea topped with a thick layer of foam from the pull",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/teh-tarik-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 70394
+      },
+      "card": {
+        "file": "/images/drinks/teh-tarik-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 20048
+      },
+      "thumb": {
+        "file": "/images/drinks/teh-tarik-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1098
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Teh Tarik.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Teh_Tarik.jpg",
+      "author": "Jonathan Lin",
+      "credit": "Flickr: Teh Tarik",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:thai-iced-tea": {
+    "slug": "thai-iced-tea",
+    "kind": "drink",
+    "alt": "Orange Thai iced tea in a tall glass over ice, with a straw",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/thai-iced-tea-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 100972
+      },
+      "card": {
+        "file": "/images/drinks/thai-iced-tea-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 39472
+      },
+      "thumb": {
+        "file": "/images/drinks/thai-iced-tea-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1714
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Cha-Yen (Thai iced tea) - Namo 2026-07-30.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cha-Yen_(Thai_iced_tea)_-_Namo_2026-07-30.jpg",
+      "author": "Andy Li",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:tinto-de-verano": {
+    "slug": "tinto-de-verano",
+    "kind": "drink",
+    "alt": "A glass of Tinto de Verano, deep red, over ice with a slice of lemon, on a metal table",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/tinto-de-verano-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 76914
+      },
+      "card": {
+        "file": "/images/drinks/tinto-de-verano-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 31492
+      },
+      "thumb": {
+        "file": "/images/drinks/tinto-de-verano-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1530
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Tinto de verano - Madrid.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tinto_de_verano_-_Madrid.jpg",
+      "author": "Tamorlan",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:tom-collins": {
+    "slug": "tom-collins",
+    "kind": "drink",
+    "alt": "A Tom Collins in a tall glass, pale and fizzing, garnished with an orange wedge and a cherry on a pick, with a straw",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/tom-collins-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 93360
+      },
+      "card": {
+        "file": "/images/drinks/tom-collins-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 28844
+      },
+      "thumb": {
+        "file": "/images/drinks/tom-collins-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1446
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:VTR - Tom Collins.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:VTR_-_Tom_Collins.jpg",
+      "author": "Edsel L",
+      "credit": "https://www.flickr.com/photos/27119975@N00/4648991010/",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:turkish-cay": {
+    "slug": "turkish-cay",
+    "kind": "drink",
+    "alt": "A tulip-shaped glass of Turkish tea on a saucer with sugar cubes and a spoon",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/turkish-cay-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 126346
+      },
+      "card": {
+        "file": "/images/drinks/turkish-cay-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 42920
+      },
+      "thumb": {
+        "file": "/images/drinks/turkish-cay-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1622
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Turkish tea with sugar and spoon.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Turkish_tea_with_sugar_and_spoon.jpg",
+      "author": "Sandstein",
+      "credit": "Own work",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "drink:vieux-carre": {
     "slug": "vieux-carre",
     "kind": "drink",
@@ -1814,6 +3072,87 @@
       "credit": "White Lady - Beefeater gin, Cointreau, fresh lemon juice",
       "license": "CC BY 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "drink:yerba-mate": {
+    "slug": "yerba-mate",
+    "kind": "drink",
+    "alt": "A traditional calabash gourd filled with yerba mate leaf and a metal bombilla straw, beside a small scoop of loose yerba",
+    "renditions": {
+      "hero": {
+        "file": "/images/drinks/yerba-mate-hero.webp",
+        "width": 1600,
+        "height": 2000,
+        "bytes": 194396
+      },
+      "card": {
+        "file": "/images/drinks/yerba-mate-card.webp",
+        "width": 800,
+        "height": 1000,
+        "bytes": 80036
+      },
+      "thumb": {
+        "file": "/images/drinks/yerba-mate-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1140
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Traditional mate set calabash gourd with La Merced yerba mate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Traditional_mate_set_calabash_gourd_with_La_Merced_yerba_mate.jpg",
+      "author": "Siarhei Besarab",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "glassware:cezve-cup": {
+    "slug": "cezve-cup",
+    "kind": "glassware",
+    "alt": "An empty small ornate handled coffee cup on a matching saucer",
+    "renditions": {
+      "card": {
+        "file": "/images/glassware/cezve-cup-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 19880
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Fincan.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fincan.jpg",
+      "author": "Arne Krueger from İstanbul, Turkey",
+      "credit": "Flickr",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "glassware:chawan": {
+    "slug": "chawan",
+    "kind": "glassware",
+    "alt": "An empty ceramic chawan matcha bowl beside a bamboo whisk and scoop",
+    "renditions": {
+      "card": {
+        "file": "/images/glassware/chawan-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 34580
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Three piece matcha set.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Three_piece_matcha_set.jpg",
+      "author": "Kaminix",
+      "credit": "Own work",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -1929,6 +3268,29 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "glassware:kyusu-cup": {
+    "slug": "kyusu-cup",
+    "kind": "glassware",
+    "alt": "An empty handleless ceramic yunomi teacup with an ash glaze",
+    "renditions": {
+      "card": {
+        "file": "/images/glassware/kyusu-cup-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 28122
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Yunomi ash.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Yunomi_ash.jpg",
+      "author": "Phil Rogers",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "glassware:martini": {
     "slug": "martini",
     "kind": "glassware",
@@ -1948,6 +3310,29 @@
       "author": "Evan-Amos",
       "credit": "Own work",
       "license": "Public domain",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "glassware:mason-jar": {
+    "slug": "mason-jar",
+    "kind": "glassware",
+    "alt": "An empty glass mason jar with a screw-top lid",
+    "renditions": {
+      "card": {
+        "file": "/images/glassware/mason-jar-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 11560
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Mason Jar with Screw Top.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mason_Jar_with_Screw_Top.JPG",
+      "author": "Dwight Burdette",
+      "credit": "Own work",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -2296,6 +3681,63 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:bicarbonate-of-soda": {
+    "slug": "bicarbonate-of-soda",
+    "kind": "ingredient",
+    "alt": "A pile of fine white bicarbonate of soda powder",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/bicarbonate-of-soda-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 21458
+      },
+      "thumb": {
+        "file": "/images/ingredients/bicarbonate-of-soda-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 448
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Sodium bicarbonate.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sodium_bicarbonate.jpg",
+      "author": "Thavox",
+      "credit": "Own work",
+      "license": "Public domain",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:black-pepper": {
+    "slug": "black-pepper",
+    "kind": "ingredient",
+    "alt": "Whole black peppercorns filling a small stone mortar",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/black-pepper-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 55898
+      },
+      "thumb": {
+        "file": "/images/ingredients/black-pepper-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1624
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Tellicherry Black Peppercorns.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tellicherry_Black_Peppercorns.jpg",
+      "author": "Misterneedlemouse",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:black-tea": {
     "slug": "black-tea",
     "kind": "ingredient",
@@ -2351,6 +3793,35 @@
       "credit": "Own work",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:cachaca": {
+    "slug": "cachaca",
+    "kind": "ingredient",
+    "alt": "A bottle of golden cachaça labelled Floresta, on a plain background",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/cachaca-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 20606
+      },
+      "thumb": {
+        "file": "/images/ingredients/cachaca-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1132
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Floresta cachaca flaska.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Floresta_cachaca_flaska.JPG",
+      "author": "Eniklasc",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -2470,6 +3941,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:cheryomukha": {
+    "slug": "cheryomukha",
+    "kind": "ingredient",
+    "alt": "A cluster of small dark bird cherries hanging on their branch",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/cheryomukha-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 41888
+      },
+      "thumb": {
+        "file": "/images/ingredients/cheryomukha-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2810
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Prunus padus - Tuomi - Marjoja H9255 C.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Prunus_padus_-_Tuomi_-_Marjoja_H9255_C.jpg",
+      "author": "Anneli Salo",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:cider-vinegar": {
     "slug": "cider-vinegar",
     "kind": "ingredient",
@@ -2528,6 +4028,34 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:cloves": {
+    "slug": "cloves",
+    "kind": "ingredient",
+    "alt": "A pile of whole dried cloves on a plain white background",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/cloves-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 55110
+      },
+      "thumb": {
+        "file": "/images/ingredients/cloves-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1740
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Cloves.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cloves.JPG",
+      "author": "Jorge Barrios",
+      "credit": "Own work",
+      "license": "Public domain",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:cocoa": {
     "slug": "cocoa",
     "kind": "ingredient",
@@ -2583,6 +4111,64 @@
       "credit": "https://www.flickr.com/photos/66252478@N02/6830261343/",
       "license": "CC BY 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:coconut-milk": {
+    "slug": "coconut-milk",
+    "kind": "ingredient",
+    "alt": "A bowl of pale, creamy coconut milk",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/coconut-milk-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 25382
+      },
+      "thumb": {
+        "file": "/images/ingredients/coconut-milk-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1116
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Coconut Milk.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coconut_Milk.JPG",
+      "author": "Miansari66",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:coconut-water": {
+    "slug": "coconut-water",
+    "kind": "ingredient",
+    "alt": "A young coconut sliced open at the top, showing the clear water inside",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/coconut-water-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 41958
+      },
+      "thumb": {
+        "file": "/images/ingredients/coconut-water-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1860
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Coconut Drink, Ubud, Bali, 20220822 1345 0126.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coconut_Drink,_Ubud,_Bali,_20220822_1345_0126.jpg",
+      "author": "Jakub Hałun",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -2671,6 +4257,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:condensed-milk": {
+    "slug": "condensed-milk",
+    "kind": "ingredient",
+    "alt": "Two small tubs of condensed milk, one strawberry-tinted pink and one plain white",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/condensed-milk-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 29924
+      },
+      "thumb": {
+        "file": "/images/ingredients/condensed-milk-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 898
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Strawberry flavor and original condensed milk (2).jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Strawberry_flavor_and_original_condensed_milk_(2).jpg",
+      "author": "Fumikas Sagisavas",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:cranberry-juice": {
     "slug": "cranberry-juice",
     "kind": "ingredient",
@@ -2726,6 +4341,34 @@
       "credit": "Own work",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:cucumber": {
+    "slug": "cucumber",
+    "kind": "ingredient",
+    "alt": "A whole cucumber and two halves sliced lengthwise, showing the pale seeded flesh",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/cucumber-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 20210
+      },
+      "thumb": {
+        "file": "/images/ingredients/cucumber-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1124
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Mediterranean cucumber.JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mediterranean_cucumber.JPG",
+      "author": "user:WLU",
+      "credit": "Own work",
+      "license": "Public domain",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -3016,6 +4659,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:grapefruit-soda": {
+    "slug": "grapefruit-soda",
+    "kind": "ingredient",
+    "alt": "A bottle of Squirt grapefruit soda beside a glass poured with pale soda",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/grapefruit-soda-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 11218
+      },
+      "thumb": {
+        "file": "/images/ingredients/grapefruit-soda-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 692
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Squirt 1.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Squirt_1.jpg",
+      "author": "Mx. Granger",
+      "credit": "Own work",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:green-chartreuse": {
     "slug": "green-chartreuse",
     "kind": "ingredient",
@@ -3042,6 +4714,35 @@
       "credit": "Own work",
       "license": "GFDL 1.2",
       "licenseUrl": "http://www.gnu.org/licenses/old-licenses/fdl-1.2.html",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:green-tea": {
+    "slug": "green-tea",
+    "kind": "ingredient",
+    "alt": "Flat dried green tea leaves in a loose pile",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/green-tea-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 22292
+      },
+      "thumb": {
+        "file": "/images/ingredients/green-tea-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1366
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Dried tea leaves, Longjin.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dried_tea_leaves,_Longjin.jpg",
+      "author": "Romain Guy from Lyon, France",
+      "credit": "Tea leaves",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -3129,6 +4830,34 @@
       "credit": "vanilla bean",
       "license": "CC BY-SA 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:japanese-whisky": {
+    "slug": "japanese-whisky",
+    "kind": "ingredient",
+    "alt": "A bottle of Hibiki Japanese blended whisky beside a smaller bottle, backlit by a window",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/japanese-whisky-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 80692
+      },
+      "thumb": {
+        "file": "/images/ingredients/japanese-whisky-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2072
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Hibiki the premium blended whisky from Japanese distiller Suntory.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hibiki_the_premium_blended_whisky_from_Japanese_distiller_Suntory.jpg",
+      "author": "ウィキ太郎 (Wiki Taro)",
+      "credit": "Own work",
+      "license": "Public domain",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -3329,6 +5058,64 @@
       "file": "File:Luxardo Maraschino three bottles.jpg",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Luxardo_Maraschino_three_bottles.jpg",
       "author": "Kenneth C. Zirkel",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:masa": {
+    "slug": "masa",
+    "kind": "ingredient",
+    "alt": "A lump of pale corn masa dough on a wooden surface, ready for pressing",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/masa-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 63650
+      },
+      "thumb": {
+        "file": "/images/ingredients/masa-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1840
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Masa de tortillas.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Masa_de_tortillas.jpg",
+      "author": "Artemisa Martínez",
+      "credit": "Photographer",
+      "license": "CC0",
+      "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:matcha": {
+    "slug": "matcha",
+    "kind": "ingredient",
+    "alt": "A spoonful of bright green matcha powder spilled onto a pale surface",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/matcha-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 67654
+      },
+      "thumb": {
+        "file": "/images/ingredients/matcha-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1512
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Matcha Scoop.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Matcha_Scoop.jpg",
+      "author": "Evanhoever",
       "credit": "Own work",
       "license": "CC BY-SA 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
@@ -3566,6 +5353,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:peppermint": {
+    "slug": "peppermint",
+    "kind": "ingredient",
+    "alt": "Dried, crumbled peppermint leaf scattered on a pale surface",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/peppermint-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 72534
+      },
+      "thumb": {
+        "file": "/images/ingredients/peppermint-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1994
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Menthae piperitae folium 008182.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Menthae_piperitae_folium_008182.jpg",
+      "author": "Rillke",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0 de",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:peychauds-bitters": {
     "slug": "peychauds-bitters",
     "kind": "ingredient",
@@ -3592,6 +5408,64 @@
       "credit": "Own work",
       "license": "CC BY-SA 3.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:piloncillo": {
+    "slug": "piloncillo",
+    "kind": "ingredient",
+    "alt": "A solid amber block of piloncillo unrefined cane sugar",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/piloncillo-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 44928
+      },
+      "thumb": {
+        "file": "/images/ingredients/piloncillo-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1208
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Panela.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Panela.jpg",
+      "author": "Jdvillalobos",
+      "credit": "Own work",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:pimms": {
+    "slug": "pimms",
+    "kind": "ingredient",
+    "alt": "A row of vintage Pimm's Cup bottles, labelled No.5, No.4 and No.3",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/pimms-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 30028
+      },
+      "thumb": {
+        "file": "/images/ingredients/pimms-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1646
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Pimms-antique-bottles.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pimms-antique-bottles.jpg",
+      "author": "Original by Ewan Munro from London, UK *derivative work: Ubcule",
+      "credit": "Hix_Oyster_and_Chop_House,_Smithfield,_London.jpg",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -3710,6 +5584,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:purple-corn": {
+    "slug": "purple-corn",
+    "kind": "ingredient",
+    "alt": "Close-up of a purple corn cob, deep near-black kernels in rows",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/purple-corn-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 64252
+      },
+      "thumb": {
+        "file": "/images/ingredients/purple-corn-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1230
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Zea mays 'morado' MHNT.BOT.2015.34.11.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Zea_mays_%27morado%27_MHNT.BOT.2015.34.11.jpg",
+      "author": "Roger Culos",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:raspberry": {
     "slug": "raspberry",
     "kind": "ingredient",
@@ -3764,6 +5667,35 @@
       "author": "Paolo Neo",
       "credit": "http://www.public-domain-image.com/public-domain-images-pictures-free-stock-photos/food-and-drink-public-domain-images-pictures/wine-public-domain-images-pictures/red-wine-in-glass-in-restaurant.jpg",
       "license": "Public domain",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:rooibos": {
+    "slug": "rooibos",
+    "kind": "ingredient",
+    "alt": "A pile of dried, cut rooibos leaf, reddish-brown, on a white background",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/rooibos-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 69158
+      },
+      "thumb": {
+        "file": "/images/ingredients/rooibos-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2542
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Rooibos geschnitten.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rooibos_geschnitten.jpg",
+      "author": "soultea.de/André Helbig",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -3912,6 +5844,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:star-anise": {
+    "slug": "star-anise",
+    "kind": "ingredient",
+    "alt": "Close-up of a single star anise pod, its points open to show the seeds",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/star-anise-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 57952
+      },
+      "thumb": {
+        "file": "/images/ingredients/star-anise-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 2282
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Star anise.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Star_anise.jpg",
+      "author": "Retro Lenses",
+      "credit": "Own work",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:strawberry": {
     "slug": "strawberry",
     "kind": "ingredient",
@@ -3969,6 +5930,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:tamarind": {
+    "slug": "tamarind",
+    "kind": "ingredient",
+    "alt": "A tamarind pod split open showing the sticky brown pulp and dark seeds",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/tamarind-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 33418
+      },
+      "thumb": {
+        "file": "/images/ingredients/tamarind-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1424
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Tamarindus Indica (Thailand).JPG",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tamarindus_Indica_(Thailand).JPG",
+      "author": "Jungle Rebel",
+      "credit": "Own work",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:tequila": {
     "slug": "tequila",
     "kind": "ingredient",
@@ -3995,6 +5985,35 @@
       "credit": "Own work",
       "license": "CC BY 4.0",
       "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "ingredient:tonic-water": {
+    "slug": "tonic-water",
+    "kind": "ingredient",
+    "alt": "A mason-jar mug filled with clear tonic water",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/tonic-water-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 15712
+      },
+      "thumb": {
+        "file": "/images/ingredients/tonic-water-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 934
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Lime tonic water.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lime_tonic_water.jpg",
+      "author": "Corn cheese",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -4113,6 +6132,35 @@
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
+  "ingredient:yerba-mate": {
+    "slug": "yerba-mate",
+    "kind": "ingredient",
+    "alt": "Two piles of dried yerba mate, one ground fine and one coarsely cut with stems",
+    "renditions": {
+      "card": {
+        "file": "/images/ingredients/yerba-mate-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 52110
+      },
+      "thumb": {
+        "file": "/images/ingredients/yerba-mate-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1714
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Chimarrao vs yerba mate - dry material.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chimarrao_vs_yerba_mate_-_dry_material.jpg",
+      "author": "ChimaAddicted",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
   "ingredient:yoghurt": {
     "slug": "yoghurt",
     "kind": "ingredient",
@@ -4197,6 +6245,35 @@
       "credit": "https://www.flickr.com/photos/sultmhoor/2620757246/",
       "license": "CC BY-SA 2.0",
       "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
+    }
+  },
+  "preparation:raspberry-syrup": {
+    "slug": "raspberry-syrup",
+    "kind": "preparation",
+    "alt": "A bottle of raspberry syrup with pulp, labelled with raspberry illustrations",
+    "renditions": {
+      "card": {
+        "file": "/images/preparations/raspberry-syrup-card.webp",
+        "width": 800,
+        "height": 800,
+        "bytes": 67162
+      },
+      "thumb": {
+        "file": "/images/preparations/raspberry-syrup-thumb.webp",
+        "width": 96,
+        "height": 96,
+        "bytes": 1052
+      }
+    },
+    "attribution": {
+      "source": "Wikimedia Commons",
+      "file": "File:Kittl Syrob Malinovy S Duzninou.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kittl_Syrob_Malinovy_S_Duzninou.jpg",
+      "author": "Mojmir Churavy",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },

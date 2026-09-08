@@ -1,0 +1,142 @@
+---
+id: index
+label: Boiled
+name: Masala Chai
+subtitle: Black tea, milk and a spice blend boiled together, roadside-stall style.
+defaultDrinks: 1
+method: boiled
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Boiled to order in a small pan. Reheating a made batch splits the milk
+  proteins that the first boil bound successfully.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+names:
+  alsoKnownAs:
+    - name: Chai
+      region: South Asia
+      note: In Hindi and Urdu the word simply means tea, so it names any tea; the spiced
+        preparation on this page is masala chai specifically.
+    - name: Chai tea
+      note: A tautology — chai already means tea — but the usual name for the drink in
+        English-speaking countries.
+  searchOnly:
+    - masala tea
+    - spiced milk tea
+difficulty: Medium
+tags:
+  category: [tea, hot-drink]
+  origin: [india]
+  method: [boiled]
+brew:
+  method: immersion
+  doseRef: tea
+  waterRef: water
+  waterTempC: 100
+  contactSec: 300
+  yieldMl: 110
+ingredients:
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 5
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Boiled hard for its strength and strained out again; what it leaves
+      behind is dissolved rather than weighable.
+  - id: cardamom
+    ingredientRef: cardamom
+    formRef: standard
+    amount: 1
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Crushed pods are boiled with the tea and strained out with the leaf;
+      what they leave behind is aromatic rather than weighable.
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 2
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A piece of stick is boiled with the tea and strained out; what it
+      leaves behind is aromatic rather than weighable.
+  - id: ginger
+    ingredientRef: ginger
+    formRef: standard
+    amount: 4
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Crushed fresh root is boiled with the tea and strained out; what it
+      leaves behind is aromatic rather than weighable.
+  - id: pepper
+    ingredientRef: black-pepper
+    formRef: whole
+    amount: 0.5
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A few cracked corns go in with the rest of the spice for heat and are
+      strained out with the leaf.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 100
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 15
+    unit: g
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 80
+    unit: ml
+steps:
+  - { id: boil, durationSec: 180, type: passive, phase: make }
+  - { id: addmilk, durationSec: 10, type: active, phase: make }
+  - { id: reboil, durationSec: 120, type: passive, phase: make }
+  - { id: strain, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: reboil
+    text: >-
+      The tea, spices and sugar go into the water from the start and are
+      brought back to a boil a second time once the milk goes in, the
+      roadside-stall build that gets a spiced, sweetened cup of this
+      strength to come out smooth rather than merely stewed.
+  - kind: pitfall
+    text: >-
+      Bringing the milk to a hard boil unwatched, rather than lowering the
+      heat as soon as it rises, boils it straight over the side of the pan;
+      the second boil needs watching in a way the first, water-only one
+      does not.
+---
+
+<Step id="boil">
+  Combine the <Qty ref="water"/>, the <Qty ref="tea"/>, the
+  <Qty ref="cardamom"/>, the <Qty ref="cinnamon"/>, the <Qty ref="ginger"/>,
+  the <Qty ref="pepper"/> and the <Qty ref="sugar"/> in a small pan, bring
+  to a boil, then lower the heat and simmer for <Dur step="boil"/>.
+</Step>
+
+<Step id="addmilk">
+  Stir in the <Qty ref="milk"/>.
+</Step>
+
+<Step id="reboil">
+  Bring back to a boil and simmer again for <Dur step="reboil"/>, until the
+  colour is an even, deep tan.
+</Step>
+
+<Step id="strain">
+  Strain into a mug, leaving the leaf and spices behind.
+</Step>

@@ -1,0 +1,111 @@
+---
+id: index
+label: Classic
+name: Thai Iced Tea
+subtitle: Black tea spiced with star anise, sweetened with condensed milk and finished with a float of evaporated milk over ice.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: low
+batchable: full
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Medium
+tags:
+  category: [tea]
+  origin: [thailand]
+  method: [steeped]
+names:
+  alsoKnownAs:
+    - name: Cha Yen
+      region: Thailand
+brew:
+  method: steep
+  doseRef: tea
+  waterRef: water
+  waterTempC: 100
+  contactSec: 300
+  yieldMl: 100
+ingredients:
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 6
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Steeped strong with the spice and strained out again; what it leaves
+      behind is dissolved rather than weighable.
+  - id: anise
+    ingredientRef: star-anise
+    formRef: whole
+    amount: 1
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Steeped with the tea for its aroma and strained out; what it leaves
+      behind is aromatic rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 120
+    unit: ml
+  - id: condensed
+    ingredientRef: condensed-milk
+    formRef: standard
+    amount: 20
+    unit: ml
+  - id: evap
+    ingredientRef: evaporated-milk
+    formRef: standard
+    amount: 15
+    unit: ml
+steps:
+  - { id: steep, durationSec: 300, type: passive, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: sweeten, durationSec: 10, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: float, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: float
+    text: >-
+      The evaporated milk is poured last, over the back of a spoon, so it
+      sits as a pale layer on top rather than mixing straight in; stirring
+      it through loses the two-tone look the drink is known for before the
+      first sip.
+  - kind: pitfall
+    text: >-
+      The tea's bright orange colour on a menu photograph almost always
+      comes from added colouring rather than the tea and spice alone, which
+      brew to a tan or caramel shade; colouring has no effect on flavour
+      and is left out of this recipe as a cosmetic rather than a
+      compositional choice.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the <Qty ref="tea"/>
+  and the <Qty ref="anise"/> and steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="strain">
+  Strain out the leaf and spice.
+</Step>
+
+<Step id="sweeten">
+  Stir in the <Qty ref="condensed"/> while the tea is still hot enough to
+  dissolve it fully.
+</Step>
+
+<Step id="pour">
+  Let cool, then pour over cubed ice in a tall glass.
+</Step>
+
+<Step id="float">
+  Pour the <Qty ref="evap"/> slowly over the back of a spoon so it sits on
+  top as a pale layer.
+</Step>

@@ -1,0 +1,8 @@
+{
+  "id": "cappuccino-cup",
+  "name": "Cappuccino Cup",
+  "capacityMl": 180,
+  "shapeFamily": "handled",
+  "note": "Wider than an espresso cup, so the foam has room to sit above the rim in a dome.",
+  "iceDisplacementMl": { "none": 0 }
+}

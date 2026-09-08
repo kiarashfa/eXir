@@ -1,0 +1,44 @@
+{
+  "id": "condensed-milk",
+  "name": "Condensed milk",
+  "kind": "ingredient",
+  "category": "dairy",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [{ "name": "Sweetened condensed milk" }],
+    "notToBeConfusedWith": [
+      {
+        "name": "Evaporated milk",
+        "note": "Concentrated the same way but unsweetened; condensed milk is roughly half sugar by weight and cannot be swapped for it."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Sweetened, canned",
+      "proseName": "condensed milk",
+      "abvPercent": 0,
+      "densityGPerMl": 1.2917,
+      "densitySource": "measured",
+      "sugarGPer100": 54.4,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 321,
+        "carbohydrateG": 54.4,
+        "sugarsG": 54.4,
+        "proteinG": 7.91,
+        "fatG": 8.7,
+        "saturatedFatG": 5.486,
+        "fibreG": 0,
+        "sodiumMg": 127
+      },
+      "animalOrigin": "dairy",
+      "allergenTags": ["dairy"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "171275",
+      "sourceNote": "Milk, canned, condensed, sweetened. Public domain. The record's own fluid-ounce portion gives 1.2917 g/ml, adopted as a true density because it is poured."
+    }
+  ]
+}

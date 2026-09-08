@@ -1,0 +1,103 @@
+---
+id: index
+label: Classic
+name: Champurrado
+subtitle: Atole thickened further with chocolate, whisked until it turns glossy.
+defaultDrinks: 1
+method: heated
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Cooked and thickened to order. Reheating keeps drawing more starch out of
+  the masa and the drink turns gluey rather than staying pourable.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [hot-drink]
+  origin: [mexico-central-america]
+  method: [heated]
+names:
+  notToBeConfusedWith:
+    - name: Atole
+      note: The same masa-thickened base without chocolate, on its own separate page rather than a variant of this one.
+ingredients:
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 150
+    unit: ml
+  - id: masa
+    ingredientRef: masa
+    formRef: white
+    amount: 25
+    unit: g
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 150
+    unit: ml
+  - id: piloncillo
+    ingredientRef: piloncillo
+    formRef: cone
+    amount: 30
+    unit: g
+  - id: cocoa
+    ingredientRef: cocoa
+    formRef: unsweetened
+    amount: 15
+    unit: g
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 3
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Simmered for its aroma and strained out before serving; it contributes
+      no volume or sugar to the finished drink.
+steps:
+  - { id: slurry, durationSec: 60, type: active, phase: prep }
+  - { id: simmer, durationSec: 300, type: active, phase: make }
+  - { id: whisk, durationSec: 60, type: active, phase: make }
+  - { id: strain, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: whisk
+    text: >-
+      A molinillo spun between the palms works air into the drink as the
+      cocoa dissolves, which is what raises a thin foam on top rather than
+      leaving the chocolate sitting as a separate layer.
+  - kind: pitfall
+    text: >-
+      Simmering without stirring lets the thickened base catch and scorch on
+      the bottom of the pot, and a scorched champurrado tastes of the pot
+      rather than of the corn and chocolate.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. Champurrado thickens as it cooks and is
+    served within minutes of coming off the heat.
+  freezable: false
+---
+
+<Step id="slurry">
+  Whisk the <Qty ref="masa"/> into the <Qty ref="water"/> until completely
+  smooth, with no dry lumps left.
+</Step>
+
+<Step id="simmer">
+  Combine the masa slurry with the <Qty ref="milk"/>, <Qty ref="piloncillo"/>
+  and <Qty ref="cinnamon"/> in a pot and simmer over <Dur step="simmer"/>,
+  whisking constantly, until visibly thickened.
+</Step>
+
+<Step id="whisk">
+  Whisk in the <Qty ref="cocoa"/> with a molinillo for <Dur step="whisk"/>,
+  until glossy and lightly foamed.
+</Step>
+
+<Step id="strain">
+  Remove the cinnamon stick and pour hot into the serving mug.
+</Step>

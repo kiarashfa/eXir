@@ -1,0 +1,125 @@
+---
+id: index
+label: Classic
+name: Chicha Morada
+subtitle: Purple corn boiled with pineapple and spice, strained and sweetened cold.
+defaultDrinks: 1
+method: boiled
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: none
+batchNote: >-
+  Made a pot at a time in practice, but authored here as one boil to order.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [juice-agua-fresca]
+  origin: [south-america]
+  method: [boiled]
+names:
+  notToBeConfusedWith:
+    - name: Chicha
+      note: A fermented, mildly alcoholic corn drink from the same Andean region; chicha morada is unfermented and always non-alcoholic.
+brew:
+  method: immersion
+  doseRef: corn
+  waterRef: water
+  waterTempC: 100
+  contactSec: 2700
+  yieldMl: 150
+ingredients:
+  - id: corn
+    ingredientRef: purple-corn
+    formRef: dried
+    amount: 20
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Boiled for its colour and flavour and strained out with the rest of the
+      solids afterward; what it leaves behind is dissolved into the water
+      rather than weighable.
+  - id: pineapple
+    ingredientRef: pineapple
+    formRef: standard
+    amount: 60
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The peel and core are boiled with the corn for their aroma and
+      strained out afterward, contributing no sugar or volume to the glass.
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 3
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Boiled for aroma and strained out with the rest of the solids.
+  - id: cloves
+    ingredientRef: cloves
+    formRef: whole
+    amount: 1
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Boiled for aroma and strained out with the rest of the solids.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 200
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 15
+    unit: g
+  - id: lime-juice
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 8
+    unit: ml
+steps:
+  - { id: boil, durationSec: 2700, type: passive, phase: make }
+  - { id: strain, durationSec: 45, type: active, phase: make }
+  - { id: sweeten, durationSec: 30, type: active, phase: make }
+  - { id: chill, durationSec: 1800, type: passive, phase: rest }
+notes:
+  - kind: technique
+    stepRef: boil
+    text: >-
+      The corn is boiled whole rather than ground, which draws out its deep
+      purple colour slowly over the better part of an hour rather than the
+      few minutes a steep would take.
+  - kind: pitfall
+    text: >-
+      Adding the lime juice while the liquid is still hot dulls the purple
+      towards brown; it goes in only once the strained liquid has cooled.
+makeAhead:
+  aheadInstructions: >-
+    The boiled and strained base keeps well chilled and is normally made a
+    day ahead so it has time to fully cool before the lime juice goes in.
+  batchKeepDays: 3
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="boil">
+  Combine the <Qty ref="corn"/>, <Qty ref="pineapple"/>, <Qty ref="cinnamon"/>
+  and <Qty ref="cloves"/> with the <Qty ref="water"/> and boil at
+  <Temp c={100}/> for <Dur step="boil"/>, until the liquid turns a deep
+  purple.
+</Step>
+
+<Step id="strain">
+  Strain out the corn, pineapple and spices and discard them.
+</Step>
+
+<Step id="sweeten">
+  Stir the <Qty ref="sugar"/> into the hot strained liquid until dissolved.
+</Step>
+
+<Step id="chill">
+  Cool for <Dur step="chill"/>, then stir in the <Qty ref="lime-juice"/> and
+  pour over ice.
+</Step>

@@ -1,0 +1,113 @@
+---
+id: index
+label: Classic
+name: Pimm's Cup
+subtitle: Pimm's No.1 topped with lemon soda, built over ice with a handful of fresh fruit and cucumber.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The Pimm's, fruit and cucumber can be set up ahead, but the lemon soda is
+  poured to order so it keeps its fizz into the glass.
+zeroProof: false
+family: highball
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [cocktail]
+  origin: [united-kingdom]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+ingredients:
+  - id: pimms
+    ingredientRef: pimms
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: soda
+    ingredientRef: lemon-soda
+    formRef: standard
+    amount: 100
+    unit: ml
+  - id: cucumber
+    ingredientRef: cucumber
+    formRef: standard
+    amount: 15
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A long peeled ribbon is dropped in for its scent against the glass;
+      it is bought and cut but not eaten, so it stays out of the
+      composition.
+  - id: mint
+    ingredientRef: mint
+    formRef: fresh
+    amount: 2
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A sprig is added for its aroma rather than eaten, so it stays out of
+      the composition.
+  - id: strawberry
+    ingredientRef: strawberry
+    formRef: standard
+    amount: 20
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Sliced and dropped in to float among the ice; garnish rather than a
+      juiced input, so it stays out of the composition.
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 15
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A half-wheel is dropped in with the rest of the fruit; garnish rather
+      than a juiced input, so it stays out of the composition.
+steps:
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: garnish
+    text: >-
+      The fruit and cucumber are not decoration set on the rim but dropped
+      into the glass itself, so the drink keeps picking up their scent as
+      the ice melts and the glass is topped up through the evening.
+  - kind: pitfall
+    text: >-
+      Pimm's alone is closer to a mixer than a spirit at roughly a
+      quarter of the strength of gin, so treating it like a standard
+      liqueur pour and drowning it in soda leaves a drink with almost no
+      flavour of its own.
+---
+
+<Step id="fill">
+  Fill a Collins glass with cubed ice.
+</Step>
+
+<Step id="pour">
+  Pour in the <Qty ref="pimms"/>.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/>.
+</Step>
+
+<Step id="garnish">
+  Drop in the cucumber ribbon, mint sprig, sliced strawberry and orange
+  half-wheel.
+</Step>

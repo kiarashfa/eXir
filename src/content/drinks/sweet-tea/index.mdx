@@ -1,0 +1,89 @@
+---
+id: index
+label: Classic
+name: Sweet Tea
+subtitle: Black tea steeped hot and sweetened while it is still hot enough to dissolve the sugar.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: mason-jar
+iceStyle: cubed
+servedOverIce: true
+bitterness: low
+batchable: full
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [tea]
+  origin: [united-states]
+  method: [steeped]
+names:
+  notToBeConfusedWith:
+    - name: Iced Tea
+      note: Brewed the same way but left unsweetened; sweet tea is defined by sugar dissolved in while the tea is still hot, not added at the glass.
+brew:
+  method: steep
+  doseRef: tea
+  waterRef: water
+  waterTempC: 100
+  contactSec: 300
+  yieldMl: 130
+ingredients:
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 4
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Steeped for its strength and strained out again; what it leaves
+      behind is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 140
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 25
+    unit: g
+steps:
+  - { id: steep, durationSec: 300, type: passive, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: sweeten, durationSec: 180, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: sweeten
+    text: >-
+      The sugar goes into the tea while it is still hot from the steep,
+      not into the finished glass over ice, so it fully dissolves rather
+      than settling at the bottom; that is the whole distinction between
+      this drink and plain iced tea served with sugar on the side.
+  - kind: pitfall
+    text: >-
+      A long, hot brew leaves black tea genuinely bitter, and enough sugar
+      to cover that bitterness rather than to sweeten a well-made cup is
+      how this drink gets its reputation for excess. A properly timed
+      steep needs far less of it.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the <Qty ref="tea"/>
+  and steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="strain">
+  Strain out the leaf.
+</Step>
+
+<Step id="sweeten">
+  Stir the <Qty ref="sugar"/> into the hot tea until fully dissolved, about
+  <Dur step="sweeten"/>, then let it cool to room temperature.
+</Step>
+
+<Step id="pour">
+  Pour over cubed ice in a mason jar.
+</Step>

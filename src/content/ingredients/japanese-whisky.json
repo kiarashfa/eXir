@@ -1,0 +1,40 @@
+{
+  "id": "japanese-whisky",
+  "name": "Japanese Whisky",
+  "kind": "ingredient",
+  "category": "japanese-whisky",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      { "name": "Scotch", "note": "Made in a different country under different rules; Japanese distillers historically followed Scotch methods closely but the two are not the same category." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard, e.g. Suntory Toki",
+      "proseName": "Japanese whisky",
+      "abvPercent": 43,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174815",
+      "sourceNote": "Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof. Public domain. FoodData Central carries no Japanese-whisky-specific record and composition does not vary with grain or region at a fixed proof, so this generic distilled-spirit record applies unchanged; ABV is set to 43%, the strength Suntory Toki is bottled at and the reference bottle this highball is usually built around."
+    }
+  ]
+}

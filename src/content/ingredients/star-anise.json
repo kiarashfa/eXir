@@ -1,0 +1,24 @@
+{
+  "id": "star-anise",
+  "name": "Star anise",
+  "kind": "ingredient",
+  "category": "spice",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      { "name": "Anise seed", "note": "A different plant with a similar liquorice note; FoodData Central carries anise seed but not star anise, and the two are not assumed interchangeable in composition here." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "whole",
+      "label": "Whole pod",
+      "proseName": "star anise",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "FoodData Central carries no record for star anise specifically, only the unrelated anise seed. No composition is claimed here rather than importing a different plant's figures; the pod is boiled or steeped and strained out in any case."
+    }
+  ]
+}

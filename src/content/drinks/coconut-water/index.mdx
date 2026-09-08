@@ -1,0 +1,58 @@
+---
+id: index
+label: Classic
+name: Coconut Water
+subtitle: The clear liquid inside a young coconut, drunk straight from the shell.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: highball
+servedOverIce: false
+bitterness: none
+batchable: none
+batchNote: >-
+  Opened and poured to order; once a young coconut is cracked its water
+  starts to ferment within a day even refrigerated.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [soft-traditional]
+  origin: [southeast-asia]
+  method: [built]
+names:
+  notToBeConfusedWith:
+    - name: Coconut milk
+      note: A cooked, pressed liquid made from grated mature coconut flesh and water, not the clear liquid that occurs naturally inside a young one.
+ingredients:
+  - id: coconut-water
+    ingredientRef: coconut-water
+    formRef: raw
+    amount: 300
+    unit: ml
+steps:
+  - { id: open, durationSec: 60, type: active, phase: prep }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: open
+    text: >-
+      A young, green coconut is chosen over a mature brown one because its
+      water is still abundant and mild — as the fruit ripens, more of that
+      water converts into solid flesh and what remains turns thinner and
+      more acidic.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The coconut is opened at the point of
+    serving, since its water begins fermenting once exposed to air.
+  freezable: false
+---
+
+<Step id="open">
+  Cut or punch an opening into the top of a chilled young coconut with a
+  cleaver or a coconut opener.
+</Step>
+
+<Step id="pour">
+  Pour the <Qty ref="coconut-water"/> into a glass, or serve directly from the
+  shell with a straw.
+</Step>

@@ -1,0 +1,337 @@
+{
+  "discontinuedDate": "",
+  "foodComponents": [],
+  "foodAttributes": [
+    {
+      "id": 2703964,
+      "value": 5,
+      "name": "Nutrient Added"
+    }
+  ],
+  "foodPortions": [],
+  "fdcId": 2373333,
+  "description": "ORGANIC CULINARY MATCHA, MATCHA",
+  "publicationDate": "12/7/2022",
+  "foodNutrients": [
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1093,
+        "number": "307",
+        "name": "Sodium, Na",
+        "rank": 5800,
+        "unitName": "mg"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 29180830,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1089,
+        "number": "303",
+        "name": "Iron, Fe",
+        "rank": 5400,
+        "unitName": "mg"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 29180828,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1005,
+        "number": "205",
+        "name": "Carbohydrate, by difference",
+        "rank": 1110,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 73,
+        "code": "LCSL",
+        "description": "Calculated from a less than value per serving size measure"
+      },
+      "id": 29180823,
+      "amount": 100
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 2000,
+        "number": "269",
+        "name": "Total Sugars",
+        "rank": 1510,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 29180825,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1087,
+        "number": "301",
+        "name": "Calcium, Ca",
+        "rank": 5300,
+        "unitName": "mg"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 29180827,
+      "amount": 800
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1008,
+        "number": "208",
+        "name": "Energy",
+        "rank": 300,
+        "unitName": "kcal"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 29180824,
+      "amount": 300
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1092,
+        "number": "306",
+        "name": "Potassium, K",
+        "rank": 5700,
+        "unitName": "mg"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 29180829,
+      "amount": 2700
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1003,
+        "number": "203",
+        "name": "Protein",
+        "rank": 600,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 73,
+        "code": "LCSL",
+        "description": "Calculated from a less than value per serving size measure"
+      },
+      "id": 29180821,
+      "amount": 100
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1253,
+        "number": "601",
+        "name": "Cholesterol",
+        "rank": 15700,
+        "unitName": "mg"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 29180832,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1258,
+        "number": "606",
+        "name": "Fatty acids, total saturated",
+        "rank": 9700,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 29180834,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1004,
+        "number": "204",
+        "name": "Total lipid (fat)",
+        "rank": 800,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 29180822,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1079,
+        "number": "291",
+        "name": "Fiber, total dietary",
+        "rank": 1200,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 73,
+        "code": "LCSL",
+        "description": "Calculated from a less than value per serving size measure"
+      },
+      "id": 29180826,
+      "amount": 100
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1110,
+        "number": "324",
+        "name": "Vitamin D (D2 + D3), International Units",
+        "rank": 8650,
+        "unitName": "IU"
+      },
+      "foodNutrientDerivation": {
+        "id": 75,
+        "code": "LCCD",
+        "description": "Calculated from a daily value percentage per serving size measure"
+      },
+      "id": 29180831,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "nutrient": {
+        "id": 1257,
+        "number": "605",
+        "name": "Fatty acids, total trans",
+        "rank": 15400,
+        "unitName": "g"
+      },
+      "foodNutrientDerivation": {
+        "id": 70,
+        "code": "LCCS",
+        "description": "Calculated from value per serving size measure"
+      },
+      "id": 29180833,
+      "amount": 0
+    }
+  ],
+  "dataType": "Branded",
+  "foodClass": "Branded",
+  "shortDescription": "",
+  "modifiedDate": "10/4/2022",
+  "availableDate": "10/4/2022",
+  "brandOwner": "Jade Leaf Organics, LLC",
+  "brandName": "JADE LEAF MATCHA",
+  "dataSource": "LI",
+  "brandedFoodCategory": "Powdered Drinks",
+  "gtinUpc": "853371006634",
+  "householdServingFullText": "1 tsp",
+  "ingredients": "100% ORGANIC JAPANESE MATCHA GREEN TEA POWDER",
+  "marketCountry": "United States",
+  "servingSize": 1,
+  "servingSizeUnit": "g",
+  "packageWeight": "0.71 oz/20 g",
+  "foodUpdateLog": [
+    {
+      "discontinuedDate": "",
+      "foodAttributes": [],
+      "fdcId": 2373333,
+      "description": "ORGANIC CULINARY MATCHA, MATCHA",
+      "publicationDate": "12/7/2022",
+      "dataType": "Branded",
+      "foodClass": "Branded",
+      "shortDescription": "",
+      "modifiedDate": "10/4/2022",
+      "availableDate": "10/4/2022",
+      "brandOwner": "Jade Leaf Organics, LLC",
+      "brandName": "JADE LEAF MATCHA",
+      "dataSource": "LI",
+      "brandedFoodCategory": "Powdered Drinks",
+      "gtinUpc": "853371006634",
+      "householdServingFullText": "1 tsp",
+      "ingredients": "100% ORGANIC JAPANESE MATCHA GREEN TEA POWDER",
+      "marketCountry": "United States",
+      "servingSize": 1,
+      "servingSizeUnit": "g",
+      "packageWeight": "0.71 oz/20 g"
+    }
+  ],
+  "labelNutrients": {
+    "fat": {
+      "value": 0
+    },
+    "saturatedFat": {
+      "value": 0
+    },
+    "transFat": {
+      "value": 0
+    },
+    "cholesterol": {
+      "value": 0
+    },
+    "sodium": {
+      "value": 0
+    },
+    "carbohydrates": {
+      "value": 1
+    },
+    "fiber": {
+      "value": 1
+    },
+    "sugars": {
+      "value": 0
+    },
+    "protein": {
+      "value": 1
+    },
+    "calcium": {
+      "value": 8
+    },
+    "iron": {
+      "value": 0
+    },
+    "potassium": {
+      "value": 27
+    },
+    "calories": {
+      "value": 3
+    }
+  }
+}

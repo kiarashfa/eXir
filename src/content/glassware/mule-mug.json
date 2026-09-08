@@ -1,0 +1,9 @@
+{
+  "id": "mule-mug",
+  "name": "Copper mug",
+  "capacityMl": 400,
+  "shapeFamily": "metal",
+  "note": "Traditional for a Moscow Mule; the copper keeps the outside cold to the touch and beads with condensation quickly.",
+  "iceDisplacementMl": { "cubed": 230, "block": 220, "crushed": 285, "none": 0 },
+  "iceDisplacementNote": "No measured figure exists for this shape. Copied from the Collins glass on this site, which shares its 400 ml capacity — estimate."
+}

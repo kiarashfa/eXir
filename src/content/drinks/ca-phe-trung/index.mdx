@@ -1,0 +1,105 @@
+---
+id: classic
+label: Classic
+name: Ca Phe Trung
+subtitle: Egg yolk whipped pale with condensed milk, floated over hot black coffee.
+defaultDrinks: 1
+method: whisked
+dilutionClass: none
+glasswareRef: cortado-glass
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  The yolk is whipped and the coffee dripped to order; whipped yolk deflates
+  within minutes, so there is nothing here that keeps.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [coffee]
+  origin: [southeast-asia]
+  method: [whisked]
+names:
+  alsoKnownAs:
+    - name: Egg coffee
+      region: Vietnam
+brew:
+  method: pour-over
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 95
+  grind: medium-fine
+  contactSec: 200
+  yieldMl: 40
+ingredients:
+  - id: yolk
+    ingredientRef: egg
+    formRef: yolk
+    amount: 17
+    unit: g
+  - id: milk
+    ingredientRef: condensed-milk
+    formRef: standard
+    amount: 20
+    unit: ml
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 15
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the cup and the rest stays in
+      the phin's basket, the middle of the Specialty Coffee Association's
+      published extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 60
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: drip, durationSec: 200, type: passive, phase: prep }
+  - { id: whip, durationSec: 120, type: active, phase: make }
+  - { id: float, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: whip
+    text: >-
+      The yolk and condensed milk are whisked together for a full two
+      minutes, well past the point they combine, because it is that long
+      beating that works air into the mixture and turns it from a liquid
+      into a foam thick enough to sit on top of the coffee rather than sink
+      into it.
+  - kind: pitfall
+    text: >-
+      The yolk is used raw and only briefly warmed by the hot coffee under
+      it, so a fresh, well-refrigerated egg matters more here than in a
+      cooked dish — this is not a drink to make from one that has sat out.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The foam is whipped and the coffee dripped
+    just before serving, and the foam loses its structure within minutes.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> to a medium-fine texture for the phin.
+</Step>
+
+<Step id="drip">
+  Set the phin over the serving cup and let the <Qty ref="water"/> at
+  <Temp c={95}/> drip through for <Dur step="drip"/>, leaving hot black coffee
+  in the bottom of the cup.
+</Step>
+
+<Step id="whip">
+  In a separate bowl, whisk the <Qty ref="yolk"/> and <Qty ref="milk"/>
+  together for <Dur step="whip"/>, until pale, thick and roughly doubled in
+  volume.
+</Step>
+
+<Step id="float">
+  Spoon the whipped yolk over the hot coffee so it sits as a distinct layer on
+  top, and serve at once with a spoon.
+</Step>

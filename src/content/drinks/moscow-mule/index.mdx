@@ -1,0 +1,91 @@
+---
+id: index
+label: Classic
+name: Moscow Mule
+subtitle: Vodka, lime and ginger beer, built over ice in a copper mug.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: mule-mug
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The vodka and lime can be pre-batched, but the ginger beer is poured to
+  order so it keeps its carbonation into the glass.
+zeroProof: false
+family: highball
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+names:
+  notToBeConfusedWith:
+    - name: Kentucky Mule
+      note: The same build with bourbon in place of vodka; a different base spirit changes the drink's whole profile.
+ingredients:
+  - id: vodka
+    ingredientRef: vodka
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: ginger-beer
+    ingredientRef: ginger-beer
+    formRef: standard
+    amount: 90
+    unit: ml
+  - id: wheel
+    ingredientRef: lime
+    formRef: standard
+    amount: 8
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A wheel is dropped in for its look and aroma. It is bought and cut but
+      not eaten, so it stays out of the composition.
+steps:
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: fill
+    text: >-
+      The copper mug is not decoration: copper conducts heat far faster than
+      glass, so the outside chills and beads with condensation almost as
+      soon as the ice goes in, which is most of what this drink is known
+      for beyond its build.
+  - kind: pitfall
+    text: >-
+      Ginger beer poured in hard, or stirred once it lands, throws off most
+      of its carbonation before the first sip. It goes in gently, down the
+      side of the mug, and the drink is not stirred afterwards.
+---
+
+<Step id="fill">
+  Fill the copper mug with cubed ice.
+</Step>
+
+<Step id="pour">
+  Pour in the <Qty ref="vodka"/> and the <Qty ref="lime"/>.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="ginger-beer"/>, poured gently down the side of the
+  mug rather than straight onto the ice.
+</Step>
+
+<Step id="garnish">
+  Drop in a lime wheel.
+</Step>

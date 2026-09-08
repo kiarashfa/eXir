@@ -1,0 +1,96 @@
+---
+id: index
+label: Classic
+name: Moroccan Mint Tea
+subtitle: Gunpowder green tea and fresh mint, poured from a height to raise a foam.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: kyusu-cup
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Brewed in the pot and poured glass by glass; the high pour that raises
+  the foam has to happen at the moment of serving.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Medium
+tags:
+  category: [tea, hot-drink]
+  origin: [morocco]
+  method: [steeped]
+brew:
+  method: steep
+  doseRef: tea
+  waterRef: water
+  waterTempC: 100
+  contactSec: 180
+  yieldMl: 100
+ingredients:
+  - id: tea
+    ingredientRef: green-tea
+    formRef: standard
+    amount: 5
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Rinsed and steeped for its strength, then left in the pot for the
+      next round; what it gives up is dissolved rather than weighable.
+  - id: mint
+    ingredientRef: mint
+    formRef: fresh
+    amount: 15
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A large bundle is steeped whole with the tea for its aroma and left
+      in the pot; what it leaves behind is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 120
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 15
+    unit: g
+steps:
+  - { id: rinse, durationSec: 15, type: active, phase: prep }
+  - { id: steep, durationSec: 180, type: passive, phase: make }
+  - { id: sweeten, durationSec: 10, type: active, phase: make }
+  - { id: pour, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: pour
+    text: >-
+      The tea is poured from well above the glass rather than close to it,
+      which aerates it enough to raise a thin foam across the surface — a
+      sign in Morocco that the tea has been made properly, not just a
+      flourish.
+  - kind: pitfall
+    text: >-
+      Skipping the rinse leaves the first pot noticeably more bitter, since
+      gunpowder tea's tightly rolled pellets carry a layer of dust and early
+      bitterness on the outside that a quick rinse washes away before the
+      real steep begins.
+---
+
+<Step id="rinse">
+  Rinse the <Qty ref="tea"/> briefly with a little of the hot water and
+  pour that off before steeping.
+</Step>
+
+<Step id="steep">
+  Add the <Qty ref="water"/> at <Temp c={100}/> and the <Qty ref="mint"/>
+  to the pot and steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="sweeten">
+  Stir in the <Qty ref="sugar"/>.
+</Step>
+
+<Step id="pour">
+  Pour from well above the glass to raise a foam on the surface.
+</Step>

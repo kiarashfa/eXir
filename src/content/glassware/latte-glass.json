@@ -1,0 +1,8 @@
+{
+  "id": "latte-glass",
+  "name": "Latte Glass",
+  "capacityMl": 300,
+  "shapeFamily": "tall",
+  "note": "Tall and clear, so the espresso, milk and foam show as separate layers before they are stirred together.",
+  "iceDisplacementMl": { "none": 0 }
+}

@@ -1,0 +1,113 @@
+---
+id: index
+label: Classic
+name: Coquito
+subtitle: Coconut, condensed and evaporated milk blended with rum and raw egg yolk.
+defaultDrinks: 1
+method: blended
+dilutionClass: none
+glasswareRef: nick-and-nora
+servedOverIce: false
+bitterness: none
+batchable: full
+zeroProof: false
+difficulty: Medium
+tags:
+  category: [cocktail]
+  origin: [caribbean]
+  method: [blended]
+names:
+  notToBeConfusedWith:
+    - name: Eggnog
+      note: A dairy-cream base rather than coconut, and usually built with whisky, brandy or rum rather than always rum specifically.
+ingredients:
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 3
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Simmered briefly in the coconut milk for its aroma and strained out
+      before the rest of the ingredients go in; it contributes no volume or
+      sugar to the finished drink.
+  - id: coconut-milk
+    ingredientRef: coconut-milk
+    formRef: raw
+    amount: 25
+    unit: ml
+  - id: coconut-cream
+    ingredientRef: coconut-cream
+    formRef: canned-sweetened
+    amount: 20
+    unit: ml
+  - id: condensed-milk
+    ingredientRef: condensed-milk
+    formRef: standard
+    amount: 20
+    unit: ml
+  - id: evaporated-milk
+    ingredientRef: evaporated-milk
+    formRef: standard
+    amount: 20
+    unit: ml
+  - id: yolk
+    ingredientRef: egg
+    formRef: yolk
+    amount: 17
+    unit: g
+  - id: vanilla
+    ingredientRef: vanilla
+    formRef: standard
+    amount: 2
+    unit: ml
+  - id: rum
+    ingredientRef: dark-rum
+    formRef: standard
+    amount: 30
+    unit: ml
+steps:
+  - { id: infuse, durationSec: 300, type: active, phase: prep }
+  - { id: blend, durationSec: 45, type: active, phase: make }
+  - { id: chill, durationSec: 28800, type: passive, phase: rest }
+notes:
+  - kind: technique
+    stepRef: blend
+    text: >-
+      The egg yolk is blended in raw rather than cooked, which is what gives
+      coquito its body without turning it into a custard; a cooked yolk
+      would set rather than emulsify into the rest of the liquid.
+  - kind: pitfall
+    text: >-
+      Serving straight from the blender skips the overnight chill the
+      coconut and spice need to fully marry, and a fresh batch tastes flat
+      and separated compared with one rested a full day.
+  - kind: technique
+    text: >-
+      Because the yolk stays raw, a fresh, well-refrigerated egg matters more
+      here than it would in a cooked custard, and the finished bottle is kept
+      cold throughout its rest rather than left at room temperature.
+makeAhead:
+  aheadInstructions: >-
+    Coquito is conventionally made well ahead and rested, since the flavour
+    improves over the first day and it is served ice-cold from the bottle.
+  batchKeepDays: 5
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="infuse">
+  Warm the <Qty ref="coconut-milk"/> with the <Qty ref="cinnamon"/> for
+  <Dur step="infuse"/>, then remove the cinnamon and let the milk cool.
+</Step>
+
+<Step id="blend">
+  Blend the cooled coconut milk with the <Qty ref="coconut-cream"/>,
+  <Qty ref="condensed-milk"/>, <Qty ref="evaporated-milk"/>, <Qty ref="yolk"/>,
+  <Qty ref="vanilla"/> and <Qty ref="rum"/> for <Dur step="blend"/>, until
+  completely smooth.
+</Step>
+
+<Step id="chill">
+  Bottle and refrigerate for <Dur step="chill"/> before serving ice-cold.
+</Step>

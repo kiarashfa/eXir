@@ -1,0 +1,39 @@
+{
+  "id": "grapefruit-soda",
+  "name": "Grapefruit soda",
+  "kind": "ingredient",
+  "category": "mixer",
+  "proprietary": false,
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [{ "name": "Toronja", "region": "Mexico" }]
+  },
+  "generalSubstitutes": [
+    { "substitute": "grapefruit-juice", "note": "Loses the carbonation and the extra sugar; top with soda water to bring the fizz back." }
+  ],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0,
+      "densitySource": "estimated",
+      "sugarGPer100": 10.66,
+      "nutritionPer100g": {
+        "kcal": 41,
+        "carbohydrateG": 10.83,
+        "sugarsG": 10.66,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "sodiumMg": 14
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Open Food Facts",
+      "sourceId": "0078000016406",
+      "sourceNote": "Squirt grapefruit soda (Open Food Facts, ODbL) as a representative bottling — the brand most Paloma recipes name outright. Its ingredient list (carbonated water, high fructose corn syrup, grapefruit juice concentrate, natural flavors, citric acid) checked against the producer and is entirely plant-derived, so animalOrigin is none. Density has no liquid measurement on file and is taken from the water-like class in density-classes.json, marked estimated. acidPercent left off beyond the citric-acid mixer default: no titratable acidity source exists."
+    }
+  ]
+}

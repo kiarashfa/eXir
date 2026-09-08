@@ -1,0 +1,33 @@
+{
+  "id": "black-pepper",
+  "name": "Black pepper",
+  "kind": "ingredient",
+  "category": "spice",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "whole",
+      "label": "Whole, cracked",
+      "proseName": "cracked black pepper",
+      "abvPercent": 0,
+      "sugarGPer100": 0.64,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 251,
+        "carbohydrateG": 63.95,
+        "sugarsG": 0.64,
+        "proteinG": 10.39,
+        "fatG": 3.26,
+        "saturatedFatG": 1.392,
+        "fibreG": 25.3,
+        "sodiumMg": 20
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170931",
+      "sourceNote": "Spices, pepper, black. Public domain. No density: cracked corns are packed and, when used in a boiled tea, strained out with the leaf rather than poured."
+    }
+  ]
+}

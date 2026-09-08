@@ -1,0 +1,80 @@
+---
+id: index
+label: Classic
+name: Japanese Highball
+subtitle: Japanese whisky and soda water over hard ice, built for the pour rather than mixed for a ratio.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: highball
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: none
+batchNote: >-
+  Built to order glass by glass; the soda is poured fresh for every drink
+  and the ice is packed just before it goes in, both of which are the
+  point of the build.
+zeroProof: false
+family: highball
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [cocktail]
+  origin: [japan]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+ingredients:
+  - id: whisky
+    ingredientRef: japanese-whisky
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 90
+    unit: ml
+steps:
+  - { id: chill, durationSec: 30, type: active, phase: prep }
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: stir, durationSec: 10, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: fill
+    text: >-
+      Large, dense, hand-cracked cubes packed tightly to the rim melt far
+      slower than a loose scoop from a bin, which is most of what separates
+      a good highball from a watery one — the ratio of whisky to soda tells
+      only half the story next to the ice it is poured over.
+  - kind: pitfall
+    text: >-
+      Pouring the soda in hard, or stirring more than once or twice after
+      it lands, drives off most of its carbonation before the first sip.
+      It goes in gently down a bar spoon, and the stir is brief enough to
+      lift the whisky off the bottom without beating out the fizz.
+---
+
+<Step id="chill">
+  Chill the highball glass.
+</Step>
+
+<Step id="fill">
+  Pack the chilled glass to the rim with cubed ice.
+</Step>
+
+<Step id="pour">
+  Pour in the <Qty ref="whisky"/>.
+</Step>
+
+<Step id="stir">
+  Stir once, lifting the ice rather than crushing it, to bring the whisky
+  up through the cubes.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/>, poured gently down a bar spoon so it
+  keeps its fizz, and stir once more, briefly.
+</Step>

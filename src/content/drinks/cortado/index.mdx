@@ -1,0 +1,91 @@
+---
+id: classic
+label: Classic
+name: Cortado
+subtitle: Equal parts espresso and warm milk, cutting the shot without lengthening it.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: cortado-glass
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Warmed and pulled to order, in a glass sized for exactly this amount of
+  milk; there is nothing to make ahead of it.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [coffee]
+  origin: [iberia]
+  method: [brewed]
+names:
+  notToBeConfusedWith:
+    - name: Caffe Latte
+      note: Roughly five times the milk in a glass sized for it, rather than an equal-parts pour meant to cut the shot without lengthening it.
+brew:
+  method: espresso
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 93
+  grind: fine
+  contactSec: 28
+  yieldMl: 36
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 18
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the shot and the rest stays in
+      the puck, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 36
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: warm, durationSec: 30, type: active, phase: make }
+  - { id: extract, durationSec: 28, type: "parallel-with:warm", phase: make }
+  - { id: pour, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: warm
+    text: >-
+      The milk is warmed rather than steamed to a foam, with only enough air
+      worked in to take the raw edge off it, because the drink is meant to
+      soften the shot's sharpness rather than dilute or cover it.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The milk is warmed and the shot pulled
+    together, moments before serving.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> fine for the espresso machine.
+</Step>
+
+<Step id="warm">
+  Warm the <Qty ref="milk"/> gently, working in just enough air to soften it
+  without building a real foam.
+</Step>
+
+<Step id="extract">
+  Pump the <Qty ref="water"/> through the grounds at <Temp c={93}/> for
+  <Dur step="extract"/> while the milk warms.
+</Step>
+
+<Step id="pour">
+  Pour the warm milk into the glass over the shot in equal measure and serve
+  at once.
+</Step>

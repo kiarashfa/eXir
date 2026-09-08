@@ -1,0 +1,43 @@
+{
+  "id": "coconut-water",
+  "name": "Coconut Water",
+  "kind": "ingredient",
+  "category": "mixer",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Coconut milk",
+        "note": "The clear liquid found inside a young coconut, not the white liquid pressed from grated flesh."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "raw",
+      "label": "Raw, from the fruit",
+      "proseName": "coconut water",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0144,
+      "densitySource": "estimated",
+      "sugarGPer100": 2.61,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 19,
+        "carbohydrateG": 3.71,
+        "sugarsG": 2.61,
+        "proteinG": 0.72,
+        "fatG": 0.2,
+        "saturatedFatG": 0.176,
+        "fibreG": 1.1,
+        "sodiumMg": 105
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170174",
+      "sourceNote": "Nuts, coconut water (liquid from coconuts). Public domain. The record's own cup portion gives 1.0144 g/ml, adopted because coconut water is poured, but marked estimated since a cup can measure either a liquid or a packed solid and this one is not confirmed against a liquid measure."
+    }
+  ]
+}

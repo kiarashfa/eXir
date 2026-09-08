@@ -1,0 +1,8 @@
+{
+  "id": "toddy-mug",
+  "name": "Toddy Mug",
+  "capacityMl": 300,
+  "shapeFamily": "handled",
+  "note": "A heat-proof handled mug or glass for a hot drink served without a saucer.",
+  "iceDisplacementMl": { "none": 0 }
+}

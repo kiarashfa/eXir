@@ -1,0 +1,25 @@
+{
+  "id": "pimms",
+  "name": "Pimm's No.1",
+  "kind": "ingredient",
+  "category": "herbal-liqueur",
+  "proprietary": true,
+  "producer": "Pimm's (Diageo)",
+  "countryOfOrigin": "United Kingdom",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "Pimm's No.1",
+      "abvPercent": 25,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "nutritionPer100g": { "kcal": 168, "carbohydrateG": 0 },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "A gin-based fruit-cup liqueur, first sold in 1823. Current UK bottlings state 25% ABV. No producer sugar figure is published, so sugarGPer100 is left off rather than estimated; kcal is derived from the stated ABV alone (7 kcal/g alcohol) as a floor, since sugar would only add to it. Density has no liquid measurement on file and is taken from the liqueur-sweet class in density-classes.json (reference point near 25% ABV), marked estimated. Botanicals are herbal and citrus; no dairy, egg or other animal input is declared on the label."
+    }
+  ]
+}

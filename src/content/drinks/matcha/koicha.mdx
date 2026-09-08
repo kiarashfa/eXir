@@ -1,0 +1,61 @@
+---
+id: koicha
+label: Koicha
+name: Matcha
+subtitle: Double the matcha in half the water, kneaded rather than frothed, for the ceremony's formal centrepiece.
+defaultDrinks: 1
+method: whisked
+dilutionClass: none
+glasswareRef: chawan
+servedOverIce: false
+bitterness: high
+batchable: none
+batchNote: >-
+  Kneaded to order in the bowl it is drunk from; the paste separates if it
+  is made ahead and left standing.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Hard
+tags:
+  category: [tea, hot-drink]
+  origin: [japan]
+  method: [whisked]
+ingredients:
+  - id: matcha
+    ingredientRef: matcha
+    formRef: standard
+    amount: 4
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 35
+    unit: ml
+steps:
+  - { id: sift, durationSec: 20, type: active, phase: prep }
+  - { id: knead, durationSec: 30, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: knead
+    text: >-
+      The chasen folds and kneads here rather than whisking fast, working
+      the paste smooth without raising bubbles; a foam that is the whole
+      point of usucha is treated as a flaw in koicha, which is meant to
+      pour as a dense, unbroken liquid.
+  - kind: pitfall
+    text: >-
+      Water added all at once, rather than in a couple of additions worked
+      in gradually, tends to leave unbroken lumps of matcha suspended in
+      the paste that the slow kneading motion cannot fully catch.
+---
+
+<Step id="sift">
+  Sift the <Qty ref="matcha"/> into the bowl to break up any clumps.
+</Step>
+
+<Step id="knead">
+  Add the <Qty ref="water"/> just off the boil in two additions, folding
+  and kneading with the chasen after each until the paste is smooth,
+  glossy and free of bubbles.
+</Step>

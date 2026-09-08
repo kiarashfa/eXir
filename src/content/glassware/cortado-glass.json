@@ -1,0 +1,8 @@
+{
+  "id": "cortado-glass",
+  "name": "Cortado Glass",
+  "capacityMl": 120,
+  "shapeFamily": "small",
+  "note": "A small glass sized for equal parts espresso and warm milk, with little room for either to be poured generously.",
+  "iceDisplacementMl": { "none": 0 }
+}

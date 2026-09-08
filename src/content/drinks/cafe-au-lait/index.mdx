@@ -1,0 +1,92 @@
+---
+id: classic
+label: Classic
+name: Cafe au Lait
+subtitle: Strong drip coffee and scalded milk, poured together in equal measure.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Brewed and scalded to order. Milk held hot for later develops a skin and a
+  flat, cooked taste well before the coffee would need it.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [coffee]
+  origin: [france]
+  method: [brewed]
+names:
+  notToBeConfusedWith:
+    - name: Caffe Latte
+      note: Built on espresso and steamed, foamed milk rather than drip coffee and scalded milk poured in equal parts.
+brew:
+  method: pour-over
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 94
+  grind: medium
+  contactSec: 180
+  yieldMl: 150
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 16
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves and the rest stays in the filter,
+      the middle of the Specialty Coffee Association's published extraction
+      band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 180
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 150
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: brew, durationSec: 180, type: active, phase: make }
+  - { id: scald, durationSec: 90, type: "parallel-with:brew", phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: pour
+    text: >-
+      Coffee and milk are poured into the bowl from two jugs at once, in
+      roughly equal streams, rather than one added to the other — it is the
+      simultaneous pour that keeps the drink an even pale brown rather than a
+      dark coffee lightened at the last moment.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The coffee is brewed and the milk scalded in
+    the few minutes before serving.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> to a medium texture for a drip brew.
+</Step>
+
+<Step id="brew">
+  Brew the <Qty ref="coffee"/> with the <Qty ref="water"/> at <Temp c={94}/>
+  over <Dur step="brew"/> to give a strong, dark cup.
+</Step>
+
+<Step id="scald">
+  While the coffee brews, heat the <Qty ref="milk"/> in a small pan just to
+  the point of steaming, without letting it boil.
+</Step>
+
+<Step id="pour">
+  Pour the hot coffee and the scalded milk into a wide bowl or mug together,
+  in two streams at once.
+</Step>

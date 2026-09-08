@@ -1,0 +1,85 @@
+---
+id: iced
+label: Iced
+name: Karkade
+subtitle: The same boiled hibiscus, brewed strong and poured hot over ice.
+defaultDrinks: 1
+method: boiled
+dilutionClass: none
+glasswareRef: highball
+iceStyle: cubed
+servedOverIce: true
+bitterness: low
+batchable: full
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [tea]
+  origin: [egypt]
+  method: [boiled]
+brew:
+  method: immersion
+  doseRef: hibiscus
+  waterRef: water
+  waterTempC: 100
+  contactSec: 420
+  yieldMl: 120
+ingredients:
+  - id: hibiscus
+    ingredientRef: hibiscus
+    formRef: standard
+    amount: 10
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Boiled hard for its colour and tartness, then strained out; what it
+      leaves behind is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 140
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 15
+    unit: g
+steps:
+  - { id: boil, durationSec: 420, type: passive, phase: make }
+  - { id: strain, durationSec: 20, type: active, phase: make }
+  - { id: sweeten, durationSec: 10, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: pour
+    text: >-
+      The tea is brewed to the same strength as the hot version but with
+      less water, since it is about to be let down by melting ice; poured
+      hot straight onto a full glass of cubes, it chills fast rather than
+      sitting at a lukewarm stage on the counter first.
+  - kind: pitfall
+    text: >-
+      Karkade brewed at the same water ratio as the hot version and simply
+      poured over ice comes out thin and pale once the ice has melted into
+      it. The brew is concentrated first precisely because the ice is
+      going to dilute it.
+---
+
+<Step id="boil">
+  Bring the <Qty ref="water"/> to a boil, add the <Qty ref="hibiscus"/> and
+  simmer for <Dur step="boil"/>, until the liquid is a deep ruby red.
+</Step>
+
+<Step id="strain">
+  Strain out the spent calyces.
+</Step>
+
+<Step id="sweeten">
+  Stir in the <Qty ref="sugar"/> while the tea is still hot enough to
+  dissolve it.
+</Step>
+
+<Step id="pour">
+  Pour hot over a glass packed with cubed ice.
+</Step>

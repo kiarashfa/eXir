@@ -1,0 +1,107 @@
+---
+id: classic
+label: Classic
+name: Cafe de Olla
+subtitle: Coffee simmered with piloncillo and cinnamon in an unglazed clay pot.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: toddy-mug
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Simmered a pot at a time and strained straight into the cup. Held hot on the
+  stove, the coffee keeps extracting past the point the recipe intends.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [coffee]
+  origin: [mexico-central-america]
+  method: [brewed]
+names:
+  notToBeConfusedWith:
+    - name: Champurrado
+      note: A thickened masa and chocolate drink from the same region, with no coffee in it at all.
+brew:
+  method: immersion
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 100
+  grind: coarse
+  contactSec: 300
+  yieldMl: 270
+ingredients:
+  - id: piloncillo
+    ingredientRef: piloncillo
+    formRef: cone
+    amount: 30
+    unit: g
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 3
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Simmered for its aroma, then strained out with the grounds and
+      discarded; it contributes no volume or sugar to what reaches the cup.
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 20
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the pot and the rest stays in
+      the grounds, the middle of the Specialty Coffee Association's
+      published extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 300
+    unit: ml
+steps:
+  - { id: dissolve, durationSec: 300, type: active, phase: prep }
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: steep, durationSec: 300, type: passive, phase: make }
+  - { id: strain, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: dissolve
+    text: >-
+      The piloncillo and cinnamon go into the water before the coffee does,
+      simmered together long enough to dissolve fully and infuse the water,
+      so the grounds meet already-spiced, already-sweetened water rather than
+      plain water that is sweetened afterward.
+  - kind: pitfall
+    text: >-
+      Adding the coffee before the piloncillo has fully dissolved leaves
+      undissolved crystals settled in with the grounds, and straining then
+      pulls out sweetness along with the spent coffee.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead beyond having the piloncillo broken into
+    pieces; the pot is simmered and strained to order.
+  freezable: false
+---
+
+<Step id="dissolve">
+  Simmer the <Qty ref="water"/> with the <Qty ref="piloncillo"/> and
+  <Qty ref="cinnamon"/> in a clay or heavy pot for <Dur step="dissolve"/>,
+  until the piloncillo is fully dissolved.
+</Step>
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> coarse, close to sea-salt texture.
+</Step>
+
+<Step id="steep">
+  Stir in the ground coffee, take the pot off the heat and let it steep for
+  <Dur step="steep"/>.
+</Step>
+
+<Step id="strain">
+  Strain into the serving mug, leaving the grounds and the spent cinnamon
+  behind in the pot.
+</Step>

@@ -1,0 +1,33 @@
+{
+  "id": "cucumber",
+  "name": "Cucumber",
+  "kind": "ingredient",
+  "category": "vegetable",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Fresh, with peel",
+      "proseName": "cucumber",
+      "abvPercent": 0,
+      "sugarGPer100": 1.67,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 15,
+        "carbohydrateG": 3.63,
+        "sugarsG": 1.67,
+        "proteinG": 0.65,
+        "fatG": 0.11,
+        "saturatedFatG": 0.037,
+        "fibreG": 0.5,
+        "sodiumMg": 2
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "168409",
+      "sourceNote": "Cucumber, with peel, raw. Public domain. No density: a spear or a peeled ribbon is not poured, and it is measured here by the gram of fruit rather than a volume."
+    }
+  ]
+}

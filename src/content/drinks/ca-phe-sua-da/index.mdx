@@ -1,0 +1,101 @@
+---
+id: classic
+label: Classic
+name: Ca Phe Sua Da
+subtitle: A phin filter dripped slowly over condensed milk, then poured over ice.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: highball
+iceStyle: cubed
+servedOverIce: true
+bitterness: medium
+batchable: none
+batchNote: >-
+  The phin drips to order over the glass it is served in. Brewing ahead and
+  chilling the coffee separately skips the layering the drink is built on.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [coffee]
+  origin: [southeast-asia]
+  method: [brewed]
+names:
+  alsoKnownAs:
+    - name: Vietnamese iced coffee
+      region: United States
+  notToBeConfusedWith:
+    - name: Ca Phe Sua Nong
+      note: The same phin drip over condensed milk served hot, with no ice.
+brew:
+  method: pour-over
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 95
+  grind: medium-coarse
+  contactSec: 240
+  yieldMl: 70
+ingredients:
+  - id: milk
+    ingredientRef: condensed-milk
+    formRef: standard
+    amount: 40
+    unit: ml
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 15
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the cup and the rest stays in
+      the phin's metal basket, the middle of the Specialty Coffee
+      Association's published extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 90
+    unit: ml
+steps:
+  - { id: build, durationSec: 20, type: active, phase: prep }
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: drip, durationSec: 240, type: passive, phase: make }
+  - { id: pour, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      The condensed milk sits in the glass before a drop of coffee is brewed,
+      so the phin drips straight into it and the two mix as they meet rather
+      than needing to be stirred together from separate vessels afterward.
+  - kind: pitfall
+    text: >-
+      Screwing the phin's press plate down hard packs the grounds too tight
+      and the water channels around them instead of through, so the drip
+      slows to almost nothing while the cup underneath stays thin.
+makeAhead:
+  aheadInstructions: >-
+    The condensed milk can be measured into the glass ahead of time, but the
+    phin is loaded and set to drip only once the ice is ready to pour over.
+  freezable: false
+---
+
+<Step id="build">
+  Spoon the <Qty ref="milk"/> into the bottom of the serving glass and set the
+  phin filter on top.
+</Step>
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> to a medium-coarse texture and settle it into
+  the phin's basket, then tighten the press plate just enough to sit flat.
+</Step>
+
+<Step id="drip">
+  Pour the <Qty ref="water"/> at <Temp c={95}/> into the phin in two additions
+  and let it drip through onto the condensed milk for <Dur step="drip"/>.
+</Step>
+
+<Step id="pour">
+  Lift off the phin, stir the coffee and condensed milk together, then pour
+  over a full glass of ice.
+</Step>

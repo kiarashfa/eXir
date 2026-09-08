@@ -1,0 +1,59 @@
+---
+id: index
+label: Usucha
+name: Matcha
+subtitle: Whisked thin, vigorously, into a light foam — the everyday way to drink it.
+defaultDrinks: 1
+method: whisked
+dilutionClass: none
+glasswareRef: chawan
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Whisked to order in the bowl it is drunk from; matcha whisked ahead and
+  left standing separates and loses its foam.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Medium
+tags:
+  category: [tea, hot-drink]
+  origin: [japan]
+  method: [whisked]
+ingredients:
+  - id: matcha
+    ingredientRef: matcha
+    formRef: standard
+    amount: 2
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 70
+    unit: ml
+steps:
+  - { id: sift, durationSec: 20, type: active, phase: prep }
+  - { id: whisk, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: whisk
+    text: >-
+      The chasen moves in a fast zigzag rather than a stir, which is what
+      raises the foam — a slow circular motion just moves the powder
+      around without breaking it into the water.
+  - kind: pitfall
+    text: >-
+      Unsifted matcha clumps the moment hot water hits it, and no amount of
+      whisking afterwards fully breaks those clumps back down; the sieve
+      is not an optional step for a smooth bowl.
+---
+
+<Step id="sift">
+  Sift the <Qty ref="matcha"/> into the bowl to break up any clumps.
+</Step>
+
+<Step id="whisk">
+  Add the <Qty ref="water"/> just off the boil and whisk briskly in a
+  zigzag until the surface is covered in a fine, even foam.
+</Step>

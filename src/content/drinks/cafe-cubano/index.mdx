@@ -1,0 +1,102 @@
+---
+id: classic
+label: Classic
+name: Cafe Cubano
+subtitle: Sugar whipped into the first drops off the pot until it turns to foam.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: espresso-cup
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  The espuma is whipped from the first drops of a single brew and collapses
+  within minutes, so nothing here is made ahead of serving.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [coffee]
+  origin: [caribbean]
+  method: [brewed]
+names:
+  alsoKnownAs:
+    - name: Cuban espresso
+      region: United States
+  notToBeConfusedWith:
+    - name: Colada
+      note: The same espuma and brew poured for several people to share, rather than the single serving this page describes.
+brew:
+  method: moka
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 100
+  grind: fine
+  contactSec: 240
+  yieldMl: 45
+ingredients:
+  - id: sugar
+    ingredientRef: demerara-sugar
+    formRef: standard
+    amount: 15
+    unit: g
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 15
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the pot and the rest stays in
+      the basket, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 60
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: brew, durationSec: 240, type: active, phase: make }
+  - { id: whip, durationSec: 30, type: active, phase: make }
+  - { id: fold, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: whip
+    text: >-
+      Only the first few drops off the pot go onto the sugar, because they
+      carry the most concentrated oils of the whole brew and are what let
+      vigorous whipping turn the sugar into a stable tan foam rather than a
+      wet syrup.
+  - kind: pitfall
+    text: >-
+      Whipping the sugar with the full pot rather than the first drops
+      dilutes it enough that it never aerates properly, and the drink ends
+      up sweetened but without the foam Cuban coffee is served under.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The espuma is whipped from the same brew it
+    tops, in the minute after it comes off the stove.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> fine and load it into the pot's basket.
+</Step>
+
+<Step id="brew">
+  Brew the <Qty ref="water"/> through the grounds at <Temp c={100}/> over
+  <Dur step="brew"/>, catching the first few drops separately as they come
+  through.
+</Step>
+
+<Step id="whip">
+  Pour the reserved first drops over the <Qty ref="sugar"/> and whip
+  vigorously for <Dur step="whip"/> until it lightens to a thick, pale tan
+  foam.
+</Step>
+
+<Step id="fold">
+  Pour in the rest of the brewed coffee and fold it through the foam without
+  beating it flat, then serve at once.
+</Step>

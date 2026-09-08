@@ -1,0 +1,72 @@
+---
+id: index
+label: Classic
+name: Peppermint Tisane
+subtitle: Dried peppermint leaf steeped in hot water, with no tea leaf in it at all.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: teacup
+servedOverIce: false
+bitterness: none
+batchable: full
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [tea, hot-drink]
+  origin: [united-kingdom]
+  method: [steeped]
+names:
+  notToBeConfusedWith:
+    - name: Moroccan Mint Tea
+      note: Fresh mint steeped together with green tea leaf and sugar; this tisane uses dried peppermint alone and carries no caffeine.
+brew:
+  method: steep
+  doseRef: peppermint
+  waterRef: water
+  waterTempC: 100
+  contactSec: 300
+  yieldMl: 160
+ingredients:
+  - id: peppermint
+    ingredientRef: peppermint
+    formRef: dried
+    amount: 3
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Steeped for its oils and strained out; what it leaves behind is
+      dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 190
+    unit: ml
+steps:
+  - { id: steep, durationSec: 300, type: passive, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: steep
+    text: >-
+      A lidded pot or a cover over the cup keeps the volatile menthol oils
+      from steaming off with the rising heat; steeped open, the same leaf
+      gives a noticeably thinner cup.
+  - kind: pitfall
+    text: >-
+      Dried peppermint left in past its steep keeps releasing tannin long
+      after the aromatic oils have already given up their peak, which is
+      what turns an otherwise mild tisane grassy and flat rather than
+      minty.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the
+  <Qty ref="peppermint"/>, cover, and steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="strain">
+  Strain into a cup, leaving the spent leaf behind.
+</Step>

@@ -1,0 +1,104 @@
+---
+id: index
+label: Classic
+name: Noon Chai
+subtitle: Green tea boiled long with bicarbonate of soda, shocked with cold water and whipped pink with milk.
+defaultDrinks: 1
+method: boiled
+dilutionClass: none
+glasswareRef: teacup
+servedOverIce: false
+bitterness: medium
+batchable: partial
+batchNote: >-
+  The long boil can be made ahead and held, but the milk is whipped in at
+  service, since the aeration that turns the tea pink fades if it sits.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Hard
+tags:
+  category: [tea, hot-drink]
+  origin: [kashmir]
+  method: [boiled]
+names:
+  alsoKnownAs:
+    - name: Kashmiri Pink Tea
+    - name: Gulabi Chai
+      region: Kashmir
+ingredients:
+  - id: tea
+    ingredientRef: green-tea
+    formRef: standard
+    amount: 6
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Boiled hard and long for its colour, then strained out; what it
+      leaves behind is dissolved rather than weighable.
+  - id: soda
+    ingredientRef: bicarbonate-of-soda
+    formRef: standard
+    amount: 0.5
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 110
+    unit: ml
+  - id: ice-water
+    ingredientRef: water
+    formRef: standard
+    amount: 25
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 60
+    unit: ml
+  - id: salt
+    ingredientRef: salt
+    formRef: standard
+    amount: 0.5
+    unit: g
+steps:
+  - { id: boil, durationSec: 1200, type: passive, phase: make }
+  - { id: shock, durationSec: 30, type: active, phase: make }
+  - { id: strain, durationSec: 20, type: active, phase: make }
+  - { id: whip, durationSec: 90, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: shock
+    text: >-
+      The long boil pulls a burgundy colour out of the leaf with help from
+      the bicarbonate of soda, which pushes the tea's pH alkaline enough to
+      change how those pigments read; the cold water shocks that colour
+      deeper just before the milk goes in, which is what turns the drink
+      pink rather than merely brown.
+  - kind: pitfall
+    text: >-
+      More than a small pinch of bicarbonate of soda pushes the tea from
+      genuinely more colourful to soapy and bitter; the shift happens well
+      before the amount looks large enough to matter by eye.
+---
+
+<Step id="boil">
+  Combine the <Qty ref="water"/> and the <Qty ref="tea"/> in a pan with the
+  <Qty ref="soda"/> and simmer for <Dur step="boil"/>, until reduced and
+  deep burgundy.
+</Step>
+
+<Step id="shock">
+  Stir in the <Qty ref="ice-water"/> to deepen the colour further.
+</Step>
+
+<Step id="strain">
+  Strain into a clean pan, leaving the leaf behind.
+</Step>
+
+<Step id="whip">
+  Bring the <Qty ref="milk"/> to a near boil, then pour it repeatedly back
+  and forth between the pan and a jug from a height for <Dur step="whip"/>,
+  until the tea turns pink and takes on a light froth. Stir in the
+  <Qty ref="salt"/> and serve.
+</Step>

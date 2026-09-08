@@ -1,0 +1,36 @@
+{
+  "id": "bicarbonate-of-soda",
+  "name": "Bicarbonate of soda",
+  "kind": "ingredient",
+  "category": "seasoning",
+  "pantryStaple": true,
+  "names": {
+    "alsoKnownAs": [{ "name": "Baking soda", "region": "United States" }]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "bicarbonate of soda",
+      "abvPercent": 0,
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 0,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 27360
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "175040",
+      "sourceNote": "Leavening agents, baking soda. Public domain. No density is carried: a pinch is packed, not poured, and the only figure on file is a teaspoon measure, which is air between crystals rather than a true density."
+    }
+  ]
+}

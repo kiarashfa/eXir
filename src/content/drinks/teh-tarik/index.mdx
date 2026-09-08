@@ -1,0 +1,88 @@
+---
+id: index
+label: Classic
+name: Teh Tarik
+subtitle: Strong black tea and condensed milk, pulled between two vessels until it foams.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: lassi-glass
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Brewed and pulled to order; the froth the pull raises collapses within
+  minutes and cannot be made ahead.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Medium
+tags:
+  category: [tea, hot-drink]
+  origin: [malaysia]
+  method: [steeped]
+brew:
+  method: steep
+  doseRef: tea
+  waterRef: water
+  waterTempC: 100
+  contactSec: 300
+  yieldMl: 140
+ingredients:
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 6
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Steeped strong and strained out again; what it leaves behind is
+      dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 160
+    unit: ml
+  - id: milk
+    ingredientRef: condensed-milk
+    formRef: standard
+    amount: 30
+    unit: ml
+steps:
+  - { id: steep, durationSec: 300, type: passive, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: mix, durationSec: 10, type: active, phase: make }
+  - { id: pull, durationSec: 30, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: pull
+    text: >-
+      The tea is poured back and forth between two vessels held well apart
+      rather than stirred, which aerates it, cools it to drinking
+      temperature fast, and mixes the condensed milk in fully — the froth
+      on top is a sign the pull was done properly, not a garnish added
+      afterwards.
+  - kind: pitfall
+    text: >-
+      Tea brewed to an ordinary strength gets lost against the condensed
+      milk once it is pulled; the leaf is dosed heavier here than for a
+      plain cup specifically because the milk is going to compete with it.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the <Qty ref="tea"/>
+  and steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="strain">
+  Strain out the leaf into a metal cup or tin.
+</Step>
+
+<Step id="mix">
+  Stir in the <Qty ref="milk"/>.
+</Step>
+
+<Step id="pull">
+  Pour the tea back and forth between the cup and a second vessel held at
+  arm's length, from a height, until a layer of froth sits on top.
+</Step>

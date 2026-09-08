@@ -1,0 +1,85 @@
+---
+id: index
+label: Classic
+name: Tinto de Verano
+subtitle: Young red wine and lemon soda, built over ice in equal parts.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: none
+batchNote: >-
+  Built to order in equal parts so the soda keeps its fizz; a pre-mixed
+  batch goes flat before it is served.
+zeroProof: false
+family: highball
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [cocktail]
+  origin: [spain]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+names:
+  notToBeConfusedWith:
+    - name: Sangria
+      note: A macerated blend of wine, fruit, sugar and often a spirit; Tinto de Verano is only wine and soda, built to order rather than steeped ahead.
+ingredients:
+  - id: wine
+    ingredientRef: red-wine
+    formRef: standard
+    amount: 80
+    unit: ml
+  - id: soda
+    ingredientRef: lemon-soda
+    formRef: standard
+    amount: 80
+    unit: ml
+  - id: wheel
+    ingredientRef: lemon
+    formRef: standard
+    amount: 10
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A slice is dropped in for its scent rather than juiced, so it stays
+      out of the composition.
+steps:
+  - { id: fill, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: pour
+    text: >-
+      The two go in equal parts rather than one topping up the other, which
+      is what separates this from a wine spritzer built mostly of wine with
+      a splash of soda on top.
+  - kind: pitfall
+    text: >-
+      A heavy, oaked wine reads as flat and muddy against the soda; the
+      point of this drink is a young, unaged red diluted into something
+      lighter, and an expensive bottle is wasted on it rather than
+      improving it.
+---
+
+<Step id="fill">
+  Fill a Collins glass with cubed ice.
+</Step>
+
+<Step id="pour">
+  Pour in the <Qty ref="wine"/>.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/>.
+</Step>
+
+<Step id="garnish">
+  Drop in a lemon slice.
+</Step>

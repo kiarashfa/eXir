@@ -1,0 +1,85 @@
+---
+id: index
+label: Classic
+name: Caipirinha
+subtitle: Lime and sugar muddled whole, built over crushed ice with cachaça.
+defaultDrinks: 1
+method: muddled
+dilutionClass: built-over-ice
+glasswareRef: rocks
+iceStyle: crushed
+servedOverIce: true
+bitterness: low
+batchable: partial
+batchNote: >-
+  The cachaça, lime and sugar can be muddled and measured in advance, but the
+  ice is only added at the moment of serving, since the drink is built and
+  drunk from the same glass rather than strained.
+zeroProof: false
+difficulty: Easy
+tags:
+  category: [cocktail]
+  origin: [south-america]
+  method: [muddled]
+names:
+  notToBeConfusedWith:
+    - name: Caipiroska
+      note: The same build made with vodka in place of cachaça, which changes the drink's base spirit entirely.
+ingredients:
+  - id: lime
+    ingredientRef: lime
+    formRef: standard
+    amount: 67
+    unit: g
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 12
+    unit: g
+  - id: cachaca
+    ingredientRef: cachaca
+    formRef: standard
+    amount: 60
+    unit: ml
+steps:
+  - { id: cut, durationSec: 30, type: active, phase: prep }
+  - { id: muddle, durationSec: 30, type: active, phase: make }
+  - { id: build, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: muddle
+    text: >-
+      The lime is muddled whole, peel and pith included, rather than juiced,
+      because the oils in the peel are as much a part of the drink as the
+      juice — a lime squeezed for its juice alone leaves them behind.
+  - kind: pitfall
+    text: >-
+      Muddling hard enough to crush the pith rather than just bruise it pulls
+      out bitterness along with the oils, which is the usual reason a
+      caipirinha tastes harsh rather than bright.
+substitutions:
+  - lineRef: cachaca
+    substitute: white-rum
+    formRef: standard
+    ratio: "1:1"
+    note: >-
+      The nearest equivalent by strength, but distilled from molasses rather
+      than fresh cane juice, so the grassy, vegetal note cachaça brings is
+      lost even though the volume and alcohol land in the same place.
+    impact: { flavour: major change, strength: no change, sweetness: no change }
+---
+
+<Step id="cut">
+  Cut the <Qty ref="lime"/> into six to eight wedges.
+</Step>
+
+<Step id="muddle">
+  Muddle the lime wedges with the <Qty ref="sugar"/> in the base of the glass
+  for <Dur step="muddle"/>, pressing to release the juice and the oils from
+  the peel without pulverising the pith.
+</Step>
+
+<Step id="build">
+  Add the <Qty ref="cachaca"/>, fill the glass with crushed ice and stir
+  briefly to combine.
+</Step>

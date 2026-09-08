@@ -1,0 +1,82 @@
+---
+id: index
+label: Classic
+name: Kompot
+subtitle: Bird cherries boiled with sugar and served as the sweetened liquid.
+defaultDrinks: 1
+method: boiled
+dilutionClass: none
+glasswareRef: highball
+servedOverIce: false
+bitterness: none
+batchable: none
+batchNote: >-
+  Made a pot at a time in practice, but authored here as one boil to order.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [juice-agua-fresca]
+  origin: [russia-caucasus]
+  method: [boiled]
+names:
+  alsoKnownAs:
+    - name: Cheryomukha kompot
+      region: Russia
+  notToBeConfusedWith:
+    - name: Chicha morada
+      note: A different boiled-and-strained fruit drink, made from purple corn and pineapple rather than stone fruit.
+ingredients:
+  - id: fruit
+    ingredientRef: cheryomukha
+    formRef: whole
+    amount: 60
+    unit: g
+    consumedFraction: 0.4
+    consumedFractionNote: >-
+      The fruit is boiled for its colour and tartness rather than pureed; a
+      portion of its sugar and flavour dissolves into the water and the
+      spent fruit is left behind in the pot or strained out, an estimate
+      rather than a measurement of any one boil.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 280
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 25
+    unit: g
+steps:
+  - { id: boil, durationSec: 900, type: active, phase: make }
+  - { id: strain, durationSec: 30, type: active, phase: make }
+  - { id: chill, durationSec: 7200, type: passive, phase: rest }
+notes:
+  - kind: technique
+    stepRef: boil
+    text: >-
+      The fruit is simmered whole rather than crushed, so the liquid takes
+      its colour and tartness gradually over the full boil instead of all at
+      once, and the pits stay intact rather than adding a bitter almond note
+      from inside them.
+makeAhead:
+  aheadInstructions: >-
+    Kompot is conventionally made well ahead and served fully chilled; a
+    batch keeps in the refrigerator for several days once strained.
+  batchKeepDays: 4
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="boil">
+  Combine the <Qty ref="fruit"/>, <Qty ref="water"/> and <Qty ref="sugar"/> in
+  a pot and boil at <Temp c={100}/> for <Dur step="boil"/>.
+</Step>
+
+<Step id="strain">
+  Strain out the fruit, or leave it in the pot to serve alongside the liquid.
+</Step>
+
+<Step id="chill">
+  Chill for <Dur step="chill"/> before serving cold.
+</Step>

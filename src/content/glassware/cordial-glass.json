@@ -1,0 +1,8 @@
+{
+  "id": "cordial-glass",
+  "name": "Cordial Glass",
+  "capacityMl": 60,
+  "shapeFamily": "stemmed",
+  "note": "A very small stemmed glass for a liqueur or a rich, small-format pour taken slowly rather than sipped as a full drink.",
+  "iceDisplacementMl": { "none": 0 }
+}

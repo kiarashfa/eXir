@@ -1,0 +1,34 @@
+{
+  "id": "tamarind",
+  "name": "Tamarind",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "pulp",
+      "label": "Pulp, raw",
+      "proseName": "tamarind pulp",
+      "abvPercent": 0,
+      "densitySource": "estimated",
+      "sugarGPer100": 38.8,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 239,
+        "carbohydrateG": 62.5,
+        "sugarsG": 38.8,
+        "proteinG": 2.8,
+        "fatG": 0.6,
+        "saturatedFatG": 0.272,
+        "fibreG": 5.1,
+        "sodiumMg": 28
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "167763",
+      "sourceNote": "Tamarinds, raw. Public domain. Acidity is real and sizeable in tamarind but no titratable figure is published for it anywhere the brief's dataset order reaches, so acidPercent is left at the schema default rather than estimated. No density is stated: the pulp is a packed, fibrous solid soaked and strained rather than poured, and no liquid-measure figure exists for it."
+    }
+  ]
+}

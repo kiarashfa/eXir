@@ -1,0 +1,90 @@
+---
+id: classic
+label: Classic
+name: Cafe con Leche
+subtitle: Strong espresso stretched with hot milk, poured over rather than steamed into it.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Pulled and heated to order. A shot held for the milk to catch up loses its
+  crema before the two ever meet.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [coffee]
+  origin: [iberia]
+  method: [brewed]
+names:
+  notToBeConfusedWith:
+    - name: Cafe Cubano
+      note: The espresso itself is whipped with sugar into a foam before any milk is added, rather than lengthened with hot milk afterward.
+brew:
+  method: espresso
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 93
+  grind: fine
+  contactSec: 28
+  yieldMl: 36
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 18
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the shot and the rest stays in
+      the puck, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 90
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: heat, durationSec: 60, type: active, phase: prep }
+  - { id: extract, durationSec: 28, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: pour
+    text: >-
+      The hot milk is poured into the cup first and the shot added on top,
+      rather than the other way round, so the crema stays visible on the
+      surface instead of getting folded under a stream of milk.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The milk is heated and the shot pulled in the
+    same few minutes.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> fine for the espresso machine.
+</Step>
+
+<Step id="heat">
+  Heat the <Qty ref="milk"/> in a small pan or with the steam wand until hot
+  but not boiling.
+</Step>
+
+<Step id="extract">
+  Pump the <Qty ref="water"/> through the grounds at <Temp c={93}/> for
+  <Dur step="extract"/> to pull the shot.
+</Step>
+
+<Step id="pour">
+  Pour the hot milk into the cup, then add the shot on top.
+</Step>

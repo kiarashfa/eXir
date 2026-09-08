@@ -1,0 +1,39 @@
+{
+  "id": "cheryomukha",
+  "name": "Bird Cherry",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Cheryomukha", "region": "Russia" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "whole",
+      "label": "Whole, raw",
+      "proseName": "bird cherries",
+      "abvPercent": 0,
+      "densitySource": "estimated",
+      "sugarGPer100": 8.49,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 50,
+        "carbohydrateG": 12.18,
+        "sugarsG": 8.49,
+        "proteinG": 1,
+        "fatG": 0.3,
+        "saturatedFatG": 0.068,
+        "fibreG": 1.6,
+        "sodiumMg": 3
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "173954",
+      "sourceNote": "FoodData Central carries no record for Prunus padus, the small, astringent bird cherry a Russian kompot is traditionally boiled from. Cherries, sour, red, raw (public domain) is adopted as the closest available proxy: the same genus, a comparably tart stone fruit of similar size. No density is stated: the fruit is boiled and its solids strained or left in the pot rather than poured."
+    }
+  ]
+}

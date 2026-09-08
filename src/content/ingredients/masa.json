@@ -1,0 +1,39 @@
+{
+  "id": "masa",
+  "name": "Masa Harina",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Corn flour", "note": "Nixtamalized corn flour, not raw ground corn." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "white",
+      "label": "White, dry",
+      "proseName": "masa harina",
+      "abvPercent": 0,
+      "densitySource": "estimated",
+      "sugarGPer100": 1.61,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 363,
+        "carbohydrateG": 76.59,
+        "sugarsG": 1.61,
+        "proteinG": 8.46,
+        "fatG": 3.69,
+        "saturatedFatG": 0.532,
+        "fibreG": 6.4,
+        "sodiumMg": 5
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169696",
+      "sourceNote": "Corn flour, masa, unenriched, white. Public domain. No density is stated: the record's own cup portion is a packing figure, air between the grains, and masa harina is whisked into hot liquid rather than poured, so there is nothing here to adopt as a true density."
+    }
+  ]
+}

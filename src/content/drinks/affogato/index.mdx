@@ -1,0 +1,102 @@
+---
+id: classic
+label: Classic
+name: Affogato
+subtitle: A scoop of gelato, drowned under a shot of hot espresso.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: coupe
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  The espresso is pulled to order and poured hot over the gelato at the table;
+  made ahead, the two would already be one melted drink by the time it arrived.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [coffee]
+  origin: [italy]
+  method: [brewed]
+names:
+  alsoKnownAs:
+    - name: Affogato al caffè
+      region: Italy
+      note: The full name; “affogato” alone means drowned, and the coffee is what does the drowning.
+  notToBeConfusedWith:
+    - name: Coffee float
+      note: Ice cream dropped into a tall glass of cold coffee or coffee soda; an affogato is a small
+        serving of gelato drowned in a shot of hot espresso poured over it at the table.
+brew:
+  method: espresso
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 93
+  grind: fine
+  contactSec: 28
+  yieldMl: 36
+ingredients:
+  - id: gelato
+    ingredientRef: ice-cream
+    formRef: vanilla
+    amount: 100
+    unit: g
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 18
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the shot and the rest stays in
+      the puck, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 50
+    unit: ml
+steps:
+  - { id: scoop, durationSec: 30, type: active, phase: prep }
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: extract, durationSec: 28, type: active, phase: make }
+  - { id: pour, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: pour
+    text: >-
+      The espresso is poured over the gelato rather than beside it, so the hot
+      shot starts melting the surface immediately and the two are eaten and
+      drunk together with the same spoon.
+  - kind: pitfall
+    text: >-
+      A shot pulled too far ahead of the gelato arrives lukewarm, and lukewarm
+      espresso over cold gelato barely melts it at all — the drowning is the
+      point, and it needs the shot hot.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead beyond scooping the gelato into the glass and
+    returning it to the freezer until the espresso is ready.
+  freezable: false
+---
+
+<Step id="scoop">
+  Scoop the <Qty ref="gelato"/> into a chilled glass and return it to the
+  freezer while the espresso is pulled.
+</Step>
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> fine, close to table-salt texture, for a short
+  shot rather than a filter brew.
+</Step>
+
+<Step id="extract">
+  Pump the <Qty ref="water"/> through the grounds at <Temp c={93}/> for
+  <Dur step="extract"/>, watching for a thin, hazelnut-coloured crema on top.
+</Step>
+
+<Step id="pour">
+  Pour the hot espresso directly over the gelato and serve at once, before the
+  crema has time to break.
+</Step>

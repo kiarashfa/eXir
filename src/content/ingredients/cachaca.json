@@ -1,0 +1,44 @@
+{
+  "id": "cachaca",
+  "name": "Cachaça",
+  "kind": "ingredient",
+  "category": "cachaca",
+  "countryOfOrigin": "Brazil",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Rum",
+        "note": "Rum is usually distilled from molasses, a sugar-refining byproduct; cachaça is distilled from fresh-pressed sugarcane juice, which is a Brazilian legal requirement rather than a stylistic choice."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard strength",
+      "proseName": "cachaça",
+      "abvPercent": 40,
+      "densityGPerMl": 0.94,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174817",
+      "sourceNote": "FoodData Central carries no cachaça-specific record; Brazilian law sets cachaça's bottled strength at 38-48% ABV, with most commercial brands landing around 39-43%, so 40% is adopted as the representative bottling. The kcal and carbohydrate figures are carried from Alcoholic beverage, distilled, rum, 80 proof (public domain) because energy in an unsweetened spirit is a function of its ethanol content alone, which is identical at the same ABV whatever the base material. Density is the spirit-40 class from density-classes.json rather than the rum record's own, since cachaça and rum are not the same liquid."
+    }
+  ]
+}

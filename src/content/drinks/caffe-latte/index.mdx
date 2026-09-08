@@ -1,0 +1,92 @@
+---
+id: classic
+label: Classic
+name: Caffe Latte
+subtitle: A shot of espresso lengthened with steamed milk and a thin cap of foam.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: latte-glass
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Steamed and pulled to order. Milk cannot be steamed ahead and held without
+  the foam collapsing before the shot is even pulled.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [coffee]
+  origin: [italy]
+  method: [brewed]
+names:
+  notToBeConfusedWith:
+    - name: Cappuccino
+      note: The same shot with a deep, thick collar of foam rather than a thin cap, and roughly a third of the milk.
+brew:
+  method: espresso
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 93
+  grind: fine
+  contactSec: 28
+  yieldMl: 36
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 18
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the shot and the rest stays in
+      the puck, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 180
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: steam, durationSec: 40, type: active, phase: make }
+  - { id: extract, durationSec: 28, type: "parallel-with:steam", phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: pour
+    text: >-
+      The milk is poured from low over the shot and then raised as the glass
+      fills, which is what pulls a thin cap of foam to the surface rather
+      than folding it through the whole glass the way a cappuccino's thicker
+      foam is.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The milk is steamed and the shot pulled
+    together, in the couple of minutes before serving.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> fine for the espresso machine.
+</Step>
+
+<Step id="steam">
+  Steam the <Qty ref="milk"/> to a light, silky microfoam, without letting it
+  scald.
+</Step>
+
+<Step id="extract">
+  Pump the <Qty ref="water"/> through the grounds at <Temp c={93}/> for
+  <Dur step="extract"/> while the milk steams.
+</Step>
+
+<Step id="pour">
+  Pour the steamed milk into the glass over the shot, finishing with a thin
+  cap of foam on top.
+</Step>

@@ -1,0 +1,8 @@
+{
+  "id": "espresso-cup",
+  "name": "Espresso Cup",
+  "capacityMl": 80,
+  "shapeFamily": "small",
+  "note": "The demitasse. Thick-walled porcelain, small enough that the crema stays warm to the last sip.",
+  "iceDisplacementMl": { "none": 0 }
+}

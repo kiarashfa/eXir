@@ -1,0 +1,43 @@
+{
+  "id": "lemon-soda",
+  "name": "Lemon soda",
+  "kind": "ingredient",
+  "category": "mixer",
+  "proprietary": false,
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Lemonade", "region": "United Kingdom", "note": "British usage; the fizzy kind, not the still squeezed drink." },
+      { "name": "Gaseosa", "region": "Spain" }
+    ]
+  },
+  "generalSubstitutes": [
+    { "substitute": "water", "formRef": "soda", "note": "Plain soda water with the lemon dropped; far less sweet and no lemon flavour of its own." }
+  ],
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0415,
+      "densitySource": "measured",
+      "sugarGPer100": 10.38,
+      "nutritionPer100g": {
+        "kcal": 41,
+        "carbohydrateG": 10.42,
+        "sugarsG": 10.38,
+        "proteinG": 0.09,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 10
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "173205",
+      "sourceNote": "Beverages, carbonated, lemon-lime soda, no caffeine. Public domain. Used as the generic figure for both British fizzy lemonade and Spanish gaseosa, which are the same style of drink — carbonated water, sugar and lemon flavouring — under different names. acidPercent left off: no titratable acidity source exists for this specific mixer."
+    }
+  ]
+}

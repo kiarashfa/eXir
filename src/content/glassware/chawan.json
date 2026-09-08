@@ -1,0 +1,8 @@
+{
+  "id": "chawan",
+  "name": "Chawan",
+  "capacityMl": 350,
+  "shapeFamily": "bowl",
+  "note": "A wide, open bowl for whisking matcha; the width gives the whisk room to work up a foam.",
+  "iceDisplacementMl": { "none": 0 }
+}

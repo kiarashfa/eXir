@@ -1,0 +1,19 @@
+{
+  "id": "green-tea",
+  "name": "Green tea",
+  "kind": "ingredient",
+  "category": "tea",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Loose leaf",
+      "proseName": "green tea",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": true,
+      "sourceNote": "FoodData Central carries only brewed green tea, a finished infusion rather than the dry leaf itself, and no record exists for the unbrewed leaf. No composition is claimed here rather than importing a figure that describes the wrong thing — the same gap as black tea and coffee beans on this site."
+    }
+  ]
+}

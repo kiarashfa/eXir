@@ -1,0 +1,41 @@
+{
+  "id": "piloncillo",
+  "name": "Piloncillo",
+  "kind": "ingredient",
+  "category": "sweetener",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Panela", "region": "South America" },
+      { "name": "Rapadura", "region": "Brazil" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "cone",
+      "label": "Cone, unrefined",
+      "proseName": "piloncillo",
+      "abvPercent": 0,
+      "densityGPerMl": 1.587,
+      "densitySource": "estimated",
+      "sugarGPer100": 97.02,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 380,
+        "carbohydrateG": 98.09,
+        "sugarsG": 97.02,
+        "proteinG": 0.12,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 28
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "168833",
+      "sourceNote": "Sugars, brown. Public domain. FoodData Central carries no dedicated piloncillo record; piloncillo is unrefined whole cane sugar boiled down and cast in a cone, compositionally close to the dark brown sugar this record covers, and closer to it than to any refined white sugar. The density is the solid-sugar class from density-classes.json, marked estimated, because the cone is grated or dissolved rather than poured."
+    }
+  ]
+}

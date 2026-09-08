@@ -1,0 +1,43 @@
+{
+  "id": "coconut-milk",
+  "name": "Coconut Milk",
+  "kind": "ingredient",
+  "category": "dairy-alternative",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Coconut cream",
+        "note": "A thicker, less diluted press of the same flesh, used where a recipe wants richness rather than a pourable liquid."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "raw",
+      "label": "Raw",
+      "proseName": "coconut milk",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0144,
+      "densitySource": "estimated",
+      "sugarGPer100": 3.34,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 230,
+        "carbohydrateG": 5.54,
+        "sugarsG": 3.34,
+        "proteinG": 2.29,
+        "fatG": 23.84,
+        "saturatedFatG": 21.14,
+        "fibreG": 2.2,
+        "sodiumMg": 15
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170172",
+      "sourceNote": "Nuts, coconut milk, raw (liquid expressed from grated meat and water). Public domain. The record's own tablespoon portion gives 1.0144 g/ml, adopted because coconut milk is poured, but marked estimated since a tablespoon can measure either a liquid or a packed solid and this one is not confirmed against a liquid measure."
+    }
+  ]
+}

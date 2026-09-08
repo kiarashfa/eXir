@@ -1,0 +1,81 @@
+---
+id: index
+label: Classic
+name: Chocolate Caliente
+subtitle: Milk, cocoa, sugar and cinnamon whisked with a molinillo until it foams.
+defaultDrinks: 1
+method: whisked
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Whisked to order. The foam a molinillo raises collapses within a couple of
+  minutes of standing, so there is nothing to hold ahead of serving.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [hot-drink]
+  origin: [mexico-central-america]
+  method: [whisked]
+names:
+  alsoKnownAs:
+    - name: Mexican hot chocolate
+      region: United States
+ingredients:
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 250
+    unit: ml
+  - id: cocoa
+    ingredientRef: cocoa
+    formRef: unsweetened
+    amount: 15
+    unit: g
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 20
+    unit: g
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 2
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Heated with the milk for its aroma and lifted out before whisking; it
+      contributes no volume or sugar to the finished drink.
+steps:
+  - { id: heat, durationSec: 180, type: active, phase: make }
+  - { id: whisk, durationSec: 60, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: whisk
+    text: >-
+      The molinillo is spun between the palms rather than stirred in a
+      circle, which drives air into the drink from underneath and raises a
+      genuine foam rather than just dissolving the cocoa into the milk.
+  - kind: pitfall
+    text: >-
+      Boiling the milk hard rather than heating it gently scorches the milk
+      solids on the bottom of the pan, which no amount of whisking afterward
+      removes from the taste.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The milk is heated and whisked to order, and
+    the foam it is served under does not hold.
+  freezable: false
+---
+
+<Step id="heat">
+  Warm the <Qty ref="milk"/> with the <Qty ref="cinnamon"/> over
+  <Dur step="heat"/>, without letting it boil, then remove the cinnamon.
+</Step>
+
+<Step id="whisk">
+  Add the <Qty ref="cocoa"/> and <Qty ref="sugar"/> and whisk vigorously with
+  a molinillo for <Dur step="whisk"/>, until dissolved and lightly foamed.
+</Step>

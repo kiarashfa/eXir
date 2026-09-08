@@ -1,0 +1,37 @@
+{
+  "id": "purple-corn",
+  "name": "Purple Corn",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Maiz morado", "region": "Peru" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "dried",
+      "label": "Dried kernels and cob",
+      "proseName": "dried purple corn",
+      "abvPercent": 0,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 364,
+        "carbohydrateG": 73.89,
+        "proteinG": 8.75,
+        "fatG": 5.09,
+        "fibreG": 8.4,
+        "sodiumMg": 5
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "168921",
+      "sourceNote": "Corn flour, whole-grain, blue (harina de maiz morado). Public domain. FoodData Central carries no record for the whole dried purple-corn cob Chicha Morada is boiled from, only this ground flour of the same Andean purple maize; the composition is adopted as the closest available proxy for the dried grain and the sugar figure is left off rather than guessed, since grinding changes none of the plant's sugar content but the record does not report one. No sugar is claimed here — the drink's sweetness comes from the sugar and fruit added after straining, not from the corn. No density is stated: the corn is boiled and strained out rather than poured or eaten."
+    }
+  ]
+}

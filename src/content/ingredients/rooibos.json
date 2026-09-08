@@ -1,0 +1,22 @@
+{
+  "id": "rooibos",
+  "name": "Rooibos",
+  "kind": "ingredient",
+  "category": "tisane",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [{ "name": "Red bush tea", "region": "South Africa" }]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Loose leaf",
+      "proseName": "rooibos",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "FoodData Central carries no record for rooibos, brewed or dry. No composition is claimed here rather than importing a figure that describes the wrong plant — the same gap as black tea and hibiscus on this site."
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+---
+id: index
+label: Classic
+name: Rooibos
+subtitle: Fermented rooibos leaf steeped like black tea, with no caffeine in it at all.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: low
+batchable: full
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [tea, hot-drink]
+  origin: [south-africa]
+  method: [steeped]
+names:
+  alsoKnownAs:
+    - name: Red bush tea
+      region: South Africa
+brew:
+  method: steep
+  doseRef: rooibos
+  waterRef: water
+  waterTempC: 100
+  contactSec: 300
+  yieldMl: 220
+ingredients:
+  - id: rooibos
+    ingredientRef: rooibos
+    formRef: standard
+    amount: 3
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Steeped for its colour and strength and strained out again; what it
+      leaves behind is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 240
+    unit: ml
+steps:
+  - { id: steep, durationSec: 300, type: passive, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: steep
+    text: >-
+      Rooibos has no tannin problem the way a true tea leaf does, so it can
+      steep well past the point that would turn black tea bitter without
+      the cup souring; the stated time is for strength rather than a limit
+      not to cross.
+  - kind: pitfall
+    text: >-
+      Rooibos steeped too briefly, on the assumption it behaves like a
+      delicate green tea, comes out thin and grassy rather than the deep
+      amber cup the leaf is capable of.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the
+  <Qty ref="rooibos"/> and steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="strain">
+  Strain into a mug, leaving the spent leaf behind.
+</Step>

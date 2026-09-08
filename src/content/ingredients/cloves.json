@@ -1,0 +1,33 @@
+{
+  "id": "cloves",
+  "name": "Cloves",
+  "kind": "ingredient",
+  "category": "spice",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "whole",
+      "label": "Whole",
+      "proseName": "cloves",
+      "abvPercent": 0,
+      "sugarGPer100": 2.38,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 274,
+        "carbohydrateG": 65.53,
+        "sugarsG": 2.38,
+        "proteinG": 5.97,
+        "fatG": 13,
+        "saturatedFatG": 3.952,
+        "fibreG": 33.9,
+        "sodiumMg": 277
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "171321",
+      "sourceNote": "Spices, cloves, ground. Public domain; the whole bud and the ground spice are the same material. No density is carried: the buds are strained out of everything they are steeped or boiled in, so they displace nothing in the finished drink, and the record's own figure is a teaspoon of powder — a packing density, not a true one."
+    }
+  ]
+}

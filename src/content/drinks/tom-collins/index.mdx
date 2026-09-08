@@ -1,0 +1,103 @@
+---
+id: index
+label: Classic
+name: Tom Collins
+subtitle: Gin, lemon and sugar shaken, then topped with soda water in a tall glass.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The gin, lemon and sugar can be pre-shaken and chilled, but the soda water
+  is poured to order so it keeps its fizz into the glass.
+zeroProof: false
+family: sour
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [cocktail]
+  origin: [united-kingdom]
+  method: [shaken]
+  occasion: [aperitivo]
+names:
+  notToBeConfusedWith:
+    - name: John Collins
+      note: The same build with a base spirit other than gin, most often whiskey — a different drink from the one this name originally described.
+ingredients:
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 45
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 45
+    unit: ml
+    addedAfterDilution: true
+  - id: cherry
+    ingredientRef: maraschino-cherry
+    formRef: standard
+    amount: 4
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Dropped in for its look, not usually eaten as part of the drink, so
+      it stays out of the composition.
+steps:
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: shake
+    text: >-
+      The gin, lemon and syrup are shaken first and strained onto fresh
+      ice, then the soda goes in last and unshaken — carbonation and a
+      shaker tin have never mixed, so the fizz is added after the part that
+      needs agitation is already done.
+  - kind: pitfall
+    text: >-
+      This drink and a Whiskey Sour use the same ratio of spirit to citrus
+      to sugar; the only real difference is the soda top and the taller
+      glass it goes with. Confusing the two changes what fills the rest of
+      the glass, not the balance of the shake itself.
+---
+
+<Step id="juice">
+  Squeeze the <Qty ref="lemon"/> and strain out the pips and pulp.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="gin"/>, the <Qty ref="lemon"/> and the
+  <Qty ref="syrup"/> in a shaker and fill it with cubed ice.
+</Step>
+
+<Step id="shake">
+  Shake for <Dur step="shake"/> until the tin frosts over.
+</Step>
+
+<Step id="strain">
+  Strain into a Collins glass filled with fresh cubed ice.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/> and drop in the cherry.
+</Step>

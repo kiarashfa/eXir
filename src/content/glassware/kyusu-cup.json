@@ -1,0 +1,8 @@
+{
+  "id": "kyusu-cup",
+  "name": "Yunomi",
+  "capacityMl": 150,
+  "shapeFamily": "small",
+  "note": "A small handleless cup for a single serving of hot tea, used here for other small unhandled tea glasses no dedicated record exists for.",
+  "iceDisplacementMl": { "none": 0 }
+}

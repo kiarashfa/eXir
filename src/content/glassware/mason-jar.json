@@ -1,0 +1,9 @@
+{
+  "id": "mason-jar",
+  "name": "Mason Jar",
+  "capacityMl": 500,
+  "shapeFamily": "jar",
+  "note": "A straight-sided glass jar, used for ferments and for iced drinks served in the jar itself.",
+  "iceDisplacementMl": { "cubed": 230, "block": 220, "crushed": 285, "none": 0 },
+  "iceDisplacementNote": "No plan figure exists for this shape. Copied from the Collins, the closest tall glass of comparable capacity, and marked as an estimate rather than derived from the jar's own proportions."
+}

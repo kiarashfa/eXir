@@ -1,0 +1,90 @@
+---
+id: index
+label: Classic
+name: Agua de Tamarindo
+subtitle: Tamarind pulp soaked, mashed through a sieve and sweetened, over ice.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: none
+batchNote: >-
+  Made a jug at a time in practice, but authored here as one steep to order.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [juice-agua-fresca]
+  origin: [mexico-central-america]
+  method: [steeped]
+names:
+  alsoKnownAs:
+    - name: Tamarind water
+brew:
+  method: steep
+  doseRef: tamarind
+  waterRef: water
+  waterTempC: 100
+  contactSec: 900
+  yieldMl: 135
+ingredients:
+  - id: tamarind
+    ingredientRef: tamarind
+    formRef: pulp
+    amount: 20
+    unit: g
+    consumedFraction: 0.7
+    consumedFractionNote: >-
+      The softened flesh is mashed through a sieve and dissolves into the
+      water; the fibrous strings and seeds caught in the sieve are left
+      behind and never reach the glass.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 150
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 15
+    unit: g
+steps:
+  - { id: steep, durationSec: 900, type: passive, phase: make }
+  - { id: mash, durationSec: 60, type: active, phase: make }
+  - { id: strain, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: mash
+    text: >-
+      Tamarind pulp comes as a pressed block still holding its fibres and
+      seeds, so soaking alone does not free the flesh — it has to be worked
+      through a sieve by hand to separate the sour pulp from what the sieve
+      is meant to catch.
+  - kind: pitfall
+    text: >-
+      Pushing the pulp through too hastily leaves fibre in the strained
+      liquid, which settles at the bottom of the glass as grit rather than
+      staying suspended the way the pulp itself does.
+---
+
+<Step id="steep">
+  Pour the <Qty ref="water"/> at <Temp c={100}/> over the <Qty ref="tamarind"/>
+  and leave to soften for <Dur step="steep"/>.
+</Step>
+
+<Step id="mash">
+  Mash and work the softened pulp through a sieve set over a jug for
+  <Dur step="mash"/>, pressing the flesh through and leaving the fibres and
+  seeds behind.
+</Step>
+
+<Step id="strain">
+  Stir the <Qty ref="sugar"/> into the strained liquid until fully dissolved.
+</Step>
+
+<Step id="pour">
+  Pour over cubed ice in the glass and serve at once.
+</Step>

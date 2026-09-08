@@ -1,0 +1,83 @@
+---
+id: index
+label: Classic
+name: Turkish Çay
+subtitle: Strong black tea brewed in a small pot set over boiling water, let down with hot water to the drinker's own strength.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: kyusu-cup
+servedOverIce: false
+bitterness: medium
+batchable: full
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Medium
+tags:
+  category: [tea, hot-drink]
+  origin: [turkey]
+  method: [steeped]
+brew:
+  method: steep
+  doseRef: tea
+  waterRef: water
+  waterTempC: 100
+  contactSec: 600
+  yieldMl: 110
+ingredients:
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 6
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Steeped hard in the small pot for its strength and strained out
+      again; what it leaves behind is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 120
+    unit: ml
+    portions:
+      - { id: brew-water, amount: 60, note: brewed with the leaf in the small pot }
+      - { id: dilute-water, amount: 60, note: added at the glass to set the strength }
+steps:
+  - { id: boil, durationSec: 300, type: passive, phase: prep }
+  - { id: steep, durationSec: 600, type: passive, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: dilute, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: dilute
+    text: >-
+      The small pot brews one fixed, strong concentrate; the strength each
+      drinker actually gets is set afterwards, glass by glass, with hot
+      water from the larger kettle underneath rather than by changing how
+      the tea itself is brewed.
+  - kind: pitfall
+    text: >-
+      Judging the dose against a Western teapot's ratio makes the small
+      pot look absurdly strong. It is meant to be — the concentrate is
+      never drunk undiluted, and the whole point of the second pot is that
+      the strength gets fixed at the glass, not in the brew.
+---
+
+<Step id="boil">
+  Bring the <Qty ref="water"/> to a boil in the lower kettle.
+</Step>
+
+<Step id="steep">
+  Add the <Qty ref="tea"/> to the smaller pot set on top, ladle in a little
+  of the boiling water, and steep for <Dur step="steep"/> over the
+  simmering kettle below.
+</Step>
+
+<Step id="pour">
+  Pour a small amount of the concentrate into a tulip glass.
+</Step>
+
+<Step id="dilute">
+  Top up with hot water from the lower kettle to the strength wanted.
+</Step>

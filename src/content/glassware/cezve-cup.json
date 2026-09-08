@@ -1,0 +1,8 @@
+{
+  "id": "cezve-cup",
+  "name": "Small Coffee Cup",
+  "capacityMl": 80,
+  "shapeFamily": "small",
+  "note": "A small handled cup for coffee brewed and served unfiltered, with the grounds left to settle at the bottom rather than poured out.",
+  "iceDisplacementMl": { "none": 0 }
+}

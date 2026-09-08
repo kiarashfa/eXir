@@ -38,6 +38,38 @@
       "sourceDataset": "USDA FoodData Central (SR Legacy)",
       "sourceId": "172183",
       "sourceNote": "Egg, white, raw, fresh. Public domain. The cup portion is adopted as a true density because a white is poured. One white is the record's 33 g large-egg portion carried through that density."
+    },
+    {
+      "id": "yolk",
+      "label": "Yolk, raw",
+      "proseName": "egg yolk",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0271,
+      "densitySource": "estimated",
+      "sugarGPer100": 0.56,
+      "acidPercent": 0,
+      "countUnit": {
+        "singular": "yolk",
+        "plural": "yolks",
+        "ml": 17,
+        "snap": "half"
+      },
+      "nutritionPer100g": {
+        "kcal": 322,
+        "carbohydrateG": 3.59,
+        "sugarsG": 0.56,
+        "proteinG": 15.86,
+        "fatG": 26.54,
+        "saturatedFatG": 9.551,
+        "fibreG": 0,
+        "sodiumMg": 48
+      },
+      "animalOrigin": "egg",
+      "allergenTags": ["egg"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "172184",
+      "sourceNote": "Egg, yolk, raw, fresh. Public domain. The cup portion (1.0271 g/ml) is adopted as a density in the same way as the white's, whisked and poured rather than packed, but marked estimated here because the cup mixes yolk with air once whisked and the figure is carried across from the white's record rather than confirmed separately. One yolk is taken as 17 g, the balance of the white's 33 g large-egg white against a roughly 50 g whole large egg."
     }
   ]
 }

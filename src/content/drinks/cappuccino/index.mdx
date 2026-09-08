@@ -1,0 +1,91 @@
+---
+id: classic
+label: Classic
+name: Cappuccino
+subtitle: Espresso, steamed milk and a deep collar of foam in equal thirds.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: cappuccino-cup
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Steamed and pulled to order. Foam this thick collapses within a minute or
+  two of standing, so it cannot be made ahead and held.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [coffee]
+  origin: [italy]
+  method: [brewed]
+names:
+  notToBeConfusedWith:
+    - name: Caffe Latte
+      note: More milk and a thin cap of foam rather than a thick, spoonable collar of it in a third of the volume.
+brew:
+  method: espresso
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 93
+  grind: fine
+  contactSec: 28
+  yieldMl: 36
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 18
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the shot and the rest stays in
+      the puck, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 120
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: steam, durationSec: 50, type: active, phase: make }
+  - { id: extract, durationSec: 28, type: "parallel-with:steam", phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: steam
+    text: >-
+      The steam wand is held near the surface for longer than a latte's milk
+      needs, which works far more air into the pitcher and is what gives a
+      cappuccino its thick, stiff foam rather than the latte's thin cap.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The milk is steamed and the shot pulled in the
+    couple of minutes before serving.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> fine for the espresso machine.
+</Step>
+
+<Step id="steam">
+  Steam the <Qty ref="milk"/> to a thick, stiff foam over <Dur step="steam"/>,
+  well beyond the light microfoam a latte needs.
+</Step>
+
+<Step id="extract">
+  Pump the <Qty ref="water"/> through the grounds at <Temp c={93}/> for
+  <Dur step="extract"/> while the milk steams.
+</Step>
+
+<Step id="pour">
+  Pour the steamed milk into the cup over the shot, holding back the foam
+  with a spoon until last so it sits as a full collar rather than sinking in.
+</Step>

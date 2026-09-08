@@ -1,0 +1,82 @@
+---
+id: index
+label: Classic
+name: Yerba Mate
+subtitle: Dried yerba leaf steeped in its own gourd and sipped through a metal straw, topped up rather than poured fresh each round.
+defaultDrinks: 1
+method: steeped
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  The same leaf is topped up with fresh hot water through a whole sitting
+  rather than brewed once as a fixed batch.
+zeroProof: true
+family: steeped-infusion
+familyRole: canonical
+difficulty: Easy
+tags:
+  category: [tea, hot-drink]
+  origin: [south-america]
+  method: [steeped]
+brew:
+  method: steep
+  doseRef: mate
+  waterRef: water
+  waterTempC: 80
+  contactSec: 60
+  yieldMl: 60
+ingredients:
+  - id: mate
+    ingredientRef: yerba-mate
+    formRef: standard
+    amount: 12
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Fills most of the gourd and is topped up with fresh hot water many
+      times over a sitting rather than steeped once; what any single pour
+      takes up is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 70
+    unit: ml
+steps:
+  - { id: fill, durationSec: 30, type: active, phase: prep }
+  - { id: steep, durationSec: 60, type: passive, phase: make }
+  - { id: sip, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: fill
+    text: >-
+      The gourd is filled most of the way with dry leaf and tilted so the
+      leaf banks to one side before any water goes in; the bombilla's
+      strainer tip then sits in the empty side, in the water rather than
+      packed against the leaf, which is what keeps it from clogging.
+  - kind: pitfall
+    text: >-
+      Water at a full boil scorches the leaf and turns the mate bitter
+      within the first couple of refills; it is heated close to boiling
+      point and then let off the heat slightly before it goes in.
+---
+
+<Step id="fill">
+  Fill the gourd about two-thirds full with the <Qty ref="mate"/>, cover
+  the mouth and shake once, then tip the gourd so the leaf banks to one
+  side. Set the bombilla into the empty side, against the wall of the
+  gourd rather than straight down into the leaf.
+</Step>
+
+<Step id="steep">
+  Pour the <Qty ref="water"/>, just off the boil, slowly into the empty
+  side and let it soak into the leaf for <Dur step="steep"/> before the
+  first sip.
+</Step>
+
+<Step id="sip">
+  Drink the full gourd through the bombilla without stirring, then refill
+  with fresh hot water for the next round.
+</Step>
