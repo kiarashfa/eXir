@@ -1,0 +1,33 @@
+{
+  "id": "soybeans",
+  "name": "Soybeans",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "dried",
+      "label": "Dried, whole",
+      "proseName": "dried soybeans",
+      "abvPercent": 0,
+      "sugarGPer100": 7.33,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 446,
+        "carbohydrateG": 30.16,
+        "sugarsG": 7.33,
+        "proteinG": 36.49,
+        "fatG": 19.94,
+        "saturatedFatG": 2.884,
+        "fibreG": 9.3,
+        "sodiumMg": 2
+      },
+      "animalOrigin": "none",
+      "allergenTags": ["soy"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174270",
+      "sourceNote": "Soybeans, mature seeds, raw. Public domain. No density: the soaked beans are ground and pressed into milk and the spent pulp (okara) is strained out, so this record is a precursor rather than something poured."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "sassafras",
+  "name": "Sassafras",
+  "kind": "ingredient",
+  "category": "botanical",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "File powder",
+        "note": "Ground sassafras leaf used to thicken gumbo, a different part of the same plant and not the root bark this drink is flavoured with."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "bark",
+      "label": "Root bark, safrole-free",
+      "proseName": "sassafras root bark",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "No composition dataset; regulatory note only",
+      "sourceNote": "No nutrition dataset carries raw sassafras bark, and none is needed here in any case: the bark is steeped for its aroma and strained back out, contributing nothing measurable to the finished syrup. What matters instead is legal rather than nutritional. Whole sassafras bark and oil contain safrole, a compound the US FDA banned as a food additive in 1960 after it was shown to cause liver tumours in animal studies, and safrole-containing sassafras is prohibited in commercial food and drink in the United States and several other jurisdictions as a result. Every commercial root beer sold today, and any sassafras bark sold for kitchen use, is required to be safrole-free — either a specially processed extract or a different, safrole-free part of the plant — which is the form this record and this recipe assume throughout."
+    }
+  ]
+}

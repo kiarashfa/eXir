@@ -1,0 +1,115 @@
+---
+id: classic
+label: Classic
+name: Water Kefir
+subtitle: Sugar water fermented two days with live grains and a few raisins into a tangy, faintly fizzy drink.
+defaultDrinks: 4
+method: fermented
+dilutionClass: none
+glasswareRef: highball
+iceStyle: none
+servedOverIce: false
+serveTempC: 6
+bitterness: none
+batchable: full
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [kitchen-ferment]
+  origin: [mexico-central-america]
+  method: [fermented]
+names:
+  alsoKnownAs:
+    - { name: Tibicos, region: Mexico }
+  notToBeConfusedWith:
+    - name: Milk kefir
+      note: A dairy ferment using a different culture grown in milk rather than sugar water; the two grains are not interchangeable and this page covers the sugar-water version only.
+ferment:
+  stages:
+    - { id: f1, label: Primary, days: 2, tempC: [20, 26], sealed: false }
+  developsAlcohol: true
+  estimatedAbvRange: [0, 1]
+  safetyNote: >-
+    The jar is covered loosely rather than sealed, since the ferment
+    produces real carbon dioxide as it works. A batch that smells sharply
+    of solvent, or shows pink, orange or fuzzy growth rather than clear,
+    faintly cloudy liquid, has gone wrong and should be discarded rather
+    than tasted.
+ingredients:
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1000
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 80
+    unit: g
+  - id: grains
+    ingredientRef: water-kefir-grains
+    formRef: standard
+    amount: 30
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Strained out once fermentation is done and reused for the next
+      batch rather than eaten; they contribute no volume to the finished
+      drink.
+  - id: raisins
+    ingredientRef: raisins
+    formRef: standard
+    amount: 10
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Added as a source of minerals the grains draw on, then strained out
+      with them rather than eaten.
+steps:
+  - { id: dissolve, durationSec: 60, type: active, phase: prep }
+  - { id: combine, durationSec: 30, type: active, phase: prep }
+  - { id: ferment, durationSec: 172800, type: passive, phase: rest }
+  - { id: strain, durationSec: 60, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      Water kefir grains are a different culture from milk kefir grains,
+      built to work in sugar water rather than milk, and the two are not
+      interchangeable even though the names and the jar-on-the-counter
+      method look alike.
+  - kind: pitfall
+    stepRef: dissolve
+    text: >-
+      Stirring the grains into water still warm from dissolving the sugar
+      weakens or kills them outright; the water needs to be fully back to
+      room temperature first.
+makeAhead:
+  aheadInstructions: >-
+    The ferment itself is the make-ahead step; strained and refrigerated,
+    it keeps for several days and continues to sour slowly, while the
+    grains go straight into a fresh jar of sugar water for the next batch.
+  batchKeepDays: 5
+  batchStorage: strained and refrigerated, sealed
+  freezable: false
+---
+
+<Step id="dissolve">
+  Stir the <Qty ref="sugar"/> into the <Qty ref="water"/> until fully
+  dissolved, then let it cool completely to room temperature.
+</Step>
+
+<Step id="combine">
+  Add the <Qty ref="grains"/> and the <Qty ref="raisins"/> to the cooled
+  sugar water in a clean jar.
+</Step>
+
+<Step id="ferment">
+  Cover loosely and leave at room temperature for <Dur step="ferment"/>,
+  away from direct light, until the liquid tastes tangy rather than
+  sweet.
+</Step>
+
+<Step id="strain">
+  Strain out the grains and raisins, reserving the grains for the next
+  batch, and refrigerate the kefir before serving.
+</Step>

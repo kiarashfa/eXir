@@ -1,0 +1,92 @@
+---
+id: classic
+label: Classic
+name: Nimbu Pani
+subtitle: Lime juice, sugar, water and a pinch of black salt and roasted cumin.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: full
+zeroProof: true
+tags:
+  category: [soft-traditional]
+  origin: [south-asia]
+  method: [built]
+  occasion: [aperitivo]
+difficulty: Easy
+names:
+  alsoKnownAs:
+    - { name: Shikanji, region: "North India" }
+    - { name: Nimbu Paani, region: India }
+ingredients:
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 25
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 20
+    unit: ml
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 105
+    unit: ml
+  - id: black-salt
+    ingredientRef: black-salt
+    formRef: standard
+    amount: 1
+    unit: g
+  - id: cumin
+    ingredientRef: cumin
+    formRef: ground
+    amount: 0.5
+    unit: g
+steps:
+  - { id: juice, durationSec: 45, type: active, phase: prep }
+  - { id: build, durationSec: 25, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      Black salt is stirred in with the sugar rather than rimmed on the glass, so its sulphurous
+      edge seasons the whole drink evenly instead of hitting only the first sip.
+  - kind: pitfall
+    text: >-
+      Table salt is not a substitute for the black salt here — swap it in and the drink loses
+      the faintly savoury, egg-like note that is the point of the addition, and reads only as
+      salted limeade.
+substitutions:
+  - lineRef: black-salt
+    substitute: salt
+    ratio: "1:1"
+    note: >-
+      Interchangeable by weight and by its seasoning effect on sourness, but plain salt carries
+      none of black salt's sulphurous aroma, so the drink reads as straightforwardly salted
+      rather than carrying the savoury note the original is built around.
+    impact:
+      flavour: moderate change
+      strength: no change
+      sweetness: no change
+makeAhead:
+  aheadInstructions: >-
+    Batches cleanly and keeps well refrigerated; stir before serving, since the salt and spice
+    can settle.
+  batchKeepDays: 2
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the limes for the <Qty ref="lime"/>, straining out the pips.
+</Step>
+
+<Step id="build">
+  Stir the juice with the <Qty ref="syrup"/>, the <Qty ref="water"/>, the
+  <Qty ref="black-salt"/> and the <Qty ref="cumin"/> in a glass filled with ice.
+</Step>

@@ -1,0 +1,87 @@
+---
+id: classic
+label: Classic
+name: Doogh
+subtitle: Yoghurt thinned with carbonated water, salted and finished with dried mint.
+defaultDrinks: 1
+method: whisked
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The yoghurt, salt and mint can be whisked together ahead, but the
+  carbonated water is added last so the drink is not flat by the time it is
+  poured.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [soft-traditional]
+  origin: [persia-central-asia]
+  method: [whisked]
+names:
+  alsoKnownAs:
+    - name: Dough
+  notToBeConfusedWith:
+    - name: Ayran
+      note: This site's Turkish counterpart — plain, still and salted only, where doogh is usually carbonated and finished with dried mint.
+ingredients:
+  - id: yoghurt
+    ingredientRef: yoghurt
+    formRef: standard
+    amount: 70
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: soda
+    amount: 90
+    unit: ml
+  - id: salt
+    ingredientRef: salt
+    formRef: standard
+    amount: 1
+    unit: g
+  - id: mint
+    ingredientRef: mint
+    formRef: dried
+    amount: 0.5
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Crumbled over the top rather than blended through, so it seasons the
+      surface and the first sip without adding any weighable volume.
+steps:
+  - { id: whisk, durationSec: 30, type: active, phase: make }
+  - { id: build, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      The soda water goes in last, stirred through only once, rather than
+      whisked with the yoghurt; whisking it in the way the yoghurt and salt
+      are combined beats out the carbonation the drink depends on.
+  - kind: pitfall
+    text: >-
+      Fresh rather than dried mint turns the drink faintly bitter and grassy
+      within minutes as the leaf bruises against the carbonation; dried mint
+      seasons without that reaction.
+makeAhead:
+  aheadInstructions: >-
+    The yoghurt, salt and mint can be whisked together and refrigerated.
+    Add the carbonated water only at the point of serving.
+  batchKeepDays: 2
+  batchStorage: refrigerated and sealed, without the soda water
+  freezable: false
+---
+
+<Step id="whisk">
+  Whisk the <Qty ref="yoghurt"/> and <Qty ref="salt"/> together for
+  <Dur step="whisk"/>, until smooth.
+</Step>
+
+<Step id="build">
+  Pour over ice, top with the <Qty ref="water"/>, stir once, and finish with
+  the <Qty ref="mint"/> crumbled over the surface.
+</Step>

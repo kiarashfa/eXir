@@ -1,0 +1,79 @@
+---
+id: drinking-chocolate
+label: Drinking chocolate
+name: Hot Chocolate
+subtitle: Real chocolate melted into milk, dense enough to leave a coat on the back of a spoon.
+defaultDrinks: 1
+method: heated
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Heated and melted to order. Chocolate this dense keeps thickening as it
+  cools and is much harder to loosen back up than it was to make.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [hot-drink]
+  origin: [iberia]
+  method: [heated]
+names:
+  alsoKnownAs:
+    - name: Chocolate a la taza
+      region: Spain
+    - name: Cioccolata calda
+      region: Italy
+  notToBeConfusedWith:
+    - name: Hot Cocoa
+      note: This site's other tab of the same page — made from cocoa powder rather than melted chocolate, and much thinner for it.
+ingredients:
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 220
+    unit: ml
+  - id: chocolate
+    ingredientRef: dark-chocolate
+    formRef: standard
+    amount: 45
+    unit: g
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 10
+    unit: g
+steps:
+  - { id: heat, durationSec: 180, type: active, phase: make }
+  - { id: melt, durationSec: 90, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: melt
+    text: >-
+      The chocolate goes in chopped rather than whole, because small pieces
+      melt evenly into the hot milk as they are whisked; a single block
+      needs so long to melt through that the milk scorches before the
+      centre is gone.
+  - kind: pitfall
+    text: >-
+      Milk brought to a hard boil rather than a bare simmer scorches on the
+      base of the pan the moment the chocolate is added to catch, and that
+      burnt-milk note carries through the whole cup.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. It is heated, melted and served in one
+    continuous pan of work, at the point it reaches its right consistency.
+  freezable: false
+---
+
+<Step id="heat">
+  Warm the <Qty ref="milk"/> in a pan over <Dur step="heat"/>, without
+  letting it boil.
+</Step>
+
+<Step id="melt">
+  Add the chopped <Qty ref="chocolate"/> and the <Qty ref="sugar"/> and
+  whisk over low heat for <Dur step="melt"/>, until melted and thickened to
+  a consistency that coats the back of a spoon.
+</Step>

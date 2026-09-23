@@ -1,0 +1,170 @@
+{
+  "discontinuedDate": "",
+  "foodComponents": [],
+  "foodAttributes": [
+    {
+      "id": 2288307,
+      "value": 9,
+      "name": "Added Package Weight"
+    }
+  ],
+  "foodPortions": [],
+  "fdcId": 2085662,
+  "description": "TAISUN, SUGARCANE JUICE",
+  "publicationDate": "10/28/2021",
+  "foodNutrients": [
+    {
+      "type": "FoodNutrient",
+      "id": 24485452,
+      "amount": 12.9
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485449,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485455,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485451,
+      "amount": 52
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485453,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485456,
+      "amount": 18
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485448,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485457,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485450,
+      "amount": 12.9
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485458,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485461,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485454,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485459,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 24485460,
+      "amount": 0
+    }
+  ],
+  "dataType": "Branded",
+  "foodClass": "Branded",
+  "modifiedDate": "6/25/2017",
+  "availableDate": "6/25/2017",
+  "brandOwner": "TAISUN ENTERPRISE CO.,LTD.",
+  "brandName": "TAISUN",
+  "dataSource": "LI",
+  "brandedFoodCategory": "Fruit & Vegetable Juice, Nectars & Fruit Drinks",
+  "gtinUpc": "4710095922304",
+  "householdServingFullText": "1 CAN",
+  "ingredients": "WATER, SUGARCANE JUICE(10%), SUGAR",
+  "marketCountry": "United States",
+  "servingSize": 310,
+  "servingSizeUnit": "ml",
+  "foodUpdateLog": [
+    {
+      "discontinuedDate": "",
+      "foodAttributes": [],
+      "fdcId": 2085662,
+      "description": "TAISUN, SUGARCANE JUICE",
+      "publicationDate": "10/28/2021",
+      "dataType": "Branded",
+      "foodClass": "Branded",
+      "modifiedDate": "6/25/2017",
+      "availableDate": "6/25/2017",
+      "brandOwner": "TAISUN ENTERPRISE CO.,LTD.",
+      "brandName": "TAISUN",
+      "dataSource": "LI",
+      "brandedFoodCategory": "Fruit & Vegetable Juice, Nectars & Fruit Drinks",
+      "gtinUpc": "4710095922304",
+      "householdServingFullText": "1 CAN",
+      "ingredients": "WATER, SUGARCANE JUICE(10%), SUGAR",
+      "marketCountry": "United States",
+      "servingSize": 310,
+      "servingSizeUnit": "ml"
+    },
+    {
+      "discontinuedDate": "",
+      "foodAttributes": [],
+      "fdcId": 1589914,
+      "description": "TAISUN, SUGARCANE JUICE",
+      "publicationDate": "3/19/2021",
+      "dataType": "Branded",
+      "foodClass": "Branded",
+      "modifiedDate": "6/25/2017",
+      "availableDate": "6/25/2017",
+      "brandOwner": "TAISUN ENTERPRISE CO.,LTD.",
+      "brandName": "TAISUN",
+      "dataSource": "LI",
+      "brandedFoodCategory": "Fruit & Vegetable Juice, Nectars & Fruit Drinks",
+      "gtinUpc": "4710095922304",
+      "householdServingFullText": "1 CAN",
+      "ingredients": "WATER, SUGARCANE JUICE(10%), SUGAR",
+      "marketCountry": "United States",
+      "servingSize": 310,
+      "servingSizeUnit": "ml"
+    },
+    {
+      "discontinuedDate": "",
+      "foodAttributes": [],
+      "fdcId": 1297806,
+      "description": "TAISUN, SUGARCANE JUICE",
+      "publicationDate": "2/26/2021",
+      "dataType": "Branded",
+      "foodClass": "Branded",
+      "modifiedDate": "6/25/2017",
+      "availableDate": "6/25/2017",
+      "brandOwner": "TAISUN ENTERPRISE CO.,LTD.",
+      "brandName": "TAISUN",
+      "subbrandName": "",
+      "dataSource": "LI",
+      "brandedFoodCategory": "Fruit & Vegetable Juice, Nectars & Fruit Drinks",
+      "gtinUpc": "4710095922304",
+      "householdServingFullText": "1 CAN",
+      "ingredients": "WATER, SUGARCANE JUICE(10%), SUGAR",
+      "marketCountry": "United States",
+      "servingSize": 310,
+      "servingSizeUnit": "ml",
+      "packageWeight": "",
+      "notaSignificantSourceOf": ""
+    }
+  ],
+  "labelNutrients": {}
+}

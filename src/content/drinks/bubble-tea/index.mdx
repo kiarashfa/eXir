@@ -1,0 +1,109 @@
+---
+id: milk-tea
+label: Milk tea
+name: Bubble Tea
+subtitle: Sweetened black tea and milk shaken cold over chewy tapioca pearls.
+defaultDrinks: 1
+method: shaken
+dilutionClass: built-over-ice
+glasswareRef: mason-jar
+iceStyle: cubed
+servedOverIce: true
+bitterness: low
+batchable: partial
+batchNote: >-
+  The tea can be brewed and chilled ahead, but the pearls are cooked the same
+  day and the drink is shaken and built to order.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [tea]
+  origin: [china]
+  method: [shaken]
+names:
+  alsoKnownAs:
+    - name: Boba Milk Tea
+    - name: Pearl Milk Tea
+      region: Taiwan
+  notToBeConfusedWith:
+    - name: Hong Kong Milk Tea
+      note: No tapioca pearls, pulled through a cloth filter and finished with evaporated milk rather than shaken cold with fresh milk over ice.
+brew:
+  method: steep
+  doseRef: tea
+  waterRef: water
+  waterTempC: 100
+  contactSec: 300
+  yieldMl: 118
+ingredients:
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 5
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The leaf is steeped for its strength and strained out again; what it
+      leaves behind is dissolved rather than weighable.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 130
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    amount: 12
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 35
+    unit: ml
+  - id: pearls
+    ingredientRef: tapioca-pearls
+    amount: 70
+    unit: ml
+steps:
+  - { id: steep, durationSec: 300, type: passive, phase: prep }
+  - { id: chill, durationSec: 20, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: build, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: shake
+    text: >-
+      The tea, syrup and milk are shaken together over ice rather than just
+      stirred, because a short hard shake chills the tea fast without
+      watering it down the way pouring it warm over a full glass of ice
+      would.
+  - kind: pitfall
+    text: >-
+      Pearls added straight from the fridge seize up and turn firm rather
+      than chewy; they are meant to be used the same day they are cooked,
+      close to body temperature, not chilled and reheated.
+makeAhead:
+  aheadInstructions: >-
+    The tea can be brewed, sweetened and refrigerated ahead of time. The
+    pearls are cooked the same day and the milk shaken in only at service.
+  batchKeepDays: 1
+  batchStorage: refrigerated and sealed, tea only
+  freezable: false
+---
+
+<Step id="steep">
+  Steep the <Qty ref="tea"/> in the <Qty ref="water"/> at <Temp c={100}/>
+  for <Dur step="steep"/>, then strain and let cool.
+</Step>
+
+<Step id="chill">
+  Spoon the <Qty ref="pearls"/> into the serving jar and fill with ice.
+</Step>
+
+<Step id="shake">
+  Shake the cooled tea, <Qty ref="syrup"/> and <Qty ref="milk"/> together
+  with ice for <Dur step="shake"/>.
+</Step>
+
+<Step id="build">
+  Pour over the pearls and ice, and serve with a wide straw.
+</Step>

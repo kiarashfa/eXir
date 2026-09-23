@@ -1,0 +1,177 @@
+{
+  "discontinuedDate": "",
+  "foodComponents": [],
+  "foodAttributes": [
+    {
+      "id": 2999038,
+      "value": 6,
+      "name": "Nutrient Removed"
+    },
+    {
+      "id": 2999040,
+      "value": 3,
+      "name": "Ingredients"
+    },
+    {
+      "id": 2999041,
+      "value": 9,
+      "name": "Added Package Weight"
+    },
+    {
+      "id": 2999039,
+      "value": 4,
+      "name": "Nutrient Updated"
+    },
+    {
+      "id": 2999037,
+      "value": 5,
+      "name": "Nutrient Added"
+    }
+  ],
+  "foodPortions": [],
+  "fdcId": 2564983,
+  "description": "SUGARCANE JUICE DRINK, SUGARCANE",
+  "publicationDate": "6/29/2023",
+  "foodNutrients": [
+    {
+      "type": "FoodNutrient",
+      "id": 31953137,
+      "amount": 3.4
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953138,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953136,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953133,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953131,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953140,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953130,
+      "amount": 10.57
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953126,
+      "amount": 0.29
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953139,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953134,
+      "amount": 106
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953127,
+      "amount": 0
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953135,
+      "amount": 3
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953132,
+      "amount": 6
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953129,
+      "amount": 43
+    },
+    {
+      "type": "FoodNutrient",
+      "id": 31953128,
+      "amount": 10.86
+    }
+  ],
+  "dataType": "Branded",
+  "foodClass": "Branded",
+  "shortDescription": "",
+  "modifiedDate": "5/23/2023",
+  "availableDate": "5/23/2023",
+  "brandOwner": "Goya Foods, Inc. ",
+  "brandName": "GOYA",
+  "dataSource": "LI",
+  "brandedFoodCategory": "Fruit & Vegetable Juice, Nectars & Fruit Drinks",
+  "gtinUpc": "0041331027847",
+  "householdServingFullText": "1 can (350mL)",
+  "ingredients": "WATER, SUGARCANE JUICE (35%), SUGAR, CITRIC ACID AS ACIDITY REGULATOR",
+  "marketCountry": "United States",
+  "servingSize": 350,
+  "servingSizeUnit": "MLT",
+  "packageWeight": "11.8 fl oz",
+  "foodUpdateLog": [
+    {
+      "discontinuedDate": "",
+      "foodAttributes": [],
+      "fdcId": 2564983,
+      "description": "SUGARCANE JUICE DRINK, SUGARCANE",
+      "publicationDate": "6/29/2023",
+      "dataType": "Branded",
+      "foodClass": "Branded",
+      "shortDescription": "",
+      "modifiedDate": "5/23/2023",
+      "availableDate": "5/23/2023",
+      "brandOwner": "Goya Foods, Inc. ",
+      "brandName": "GOYA",
+      "dataSource": "LI",
+      "brandedFoodCategory": "Fruit & Vegetable Juice, Nectars & Fruit Drinks",
+      "gtinUpc": "0041331027847",
+      "householdServingFullText": "1 can (350mL)",
+      "ingredients": "WATER, SUGARCANE JUICE (35%), SUGAR, CITRIC ACID AS ACIDITY REGULATOR",
+      "marketCountry": "United States",
+      "servingSize": 350,
+      "servingSizeUnit": "MLT",
+      "packageWeight": "11.8 fl oz"
+    },
+    {
+      "discontinuedDate": "",
+      "foodAttributes": [],
+      "fdcId": 2266792,
+      "description": "SUGARCANE JUICE DRINK, SUGARCANE",
+      "publicationDate": "5/23/2022",
+      "dataType": "Branded",
+      "foodClass": "Branded",
+      "shortDescription": "",
+      "modifiedDate": "2/14/2022",
+      "availableDate": "2/14/2022",
+      "brandOwner": "Goya Foods, Inc. ",
+      "brandName": "GOYA",
+      "dataSource": "LI",
+      "brandedFoodCategory": "Fruit & Vegetable Juice, Nectars & Fruit Drinks",
+      "gtinUpc": "041331027847",
+      "householdServingFullText": "350 MLT",
+      "ingredients": "WATER, SUGARCANE JUICE (35%), SUGAR, CITRIC ACID AS ACIDITY REGULATOR.",
+      "marketCountry": "United States",
+      "servingSize": 350,
+      "servingSizeUnit": "ml",
+      "packageWeight": "350 ml/11.8 floz"
+    }
+  ],
+  "labelNutrients": {}
+}

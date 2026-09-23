@@ -1,0 +1,103 @@
+---
+id: classic
+label: Classic
+name: Brandy Alexander
+subtitle: Cognac, brown creme de cacao and cream, shaken to a pale froth.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken-long
+glasswareRef: coupe
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: full
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [british-isles]
+  method: [shaken]
+  occasion: [nightcap]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Alexander
+      note: The older gin version this drink is a brandy variant of; the two are not interchangeable, since gin and cognac sit very differently against chocolate and cream.
+ingredients:
+  - id: cognac
+    ingredientRef: cognac
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: cacao
+    ingredientRef: creme-de-cacao
+    formRef: brown
+    amount: 30
+    unit: ml
+  - id: cream
+    ingredientRef: cream
+    formRef: heavy
+    amount: 30
+    unit: ml
+  - id: garnish-nutmeg
+    ingredientRef: nutmeg
+    formRef: ground
+    amount: 0.3
+    unit: g
+    garnish: true
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: shake, durationSec: 14, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: shake
+    text: >-
+      Cream needs a longer, harder shake than a citrus sour to take on enough air to sit as a
+      pale froth on top rather than a flat, oily surface; a chilling shake alone leaves it
+      looking thin.
+  - kind: pitfall
+    text: >-
+      Cognac and creme de cacao are close in weight and colour once shaken with cream, so an
+      unbalanced pour is easy to miss by eye. Measuring rather than free-pouring is what keeps
+      the drink from tipping into a chocolate milkshake.
+substitutions:
+  - lineRef: cognac
+    substitute: gin
+    formRef: london-dry
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume and at a similar strength, so the arithmetic barely moves. This
+      is the older Alexander the brandy version was named after, and it reads sharper and more
+      juniper-forward against the chocolate than the round, fruity cognac does.
+    impact:
+      flavour: significant change
+      strength: no change
+      sweetness: no change
+makeAhead:
+  aheadInstructions: >-
+    The three spirits batch cleanly, and the site adds the water the shake would have
+    contributed. Shake the batch again over ice at service rather than pouring it flat, since a
+    pre-shaken batch settles and loses the head it needs.
+  batchKeepDays: 2
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="build">
+  Combine the <Qty ref="cognac"/>, the <Qty ref="cacao"/> and the <Qty ref="cream"/> in a
+  shaker with ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>, longer than a citrus sour needs, so the cream takes on a
+  full head of air.
+</Step>
+
+<Step id="strain">
+  Double strain into a chilled coupe.
+</Step>
+
+<Step id="garnish">
+  Grate the <Qty ref="garnish-nutmeg"/> over the surface.
+</Step>

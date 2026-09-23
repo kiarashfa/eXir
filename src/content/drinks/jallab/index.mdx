@@ -1,0 +1,82 @@
+---
+id: classic
+label: Classic
+name: Jallab
+subtitle: Date syrup and rosewater over crushed ice, with raisins and pine nuts floating on top.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: collins
+iceStyle: crushed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The date syrup and rosewater mix batches and keeps well; the raisins and pine nuts are added
+  fresh to each glass so they still float rather than sinking waterlogged.
+zeroProof: true
+tags:
+  category: [soft-traditional]
+  origin: [levant]
+  method: [built]
+  occasion: [aperitivo]
+difficulty: Easy
+ingredients:
+  - id: syrup
+    ingredientRef: date-syrup
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: rosewater
+    ingredientRef: rosewater
+    formRef: standard
+    amount: 4
+    unit: ml
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 106
+    unit: ml
+  - id: raisins
+    ingredientRef: raisins
+    formRef: standard
+    amount: 8
+    unit: g
+    garnish: true
+  - id: pine-nuts
+    ingredientRef: pine-nuts
+    formRef: dried
+    amount: 6
+    unit: g
+    garnish: true
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: garnish, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      Raisins and pine nuts are scattered on top rather than stirred in, so they sit on the
+      surface of the crushed ice and are spooned up through the straw as the drink is drunk
+      rather than settling at the bottom of the glass.
+  - kind: pitfall
+    text: >-
+      Built with too little ice, the syrup and rosewater stay concentrated and cloying rather
+      than opening up into the light, floral drink jallab is meant to be; it wants a genuinely
+      full glass of crushed ice rather than a few cubes.
+makeAhead:
+  aheadInstructions: >-
+    The date syrup and rosewater mix batches cleanly and keeps well refrigerated; add the
+    raisins, pine nuts and ice fresh to each glass at service.
+  batchKeepDays: 14
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="build">
+  Stir the <Qty ref="syrup"/> and the <Qty ref="rosewater"/> with the <Qty ref="water"/> in a
+  glass packed with crushed ice.
+</Step>
+
+<Step id="garnish">
+  Scatter the <Qty ref="raisins"/> and the <Qty ref="pine-nuts"/> over the top.
+</Step>

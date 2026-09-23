@@ -1,0 +1,45 @@
+{
+  "id": "creme-de-cacao",
+  "name": "Creme de Cacao",
+  "kind": "ingredient",
+  "category": "liqueur",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Chocolate liqueur",
+        "note": "A broader modern category, often cream-based; creme de cacao is the older cocoa-and-sugar infusion with no dairy in it."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "brown",
+      "label": "Brown",
+      "proseName": "brown creme de cacao",
+      "abvPercent": 20,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "mariebrizard.com/bottles/brown-cocoa",
+      "sourceNote": "Marie Brizard's brown cocoa liqueur is taken as the reference bottle; its own product page states 20% ABV. No sugar or nutrition panel is published, so sugarGPer100 and nutritionPer100g are left off rather than estimated. No measured density is published either; the site's own liqueur-sweet class (1.09 g/ml, a sugar-dominant liqueur near 25% ABV) is used as the nearest estimate, since a cocoa-and-sugar cordial at this proof sits closer to that class than to a plain 40%-ABV spirit."
+    },
+    {
+      "id": "white",
+      "label": "White",
+      "proseName": "white creme de cacao",
+      "abvPercent": 20,
+      "densityGPerMl": 1.09,
+      "densitySource": "estimated",
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer published figures",
+      "sourceId": "mariebrizard.com/bottles/brown-cocoa",
+      "sourceNote": "The clear, uncoloured style of the same liqueur; cocoa solids are filtered out after infusion rather than left in, which is a colour and clarity difference only. Figures follow the brown Form: Marie Brizard states the same 20% ABV across both colours, and neither carries a published sugar or nutrition panel."
+    }
+  ]
+}

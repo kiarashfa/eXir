@@ -1,0 +1,117 @@
+---
+id: classic
+label: Classic
+name: Sikhye
+subtitle: Cooked rice steeped in barley malt water until sweet, then boiled and chilled with a few grains left floating.
+defaultDrinks: 4
+method: fermented
+dilutionClass: none
+glasswareRef: rocks
+iceStyle: none
+servedOverIce: false
+serveTempC: 6
+bitterness: none
+batchable: full
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [kitchen-ferment]
+  origin: [korea]
+  method: [fermented]
+names:
+  searchOnly: [sikhe, sikhye rice punch]
+ferment:
+  stages:
+    - { id: f1, label: Saccharification, days: 0.2, tempC: [60, 65], sealed: false }
+  developsAlcohol: false
+ingredients:
+  - id: malt
+    ingredientRef: barley-malt
+    formRef: flour
+    amount: 80
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Steeped for its enzymes, then strained out along with the grit;
+      only the malt water it leaves behind goes on into the drink.
+  - id: rice
+    ingredientRef: rice
+    formRef: cooked
+    amount: 200
+    unit: g
+    portions:
+      - { id: brew-rice, amount: 170, note: steeped in the malt water and mostly strained back out }
+      - { id: float-rice, amount: 30, note: reserved to float in the finished glasses }
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1000
+    unit: ml
+    portions:
+      - { id: malt-water, amount: 300, note: used to steep the malt }
+      - { id: brew-water, amount: 700, note: added along with the rice }
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 80
+    unit: g
+  - id: pine-nuts
+    ingredientRef: pine-nuts
+    formRef: dried
+    amount: 8
+    unit: g
+    garnish: true
+steps:
+  - { id: steep-malt, durationSec: 300, type: active, phase: prep }
+  - { id: combine, durationSec: 60, type: active, phase: prep }
+  - { id: saccharify, durationSec: 18000, type: passive, phase: rest }
+  - { id: boil, durationSec: 600, type: active, phase: make }
+  - { id: chill, durationSec: 60, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: saccharify
+    text: >-
+      Holding the rice and malt water in the range a rice cooker's
+      keep-warm setting reaches is what lets the malt's own enzymes
+      convert the rice starch to sugar; a home oven left on its lowest
+      setting with the door propped works nearly as well.
+  - kind: pitfall
+    text: >-
+      Boiling the strained liquid too long after the rice grains have
+      floated concentrates it past the point sikhye is meant to stop at,
+      turning a light, clean sweetness syrupy.
+makeAhead:
+  aheadInstructions: >-
+    Keeps refrigerated once boiled and chilled; the reserved rice grains
+    settle in the cold and are stirred back through or floated fresh on
+    top just before serving.
+  batchKeepDays: 5
+  batchStorage: refrigerated and sealed
+  freezable: false
+---
+
+<Step id="steep-malt">
+  Steep the <Qty ref="malt"/> in the <Qty ref="malt-water"/>, warmed
+  through, then strain out the grit and keep the cloudy malt water.
+</Step>
+
+<Step id="combine">
+  Stir the <Qty ref="rice"/> and the <Qty ref="brew-water"/> into the malt
+  water.
+</Step>
+
+<Step id="saccharify">
+  Hold the mixture at <Temp c={60}/> to <Temp c={65}/> for
+  <Dur step="saccharify"/>, until a good share of the rice grains have
+  risen and are floating on the surface.
+</Step>
+
+<Step id="boil">
+  Strain out the rice, setting the floating grains aside, and bring the
+  liquid to a boil with the <Qty ref="sugar"/> stirred through.
+</Step>
+
+<Step id="chill">
+  Cool completely and refrigerate until cold, then float the reserved rice
+  and the <Qty ref="pine-nuts"/> on top of each glass just before serving.
+</Step>

@@ -1,0 +1,85 @@
+---
+id: koji
+label: Koji
+name: Amazake
+subtitle: Rice and koji kept warm until the grain's own starch turns sweet, with no added sugar and no alcohol.
+defaultDrinks: 2
+method: fermented
+dilutionClass: none
+glasswareRef: mug
+iceStyle: none
+servedOverIce: false
+serveTempC: 55
+bitterness: none
+batchable: full
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [kitchen-ferment]
+  origin: [japan]
+  method: [fermented]
+ferment:
+  stages:
+    - { id: f1, label: Saccharification, days: 0.33, tempC: [55, 60], sealed: false }
+  developsAlcohol: false
+ingredients:
+  - id: rice
+    ingredientRef: rice
+    formRef: cooked
+    amount: 150
+    unit: g
+  - id: koji
+    ingredientRef: koji
+    formRef: standard
+    amount: 150
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 450
+    unit: ml
+    portions:
+      - { id: mash-water, amount: 300, note: stirred in with the rice and koji }
+      - { id: serve-water, amount: 150, note: to loosen the finished mash before serving }
+steps:
+  - { id: combine, durationSec: 60, type: active, phase: prep }
+  - { id: ferment, durationSec: 28800, type: passive, phase: rest }
+  - { id: thin, durationSec: 60, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: ferment
+    text: >-
+      A rice cooker on its keep-warm setting, a yoghurt maker or a thermos
+      flask all hold the mash in the range the koji's enzymes need; well
+      above it the enzymes are destroyed before they finish their work, and
+      well below it the conversion barely happens in the time given.
+  - kind: pitfall
+    text: >-
+      Stirring the koji into water that is still too hot from the rice
+      scalds the culture before it starts working, and the mash never
+      sweetens; let the rice cool to the ferment's own range before the koji
+      goes in.
+makeAhead:
+  aheadInstructions: >-
+    Keeps refrigerated once fermented; loosen with a little more hot water
+    to serve, since it thickens further in the cold.
+  batchKeepDays: 5
+  batchStorage: refrigerated and sealed
+  freezable: true
+---
+
+<Step id="combine">
+  Stir the <Qty ref="koji"/> into the still-warm <Qty ref="rice"/> along with
+  the <Qty ref="mash-water"/>, breaking up any clumps of koji as it goes in.
+</Step>
+
+<Step id="ferment">
+  Hold the mash at <Temp c={55}/> to <Temp c={60}/> for <Dur step="ferment"/>,
+  covered but not sealed, stirring it once or twice. It is ready when it
+  tastes distinctly sweet and the grains have mostly broken down.
+</Step>
+
+<Step id="thin">
+  Stir in the <Qty ref="serve-water"/>, warmed through, to loosen the mash to
+  a drinkable consistency, and ladle it into cups while it is still warm.
+</Step>

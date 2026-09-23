@@ -1,0 +1,79 @@
+---
+id: classic
+label: Classic
+name: Bellini
+subtitle: White peach puree lengthened with Prosecco, poured and stirred rather than shaken.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: flute
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: partial
+batchNote: >-
+  The peach puree can be made ahead and chilled, but the Prosecco is always
+  poured to order for its bubbles; batching it flat defeats the drink.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [italy]
+  method: [built]
+  occasion: [aperitivo]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Mimosa
+      note: Orange juice and sparkling wine in roughly equal parts; the Bellini is white peach puree and takes far less fruit relative to the wine.
+    - name: Rossini
+      note: The same build made with strawberry puree in place of peach, a later variation rather than the original drink.
+ingredients:
+  - id: peach
+    ingredientRef: peach
+    formRef: puree
+    amount: 50
+    unit: ml
+  - id: prosecco
+    ingredientRef: sparkling-wine
+    formRef: brut
+    amount: 100
+    unit: ml
+steps:
+  - { id: chill, durationSec: 30, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: stir, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: stir
+    text: >-
+      The puree is heavier than the wine and settles, so the glass is
+      stirred gently rather than poured and left; a Bellini that separates
+      into two layers has simply not been stirred yet.
+  - kind: pitfall
+    text: >-
+      Yellow peaches carry more acidity and a stronger colour than the white
+      peach the drink was built on, and a puree made from them tips the
+      drink sourer and more orange than the pale pink original.
+makeAhead:
+  aheadInstructions: >-
+    The <Qty ref="peach"/> can be pureed and refrigerated a day ahead, sealed
+    against browning. The Prosecco is never poured until the drink is made.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="chill">
+  Chill the flute. A Bellini has no ice in the glass, so the glass itself
+  carries all of the cold.
+</Step>
+
+<Step id="build">
+  Pour the <Qty ref="peach"/> into the chilled glass, then top with the
+  <Qty ref="prosecco"/>.
+</Step>
+
+<Step id="stir">
+  Stir for <Dur step="stir"/> with a bar spoon to bring the puree up through
+  the wine, rather than swirling the glass, which throws off the bead.
+</Step>

@@ -1,0 +1,9 @@
+{
+  "id": "soda-fountain",
+  "name": "Soda fountain glass",
+  "capacityMl": 400,
+  "shapeFamily": "tall",
+  "note": "Wide flare for a float or a fizzy top with room for foam.",
+  "iceDisplacementMl": { "cubed": 230, "crushed": 246, "none": 0 },
+  "iceDisplacementNote": "Solid ice only. No measured figure exists for this shape; cubed is copied from the Collins on this site, the nearest tall glass at the same capacity. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
+}

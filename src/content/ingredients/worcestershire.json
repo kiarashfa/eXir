@@ -1,0 +1,42 @@
+{
+  "id": "worcestershire",
+  "name": "Worcestershire Sauce",
+  "kind": "ingredient",
+  "category": "seasoning",
+  "proprietary": true,
+  "producer": "Lea & Perrins",
+  "countryOfOrigin": "United Kingdom",
+  "pantryStaple": true,
+  "names": {
+    "searchOnly": ["worcester sauce", "lea and perrins"]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "Worcestershire sauce",
+      "per100Basis": "ml",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0,
+      "densitySource": "estimated",
+      "sugarGPer100": 18.8,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 96,
+        "carbohydrateG": 19.6,
+        "sugarsG": 18.8,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 980
+      },
+      "animalOrigin": "fish",
+      "animalOriginNote": "Fermented anchovies are a named ingredient of the standard recipe and are what give it its savoury depth; there is no fish-free version of the reference bottle.",
+      "allergenTags": ["fish"],
+      "containsCaffeine": false,
+      "countUnit": { "singular": "dash", "plural": "dashes", "ml": 0.9, "snap": "whole" },
+      "sourceDataset": "Open Food Facts",
+      "sourceId": "5000111041836",
+      "sourceNote": "Lea & Perrins Worcestershire Sauce is taken as the reference bottle: it is the product named in the historical Bloody Mary recipe and the one most bars stock. Open Food Facts carries several entries for it that agree closely at 96 kcal and 18.8 g sugar per 100 ml; FoodData Central carries no Worcestershire sauce record at all. Density is left as a class estimate (density-classes.json has no thin-condiment class close to this, so the syrup-like class is not used; instead the water-like class, 1.0, stands in, since the sauce is mostly vinegar and water) because no liquid-measure figure was found. Sodium is the OFF-reported figure rather than a per-teaspoon retail label conversion."
+    }
+  ]
+}

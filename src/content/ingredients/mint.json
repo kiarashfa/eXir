@@ -25,6 +25,29 @@
       "sourceDataset": "USDA FoodData Central (SR Legacy)",
       "sourceId": "173475",
       "sourceNote": "Spearmint, fresh. Public domain. The record carries no sugars figure, so sugarGPer100 is left off here rather than estimated. No density is carried: the leaf is muddled and bruised rather than poured, and its own record's only volume figure is a packed tablespoon, which is air between leaves rather than what the leaf itself displaces."
+    },
+    {
+      "id": "dried",
+      "label": "Dried",
+      "proseName": "dried mint",
+      "abvPercent": 0,
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 285,
+        "carbohydrateG": 52.04,
+        "proteinG": 19.93,
+        "fatG": 6.03,
+        "saturatedFatG": 1.577,
+        "fibreG": 29.8,
+        "sodiumMg": 344
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "172239",
+      "sourceNote": "Spearmint, dried. Public domain. USDA reports no sugars for this record, so sugarGPer100 is left off rather than estimated. No density: crumbled dried leaf stirred into a drink is packed, not poured, and its own tsp measure (0.101 g/ml) is a packing figure."
     }
   ]
 }

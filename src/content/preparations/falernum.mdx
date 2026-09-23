@@ -1,0 +1,117 @@
+---
+id: falernum
+name: Falernum
+kind: preparation
+category: liqueur
+purchasable: true
+purchaseNote: >-
+  Sold, most recognisably as John D. Taylor's Velvet Falernum at around 11% ABV; this
+  home-steeped version lands close to that strength.
+yieldMl: 610
+shelfLife:
+  days: 60
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Rum-steeped
+    proseName: falernum
+    per100Basis: ml
+    abvPercent: 9.8
+    densityGPerMl: 1.2026
+    densitySource: estimated
+    sugarGPer100: 64.09
+    acidPercent: 0.59
+    nutritionPer100g:
+      kcal: 294
+      carbohydrateG: 64.79
+      sugarsG: 64.09
+      proteinG: 0.1
+      fatG: 0.1
+      saturatedFatG: 0
+      fibreG: 0
+      sodiumMg: 1.64
+    animalOrigin: none
+    allergenTags: [nuts]
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      Ginger, cloves, almonds and lime zest are steeped in the rum and strained back out,
+      contributing aroma and no measurable mass. The Form is derived from the rum, rich
+      simple syrup and lime juice that remain in the bottle: mass and volume are summed over
+      those three lines and the density, sugar, acid and energy fall out of the total —
+      density and ABV are true figures from that sum, not a bottle measurement, so both are
+      marked estimated. The strength sits below Velvet Falernum's commercial 11% because this
+      steep uses standard rather than overproof rum; using an overproof rum for the steep and
+      the same syrup and lime would land closer to the commercial figure.
+ingredients:
+  - id: rum
+    ingredientRef: white-rum
+    formRef: standard
+    amount: 150
+    unit: ml
+  - id: ginger
+    ingredientRef: ginger
+    formRef: standard
+    amount: 40
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Sliced and steeped in the rum for its heat, then strained out with the other solids.
+  - id: cloves
+    ingredientRef: cloves
+    formRef: whole
+    amount: 2
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Steeped whole and strained out; a heavy hand here turns the batch medicinal.
+  - id: almonds
+    ingredientRef: almonds
+    formRef: blanched
+    amount: 30
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Lightly crushed and steeped for the marzipan note, then strained out.
+  - id: lime-zest
+    ingredientRef: lime
+    formRef: standard
+    amount: 268
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Only the zest of four limes goes into the steep, peeled with a vegetable peeler to avoid
+      the bitter pith; the fruit itself is not part of the recipe.
+  - id: syrup
+    ingredientRef: rich-simple-syrup
+    formRef: standard
+    amount: 400
+    unit: ml
+  - id: lime-juice
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 60
+    unit: ml
+steps:
+  - { id: prep, durationSec: 300, type: active, phase: prep }
+  - { id: steep, durationSec: 86400, type: passive, phase: rest }
+  - { id: strain, durationSec: 60, type: active, phase: make }
+  - { id: combine, durationSec: 60, type: active, phase: make }
+---
+
+<Step id="prep">
+  Peel the zest from the <Qty ref="lime-zest"/>, avoiding the white pith, and slice the
+  <Qty ref="ginger"/>. Lightly crush the <Qty ref="almonds"/>.
+</Step>
+
+<Step id="steep">
+  Combine the zest, ginger, almonds and the <Qty ref="cloves"/> with the <Qty ref="rum"/> in a
+  sealed jar and leave to steep at room temperature for a full day, shaking it whenever it is
+  passed.
+</Step>
+
+<Step id="strain">
+  Strain out the solids through a fine sieve, pressing lightly to recover the rum.
+</Step>
+
+<Step id="combine">
+  Stir the infused rum into the <Qty ref="syrup"/> and the <Qty ref="lime-juice"/> and bottle.
+</Step>

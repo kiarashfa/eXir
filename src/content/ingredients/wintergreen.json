@@ -1,0 +1,28 @@
+{
+  "id": "wintergreen",
+  "name": "Wintergreen",
+  "kind": "ingredient",
+  "category": "botanical",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Peppermint",
+        "note": "A different mint-family plant with a menthol coolness rather than wintergreen's sweeter, more medicinal note; the two are not interchangeable in a root beer syrup."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "leaf",
+      "label": "Dried leaf",
+      "proseName": "wintergreen leaf",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "No composition dataset",
+      "sourceNote": "No nutrition dataset carries dried wintergreen leaf, and none is needed here: the leaf is steeped for its methyl salicylate aroma and strained back out, contributing nothing measurable to the finished syrup."
+    }
+  ]
+}

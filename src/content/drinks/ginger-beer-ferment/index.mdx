@@ -1,0 +1,131 @@
+---
+id: classic
+label: Classic
+name: Ginger Beer
+subtitle: A wild ginger bug grown from scratch, then used to ferment fresh ginger and sugar into a sharp, naturally fizzy drink.
+defaultDrinks: 6
+method: fermented
+dilutionClass: none
+glasswareRef: mule-mug
+iceStyle: none
+servedOverIce: false
+serveTempC: 6
+bitterness: none
+batchable: full
+zeroProof: false
+difficulty: Hard
+tags:
+  category: [kitchen-ferment]
+  origin: [british-isles]
+  method: [fermented]
+names:
+  notToBeConfusedWith:
+    - name: Ginger ale
+      note: A carbonated soft drink flavoured with ginger, usually carbonated mechanically rather than fermented; the two share an ingredient but not a method. Not covered on this page.
+    - name: Commercial ginger beer
+      note: Most bottled ginger beer today is a sweetened, carbonated soft drink rather than a live ferment; this page is the traditional fermented version.
+ferment:
+  stages:
+    - { id: f1, label: Bug, days: 5, tempC: [20, 26], sealed: false }
+    - { id: f2, label: Secondary, days: 2, tempC: [20, 24], sealed: true }
+  developsAlcohol: true
+  estimatedAbvRange: [0.5, 2]
+  safetyNote: >-
+    The bug itself ferments loosely covered, but the finished beer is
+    bottled sealed to carbonate, and that is a real pressure hazard: use
+    bottles rated for carbonation, leave headspace, and "burp" each one
+    once a day by cracking the cap briefly. Left sealed and unchecked in a
+    warm spot, a bottle can build enough pressure to burst.
+ingredients:
+  - id: bug-ginger
+    ingredientRef: ginger
+    formRef: standard
+    amount: 60
+    unit: g
+    portions:
+      - { id: bug-feed, amount: 30, note: grated and fed to the bug daily over five days }
+      - { id: beer-ginger, amount: 30, note: grated fresh into the batch itself }
+  - id: bug-sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 150
+    unit: g
+    portions:
+      - { id: bug-sugar-feed, amount: 30, note: fed to the bug daily over five days }
+      - { id: beer-sugar, amount: 120, note: dissolved into the batch itself }
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1950
+    unit: ml
+    portions:
+      - { id: bug-water, amount: 250, note: used to grow the bug }
+      - { id: main-water, amount: 1700, note: added to the batch itself }
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 100
+    unit: ml
+steps:
+  - { id: start-bug, durationSec: 60, type: active, phase: prep }
+  - { id: feed-bug, durationSec: 60, type: active, phase: prep }
+  - { id: brew, durationSec: 300, type: active, phase: prep }
+  - { id: ferment, durationSec: 172800, type: passive, phase: rest }
+  - { id: bottle, durationSec: 120, type: active, phase: make }
+  - { id: condition, durationSec: 172800, type: passive, phase: rest }
+notes:
+  - kind: technique
+    stepRef: start-bug
+    text: >-
+      A ginger bug is grown before the beer itself: grated ginger and
+      sugar fed daily to a jar of water catch wild yeast from the ginger's
+      own skin and the kitchen air, and only once that starter is
+      reliably bubbling is it used to ferment a full batch.
+  - kind: pitfall
+    stepRef: condition
+    text: >-
+      A warm room speeds the second ferment up considerably, and a bottle
+      checked only after several days in summer heat can already be badly
+      over-pressured by the time it is opened; daily burping is how you
+      find that out before the glass does.
+makeAhead:
+  aheadInstructions: >-
+    The bug itself keeps indefinitely fed every couple of days at room
+    temperature, or fed weekly in the refrigerator; once bottled and
+    conditioned, the beer keeps refrigerated for a couple of weeks.
+  batchKeepDays: 14
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="start-bug">
+  Stir the first portion of the <Qty ref="bug-feed"/> and
+  <Qty ref="bug-sugar-feed"/> into the <Qty ref="bug-water"/> in a clean
+  jar, cover loosely, and leave at room temperature.
+</Step>
+
+<Step id="feed-bug">
+  Feed the bug daily with a spoonful more grated ginger and sugar from the
+  same portions until it reliably fizzes within a few hours of feeding.
+</Step>
+
+<Step id="brew">
+  Stir the <Qty ref="beer-ginger"/> and the <Qty ref="beer-sugar"/> into
+  the <Qty ref="main-water"/> and the <Qty ref="lemon"/>, then strain in
+  the whole active bug.
+</Step>
+
+<Step id="ferment">
+  Cover loosely and leave at room temperature for <Dur step="ferment"/>,
+  until it tastes sharp and faintly fizzy.
+</Step>
+
+<Step id="bottle">
+  Strain into bottles rated for carbonation, leaving headspace, and cap
+  tightly.
+</Step>
+
+<Step id="condition">
+  Leave the sealed bottles at room temperature for <Dur step="condition"/>,
+  burping each once a day, then refrigerate until cold before serving.
+</Step>

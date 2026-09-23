@@ -1,0 +1,58 @@
+---
+id: classic
+label: Classic
+name: Mimosa
+subtitle: Equal parts orange juice and sparkling wine, built straight into the glass.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: flute
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+batchNote: >-
+  Sparkling wine is always poured to order for its bubbles; the orange juice
+  can be squeezed ahead but the drink itself is never pre-mixed.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [france]
+  method: [built]
+  occasion: [brunch]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Buck's Fizz
+      note: The London original this drink is descended from or converges with, built two parts sparkling wine to one part juice rather than equal parts, and traditionally served without ice.
+ingredients:
+  - id: orange
+    ingredientRef: orange-juice
+    formRef: fresh
+    amount: 75
+    unit: ml
+  - id: sparkling
+    ingredientRef: sparkling-wine
+    formRef: brut
+    amount: 75
+    unit: ml
+steps:
+  - { id: chill, durationSec: 30, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: pitfall
+    text: >-
+      Orange juice with any pulp settles and clouds the wine's own bead; a
+      juice strained clean keeps the two layers from separating into a
+      visibly striped glass.
+---
+
+<Step id="chill">
+  Chill the flute. The drink carries no ice of its own, so the glass and
+  both liquids have to already be cold.
+</Step>
+
+<Step id="build">
+  Pour the <Qty ref="orange"/> into the glass, then top with the
+  <Qty ref="sparkling"/>.
+</Step>

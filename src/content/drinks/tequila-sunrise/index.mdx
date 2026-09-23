@@ -1,0 +1,65 @@
+---
+id: classic
+label: Classic
+name: Tequila Sunrise
+subtitle: Tequila and orange juice built over ice, with grenadine sinking through to make the sunrise.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: highball
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: none
+batchNote: >-
+  The grenadine's own sinking layer is what the drink is built to show; a
+  pre-mixed batch loses that effect on the first stir.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [built-over-ice]
+difficulty: Easy
+ingredients:
+  - id: tequila
+    ingredientRef: tequila
+    formRef: blanco
+    amount: 45
+    unit: ml
+  - id: orange
+    ingredientRef: orange-juice
+    formRef: fresh
+    amount: 90
+    unit: ml
+  - id: grenadine
+    ingredientRef: grenadine
+    formRef: standard
+    amount: 15
+    unit: ml
+steps:
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: sink, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: sink
+    text: >-
+      Grenadine is denser than the orange juice above it, so it is poured
+      down the inside of the glass and left alone rather than stirred; it
+      settles to the bottom and rises through the juice in streaks on its
+      own, which is the "sunrise" the name describes.
+  - kind: pitfall
+    text: >-
+      Stirring the drink before it is served mixes the layers into a flat
+      orange and loses the effect entirely; it is meant to be stirred once,
+      by the drinker, at the table.
+---
+
+<Step id="build">
+  Build the <Qty ref="tequila"/> and the <Qty ref="orange"/> over cubed ice
+  in a highball glass.
+</Step>
+
+<Step id="sink">
+  Pour the <Qty ref="grenadine"/> slowly down the inside of the glass and
+  let it settle to the bottom without stirring.
+</Step>

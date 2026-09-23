@@ -1,0 +1,23 @@
+{
+  "id": "rosewater",
+  "name": "Rosewater",
+  "kind": "ingredient",
+  "category": "flavouring",
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Rose water" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0,
+      "densitySource": "estimated",
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "A distillate of rose petals in water, used a few drops at a time. No dataset consulted carries it, and no sugar, acid or energy figure is claimed here rather than estimated: the product is water and aroma, and a fabricated zero would be indistinguishable on the page from a measured one. The density is the water-like class."
+    }
+  ]
+}

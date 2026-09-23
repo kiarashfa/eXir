@@ -4,6 +4,6 @@
   "capacityMl": 400,
   "shapeFamily": "tall",
   "note": "Taller and narrower than a highball, for the same reason and more of it.",
-  "iceDisplacementMl": { "cubed": 230, "block": 220, "crushed": 285, "none": 0 },
-  "iceDisplacementNote": "Solid ice only, filled to the top as a highball is."
+  "iceDisplacementMl": { "cubed": 230, "block": 220, "crushed": 246, "none": 0 },
+  "iceDisplacementNote": "Solid ice only, filled to the top as a highball is. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
 }

@@ -1,0 +1,42 @@
+{
+  "id": "ginger-ale",
+  "name": "Ginger Ale",
+  "kind": "ingredient",
+  "category": "mixer",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Ginger beer",
+        "note": "A stronger, spicier and traditionally fermented drink; bottled ginger ale is the paler, milder carbonated soda most mixed drinks that call for it actually mean."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "bottled",
+      "label": "Bottled, commercial",
+      "proseName": "ginger ale",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0313,
+      "densitySource": "measured",
+      "sugarGPer100": 8.9,
+      "nutritionPer100g": {
+        "kcal": 34,
+        "carbohydrateG": 8.76,
+        "sugarsG": 8.9,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 7
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174846",
+      "sourceNote": "Beverages, carbonated, ginger ale. Public domain. The record's own cup portion is adopted as a true density because the drink is poured rather than packed. No titratable acidity is reported and no other source was checked, so acidPercent is left off rather than estimated."
+    }
+  ]
+}

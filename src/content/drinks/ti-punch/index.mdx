@@ -1,0 +1,69 @@
+---
+id: classic
+label: Classic
+name: Ti Punch
+subtitle: Rhum agricole, cane syrup and a twist of lime, built with no ice and no measuring.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: rocks
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+batchNote: >-
+  The whole point of the drink is that each glass is built to order at the
+  table; there is nothing here that benefits from batching.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [martinique]
+  method: [built]
+difficulty: Easy
+names:
+  alsoKnownAs:
+    - name: P'tit Punch
+      region: French Caribbean
+ingredients:
+  - id: rhum
+    ingredientRef: rhum-agricole
+    formRef: blanc
+    amount: 50
+    unit: ml
+  - id: syrup
+    ingredientRef: demerara-syrup
+    formRef: standard
+    amount: 10
+    unit: ml
+  - id: lime
+    ingredientRef: lime
+    formRef: standard
+    amount: 15
+    unit: g
+steps:
+  - { id: twist, durationSec: 20, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      Tradition sets out the <Qty ref="rhum"/>, the <Qty ref="syrup"/> and
+      the lime and leaves each drinker to stir their own glass to taste
+      rather than serving it pre-mixed, summed up in the island phrase
+      "chacun prépare sa propre mort" — each prepares their own death.
+  - kind: pitfall
+    text: >-
+      Squeezing the lime hard enough to tear the pith brings its bitterness
+      into a drink with almost nowhere to hide it; the wedge is meant to be
+      twisted for its oil and juice, not crushed.
+---
+
+<Step id="twist">
+  Cut a small piece from the <Qty ref="lime"/> and twist it over the glass
+  to release its oil, then drop it in.
+</Step>
+
+<Step id="build">
+  Add the <Qty ref="syrup"/> and the <Qty ref="rhum"/>, and stir briefly with
+  a swizzle stick or spoon. No ice goes in the glass.
+</Step>

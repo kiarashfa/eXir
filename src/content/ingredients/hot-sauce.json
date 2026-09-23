@@ -1,0 +1,43 @@
+{
+  "id": "hot-sauce",
+  "name": "Hot Sauce",
+  "kind": "ingredient",
+  "category": "seasoning",
+  "proprietary": true,
+  "producer": "McIlhenny Company",
+  "countryOfOrigin": "United States",
+  "pantryStaple": true,
+  "names": {
+    "alsoKnownAs": [{ "name": "Tabasco" }],
+    "searchOnly": ["pepper sauce", "tabasco sauce"]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "hot sauce",
+      "per100Basis": "ml",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 16,
+        "carbohydrateG": 1.6,
+        "sugarsG": 0,
+        "proteinG": 1,
+        "fatG": 0.7,
+        "fibreG": 1.3,
+        "sodiumMg": 720
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "countUnit": { "singular": "dash", "plural": "dashes", "ml": 0.9, "snap": "whole" },
+      "sourceDataset": "Open Food Facts",
+      "sourceId": "0011210000018",
+      "sourceNote": "Original Tabasco Pepper Sauce is taken as the reference bottle: it is the hot sauce a Bloody Mary and a Michelada recipe both name. Ingredients are distilled vinegar, red pepper and salt, so no animal input is hidden in it. Density is left as a class estimate (water-like, since the sauce is a thin vinegar mash) because no liquid-measure figure was published."
+    }
+  ]
+}

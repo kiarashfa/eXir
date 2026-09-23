@@ -1,0 +1,21 @@
+{
+  "id": "yeast",
+  "name": "Yeast",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "dried",
+      "label": "Dried, active",
+      "proseName": "yeast",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": { "kcal": 0, "carbohydrateG": 0 },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "Added by the gram to start or speed a ferment. At the small quantities a kitchen ferment uses it contributes no meaningful mass of its own to the finished drink, so no nutrition figure is claimed; the alcohol it produces is stated on the drink's ferment block rather than modelled from this line."
+    }
+  ]
+}

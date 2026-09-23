@@ -1,0 +1,33 @@
+{
+  "id": "nutmeg",
+  "name": "Nutmeg",
+  "kind": "ingredient",
+  "category": "spice",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "ground",
+      "label": "Freshly grated",
+      "proseName": "freshly grated nutmeg",
+      "abvPercent": 0,
+      "sugarGPer100": 2.99,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 525,
+        "carbohydrateG": 49.29,
+        "sugarsG": 2.99,
+        "proteinG": 5.84,
+        "fatG": 36.31,
+        "saturatedFatG": 25.94,
+        "fibreG": 20.8,
+        "sodiumMg": 16
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "171326",
+      "sourceNote": "Spices, nutmeg, ground. Public domain. Used for a fine dusting grated straight over the top of a finished drink rather than an ingredient stirred through it. No density is carried: the record's own figure is a tablespoon of packed powder, a packing density rather than a true one, and the amount used per drink is small enough that its own volume is negligible in any case."
+    }
+  ]
+}

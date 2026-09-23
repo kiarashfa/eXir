@@ -1,0 +1,26 @@
+{
+  "id": "kefir-grains",
+  "name": "Kefir Grains",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Grains of the Prophet", "note": "A name recorded in Caucasus legend rather than in commercial use." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Live culture",
+      "proseName": "kefir grains",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": { "kcal": 0, "carbohydrateG": 0 },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "A living culture of bacteria and yeast in a polysaccharide matrix, not a food consumed for its own composition. It is strained out of the finished milk and reused for the next batch rather than eaten, so it carries no meaningful nutrition figure of its own and none is claimed here; no dataset covers it in any case."
+    }
+  ]
+}

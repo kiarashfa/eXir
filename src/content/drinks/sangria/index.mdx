@@ -1,0 +1,110 @@
+---
+id: red
+label: Red
+name: Sangria
+subtitle: Red wine steeped with orange, lemon and brandy, lengthened with soda just before serving.
+defaultDrinks: 2
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: wine-red
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The wine, fruit and brandy steep together for hours and only improve for
+  it; the soda is always added at the glass, just before serving, for its
+  fizz.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [spain]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Kalimotxo
+      note: A different Spanish red-wine drink, built only from wine and cola with no fruit or spirit, on this site under its own page.
+    - name: Tinto de Verano
+      note: A lighter, simpler red-wine-and-lemon-soda drink with no macerated fruit or added spirit, also on this site under its own name.
+ingredients:
+  - id: wine
+    ingredientRef: red-wine
+    formRef: standard
+    amount: 300
+    unit: ml
+  - id: brandy
+    ingredientRef: cognac
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 20
+    unit: ml
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 70
+    unit: g
+    consumedFraction: 0.6
+    consumedFractionNote: >-
+      Cut into wedges and left steeping in the wine for hours, releasing
+      juice and oil from the peel; the softened wedges are also served in
+      the glass and can be eaten, but not all of the fruit's own sugar and
+      juice transfers out of the segments.
+  - id: lemon
+    ingredientRef: lemon
+    formRef: standard
+    amount: 29
+    unit: g
+    consumedFraction: 0.6
+    consumedFractionNote: >-
+      Cut into wedges alongside the orange for a sharper edge; the same
+      partial transfer applies.
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 40
+    unit: ml
+    addedAfterDilution: true
+steps:
+  - { id: build, durationSec: 30, type: active, phase: prep }
+  - { id: macerate, durationSec: 14400, type: passive, phase: rest }
+  - { id: pour, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: macerate
+    text: >-
+      The fruit needs real time in the wine, not a quick stir, for its oils
+      and juice to actually move into the liquid; a Sangria mixed and
+      served within minutes tastes mostly of the <Qty ref="wine"/> and the
+      <Qty ref="brandy"/> with fruit floating in it rather than through it.
+  - kind: pitfall
+    text: >-
+      The <Qty ref="soda"/> is topped up per glass at the time of pouring
+      rather than stirred into the pitcher; adding it early flattens before
+      the drink is even served.
+---
+
+<Step id="build">
+  Combine the <Qty ref="wine"/>, the <Qty ref="brandy"/>, the
+  <Qty ref="syrup"/>, the <Qty ref="orange"/> and the <Qty ref="lemon"/> in
+  a pitcher.
+</Step>
+
+<Step id="macerate">
+  Refrigerate for <Dur step="macerate"/>, stirring once or twice.
+</Step>
+
+<Step id="pour">
+  Pour over cubed ice into red wine glasses, dividing the fruit between
+  them.
+</Step>
+
+<Step id="top">
+  Top each glass with the <Qty ref="soda"/>.
+</Step>

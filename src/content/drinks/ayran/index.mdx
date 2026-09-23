@@ -1,0 +1,75 @@
+---
+id: classic
+label: Classic
+name: Ayran
+subtitle: Yoghurt whisked with cold water and salt into a thin, savoury drink.
+defaultDrinks: 1
+method: whisked
+dilutionClass: none
+glasswareRef: rocks
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: full
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [soft-traditional]
+  origin: [turkey-anatolia]
+  method: [whisked]
+names:
+  notToBeConfusedWith:
+    - name: Doogh
+      note: This site's Persian counterpart — usually carbonated and seasoned with dried mint, where ayran is plain, still and salted only.
+    - name: Lassi
+      note: The South Asian yoghurt drink, usually sweetened or spiced rather than salted plain, and often thicker and blended rather than whisked thin.
+ingredients:
+  - id: yoghurt
+    ingredientRef: yoghurt
+    formRef: standard
+    amount: 100
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 100
+    unit: ml
+  - id: salt
+    ingredientRef: salt
+    formRef: standard
+    amount: 1.5
+    unit: g
+steps:
+  - { id: whisk, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: whisk
+    text: >-
+      The yoghurt is whisked hard enough to raise a thin foam on top rather
+      than simply stirred smooth, which is what keeps the water from
+      separating back out into a watery layer under a thicker one once it
+      is poured.
+  - kind: pitfall
+    text: >-
+      Yoghurt whisked with warm water thins unevenly and separates within
+      minutes of standing; starting with cold yoghurt and cold water keeps
+      the proteins from loosening too far before they are fully worked
+      through.
+makeAhead:
+  aheadInstructions: >-
+    Whisks smooth and holds refrigerated; give it a short second whisk
+    before serving if it has separated at all.
+  batchKeepDays: 2
+  batchStorage: refrigerated and sealed
+  freezable: false
+---
+
+<Step id="whisk">
+  Whisk the <Qty ref="yoghurt"/>, <Qty ref="water"/> and <Qty ref="salt"/>
+  together for <Dur step="whisk"/>, until smooth and lightly foamed.
+</Step>
+
+<Step id="pour">
+  Pour into a chilled glass straight from the fridge.
+</Step>

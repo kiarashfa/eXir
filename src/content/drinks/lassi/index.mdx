@@ -1,0 +1,85 @@
+---
+id: sweet
+label: Sweet
+name: Lassi
+subtitle: Yoghurt blended with water, sugar and cardamom to a thick, frothy drink.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: lassi-glass
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: true
+family: blended-frozen
+familyRole: canonical
+tags:
+  category: [smoothie-shake]
+  origin: [south-asia]
+  method: [blended]
+difficulty: Easy
+names:
+  alsoKnownAs:
+    - name: Meethi Lassi
+      region: India
+  notToBeConfusedWith:
+    - name: Mango Lassi
+      note: A separate page on this site — the same base with mango blended through it, established under its own name rather than treated as a flavour of this one.
+    - name: Ayran
+      note: The Turkish counterpart — savoury, thin and salted, with none of this drink's sugar or spice.
+ingredients:
+  - id: yoghurt
+    ingredientRef: yoghurt
+    formRef: standard
+    amount: 180
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 60
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 20
+    unit: g
+  - id: cardamom
+    ingredientRef: cardamom
+    formRef: standard
+    amount: 0.5
+    unit: g
+  - id: ice
+    ingredientRef: water
+    formRef: standard
+    amount: 30
+    unit: g
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: blend, durationSec: 25, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: blend
+    text: >-
+      The blend runs only long enough to smooth the yoghurt and raise a
+      froth on top, because lassi is meant to keep the body of yoghurt
+      rather than the thin, fully liquefied texture a longer blend on high
+      speed would leave it with.
+  - kind: pitfall
+    text: >-
+      Ground cardamom stirred straight in tastes sharp and slightly bitter
+      compared with pods cracked and blended fresh; pre-ground powder loses
+      its aromatic oils quickly once opened.
+makeAhead:
+  freezable: false
+---
+
+<Step id="build">
+  Combine the <Qty ref="yoghurt"/>, <Qty ref="water"/>, <Qty ref="sugar"/>
+  and cracked <Qty ref="cardamom"/> in a blender jug, then add the
+  <Qty ref="ice"/>.
+</Step>
+
+<Step id="blend">
+  Blend for <Dur step="blend"/>, until smooth and frothed on top.
+</Step>

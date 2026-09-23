@@ -1,0 +1,24 @@
+{
+  "id": "hawthorn",
+  "name": "Hawthorn",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Shanzha", "region": "China" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "dried",
+      "label": "Dried fruit, sliced",
+      "proseName": "dried hawthorn",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "FoodData Central carries no record for hawthorn fruit. No composition is claimed here rather than importing a different fruit's figures; the dried slices are boiled and strained out of the finished drink in any case."
+    }
+  ]
+}

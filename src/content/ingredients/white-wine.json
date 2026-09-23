@@ -1,0 +1,36 @@
+{
+  "id": "white-wine",
+  "name": "White Wine",
+  "kind": "ingredient",
+  "category": "wine",
+  "proprietary": false,
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "dry white wine",
+      "abvPercent": 13,
+      "densityGPerMl": 0.9941,
+      "densitySource": "measured",
+      "sugarGPer100": 0.96,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 82,
+        "carbohydrateG": 2.6,
+        "sugarsG": 0.96,
+        "proteinG": 0.07,
+        "fatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 5
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "White wine is routinely fined with isinglass, gelatine or casein, and a producer rarely states whether a given bottle was.",
+      "allergenTags": ["sulphites"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174837",
+      "sourceNote": "Alcoholic beverage, wine, table, white. Public domain. A generic dry table white is the right basis for a drink that names 'white wine' rather than a single varietal. acidPercent left off: USDA reports no titratable acidity figure for wine and no other source was found here, though white wine's acidity is real and usually higher than red's."
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+---
+id: classic
+label: Classic
+name: Sahlab
+subtitle: Milk thickened with cornflour and vanilla, finished with chopped pistachio.
+defaultDrinks: 1
+method: heated
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: none
+batchable: none
+batchNote: >-
+  Heated and thickened to order. It sets as it cools, so it is served
+  straight from the pan rather than held.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [hot-drink]
+  origin: [levant]
+  method: [heated]
+names:
+  notToBeConfusedWith:
+    - name: Salep
+      note: This site's Turkish page for the same root drink — thickened with the orchid tuber itself rather than cornflour, and finished with cinnamon rather than pistachio.
+ingredients:
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 230
+    unit: ml
+  - id: cornflour
+    ingredientRef: cornflour
+    formRef: standard
+    amount: 8
+    unit: g
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 15
+    unit: g
+  - id: vanilla
+    ingredientRef: vanilla
+    formRef: standard
+    amount: 2
+    unit: ml
+  - id: pistachio
+    ingredientRef: pistachio
+    formRef: raw
+    amount: 5
+    unit: g
+    garnish: true
+steps:
+  - { id: slurry, durationSec: 20, type: active, phase: prep }
+  - { id: heat, durationSec: 240, type: active, phase: make }
+  - { id: top, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: heat
+    text: >-
+      The milk is brought up slowly, whisking constantly, because cornflour
+      thickens all at once close to a simmer rather than gradually; whisked
+      the whole way it thickens evenly instead of setting in lumps at the
+      base of the pan.
+  - kind: pitfall
+    text: >-
+      Vanilla stirred in while the pan is still over direct heat cooks off
+      most of its aroma; it goes in only once the pan is off the heat and
+      the sahlab has already thickened.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. It thickens as it cools and is served
+    straight from the pan.
+  freezable: false
+---
+
+<Step id="slurry">
+  Whisk the <Qty ref="cornflour"/> with a small spoonful of the cold
+  <Qty ref="milk"/> to a smooth paste.
+</Step>
+
+<Step id="heat">
+  Warm the rest of the milk with the <Qty ref="sugar"/> over
+  <Dur step="heat"/>, whisking in the paste, until thickened to a texture
+  that coats the back of a spoon.
+</Step>
+
+<Step id="top">
+  Take off the heat, stir in the <Qty ref="vanilla"/>, and scatter the
+  <Qty ref="pistachio"/> over the top.
+</Step>

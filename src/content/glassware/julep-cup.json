@@ -7,8 +7,8 @@
   "iceDisplacementMl": {
     "cubed": 155,
     "block": 155,
-    "crushed": 195,
+    "crushed": 166,
     "none": 0
   },
-  "iceDisplacementNote": "Solid ice only — the liquid fills the gaps between pieces, so what is subtracted is the ice itself. Scaled from the rocks glass on capacity, since the two are the same shape family and a julep cup is packed to the brim with crushed ice by design."
+  "iceDisplacementNote": "Solid ice only — the liquid fills the gaps between pieces, so what is subtracted is the ice itself. Scaled from the rocks glass on capacity, since the two are the same shape family and a julep cup is packed to the brim with crushed ice by design. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
 }

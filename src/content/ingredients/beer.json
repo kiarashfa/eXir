@@ -1,0 +1,41 @@
+{
+  "id": "beer",
+  "name": "Beer",
+  "kind": "ingredient",
+  "category": "beer",
+  "proprietary": false,
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      { "name": "Lager", "note": "The generic entry here is filed at lager strength; a stout or a wheat beer runs to a different sugar and colour and is not this record." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "lager",
+      "label": "Pale lager",
+      "proseName": "lager",
+      "abvPercent": 5,
+      "densityGPerMl": 1.0043,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 43,
+        "carbohydrateG": 3.55,
+        "sugarsG": 0,
+        "proteinG": 0.46,
+        "fatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 4
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "Many beers are fined with isinglass, made from fish swim bladders, for clarity; unfiltered and vegan-labelled beers are not, and the label is the only way to tell for a given bottle.",
+      "allergenTags": ["gluten"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "168746",
+      "sourceNote": "Alcoholic beverage, beer, regular, all. Public domain. A pale lager, the style a Michelada is built on, sits close to this generic record's own 5% ABV; a darker or maltier beer would read sweeter than this figure shows, which is left as a stated limitation rather than corrected without a source."
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+---
+id: cubana
+label: Cubana
+name: Michelada
+subtitle: The same lime-and-hot-sauce build lengthened with tomato juice and Worcestershire, closer in shape to a Bloody Mary.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: pint
+iceStyle: none
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  The beer is always opened and poured at the glass for its carbonation;
+  there is nothing here worth pre-mixing.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [mexico]
+  method: [built]
+difficulty: Easy
+ingredients:
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: tomato
+    ingredientRef: tomato-juice
+    formRef: bottled
+    amount: 90
+    unit: ml
+  - id: worcestershire
+    ingredientRef: worcestershire
+    formRef: standard
+    amount: 3.6
+    unit: ml
+  - id: hotsauce
+    ingredientRef: hot-sauce
+    formRef: standard
+    amount: 2.7
+    unit: ml
+  - id: salt
+    ingredientRef: salt
+    formRef: standard
+    amount: 2
+    unit: g
+    garnish: true
+    consumedFraction: 0.3
+    consumedFractionNote: >-
+      Coats half the rim; only the portion that dissolves into each sip
+      actually reaches the drink.
+  - id: beer
+    ingredientRef: beer
+    formRef: lager
+    amount: 300
+    unit: ml
+steps:
+  - { id: rim, durationSec: 20, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: pitfall
+    text: >-
+      The <Qty ref="worcestershire"/> carries fermented anchovy, which is
+      easy to overlook on a beer drink that reads as a seasoning shortcut
+      rather than a fish product.
+---
+
+<Step id="rim">
+  Run a lime wedge around half the glass's rim and dip it in the
+  <Qty ref="salt"/>.
+</Step>
+
+<Step id="build">
+  Add the <Qty ref="lime"/>, the <Qty ref="tomato"/>, the
+  <Qty ref="worcestershire"/> and the <Qty ref="hotsauce"/> to the chilled
+  glass.
+</Step>
+
+<Step id="top">
+  Top slowly with the <Qty ref="beer"/>, tilting the glass to keep the foam
+  down.
+</Step>

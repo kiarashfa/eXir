@@ -1,0 +1,90 @@
+---
+id: root-beer-syrup
+name: Root Beer Syrup
+kind: preparation
+category: syrup
+purchasable: true
+purchaseNote: >-
+  Sold as a soda-fountain concentrate under various brands; almost all of them, like this
+  recipe, use a safrole-free sassafras extract rather than raw bark or oil.
+yieldMl: 780
+shelfLife:
+  days: 21
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Steeped bark and root
+    proseName: root beer syrup
+    per100Basis: ml
+    abvPercent: 0
+    densityGPerMl: 1.2279
+    densitySource: estimated
+    sugarGPer100: 61.22
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 237
+      carbohydrateG: 61.33
+      sugarsG: 61.22
+      sodiumMg: 1.84
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      The sassafras, sarsaparilla and wintergreen are strained out and contribute nothing
+      measurable, so the Form is derived the same way as the site's other steeped syrups: the
+      sugar dissolved in the water is the whole of the composition, at the same one-to-one
+      ratio by weight as the cinnamon and ginger syrups, so the same per-100 figures apply.
+ingredients:
+  - id: sassafras
+    ingredientRef: sassafras
+    formRef: bark
+    amount: 30
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Simmered for its aroma and strained out. Safrole-free bark or extract only — see the
+      ingredient record for the regulatory reason.
+  - id: sarsaparilla
+    ingredientRef: sarsaparilla
+    formRef: root
+    amount: 20
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Simmered alongside the sassafras for its own aroma and strained out with it.
+  - id: wintergreen
+    ingredientRef: wintergreen
+    formRef: leaf
+    amount: 5
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Added late in the simmer, since its aroma is more volatile than the roots', then strained out.
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 400
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 500
+    unit: ml
+steps:
+  - { id: simmer, durationSec: 900, type: active, phase: make }
+  - { id: steep, durationSec: 3600, type: passive, phase: rest }
+  - { id: strain, durationSec: 90, type: active, phase: make }
+---
+
+<Step id="simmer">
+  Simmer the <Qty ref="sassafras"/>, the <Qty ref="sarsaparilla"/> and the <Qty ref="water"/>
+  together, then stir in the <Qty ref="sugar"/> until it dissolves. Add the
+  <Qty ref="wintergreen"/> in the last few minutes of the simmer and take the pan off the heat.
+</Step>
+
+<Step id="steep">
+  Leave to steep as it cools.
+</Step>
+
+<Step id="strain">
+  Strain through a fine sieve, pressing lightly to recover the syrup.
+</Step>

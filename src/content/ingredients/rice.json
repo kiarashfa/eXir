@@ -1,0 +1,57 @@
+{
+  "id": "rice",
+  "name": "Rice",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "raw",
+      "label": "Raw, uncooked",
+      "proseName": "raw rice",
+      "abvPercent": 0,
+      "sugarGPer100": 0.12,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 365,
+        "carbohydrateG": 79.95,
+        "sugarsG": 0.12,
+        "proteinG": 7.13,
+        "fatG": 0.66,
+        "saturatedFatG": 0.18,
+        "fibreG": 1.3,
+        "sodiumMg": 5
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169756",
+      "sourceNote": "Rice, white, long-grain, regular, raw, unenriched. Public domain. No density: horchata soaks and blends the grain, then strains the solids out, so it displaces nothing in the finished drink."
+    },
+    {
+      "id": "cooked",
+      "label": "Cooked, plain",
+      "proseName": "cooked rice",
+      "abvPercent": 0,
+      "sugarGPer100": 0.05,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 129,
+        "carbohydrateG": 28,
+        "sugarsG": 0.05,
+        "proteinG": 2.67,
+        "fatG": 0.28,
+        "saturatedFatG": 0.077,
+        "fibreG": 0.4,
+        "sodiumMg": 245
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (Survey (FNDDS))",
+      "sourceId": "2708408",
+      "sourceNote": "Rice, white, cooked, no added fat. Public domain. No density: the grains are steeped whole in the finished drink rather than measured by volume."
+    }
+  ]
+}

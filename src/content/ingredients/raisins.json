@@ -1,0 +1,33 @@
+{
+  "id": "raisins",
+  "name": "Raisins",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "raisins",
+      "abvPercent": 0,
+      "sugarGPer100": 65.2,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 299,
+        "carbohydrateG": 79.3,
+        "sugarsG": 65.2,
+        "proteinG": 3.3,
+        "fatG": 0.25,
+        "saturatedFatG": 0.094,
+        "fibreG": 4.5,
+        "sodiumMg": 26
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (Survey (FNDDS))",
+      "sourceId": "2709212",
+      "sourceNote": "Raisins. Public domain. Left whole in the glass and eaten from it rather than steeped and strained, so no density is carried: they are not poured."
+    }
+  ]
+}

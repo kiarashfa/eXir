@@ -1,0 +1,117 @@
+---
+id: classic
+label: Classic
+name: Boza
+subtitle: Millet cooked to a porridge, sweetened and fermented for a day into a thick, faintly tart drink.
+defaultDrinks: 3
+method: fermented
+dilutionClass: none
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+serveTempC: 6
+bitterness: none
+batchable: full
+zeroProof: false
+difficulty: Medium
+tags:
+  category: [kitchen-ferment]
+  origin: [balkans]
+  method: [fermented]
+names:
+  alsoKnownAs:
+    - { name: Bosa, region: Balkans }
+ferment:
+  stages:
+    - { id: f1, label: Primary, days: 1, tempC: [20, 26], sealed: false }
+  developsAlcohol: true
+  estimatedAbvRange: [0, 1]
+  safetyNote: >-
+    The jar is covered loosely rather than sealed, since the yeast produces
+    real carbon dioxide as it works and a tight lid traps that pressure. A
+    batch that smells sharply of alcohol or solvent, rather than mildly
+    tart, has fermented too far or gone wrong, and either way it should be
+    discarded rather than pushed further.
+ingredients:
+  - id: millet
+    ingredientRef: millet
+    formRef: raw
+    amount: 150
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 900
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 100
+    unit: g
+  - id: yeast
+    ingredientRef: yeast
+    formRef: dried
+    amount: 2
+    unit: g
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 2
+    unit: g
+    garnish: true
+steps:
+  - { id: cook, durationSec: 1800, type: active, phase: prep }
+  - { id: cool, durationSec: 3600, type: passive, phase: prep }
+  - { id: inoculate, durationSec: 60, type: active, phase: prep }
+  - { id: ferment, durationSec: 86400, type: passive, phase: rest }
+  - { id: strain, durationSec: 90, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: ferment
+    text: >-
+      A day at room temperature is enough to turn the sweetened porridge
+      faintly tart without pushing it toward real sourness; historically
+      boza sold this mild was the everyday, non-alcoholic style, while a
+      longer, hotter ferment produced a sharper, more intoxicating drink
+      sold separately.
+  - kind: pitfall
+    text: >-
+      Millet settles hard once cooked, so the porridge needs a stir on its
+      way into the fermenting jar and again before straining, or the bottom
+      of the batch turns out far thicker than the top.
+makeAhead:
+  aheadInstructions: >-
+    The ferment itself is the make-ahead step; once strained and chilled,
+    boza keeps for several days and continues to sour slowly in the
+    refrigerator.
+  batchKeepDays: 5
+  batchStorage: strained and refrigerated, sealed
+  freezable: false
+---
+
+<Step id="cook">
+  Simmer the <Qty ref="millet"/> in the <Qty ref="water"/>, stirring
+  occasionally, until it collapses into a soft, thick porridge.
+</Step>
+
+<Step id="cool">
+  Take it off the heat and let it cool fully to room temperature before
+  anything else goes in, or the next step's yeast will not survive it.
+</Step>
+
+<Step id="inoculate">
+  Stir the <Qty ref="sugar"/> and the <Qty ref="yeast"/> through the cooled
+  porridge until both are evenly distributed.
+</Step>
+
+<Step id="ferment">
+  Cover the jar loosely and leave it at room temperature for
+  <Dur step="ferment"/>, away from direct light, until it smells mildly
+  tart rather than sharply alcoholic.
+</Step>
+
+<Step id="strain">
+  Strain out the settled grain, pressing to get the last of the liquid
+  through, and refrigerate until cold. Finish each glass with the
+  <Qty ref="cinnamon"/>, grated straight over the top.
+</Step>

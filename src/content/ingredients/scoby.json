@@ -1,0 +1,27 @@
+{
+  "id": "scoby",
+  "name": "SCOBY",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Kombucha mother" }
+    ],
+    "searchOnly": ["symbiotic culture of bacteria and yeast"]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Live culture",
+      "proseName": "a SCOBY",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": { "kcal": 0, "carbohydrateG": 0 },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "The rubbery cellulose mat of bacteria and yeast that ferments sweet tea into kombucha. It floats in the jar for the whole ferment and is lifted out at the end to start the next batch rather than consumed, so it carries no meaningful nutrition figure of its own and none is claimed here; no dataset covers it in any case."
+    }
+  ]
+}

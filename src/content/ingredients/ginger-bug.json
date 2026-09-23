@@ -1,0 +1,21 @@
+{
+  "id": "ginger-bug",
+  "name": "Ginger bug",
+  "kind": "ingredient",
+  "category": "botanical",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Active starter liquid",
+      "proseName": "ginger bug",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": { "kcal": 0, "carbohydrateG": 0 },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "A wild culture of yeast and bacteria built up over several days by feeding grated ginger and sugar water, used a spoonful at a time to inoculate a larger batch. What it carries into that batch is a live culture rather than a measurable food, so no composition is claimed here; the sugar and ginger it was fed on are each already accounted for on their own ingredient records where a recipe uses them directly."
+    }
+  ]
+}

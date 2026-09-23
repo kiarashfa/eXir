@@ -1,0 +1,24 @@
+{
+  "id": "pandan",
+  "name": "Pandan",
+  "kind": "ingredient",
+  "category": "botanical",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Screwpine leaf" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "fresh",
+      "label": "Fresh leaf",
+      "proseName": "pandan leaf",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "FoodData Central carries no record for pandan leaf. No composition is claimed here; the leaves are bruised and simmered for their aroma and colour, then strained out and discarded."
+    }
+  ]
+}

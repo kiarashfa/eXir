@@ -1,0 +1,95 @@
+---
+id: classic
+label: Classic
+name: Milk Kefir
+subtitle: Whole milk fermented overnight with live grains into a tangy, faintly fizzy drink.
+defaultDrinks: 1
+method: fermented
+dilutionClass: none
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+batchNote: >-
+  Each batch is its own ferment; the grains are strained out and go straight
+  into the next batch rather than being portioned across several.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [kitchen-ferment]
+  origin: [russia-caucasus]
+  method: [fermented]
+names:
+  notToBeConfusedWith:
+    - name: Water Kefir
+      note: A separate ferment made with sugar water rather than milk, using a different culture entirely; not covered on this page.
+    - name: Kombucha
+      note: A fermented sweet tea using a different culture again; the two are often shelved together but share no ingredient or organism.
+ferment:
+  stages:
+    - { id: f1, label: Primary, days: 1, tempC: [18, 24], sealed: false }
+  developsAlcohol: true
+  estimatedAbvRange: [0, 1]
+  safetyNote: >-
+    Cover the jar loosely rather than sealing it, since a hard seal lets
+    pressure build as the ferment produces gas. A ferment that smells
+    sharply of solvent or shows pink, orange or fuzzy growth on the surface
+    has gone wrong and should be discarded rather than tasted.
+ingredients:
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 350
+    unit: ml
+  - id: grains
+    ingredientRef: kefir-grains
+    formRef: standard
+    amount: 15
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Strained out once fermentation is done and reused for the next batch
+      rather than eaten; they contribute no volume to the finished drink.
+steps:
+  - { id: build, durationSec: 20, type: active, phase: prep }
+  - { id: ferment, durationSec: 86400, type: passive, phase: rest }
+  - { id: strain, durationSec: 60, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: ferment
+    text: >-
+      The jar is covered loosely rather than sealed, because the yeast in
+      the grains produces real carbon dioxide as it works; a tight lid on a
+      full jar left overnight is how a kitchen ferment turns into a mess on
+      the counter.
+  - kind: pitfall
+    text: >-
+      Left well past a day at room temperature the ferment keeps
+      souring and separates into a layer of whey under a thickened curd; it
+      is still usable stirred back together, but it has moved past the mild
+      tang this recipe is timed for.
+makeAhead:
+  aheadInstructions: >-
+    This is entirely made ahead by nature: the ferment itself is the
+    make-ahead step, and the grains are simply added to a fresh jar of milk
+    to start the next batch.
+  batchKeepDays: 3
+  batchStorage: strained and refrigerated, sealed
+  freezable: false
+---
+
+<Step id="build">
+  Combine the <Qty ref="milk"/> and <Qty ref="grains"/> in a clean jar and
+  stir gently to distribute them.
+</Step>
+
+<Step id="ferment">
+  Cover loosely and leave at room temperature for <Dur step="ferment"/>,
+  away from direct light.
+</Step>
+
+<Step id="strain">
+  Strain out the grains, reserving them for the next batch, and refrigerate
+  the kefir before serving.
+</Step>

@@ -1,0 +1,38 @@
+{
+  "id": "cornflour",
+  "name": "Cornflour",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": true,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Cornstarch", "region": "United States" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Cornflour",
+      "proseName": "cornflour",
+      "abvPercent": 0,
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 381,
+        "carbohydrateG": 91.27,
+        "sugarsG": 0,
+        "proteinG": 0.26,
+        "fatG": 0.05,
+        "saturatedFatG": 0.009,
+        "fibreG": 0.9,
+        "sodiumMg": 9
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169698",
+      "sourceNote": "Cornstarch. Public domain. No density: a small amount is whisked into hot liquid to thicken it and disperses fully rather than sitting as a measurable volume of its own, and the record's own cup measure (0.541 g/ml) is a packing density rather than a true one in any case."
+    }
+  ]
+}

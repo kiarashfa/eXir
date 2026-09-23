@@ -44,6 +44,31 @@
       "sourceDataset": "USDA FoodData Central (SR Legacy)",
       "sourceId": "174817",
       "sourceNote": "Alcoholic beverage, distilled, rum, 80 proof. Public domain. FoodData Central does not separate dark or aged rum from the white spirit at the same proof, and unflavoured rum's composition does not change with cask colour, so the white rum record's own figures apply unchanged; only the colour, the wood and the price differ. Covers the Jamaican-style pot-still dark and aged rum called for in tiki and punch recipes, standing in for both a young dark rum and a rum aged several years, neither of which FoodData Central lists separately from the other."
+    },
+    {
+      "id": "overproof-demerara",
+      "label": "151-proof demerara",
+      "proseName": "151-proof demerara rum",
+      "abvPercent": 75.5,
+      "densityGPerMl": 0.867,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 488,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Derived from standard ethanol-water tables",
+      "sourceNote": "FoodData Central carries rum only up to 100 US proof (SR Legacy 173664), well short of the 151-proof (75.5% ABV) demerara style Guyanese producers bottle for tiki use. Density and energy are computed from the published density of ethanol-water mixtures at 75.5% ABV by volume (interpolated from the OIML alcoholometric tables, roughly 0.867 g/ml against 0.789 for pure ethanol and 0.998 for water) rather than measured in a bottle, so both are marked estimated. Energy follows from that: the alcohol mass in 100 ml (75.5 ml x 0.789 g/ml = 59.6 g) at 7.1 kcal/g of ethanol gives about 423 kcal per 100 ml, or 488 kcal per 100 g once divided back through the density. Sugar and carbohydrate stay at zero, as for any unsweetened spirit at any proof."
     }
   ]
 }

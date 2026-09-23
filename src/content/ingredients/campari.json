@@ -29,6 +29,7 @@
     {
       "id": "standard",
       "label": "Standard",
+      "per100Basis": "ml",
       "abvPercent": 25,
       "densityGPerMl": 1.09,
       "densitySource": "estimated",

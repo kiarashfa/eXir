@@ -1,0 +1,85 @@
+---
+id: classic
+label: Classic
+name: Painkiller
+subtitle: Dark rum shaken with pineapple, orange and cream of coconut in a fixed four-to-one-to-one ratio, over crushed ice.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken-dumped
+glasswareRef: tiki-mug
+iceStyle: crushed
+servedOverIce: true
+bitterness: none
+batchable: full
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [caribbean]
+  method: [shaken]
+difficulty: Easy
+ingredients:
+  - id: rum
+    ingredientRef: dark-rum
+    formRef: standard
+    amount: 60
+    unit: ml
+  - id: pineapple
+    ingredientRef: pineapple-juice
+    formRef: fresh
+    amount: 120
+    unit: ml
+  - id: coconut
+    ingredientRef: coconut-cream
+    formRef: canned-sweetened
+    amount: 30
+    unit: ml
+  - id: orange
+    ingredientRef: orange-juice
+    formRef: fresh
+    amount: 30
+    unit: ml
+  - id: garnish-nutmeg
+    ingredientRef: nutmeg
+    formRef: ground
+    amount: 0.3
+    unit: g
+    garnish: true
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      The <Qty ref="pineapple"/>, the <Qty ref="coconut"/> and the
+      <Qty ref="orange"/> stay at four parts to one to one whatever the rum
+      measure; that ratio, not any single ingredient, is what the name has
+      come to mean.
+  - kind: pitfall
+    text: >-
+      Fresh pineapple juice carries real acidity that no dataset used here
+      reports a figure for, so the composition below reads less sour than
+      the drink actually tastes; that is a gap in the data rather than a
+      claim that the drink is not tart.
+---
+
+<Step id="build">
+  Combine the <Qty ref="rum"/>, the <Qty ref="pineapple"/>, the
+  <Qty ref="coconut"/> and the <Qty ref="orange"/> in a shaker with cubed
+  ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/> until the coconut cream is fully
+  worked through the juice.
+</Step>
+
+<Step id="pour">
+  Pour unstrained into a tiki mug packed with crushed ice.
+</Step>
+
+<Step id="garnish">
+  Grate the <Qty ref="garnish-nutmeg"/> over the top.
+</Step>

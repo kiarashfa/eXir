@@ -1,0 +1,74 @@
+---
+id: classic
+label: Classic
+name: Root Beer Float
+subtitle: A scoop of vanilla ice cream, drowned in root beer at the glass.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: soda-fountain
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: true
+tags:
+  category: [soft-traditional]
+  origin: [united-states]
+  method: [built]
+  occasion: [dessert]
+difficulty: Easy
+names:
+  alsoKnownAs:
+    - name: Black Cow
+ingredients:
+  - id: ice-cream
+    ingredientRef: ice-cream
+    formRef: vanilla
+    amount: 90
+    unit: g
+  - id: syrup
+    ingredientRef: root-beer-syrup
+    formRef: standard
+    amount: 40
+    unit: ml
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 220
+    unit: ml
+steps:
+  - { id: scoop, durationSec: 15, type: active, phase: make }
+  - { id: build, durationSec: 15, type: active, phase: make }
+  - { id: top, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: top
+    text: >-
+      The soda is poured slowly down the side of the glass rather than straight onto the
+      scoop, so it foams up around the ice cream into a head rather than fizzing over the rim.
+  - kind: pitfall
+    text: >-
+      Built too far ahead, the scoop melts into the soda before it is served and the drink
+      loses the contrast between cold, solid cream and fizzing liquid that is the entire point
+      of a float. It is assembled at the last moment, not held.
+makeAhead:
+  aheadInstructions: >-
+    The root beer syrup batches and keeps well refrigerated; the ice cream and soda water are
+    only ever added at the moment of serving.
+  batchKeepDays: 21
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="scoop">
+  Set the <Qty ref="ice-cream"/> in a chilled glass.
+</Step>
+
+<Step id="build">
+  Pour the <Qty ref="syrup"/> over the scoop.
+</Step>
+
+<Step id="top">
+  Top slowly with the <Qty ref="soda"/> and serve at once, with a straw and a long spoon.
+</Step>

@@ -1,0 +1,33 @@
+{
+  "id": "rye-bread",
+  "name": "Rye bread",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Dark rye, crusted",
+      "proseName": "rye bread",
+      "abvPercent": 0,
+      "sugarGPer100": 3.85,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 259,
+        "carbohydrateG": 48.3,
+        "sugarsG": 3.85,
+        "proteinG": 8.5,
+        "fatG": 3.3,
+        "saturatedFatG": 0.626,
+        "fibreG": 5.8,
+        "sodiumMg": 603
+      },
+      "animalOrigin": "none",
+      "allergenTags": ["gluten"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "172684",
+      "sourceNote": "Bread, rye. Public domain. Kvass is traditionally made from stale, well-crusted dark rye rather than a soft sandwich loaf, but no dedicated record exists for that distinction and the figures are close enough to state without an estimate marker. No density: the toasted crusts are steeped and then strained out, so they displace nothing in the finished drink."
+    }
+  ]
+}

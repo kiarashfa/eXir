@@ -1,0 +1,102 @@
+---
+id: still
+label: Still
+name: Lemonade
+subtitle: Strained lemon juice, sugar syrup and water, clear over ice.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: full
+zeroProof: true
+tags:
+  category: [soft-traditional]
+  origin: [france]
+  method: [built]
+  occasion: [aperitivo]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Lemon squash
+      note: A sweetened, diluted cordial sold ready-made rather than a drink built from fresh juice and water at the glass.
+ingredients:
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 30
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 20
+    unit: ml
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 110
+    unit: ml
+  - id: garnish
+    ingredientRef: lemon
+    formRef: standard
+    amount: 10
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: A wheel set on the rim for the look and the aroma; it is not squeezed or eaten.
+steps:
+  - { id: juice, durationSec: 60, type: active, phase: prep }
+  - { id: strain, durationSec: 20, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: garnish, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: strain
+    text: >-
+      Straining the squeezed juice through a fine sieve before it goes anywhere near the glass
+      is what keeps this version clear rather than clouded — the pulp left behind is what the
+      cloudy version keeps in.
+  - kind: pitfall
+    text: >-
+      Sweetening with dry sugar straight in the glass leaves undissolved crystals at the bottom
+      under cold water; the syrup is made and cooled first so the sweetness is even from the
+      first sip to the last.
+substitutions:
+  - lineRef: lemon
+    substitute: lime-juice
+    formRef: fresh
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume at a similar acidity, so the arithmetic barely moves. The drink
+      reads sharper and less floral, closer to a limeade than a lemonade.
+    impact:
+      flavour: moderate change
+      strength: no change
+      sweetness: no change
+makeAhead:
+  aheadInstructions: >-
+    Batches cleanly and keeps well refrigerated, since nothing in the glass is delicate; stir
+    before pouring, as the syrup can settle.
+  batchKeepDays: 3
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the lemons for the <Qty ref="lemon"/>.
+</Step>
+
+<Step id="strain">
+  Strain out the pulp and seeds through a fine sieve.
+</Step>
+
+<Step id="build">
+  Combine the strained juice with the <Qty ref="syrup"/> and the <Qty ref="water"/> in a glass
+  filled with ice and stir once to combine.
+</Step>
+
+<Step id="garnish">
+  Set the <Qty ref="garnish"/> lemon wheel on the rim.
+</Step>

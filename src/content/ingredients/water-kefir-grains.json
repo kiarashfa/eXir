@@ -1,0 +1,29 @@
+{
+  "id": "water-kefir-grains",
+  "name": "Water kefir grains",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Tibicos" }
+    ],
+    "notToBeConfusedWith": [
+      { "name": "Kefir grains", "note": "The dairy culture used for milk kefir; a different organism entirely, grown in sugar water rather than milk." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Live culture",
+      "proseName": "water kefir grains",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": { "kcal": 0, "carbohydrateG": 0 },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "A living culture of bacteria and yeast in a polysaccharide matrix, not a food consumed for its own composition. It is strained out of the finished drink and reused for the next batch, so it carries no meaningful nutrition figure of its own and none is claimed here; no dataset covers it in any case."
+    }
+  ]
+}

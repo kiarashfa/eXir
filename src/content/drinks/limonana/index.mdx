@@ -1,0 +1,83 @@
+---
+id: classic
+label: Classic
+name: Limonana
+subtitle: Lemon juice and mint blended with ice to a bright green slush.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: true
+tags:
+  category: [soft-traditional]
+  origin: [levant]
+  method: [blended]
+  occasion: [aperitivo]
+difficulty: Easy
+ingredients:
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 60
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: mint
+    ingredientRef: mint
+    formRef: fresh
+    amount: 8
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 60
+    unit: ml
+  - id: ice
+    ingredientRef: water
+    formRef: standard
+    amount: 200
+    unit: g
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: blend, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      The mint is blended whole rather than muddled first, so the blades do the bruising; a
+      long blend on a full jug of ice is what breaks the leaf down fine enough to turn the whole
+      drink pale green rather than leaving flecks in a yellow one.
+  - kind: pitfall
+    text: >-
+      Blended past a slush into a thin liquid, the drink separates within minutes into a layer
+      of lemon water under a cap of melted ice. It is built to be served and drunk immediately,
+      not held.
+makeAhead:
+  aheadInstructions: >-
+    The lemon juice and syrup can be combined ahead, but the mint loses its aroma quickly once
+    blended and the ice has to be added fresh at the blender in any case.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="build">
+  Combine the <Qty ref="lemon"/>, the <Qty ref="syrup"/>, the <Qty ref="mint"/> and the
+  <Qty ref="water"/> in a blender with the <Qty ref="ice"/>.
+</Step>
+
+<Step id="blend">
+  Blend for <Dur step="blend"/>, until the mint is broken down fine and the drink is a smooth,
+  pale green slush.
+</Step>
+
+<Step id="pour">
+  Pour, unstrained, into a tall glass.
+</Step>

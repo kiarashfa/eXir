@@ -1,0 +1,36 @@
+{
+  "id": "dark-chocolate",
+  "name": "Dark Chocolate",
+  "kind": "ingredient",
+  "category": "chocolate",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Dark chocolate, chopped or melted",
+      "proseName": "dark chocolate",
+      "abvPercent": 0,
+      "densityGPerMl": 1.26,
+      "densitySource": "estimated",
+      "sugarGPer100": 46.1,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 550,
+        "carbohydrateG": 60,
+        "sugarsG": 46.1,
+        "proteinG": 5.09,
+        "fatG": 32.2,
+        "saturatedFatG": 19,
+        "fibreG": 7.2,
+        "sodiumMg": 23
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "Many dark chocolate bars carry milk fat or milk solids even when not labelled milk chocolate, and some are made without dairy at all; check the bar.",
+      "allergenTags": ["dairy", "soy"],
+      "containsCaffeine": true,
+      "sourceDataset": "USDA FoodData Central (Survey FNDDS)",
+      "sourceId": "2710336",
+      "sourceNote": "Dark chocolate candy. Public domain. No liquid density exists for a solid bar; melted and stirred into a drink it disperses evenly rather than sitting as discrete pieces, so the syrup-like density class (1.26 g/ml) stands in as an estimate for what it displaces, closer to solid chocolate's own true density than any packed or poured figure would be. Soy is flagged for the lecithin most bars are emulsified with; check the bar where that matters."
+    }
+  ]
+}

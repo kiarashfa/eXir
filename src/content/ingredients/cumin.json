@@ -1,0 +1,33 @@
+{
+  "id": "cumin",
+  "name": "Cumin",
+  "kind": "ingredient",
+  "category": "spice",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "ground",
+      "label": "Ground, toasted",
+      "proseName": "toasted ground cumin",
+      "abvPercent": 0,
+      "sugarGPer100": 2.25,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 375,
+        "carbohydrateG": 44.24,
+        "sugarsG": 2.25,
+        "proteinG": 17.81,
+        "fatG": 22.27,
+        "saturatedFatG": 1.535,
+        "fibreG": 10.5,
+        "sodiumMg": 168
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170923",
+      "sourceNote": "Spices, cumin seed. Public domain, used here for the ground and toasted spice. No density: a small pinch stirred or whisked into a drink is packed, not poured, and no liquid measure exists for it in the dataset."
+    }
+  ]
+}

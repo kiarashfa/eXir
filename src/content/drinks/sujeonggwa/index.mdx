@@ -1,0 +1,105 @@
+---
+id: classic
+label: Classic
+name: Sujeonggwa
+subtitle: Cinnamon and ginger simmered separately, sweetened, and chilled with dried persimmons floating in it.
+defaultDrinks: 5
+method: steeped
+dilutionClass: none
+glasswareRef: rocks
+iceStyle: none
+servedOverIce: false
+serveTempC: 6
+bitterness: none
+batchable: full
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [soft-traditional]
+  origin: [korea]
+  method: [steeped]
+ingredients:
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 20
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Simmered for its flavour and colour, then strained out.
+  - id: ginger
+    ingredientRef: ginger
+    formRef: standard
+    amount: 50
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Simmered for its heat, then strained out.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1400
+    unit: ml
+    portions:
+      - { id: cinnamon-water, amount: 700, note: simmered with the cinnamon }
+      - { id: ginger-water, amount: 700, note: simmered separately with the ginger }
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 120
+    unit: g
+  - id: persimmon
+    ingredientRef: dried-persimmon
+    formRef: dried
+    amount: 60
+    unit: g
+  - id: pine-nuts
+    ingredientRef: pine-nuts
+    formRef: dried
+    amount: 6
+    unit: g
+    garnish: true
+steps:
+  - { id: simmer-cinnamon, durationSec: 1200, type: active, phase: prep }
+  - { id: simmer-ginger, durationSec: 1200, type: active, phase: prep }
+  - { id: combine, durationSec: 60, type: active, phase: make }
+  - { id: chill, durationSec: 7200, type: passive, phase: rest }
+notes:
+  - kind: technique
+    text: >-
+      Simmering the cinnamon and ginger in separate pots rather than
+      together keeps each flavour distinct and lets each steep for exactly
+      as long as it needs, since ginger's heat builds faster than
+      cinnamon's colour does.
+  - kind: pitfall
+    stepRef: simmer-cinnamon
+    text: >-
+      A hard boil clouds the liquid and pushes cinnamon toward a bitter,
+      astringent edge; both pots want a gentle simmer, not a rolling one.
+makeAhead:
+  aheadInstructions: >-
+    Keeps refrigerated for several days once strained, sweetened and
+    combined; add the persimmons only once fully chilled, since they soften
+    the longer they sit in the liquid.
+  batchKeepDays: 4
+  batchStorage: refrigerated and sealed
+  freezable: false
+---
+
+<Step id="simmer-cinnamon">
+  Simmer the <Qty ref="cinnamon"/> in the <Qty ref="cinnamon-water"/> for
+  <Dur step="simmer-cinnamon"/>, until deep red-brown.
+</Step>
+
+<Step id="simmer-ginger">
+  Simmer the <Qty ref="ginger"/> in the <Qty ref="ginger-water"/> for
+  <Dur step="simmer-ginger"/>, until distinctly spicy.
+</Step>
+
+<Step id="combine">
+  Strain both liquids together into one pot, stir in the <Qty ref="sugar"/>
+  until dissolved, and drop in the <Qty ref="persimmon"/>.
+</Step>
+
+<Step id="chill">
+  Refrigerate until fully cold, then serve with the <Qty ref="pine-nuts"/>
+  floating on top of each glass.
+</Step>

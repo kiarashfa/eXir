@@ -1,0 +1,24 @@
+{
+  "id": "dried-tangerine-peel",
+  "name": "Dried tangerine peel",
+  "kind": "ingredient",
+  "category": "botanical",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Chenpi", "region": "China" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "dried",
+      "label": "Dried peel",
+      "proseName": "dried tangerine peel",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "FoodData Central carries fresh orange peel but not the dried, aged tangerine peel this calls for, which is a different product with most of its water removed and its bitterness changed by ageing. No composition is claimed here rather than approximating one; a few strips are boiled and strained out of the finished drink."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "sarsaparilla",
+  "name": "Sarsaparilla",
+  "kind": "ingredient",
+  "category": "botanical",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "root",
+      "label": "Dried root",
+      "proseName": "sarsaparilla root",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "No composition dataset",
+      "sourceNote": "No nutrition dataset carries dried sarsaparilla root, and none is needed here: the root is simmered for its aroma and strained back out, contributing nothing measurable to the finished syrup. It carries none of sassafras's safrole and no regulatory restriction attaches to it."
+    }
+  ]
+}

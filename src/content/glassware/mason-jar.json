@@ -4,6 +4,6 @@
   "capacityMl": 500,
   "shapeFamily": "jar",
   "note": "A straight-sided glass jar, used for ferments and for iced drinks served in the jar itself.",
-  "iceDisplacementMl": { "cubed": 230, "block": 220, "crushed": 285, "none": 0 },
-  "iceDisplacementNote": "No plan figure exists for this shape. Copied from the Collins, the closest tall glass of comparable capacity, and marked as an estimate rather than derived from the jar's own proportions."
+  "iceDisplacementMl": { "cubed": 230, "block": 220, "crushed": 246, "none": 0 },
+  "iceDisplacementNote": "No plan figure exists for this shape. Copied from the Collins, the closest tall glass of comparable capacity, and marked as an estimate rather than derived from the jar's own proportions. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
 }

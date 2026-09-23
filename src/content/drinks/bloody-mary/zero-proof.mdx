@@ -1,0 +1,103 @@
+---
+id: zero-proof
+label: Zero-proof
+name: Bloody Mary
+subtitle: The same tomato-and-spice build with the vodka left out rather than replaced.
+defaultDrinks: 1
+method: thrown
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: low
+batchable: partial
+batchNote: >-
+  The tomato juice and seasonings batch together cleanly; the lemon juice is
+  squeezed fresh at service, and the drink is always thrown to order rather
+  than pre-mixed, since it separates on standing.
+zeroProof: true
+tags:
+  category: [zero-proof]
+  origin: [united-states]
+  method: [built-over-ice]
+  occasion: [brunch]
+difficulty: Easy
+ingredients:
+  - id: tomato
+    ingredientRef: tomato-juice
+    formRef: bottled
+    amount: 120
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: worcestershire
+    ingredientRef: worcestershire
+    formRef: standard
+    amount: 3.6
+    unit: ml
+  - id: hotsauce
+    ingredientRef: hot-sauce
+    formRef: standard
+    amount: 2.7
+    unit: ml
+  - id: celerysalt
+    ingredientRef: celery-salt
+    formRef: standard
+    amount: 1
+    unit: g
+  - id: pepper
+    ingredientRef: black-pepper
+    formRef: whole
+    amount: 0.3
+    unit: g
+  - id: garnish-lemon
+    ingredientRef: lemon
+    formRef: standard
+    amount: 58
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A wedge is cut and set on the rim; the rest of the lemon is not part
+      of the drink but is still bought whole.
+steps:
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: throw, durationSec: 15, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      Without the vodka's volume, the tomato juice is topped up to fill the
+      same glass, so the seasoning stays at the same strength against the
+      base rather than reading diluted.
+  - kind: pitfall
+    text: >-
+      The <Qty ref="worcestershire"/> still carries fermented anchovy, which
+      the word "zero-proof" says nothing about; a guest avoiding fish is not
+      covered by this version being alcohol-free.
+---
+
+<Step id="build">
+  Combine the <Qty ref="tomato"/>, the <Qty ref="lemon"/>, the
+  <Qty ref="worcestershire"/>, the <Qty ref="hotsauce"/>, the
+  <Qty ref="celerysalt"/> and the <Qty ref="pepper"/> in a mixing tin with
+  cubed ice.
+</Step>
+
+<Step id="throw">
+  Throw the drink: pour it into a second tin held low, then back into the
+  first, repeating for <Dur step="throw"/>.
+</Step>
+
+<Step id="pour">
+  Strain into a highball filled with fresh cubed ice.
+</Step>
+
+<Step id="garnish">
+  Cut a wedge from the <Qty ref="garnish-lemon"/> and set it on the rim.
+</Step>

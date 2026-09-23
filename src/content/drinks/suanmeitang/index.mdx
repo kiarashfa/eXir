@@ -1,0 +1,108 @@
+---
+id: classic
+label: Classic
+name: Suanmeitang
+subtitle: Smoked plums, hawthorn and tangerine peel boiled down, sweetened and finished with osmanthus, served ice cold.
+defaultDrinks: 6
+method: boiled
+dilutionClass: none
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+serveTempC: 4
+bitterness: none
+batchable: full
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [soft-traditional]
+  origin: [china]
+  method: [boiled]
+names:
+  alsoKnownAs:
+    - { name: Chinese sour plum drink }
+ingredients:
+  - id: plum
+    ingredientRef: smoked-plum
+    formRef: dried
+    amount: 40
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Boiled for its sourness and colour, then strained out.
+  - id: hawthorn
+    ingredientRef: hawthorn
+    formRef: dried
+    amount: 20
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Boiled alongside the plums, then strained out.
+  - id: peel
+    ingredientRef: dried-tangerine-peel
+    formRef: dried
+    amount: 8
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Boiled for aroma, then strained out.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 2000
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 150
+    unit: g
+  - id: osmanthus
+    ingredientRef: osmanthus
+    formRef: dried
+    amount: 3
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Steeped off the heat for aroma only, then strained out with the rest.
+steps:
+  - { id: boil, durationSec: 2700, type: active, phase: make }
+  - { id: strain, durationSec: 90, type: active, phase: make }
+  - { id: steep-osmanthus, durationSec: 300, type: passive, phase: make }
+  - { id: chill, durationSec: 7200, type: passive, phase: rest }
+notes:
+  - kind: technique
+    stepRef: boil
+    text: >-
+      A long, gentle simmer rather than a hard boil pulls the sourness out
+      of the plums slowly, which is what keeps the finished drink balanced
+      rather than sharply acidic.
+  - kind: pitfall
+    stepRef: steep-osmanthus
+    text: >-
+      Boiling the osmanthus along with the plums and hawthorn cooks off
+      most of its scent; it goes in only once the liquid is off the heat,
+      steeped briefly and strained out before it turns bitter.
+makeAhead:
+  aheadInstructions: >-
+    Keeps refrigerated for the better part of a week once strained and
+    sweetened; the flavour actually improves after a day as it settles.
+  batchKeepDays: 6
+  batchStorage: refrigerated and sealed
+  freezable: false
+---
+
+<Step id="boil">
+  Simmer the <Qty ref="plum"/>, the <Qty ref="hawthorn"/> and the
+  <Qty ref="peel"/> in the <Qty ref="water"/> for <Dur step="boil"/>, until
+  the liquid has turned deep red-brown.
+</Step>
+
+<Step id="strain">
+  Strain out the solids and stir the <Qty ref="sugar"/> into the hot
+  liquid until fully dissolved.
+</Step>
+
+<Step id="steep-osmanthus">
+  Take the pot off the heat, stir in the <Qty ref="osmanthus"/>, and let
+  it steep for <Dur step="steep-osmanthus"/> before straining it out too.
+</Step>
+
+<Step id="chill">
+  Refrigerate until fully cold before serving.
+</Step>

@@ -1,0 +1,75 @@
+---
+id: cocoa
+label: Cocoa
+name: Hot Chocolate
+subtitle: Cocoa powder and sugar whisked into hot milk, thinner and quicker than melted chocolate.
+defaultDrinks: 1
+method: heated
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Heated and whisked to order; there is nothing here that benefits from
+  standing once it is off the heat.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [hot-drink]
+  origin: [united-states]
+  method: [heated]
+names:
+  alsoKnownAs:
+    - name: Hot Cocoa
+      region: United States
+  notToBeConfusedWith:
+    - name: Chocolate Caliente
+      note: A related but distinct drink whisked with cinnamon and frothed with a molinillo rather than this plain milk-and-cocoa preparation.
+ingredients:
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 240
+    unit: ml
+  - id: cocoa
+    ingredientRef: cocoa
+    formRef: unsweetened
+    amount: 12
+    unit: g
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 18
+    unit: g
+steps:
+  - { id: paste, durationSec: 20, type: active, phase: prep }
+  - { id: heat, durationSec: 150, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: paste
+    text: >-
+      The cocoa and sugar are worked into a small splash of cold milk first,
+      because cocoa powder clumps the instant it meets a large volume of hot
+      liquid, and a smooth paste avoids ever needing to strain the cup.
+  - kind: pitfall
+    text: >-
+      Cocoa whisked straight into the full pan of hot milk leaves floating
+      specks that never fully wet out, since there is no concentrated liquid
+      for the powder to dissolve into first.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The paste is made and the milk warmed in one
+    short sitting.
+  freezable: false
+---
+
+<Step id="paste">
+  Whisk the <Qty ref="cocoa"/> and <Qty ref="sugar"/> with a small spoonful
+  of the cold <Qty ref="milk"/> to a smooth paste.
+</Step>
+
+<Step id="heat">
+  Warm the rest of the milk over <Dur step="heat"/>, without letting it
+  boil, then whisk in the paste until fully dissolved.
+</Step>

@@ -1,0 +1,94 @@
+---
+id: classic
+label: Classic
+name: Caribbean Rum Punch
+subtitle: Rum, citrus, sweetener and juice in the old sour-sweet-strong-weak ratio, built over ice.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: full
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [caribbean]
+  method: [built-over-ice]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Planter's Punch
+      note: A separate, Jamaica-associated formula built to the same sour-sweet-strong-weak ratio but with its own name and page rather than a regional variant of this one.
+ingredients:
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: grenadine
+    ingredientRef: grenadine
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: rum
+    ingredientRef: dark-rum
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: orange
+    ingredientRef: orange-juice
+    formRef: fresh
+    amount: 30
+    unit: ml
+  - id: pineapple
+    ingredientRef: pineapple-juice
+    formRef: fresh
+    amount: 30
+    unit: ml
+  - id: bitters
+    ingredientRef: angostura-bitters
+    formRef: standard
+    amount: 0.9
+    unit: ml
+  - id: garnish-nutmeg
+    ingredientRef: nutmeg
+    formRef: ground
+    amount: 0.3
+    unit: g
+    garnish: true
+steps:
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: stir, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      The old rhyme behind the ratio is one of sour, two of sweet, three of
+      strong, four of weak: the <Qty ref="lime"/> is the sour, the
+      <Qty ref="grenadine"/> the sweet, the <Qty ref="rum"/> the strong, and
+      the <Qty ref="orange"/> and <Qty ref="pineapple"/> together make up
+      the weak.
+  - kind: pitfall
+    text: >-
+      Fresh pineapple juice carries real acidity that no dataset used here
+      reports a figure for, so the composition below reads less sour than
+      the drink tastes; that is a gap in the data rather than a claim the
+      drink is mild.
+---
+
+<Step id="build">
+  Build the <Qty ref="lime"/>, the <Qty ref="grenadine"/>, the
+  <Qty ref="rum"/>, the <Qty ref="orange"/>, the <Qty ref="pineapple"/> and
+  the <Qty ref="bitters"/> over cubed ice in a collins glass.
+</Step>
+
+<Step id="stir">
+  Stir to bring the grenadine up from the bottom of the glass.
+</Step>
+
+<Step id="garnish">
+  Grate the <Qty ref="garnish-nutmeg"/> over the top.
+</Step>

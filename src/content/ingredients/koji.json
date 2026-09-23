@@ -1,0 +1,35 @@
+{
+  "id": "koji",
+  "name": "Koji",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Rice koji", "region": "Japan" },
+      { "name": "Kome-koji", "region": "Japan" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Dried rice koji",
+      "proseName": "rice koji",
+      "abvPercent": 0,
+      "sugarGPer100": 23.2,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 105,
+        "carbohydrateG": 24.8,
+        "sugarsG": 23.2,
+        "proteinG": 1.3,
+        "fatG": 0.1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Peer-reviewed literature (see sourceNote)",
+      "sourceNote": "No public dataset carries a record for koji (rice cultured with Aspergillus oryzae), and dry koji itself is barely sweet in any case: the sugar that defines amazake is glucose produced by the koji's own amylase enzymes breaking down rice starch during the ferment, not a property of the dry culture measured on its own. Because this site sums the composition of the ingredient lines rather than modelling that enzymatic reaction, a figure for the dry culture alone would understate the finished drink's sugar almost to zero. This record instead uses the measured composition of finished koji amazake itself — 23.2 g glucose and 105 kcal per 100 g — reported in a peer-reviewed review of amazake composition (Utsukushi Hanaoka et al., 'Ingredients, Functionality, and Safety of the Japanese Traditional Sweet Drink Amazake', published via PMC, article PMC8227387), and applies it to the koji line since that is the ingredient responsible for developing it. Authoring a separate cooked-rice line alongside this one therefore double-counts some of the rice's own small contribution, which is the traded-off honest choice given the alternative of a drink that computes as barely sweet at all."
+    }
+  ]
+}

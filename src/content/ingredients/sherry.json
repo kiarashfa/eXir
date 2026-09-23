@@ -1,0 +1,68 @@
+{
+  "id": "sherry",
+  "name": "Sherry",
+  "kind": "ingredient",
+  "category": "sherry",
+  "proprietary": false,
+  "countryOfOrigin": "Spain",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      { "name": "Sherry cooking wine", "note": "A salted, adulterated supermarket product meant for the kitchen, not the fortified wine a bar bottle of fino or oloroso is." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "fino",
+      "label": "Fino",
+      "proseName": "fino sherry",
+      "per100Basis": "ml",
+      "abvPercent": 15,
+      "densityGPerMl": 0.99,
+      "densitySource": "estimated",
+      "sugarGPer100": 0.2,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 86,
+        "carbohydrateG": 0.4,
+        "sugarsG": 0.2,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 4
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "Sherry is routinely fined with isinglass or gelatine, and a producer rarely states whether a given bottle was.",
+      "allergenTags": ["sulphites"],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer-adjacent published figures",
+      "sourceId": "sherrynotes.com/fino",
+      "sourceNote": "Fino is the driest, palest sherry style and the one a Sherry Cobbler is built on. FoodData Central carries no sherry record. ABV is taken from the 15-18% range specialist sources state for the style, at the low end where fino typically sits; sugar and energy are taken from a retail nutrition aggregator's figures for a fino bottling, which land close to what 15% alcohol alone would produce (about 83 kcal/100 ml from ethanol) and are treated as a reasonable cross-check rather than a precise measurement. Density has no measured liquid source. The fortified-wine class is referenced to sweet vermouth, whose sugar is what lifts it above water; fino carries almost none, so it takes the dry-wine class instead, which is the nearer description of a bone-dry wine at this strength."
+    },
+    {
+      "id": "cream",
+      "label": "Cream",
+      "proseName": "cream sherry",
+      "per100Basis": "ml",
+      "abvPercent": 17.5,
+      "densityGPerMl": 1.03,
+      "densitySource": "estimated",
+      "sugarGPer100": 13,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 152,
+        "carbohydrateG": 13,
+        "sugarsG": 13,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 4
+      },
+      "animalOrigin": "varies",
+      "animalOriginNote": "Sherry is routinely fined with isinglass or gelatine, and a producer rarely states whether a given bottle was.",
+      "allergenTags": ["sulphites"],
+      "containsCaffeine": false,
+      "sourceDataset": "Producer-adjacent published figures",
+      "sourceId": "harveys-bristol-cream",
+      "sourceNote": "Harveys Bristol Cream, the reference bottle for the style, is retailer-published at 17.5% ABV and about 130-135 g of sugar per litre; the mid-point, 13 g per 100 ml, is used here. FoodData Central carries no sherry record of any style. Energy is estimated from the alcohol and sugar together (about 123 kcal/100 ml from the ethanol plus roughly 52 kcal/100 ml from the sugar, rounded down slightly for the overlap between the two published figures) rather than taken from a lab panel. No measured density is published; the site's own fortified-wine class (1.03 g/ml, referenced to a sweet vermouth near 16% ABV) is used as the nearest estimate, since a sweetened, fortified wine at a similar proof sits closer to that class than to the drier fino figure above."
+    }
+  ]
+}

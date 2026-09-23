@@ -1,0 +1,105 @@
+---
+id: classic
+label: Classic
+name: Tepache
+subtitle: Pineapple rind and core fermented two days with piloncillo and spice into a tangy, lightly fizzy drink.
+defaultDrinks: 6
+method: fermented
+dilutionClass: none
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+serveTempC: 6
+bitterness: none
+batchable: full
+zeroProof: false
+difficulty: Easy
+tags:
+  category: [kitchen-ferment]
+  origin: [mexico-central-america]
+  method: [fermented]
+ferment:
+  stages:
+    - { id: f1, label: Primary, days: 2, tempC: [24, 28], sealed: false }
+  developsAlcohol: true
+  estimatedAbvRange: [0.5, 2]
+  safetyNote: >-
+    The jar is covered loosely rather than sealed, since wild fermentation
+    produces real carbon dioxide from the first day. A batch that smells
+    sharply of solvent, or grows fuzzy or coloured patches rather than a
+    thin, even layer of foam, has gone wrong and should be discarded rather
+    than strained and served.
+ingredients:
+  - id: pineapple
+    ingredientRef: pineapple
+    formRef: standard
+    amount: 300
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The rind and core are what ferment, not the flesh, and they are
+      strained out and discarded once the ferment is done.
+  - id: piloncillo
+    ingredientRef: piloncillo
+    formRef: cone
+    amount: 150
+    unit: g
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 5
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Steeped through the ferment and strained out with the rind.
+  - id: cloves
+    ingredientRef: cloves
+    formRef: whole
+    amount: 2
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Steeped through the ferment and strained out with the rind.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 2000
+    unit: ml
+steps:
+  - { id: combine, durationSec: 60, type: active, phase: prep }
+  - { id: ferment, durationSec: 172800, type: passive, phase: rest }
+  - { id: strain, durationSec: 90, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      Using the rind and core rather than the flesh is deliberate rather
+      than frugal: the tougher, more fibrous parts of the fruit carry the
+      wild yeast that starts the ferment, and the sweet flesh is better
+      eaten than fermented away.
+  - kind: pitfall
+    stepRef: ferment
+    text: >-
+      A ferment left going much past two days at a warm room temperature
+      turns distinctly more alcoholic and vinegary, tipping from tepache's
+      usual tang toward something closer to a fruit vinegar.
+makeAhead:
+  aheadInstructions: >-
+    The ferment itself is the make-ahead step; strained and refrigerated,
+    tepache keeps for several days and continues to sour slowly.
+  batchKeepDays: 4
+  batchStorage: strained and refrigerated, sealed
+  freezable: false
+---
+
+<Step id="combine">
+  Combine the <Qty ref="pineapple"/>, the <Qty ref="piloncillo"/>, the
+  <Qty ref="cinnamon"/> and the <Qty ref="cloves"/> in a large jar and pour
+  over the <Qty ref="water"/>, stirring until the piloncillo dissolves.
+</Step>
+
+<Step id="ferment">
+  Cover loosely and leave at room temperature for <Dur step="ferment"/>,
+  away from direct light, skimming any foam that rises.
+</Step>
+
+<Step id="strain">
+  Strain out the solids and refrigerate until cold before serving.
+</Step>

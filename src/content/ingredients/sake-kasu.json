@@ -1,0 +1,33 @@
+{
+  "id": "sake-kasu",
+  "name": "Sake kasu",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Sake lees", "region": "Japan" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Pressed lees, paste",
+      "proseName": "sake kasu",
+      "abvPercent": 8.2,
+      "densityGPerMl": 1.05,
+      "densitySource": "estimated",
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 215,
+        "carbohydrateG": 23.8,
+        "proteinG": 14.9,
+        "fibreG": 5.2
+      },
+      "animalOrigin": "none",
+      "allergenTags": ["gluten"],
+      "containsCaffeine": false,
+      "sourceNote": "No public dataset carries sake kasu, the pressed solid left behind when sake is filtered from its mash. These figures follow food-composition values compiled in Japanese consumer nutrition references (Calorie Slism) rather than a primary dataset, so they are stated with less confidence than a USDA figure; sugar is left off because no source separates it from the wider carbohydrate figure. The alcohol is real rather than symbolic: kasu still carries roughly the strength of a light beer, which is what keeps this form of amazake off the zero-proof list, unlike the koji form. The density is an estimate for a soft, moist paste close to water, marked accordingly, since it is needed to compute the alcohol this Form carries and no measured figure exists."
+    }
+  ]
+}

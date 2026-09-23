@@ -1,0 +1,88 @@
+---
+id: classic
+label: Classic
+name: Espresso
+subtitle: A short, concentrated shot pulled under pressure through a fine, tamped puck.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: espresso-cup
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Pulled to order. Crema collapses and the shot turns bitter within a minute
+  or two of extraction, so nothing here is made ahead.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [coffee]
+  origin: [italy]
+  method: [brewed]
+names:
+  notToBeConfusedWith:
+    - name: Ristretto
+      note: The same dose pulled with less water for a shorter, more concentrated shot rather than the standard ratio this page describes.
+brew:
+  method: espresso
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 93
+  grind: fine
+  contactSec: 28
+  yieldMl: 36
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 18
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the shot and the rest stays in
+      the puck, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 50
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: tamp, durationSec: 20, type: active, phase: prep }
+  - { id: extract, durationSec: 28, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: tamp
+    text: >-
+      An even, level tamp is what makes the water meet every part of the puck
+      at once; a crack or a high side gives the water a shorter path around
+      the grounds instead of through them, and the shot channels and runs
+      thin.
+  - kind: pitfall
+    text: >-
+      A shot pulled well past its stated time is not simply stronger. Past a
+      point the water has already taken what it can from the grounds and
+      starts pulling harsher, papery compounds instead, which is why a slow
+      shot tastes bitter rather than just concentrated.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead beyond grinding, and even that is better left
+    to the last moment: ground coffee loses its aromatics within minutes.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> fine, close to the texture of table salt.
+</Step>
+
+<Step id="tamp">
+  Distribute the grounds evenly in the portafilter basket and tamp level for
+  <Dur step="tamp"/>.
+</Step>
+
+<Step id="extract">
+  Lock in and pump the <Qty ref="water"/> through the puck at <Temp c={93}/>
+  for <Dur step="extract"/>, watching for a thin, hazelnut-coloured crema to
+  build on top.
+</Step>

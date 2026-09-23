@@ -1,0 +1,35 @@
+{
+  "id": "tomato-juice",
+  "name": "Tomato Juice",
+  "kind": "ingredient",
+  "category": "vegetable",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "bottled",
+      "label": "Bottled, unsalted",
+      "proseName": "tomato juice",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0279,
+      "densitySource": "measured",
+      "sugarGPer100": 2.58,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 17,
+        "carbohydrateG": 3.53,
+        "sugarsG": 2.58,
+        "proteinG": 0.85,
+        "fatG": 0.29,
+        "saturatedFatG": 0.019,
+        "fibreG": 0.4,
+        "sodiumMg": 10
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170545",
+      "sourceNote": "Tomato juice, canned, without salt added. Public domain. The unsalted record is taken deliberately: a Bloody Mary's own salt comes from named lines (Worcestershire, salt) rather than being buried in the base juice, so it stays visible to the composition. acidPercent is left off rather than invented: tomato juice is meaningfully acidic but no titratable-acidity source was found."
+    }
+  ]
+}

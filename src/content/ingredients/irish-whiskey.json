@@ -1,0 +1,43 @@
+{
+  "id": "irish-whiskey",
+  "name": "Irish Whiskey",
+  "kind": "ingredient",
+  "category": "irish-whiskey",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      {
+        "name": "Scotch Whisky",
+        "note": "Made across the water under its own rules, usually triple-distilled and rarely peated; the two are not interchangeable where a recipe names Irish whiskey specifically."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard strength",
+      "proseName": "Irish whiskey",
+      "abvPercent": 40,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174815",
+      "sourceNote": "Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof. Public domain. FoodData Central carries no Irish-specific record; distilled spirit composition does not vary by grain or region once bottled at the same proof, and Irish whiskey is near-universally bottled at 40% ABV, so this generic 80-proof record applies unchanged."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "rice-flour",
+  "name": "Rice flour",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "White",
+      "proseName": "rice flour",
+      "abvPercent": 0,
+      "sugarGPer100": 0.12,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 366,
+        "carbohydrateG": 80.13,
+        "sugarsG": 0.12,
+        "proteinG": 5.95,
+        "fatG": 1.42,
+        "saturatedFatG": 0.386,
+        "fibreG": 2.4,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169714",
+      "sourceNote": "Rice flour, white, unenriched. Public domain. No density on the dry flour: it is cooked into a jelly with water, and the jelly's own density is derived separately on the preparation that uses it."
+    }
+  ]
+}

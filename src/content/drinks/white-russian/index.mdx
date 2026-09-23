@@ -1,0 +1,73 @@
+---
+id: classic
+label: Classic
+name: White Russian
+subtitle: Vodka and coffee liqueur over ice, finished with a float of cream.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: rocks
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: full
+zeroProof: false
+difficulty: Easy
+tags:
+  category: [cocktail]
+  origin: [international]
+  method: [built-over-ice]
+names:
+  notToBeConfusedWith:
+    - name: Black Russian
+      note: The same two spirits with no cream at all; the White Russian is the later, dairy-finished variant of it.
+ingredients:
+  - id: vodka
+    ingredientRef: vodka
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: liqueur
+    ingredientRef: coffee-liqueur
+    formRef: standard
+    amount: 25
+    unit: ml
+  - id: cream
+    ingredientRef: cream
+    formRef: heavy
+    amount: 20
+    unit: ml
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: float, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: float
+    text: >-
+      The cream is poured gently over the back of a spoon rather than
+      stirred in, which is what leaves the pale layer sitting distinctly on
+      top rather than clouding the whole glass into one even colour.
+  - kind: pitfall
+    text: >-
+      Cream stirred through rather than floated is not simply a different
+      look. It also dilutes the top of the drink faster than the vodka and
+      liqueur below it warm, so the first sip and the last taste noticeably
+      unlike each other.
+makeAhead:
+  aheadInstructions: >-
+    The vodka and coffee liqueur can be pre-batched together; the cream is
+    always floated fresh at the moment of service.
+  batchKeepDays: 30
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="build">
+  Fill the glass with ice and pour in the <Qty ref="vodka"/> and
+  <Qty ref="liqueur"/>.
+</Step>
+
+<Step id="float">
+  Pour the <Qty ref="cream"/> over the back of a spoon held just above the
+  surface, letting it settle as a pale layer on top.
+</Step>

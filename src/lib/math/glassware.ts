@@ -21,6 +21,8 @@ export interface GlassFit {
   fits: boolean;
   /** Set when the drink is served over ice the glass has no figure for. */
   unmodelledIce: boolean;
+  /** The ice was topped into the room left, so `iceMl` is a minimum allowance. */
+  iceTopped: boolean;
 }
 
 /**
@@ -52,8 +54,22 @@ export const iceStyleOf = (version: DrinkVersion): string =>
  * 65 ml of melt AND for the ice that melt came from, and the whole highball
  * family was authored a third short to get under the ceiling that produced.
  */
+//
+// "Poured" here is the final volume less its melt rather than the composition's
+// poured volume, because the two differ on a brewed drink: its dose and brew
+// water are in the composition, and only the yield reaches the glass.
 const liquidToHold = (spec: Pick<DrinkSpec, 'finalVolumeMl' | 'dilution' | 'composition'>): number =>
-  spec.dilution.risesOverTime ? spec.composition.pouredVolumeMl : spec.finalVolumeMl;
+  spec.dilution.risesOverTime ? spec.finalVolumeMl - spec.dilution.dilutionMl : spec.finalVolumeMl;
+
+/**
+ * The least ice a glass must still have room for when the ice goes in after
+ * the liquid. A stated editorial allowance, on the same footing as the ice
+ * allowance elsewhere: a tiki drink strained into its mug and then "filled
+ * with crushed ice" gets whatever the pour left, and a fifth of the vessel is
+ * the least that still reads as a drink served over ice rather than a drink
+ * with an ice cube in it. Never more than a full glass of that ice would take.
+ */
+export const ICE_TOPPED_MIN_SHARE = 0.2;
 
 export function glassFit(
   version: DrinkVersion,
@@ -64,14 +80,19 @@ export function glassFit(
   const declared = glass.iceDisplacementMl?.[iceStyle];
   const servedOverIce = version.servedOverIce === true || iceStyle !== 'none';
   const liquidMl = liquidToHold(spec);
+  const iceTopped = version.iceTopped === true && declared !== undefined && declared > 0;
+  const iceMl = iceTopped
+    ? Math.min(declared, Math.round(glass.capacityMl * ICE_TOPPED_MIN_SHARE))
+    : (declared ?? 0);
 
   return {
     liquidMl,
-    iceMl: declared ?? 0,
+    iceMl,
     iceStyle,
-    neededMl: liquidMl + (declared ?? 0),
+    neededMl: liquidMl + iceMl,
     capacityMl: glass.capacityMl,
-    fits: liquidMl + (declared ?? 0) <= glass.capacityMl,
+    fits: liquidMl + iceMl <= glass.capacityMl,
     unmodelledIce: servedOverIce && declared === undefined,
+    iceTopped,
   };
 }

@@ -1,0 +1,117 @@
+---
+id: classic
+label: Classic
+name: Fog Cutter
+subtitle: Rum, brandy and gin behind lemon, orange and orgeat, floated with sherry.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: hurricane
+iceStyle: crushed
+iceTopped: true
+servedOverIce: true
+bitterness: low
+batchable: partial
+batchNote: >-
+  The rum, brandy, gin, orgeat and sherry batch cleanly; the lemon and orange juice are the
+  limit, since both lose their aromatics within hours of being squeezed.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [tiki]
+  method: [shaken]
+  occasion: [aperitivo]
+difficulty: Medium
+ingredients:
+  - id: rum
+    ingredientRef: white-rum
+    formRef: standard
+    amount: 60
+    unit: ml
+  - id: brandy
+    ingredientRef: cognac
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 15
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 60
+    unit: ml
+  - id: orange
+    ingredientRef: orange-juice
+    formRef: fresh
+    amount: 30
+    unit: ml
+  - id: orgeat
+    ingredientRef: orgeat
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: sherry
+    ingredientRef: sherry
+    formRef: cream
+    amount: 15
+    unit: ml
+    addedAfterDilution: true
+steps:
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: float, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: float
+    text: >-
+      The sherry goes in last, poured gently over the back of a spoon so it sits as its own
+      layer rather than mixing straight through — the drink is meant to be tasted through the
+      sherry first before the rest comes up underneath.
+  - kind: pitfall
+    text: >-
+      Three spirits and two juices at these proportions read as fruity rather than strong on
+      the nose, which is exactly the trap Victor Bergeron warned about in his own description
+      of the drink. It is not a drink to underestimate on the strength of its first sip.
+substitutions:
+  - lineRef: sherry
+    substitute: sherry
+    formRef: fino
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume at a lower strength, so the float reads thinner and drier
+      rather than richer. The drink loses the raisined sweetness the cream style floats on top
+      of the citrus.
+    impact:
+      flavour: moderate change
+      strength: minor change
+      sweetness: moderate change
+makeAhead:
+  aheadInstructions: >-
+    The rum, brandy, gin, orgeat and sherry batch together and keep well; add the lemon and
+    orange juice only close to service. The site adds the water the shake would have
+    contributed to the batched portion.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="build">
+  Combine the <Qty ref="rum"/>, the <Qty ref="brandy"/>, the <Qty ref="gin"/>, the
+  <Qty ref="lemon"/>, the <Qty ref="orange"/> and the <Qty ref="orgeat"/> in a shaker with ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>.
+</Step>
+
+<Step id="strain">
+  Strain into a hurricane glass and fill it with crushed ice.
+</Step>
+
+<Step id="float">
+  Float the <Qty ref="sherry"/> on top.
+</Step>

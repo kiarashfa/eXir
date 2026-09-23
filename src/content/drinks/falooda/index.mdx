@@ -1,0 +1,90 @@
+---
+id: classic
+label: Classic
+name: Falooda
+subtitle: Rose syrup, vermicelli and basil seed, layered under cold milk and ice cream.
+defaultDrinks: 1
+method: layered
+dilutionClass: none
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: partial
+batchNote: >-
+  The vermicelli and soaked basil seed can both be prepared ahead and chilled; the drink itself
+  is layered to order so the layers show before they are stirred together.
+zeroProof: true
+tags:
+  category: [soft-traditional]
+  origin: [south-asia]
+  method: [layered]
+  occasion: [dessert]
+difficulty: Medium
+names:
+  notToBeConfusedWith:
+    - name: Faloodeh
+      note: The Iranian frozen dessert the name descends from, made of thin starch noodles and rosewater ice with no milk; falooda is the later, milk-based South Asian drink built on the same name.
+ingredients:
+  - id: syrup
+    ingredientRef: rose-syrup
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: vermicelli
+    ingredientRef: vermicelli
+    formRef: cooked
+    amount: 30
+    unit: g
+  - id: basil-seeds
+    ingredientRef: soaked-basil-seeds
+    formRef: standard
+    amount: 20
+    unit: g
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 150
+    unit: ml
+  - id: ice-cream
+    ingredientRef: ice-cream
+    formRef: vanilla
+    amount: 60
+    unit: g
+    garnish: true
+steps:
+  - { id: layer, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      Each layer goes in on its own rather than stirred together, so the syrup, noodles and
+      seed sit visibly in the glass under the milk before the drink is mixed at the table — the
+      layered look is as much the point as the taste.
+  - kind: pitfall
+    text: >-
+      Poured in too fast, the cold milk disturbs the syrup at the bottom and muddies the layers
+      before the glass reaches the table. It wants a slow pour down the side of the glass, the
+      same as building any layered drink.
+makeAhead:
+  aheadInstructions: >-
+    The rose syrup, cooked vermicelli and soaked basil seed all keep well chilled and separate;
+    assemble the glass itself only at service, since the layered look does not survive standing.
+  batchKeepDays: 2
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="layer">
+  Spoon the <Qty ref="syrup"/> into the bottom of a tall glass, then add the
+  <Qty ref="vermicelli"/> and the <Qty ref="basil-seeds"/> on top of it.
+</Step>
+
+<Step id="pour">
+  Pour the cold <Qty ref="milk"/> slowly down the side of the glass to fill it.
+</Step>
+
+<Step id="top">
+  Finish with the <Qty ref="ice-cream"/> on top and serve with a long spoon.
+</Step>

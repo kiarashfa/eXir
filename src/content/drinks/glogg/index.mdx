@@ -1,0 +1,116 @@
+---
+id: classic
+label: Classic
+name: Glogg
+subtitle: Red wine warmed with cardamom and cinnamon, fortified with aquavit and served with the raisins and almonds still in the glass.
+defaultDrinks: 2
+method: heated
+dilutionClass: none
+glasswareRef: mug
+iceStyle: none
+servedOverIce: false
+serveTempC: 65
+bitterness: none
+batchable: full
+zeroProof: false
+tags:
+  category: [cocktail, hot-drink]
+  origin: [sweden]
+  method: [heated]
+  occasion: [holiday]
+difficulty: Easy
+names:
+  alsoKnownAs:
+    - name: Glögg
+      region: Sweden
+  notToBeConfusedWith:
+    - name: Gluhwein
+      note: The German Christmas-market wine, warmed with cinnamon and citrus but never fortified with a spirit and never served with raisins or almonds in the cup.
+    - name: Mulled Wine
+      note: The British version, unstandardised in its spice mix and, like Gluhwein, poured without any added spirit.
+ingredients:
+  - id: wine
+    ingredientRef: red-wine
+    formRef: standard
+    amount: 240
+    unit: ml
+  - id: aquavit
+    ingredientRef: aquavit
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: sugar
+    ingredientRef: demerara-sugar
+    formRef: standard
+    amount: 30
+    unit: g
+  - id: cardamom
+    ingredientRef: cardamom
+    formRef: standard
+    amount: 2
+    unit: g
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 4
+    unit: g
+  - id: cloves
+    ingredientRef: cloves
+    formRef: whole
+    amount: 1
+    unit: g
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 20
+    unit: g
+    consumedFraction: 0.1
+    consumedFractionNote: >-
+      Only the zest, pared off in strips, goes into the pot; the fruit
+      itself is not used.
+  - id: raisins
+    ingredientRef: raisins
+    formRef: standard
+    amount: 12
+    unit: g
+  - id: almonds
+    ingredientRef: almonds
+    formRef: blanched
+    amount: 10
+    unit: g
+steps:
+  - { id: steep, durationSec: 600, type: passive, phase: make }
+  - { id: warm, durationSec: 300, type: active, phase: make }
+  - { id: pour, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: warm
+    text: >-
+      The wine is warmed gently rather than boiled, since a boil drives off
+      the alcohol the <Qty ref="aquavit"/> was added for and turns the
+      spices bitter; it should steam without ever bubbling.
+  - kind: pitfall
+    text: >-
+      The <Qty ref="raisins"/> and <Qty ref="almonds"/> are eaten from the
+      bottom of the cup with a small spoon once the wine is drunk, not
+      strained out before serving; a Glogg poured through a strainer has
+      left out half of what makes it this drink rather than a plain mulled
+      wine.
+---
+
+<Step id="steep">
+  Warm the <Qty ref="wine"/> with the <Qty ref="sugar"/>, the
+  <Qty ref="cardamom"/>, the <Qty ref="cinnamon"/>, the <Qty ref="cloves"/>
+  and the <Qty ref="orange"/> zest over low heat, then take it off the heat
+  and let it steep, covered, for <Dur step="steep"/>.
+</Step>
+
+<Step id="warm">
+  Return to low heat and warm through for <Dur step="warm"/>, then stir in
+  the <Qty ref="aquavit"/>.
+</Step>
+
+<Step id="pour">
+  Divide the <Qty ref="raisins"/> and <Qty ref="almonds"/> between mugs and
+  strain the hot wine over them.
+</Step>

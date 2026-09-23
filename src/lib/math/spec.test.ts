@@ -51,8 +51,8 @@ function resolve(pairs: Array<[IngredientLine, Ingredient]>): ResolvedLine[] {
 }
 
 const gin = ingredient('gin', 'gin', { abvPercent: 40 });
-const aperitivo = ingredient('campari', 'bitter-aperitivo', { abvPercent: 25, sugarGPer100: 24 });
-const vermouth = ingredient('sweet-vermouth', 'vermouth', { abvPercent: 16, sugarGPer100: 13 });
+const aperitivo = ingredient('campari', 'bitter-aperitivo', { abvPercent: 25, sugarGPer100: 24, per100Basis: 'ml' });
+const vermouth = ingredient('sweet-vermouth', 'vermouth', { abvPercent: 16, sugarGPer100: 13, per100Basis: 'ml' });
 
 const equalParts: ResolvedLine[] = resolve([
   [line('gin', 'gin', 30), gin],
@@ -83,6 +83,24 @@ test('the composition of an equal-parts stirred build', () => {
   // 24 g/100ml over 30 ml, plus 13 g/100ml over 30 ml.
   close(c.sugarG, 11.1);
   close(c.acidG, 0);
+});
+
+// A dataset figure per 100 g on a line poured in millilitres crosses through
+// the density; a label figure per 100 ml does not. Reading the first as the
+// second understated every dense sweet liquid by its own density.
+test('per-100 figures are read in the basis the Form states', () => {
+  const perGram = ingredient('honey', 'sweetener', { abvPercent: 0, densityGPerMl: 1.43, sugarGPer100: 82 });
+  const perMl = ingredient('syrup', 'syrup', {
+    abvPercent: 0,
+    densityGPerMl: 1.23,
+    sugarGPer100: 61,
+    per100Basis: 'ml',
+  });
+
+  // 10 ml of honey weighs 14.3 g, and 82% of that is sugar.
+  close(computeComposition(resolve([[line('honey', 'honey', 10), perGram]])).sugarG, 11.726);
+  // 10 ml of a syrup stated per 100 ml is simply a tenth of the figure.
+  close(computeComposition(resolve([[line('syrup', 'syrup', 10), perMl]])).sugarG, 6.1);
 });
 
 test('the spec panel reproduces the reference figures', () => {
@@ -450,6 +468,28 @@ test('a post-brew line carries its own uncertainty into the final volume', () =>
   assert.equal(spec.finalVolumeEstimated, true);
 });
 
+// A brewed drink that then meets ice. The dilution acts on what leaves the
+// brewer — the yield and whatever joins it — never on the dose and brew water,
+// and it survives into the final volume. Getting either half wrong published
+// an espresso martini undiluted.
+test('a brewed drink that is shaken is diluted on its yield, not its brew water', () => {
+  const spirit = ingredient('vodka', 'vodka', { abvPercent: 40, densityGPerMl: 0.94 });
+  const lines: ResolvedLine[] = resolve([
+    [gramLine('dose', 'black-tea', 10), leaf],
+    [line('brew-water', 'water', 200), brewWater],
+    [line('vodka', 'vodka', 60), spirit],
+  ]);
+  const spec = computeDrinkSpec(
+    { ...milkTea, dilutionClass: 'shaken', zeroProof: false, lines: lines.map((r) => r.line) },
+    lines,
+  );
+
+  // Basis 180 + 60 = 240; shaken takes half of it again.
+  close(spec.dilution.dilutionMl, 120);
+  close(spec.finalVolumeMl, 360);
+  close(spec.alcohol.finalAbvPercent, (60 * 0.4 * 100) / 360);
+});
+
 test('a drink flagged zeroProof that computes above the bound is caught', () => {
   const extract = ingredient('vanilla', 'flavouring', {
     abvPercent: 35,
@@ -479,4 +519,53 @@ test('a drink flagged zeroProof that computes above the bound is caught', () => 
     spec.warnings.some((w) => w.includes('Flagged zeroProof')),
     `expected a zeroProof warning, got: ${spec.warnings.join(' | ')}`,
   );
+});
+
+// ---------------------------------------------------------------------------
+// Fermentation changes what the ingredient list implies. The alcohol is in no
+// line, so without this a ferment published 0% on its bar and left the energy
+// of its declared alcohol out; and the sugar a yeast ate stayed in the figure.
+// ---------------------------------------------------------------------------
+
+const sweetWater = ingredient('sugar-water', 'syrup', { abvPercent: 0, densityGPerMl: 1, sugarGPer100: 10, per100Basis: 'ml' });
+const fermentLines: ResolvedLine[] = resolve([[line('base', 'sugar-water', 1000), sweetWater]]);
+const ferment = (f: Partial<NonNullable<DrinkVersion['ferment']>>): DrinkVersion => ({
+  id: 'classic',
+  label: 'Classic',
+  defaultDrinks: 4,
+  method: 'fermented',
+  dilutionClass: 'none',
+  bitterness: 'none',
+  batchable: 'none',
+  lines: fermentLines.map((r) => r.line),
+  steps: [],
+  ferment: { stages: [{ id: 'f1', label: 'Primary', days: 5, tempC: [20, 24], sealed: false }], developsAlcohol: false, ...f },
+});
+
+test('a yeast ferment is charged at least the sugar its declared alcohol came from', () => {
+  const spec = computeDrinkSpec(ferment({ developsAlcohol: true, estimatedAbvRange: [1, 3] }), fermentLines);
+  // 250 ml a drink at the 2% midpoint: 5 ml ethanol, 3.945 g, from 7.72 g of sugar.
+  const ethanolG = 250 * 0.02 * 0.789;
+  close(spec.composition.sugarG, 25 - ethanolG / 0.511, 1e-2);
+  close(spec.nutrition.alcoholKcal, ethanolG * 7, 1e-2);
+  assert.equal(spec.bars.find((b) => b.key === 'strong')?.display, '1–3% ABV');
+});
+
+test('an authored residual sugar range sets the finished sugar outright', () => {
+  const spec = computeDrinkSpec(
+    ferment({ residualSugarGPerL: [20, 40], residualSugarNote: 'cited' }),
+    fermentLines,
+  );
+  close(spec.sugarGPerL, 30, 1e-6);
+  // 25 g in, 7.5 g left: the 17.5 g the ferment used is no longer energy.
+  close(spec.nutrition.macroKcal, 7.5 * 4, 1e-6);
+});
+
+test('a ferment that MAKES sugar from starch adds no energy for it', () => {
+  const spec = computeDrinkSpec(
+    ferment({ residualSugarGPerL: [150, 150], residualSugarNote: 'cited' }),
+    fermentLines,
+  );
+  close(spec.sugarGPerL, 150, 1e-6);
+  close(spec.nutrition.macroKcal, 25 * 4, 1e-6);
 });

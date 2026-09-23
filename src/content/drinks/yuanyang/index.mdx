@@ -1,0 +1,114 @@
+---
+id: classic
+label: Classic
+name: Yuanyang
+subtitle: Hong Kong milk tea lengthened with brewed coffee, three parts coffee to seven of tea.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Both halves are brewed and pulled to order and combined at the last
+  moment; either one held and reheated separately changes the drink.
+zeroProof: true
+difficulty: Medium
+family: steeped-infusion
+familyRole: descendant
+derivedFrom: hong-kong-milk-tea
+tags:
+  category: [coffee]
+  origin: [china]
+  method: [brewed]
+names:
+  alsoKnownAs:
+    - name: Yuenyeung
+    - name: Coffee milk tea
+      region: Hong Kong
+  notToBeConfusedWith:
+    - name: Hong Kong Milk Tea
+      note: The tea half of this drink on its own, with no coffee added.
+ingredients:
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 8
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      The leaf is steeped hard for its strength and strained out again; what
+      it leaves behind is dissolved rather than weighable.
+  - id: milk
+    ingredientRef: evaporated-milk
+    amount: 25
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    amount: 10
+    unit: g
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 14
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the brew and the rest stays
+      in the filter, the middle of the Specialty Coffee Association's
+      published extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 290
+    unit: ml
+    portions:
+      - { id: tea-water, amount: 170 }
+      - { id: coffee-water, amount: 120 }
+steps:
+  - { id: steep, durationSec: 300, type: passive, phase: make }
+  - { id: pull, durationSec: 30, type: active, phase: make }
+  - { id: brew, durationSec: 180, type: "parallel-with:pull", phase: make }
+  - { id: combine, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: combine
+    text: >-
+      The tea is poured first and the coffee added after, rather than the
+      other way round, so the heavier milk tea sits underneath and the two
+      marble together as they meet instead of the coffee sinking through a
+      settled layer of milk.
+  - kind: pitfall
+    text: >-
+      Brewing the coffee weak to match the tea's volume rather than to its
+      own strength leaves a cup where the milk tea simply dilutes the
+      coffee; the ratio is meant to be three parts coffee to seven of tea by
+      volume, not a splash of coffee added to a mug of tea.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. Both the tea and the coffee are brewed to
+    order and combined while both are still hot.
+  freezable: false
+---
+
+<Step id="steep">
+  Pour the <Qty ref="tea-water"/> at <Temp c={100}/> over the <Qty ref="tea"/>
+  and leave to steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="pull">
+  Strain the tea through a fine cloth sock back and forth between two
+  vessels for <Dur step="pull"/>, then stir in the <Qty ref="milk"/> and the
+  <Qty ref="sugar"/>.
+</Step>
+
+<Step id="brew">
+  While the tea is pulled, brew the <Qty ref="coffee"/> with the
+  <Qty ref="coffee-water"/> at <Temp c={95}/> over <Dur step="brew"/>.
+</Step>
+
+<Step id="combine">
+  Pour the milk tea into the mug, then add the coffee on top and stir once to
+  marble the two together.
+</Step>

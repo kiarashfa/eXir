@@ -1,0 +1,84 @@
+---
+id: classic
+label: Classic
+name: Ginger Ale
+subtitle: Fresh ginger syrup and lime, topped with soda water.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The ginger syrup and lime batch cleanly, but the soda water is added fresh at the glass so it
+  is still carrying bubbles when it is drunk.
+zeroProof: true
+tags:
+  category: [soft-traditional]
+  origin: [british-isles]
+  method: [built]
+  occasion: [aperitivo]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Ginger beer
+      note: A stronger, spicier and traditionally fermented drink; this built, syrup-and-soda style is the pale, milder ale rather than the beer.
+ingredients:
+  - id: syrup
+    ingredientRef: ginger-syrup
+    formRef: standard
+    amount: 25
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 8
+    unit: ml
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 115
+    unit: ml
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: top
+    text: >-
+      The soda is poured last and down the side of the glass rather than straight onto the
+      syrup, so the drink keeps as much of its fizz as it can rather than foaming flat before
+      it is drunk.
+  - kind: pitfall
+    text: >-
+      This force-carbonated, syrup-based style is milder and less spicy than a fermented ginger
+      beer; built to the same proportions as one, it tastes thin rather than sharp.
+substitutions:
+  - lineRef: syrup
+    substitute: simple-syrup
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume, but the drink loses all of its ginger character and becomes a
+      plain sweetened soda water with a squeeze of lime.
+    impact:
+      flavour: significant change
+      strength: no change
+      sweetness: no change
+makeAhead:
+  aheadInstructions: >-
+    The syrup and lime keep well mixed together and refrigerated; add the soda water fresh at
+    the glass, since it goes flat within minutes once combined.
+  batchKeepDays: 14
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="build">
+  Stir the <Qty ref="syrup"/> and the <Qty ref="lime"/> together in a glass filled with ice.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/> and stir once, gently, to keep the fizz.
+</Step>

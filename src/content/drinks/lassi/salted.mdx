@@ -1,0 +1,89 @@
+---
+id: salted
+label: Salted
+name: Lassi
+subtitle: Yoghurt blended with water, salt and toasted cumin, savoury rather than sweet.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: lassi-glass
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: none
+zeroProof: true
+family: blended-frozen
+familyRole: descendant
+derivedFrom: lassi
+tags:
+  category: [smoothie-shake]
+  origin: [south-asia]
+  method: [blended]
+difficulty: Easy
+names:
+  alsoKnownAs:
+    - name: Namkeen Lassi
+      region: India
+  notToBeConfusedWith:
+    - name: Ayran
+      note: The Turkish counterpart — thinner, whisked rather than blended, and without this drink's toasted cumin.
+ingredients:
+  - id: yoghurt
+    ingredientRef: yoghurt
+    formRef: standard
+    amount: 180
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 80
+    unit: ml
+  - id: salt
+    ingredientRef: salt
+    formRef: standard
+    amount: 2
+    unit: g
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 3
+    unit: g
+  - id: cumin
+    ingredientRef: cumin
+    formRef: ground
+    amount: 1
+    unit: g
+  - id: ice
+    ingredientRef: water
+    formRef: standard
+    amount: 30
+    unit: g
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: blend, durationSec: 25, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      The cumin is toasted and ground fresh before it goes in, which is
+      what a savoury lassi is built around; a pre-ground jar tastes flat
+      and dusty next to the bright, slightly bitter oil a fresh toast and
+      grind releases.
+  - kind: pitfall
+    text: >-
+      Salt added after blending never fully dissolves into yoghurt this
+      thick, and grains left at the bottom of the glass throw the last few
+      sips off balance from the first.
+makeAhead:
+  freezable: false
+---
+
+<Step id="build">
+  Combine the <Qty ref="yoghurt"/>, <Qty ref="water"/>, <Qty ref="salt"/>,
+  <Qty ref="sugar"/> and <Qty ref="cumin"/> in a blender jug, then add the
+  <Qty ref="ice"/>.
+</Step>
+
+<Step id="blend">
+  Blend for <Dur step="blend"/>, until smooth and lightly frothed.
+</Step>

@@ -1,0 +1,114 @@
+---
+id: classic
+label: Classic
+name: Makgeolli
+subtitle: Steamed glutinous rice fermented a week with nuruk into a cloudy, faintly sweet, low-alcohol rice wine.
+defaultDrinks: 4
+method: fermented
+dilutionClass: none
+glasswareRef: rocks
+iceStyle: none
+servedOverIce: false
+serveTempC: 8
+bitterness: none
+batchable: full
+zeroProof: false
+difficulty: Hard
+tags:
+  category: [kitchen-ferment]
+  origin: [korea]
+  method: [fermented]
+names:
+  alsoKnownAs:
+    - { name: Takju, region: Korea }
+ferment:
+  stages:
+    - { id: f1, label: Primary, days: 7, tempC: [20, 25], sealed: false }
+  developsAlcohol: true
+  estimatedAbvRange: [6, 9]
+  residualSugarGPerL: [1, 4]
+  residualSugarNote: >-
+    Unsweetened makgeolli ferments nearly dry: comparative analyses of Korean
+    makgeolli report reducing sugar near 200 mg per 100 ml, about 2 g/L
+    (Korea Science, Food Science and Preservation, JAKO201111436232512). The
+    sweetness of many bottled brands is added sweetener, not residual sugar.
+  safetyNote: >-
+    The crock is covered loosely rather than sealed, since the ferment
+    produces real carbon dioxide as it works. A batch that smells sharply
+    of solvent, or shows pink, orange or fuzzy growth on the surface rather
+    than a clean white cap, has gone wrong and should be discarded rather
+    than pressed and served.
+ingredients:
+  - id: rice
+    ingredientRef: glutinous-rice
+    formRef: cooked
+    amount: 500
+    unit: g
+  - id: nuruk
+    ingredientRef: nuruk
+    formRef: standard
+    amount: 50
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1000
+    unit: ml
+    portions:
+      - { id: mash-water, amount: 600, note: stirred into the ferment itself }
+      - { id: dilution-water, amount: 400, note: stirred in at pressing to bring it to drinking strength }
+steps:
+  - { id: steam, durationSec: 2400, type: active, phase: prep }
+  - { id: cool, durationSec: 1800, type: passive, phase: prep }
+  - { id: combine, durationSec: 90, type: active, phase: prep }
+  - { id: ferment, durationSec: 604800, type: passive, phase: rest }
+  - { id: press, durationSec: 300, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: ferment
+    text: >-
+      Nuruk carries mould, wild yeast and bacteria together, so it
+      converts the rice's starch to sugar and ferments that sugar to
+      alcohol in the same vessel, unlike a two-step process using a single
+      cultured mould and a separately pitched yeast.
+  - kind: pitfall
+    text: >-
+      Straining too finely, or too hard, strips out the fine rice sediment
+      that gives makgeolli its characteristic milky, cloudy body; a coarse
+      press through cloth is meant to leave some behind rather than clarify
+      the drink.
+makeAhead:
+  aheadInstructions: >-
+    The ferment itself is the make-ahead step. Pressed and diluted, it
+    keeps refrigerated for a few days, continuing to sour slowly; the
+    settled sediment is meant to be shaken back through before pouring.
+  batchKeepDays: 5
+  batchStorage: refrigerated and sealed
+  freezable: false
+---
+
+<Step id="steam">
+  Steam the <Qty ref="rice"/> until fully tender.
+</Step>
+
+<Step id="cool">
+  Spread the rice out and let it cool fully to room temperature.
+</Step>
+
+<Step id="combine">
+  Crumble the <Qty ref="nuruk"/> over the cooled rice and mix in the
+  <Qty ref="mash-water"/>, working it through evenly.
+</Step>
+
+<Step id="ferment">
+  Cover the crock loosely and leave it at room temperature for
+  <Dur step="ferment"/>, stirring once a day for the first few days, until
+  it smells sweet and yeasty and rises with visible bubbles.
+</Step>
+
+<Step id="press">
+  Mash the ferment against a coarse cloth to press out the liquid, then
+  stir in the <Qty ref="dilution-water"/> to loosen it to drinking
+  strength, and refrigerate until cold. Shake the bottle before pouring to
+  bring the settled rice back into suspension.
+</Step>

@@ -1,0 +1,35 @@
+{
+  "id": "passion-fruit",
+  "name": "Passion Fruit",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "juice",
+      "label": "Fresh juice, purple",
+      "proseName": "fresh passion fruit juice",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0449,
+      "densitySource": "measured",
+      "sugarGPer100": 13.4,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 51,
+        "carbohydrateG": 13.6,
+        "sugarsG": 13.4,
+        "proteinG": 0.39,
+        "fatG": 0.05,
+        "saturatedFatG": 0.004,
+        "fibreG": 0.2,
+        "sodiumMg": 6
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169109",
+      "sourceNote": "Passion-fruit juice, purple, raw. Public domain. The cup portion's own density is adopted as a true figure because the juice is poured and strained from the pulp rather than packed. No titratable acidity is reported by the dataset and no other source was checked, so acidPercent is left off rather than estimated — the fruit tastes considerably more tart than a zero figure implies."
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+---
+id: classic
+label: Classic
+name: Salep
+subtitle: Milk thickened with ground orchid tuber, served hot and dusted with cinnamon.
+defaultDrinks: 1
+method: heated
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: none
+batchable: none
+batchNote: >-
+  Heated and thickened to order. It sets as it cools, so it is served
+  straight from the pan rather than held.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [hot-drink]
+  origin: [turkey-anatolia]
+  method: [heated]
+names:
+  notToBeConfusedWith:
+    - name: Sahlab
+      note: This site's Levantine page for the same root — usually thickened with cornflour rather than the orchid powder itself, and flavoured with vanilla rather than cinnamon.
+ingredients:
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 230
+    unit: ml
+  - id: salep
+    ingredientRef: salep
+    formRef: powder
+    amount: 4
+    unit: g
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 15
+    unit: g
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 1
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Ground over the foam at the end rather than cooked into the pan; it
+      seasons the surface and contributes no volume of its own.
+steps:
+  - { id: slurry, durationSec: 20, type: active, phase: prep }
+  - { id: heat, durationSec: 240, type: active, phase: make }
+  - { id: dust, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: heat
+    text: >-
+      The milk is brought up slowly, whisking the whole time, because
+      salep thickens through a long, gentle swell rather than a quick
+      gelling; rushed over high heat it clumps before it has had time to
+      dissolve evenly.
+  - kind: pitfall
+    text: >-
+      A pinch of salep more than the recipe calls for sets the drink to a
+      spoonable paste rather than a thick, pourable one; the tuber's starch
+      is far stronger than cornflour by weight and does not forgive being
+      guessed at.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. It thickens as it cools and is served
+    straight from the pan.
+  freezable: false
+---
+
+<Step id="slurry">
+  Whisk the <Qty ref="salep"/> with a small spoonful of the cold
+  <Qty ref="milk"/> to a smooth paste.
+</Step>
+
+<Step id="heat">
+  Warm the rest of the milk with the <Qty ref="sugar"/> over
+  <Dur step="heat"/>, whisking in the paste, until thickened to a texture
+  that coats the back of a spoon.
+</Step>
+
+<Step id="dust">
+  Pour into a warmed mug and dust the surface with finely grated
+  <Qty ref="cinnamon"/>.
+</Step>

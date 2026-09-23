@@ -802,7 +802,13 @@ const factRows = built.map(({ v, spec }) => ({
                 </div>
 
                 <p class="disclaimer" data-when-service="order">
-                  {fit.iceMl > 0 ? (
+                  {fit.iceMl > 0 && fit.iceTopped ? (
+                    <>
+                      {Math.round(fit.liquidMl)} ml of liquid leaves room for at least {fit.iceMl} ml of
+                      {' '}{fit.iceStyle} ice topped in after it, inside the
+                      {' '}{v.glass.capacityMl} ml the glass holds.
+                    </>
+                  ) : fit.iceMl > 0 ? (
                     <>
                       {Math.round(fit.liquidMl)} ml of liquid plus {fit.iceMl} ml of {fit.iceStyle}
                       {' '}ice occupies about {Math.round(fit.neededMl)} ml, inside the

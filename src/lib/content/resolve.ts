@@ -198,6 +198,7 @@ function toVersion(
     ...(fm['glasswareRef'] ? { glasswareRef: String(fm['glasswareRef']) } : {}),
     ...(fm['iceStyle'] ? { iceStyle: String(fm['iceStyle']) } : {}),
     ...(fm['servedOverIce'] !== undefined ? { servedOverIce: Boolean(fm['servedOverIce']) } : {}),
+    ...(fm['iceTopped'] === true ? { iceTopped: true } : {}),
     ...(fm['serveTempC'] !== undefined ? { serveTempC: Number(fm['serveTempC']) } : {}),
     ...(fm['batchNote'] ? { batchNote: String(fm['batchNote']) } : {}),
     ...(fm['zeroProof'] !== undefined ? { zeroProof: Boolean(fm['zeroProof']) } : {}),

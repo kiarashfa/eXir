@@ -1,0 +1,9 @@
+{
+  "id": "pint",
+  "name": "Pint glass",
+  "capacityMl": 570,
+  "shapeFamily": "tall",
+  "note": "Imperial pint; the standard glass for beer and beer cocktails like a Michelada.",
+  "iceDisplacementMl": { "cubed": 327, "block": 312, "crushed": 350, "none": 0 },
+  "iceDisplacementNote": "Solid ice only. No measured figure exists for this shape; scaled from the highball and Collins on this site, both of which land near 57% of capacity displaced by cubed ice, about 95% of that figure for a single block and roughly a quarter more for crushed. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
+}

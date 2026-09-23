@@ -1,0 +1,24 @@
+{
+  "id": "salep",
+  "name": "Salep",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Sahlab flour", "note": "The Arabic name for the same tuber powder, used where the root itself rather than a starch substitute is meant." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "powder",
+      "label": "Ground orchid tuber",
+      "proseName": "salep powder",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "FoodData Central carries no record for salep, the ground tuber of wild orchids, and none is claimed here rather than estimated. It matters less than it looks: a drink is thickened with only a small spoonful, and the bulk of what is measured, in both volume and nutrition, comes from the milk and sugar around it."
+    }
+  ]
+}

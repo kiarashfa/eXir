@@ -4,6 +4,6 @@
   "capacityMl": 470,
   "shapeFamily": "tall",
   "note": "A tall, curved-sided glass sized for a long drink with a large juice component, wide enough at the mouth to carry a fruit-wedge garnish.",
-  "iceDisplacementMl": { "cubed": 270, "block": 260, "crushed": 335, "none": 0 },
-  "iceDisplacementNote": "Solid ice only, scaled from the same tall-glass ratios as the highball and Collins on this site rather than measured directly: both land near 57% of capacity displaced by cubed ice and roughly 95% of that figure for a single block, and crushed packs to about a quarter more than cubed. No measured figure exists for this specific shape."
+  "iceDisplacementMl": { "cubed": 270, "block": 260, "crushed": 289, "none": 0 },
+  "iceDisplacementNote": "Solid ice only, scaled from the same tall-glass ratios as the highball and Collins on this site rather than measured directly: both land near 57% of capacity displaced by cubed ice and roughly 95% of that figure for a single block. No measured figure exists for this specific shape. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
 }

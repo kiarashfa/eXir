@@ -1,0 +1,96 @@
+---
+id: classic
+label: Classic
+name: Gluhwein
+subtitle: Red wine warmed with cinnamon, star anise and orange, poured plain with no spirit added, the way German Christmas markets serve it.
+defaultDrinks: 2
+method: heated
+dilutionClass: none
+glasswareRef: mug
+iceStyle: none
+servedOverIce: false
+serveTempC: 65
+bitterness: none
+batchable: full
+zeroProof: false
+tags:
+  category: [cocktail, hot-drink]
+  origin: [germany]
+  method: [heated]
+  occasion: [holiday]
+difficulty: Easy
+names:
+  alsoKnownAs:
+    - name: Glühwein
+      region: Germany
+  notToBeConfusedWith:
+    - name: Glogg
+      note: The Swedish version, fortified with aquavit or another spirit and served with raisins and almonds in the cup, neither of which belongs in a Gluhwein.
+    - name: Mulled Wine
+      note: The British version, closer in shape to this one but built to no fixed spice mix, and more often flavoured with lemon and nutmeg than with the star anise this recipe uses.
+ingredients:
+  - id: wine
+    ingredientRef: red-wine
+    formRef: standard
+    amount: 300
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 25
+    unit: g
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 4
+    unit: g
+  - id: cloves
+    ingredientRef: cloves
+    formRef: whole
+    amount: 1
+    unit: g
+  - id: star-anise
+    ingredientRef: star-anise
+    formRef: whole
+    amount: 2
+    unit: g
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 30
+    unit: g
+    consumedFraction: 0.15
+    consumedFractionNote: >-
+      Sliced into the pot for its peel and juice; most of the fruit's own
+      body is left in the wine and strained out with the spices.
+steps:
+  - { id: warm, durationSec: 300, type: active, phase: make }
+  - { id: steep, durationSec: 600, type: passive, phase: rest }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: warm
+    text: >-
+      The wine never comes to a boil, only a bare steam, since boiling both
+      drives off alcohol and turns the star anise bitter over time.
+  - kind: pitfall
+    text: >-
+      No spirit goes into a Gluhwein at any point; stirring in a shot of
+      something stronger is what turns this specific drink into a Glogg
+      instead, whatever the spice mix in the pot.
+---
+
+<Step id="warm">
+  Combine the <Qty ref="wine"/>, the <Qty ref="sugar"/>, the
+  <Qty ref="cinnamon"/>, the <Qty ref="cloves"/>, the <Qty ref="star-anise"/>
+  and the <Qty ref="orange"/> in a pot and warm gently until the sugar
+  dissolves and the wine steams.
+</Step>
+
+<Step id="steep">
+  Take off the heat, cover and let the spices steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="pour">
+  Warm through again briefly and strain hot into mugs.
+</Step>

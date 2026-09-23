@@ -1,0 +1,31 @@
+{
+  "id": "saffron",
+  "name": "Saffron",
+  "kind": "ingredient",
+  "category": "spice",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "threads",
+      "label": "Threads",
+      "proseName": "saffron threads",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 310,
+        "carbohydrateG": 65.37,
+        "proteinG": 11.43,
+        "fatG": 5.85,
+        "saturatedFatG": 1.586,
+        "fibreG": 3.9,
+        "sodiumMg": 148
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170934",
+      "sourceNote": "Spices, saffron. Public domain. USDA reports no sugars for this record, so sugarGPer100 is left off rather than estimated. No density: the record's own tablespoon figure (0.142 g/ml) is a packing density, not a true one, and the threads are steeped and left in or strained rather than poured by volume."
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+---
+id: cooked
+label: Cooked
+name: Eggnog
+subtitle: A stirred custard cooked gently to set the eggs safely, then chilled and spiked.
+defaultDrinks: 2
+method: heated
+dilutionClass: none
+glasswareRef: mug
+iceStyle: none
+servedOverIce: false
+serveTempC: 4
+bitterness: none
+batchable: full
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [heated]
+  occasion: [holiday]
+difficulty: Medium
+ingredients:
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 155
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 40
+    unit: g
+  - id: egg-white
+    ingredientRef: egg
+    formRef: white
+    amount: 48
+    unit: ml
+  - id: egg-yolk
+    ingredientRef: egg
+    formRef: yolk
+    amount: 25
+    unit: ml
+  - id: bourbon
+    ingredientRef: bourbon
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: cream
+    ingredientRef: cream
+    formRef: heavy
+    amount: 45
+    unit: ml
+  - id: vanilla
+    ingredientRef: vanilla
+    formRef: standard
+    amount: 2
+    unit: ml
+  - id: garnish-nutmeg
+    ingredientRef: nutmeg
+    formRef: ground
+    amount: 0.3
+    unit: g
+    garnish: true
+steps:
+  - { id: whisk, durationSec: 30, type: active, phase: prep }
+  - { id: temper, durationSec: 120, type: active, phase: make }
+  - { id: cook, durationSec: 300, type: active, phase: make }
+  - { id: chill, durationSec: 3600, type: passive, phase: rest }
+  - { id: finish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: cook
+    text: >-
+      Cooking the custard to a bare simmer, never a boil, is what pasteurises
+      the whisked eggs without scrambling them; a thermometer reading
+      <Temp c={71}/> is the target, well short of the point eggs curdle.
+  - kind: pitfall
+    text: >-
+      A custard heated too fast scrambles at the edges of the pan before the
+      centre catches up, which is why it wants a double boiler or the
+      lowest direct heat and constant stirring rather than a hot pan left
+      unattended.
+makeAhead:
+  aheadInstructions: >-
+    This version is built to be made ahead: cook, cool and refrigerate the
+    base a day before serving, and stir the <Qty ref="bourbon"/> in either
+    at the end of cooking or just before service.
+  batchKeepDays: 4
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="whisk">
+  Whisk the <Qty ref="egg-white"/> and <Qty ref="egg-yolk"/> with the
+  <Qty ref="sugar"/> together until pale.
+</Step>
+
+<Step id="temper">
+  Warm the <Qty ref="milk"/> until it steams, then pour it into the egg
+  mixture in a thin stream while whisking, so the eggs come up to
+  temperature gradually rather than scrambling on contact.
+</Step>
+
+<Step id="cook">
+  Return everything to the pan and cook over low heat, stirring constantly,
+  until it thickens enough to coat the back of a spoon.
+</Step>
+
+<Step id="chill">
+  Stir in the <Qty ref="bourbon"/>, the <Qty ref="cream"/> and the
+  <Qty ref="vanilla"/>, then cover and refrigerate until fully cold.
+</Step>
+
+<Step id="finish">
+  Pour into mugs and grate the <Qty ref="garnish-nutmeg"/> over the top.
+</Step>

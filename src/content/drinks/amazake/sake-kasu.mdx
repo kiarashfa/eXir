@@ -1,0 +1,80 @@
+---
+id: sake-kasu
+label: Sake lees
+name: Amazake
+subtitle: Sake lees dissolved into hot sweetened water, carrying a little of the alcohol left over from brewing.
+defaultDrinks: 2
+method: heated
+dilutionClass: none
+glasswareRef: mug
+iceStyle: none
+servedOverIce: false
+serveTempC: 65
+bitterness: none
+batchable: full
+zeroProof: false
+difficulty: Easy
+tags:
+  category: [kitchen-ferment]
+  origin: [japan]
+  method: [heated]
+ingredients:
+  - id: kasu
+    ingredientRef: sake-kasu
+    formRef: standard
+    amount: 150
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 450
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 45
+    unit: g
+  - id: ginger
+    ingredientRef: ginger
+    formRef: standard
+    amount: 5
+    unit: g
+    garnish: true
+steps:
+  - { id: dissolve, durationSec: 300, type: active, phase: make }
+  - { id: sweeten, durationSec: 60, type: active, phase: make }
+  - { id: grate, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: dissolve
+    text: >-
+      The lees come as a dense, sticky sheet rather than a powder, so they
+      are torn into pieces and whisked into the hot water over heat rather
+      than simply stirred in cold, or they take far too long to break down.
+  - kind: pitfall
+    text: >-
+      Boiling the mixture hard drives off both the alcohol and the aroma
+      that make sake kasu amazake taste like what it is; it wants a steady
+      simmer, not a rolling one.
+makeAhead:
+  aheadInstructions: >-
+    Keeps refrigerated once made; reheat gently rather than in a hard boil.
+  batchKeepDays: 5
+  batchStorage: refrigerated and sealed
+  freezable: true
+---
+
+<Step id="dissolve">
+  Tear the <Qty ref="kasu"/> into pieces and whisk it into the <Qty ref="water"/>
+  over medium heat until it has fully broken down into a smooth, cloudy liquid.
+</Step>
+
+<Step id="sweeten">
+  Stir in the <Qty ref="sugar"/> and hold the pot at a bare simmer until it
+  dissolves.
+</Step>
+
+<Step id="grate">
+  Ladle into cups and finish each with a little of the <Qty ref="ginger"/>,
+  grated straight over the top.
+</Step>

@@ -1,0 +1,98 @@
+---
+id: classic
+label: Classic
+name: Moka Pot Coffee
+subtitle: Water pushed up through the grounds by steam pressure in a stovetop pot.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: espresso-cup
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Brewed to order over direct heat; the pot cannot be held on the stove
+  without cooking the coffee it has already made.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [coffee]
+  origin: [italy]
+  method: [brewed]
+names:
+  alsoKnownAs:
+    - name: Moka
+    - name: Caffettiera
+      region: Italy
+  notToBeConfusedWith:
+    - name: Espresso
+      note: Brewed at around one to two bar rather than the nine bar a pump machine reaches, so the cup is strong but lacks true crema.
+brew:
+  method: moka
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 100
+  grind: medium-fine
+  contactSec: 240
+  yieldMl: 65
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 12
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the pot and the rest stays in
+      the basket, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 100
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: fill, durationSec: 30, type: active, phase: prep }
+  - { id: brew, durationSec: 240, type: active, phase: make }
+  - { id: pour, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: brew
+    text: >-
+      The heat stays moderate rather than high, because it is the steam
+      building in the sealed base that pushes the water up, not a hard boil;
+      too much heat forces it through fast and pulls the same harsh
+      compounds a scorched shot would.
+  - kind: pitfall
+    text: >-
+      Leaving the pot on the burner once the chamber empties and starts
+      hissing scorches whatever coffee is left clinging to the funnel, and
+      that burnt note carries straight into the next cup poured from it.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead beyond grinding, and even that is better done
+    at the last moment: ground coffee loses its aromatics within minutes.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> to a medium-fine texture, finer than a drip
+  grind but coarser than an espresso grind.
+</Step>
+
+<Step id="fill">
+  Fill the base with the <Qty ref="water"/> below the pressure valve, seat
+  the funnel and pack the grounds level without tamping, then screw the top
+  chamber on.
+</Step>
+
+<Step id="brew">
+  Set the pot over moderate heat with the lid open and listen for the flow.
+  Brew for <Dur step="brew"/>, until the stream turns pale and starts to
+  sputter.
+</Step>
+
+<Step id="pour">
+  Take the pot off the heat as soon as it sputters and pour at once.
+</Step>

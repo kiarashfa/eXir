@@ -1,0 +1,100 @@
+---
+id: classic
+label: Classic
+name: Flat White
+subtitle: A double shot under a shallow layer of steamed milk, less of it and less foam than a latte.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: cappuccino-cup
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Steamed and pulled to order. Microfoam this thin collapses fast, so nothing
+  here is made ahead.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [coffee]
+  origin: [pacific-oceania]
+  method: [brewed]
+names:
+  notToBeConfusedWith:
+    - name: Caffe Latte
+      note: More milk and a taller glass; a flat white is a stronger, shorter drink with a shallow layer of microfoam rather than a deep pour of steamed milk.
+    - name: Cappuccino
+      note: A thick, spoonable collar of foam rather than the flat white's thin, glossy microfoam with no dry foam sitting on top.
+brew:
+  method: espresso
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 93
+  grind: fine
+  contactSec: 28
+  yieldMl: 50
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 36
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the shot and the rest stays in
+      the puck, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 100
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 130
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: steam, durationSec: 35, type: active, phase: make }
+  - { id: extract, durationSec: 28, type: "parallel-with:steam", phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: steam
+    text: >-
+      The wand is pulled from the milk earlier than a cappuccino needs,
+      leaving a glossy microfoam with almost no dry foam to spoon off, so
+      the whole pour sits at one texture rather than splitting into a cap
+      and a body.
+  - kind: pitfall
+    text: >-
+      A double ristretto pulled long, the way a single shot is, dilutes the
+      shot before the milk even goes in; the drink is meant to taste of
+      coffee first, and a thin shot leaves the milk with nothing to sit
+      on top of.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The milk is steamed and the shots pulled
+    together, in the couple of minutes before serving.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> fine for the espresso machine.
+</Step>
+
+<Step id="steam">
+  Steam the <Qty ref="milk"/> to a glossy microfoam, pulling the wand out
+  before a dry cap has time to build.
+</Step>
+
+<Step id="extract">
+  Pump the <Qty ref="water"/> through the grounds at <Temp c={93}/> for
+  <Dur step="extract"/> while the milk steams.
+</Step>
+
+<Step id="pour">
+  Pour the milk into the cup over the shot in one steady stream, finishing
+  with a thin, level surface rather than a raised cap.
+</Step>

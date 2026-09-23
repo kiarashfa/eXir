@@ -1,0 +1,128 @@
+---
+id: classic
+label: Classic
+name: Espresso Martini
+subtitle: Vodka, coffee liqueur and a fresh shot, shaken hard enough to raise a real crema.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: martini
+iceStyle: none
+servedOverIce: false
+bitterness: low
+batchable: partial
+batchNote: >-
+  The vodka, coffee liqueur and syrup can be pre-batched, but the espresso is
+  pulled fresh for each drink; a shot brewed ahead and reheated will not
+  shake up the same foam.
+zeroProof: false
+difficulty: Medium
+tags:
+  category: [cocktail]
+  origin: [british-isles]
+  method: [shaken]
+names:
+  alsoKnownAs:
+    - name: Vodka Espresso
+      note: The drink's original name, before it was renamed in the 1990s.
+  notToBeConfusedWith:
+    - name: Martini
+      note: No gin or vermouth; the name was adopted later for the glass it shares, not for any shared recipe.
+brew:
+  method: espresso
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 93
+  grind: fine
+  contactSec: 28
+  yieldMl: 30
+ingredients:
+  - id: vodka
+    ingredientRef: vodka
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: liqueur
+    ingredientRef: coffee-liqueur
+    formRef: standard
+    amount: 25
+    unit: ml
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 18
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the shot and the rest stays
+      in the puck, the middle of the Specialty Coffee Association's
+      published extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    amount: 10
+    unit: ml
+  - id: garnish
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 1
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Three whole beans float on the crema for show and aroma; they are not
+      eaten and contribute nothing to the drink itself.
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: extract, durationSec: 28, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: shake
+    text: >-
+      The shake is worked harder and longer than a spirit-only shake, because
+      it has to do two jobs at once: chill the drink and beat the espresso's
+      residual oils into the fine, tan foam the drink is served under.
+  - kind: pitfall
+    text: >-
+      A shot pulled ahead of time and left to cool loses the crema it needs
+      to shake into foam; the coffee has to go into the tin hot, straight off
+      the machine, or the drink comes up thin and flat on top.
+makeAhead:
+  aheadInstructions: >-
+    The vodka, coffee liqueur and syrup can be batched together and chilled,
+    but the espresso is always pulled fresh and added just before the shake.
+  batchKeepDays: 14
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> fine for the espresso machine.
+</Step>
+
+<Step id="extract">
+  Pump the <Qty ref="water"/> through the grounds at <Temp c={93}/> for
+  <Dur step="extract"/> and let the shot cool for a minute.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="vodka"/>, <Qty ref="liqueur"/>, hot shot and
+  <Qty ref="syrup"/> in a shaker with ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>, until the tin frosts and the foam
+  builds thick against the strainer.
+</Step>
+
+<Step id="strain">
+  Double strain into a chilled glass and set the <Qty ref="garnish"/> on the
+  crema.
+</Step>

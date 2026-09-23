@@ -12,6 +12,7 @@
       "id": "standard",
       "label": "Standard",
       "proseName": "Pimm's No.1",
+      "per100Basis": "ml",
       "abvPercent": 25,
       "densityGPerMl": 1.09,
       "densitySource": "estimated",

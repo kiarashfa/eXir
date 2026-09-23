@@ -17,6 +17,7 @@
       "id": "standard",
       "label": "Dry",
       "proseName": "dry vermouth",
+      "per100Basis": "ml",
       "abvPercent": 18,
       "densityGPerMl": 1.03,
       "densitySource": "estimated",

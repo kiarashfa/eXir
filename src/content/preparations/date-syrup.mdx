@@ -1,0 +1,72 @@
+---
+id: date-syrup
+name: Date Syrup
+kind: preparation
+category: syrup
+purchasable: true
+purchaseNote: >-
+  Sold as date molasses or silan in Middle Eastern grocers, generally more concentrated than
+  this home-soaked version, with less added water and a thicker pour.
+yieldMl: 425
+shelfLife:
+  days: 30
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Soaked and blended
+    proseName: date syrup
+    per100Basis: ml
+    abvPercent: 0
+    densityGPerMl: 1.12
+    densitySource: estimated
+    sugarGPer100: 27.9
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 116
+      carbohydrateG: 31.5
+      sugarsG: 27.9
+      proteinG: 0.76
+      fatG: 0.06
+      fibreG: 2.8
+      sodiumMg: 0.42
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      Dates are soaked, blended smooth and strained rather than steeped and discarded like a
+      spice, so unlike the site's other syrups their own sugar and mass carry through into the
+      Form rather than being treated as negligible. Figures are the mass balance of the dates
+      and the soaking water summed over the two lines, with a small allowance for pulp lost to
+      the strainer, rather than a bottle measurement — density and yield are both marked
+      estimated as a result. The density is that of a sugar solution at this strength rather than the whole input mass over the yield, which would count the pulp the strainer keeps. This home-soaked version is noticeably thinner and less sweet than
+      a bought date molasses, which is usually simmered down with little or no added water.
+ingredients:
+  - id: dates
+    ingredientRef: dates
+    formRef: whole
+    amount: 250
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 350
+    unit: ml
+steps:
+  - { id: soak, durationSec: 14400, type: passive, phase: rest }
+  - { id: blend, durationSec: 90, type: active, phase: make }
+  - { id: strain, durationSec: 120, type: active, phase: make }
+---
+
+<Step id="soak">
+  Soak the <Qty ref="dates"/> in the <Qty ref="water"/> until fully softened.
+</Step>
+
+<Step id="blend">
+  Blend smooth with the soaking water.
+</Step>
+
+<Step id="strain">
+  Strain through a fine sieve, pressing to recover as much syrup as possible, and discard the
+  fibrous pulp left behind.
+</Step>

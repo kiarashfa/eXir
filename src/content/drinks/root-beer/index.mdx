@@ -1,0 +1,66 @@
+---
+id: classic
+label: Classic
+name: Root Beer
+subtitle: Sassafras, sarsaparilla and wintergreen syrup, topped with soda water.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: low
+batchable: partial
+batchNote: >-
+  The root beer syrup batches and keeps well on its own; the soda water is added fresh at the
+  glass so it is still carrying bubbles when it is drunk.
+zeroProof: true
+tags:
+  category: [soft-traditional]
+  origin: [united-states]
+  method: [built]
+  occasion: [aperitivo]
+difficulty: Medium
+ingredients:
+  - id: syrup
+    ingredientRef: root-beer-syrup
+    formRef: standard
+    amount: 25
+    unit: ml
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 125
+    unit: ml
+steps:
+  - { id: build, durationSec: 15, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: top
+    text: >-
+      This is a force-carbonated, syrup-based root beer rather than a fermented one — the fizz
+      comes from the soda water rather than from yeast — which is how almost all root beer sold
+      today, and the version here, is actually made.
+  - kind: pitfall
+    text: >-
+      The sassafras this recipe calls for has to be a safrole-free bark or extract. Whole
+      sassafras bark and oil contain safrole, a compound US regulators prohibited as a food
+      additive after animal studies linked it to liver damage; raw bark sold for kitchen use
+      and every commercial root beer are required to be safrole-free as a result.
+makeAhead:
+  aheadInstructions: >-
+    The syrup batches and keeps well refrigerated. Add the soda water fresh at the glass, since
+    it goes flat within minutes once combined.
+  batchKeepDays: 21
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="build">
+  Pour the <Qty ref="syrup"/> into a glass filled with ice.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="soda"/> and stir once, gently, to keep the fizz.
+</Step>

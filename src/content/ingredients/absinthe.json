@@ -23,6 +23,7 @@
       "animalOrigin": "none",
       "allergenTags": [],
       "containsCaffeine": false,
+      "countUnit": { "singular": "dash", "plural": "dashes", "ml": 0.9, "snap": "whole" },
       "sourceDataset": "Producer published figures",
       "sourceId": "hrdspirits.com/lucid-absinthe",
       "sourceNote": "Lucid Absinthe Supérieure is taken as the reference bottle: it was the first absinthe legally reintroduced to the United States and its own listing states 124 proof (62% alc./vol.) and 'no sugar added'. No calorie or macronutrient panel is published for it, so nutritionPer100g is left off rather than estimated from the alcohol alone, which the site computes anyway. No density figure, measured or bulk, is published either; an overproof anise spirit this strong has no entry in density-classes.json close to 62% ABV, so densityGPerMl is left off entirely rather than borrowing the 40%-ABV class, and the rinse's consumedFractionNote on the drink carries the volume instead."

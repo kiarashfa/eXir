@@ -1,0 +1,86 @@
+---
+id: classic
+label: Classic
+name: Matcha Latte
+subtitle: Whisked matcha lengthened with steamed milk, a café adaptation of the tea it is made from.
+defaultDrinks: 1
+method: whisked
+dilutionClass: none
+glasswareRef: latte-glass
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Whisked and steamed to order. Matcha whisked ahead and left standing
+  separates and loses its foam before the milk ever goes in.
+zeroProof: true
+difficulty: Medium
+family: steeped-infusion
+familyRole: descendant
+derivedFrom: matcha
+tags:
+  category: [tea, hot-drink]
+  origin: [japan]
+  method: [whisked]
+names:
+  notToBeConfusedWith:
+    - name: Matcha
+      note: The tea whisked with water alone and drunk from the bowl; this page lengthens the same whisked matcha with steamed milk.
+ingredients:
+  - id: matcha
+    ingredientRef: matcha
+    formRef: standard
+    amount: 2
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 40
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 200
+    unit: ml
+steps:
+  - { id: sift, durationSec: 20, type: active, phase: prep }
+  - { id: whisk, durationSec: 20, type: active, phase: make }
+  - { id: steam, durationSec: 40, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: whisk
+    text: >-
+      The matcha is whisked to a smooth paste in a small amount of water
+      before any milk is added, exactly as it is for a bowl of matcha on its
+      own; whisked straight into the full glass of milk it clumps instead
+      of dissolving.
+  - kind: pitfall
+    text: >-
+      Unsifted matcha clumps the moment hot water hits it, and no amount of
+      whisking afterward fully breaks those clumps back down, so they stay
+      as flecks even once the milk is poured in.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The matcha is whisked and the milk steamed
+    together, in the couple of minutes before serving.
+  freezable: false
+---
+
+<Step id="sift">
+  Sift the <Qty ref="matcha"/> into a bowl to break up any clumps.
+</Step>
+
+<Step id="whisk">
+  Add the <Qty ref="water"/> just off the boil and whisk briskly in a
+  zigzag for <Dur step="whisk"/>, until smooth and lightly foamed.
+</Step>
+
+<Step id="steam">
+  Steam the <Qty ref="milk"/> to a light microfoam.
+</Step>
+
+<Step id="pour">
+  Pour the steamed milk into the glass over the whisked matcha, finishing
+  with a thin cap of foam.
+</Step>

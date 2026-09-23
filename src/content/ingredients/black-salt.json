@@ -1,0 +1,44 @@
+{
+  "id": "black-salt",
+  "name": "Black Salt",
+  "kind": "ingredient",
+  "category": "seasoning",
+  "pantryStaple": true,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Kala namak", "region": "South Asia" }
+    ],
+    "notToBeConfusedWith": [
+      {
+        "name": "Black lava salt",
+        "note": "A charcoal-coloured Hawaiian finishing salt with no sulphur smell; kala namak is pinkish-grey and smells distinctly of egg from the sulphur compounds in it."
+      }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Ground",
+      "proseName": "black salt",
+      "abvPercent": 0,
+      "densityGPerMl": 2.16,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 0,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 36000
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy), adapted",
+      "sourceId": "173468",
+      "sourceNote": "No dataset carries kala namak specifically. It is a rock salt with trace sulphur compounds, iron and other minerals, which give it its colour and its distinctive sulphurous smell, but it is overwhelmingly sodium chloride by mass like any other rock or table salt. The sodium figure here is scaled down slightly from the site's plain table salt record (173468, 38,758 mg/100g) to reflect its somewhat lower typical purity, and the density is the same solid-salt class used for table salt — the crystal itself, not a measured figure for this specific mineral."
+    }
+  ]
+}

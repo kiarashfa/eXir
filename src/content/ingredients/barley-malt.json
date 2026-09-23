@@ -1,0 +1,38 @@
+{
+  "id": "barley-malt",
+  "name": "Barley malt",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Yeotgireum", "region": "Korea" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "flour",
+      "label": "Malted barley flour",
+      "proseName": "barley malt",
+      "abvPercent": 0,
+      "sugarGPer100": 0.8,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 361,
+        "carbohydrateG": 78.3,
+        "sugarsG": 0.8,
+        "proteinG": 10.28,
+        "fatG": 1.84,
+        "saturatedFatG": 0.386,
+        "fibreG": 7.1,
+        "sodiumMg": 11
+      },
+      "animalOrigin": "none",
+      "allergenTags": ["gluten"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169740",
+      "sourceNote": "Barley malt flour. Public domain. Sikhye is made by steeping this in warm water to extract its enzymes, then discarding the settled grit, so no density is carried on the flour itself: it is the enzymes it releases, not its own bulk, that convert the rice starch to sugar, and the site sums input composition rather than modelling that conversion."
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+---
+id: classic
+label: Classic
+name: Horchata de Chufa
+subtitle: Valencian tiger nuts soaked, blended and strained into a pale, sweet, faintly nutty milk.
+defaultDrinks: 4
+method: steeped
+dilutionClass: none
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: full
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [soft-traditional]
+  origin: [iberia]
+  method: [steeped]
+names:
+  alsoKnownAs:
+    - { name: Orxata, region: Valencia }
+  notToBeConfusedWith:
+    - name: Horchata
+      note: The Mexican drink named after this one but made from rice rather than tiger nuts; a different plant entirely, covered on its own page.
+ingredients:
+  - id: tiger-nuts
+    ingredientRef: tiger-nuts
+    formRef: dried
+    amount: 250
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Blended and pressed for their milk; the spent, fibrous pulp is
+      strained out and discarded rather than drunk.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1300
+    unit: ml
+    portions:
+      - { id: soak-water, amount: 700, note: used to soak the tiger nuts overnight }
+      - { id: blend-water, amount: 600, note: blended with the soaked tiger nuts }
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 120
+    unit: g
+steps:
+  - { id: soak, durationSec: 28800, type: passive, phase: prep }
+  - { id: blend, durationSec: 120, type: active, phase: make }
+  - { id: strain, durationSec: 150, type: active, phase: make }
+  - { id: chill, durationSec: 7200, type: passive, phase: rest }
+notes:
+  - kind: technique
+    stepRef: soak
+    text: >-
+      Tiger nuts soak far longer than rice does; a full day rather than
+      overnight is normal, since the whole tuber has to soften enough to
+      blend, not just its surface.
+  - kind: pitfall
+    stepRef: strain
+    text: >-
+      Tiger nut pulp is considerably more fibrous than rice or almond
+      pulp, and a single pass through a loose strainer leaves a gritty
+      drink; it wants a firm press through muslin or a fine cloth.
+makeAhead:
+  aheadInstructions: >-
+    Best drunk within a day or two, since it sours faster than rice
+    horchata does; keep it refrigerated and stir or shake before serving,
+    as it separates on standing.
+  batchKeepDays: 2
+  batchStorage: refrigerated and sealed
+  freezable: false
+---
+
+<Step id="soak">
+  Soak the <Qty ref="tiger-nuts"/> in the <Qty ref="soak-water"/> for
+  <Dur step="soak"/>, until fully softened.
+</Step>
+
+<Step id="blend">
+  Blend the soaked tiger nuts with their soaking water and the
+  <Qty ref="blend-water"/> until as smooth as the blender will take it.
+</Step>
+
+<Step id="strain">
+  Strain through a cloth-lined strainer, pressing hard to get all the
+  liquid through and leave the fibrous pulp behind, then stir in the
+  <Qty ref="sugar"/>.
+</Step>
+
+<Step id="chill">
+  Refrigerate until fully cold before serving.
+</Step>

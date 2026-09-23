@@ -1,0 +1,97 @@
+---
+id: classic
+label: Classic
+name: Douhua Soy Milk
+subtitle: Soaked soybeans ground, boiled and strained into fresh soy milk, served warm and lightly sweetened.
+defaultDrinks: 5
+method: boiled
+dilutionClass: none
+glasswareRef: mug
+iceStyle: none
+servedOverIce: false
+serveTempC: 60
+bitterness: none
+batchable: full
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [soft-traditional]
+  origin: [china]
+  method: [boiled]
+names:
+  alsoKnownAs:
+    - { name: Doujiang, region: China }
+  notToBeConfusedWith:
+    - name: Douhua
+      note: The soft-set tofu pudding this soy milk is traditionally drunk alongside, made by curdling the same milk rather than leaving it liquid; not covered on this page.
+ingredients:
+  - id: soybeans
+    ingredientRef: soybeans
+    formRef: dried
+    amount: 150
+    unit: g
+    consumedFraction: 0.9
+    consumedFractionNote: >-
+      Ground and pressed for their milk; most of the bean's protein and
+      fat carries through into the liquid, and only the fibrous spent pulp
+      (okara) is strained out and discarded.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1600
+    unit: ml
+    portions:
+      - { id: soak-water, amount: 600, note: used to soak the beans overnight }
+      - { id: grind-water, amount: 1000, note: blended with the soaked beans }
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 90
+    unit: g
+steps:
+  - { id: soak, durationSec: 28800, type: passive, phase: prep }
+  - { id: grind, durationSec: 120, type: active, phase: prep }
+  - { id: strain, durationSec: 180, type: active, phase: make }
+  - { id: boil, durationSec: 600, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: boil
+    text: >-
+      Fresh soy milk has to be brought to a full boil and held there
+      briefly rather than just warmed, since raw soybeans carry compounds
+      that upset digestion and only heat breaks them down.
+  - kind: pitfall
+    stepRef: boil
+    text: >-
+      Soy milk foams up and boils over far faster than dairy milk does, so
+      it wants a wide pot, a watchful eye, and a lowered flame the moment
+      it starts to rise rather than the moment it is already spilling.
+makeAhead:
+  aheadInstructions: >-
+    Keeps refrigerated for a couple of days once boiled; reheat gently
+    rather than boiling it a second time.
+  batchKeepDays: 2
+  batchStorage: refrigerated and sealed
+  freezable: false
+---
+
+<Step id="soak">
+  Soak the <Qty ref="soybeans"/> in the <Qty ref="soak-water"/> for
+  <Dur step="soak"/>, until fully softened and swollen.
+</Step>
+
+<Step id="grind">
+  Drain the beans and blend them with the <Qty ref="grind-water"/> until
+  smooth.
+</Step>
+
+<Step id="strain">
+  Strain the mixture through muslin, pressing hard to get all the milk
+  through and leave the spent pulp behind.
+</Step>
+
+<Step id="boil">
+  Bring the strained milk to a full boil, watching closely as it rises,
+  then lower the heat and simmer for <Dur step="boil"/>, stirring the
+  <Qty ref="sugar"/> through before serving warm.
+</Step>

@@ -1,0 +1,92 @@
+---
+id: classic
+label: Classic
+name: Trinidad Sour
+subtitle: Angostura bitters as the base spirit, against orgeat, lemon and a dry rye backbone.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: coupe
+iceStyle: none
+servedOverIce: false
+bitterness: high
+batchable: full
+zeroProof: false
+family: sour
+familyRole: riff
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [shaken]
+  occasion: [nightcap]
+difficulty: Easy
+ingredients:
+  - id: bitters
+    ingredientRef: angostura-bitters
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: orgeat
+    ingredientRef: orgeat
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: rye
+    ingredientRef: rye
+    formRef: standard
+    amount: 15
+    unit: ml
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      Angostura is measured here as the base spirit rather than a dash, which inverts the
+      usual proportion between a bitters and everything else in the glass. The rye is a
+      backbone rather than the point of the drink, present mostly to keep the bitters and
+      orgeat from reading as a cordial.
+  - kind: pitfall
+    text: >-
+      Poured to a standard bitters dash, this recipe looks like a typo. It is not — the
+      quantity of Angostura is what makes the drink what it is, and halving it in the name of
+      caution turns it into a thin, sweet lemon drink with no backbone.
+substitutions:
+  - lineRef: rye
+    substitute: bourbon
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume and close in strength, so the arithmetic barely moves. Bourbon's
+      extra sweetness sits closer to the orgeat than rye's dry spice does, and the drink reads
+      rounder for it.
+    impact:
+      flavour: minor change
+      strength: no change
+      sweetness: minor change
+makeAhead:
+  aheadInstructions: >-
+    All four ingredients batch cleanly and keep well, since nothing in the glass is fresh
+    produce beyond the lemon juice. The site adds the water the shake would have contributed.
+  batchKeepDays: 3
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="build">
+  Combine the <Qty ref="bitters"/>, the <Qty ref="orgeat"/>, the <Qty ref="lemon"/> and the
+  <Qty ref="rye"/> in a shaker with ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>.
+</Step>
+
+<Step id="strain">
+  Strain into a chilled coupe.
+</Step>

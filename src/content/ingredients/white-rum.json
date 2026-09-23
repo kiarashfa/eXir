@@ -24,6 +24,32 @@
   ],
   "forms": [
     {
+      "id": "gold",
+      "label": "Gold",
+      "proseName": "gold rum",
+      "abvPercent": 40,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174817",
+      "sourceNote": "Alcoholic beverage, distilled, rum, 80 proof. Public domain. A lightly aged, column-still rum sold as gold or amber (Puerto Rican gold rum is the reference style) rather than the unaged white style or a cask-heavy dark rum; FoodData Central does not separate the three, and an unsweetened spirit's composition does not change with colour, so the same 80-proof figures apply. Sits between the white and dark rum records on this site in colour and oak character only."
+    },
+    {
       "id": "standard",
       "label": "Standard strength",
       "proseName": "white rum",

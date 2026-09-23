@@ -1,0 +1,39 @@
+{
+  "id": "basil-seeds",
+  "name": "Basil Seeds",
+  "kind": "ingredient",
+  "category": "seed",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Sabja seeds", "region": "South Asia" },
+      { "name": "Tukmaria" }
+    ],
+    "notToBeConfusedWith": [
+      { "name": "Chia seeds", "note": "A different plant that swells into a similar gel coat when soaked; the two are visually and texturally close but not the same seed." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "dried",
+      "label": "Dried",
+      "proseName": "dried basil seeds",
+      "abvPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 486,
+        "carbohydrateG": 42.12,
+        "proteinG": 16.54,
+        "fatG": 30.74,
+        "saturatedFatG": 3.33,
+        "fibreG": 34.4,
+        "sodiumMg": 16
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy), adapted",
+      "sourceId": "170554",
+      "sourceNote": "No dataset consulted carries basil seed specifically. Chia seed, dried (170554) is used as a cross-referenced proxy: both are small mucilaginous seeds from unrelated plants that are used identically, dry and soaked into a gel-coated seed with a similar carbohydrate-and-fibre profile, and no closer figure exists. No density: the seed is soaked and swells dramatically before use, so the dry record's own figure describes neither its dry nor its soaked state usefully. No titratable acidity is reported for the proxy either, so acidPercent is left off rather than estimated."
+    }
+  ]
+}

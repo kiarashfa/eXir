@@ -1,0 +1,69 @@
+---
+id: classic
+label: Classic
+name: Shirley Temple
+subtitle: Ginger ale and grenadine, built over ice, finished with a cherry.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: none
+zeroProof: true
+tags:
+  category: [zero-proof]
+  origin: [united-states]
+  method: [built]
+  occasion: [celebration]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Roy Rogers
+      note: The same build made with cola instead of ginger ale, named for a different Hollywood star of the same period.
+ingredients:
+  - id: ginger-ale
+    ingredientRef: ginger-ale
+    formRef: bottled
+    amount: 110
+    unit: ml
+  - id: grenadine
+    ingredientRef: grenadine
+    formRef: standard
+    amount: 12
+    unit: ml
+  - id: cherry
+    ingredientRef: maraschino-cherry
+    formRef: standard
+    amount: 6
+    unit: g
+    garnish: true
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: garnish, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      The grenadine is poured in last rather than stirred through, so it sinks and pools at the
+      bottom of the glass instead of tinting the whole drink evenly — the layered look is the
+      point.
+  - kind: pitfall
+    text: >-
+      Stirred too soon, the drink turns a flat, uniform pink instead of showing the sunset
+      gradient it is served for. A single light lift just before drinking is enough to mix it.
+makeAhead:
+  aheadInstructions: >-
+    Not a drink to make ahead. It is built to order over ice, since the ginger ale needs to
+    still be fizzing when it is poured.
+  freezable: false
+---
+
+<Step id="build">
+  Fill a glass with ice, pour in the <Qty ref="ginger-ale"/>, then pour the
+  <Qty ref="grenadine"/> slowly over the back of a spoon so it sinks to the bottom.
+</Step>
+
+<Step id="garnish">
+  Finish with the <Qty ref="cherry"/>.
+</Step>

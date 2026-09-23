@@ -1,0 +1,39 @@
+{
+  "id": "chocolate-syrup",
+  "name": "Chocolate Syrup",
+  "kind": "ingredient",
+  "category": "syrup",
+  "proprietary": false,
+  "pantryStaple": false,
+  "names": {
+    "searchOnly": ["fox's u-bet", "hershey's syrup", "chocolate flavoured syrup"]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Chocolate syrup",
+      "proseName": "chocolate syrup",
+      "abvPercent": 0,
+      "densityGPerMl": 1.268,
+      "densitySource": "measured",
+      "sugarGPer100": 49.65,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 279,
+        "carbohydrateG": 65.1,
+        "sugarsG": 49.65,
+        "proteinG": 2.1,
+        "fatG": 1.13,
+        "saturatedFatG": 0.519,
+        "fibreG": 2.6,
+        "sodiumMg": 72
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": true,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174117",
+      "sourceNote": "Beverages, chocolate syrup. Public domain. The record's own cup measure (1.268 g/ml) is adopted as a true density rather than rejected, because a bottled syrup is genuinely poured, unlike a packed powder or crystal. Generic pourable chocolate syrup; commercial bottles vary somewhat in sugar and thickness."
+    }
+  ]
+}

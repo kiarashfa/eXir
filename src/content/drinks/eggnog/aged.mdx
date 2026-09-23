@@ -1,0 +1,114 @@
+---
+id: aged
+label: Aged
+name: Eggnog
+subtitle: Raw egg cured by a high proportion of spirit and weeks of cold rest rather than heat.
+defaultDrinks: 3
+method: whisked
+dilutionClass: none
+glasswareRef: mug
+iceStyle: none
+servedOverIce: false
+serveTempC: 4
+bitterness: none
+batchable: full
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [whisked]
+  occasion: [holiday]
+difficulty: Medium
+ingredients:
+  - id: egg-white
+    ingredientRef: egg
+    formRef: white
+    amount: 32
+    unit: ml
+  - id: egg-yolk
+    ingredientRef: egg
+    formRef: yolk
+    amount: 17
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 45
+    unit: g
+  - id: bourbon
+    ingredientRef: bourbon
+    formRef: standard
+    amount: 120
+    unit: ml
+  - id: rum
+    ingredientRef: dark-rum
+    formRef: standard
+    amount: 60
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 60
+    unit: ml
+  - id: cream
+    ingredientRef: cream
+    formRef: heavy
+    amount: 30
+    unit: ml
+  - id: garnish-nutmeg
+    ingredientRef: nutmeg
+    formRef: ground
+    amount: 0.3
+    unit: g
+    garnish: true
+steps:
+  - { id: whisk, durationSec: 60, type: active, phase: prep }
+  - { id: combine, durationSec: 30, type: active, phase: make }
+  - { id: age, durationSec: 1814400, type: passive, phase: rest }
+  - { id: finish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: pitfall
+    text: >-
+      This version is made with raw egg rather than a cooked custard, and
+      it is the spirit and the rest that make it safe rather than heat:
+      published guidance on the style credits an alcohol-heavy mixture,
+      refrigerated and left undisturbed for about three weeks, with
+      rendering raw egg safe to drink. Made fresh and drunk unrested, it
+      carries the same raw-egg risk as any other uncooked egg drink and
+      should not be served that way.
+  - kind: technique
+    stepRef: age
+    text: >-
+      The mixture is whisked once, sealed and left cold and undisturbed
+      rather than stirred again during the rest; the alcohol needs
+      uninterrupted contact with the egg over that whole time to do the
+      curing the heat does in the cooked version.
+makeAhead:
+  aheadInstructions: >-
+    This version has no fresh form: it is whisked once and put away to
+    cure. Do not shorten the rest below three weeks and do not serve it
+    unrested.
+  batchKeepDays: 60
+  batchStorage: sealed and refrigerated, undisturbed
+  freezable: false
+---
+
+<Step id="whisk">
+  Whisk the <Qty ref="egg-white"/>, the <Qty ref="egg-yolk"/> and the
+  <Qty ref="sugar"/> together until the sugar has dissolved.
+</Step>
+
+<Step id="combine">
+  Whisk in the <Qty ref="bourbon"/>, the <Qty ref="rum"/>, the
+  <Qty ref="milk"/> and the <Qty ref="cream"/> until fully combined.
+</Step>
+
+<Step id="age">
+  Seal and refrigerate for three weeks before tasting. The mixture
+  thickens and mellows over the rest; do not open and stir it in the
+  meantime.
+</Step>
+
+<Step id="finish">
+  Pour into mugs and grate the <Qty ref="garnish-nutmeg"/> over the top.
+</Step>

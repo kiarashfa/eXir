@@ -1,0 +1,65 @@
+---
+id: classic
+label: Classic
+name: Fresh Orange Juice
+subtitle: Oranges, squeezed and strained, nothing added.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: highball
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: full
+zeroProof: true
+tags:
+  category: [juice-agua-fresca]
+  origin: [international]
+  method: [built]
+  occasion: [breakfast]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Orange squash
+      note: A sweetened, diluted cordial sold ready-made rather than juice pressed from the fruit itself.
+ingredients:
+  - id: orange
+    ingredientRef: orange-juice
+    formRef: fresh
+    amount: 250
+    unit: ml
+steps:
+  - { id: juice, durationSec: 60, type: active, phase: prep }
+  - { id: strain, durationSec: 15, type: active, phase: prep }
+  - { id: pour, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: strain
+    text: >-
+      A coarse strain that leaves some pulp behind is the usual choice for fresh orange juice,
+      unlike a lemonade or a cocktail's citrus, because the pulp itself is part of what people
+      expect from a glass of it.
+  - kind: pitfall
+    text: >-
+      Squeezed and left standing, the juice separates and its aroma flattens within the hour;
+      it is at its best poured straight from the squeezer rather than made ahead.
+makeAhead:
+  aheadInstructions: >-
+    Best juiced to order. It keeps under refrigeration for a day or two, but loses aroma and
+    some vitamin C steadily from the moment it is squeezed.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Halve and squeeze the oranges for the <Qty ref="orange"/>.
+</Step>
+
+<Step id="strain">
+  Strain out the seeds, leaving as much or as little pulp as preferred.
+</Step>
+
+<Step id="pour">
+  Pour into a glass.
+</Step>

@@ -1,0 +1,111 @@
+---
+id: classic
+label: Classic
+name: Siesta
+subtitle: Blanco tequila against Campari, lime and grapefruit, shaken and strained up.
+defaultDrinks: 1
+method: shaken
+dilutionClass: shaken
+glasswareRef: coupe
+iceStyle: none
+servedOverIce: false
+bitterness: medium
+batchable: full
+zeroProof: false
+family: sour
+familyRole: descendant
+derivedFrom: hemingway-daiquiri
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [shaken]
+  occasion: [aperitivo]
+difficulty: Easy
+ingredients:
+  - id: tequila
+    ingredientRef: tequila
+    formRef: blanco
+    amount: 45
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: grapefruit
+    ingredientRef: grapefruit-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 22.5
+    unit: ml
+  - id: campari
+    ingredientRef: campari
+    formRef: standard
+    amount: 7.5
+    unit: ml
+  - id: garnish
+    ingredientRef: lime
+    formRef: standard
+    amount: 5
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: A wheel set on the rim for the look and the aroma; it is not squeezed or eaten.
+steps:
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: shake, durationSec: 12, type: active, phase: make }
+  - { id: strain, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      Campari sits behind the citrus rather than beside it, closer in amount to a dash than to
+      a modifier — enough to read as bitterness on the finish without turning the drink red or
+      pulling it toward an Americano.
+  - kind: pitfall
+    text: >-
+      Grapefruit juice loses its aromatic top notes within an hour of squeezing faster than
+      lime or lemon do, and a bottled substitute reads flat and one-dimensional against the
+      Campari rather than bright.
+substitutions:
+  - lineRef: campari
+    substitute: aperol
+    ratio: "1:1"
+    note: >-
+      Interchangeable by volume at a lower strength and less bitterness, so the drink comes out
+      sweeter and less assertive on the finish, closer to a straightforward tequila sour with a
+      citrus-bitter edge than a genuinely bitter one.
+    impact:
+      flavour: moderate change
+      strength: minor change
+      sweetness: minor change
+makeAhead:
+  aheadInstructions: >-
+    The tequila, syrup and Campari batch cleanly, and the site adds the water the shake would
+    have contributed. Add the lime and grapefruit juice close to service, since both fade within
+    a day.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="build">
+  Combine the <Qty ref="tequila"/>, the <Qty ref="lime"/>, the <Qty ref="grapefruit"/>, the
+  <Qty ref="syrup"/> and the <Qty ref="campari"/> in a shaker with ice.
+</Step>
+
+<Step id="shake">
+  Shake hard for <Dur step="shake"/>.
+</Step>
+
+<Step id="strain">
+  Strain into a chilled coupe.
+</Step>
+
+<Step id="garnish">
+  Set the <Qty ref="garnish"/> lime wheel on the rim.
+</Step>

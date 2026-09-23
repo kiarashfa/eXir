@@ -1,0 +1,33 @@
+{
+  "id": "pistachio",
+  "name": "Pistachio",
+  "kind": "ingredient",
+  "category": "nut",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "raw",
+      "label": "Raw, shelled, chopped",
+      "proseName": "chopped pistachios",
+      "abvPercent": 0,
+      "sugarGPer100": 7.66,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 560,
+        "carbohydrateG": 27.17,
+        "sugarsG": 7.66,
+        "proteinG": 20.16,
+        "fatG": 45.32,
+        "saturatedFatG": 5.907,
+        "fibreG": 10.6,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": ["nuts"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170184",
+      "sourceNote": "Nuts, pistachio nuts, raw. Public domain. No density: chopped and scattered over the top of a drink rather than poured, and the record's own cup measure (0.520 g/ml) is a packing figure, not a true one."
+    }
+  ]
+}

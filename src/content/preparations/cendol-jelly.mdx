@@ -1,0 +1,94 @@
+---
+id: cendol-jelly
+name: Cendol Jelly
+kind: preparation
+category: other
+names:
+  alsoKnownAs:
+    - name: Dawet
+      region: Indonesia
+purchasable: true
+purchaseNote: >-
+  Sold frozen, ready-cut, at Southeast Asian grocers; fresh-made jelly is softer and greener than
+  most frozen bags.
+yieldMl: 580
+shelfLife:
+  days: 2
+  storage: refrigerated in cold water, sealed
+forms:
+  - id: standard
+    label: Set jelly, cut into strands
+    proseName: cendol
+    per100Basis: ml
+    abvPercent: 0
+    densityGPerMl: 1.15
+    densitySource: estimated
+    sugarGPer100: 0.09
+    acidPercent: 0
+    nutritionPer100g:
+      kcal: 63
+      carbohydrateG: 14.05
+      sugarsG: 0.09
+      proteinG: 0.9
+      fatG: 0.21
+      fibreG: 0.38
+      sodiumMg: 0.02
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      Mass and volume are summed over the lines this recipe names rather than measured. The
+      pandan is blended and strained for its colour and aroma and carries no mass into the yield.
+      The starches take up real volume as they set rather than merely dissolving into the cooking
+      water, so the yield is stated a little above the water line alone; the density that follows
+      from it, 1.15 g/ml, is marked estimated for that reason rather than measured.
+ingredients:
+  - id: rice-flour
+    ingredientRef: rice-flour
+    formRef: standard
+    amount: 100
+    unit: g
+  - id: tapioca
+    ingredientRef: tapioca
+    formRef: dry
+    amount: 15
+    unit: g
+  - id: pandan
+    ingredientRef: pandan
+    formRef: fresh
+    amount: 20
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Blended with a little water for its colour and aroma, then strained out.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 550
+    unit: ml
+    portions:
+      - { id: pandan-water, amount: 150, note: "blended with the pandan and strained" }
+      - { id: cook-water, amount: 400, note: whisked with the flours over heat }
+steps:
+  - { id: extract, durationSec: 120, type: active, phase: prep }
+  - { id: cook, durationSec: 480, type: active, phase: make }
+  - { id: set, durationSec: 600, type: active, phase: make }
+---
+
+<Step id="extract">
+  Blend the <Qty ref="pandan"/> with the <Qty ref="pandan-water"/> and
+  strain out the fibre, keeping the pale green liquid.
+</Step>
+
+<Step id="cook">
+  Whisk the <Qty ref="rice-flour"/> and the <Qty ref="tapioca"/> into the
+  <Qty ref="cook-water"/> and the pandan liquid, then cook over medium
+  heat, stirring constantly, until it thickens into a smooth, glossy,
+  translucent paste.
+</Step>
+
+<Step id="set">
+  Push the hot paste through a colander or a cendol mould directly into a
+  bowl of iced water, letting it fall in short strands that firm up on
+  contact with the cold water.
+</Step>

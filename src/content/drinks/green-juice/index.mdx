@@ -1,0 +1,74 @@
+---
+id: classic
+label: Classic
+name: Green Juice
+subtitle: Cucumber and spinach pressed with lemon and ginger.
+defaultDrinks: 1
+method: pressed
+dilutionClass: none
+glasswareRef: highball
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: full
+zeroProof: true
+tags:
+  category: [juice-agua-fresca]
+  origin: [united-states]
+  method: [pressed]
+  occasion: [breakfast]
+difficulty: Easy
+ingredients:
+  - id: cucumber
+    ingredientRef: cucumber
+    formRef: standard
+    amount: 150
+    unit: g
+  - id: spinach
+    ingredientRef: spinach
+    formRef: standard
+    amount: 60
+    unit: g
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 30
+    unit: ml
+  - id: ginger
+    ingredientRef: ginger
+    formRef: standard
+    amount: 10
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Fed through the press with the rest for its heat; the fibre stays behind in the pulp catcher.
+steps:
+  - { id: press, durationSec: 90, type: active, phase: prep }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      Cucumber and spinach are pressed together rather than blended, so the fibre that would
+      otherwise thicken a blended smoothie is left behind in the pulp catcher and the result
+      pours thin, like a juice, not spoons like one.
+  - kind: pitfall
+    text: >-
+      Pressed juice separates and browns within an hour as its plant enzymes keep working once
+      the cell walls are broken, so it is at its best drunk close to when it is pressed rather
+      than bottled ahead and left to stand.
+makeAhead:
+  aheadInstructions: >-
+    Best pressed to order. It keeps under refrigeration for a day, tightly sealed to slow
+    oxidation, but the colour and aroma both fade steadily from the moment it is pressed.
+  batchKeepDays: 1
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="press">
+  Feed the <Qty ref="cucumber"/>, the <Qty ref="spinach"/> and the <Qty ref="ginger"/> through
+  a juicer, then stir in the <Qty ref="lemon"/>.
+</Step>
+
+<Step id="pour">
+  Pour over ice.
+</Step>

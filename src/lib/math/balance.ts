@@ -41,6 +41,8 @@ export interface BalanceInput {
   bitterness: Bitterness;
   /** Set where the final volume — and so everything divided by it — is modelled. */
   volumeEstimated: boolean;
+  /** A ferment's declared range. The bar reads it instead of the computed 0%. */
+  abvRange?: [number, number];
 }
 
 const clampFill = (ratio: number): number =>
@@ -55,7 +57,14 @@ export const acidPercentOfFinal = (acidG: number, finalVolumeMl: number): number
   finalVolumeMl > 0 ? (acidG / finalVolumeMl) * 100 : 0;
 
 export function computeBalance(input: BalanceInput): Bar[] {
-  const { finalAbvPercent, sugarGPerL, acidPercentFinal, bitterness, volumeEstimated } = input;
+  const { finalAbvPercent, sugarGPerL, acidPercentFinal, bitterness, volumeEstimated, abvRange } =
+    input;
+  // A ferment's alcohol is in none of its ingredient lines, so the computed
+  // figure is 0% beside prose that says 6-9%. The bar shows the declared range.
+  const strongValue = abvRange ? Math.max(finalAbvPercent, (abvRange[0] + abvRange[1]) / 2) : finalAbvPercent;
+  const strongDisplay = abvRange
+    ? `${abvRange[0]}–${abvRange[1]}${SCALES.strong.unit}`
+    : `${finalAbvPercent.toFixed(1)}${SCALES.strong.unit}`;
 
   const bitterLevel = SCALES.bitter.levels[bitterness] ?? 0;
 
@@ -63,11 +72,11 @@ export function computeBalance(input: BalanceInput): Bar[] {
     {
       key: 'strong',
       label: SCALES.strong.label,
-      value: finalAbvPercent,
-      display: `${finalAbvPercent.toFixed(1)}${SCALES.strong.unit}`,
-      fillPercent: clampFill(finalAbvPercent / SCALES.strong.max),
+      value: strongValue,
+      display: strongDisplay,
+      fillPercent: clampFill(strongValue / SCALES.strong.max),
       computed: true,
-      estimated: volumeEstimated,
+      estimated: volumeEstimated || abvRange !== undefined,
     },
     {
       key: 'sweet',

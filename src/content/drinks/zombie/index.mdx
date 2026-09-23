@@ -1,0 +1,153 @@
+---
+id: classic
+label: Classic
+name: Zombie
+subtitle: Three rums, falernum, Don's Mix and lime, flash-blended with cracked ice and poured into a tall glass.
+defaultDrinks: 1
+method: blended
+dilutionClass: blended-with-ice
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+bitterness: low
+batchable: partial
+batchNote: >-
+  The rums, falernum, Don's Mix, lime, grenadine, absinthe and bitters all batch cleanly
+  together; only the ice, which goes into the blender with each drink, has to wait for service.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [tiki]
+  method: [blended]
+  occasion: [aperitivo]
+difficulty: Hard
+ingredients:
+  - id: jamaican-rum
+    ingredientRef: dark-rum
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: puerto-rican-rum
+    ingredientRef: white-rum
+    formRef: gold
+    amount: 45
+    unit: ml
+  - id: overproof-rum
+    ingredientRef: dark-rum
+    formRef: overproof-demerara
+    amount: 30
+    unit: ml
+  - id: grapefruit
+    ingredientRef: grapefruit-juice
+    formRef: fresh
+    amount: 10
+    unit: ml
+  - id: cinnamon-syrup
+    ingredientRef: cinnamon-syrup
+    formRef: standard
+    amount: 5
+    unit: ml
+  - id: falernum
+    ingredientRef: falernum
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 22.5
+    unit: ml
+  - id: grenadine
+    ingredientRef: grenadine
+    formRef: standard
+    amount: 7.5
+    unit: ml
+  - id: absinthe
+    ingredientRef: absinthe
+    formRef: standard
+    amount: 1.8
+    unit: ml
+    consumedFraction: 1
+  - id: bitters
+    ingredientRef: angostura-bitters
+    formRef: standard
+    amount: 0.9
+    unit: ml
+  - id: ice
+    ingredientRef: water
+    formRef: standard
+    amount: 170
+    unit: g
+  - id: mint
+    ingredientRef: mint
+    formRef: fresh
+    amount: 2
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: A sprig set on top for its aroma; it is not blended through.
+steps:
+  - { id: mix, durationSec: 30, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: blend, durationSec: 5, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+  - { id: garnish, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: mix
+    text: >-
+      Don's Mix is two parts grapefruit juice to one part cinnamon syrup, made up before the
+      rest of the drink because it is measured as one thing at the bar even though it is
+      authored here as its two component lines.
+  - kind: pitfall
+    text: >-
+      Nine ingredients across three rums, a syrup blend and a liqueur make this an easy drink
+      to shortcut into a plain rum-and-juice punch, which is exactly the simplified version
+      this reconstruction exists to correct. Leaving out the falernum or Don's Mix changes
+      the drink's identity, not just its garnish.
+substitutions:
+  - lineRef: overproof-rum
+    substitute: dark-rum
+    formRef: standard
+    ratio: "1:1"
+    note: >-
+      Drops the proof the drink was built around, so the finished drink reads
+      noticeably weaker and less structured. Standing in a standard-strength rum is the usual
+      fix where a 151-proof demerara is not sold locally.
+    impact:
+      flavour: moderate change
+      strength: significant change
+      sweetness: no change
+makeAhead:
+  aheadInstructions: >-
+    Everything but the ice batches without changing the arithmetic. Keep the batch cold and
+    stir it before measuring each drink into the blender, since the spirits and juice separate
+    on standing.
+  batchKeepDays: 2
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="mix">
+  Stir the <Qty ref="grapefruit"/> and the <Qty ref="cinnamon-syrup"/> together to make Don's Mix.
+</Step>
+
+<Step id="build">
+  Combine the <Qty ref="jamaican-rum"/>, the <Qty ref="puerto-rican-rum"/>, the
+  <Qty ref="overproof-rum"/>, Don's Mix, the <Qty ref="falernum"/>, the <Qty ref="lime"/>, the
+  <Qty ref="grenadine"/>, the <Qty ref="absinthe"/> and the <Qty ref="bitters"/> in a blender
+  jug, then add the <Qty ref="ice"/>, cracked.
+</Step>
+
+<Step id="blend">
+  Pulse for no more than <Dur step="blend"/> — long enough to chill and aerate it, not to turn
+  it into a slush.
+</Step>
+
+<Step id="pour">
+  Pour, ice and all, into a tall glass.
+</Step>
+
+<Step id="garnish">
+  Set the <Qty ref="mint"/> on top.
+</Step>

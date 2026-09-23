@@ -1,0 +1,19 @@
+{
+  "id": "osmanthus",
+  "name": "Osmanthus",
+  "kind": "ingredient",
+  "category": "botanical",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "dried",
+      "label": "Dried flowers",
+      "proseName": "dried osmanthus",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "FoodData Central carries no record for osmanthus flowers. No composition is claimed here; a pinch is steeped for aroma and strained out, contributing scent rather than any meaningful mass to the finished drink."
+    }
+  ]
+}

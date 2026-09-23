@@ -1,0 +1,8 @@
+{
+  "id": "irish-coffee",
+  "name": "Irish coffee glass",
+  "capacityMl": 240,
+  "shapeFamily": "handled",
+  "note": "Handled and heat-proof with a stem, sized for coffee, sugar, whiskey and a float of cream.",
+  "iceDisplacementMl": { "none": 0 }
+}

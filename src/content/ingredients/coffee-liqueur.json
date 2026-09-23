@@ -1,0 +1,38 @@
+{
+  "id": "coffee-liqueur",
+  "name": "Coffee Liqueur",
+  "kind": "ingredient",
+  "category": "liqueur",
+  "pantryStaple": false,
+  "names": {
+    "searchOnly": ["kahlua", "kahlúa", "tia maria"]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Coffee liqueur",
+      "proseName": "coffee liqueur",
+      "abvPercent": 32.4,
+      "densityGPerMl": 1.1767,
+      "densitySource": "measured",
+      "sugarGPer100": 38.3,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 336,
+        "carbohydrateG": 46.8,
+        "sugarsG": 38.3,
+        "proteinG": 0.1,
+        "fatG": 0.3,
+        "saturatedFatG": 0.106,
+        "fibreG": 0,
+        "sodiumMg": 8
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": true,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "175097",
+      "sourceNote": "Alcoholic beverage, liqueur, coffee, 53 proof. Public domain. USDA's own proof label (53, i.e. 26.5% ABV) does not match the strength its measured alcohol-and-density figures resolve to; the 32.4% here is computed from those measured figures rather than the printed proof, per this site's own convention of deriving ABV from mass and density. Generic record; commercial coffee liqueurs vary in both strength and sweetness by brand."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "sugarcane-juice",
+  "name": "Sugarcane Juice",
+  "kind": "ingredient",
+  "category": "vegetable",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "fresh",
+      "label": "Fresh-pressed",
+      "proseName": "fresh sugarcane juice",
+      "per100Basis": "ml",
+      "abvPercent": 0,
+      "densityGPerMl": 1.03,
+      "densitySource": "estimated",
+      "sugarGPer100": 15,
+      "nutritionPer100g": {
+        "kcal": 65,
+        "carbohydrateG": 16,
+        "sugarsG": 15,
+        "proteinG": 0.2,
+        "fatG": 0,
+        "sodiumMg": 5
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "Open Food Facts, cross-checked",
+      "sourceId": "4710095922304; 8908024066090",
+      "sourceNote": "FoodData Central carries no raw sugarcane juice record and its two branded sugarcane entries report no macronutrients at all. Open Food Facts' branded entries for the fresh style disagree with each other more than usual for this site, from about 4 to 19 g of sugar per 100 ml depending on the bottle, which is plausible for a juice pressed fresh with no standardised brix target the way a packaged fruit juice has. The figures here sit near the middle of the plausible, unadulterated-juice entries (Taisun and pluckk, both close to 100% juice with no added sugar) rather than at either extreme, and are marked as a cross-checked estimate rather than a single measurement. No density is published for any of them; the site's own juice-sweet class is used as the nearest estimate. No titratable acidity figure exists for sugarcane juice in any source checked, so acidPercent is left off rather than estimated, though the fresh juice is only very mildly tart."
+    }
+  ]
+}

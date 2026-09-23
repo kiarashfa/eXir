@@ -1,0 +1,93 @@
+---
+id: white
+label: White
+name: Mulled Wine
+subtitle: The same British spicing built on white wine and fresh ginger instead of red wine and nutmeg, for a lighter, sharper cup.
+defaultDrinks: 2
+method: heated
+dilutionClass: none
+glasswareRef: mug
+iceStyle: none
+servedOverIce: false
+serveTempC: 65
+bitterness: none
+batchable: full
+zeroProof: false
+tags:
+  category: [cocktail, hot-drink]
+  origin: [united-kingdom]
+  method: [heated]
+  occasion: [holiday]
+difficulty: Easy
+ingredients:
+  - id: wine
+    ingredientRef: white-wine
+    formRef: standard
+    amount: 300
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 25
+    unit: g
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 4
+    unit: g
+  - id: ginger
+    ingredientRef: ginger
+    formRef: standard
+    amount: 10
+    unit: g
+  - id: cloves
+    ingredientRef: cloves
+    formRef: whole
+    amount: 0.5
+    unit: g
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 30
+    unit: g
+    consumedFraction: 0.15
+    consumedFractionNote: >-
+      Sliced into the pot for its peel and juice; most of the fruit's own
+      body is strained out with the spices.
+  - id: lemon
+    ingredientRef: lemon
+    formRef: standard
+    amount: 15
+    unit: g
+    consumedFraction: 0.15
+    consumedFractionNote: >-
+      A few slices go in alongside the orange; most of the fruit is
+      strained out with the spices.
+steps:
+  - { id: warm, durationSec: 300, type: active, phase: make }
+  - { id: steep, durationSec: 600, type: passive, phase: rest }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: warm
+    text: >-
+      White wine carries far less tannin than red, so the drink is built
+      around <Qty ref="ginger"/> for warmth rather than the nutmeg and
+      cloves the red version leans on, which would sit heavily on a
+      lighter base.
+---
+
+<Step id="warm">
+  Combine the <Qty ref="wine"/>, the <Qty ref="sugar"/>, the
+  <Qty ref="cinnamon"/>, the <Qty ref="ginger"/>, the <Qty ref="cloves"/>,
+  the <Qty ref="orange"/> and the <Qty ref="lemon"/> in a pot and warm
+  gently until the sugar dissolves and the wine steams.
+</Step>
+
+<Step id="steep">
+  Take off the heat, cover and let the spices steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="pour">
+  Warm through again briefly and strain hot into small cups.
+</Step>

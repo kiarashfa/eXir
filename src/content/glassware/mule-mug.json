@@ -4,6 +4,6 @@
   "capacityMl": 400,
   "shapeFamily": "metal",
   "note": "Traditional for a Moscow Mule; the copper keeps the outside cold to the touch and beads with condensation quickly.",
-  "iceDisplacementMl": { "cubed": 230, "block": 220, "crushed": 285, "none": 0 },
-  "iceDisplacementNote": "No measured figure exists for this shape. Copied from the Collins glass on this site, which shares its 400 ml capacity — estimate."
+  "iceDisplacementMl": { "cubed": 230, "block": 220, "crushed": 246, "none": 0 },
+  "iceDisplacementNote": "No measured figure exists for this shape. Copied from the Collins glass on this site, which shares its 400 ml capacity — estimate. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
 }

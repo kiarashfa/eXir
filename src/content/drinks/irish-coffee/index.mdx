@@ -1,0 +1,110 @@
+---
+id: classic
+label: Classic
+name: Irish Coffee
+subtitle: Sweetened whiskey coffee under a floated, unstirred layer of cream.
+defaultDrinks: 1
+method: layered
+dilutionClass: none
+glasswareRef: irish-coffee
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Brewed and built to order. The cream is floated at the very end and would
+  sink into a drink that had already begun to cool.
+zeroProof: false
+difficulty: Medium
+tags:
+  category: [hot-drink]
+  origin: [british-isles]
+  method: [layered]
+brew:
+  method: pour-over
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 95
+  grind: medium
+  contactSec: 210
+  yieldMl: 120
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 15
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the cup and the rest stays in
+      the filter, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 150
+    unit: ml
+  - id: whiskey
+    ingredientRef: irish-whiskey
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 5
+    unit: g
+  - id: cream
+    ingredientRef: cream
+    formRef: heavy
+    amount: 50
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: brew, durationSec: 210, type: active, phase: make }
+  - { id: sweeten, durationSec: 20, type: active, phase: make }
+  - { id: whip, durationSec: 30, type: active, phase: make }
+  - { id: float, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: float
+    text: >-
+      The cream is poured gently over the back of a warm spoon held just
+      above the surface, which breaks its fall enough to let it sit as a
+      distinct layer rather than plunge through and mix into the coffee
+      below.
+  - kind: pitfall
+    text: >-
+      Cream whipped too far turns solid rather than pourable and will not
+      spread into an even float; it wants only enough air worked in to
+      thicken and hold its own weight, not the stiff peaks a dessert cream
+      needs.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The coffee is brewed, the whiskey and sugar
+    stirred in, and the cream floated, all in the few minutes before serving.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> to a medium texture for a drip brew.
+</Step>
+
+<Step id="brew">
+  Brew the <Qty ref="water"/> through the grounds at <Temp c={95}/> for
+  <Dur step="brew"/>, straight into the warmed serving glass.
+</Step>
+
+<Step id="sweeten">
+  Stir the <Qty ref="sugar"/> into the hot coffee until fully dissolved, then
+  stir in the <Qty ref="whiskey"/>.
+</Step>
+
+<Step id="whip">
+  Whip the <Qty ref="cream"/> for <Dur step="whip"/>, just enough to thicken
+  it to a pourable, self-supporting consistency.
+</Step>
+
+<Step id="float">
+  Pour the cream over the back of a spoon held just above the surface, so it
+  spreads out and sits as a distinct layer on top.
+</Step>

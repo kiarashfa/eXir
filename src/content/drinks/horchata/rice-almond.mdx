@@ -1,0 +1,100 @@
+---
+id: rice-almond
+label: Rice and almond
+name: Horchata
+subtitle: Rice and blanched almonds soaked and blended together, for a richer, nuttier version of the same drink.
+defaultDrinks: 4
+method: steeped
+dilutionClass: none
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+bitterness: none
+batchable: full
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [soft-traditional]
+  origin: [mexico-central-america]
+  method: [steeped]
+names:
+  notToBeConfusedWith:
+    - name: Horchata de chufa
+      note: The original Valencian drink this one is named after, made from soaked tiger nuts rather than rice or almonds; a different plant entirely, covered on its own page.
+ingredients:
+  - id: rice
+    ingredientRef: rice
+    formRef: raw
+    amount: 150
+    unit: g
+  - id: almonds
+    ingredientRef: almonds
+    formRef: blanched
+    amount: 60
+    unit: g
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 8
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: Soaked and blended with the rice and almonds for flavour, then strained out.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1400
+    unit: ml
+    portions:
+      - { id: soak-water, amount: 600, note: "used to soak the rice, almonds and cinnamon overnight" }
+      - { id: blend-water, amount: 800, note: blended with the soaked mixture }
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 130
+    unit: g
+steps:
+  - { id: soak, durationSec: 28800, type: passive, phase: prep }
+  - { id: blend, durationSec: 90, type: active, phase: make }
+  - { id: strain, durationSec: 120, type: active, phase: make }
+  - { id: chill, durationSec: 7200, type: passive, phase: rest }
+notes:
+  - kind: technique
+    text: >-
+      The almonds are what set this tab apart from the plain rice version:
+      soaked and blended raw rather than toasted, they thicken the drink
+      and give it a rounder, nuttier body without tasting distinctly of
+      almond on their own.
+  - kind: pitfall
+    stepRef: strain
+    text: >-
+      Ground almonds clog a fine strainer fast; press in stages and rinse
+      the cloth partway through rather than trying to force the whole
+      batch through at once.
+makeAhead:
+  aheadInstructions: >-
+    Keeps refrigerated for a few days; it separates on standing, so stir
+    or shake it back together before serving.
+  batchKeepDays: 4
+  batchStorage: refrigerated and sealed
+  freezable: false
+---
+
+<Step id="soak">
+  Soak the <Qty ref="rice"/>, the <Qty ref="almonds"/> and the
+  <Qty ref="cinnamon"/> in the <Qty ref="soak-water"/> for
+  <Dur step="soak"/>.
+</Step>
+
+<Step id="blend">
+  Blend the soaked mixture with its soaking water and the
+  <Qty ref="blend-water"/> until as smooth as the blender will take it.
+</Step>
+
+<Step id="strain">
+  Strain through a cloth-lined strainer, pressing hard to get all the
+  liquid through, then stir in the <Qty ref="sugar"/>.
+</Step>
+
+<Step id="chill">
+  Refrigerate until cold before serving.
+</Step>

@@ -1,0 +1,38 @@
+{
+  "id": "smoked-plum",
+  "name": "Smoked plum",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Wumei", "region": "China" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "dried",
+      "label": "Whole, smoke-dried",
+      "proseName": "smoked plums",
+      "abvPercent": 0,
+      "sugarGPer100": 38.13,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 240,
+        "carbohydrateG": 63.88,
+        "sugarsG": 38.13,
+        "proteinG": 2.18,
+        "fatG": 0.38,
+        "saturatedFatG": 0.088,
+        "fibreG": 7.1,
+        "sodiumMg": 2
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "168162",
+      "sourceNote": "Plums, dried (prunes), uncooked. Public domain. FoodData Central carries no record for wumei specifically, which is smoke-dried and considerably more sour than a sun-dried prune; this is the nearest dried-plum match available, marked as an approximation rather than a measurement of the smoked fruit itself. No density: the fruit is boiled and strained out."
+    }
+  ]
+}

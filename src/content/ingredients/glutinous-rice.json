@@ -1,0 +1,61 @@
+{
+  "id": "glutinous-rice",
+  "name": "Glutinous rice",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Sticky rice" },
+      { "name": "Sweet rice" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "raw",
+      "label": "Raw, uncooked",
+      "proseName": "glutinous rice",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 370,
+        "carbohydrateG": 81.68,
+        "proteinG": 6.81,
+        "fatG": 0.55,
+        "saturatedFatG": 0.111,
+        "fibreG": 2.8,
+        "sodiumMg": 7
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "168883",
+      "sourceNote": "Rice, white, glutinous, unenriched, uncooked. Public domain. No sugar reported for the raw grain, so none is claimed. No density carried on the raw form: it is steamed before use."
+    },
+    {
+      "id": "cooked",
+      "label": "Steamed",
+      "proseName": "steamed glutinous rice",
+      "abvPercent": 0,
+      "sugarGPer100": 0.05,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 97,
+        "carbohydrateG": 21.09,
+        "sugarsG": 0.05,
+        "proteinG": 2.02,
+        "fatG": 0.19,
+        "saturatedFatG": 0.039,
+        "fibreG": 1,
+        "sodiumMg": 5
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169711",
+      "sourceNote": "Rice, white, glutinous, unenriched, cooked. Public domain. No density: the steamed rice is mashed into a ferment rather than poured, and it is the fermentation itself, not this static figure, that develops the sugar and alcohol a finished makgeolli carries."
+    }
+  ]
+}

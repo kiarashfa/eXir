@@ -1,0 +1,33 @@
+{
+  "id": "pine-nuts",
+  "name": "Pine nuts",
+  "kind": "ingredient",
+  "category": "nut",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "dried",
+      "label": "Dried, shelled",
+      "proseName": "pine nuts",
+      "abvPercent": 0,
+      "sugarGPer100": 3.59,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 673,
+        "carbohydrateG": 13.08,
+        "sugarsG": 3.59,
+        "proteinG": 13.69,
+        "fatG": 68.37,
+        "saturatedFatG": 4.899,
+        "fibreG": 3.7,
+        "sodiumMg": 2
+      },
+      "animalOrigin": "none",
+      "allergenTags": ["nuts"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170591",
+      "sourceNote": "Nuts, pine nuts, dried. Public domain. Used a handful at a time as a garnish floated on top, so no density is carried: a cup measure of them is mostly air, and they are not poured."
+    }
+  ]
+}

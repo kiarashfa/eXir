@@ -91,6 +91,22 @@ export function lineVolume(
   return { volumeMl: 0, densityEstimated: false, noDensity: true };
 }
 
+/**
+ * A line's amount restated in the unit its Form's per-100 figures are for.
+ *
+ * `per100Basis` defaults to grams, which is what the field name has always
+ * promised. A line in the other unit crosses through the density; with no
+ * density there is nothing honest to cross with, so the amount is taken as it
+ * stands — the same fallback the engine always used, now only where it must.
+ */
+export function amountInBasis(line: IngredientLine, form: Form, amount: number): number {
+  const basis = form.per100Basis ?? 'g';
+  if (line.unit === basis) return amount;
+  const d = form.densityGPerMl;
+  if (d == null || d <= 0) return amount;
+  return line.unit === 'ml' ? amount * d : amount / d;
+}
+
 /** The volume a resolved line contributes, after any partial-use fraction. */
 export const resolvedLineVolumeMl = ({ line, form }: ResolvedLine): number =>
   lineVolume(line, form, effectiveAmount(line.amount, line.consumedFraction)).volumeMl;
@@ -234,14 +250,15 @@ export function computeComposition(lines: ResolvedLine[]): Composition {
     }
 
     // --- sugar and acid ---------------------------------------------------
-    // Both figures are stated per 100 of the Form's own base unit, so they
-    // multiply the amount directly and need no density on the way.
-    sugarG += (amount * (form.sugarGPer100 ?? 0)) / 100;
+    // Sugar is stated per 100 of the Form's `per100Basis`, so the line is
+    // restated in that unit first. Acid is % w/v and stays on the amount.
+    const basisAmount = amountInBasis(line, form, amount);
+    sugarG += (basisAmount * (form.sugarGPer100 ?? 0)) / 100;
     acidG += (amount * (form.acidPercent ?? 0)) / 100;
 
     // --- nutrition --------------------------------------------------------
     const n = form.nutritionPer100g;
-    const per100 = amount / 100;
+    const per100 = basisAmount / 100;
     macroKcal += macroKcalPer100(n, form.sugarGPer100) * per100;
     carbohydrateG += (n?.carbohydrateG ?? n?.sugarsG ?? form.sugarGPer100 ?? 0) * per100;
     proteinG += (n?.proteinG ?? 0) * per100;

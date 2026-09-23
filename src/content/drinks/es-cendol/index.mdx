@@ -1,0 +1,86 @@
+---
+id: classic
+label: Classic
+name: Es Cendol
+subtitle: Coconut milk and palm sugar syrup poured over shaved ice and green rice-flour jelly.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: hurricane
+iceStyle: crushed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The jelly and the palm sugar syrup are both made ahead in batches; the
+  coconut milk and ice are only combined per glass at the moment of
+  serving, since crushed ice cannot be batched.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [soft-traditional]
+  origin: [southeast-asia]
+  method: [built]
+names:
+  alsoKnownAs:
+    - { name: Dawet, region: "Java, Indonesia" }
+ingredients:
+  - id: jelly
+    ingredientRef: cendol-jelly
+    amount: 70
+    unit: g
+  - id: palm-sugar
+    ingredientRef: palm-sugar
+    formRef: standard
+    amount: 30
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: coconut-milk
+    ingredientRef: coconut-milk
+    formRef: raw
+    amount: 70
+    unit: ml
+steps:
+  - { id: syrup, durationSec: 300, type: active, phase: prep }
+  - { id: build, durationSec: 30, type: active, phase: make }
+  - { id: pour, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      The syrup, the jelly and the coconut milk are layered in rather than
+      stirred together, so the drink arrives looking like three distinct
+      bands and is stirred by the person drinking it, not by whoever built
+      it.
+  - kind: pitfall
+    stepRef: syrup
+    text: >-
+      Palm sugar scorches more readily than white sugar once most of the
+      water has boiled off; it wants a low simmer and a watchful eye near
+      the end rather than a hard boil throughout.
+makeAhead:
+  aheadInstructions: >-
+    The jelly and the syrup both keep well made ahead and refrigerated
+    separately; only the final glass is built to order.
+  batchKeepDays: 3
+  batchStorage: refrigerated and sealed, separately
+  freezable: false
+---
+
+<Step id="syrup">
+  Simmer the <Qty ref="palm-sugar"/> with the <Qty ref="water"/> for
+  <Dur step="syrup"/>, until it forms a thin syrup, then cool.
+</Step>
+
+<Step id="build">
+  Fill a glass with crushed ice, spoon in the <Qty ref="jelly"/>, and pour
+  the cooled palm sugar syrup over it.
+</Step>
+
+<Step id="pour">
+  Pour the <Qty ref="coconut-milk"/> over the back of a spoon on top, and
+  serve with a long spoon to stir it all together.
+</Step>

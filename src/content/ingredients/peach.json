@@ -1,0 +1,35 @@
+{
+  "id": "peach",
+  "name": "Peach",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "puree",
+      "label": "White peach, pureed",
+      "proseName": "white peach puree",
+      "abvPercent": 0,
+      "densityGPerMl": 1.03,
+      "densitySource": "estimated",
+      "sugarGPer100": 8.39,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 39,
+        "carbohydrateG": 9.54,
+        "sugarsG": 8.39,
+        "proteinG": 0.91,
+        "fatG": 0.25,
+        "saturatedFatG": 0.019,
+        "fibreG": 1.5,
+        "sodiumMg": 0
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169928",
+      "sourceNote": "Peaches, yellow, raw. Public domain. FoodData Central carries no white peach cultivar separately, and white and yellow peaches are close enough in sugar and acid that no correction is made; a Bellini is made specifically with white peaches for their paler colour and lower acidity, which the acidPercent figure below does not capture since no titratable-acidity source was found for peach at all, only left at 0 rather than invented. No measured liquid density exists for a peach; the juice-sweet class (1.05) is close but this is a whole fruit pureed with its pulp rather than a clarified juice, so 1.03 is taken as a slightly lighter estimate between the juice class and plain water, marked estimated throughout."
+    }
+  ]
+}

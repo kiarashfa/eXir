@@ -19,6 +19,7 @@
       "id": "standard",
       "label": "Standard",
       "proseName": "orange liqueur",
+      "per100Basis": "ml",
       "abvPercent": 40,
       "densityGPerMl": 1.09,
       "densitySource": "estimated",

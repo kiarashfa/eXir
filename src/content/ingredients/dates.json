@@ -1,0 +1,31 @@
+{
+  "id": "dates",
+  "name": "Dates",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "whole",
+      "label": "Whole, pitted",
+      "proseName": "pitted dates",
+      "abvPercent": 0,
+      "sugarGPer100": 66.47,
+      "nutritionPer100g": {
+        "kcal": 277,
+        "carbohydrateG": 74.97,
+        "sugarsG": 66.47,
+        "proteinG": 1.81,
+        "fatG": 0.15,
+        "fibreG": 6.7,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "168191",
+      "sourceNote": "Dates, medjool. Public domain. No density: the fruit is soaked, blended and strained rather than poured, and no liquid measure exists for it in the dataset. No titratable acidity is reported and no other source was checked, so acidPercent is left off rather than estimated."
+    }
+  ]
+}

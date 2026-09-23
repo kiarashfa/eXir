@@ -1,0 +1,35 @@
+{
+  "id": "orange-juice",
+  "name": "Orange Juice",
+  "kind": "ingredient",
+  "category": "citrus-juice",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "fresh",
+      "label": "Freshly squeezed",
+      "proseName": "fresh orange juice",
+      "abvPercent": 0,
+      "densityGPerMl": 1.0482,
+      "densitySource": "measured",
+      "sugarGPer100": 8.4,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 45,
+        "carbohydrateG": 10.4,
+        "sugarsG": 8.4,
+        "proteinG": 0.7,
+        "fatG": 0.2,
+        "saturatedFatG": 0.024,
+        "fibreG": 0.2,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169098",
+      "sourceNote": "Orange juice, raw. Public domain. acidPercent is left off rather than invented: orange juice is meaningfully acidic but no titratable-acidity source was found for it, so drinks built on it read less sour on the balance bars than they taste."
+    }
+  ]
+}

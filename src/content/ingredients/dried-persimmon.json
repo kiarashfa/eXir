@@ -1,0 +1,35 @@
+{
+  "id": "dried-persimmon",
+  "name": "Dried persimmon",
+  "kind": "ingredient",
+  "category": "fruit",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Gotgam", "region": "Korea" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "dried",
+      "label": "Whole, dried",
+      "proseName": "dried persimmon",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 274,
+        "carbohydrateG": 73.43,
+        "proteinG": 1.38,
+        "fatG": 0.59,
+        "fibreG": 14.5,
+        "sodiumMg": 2
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169942",
+      "sourceNote": "Persimmons, japanese, dried. Public domain. No sugar figure is reported for the dried fruit, so none is claimed, though the fruit is visibly sweet from concentrated drying. No density: the whole dried fruit is steeped rather than poured."
+    }
+  ]
+}

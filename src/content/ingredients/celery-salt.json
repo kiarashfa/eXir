@@ -1,0 +1,32 @@
+{
+  "id": "celery-salt",
+  "name": "Celery Salt",
+  "kind": "ingredient",
+  "category": "seasoning",
+  "pantryStaple": true,
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "celery salt",
+      "abvPercent": 0,
+      "sugarGPer100": 0.34,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 196,
+        "carbohydrateG": 20.68,
+        "sugarsG": 0.34,
+        "proteinG": 9.04,
+        "fatG": 12.64,
+        "fibreG": 5.9,
+        "sodiumMg": 19750
+      },
+      "animalOrigin": "none",
+      "allergenTags": ["celery"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "170920",
+      "sourceNote": "Celery salt is ground celery seed cut with salt, typically about equal parts by commercial recipe; no USDA record exists for the blend itself. Figures here are Spices, celery seed (public domain) averaged 50/50 with plain sodium chloride (39,340 mg sodium per 100 g, sodium's own 39.3% share of NaCl's mass), which is why every figure is the arithmetic mean of the two rather than a measured figure — marked as such rather than sourced to a bottle. No density: it is a rimming salt, mixed into a thin layer on the glass rather than poured, and USDA's own portion is a teaspoon of packed powder."
+    }
+  ]
+}

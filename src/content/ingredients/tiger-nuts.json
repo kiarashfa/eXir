@@ -1,0 +1,24 @@
+{
+  "id": "tiger-nuts",
+  "name": "Tiger nuts",
+  "kind": "ingredient",
+  "category": "nut",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Chufa", "region": "Spain" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "dried",
+      "label": "Dried tubers",
+      "proseName": "tiger nuts",
+      "abvPercent": 0,
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceNote": "FoodData Central carries no record for tiger nuts (Cyperus esculentus). Published analyses of the tuber disagree with each other by a wide margin — carbohydrate content alone is reported anywhere from about 46% to 64% across studies — too wide a spread to state a single figure as fact, so none is claimed here rather than picking a point in that range. The soaked, blended tubers are strained out and the sugar a finished horchata de chufa carries comes almost entirely from the sugar added at the end, which is on its own ingredient line."
+    }
+  ]
+}

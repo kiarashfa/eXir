@@ -4,6 +4,6 @@
   "capacityMl": 350,
   "shapeFamily": "tall",
   "note": "Tall and narrow, so the carbonation has less surface to escape from.",
-  "iceDisplacementMl": { "cubed": 200, "block": 190, "crushed": 250, "none": 0 },
-  "iceDisplacementNote": "Solid ice only. A highball is filled with ice rather than given a piece of it, which is the point: a full glass of ice melts more slowly than a half-empty one."
+  "iceDisplacementMl": { "cubed": 200, "block": 190, "crushed": 214, "none": 0 },
+  "iceDisplacementNote": "Solid ice only. A highball is filled with ice rather than given a piece of it, which is the point: a full glass of ice melts more slowly than a half-empty one. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
 }

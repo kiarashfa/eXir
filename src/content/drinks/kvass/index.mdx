@@ -1,0 +1,115 @@
+---
+id: classic
+label: Classic
+name: Kvass
+subtitle: Toasted rye bread steeped, sweetened and fermented for a day into a tangy, faintly fizzy drink.
+defaultDrinks: 5
+method: fermented
+dilutionClass: none
+glasswareRef: mason-jar
+iceStyle: none
+servedOverIce: false
+serveTempC: 6
+bitterness: none
+batchable: full
+zeroProof: false
+difficulty: Easy
+tags:
+  category: [kitchen-ferment]
+  origin: [russia-caucasus]
+  method: [fermented]
+names:
+  notToBeConfusedWith:
+    - name: Beet kvass
+      note: A different, savoury ferment made from beetroot and salt water with no bread or added sugar; not covered on this page.
+ferment:
+  stages:
+    - { id: f1, label: Primary, days: 1, tempC: [20, 25], sealed: false }
+  developsAlcohol: true
+  estimatedAbvRange: [0.5, 1.5]
+  safetyNote: >-
+    The jar is covered loosely rather than sealed, since the ferment
+    produces real carbon dioxide as it works. A batch that smells of
+    solvent, or shows fuzzy or coloured growth on the surface rather than a
+    clean layer of raisins and bread, has gone wrong and should be
+    discarded rather than bottled.
+ingredients:
+  - id: bread
+    ingredientRef: rye-bread
+    formRef: standard
+    amount: 300
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 2000
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 150
+    unit: g
+  - id: yeast
+    ingredientRef: yeast
+    formRef: dried
+    amount: 3
+    unit: g
+  - id: raisins
+    ingredientRef: raisins
+    formRef: standard
+    amount: 15
+    unit: g
+steps:
+  - { id: toast, durationSec: 600, type: active, phase: prep }
+  - { id: steep, durationSec: 14400, type: passive, phase: prep }
+  - { id: inoculate, durationSec: 90, type: active, phase: prep }
+  - { id: ferment, durationSec: 86400, type: passive, phase: rest }
+  - { id: strain, durationSec: 90, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: toast
+    text: >-
+      Toasting the bread hard, right to the edge of burnt, is what gives
+      kvass its dark colour and roasted flavour; bread merely stale gives a
+      much paler, blander drink.
+  - kind: pitfall
+    text: >-
+      Left fermenting for much longer than a day, kvass turns sharply sour
+      and noticeably more alcoholic, which is a real ferment behaving
+      normally rather than a fault, but it is no longer the mild drink this
+      recipe is timed for.
+makeAhead:
+  aheadInstructions: >-
+    The ferment itself is the make-ahead step; strained and bottled, kvass
+    keeps refrigerated and its fizz builds for a couple of days in the
+    bottle before it starts to flatten again.
+  batchKeepDays: 5
+  batchStorage: strained, bottled and refrigerated
+  freezable: false
+---
+
+<Step id="toast">
+  Toast the <Qty ref="bread"/> in a low oven until it is dark and dry
+  almost to the point of burning.
+</Step>
+
+<Step id="steep">
+  Pour the boiling <Qty ref="water"/> over the toasted bread and leave it to
+  steep as it cools to room temperature.
+</Step>
+
+<Step id="inoculate">
+  Strain out the bread, then stir the <Qty ref="sugar"/> and the
+  <Qty ref="yeast"/> into the dark, toasty liquid until dissolved, and drop
+  in the <Qty ref="raisins"/>.
+</Step>
+
+<Step id="ferment">
+  Cover loosely and leave at room temperature for <Dur step="ferment"/>,
+  away from direct light, until the raisins have risen to the top and the
+  liquid tastes tangy and faintly fizzy.
+</Step>
+
+<Step id="strain">
+  Strain into bottles, cap, and refrigerate until cold before serving.
+</Step>

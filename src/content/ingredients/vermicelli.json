@@ -1,0 +1,37 @@
+{
+  "id": "vermicelli",
+  "name": "Vermicelli",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      { "name": "Rice vermicelli", "note": "A gluten-free rice noodle used in Southeast Asian cooking; falooda's thin wheat vermicelli is a different product entirely." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "cooked",
+      "label": "Cooked",
+      "proseName": "cooked vermicelli",
+      "abvPercent": 0,
+      "sugarGPer100": 0.4,
+      "nutritionPer100g": {
+        "kcal": 137,
+        "carbohydrateG": 25,
+        "sugarsG": 0.4,
+        "proteinG": 4.51,
+        "fatG": 2.06,
+        "saturatedFatG": 0.417,
+        "fibreG": 1.2,
+        "sodiumMg": 236
+      },
+      "animalOrigin": "none",
+      "allergenTags": ["gluten"],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (Survey FNDDS)",
+      "sourceId": "2708352",
+      "sourceNote": "Noodles, cooked, a generic boiled-wheat-noodle record used as a proxy in the absence of a vermicelli-specific one; falooda's thin wheat vermicelli is the same durum or refined-wheat dough at a finer cut, and the two cook to a near-identical composition. No density: the strands are dropped into the glass rather than poured. The sodium figure reflects salted cooking water in the survey record's own portion, which is higher than an unsalted home boil would give."
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "millet",
+  "name": "Millet",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "forms": [
+    {
+      "id": "raw",
+      "label": "Raw, dry",
+      "proseName": "millet",
+      "abvPercent": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 378,
+        "carbohydrateG": 72.85,
+        "proteinG": 11.02,
+        "fatG": 4.22,
+        "saturatedFatG": 0.723,
+        "fibreG": 8.5,
+        "sodiumMg": 5
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169702",
+      "sourceNote": "Millet, raw. Public domain. No sugar figure is reported for the raw grain, so none is claimed. No density: the grain is boiled into a porridge and fermented rather than poured, and a cup measure of the dry grain is mostly the air between the pieces."
+    }
+  ]
+}

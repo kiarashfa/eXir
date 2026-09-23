@@ -4,6 +4,6 @@
   "capacityMl": 600,
   "shapeFamily": "stemmed",
   "note": "A large stemmed bowl, filled nowhere near the top. Modern spritzes are built in it because the bowl holds ice, wine and a garnish at once and still leaves headroom for the aroma to collect.",
-  "iceDisplacementMl": { "cubed": 170, "block": 160, "crushed": 210, "none": 0 },
-  "iceDisplacementNote": "Solid ice only, and stated for the pour rather than the vessel: a spritz takes a handful of cubes in the bottom of the bowl, not a filled glass, so the displacement is quoted against the roughly 300 ml the glass is actually filled to rather than against its 600 ml capacity."
+  "iceDisplacementMl": { "cubed": 170, "block": 160, "crushed": 182, "none": 0 },
+  "iceDisplacementNote": "Solid ice only, and stated for the pour rather than the vessel: a spritz takes a handful of cubes in the bottom of the bowl, not a filled glass, so the displacement is quoted against the roughly 300 ml the glass is actually filled to rather than against its 600 ml capacity. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
 }

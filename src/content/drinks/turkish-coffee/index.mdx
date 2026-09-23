@@ -1,0 +1,101 @@
+---
+id: classic
+label: Classic
+name: Turkish Coffee
+subtitle: Extra-fine grounds cooked with sugar and water in an open copper pot until it foams.
+defaultDrinks: 1
+method: boiled
+dilutionClass: none
+glasswareRef: cezve-cup
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Cooked one small pot at a time; the foam that is the point of the method
+  collapses within moments of the pot leaving the heat.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [coffee]
+  origin: [turkey-anatolia]
+  method: [boiled]
+names:
+  alsoKnownAs:
+    - name: Greek coffee
+      region: Greece
+      note: The same cezve method under a different national name.
+  notToBeConfusedWith:
+    - name: Espresso
+      note: Cooked unfiltered over direct heat rather than forced through a filter under pump pressure; the grounds go into the cup and settle rather than being held back.
+brew:
+  method: immersion
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 90
+  grind: extra-fine
+  contactSec: 240
+  yieldMl: 55
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 7
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the cup and the rest settles
+      as sediment in the bottom, the middle of the Specialty Coffee
+      Association's published extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 60
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 5
+    unit: g
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: combine, durationSec: 20, type: active, phase: prep }
+  - { id: cook, durationSec: 240, type: active, phase: make }
+  - { id: settle, durationSec: 60, type: passive, phase: rest }
+notes:
+  - kind: technique
+    stepRef: cook
+    text: >-
+      The pot is pulled off the heat and returned to it several times rather
+      than left to boil through in one go, which builds a stable foam in
+      stages instead of breaking it the moment a hard boil sets in.
+  - kind: pitfall
+    text: >-
+      A grind any coarser than the flour-fine standard the cezve needs never
+      fully suspends in the water, so it sinks early, cooks against the
+      bottom of the pot and scorches instead of settling gently once poured.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. Each pot is cooked and poured for the cup it
+    fills.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> to an extra-fine, almost powdery texture.
+</Step>
+
+<Step id="combine">
+  Combine the grounds with the <Qty ref="water"/> and <Qty ref="sugar"/> in
+  the cezve and stir to wet the grounds evenly.
+</Step>
+
+<Step id="cook">
+  Set the pot over low heat. As the surface begins to foam, lift it off the
+  heat just before it boils over, then return it, repeating over
+  <Dur step="cook"/> until the foam is thick and stable.
+</Step>
+
+<Step id="settle">
+  Spoon the foam into the cup first, then pour the rest over it and let the
+  grounds settle for <Dur step="settle"/> before drinking.
+</Step>

@@ -1,0 +1,74 @@
+---
+id: classic
+label: Classic
+name: Egg Cream
+subtitle: Chocolate syrup, milk and seltzer sprayed in hard enough to foam, containing neither egg nor cream.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: soda-fountain
+servedOverIce: false
+bitterness: none
+batchable: none
+batchNote: >-
+  Built to order. The foam is raised by the force of pouring the seltzer in,
+  and it collapses within a minute of standing.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [soft-traditional]
+  origin: [united-states]
+  method: [built]
+ingredients:
+  - id: syrup
+    ingredientRef: chocolate-syrup
+    formRef: standard
+    amount: 25
+    unit: ml
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 60
+    unit: ml
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 180
+    unit: ml
+steps:
+  - { id: build, durationSec: 15, type: active, phase: make }
+  - { id: spray, durationSec: 15, type: active, phase: make }
+  - { id: stir, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: spray
+    text: >-
+      The seltzer is sprayed in hard, straight down the middle of the
+      glass, rather than poured gently down the side; the force is what
+      beats the milk and syrup into the tight white foam a proper egg cream
+      is judged by.
+  - kind: pitfall
+    text: >-
+      Stirring the syrup and milk together before the seltzer goes in
+      flattens the fizz that raises the foam. The syrup is meant to still
+      be mostly settled at the bottom when the seltzer hits it.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. It is built, sprayed and stirred in one
+    continuous sequence at the counter.
+  freezable: false
+---
+
+<Step id="build">
+  Pour the <Qty ref="syrup"/> into the bottom of a tall glass.
+</Step>
+
+<Step id="spray">
+  Add the <Qty ref="milk"/>, then spray in the <Qty ref="soda"/> hard and
+  fast, straight down the centre of the glass, for <Dur step="spray"/>.
+</Step>
+
+<Step id="stir">
+  Stir just enough to lift the syrup up from the bottom, leaving a tight
+  white foam on top.
+</Step>

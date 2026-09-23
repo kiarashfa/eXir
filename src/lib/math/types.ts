@@ -147,7 +147,20 @@ export interface Form {
    */
   densityGPerMl?: number;
   densitySource?: 'measured' | 'estimated';
-  /** Per 100 ml for liquids, per 100 g for solids. */
+  /**
+   * What "per 100" means for `sugarGPer100` and `nutritionPer100g` on this
+   * Form: grams (the default, and what every USDA record states) or
+   * millilitres (what a producer's bottle label, an Open Food Facts beverage
+   * and every derived preparation state). The engine converts a line into the
+   * Form's basis through its density before applying either figure.
+   *
+   * Without this the engine multiplied both figures by a line's amount in its
+   * OWN unit, so a per-100 g figure on a millilitre line was read as per
+   * 100 ml — understating every dense sweet liquid by its density: sweetened
+   * coconut cream by 28%, honey by 43%, coffee liqueur by 18%.
+   */
+  per100Basis?: 'g' | 'ml';
+  /** Per 100 of `per100Basis`. */
   sugarGPer100?: number;
   /** Titratable acidity as % w/v. Citrus sits near 6; most things are 0. */
   acidPercent?: number;
@@ -326,6 +339,14 @@ export interface Ferment {
   stages: FermentStage[];
   developsAlcohol: boolean;
   estimatedAbvRange?: [number, number];
+  /**
+   * The finished drink's sugar, g/L, as a sourced range. Optional: without it a
+   * ferment that develops alcohol is charged the sugar its alcohol came from.
+   * Needed for a koji or malt ferment, which MAKES sugar the list cannot show.
+   */
+  residualSugarGPerL?: [number, number];
+  /** Where the range came from. Required with it. */
+  residualSugarNote?: string;
   safetyNote?: string;
 }
 
@@ -355,6 +376,13 @@ export interface DrinkVersion {
   glasswareRef?: string;
   iceStyle?: string;
   servedOverIce?: boolean;
+  /**
+   * The ice goes in AFTER the liquid — "strain into the glass and fill with
+   * crushed ice" — so it takes whatever room is left rather than packing the
+   * glass first. The fit check then asks for a minimum ice allowance instead
+   * of a full glass of it. Set only where the recipe's own method says so.
+   */
+  iceTopped?: boolean;
   /**
    * The drink's temperature as served, where the method does not already imply
    * it. A toddy is hot and nothing in its ingredient list says so. This is a

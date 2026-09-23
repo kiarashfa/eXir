@@ -4,6 +4,6 @@
   "capacityMl": 470,
   "shapeFamily": "handled",
   "note": "The wide ceramic mug tiki drinks are served in, sized for a genuinely large pour over crushed ice rather than the single measure a rocks glass holds. Shape varies wildly by design — a carved idol, a skull, a barrel — but the working capacity across the style is consistent, and it is the capacity a fit check cares about.",
-  "iceDisplacementMl": { "cubed": 205, "block": 205, "crushed": 260, "none": 0 },
-  "iceDisplacementNote": "Solid ice only, on the same tumbler ratios as the rocks glass family scaled to this capacity — a tiki mug is wide-bodied rather than tall and narrow, so it packs closer to a rocks glass than to a highball."
+  "iceDisplacementMl": { "cubed": 205, "block": 205, "crushed": 219, "none": 0 },
+  "iceDisplacementNote": "Solid ice only, on the same tumbler ratios as the rocks glass family scaled to this capacity — a tiki mug is wide-bodied rather than tall and narrow, so it packs closer to a rocks glass than to a highball. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
 }

@@ -1,0 +1,96 @@
+---
+id: classic
+label: Classic
+name: Hot Toddy
+subtitle: Whisky, honey, lemon and cloves, built straight in the glass with hot water.
+defaultDrinks: 1
+method: heated
+dilutionClass: none
+glasswareRef: toddy-mug
+iceStyle: none
+servedOverIce: false
+serveTempC: 70
+bitterness: none
+batchable: none
+batchNote: >-
+  The water is heated and poured fresh for each glass; there is nothing
+  here that benefits from batching ahead.
+zeroProof: false
+tags:
+  category: [cocktail, hot-drink]
+  origin: [united-kingdom]
+  method: [heated]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Toddy
+      note: The older, unrelated Indian and Southeast Asian drink of fermented palm sap this recipe's name is borrowed from, containing no whisky, honey or hot water at all.
+ingredients:
+  - id: whisky
+    ingredientRef: bourbon
+    formRef: standard
+    amount: 45
+    unit: ml
+  - id: honey
+    ingredientRef: honey
+    formRef: standard
+    amount: 20
+    unit: g
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: cloves
+    ingredientRef: cloves
+    formRef: whole
+    amount: 0.5
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 120
+    unit: ml
+  - id: garnish-lemon
+    ingredientRef: lemon
+    formRef: standard
+    amount: 12
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A thin wheel studded with the cloves floats on top; it is not part of
+      the composition below.
+steps:
+  - { id: warm-glass, durationSec: 30, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: garnish, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      The water is heated well short of a boil before it meets the
+      <Qty ref="whisky"/>, since a full boil drives off some of the
+      spirit's own alcohol and turns a hot drink meant to warm into one
+      that is mostly water with whisky flavour.
+  - kind: pitfall
+    text: >-
+      Dissolving the <Qty ref="honey"/> straight into the whisky before the
+      water goes in keeps it from clumping at the bottom of the glass,
+      where it is easy to miss on the first few sips and then hit all at
+      once near the end.
+---
+
+<Step id="warm-glass">
+  Warm the toddy mug with hot water, then empty it.
+</Step>
+
+<Step id="build">
+  Stir the <Qty ref="whisky"/> and the <Qty ref="honey"/> together in the
+  warmed mug until the honey loosens, then add the <Qty ref="lemon"/>, the
+  <Qty ref="cloves"/> and the hot <Qty ref="water"/>.
+</Step>
+
+<Step id="garnish">
+  Float the clove-studded <Qty ref="garnish-lemon"/> wheel on top.
+</Step>

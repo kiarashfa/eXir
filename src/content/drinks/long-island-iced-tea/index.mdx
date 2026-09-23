@@ -1,0 +1,99 @@
+---
+id: classic
+label: Classic
+name: Long Island Iced Tea
+subtitle: Five spirits and a citrus-cola top, built over ice to the amber colour that gives it its name.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The five spirits, syrup and lemon juice batch together cleanly; the cola
+  is always added at the glass for its carbonation.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [built-over-ice]
+difficulty: Easy
+ingredients:
+  - id: vodka
+    ingredientRef: vodka
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: gin
+    ingredientRef: gin
+    formRef: london-dry
+    amount: 15
+    unit: ml
+  - id: rum
+    ingredientRef: white-rum
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: tequila
+    ingredientRef: tequila
+    formRef: blanco
+    amount: 15
+    unit: ml
+  - id: curacao
+    ingredientRef: orange-liqueur
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: cola
+    ingredientRef: cola
+    formRef: standard
+    amount: 30
+    unit: ml
+    addedAfterDilution: true
+steps:
+  - { id: build, durationSec: 25, type: active, phase: make }
+  - { id: top, durationSec: 15, type: active, phase: make }
+  - { id: stir, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      Five spirits at the same small measure is the entire design: no
+      single one of the <Qty ref="vodka"/>, the <Qty ref="gin"/>, the
+      <Qty ref="rum"/>, the <Qty ref="tequila"/> or the <Qty ref="curacao"/>
+      is meant to be tasted on its own, only the neutral strength they add
+      together under the lemon, syrup and cola.
+  - kind: pitfall
+    text: >-
+      A short pour of cola is what gives the drink its iced-tea colour and
+      a faint bitter edge; too heavy a hand with it turns the drink into a
+      rum and cola with extra steps and buries the citrus and syrup under
+      the soda instead.
+---
+
+<Step id="build">
+  Build the <Qty ref="vodka"/>, the <Qty ref="gin"/>, the <Qty ref="rum"/>,
+  the <Qty ref="tequila"/>, the <Qty ref="curacao"/>, the <Qty ref="lemon"/>
+  and the <Qty ref="syrup"/> over cubed ice in a collins glass.
+</Step>
+
+<Step id="top">
+  Top with the <Qty ref="cola"/>.
+</Step>
+
+<Step id="stir">
+  Stir briefly, just enough to bring the cola through the rest without
+  beating out its fizz.
+</Step>

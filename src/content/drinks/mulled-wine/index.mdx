@@ -1,0 +1,109 @@
+---
+id: red
+label: Red
+name: Mulled Wine
+subtitle: Red wine warmed with cinnamon, nutmeg and both citrus fruits, the loosely standardised British version served warm.
+defaultDrinks: 2
+method: heated
+dilutionClass: none
+glasswareRef: mug
+iceStyle: none
+servedOverIce: false
+serveTempC: 65
+bitterness: none
+batchable: full
+zeroProof: false
+tags:
+  category: [cocktail, hot-drink]
+  origin: [united-kingdom]
+  method: [heated]
+  occasion: [holiday]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Gluhwein
+      note: The German original this recipe is descended from, built to a narrower and more consistent spice mix of cinnamon, cloves and star anise rather than this version's looser nutmeg-and-two-citrus profile.
+    - name: Glogg
+      note: The Swedish version, fortified with aquavit or another spirit and served with raisins and almonds in the cup, neither of which belongs in a British mulled wine.
+ingredients:
+  - id: wine
+    ingredientRef: red-wine
+    formRef: standard
+    amount: 300
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 25
+    unit: g
+  - id: cinnamon
+    ingredientRef: cinnamon
+    formRef: stick
+    amount: 4
+    unit: g
+  - id: cloves
+    ingredientRef: cloves
+    formRef: whole
+    amount: 1
+    unit: g
+  - id: nutmeg
+    ingredientRef: nutmeg
+    formRef: ground
+    amount: 0.3
+    unit: g
+  - id: orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 30
+    unit: g
+    consumedFraction: 0.15
+    consumedFractionNote: >-
+      Sliced into the pot for its peel and juice; most of the fruit's own
+      body is strained out with the spices.
+  - id: lemon
+    ingredientRef: lemon
+    formRef: standard
+    amount: 15
+    unit: g
+    consumedFraction: 0.15
+    consumedFractionNote: >-
+      A few slices go in for a sharper edge than the orange alone gives;
+      most of the fruit is strained out with the spices.
+  - id: garnish-orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 20
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A slice studded with whole cloves floats on top of each cup; it is
+      not part of the composition below.
+steps:
+  - { id: warm, durationSec: 300, type: active, phase: make }
+  - { id: steep, durationSec: 600, type: passive, phase: rest }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: pitfall
+    text: >-
+      Unlike Gluhwein's fixed cinnamon-star-anise-orange mix, this version
+      has no single settled recipe; grating too much <Qty ref="nutmeg"/> in
+      is the easiest way to push it toward tasting like mulled cider
+      instead of wine.
+---
+
+<Step id="warm">
+  Combine the <Qty ref="wine"/>, the <Qty ref="sugar"/>, the
+  <Qty ref="cinnamon"/>, the <Qty ref="cloves"/>, the <Qty ref="nutmeg"/>,
+  the <Qty ref="orange"/> and the <Qty ref="lemon"/> in a pot and warm
+  gently until the sugar dissolves and the wine steams.
+</Step>
+
+<Step id="steep">
+  Take off the heat, cover and let the spices steep for <Dur step="steep"/>.
+</Step>
+
+<Step id="pour">
+  Warm through again briefly and strain hot into small cups, floating a
+  clove-studded slice of the <Qty ref="garnish-orange"/> on top of each.
+</Step>

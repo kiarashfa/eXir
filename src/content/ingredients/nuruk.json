@@ -1,0 +1,27 @@
+{
+  "id": "nuruk",
+  "name": "Nuruk",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      { "name": "Koji", "note": "The Japanese counterpart, a single mould cultured on steamed rice alone; nuruk is a wheat-based brick carrying wild mould, yeast and bacteria together, which is why it saccharifies and ferments a mash in one step." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Dried brick, crumbled",
+      "proseName": "nuruk",
+      "abvPercent": 0,
+      "sugarGPer100": 30,
+      "acidPercent": 10,
+      "nutritionPer100g": { "kcal": 160, "carbohydrateG": 40, "sugarsG": 30, "proteinG": 4 },
+      "animalOrigin": "none",
+      "allergenTags": ["gluten"],
+      "containsCaffeine": false,
+      "sourceNote": "A dried brick of cracked wheat cultured with wild mould, yeast and lactic bacteria, used in small quantity to both saccharify and ferment a rice mash at once. No dataset separates nuruk's own composition from the fermentation it drives, and both the residual sugar and the lactic sourness that define finished makgeolli are produced by that fermentation rather than being a property of the dried culture measured on its own — the same limitation this site's koji record documents for amazake. Rather than true zeroes, which would compute a finished makgeolli as carrying neither sugar nor acid at all, this record carries figures sized so that a typical batch lands near two reference points: roughly 2 g of carbohydrate per 100 ml, cross-checked across several commercial makgeolli nutrition labels, and a titratable acidity around 0.5-0.7% reported for laboratory-fermented makgeolli in a peer-reviewed study (Kim et al., 'Quality characteristics and antioxidant activity of the Korean traditional rice-oat wine Makgeolli supplemented with green seaweed Codium fragile', PMC11620207, control sample: 0.68% titratable acidity, pH 3.66). Both figures are attributed to this ingredient's line for that reason, not measurements of dry nuruk itself. The alcohol makgeolli develops is stated on the drink's ferment block rather than modelled from any ingredient line."
+    }
+  ]
+}

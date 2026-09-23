@@ -1,0 +1,86 @@
+---
+id: classic
+label: Classic
+name: Michelada
+subtitle: Lager poured over lime juice and hot sauce in a salt-rimmed glass, with nothing to cloud the beer's own colour.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: pint
+iceStyle: none
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  The beer is always opened and poured at the glass for its carbonation;
+  there is nothing here worth pre-mixing.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [mexico]
+  method: [built]
+difficulty: Easy
+names:
+  notToBeConfusedWith:
+    - name: Chelada
+      note: The simpler, older drink of beer with lime and salt this one grew from; a Michelada adds hot sauce and, in most modern versions, more seasoning than the chela ever carried.
+ingredients:
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 15
+    unit: ml
+  - id: hotsauce
+    ingredientRef: hot-sauce
+    formRef: standard
+    amount: 2.7
+    unit: ml
+  - id: salt
+    ingredientRef: salt
+    formRef: standard
+    amount: 2
+    unit: g
+    garnish: true
+    consumedFraction: 0.3
+    consumedFractionNote: >-
+      Coats half the rim; only the portion that dissolves into each sip as
+      the glass is drunk down actually reaches the drink, the rest stays on
+      the glass or is licked off separately.
+  - id: beer
+    ingredientRef: beer
+    formRef: lager
+    amount: 355
+    unit: ml
+steps:
+  - { id: rim, durationSec: 20, type: active, phase: prep }
+  - { id: build, durationSec: 15, type: active, phase: make }
+  - { id: top, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      The <Qty ref="lime"/> and the <Qty ref="hotsauce"/> go into the glass
+      before the beer, so the first sip through the foam is already
+      seasoned rather than plain lager with seasoning still settling at the
+      bottom.
+  - kind: pitfall
+    text: >-
+      A wet, over-poured rim washes the <Qty ref="salt"/> straight into the
+      glass and salts the whole drink at once; the rim is meant to be
+      tasted a sip at a time, not stirred in.
+---
+
+<Step id="rim">
+  Run a lime wedge around half the glass's rim and dip it in the
+  <Qty ref="salt"/>.
+</Step>
+
+<Step id="build">
+  Add the <Qty ref="lime"/> and the <Qty ref="hotsauce"/> to the chilled
+  glass.
+</Step>
+
+<Step id="top">
+  Top slowly with the <Qty ref="beer"/>, tilting the glass to keep the foam
+  down.
+</Step>

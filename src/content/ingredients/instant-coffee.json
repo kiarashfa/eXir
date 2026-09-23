@@ -1,0 +1,36 @@
+{
+  "id": "instant-coffee",
+  "name": "Instant Coffee",
+  "kind": "ingredient",
+  "category": "coffee",
+  "pantryStaple": true,
+  "names": {
+    "searchOnly": ["nescafe", "soluble coffee", "freeze-dried coffee"]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Instant, powder",
+      "proseName": "instant coffee",
+      "abvPercent": 0,
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 353,
+        "carbohydrateG": 75.4,
+        "sugarsG": 0,
+        "proteinG": 12.2,
+        "fatG": 0.5,
+        "saturatedFatG": 0.197,
+        "fibreG": 0,
+        "sodiumMg": 37
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": true,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "171893",
+      "sourceNote": "Beverages, coffee, instant, regular, powder. Public domain. No density: sold and dosed as a dry powder, and a spoon measure of it is a packing figure rather than a true one, so it is authored in grams throughout."
+    }
+  ]
+}

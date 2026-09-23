@@ -4,6 +4,6 @@
   "capacityMl": 300,
   "shapeFamily": "tumbler",
   "note": "The short, heavy-based tumbler spirit-forward drinks are served over ice in. Capacity is to the brim; a drink is poured well short of it.",
-  "iceDisplacementMl": { "cubed": 130, "block": 130, "crushed": 165, "none": 0 },
-  "iceDisplacementNote": "Solid ice only — the liquid fills the gaps between pieces, so what has to be subtracted from the glass is the ice itself. Cubed assumes six to eight tray cubes near 2.5 cm; block assumes one 5 cm cube, which is why the two land in the same place from opposite directions. Crushed packs tighter and leaves less room."
+  "iceDisplacementMl": { "cubed": 130, "block": 130, "crushed": 139, "none": 0 },
+  "iceDisplacementNote": "Solid ice only — the liquid fills the gaps between pieces, so what has to be subtracted from the glass is the ice itself. Cubed assumes six to eight tray cubes near 2.5 cm; block assumes one 5 cm cube, which is why the two land in the same place from opposite directions. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
 }

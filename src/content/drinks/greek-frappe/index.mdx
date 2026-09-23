@@ -1,0 +1,81 @@
+---
+id: classic
+label: Classic
+name: Greek Frappe
+subtitle: Instant coffee and sugar shaken to a stiff foam, then built over ice and cold water.
+defaultDrinks: 1
+method: shaken
+dilutionClass: built-over-ice
+glasswareRef: highball
+iceStyle: cubed
+servedOverIce: true
+bitterness: low
+batchable: none
+batchNote: >-
+  Shaken and built to order; the foam is the point of the drink and it does
+  not survive standing.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [coffee]
+  origin: [balkans]
+  method: [shaken]
+names:
+  alsoKnownAs:
+    - name: Frappé
+  notToBeConfusedWith:
+    - name: Iced Coffee
+      note: This is built specifically from instant coffee shaken to a thick foam before the ice and water go in, not any coffee cooled and poured over ice.
+ingredients:
+  - id: coffee
+    ingredientRef: instant-coffee
+    formRef: standard
+    amount: 2
+    unit: g
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 8
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 130
+    unit: ml
+    portions:
+      - { id: shake-water, amount: 30 }
+      - { id: top-water, amount: 100, note: "Cold, added after the shake." }
+steps:
+  - { id: shake, durationSec: 20, type: active, phase: make }
+  - { id: build, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: shake
+    text: >-
+      Only a small splash of water goes in for the shake, because the foam
+      forms from air worked into a concentrated mix of powder and sugar; the
+      same amount of coffee shaken into the full glass of water never
+      thickens the same way.
+  - kind: pitfall
+    text: >-
+      Ground roasted coffee will not do this. Instant coffee dissolves
+      completely and carries almost no oil, which is what lets a shaken foam
+      form and hold; grounds shaken the same way just leave a gritty froth
+      that collapses at once.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The foam is shaken fresh and poured
+    straight over the ice it is served with.
+  freezable: false
+---
+
+<Step id="shake">
+  Combine the <Qty ref="coffee"/>, <Qty ref="sugar"/> and
+  <Qty ref="shake-water"/> in a shaker and shake hard for <Dur step="shake"/>,
+  until it turns to a thick, pale foam.
+</Step>
+
+<Step id="build">
+  Fill the glass with ice, pour the <Qty ref="top-water"/> over it, then
+  spoon the foam on top.
+</Step>

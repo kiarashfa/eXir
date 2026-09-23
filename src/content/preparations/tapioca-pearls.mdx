@@ -1,0 +1,82 @@
+---
+id: tapioca-pearls
+name: Tapioca Pearls
+kind: preparation
+category: other
+names:
+  alsoKnownAs:
+    - name: Boba
+purchasable: true
+purchaseNote: >-
+  Sold dry or frozen at most Asian grocers; frozen pearls need only reheating rather than the
+  full boil a dry bag needs. Ready-cooked pearls sitting in syrup are also sold refrigerated
+  for same-day use.
+yieldMl: 338
+shelfLife:
+  days: 1
+  storage: at room temperature, in their own syrup
+forms:
+  - id: standard
+    label: Cooked, in syrup
+    proseName: tapioca pearls
+    per100Basis: ml
+    abvPercent: 0
+    densityGPerMl: 1.12
+    densitySource: estimated
+    sugarGPer100: 13.75
+    acidPercent: 0
+    nutritionPer100g:
+      kcal: 146.5
+      carbohydrateG: 36.4
+      sugarsG: 13.75
+      proteinG: 0.05
+      fatG: 0.01
+      fibreG: 0.24
+      sodiumMg: 0.9
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      Mass and volume are summed over the lines this recipe names rather than measured: the dry
+      pearls roughly triple in mass as they absorb water during the boil, a commonly cited but
+      unmeasured ratio, so the retained water is authored as a line rather than a sourced figure.
+      Density is a solid-in-syrup estimate between water and the demerara syrup coating the
+      pearls, and is marked estimated rather than measured for that reason. Most of the boiling
+      water is drained off and is not counted in the yield.
+ingredients:
+  - id: pearls
+    ingredientRef: tapioca
+    formRef: dry
+    amount: 100
+    unit: g
+  - id: absorbed-water
+    ingredientRef: water
+    formRef: standard
+    amount: 180
+    unit: ml
+  - id: syrup
+    ingredientRef: demerara-syrup
+    amount: 80
+    unit: ml
+steps:
+  - { id: boil, durationSec: 1200, type: passive, phase: make }
+  - { id: rest, durationSec: 1200, type: passive, phase: rest }
+  - { id: soak, durationSec: 900, type: passive, phase: rest }
+---
+
+<Step id="boil">
+  Add the <Qty ref="pearls"/> to a large pot of boiling water and cook,
+  stirring occasionally so they do not settle and stick, for
+  <Dur step="boil"/>.
+</Step>
+
+<Step id="rest">
+  Take off the heat, cover, and let stand for <Dur step="rest"/> so the
+  centres finish cooking through without the pot boiling dry.
+</Step>
+
+<Step id="soak">
+  Drain and rinse briefly under cold water, then submerge in the
+  <Qty ref="syrup"/> and leave to soak for <Dur step="soak"/> before using.
+</Step>

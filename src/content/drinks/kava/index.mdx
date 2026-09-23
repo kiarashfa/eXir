@@ -1,0 +1,71 @@
+---
+id: classic
+label: Classic
+name: Kava
+subtitle: Ground kava root kneaded in water and strained through cloth into a murky, earthy drink, the way it is prepared for a kava circle.
+defaultDrinks: 4
+method: steeped
+dilutionClass: none
+glasswareRef: rocks
+iceStyle: none
+servedOverIce: false
+bitterness: low
+batchable: full
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [soft-traditional]
+  origin: [pacific-oceania]
+  method: [steeped]
+ingredients:
+  - id: kava
+    ingredientRef: kava-root
+    formRef: powder
+    amount: 120
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Kneaded in the water to release its extract, then strained out
+      through cloth; the fibre itself is not drunk.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1000
+    unit: ml
+steps:
+  - { id: knead, durationSec: 480, type: active, phase: make }
+  - { id: strain, durationSec: 120, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: knead
+    text: >-
+      Kneading the ground root directly in the water, by hand inside a
+      cloth bag, is what pulls the extract out; simply stirring it leaves
+      most of what a kava circle is drinking behind in the fibre.
+  - kind: pitfall
+    stepRef: strain
+    text: >-
+      Kava settles fast once strained, so each shell or cup is stirred or
+      swirled again just before it is served, rather than ladled from a
+      bowl that has been sitting.
+makeAhead:
+  aheadInstructions: >-
+    Traditionally kneaded and served the same session rather than stored,
+    since it settles and its character fades within a day even
+    refrigerated.
+  batchKeepDays: 1
+  batchStorage: refrigerated and sealed
+  freezable: false
+---
+
+<Step id="knead">
+  Knead the <Qty ref="kava"/> by hand inside a cloth bag submerged in the
+  <Qty ref="water"/>, working it for <Dur step="knead"/> until the water
+  has turned cloudy and muddy brown.
+</Step>
+
+<Step id="strain">
+  Wring the bag out hard to get the last of the extract through, then
+  ladle into shells or cups, stirring or swirling each one just before it
+  is handed over.
+</Step>

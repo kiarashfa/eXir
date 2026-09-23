@@ -1,0 +1,118 @@
+---
+id: primary
+label: Primary
+name: Kombucha
+subtitle: Sweet black tea fermented for a week with a live SCOBY into a tart, lightly sour drink.
+defaultDrinks: 5
+method: fermented
+dilutionClass: none
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+serveTempC: 6
+bitterness: none
+batchable: full
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [kitchen-ferment]
+  origin: [china]
+  method: [fermented]
+names:
+  alsoKnownAs:
+    - { name: "Tea fungus" }
+ferment:
+  stages:
+    - { id: f1, label: Primary, days: 8, tempC: [20, 26], sealed: false }
+  developsAlcohol: true
+  estimatedAbvRange: [0, 1]
+  safetyNote: >-
+    The jar is covered with a breathable cloth rather than a lid, both to
+    let the ferment vent and to keep insects and dust out. A batch that
+    smells sharply of nail polish remover, or grows fuzzy or coloured
+    patches rather than a smooth, pale new layer on the SCOBY, has gone
+    wrong and should be discarded rather than tasted.
+ingredients:
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1800
+    unit: ml
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 12
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Steeped for colour and flavour, then strained out before the sugar
+      goes in; the leaves themselves are discarded.
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 150
+    unit: g
+  - id: scoby
+    ingredientRef: scoby
+    formRef: standard
+    amount: 1
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Floats in the jar for the whole ferment and is lifted out at the end
+      to start the next batch rather than being drunk.
+steps:
+  - { id: steep, durationSec: 600, type: active, phase: prep }
+  - { id: dissolve, durationSec: 60, type: active, phase: prep }
+  - { id: cool, durationSec: 3600, type: passive, phase: prep }
+  - { id: ferment, durationSec: 691200, type: passive, phase: rest }
+  - { id: strain, durationSec: 90, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: cool
+    text: >-
+      The sweet tea has to come all the way down to room temperature before
+      the SCOBY goes in, since tea still warm enough to feel hot on the
+      wrist is hot enough to kill the culture outright.
+  - kind: pitfall
+    text: >-
+      A week is a starting point rather than a fixed point: a warmer
+      kitchen ferments faster and a cooler one slower, so the only reliable
+      test is tasting a little each day past the sixth until the sweetness
+      has dropped to a level that still tastes pleasant rather than merely
+      sour.
+makeAhead:
+  aheadInstructions: >-
+    The ferment itself is the make-ahead step. Strained kombucha keeps
+    refrigerated for weeks, slowly souring further, and the SCOBY goes
+    straight into a fresh batch of sweet tea.
+  batchKeepDays: 30
+  batchStorage: refrigerated and sealed
+  freezable: false
+---
+
+<Step id="steep">
+  Steep the <Qty ref="tea"/> in freshly boiled <Qty ref="water"/> for
+  <Dur step="steep"/>, then strain the leaves out.
+</Step>
+
+<Step id="dissolve">
+  Stir the <Qty ref="sugar"/> into the hot tea until it is completely
+  dissolved.
+</Step>
+
+<Step id="cool">
+  Leave the sweet tea to cool fully to room temperature before the next
+  step.
+</Step>
+
+<Step id="ferment">
+  Pour the cooled tea into a clean jar, lower in the <Qty ref="scoby"/>,
+  cover with a breathable cloth secured with a band, and leave at room
+  temperature for <Dur step="ferment"/>, away from direct light.
+</Step>
+
+<Step id="strain">
+  Lift out the SCOBY, reserving it for the next batch, and strain the
+  kombucha into bottles for the refrigerator.
+</Step>

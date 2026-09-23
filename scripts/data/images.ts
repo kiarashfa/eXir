@@ -17,11 +17,13 @@
  * all of them to the repository's history permanently.
  */
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 
 import { attribution, byTitle, search, type Candidate } from './commons.ts';
+import { readLicence } from './licence.ts';
+import { searchOpenverse } from './openverse.ts';
 import { fetchBinary } from './http.ts';
 import { RENDITIONS, contactSheet, render, treat, triageSheet } from './image-treatment.ts';
 
@@ -139,6 +141,219 @@ async function doReview(
   console.log('if it corrected hard, the background will have gone the opposite colour.');
 }
 
+/**
+ * Search everything free that is not on Commons.
+ *
+ * Prints the exact `adopt-url` line for each candidate, because the failure
+ * this pass is prone to is a mistyped licence or a missing page URL, and a
+ * command you can copy cannot be mistyped.
+ */
+async function doOpen(query: string, limit: number, slug?: string, kind?: string): Promise<void> {
+  const results = await searchOpenverse(query, limit);
+  console.log(`${results.length} free candidate(s) for "${query}" outside Commons
+`);
+  for (const [i, c] of results.entries()) {
+    const size = c.width && c.height ? `${c.width}x${c.height}` : 'size unknown';
+    console.log(`${String(i + 1).padStart(2)}. ${c.title.slice(0, 64)}`);
+    console.log(`    ${c.provider} · ${c.licence} · ${c.creator} · ${size}`);
+    console.log(`    ${c.pageUrl}`);
+    console.log(
+      `    node scripts/data/images.ts adopt-url "${c.url}" --slug ${slug ?? '<slug>'} ` +
+        `--kind ${kind ?? '<kind>'} --alt "..." --source "${c.provider}" ` +
+        `--page "${c.pageUrl}" --author "${c.creator}" --license "${c.licence}"` +
+        (c.licenceUrl ? ` --license-url "${c.licenceUrl}"` : ''),
+    );
+  }
+  if (results.length === 0) {
+    console.log('Nothing free found. That is a result: report it rather than widening to NC.');
+  }
+}
+
+/**
+ * Adopt an image from ANYWHERE — a national Wikipedia's local upload, Flickr,
+ * Openverse, a museum's open-access API, a stock platform.
+ *
+ * Everything Commons answers for itself has to be supplied and checked here
+ * instead: the licence is validated against a whitelist rather than believed,
+ * and the page the image came from is recorded so the claim can be re-checked
+ * by anyone. The image URL alone is not enough for that — it is where the
+ * pixels are, not where the permission is.
+ */
+async function doAdoptUrl(url: string, argv: string[]): Promise<void> {
+  const slug = arg('slug', argv);
+  const kind = (arg('kind', argv) ?? 'drink') as Kind;
+  const alt = arg('alt', argv);
+  const source = arg('source', argv);
+  const page = arg('page', argv);
+  const author = arg('author', argv);
+  const stated = arg('license', argv) ?? arg('licence', argv);
+  const licenceUrl = arg('license-url', argv) ?? arg('licence-url', argv);
+  const credit = arg('credit', argv);
+
+  const missing = [
+    !slug && '--slug',
+    !alt && '--alt',
+    !source && '--source',
+    !page && '--page',
+    !author && '--author',
+    !stated && '--license',
+  ].filter(Boolean);
+  if (missing.length > 0) {
+    console.error(`adopt-url needs ${missing.join(', ')}.`);
+    console.error('--page is the PAGE the image sits on, not the image file URL: it is what');
+    console.error('makes the licence claim checkable by someone who was not here.');
+    process.exit(1);
+  }
+
+  const verdict = readLicence(stated);
+  if (!verdict.ok || !verdict.licence) {
+    console.error(`Refused: ${verdict.reason}.`);
+    console.error('Free licences only: CC0, public domain, CC BY, CC BY-SA, or the named');
+    console.error('Unsplash / Pexels / Pixabay terms. NC and ND are never adopted — every');
+    console.error('image here is cropped and graded, which ND forbids outright.');
+    process.exit(1);
+  }
+  const licence = verdict.licence;
+  if (!/^https?:\/\//.test(page ?? '')) {
+    console.error('--page must be a URL.');
+    process.exit(1);
+  }
+
+  const specs = RENDITIONS[kind];
+  if (!specs) {
+    console.error(`Unknown kind "${kind}". One of: ${Object.keys(RENDITIONS).join(', ')}`);
+    process.exit(1);
+  }
+
+  console.log(`  ${licence.name}${licence.shareAlike ? ' (share-alike: the derivative inherits it)' : ''}`);
+  if (licence.platform) {
+    console.log('  Platform terms rather than a public licence — weaker, and creditable anyway.');
+  }
+
+  const original = await fetchBinary(url, {
+    onRetry: (n, why) => console.error(`  retry ${n}: ${why}`),
+  });
+  const { image, report } = await treat(original);
+
+  const outDir = path.join(PUBLIC_DIR, FOLDER[kind] ?? kind);
+  await mkdir(outDir, { recursive: true });
+
+  const renditions: ManifestEntry['renditions'] = {};
+  let total = 0;
+  for (const spec of specs) {
+    const { buffer, width, height } = await render(image, spec);
+    const file = `${slug}-${spec.name}.webp`;
+    await writeFile(path.join(outDir, file), buffer);
+    renditions[spec.name] = {
+      file: `/images/${FOLDER[kind] ?? kind}/${file}`,
+      width,
+      height,
+      bytes: buffer.length,
+    };
+    total += buffer.length;
+    console.log(`  ${file.padEnd(34)} ${width}px  ${(buffer.length / 1024).toFixed(0)} kB`);
+  }
+
+  const record: Record<string, string> = {
+    source: source as string,
+    file: url,
+    sourceUrl: page as string,
+    author: author as string,
+    license: licence.name,
+    modified: 'Cropped, white-balanced, graded and re-encoded to WebP by eXir.',
+  };
+  if (credit) record['credit'] = credit;
+  if (licenceUrl) record['licenseUrl'] = licenceUrl;
+
+  const manifest = await loadManifest();
+  manifest[`${kind}:${slug}`] = { slug, kind, alt, renditions, attribution: record };
+  await mkdir(path.dirname(MANIFEST), { recursive: true });
+  await writeFile(
+    MANIFEST,
+    `${JSON.stringify(Object.fromEntries(Object.entries(manifest).sort()), null, 2)}
+`,
+    'utf8',
+  );
+
+  console.log(
+    `
+  white balance applied ${(report.appliedStrength * 100).toFixed(0)}% ` +
+      `(colour dominance ${report.colourDominance.toFixed(2)})`,
+  );
+  console.log(`  ${(total / 1024).toFixed(0)} kB total · manifest updated`);
+}
+
+/**
+ * Tile already-adopted images into one sheet, so a reviewer can LOOK at a whole
+ * batch at once. An agent adopts from metadata it cannot see; this is how the
+ * pictures themselves get checked before they ship.
+ */
+async function doSheet(argv: string[]): Promise<void> {
+  const keys = (arg('keys', argv) ?? '').split(',').map((k) => k.trim()).filter(Boolean);
+  const out = arg('out', argv) ?? path.join(REVIEW_DIR, '_verify', 'sheet.webp');
+  if (keys.length === 0) {
+    console.error('sheet needs --keys kind:slug,kind:slug,…  (as they appear in the manifest)');
+    process.exit(1);
+  }
+  const manifest = await loadManifest();
+  const tiles: Buffer[] = [];
+  const index: string[] = [];
+  for (const key of keys) {
+    const entry = manifest[key];
+    if (!entry) {
+      console.error(`  ${key}: not in the manifest`);
+      continue;
+    }
+    const rendition = entry.renditions['card'] ?? Object.values(entry.renditions)[0];
+    if (!rendition) continue;
+    tiles.push(await readFile(path.join('public', rendition.file.replace(/^\//, ''))));
+    index.push(`${String(tiles.length).padStart(2, '0')}  ${key}`);
+  }
+  await mkdir(path.dirname(out), { recursive: true });
+  await writeFile(out, await triageSheet(tiles, 260));
+  console.log(index.join('\n'));
+  console.log(`\n${tiles.length} tile(s) → ${out}`);
+}
+
+/**
+ * Un-adopt. Removes the manifest entry AND its rendition files together.
+ *
+ * Review rejects images — four in one round, on sight — and doing that by hand
+ * leaves rendition files on disk with no manifest entry, which is precisely the
+ * "lost adopt" shape a parallel round is supposed to avoid. One command so the
+ * two halves cannot drift apart.
+ */
+async function doDrop(argv: string[]): Promise<void> {
+  const keys = (arg('keys', argv) ?? '').split(',').map((k) => k.trim()).filter(Boolean);
+  const why = arg('why', argv);
+  if (keys.length === 0 || !why) {
+    console.error('drop needs --keys kind:slug,… and --why "the reason this image was rejected"');
+    process.exit(1);
+  }
+  const manifest = await loadManifest();
+  for (const key of keys) {
+    const entry = manifest[key];
+    if (!entry) {
+      console.error(`  ${key}: not in the manifest`);
+      continue;
+    }
+    for (const rendition of Object.values(entry.renditions)) {
+      const file = path.join('public', rendition.file.replace(/^\//, ''));
+      if (existsSync(file)) await rm(file);
+    }
+    delete manifest[key];
+    console.log(`  dropped ${key} — ${why}`);
+  }
+  await writeFile(
+    MANIFEST,
+    `${JSON.stringify(Object.fromEntries(Object.entries(manifest).sort()), null, 2)}
+`,
+    'utf8',
+  );
+  console.log(`
+  manifest updated. The subject is bare again and inventory.ts will list it.`);
+}
+
 async function loadManifest(): Promise<Record<string, ManifestEntry>> {
   if (!existsSync(MANIFEST)) return {};
   return JSON.parse(await readFile(MANIFEST, 'utf8')) as Record<string, ManifestEntry>;
@@ -247,6 +462,20 @@ async function main(): Promise<void> {
       if (!target) return usage();
       await doAdopt(target, argv);
       return;
+    case 'open':
+      if (!target) return usage();
+      await doOpen(target, limit, arg('slug', argv), arg('kind', argv));
+      return;
+    case 'adopt-url':
+      if (!target) return usage();
+      await doAdoptUrl(target, argv);
+      return;
+    case 'drop':
+      await doDrop(argv);
+      return;
+    case 'sheet':
+      await doSheet(argv);
+      return;
     default:
       return usage();
   }
@@ -257,8 +486,16 @@ function usage(): void {
   node scripts/data/images.ts search "<query>" [--limit n]
   node scripts/data/images.ts review "<query>" --slug <slug> [--limit n]
   node scripts/data/images.ts adopt "File:Name.jpg" --slug <slug> --kind drink --alt "..."
+  node scripts/data/images.ts open "<query>" [--limit n] [--slug s] [--kind k]
+  node scripts/data/images.ts adopt-url "<image url>" --slug <slug> --kind ingredient
+       --alt "..." --source "Flickr" --page "<page url>" --author "..."
+       --license "CC BY 2.0" [--license-url "..."] [--credit "..."]
+  node scripts/data/images.ts drop --keys drink:x,ingredient:y --why "reason"
+  node scripts/data/images.ts sheet --keys drink:negroni,ingredient:gin [--out file.webp]
 
-Kinds: ${Object.keys(RENDITIONS).join(', ')}`);
+Kinds: ${Object.keys(RENDITIONS).join(', ')}
+Licences: CC0 · public domain · CC BY · CC BY-SA · Unsplash/Pexels/Pixabay terms.
+NC and ND are refused: every image here is cropped and graded.`);
   process.exit(1);
 }
 

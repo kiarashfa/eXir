@@ -16,7 +16,12 @@
  * carries exactly the dilution the ice would have contributed.
  */
 
-import { computeAlcohol, type AlcoholResult } from './alcohol.ts';
+import {
+  computeAlcohol,
+  ETHANOL_G_PER_ML,
+  ETHANOL_KCAL_PER_G,
+  type AlcoholResult,
+} from './alcohol.ts';
 import {
   acidPercentOfFinal,
   allBarsInOneQuartile,
@@ -87,6 +92,63 @@ export interface DrinkSpec {
   warnings: string[];
 }
 
+const KCAL_PER_G_SUGAR = 4;
+
+/**
+ * Grams of sugar one gram of ethanol costs a yeast: Gay-Lussac's 180 g of
+ * glucose to 92 g of ethanol, 0.511 g of ethanol per gram of sugar. A floor on
+ * what was consumed — a real ferment also spends sugar on acids and on growth.
+ */
+const SUGAR_G_PER_ETHANOL_G = 1 / 0.511;
+
+export interface FermentFigures {
+  /** The sugar in the finished drink, per drink. */
+  sugarG: number;
+  /** Sugar the ferment used up, per drink. Never negative: sugar a ferment
+   *  DEVELOPS came out of starch that is already in the carbohydrate count. */
+  consumedSugarG: number;
+  /** Energy of the declared alcohol, which is in no ingredient line. */
+  alcoholKcal: number;
+  abvRange?: [number, number];
+}
+
+const mid = ([lo, hi]: [number, number]): number => (lo + hi) / 2;
+
+/**
+ * What fermentation does to the figures an ingredient list implies.
+ *
+ * Sugar: an authored `residualSugarGPerL` range, where a source gives one,
+ * sets the finished figure outright — lower than the input for a yeast
+ * ferment, higher for a koji or malt one that makes sugar from starch. Where
+ * none is authored, a ferment that develops alcohol is charged at least the
+ * sugar its declared alcohol must have come from.
+ *
+ * Alcohol: the midpoint of the declared range, for energy only. Standard
+ * drinks are still not computed from a range, and the ABV figure itself stays
+ * what the ingredient list gives — the range is shown beside it, not in it.
+ */
+export function fermentFigures(
+  version: DrinkVersion,
+  composition: Composition,
+  finalVolumeMl: number,
+): FermentFigures | undefined {
+  const f = version.ferment;
+  if (!f) return undefined;
+  const range = f.developsAlcohol ? f.estimatedAbvRange : undefined;
+  const alcoholG = range ? (mid(range) / 100) * finalVolumeMl * ETHANOL_G_PER_ML : 0;
+
+  const sugarG = f.residualSugarGPerL
+    ? (mid(f.residualSugarGPerL) * finalVolumeMl) / 1000
+    : Math.max(0, composition.sugarG - alcoholG * SUGAR_G_PER_ETHANOL_G);
+
+  return {
+    sugarG,
+    consumedSugarG: Math.max(0, composition.sugarG - sugarG),
+    alcoholKcal: alcoholG * ETHANOL_KCAL_PER_G,
+    ...(range ? { abvRange: range } : {}),
+  };
+}
+
 /**
  * Compute the spec for ONE drink.
  *
@@ -101,14 +163,34 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
   const drinksPerRecipe = Math.max(1, version.defaultDrinks);
   const totals = computeComposition(lines);
 
+  // What actually reaches the ice. For everything but a brewed drink that is
+  // the poured volume. A brewed drink's dose and water never meet the ice as
+  // themselves — the SHOT does — so its basis is the measured yield plus every
+  // line that joins the yield, and the dose and water are left out. The first
+  // drink to be brewed AND iced was the espresso martini, which the old
+  // arithmetic diluted against 50 ml of brew water that leaves as a 30 ml shot,
+  // then threw that dilution away when the final volume was swapped for the
+  // yield — publishing it undiluted, at 24%.
+  const isBrewInput = (id: string): boolean =>
+    id === version.brew?.doseRef || id === version.brew?.waterRef;
+  const postBrewLines = version.brew ? lines.filter(({ line }) => !isBrewInput(line.id)) : [];
+  const postBrewVolumeMl = postBrewLines.reduce((sum, r) => sum + resolvedLineVolumeMl(r), 0);
+  const basisAlcoholMl = (totals.dilutionBasisAbvPercent / 100) * totals.dilutionBasisVolumeMl;
+  const basisVolumeMl = version.brew
+    ? version.brew.yieldMl +
+      postBrewLines
+        .filter(({ line }) => !line.addedAfterDilution)
+        .reduce((sum, r) => sum + resolvedLineVolumeMl(r), 0)
+    : totals.dilutionBasisVolumeMl;
+
   // The fraction acts on the dilution basis — everything poured EXCEPT a line
   // marked `addedAfterDilution` (a shaken drink's sparkling-wine top, say),
   // which was never in the tin for whatever step drives the model. Equal to
   // the full poured volume unless such a line exists, so this changes nothing
   // for every drink that doesn't have one.
   const dilutionTotal = computeDilution({
-    pouredVolumeMl: totals.dilutionBasisVolumeMl,
-    pouredAbvPercent: totals.dilutionBasisAbvPercent,
+    pouredVolumeMl: basisVolumeMl,
+    pouredAbvPercent: basisVolumeMl > 0 ? (basisAlcoholMl / basisVolumeMl) * 100 : 0,
     classId: version.dilutionClass,
     // Authored water already sits inside the poured volume, so passing it again
     // here would count it twice.
@@ -139,17 +221,8 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
   // every per-litre figure computed against the smaller denominator and so
   // overstated. Pour-over coffee has no such line, which is why this went two
   // phases without showing.
-  const postBrewVolumeMl = version.brew
-    ? lines
-        .filter(
-          ({ line }) =>
-            line.id !== version.brew?.doseRef && line.id !== version.brew?.waterRef,
-        )
-        .reduce((sum, resolved) => sum + resolvedLineVolumeMl(resolved), 0)
-    : 0;
-
   const finalVolumeMl = version.brew
-    ? (version.brew.yieldMl + postBrewVolumeMl) / drinksPerRecipe
+    ? (version.brew.yieldMl + postBrewVolumeMl + dilutionTotal.dilutionMl) / drinksPerRecipe
     : dilution.finalVolumeMl;
 
   const alcohol = computeAlcohol({
@@ -158,9 +231,28 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
     volumeEstimated,
   });
 
-  const nutrition = computeNutrition(composition, alcohol.alcoholKcal);
+  // A ferment's ingredient list is what goes IN, and fermentation changes it.
+  // Yeast eats sugar and makes alcohol; koji and malt turn starch into sugar.
+  // Publishing the input sugar put kombucha at 80-100 g/L when a finished one
+  // is a third of that, and leaving the declared alcohol out of the energy
+  // published a makgeolli about a hundred calories light. See `fermentFigures`.
+  const fermented = fermentFigures(version, composition, finalVolumeMl);
+  const fermentedComposition: Composition = fermented
+    ? {
+        ...composition,
+        sugarG: fermented.sugarG,
+        carbohydrateG: Math.max(0, composition.carbohydrateG - fermented.consumedSugarG),
+        macroKcal: Math.max(0, composition.macroKcal - fermented.consumedSugarG * KCAL_PER_G_SUGAR),
+        estimated: true,
+      }
+    : composition;
 
-  const sugarGPerL = sugarPerLitre(composition.sugarG, finalVolumeMl);
+  const nutrition = computeNutrition(
+    fermentedComposition,
+    alcohol.alcoholKcal + (fermented?.alcoholKcal ?? 0),
+  );
+
+  const sugarGPerL = sugarPerLitre(fermentedComposition.sugarG, finalVolumeMl);
   const acidPercentFinal = acidPercentOfFinal(composition.acidG, finalVolumeMl);
 
   const bars = computeBalance({
@@ -168,7 +260,8 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
     sugarGPerL,
     acidPercentFinal,
     bitterness: version.bitterness,
-    volumeEstimated,
+    volumeEstimated: volumeEstimated || fermented !== undefined,
+    ...(fermented?.abvRange ? { abvRange: fermented.abvRange } : {}),
   });
 
   const warnings: string[] = [];
@@ -207,7 +300,7 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
   }
 
   return {
-    composition,
+    composition: fermentedComposition,
     dilution,
     alcohol,
     nutrition,
@@ -217,7 +310,9 @@ export function computeDrinkSpec(version: DrinkVersion, lines: ResolvedLine[]): 
     // only while the yield is the whole of it. Once a post-brew line is in
     // there, that line's own volume carries whatever uncertainty its density
     // has, and the figure inherits it.
-    finalVolumeEstimated: version.brew ? postBrewVolumeMl > 0 && volumeEstimated : volumeEstimated,
+    finalVolumeEstimated: version.brew
+      ? (postBrewVolumeMl > 0 || dilution.dilutionMl > 0) && volumeEstimated
+      : volumeEstimated,
     sugarGPerL,
     acidPercentFinal,
     facets: {

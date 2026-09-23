@@ -1,0 +1,35 @@
+{
+  "id": "allspice",
+  "name": "Allspice",
+  "kind": "ingredient",
+  "category": "spice",
+  "pantryStaple": true,
+  "names": {
+    "alsoKnownAs": [{ "name": "Pimento berries" }]
+  },
+  "forms": [
+    {
+      "id": "whole",
+      "label": "Whole berries",
+      "proseName": "whole allspice berries",
+      "abvPercent": 0,
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 263,
+        "carbohydrateG": 72.12,
+        "proteinG": 6.09,
+        "fatG": 8.69,
+        "saturatedFatG": 2.55,
+        "fibreG": 21.6,
+        "sodiumMg": 77
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "171315",
+      "sourceNote": "Spices, allspice, ground. Public domain; the ground spice and the whole dried berry are the same material. USDA reports no sugars for this record, so sugarGPer100 is left at what the record gives, which is none stated rather than measured zero. No density: the berries are steeped or simmered and strained out, so they displace nothing in the finished drink."
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+---
+id: white
+label: White
+name: Sangria
+subtitle: The same macerated-fruit build on white wine and peach rather than red wine and orange, for a paler, lighter pitcher.
+defaultDrinks: 2
+method: built-over-ice
+dilutionClass: built-over-ice
+glasswareRef: wine-red
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The wine, fruit and brandy steep together for hours and only improve for
+  it; the soda is always added at the glass, just before serving, for its
+  fizz.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [spain]
+  method: [built-over-ice]
+  occasion: [aperitivo]
+difficulty: Easy
+ingredients:
+  - id: wine
+    ingredientRef: white-wine
+    formRef: standard
+    amount: 300
+    unit: ml
+  - id: brandy
+    ingredientRef: cognac
+    formRef: standard
+    amount: 30
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 20
+    unit: ml
+  - id: peach
+    ingredientRef: peach
+    formRef: puree
+    amount: 40
+    unit: ml
+  - id: lemon
+    ingredientRef: lemon
+    formRef: standard
+    amount: 29
+    unit: g
+    consumedFraction: 0.6
+    consumedFractionNote: >-
+      Cut into wedges and left steeping in the wine for hours, releasing
+      juice and oil from the peel; the softened wedges are also served in
+      the glass, but not all of the fruit's own sugar and juice transfers
+      out of the segments.
+  - id: soda
+    ingredientRef: water
+    formRef: soda
+    amount: 40
+    unit: ml
+    addedAfterDilution: true
+steps:
+  - { id: build, durationSec: 30, type: active, phase: prep }
+  - { id: macerate, durationSec: 14400, type: passive, phase: rest }
+  - { id: pour, durationSec: 20, type: active, phase: make }
+  - { id: top, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      Peach stands in for the orange the red version is built on, chosen
+      for white wine's own lighter, less tannic body, which a heavier
+      citrus load would sit oddly against.
+---
+
+<Step id="build">
+  Combine the <Qty ref="wine"/>, the <Qty ref="brandy"/>, the
+  <Qty ref="syrup"/>, the <Qty ref="peach"/> and the <Qty ref="lemon"/> in a
+  pitcher.
+</Step>
+
+<Step id="macerate">
+  Refrigerate for <Dur step="macerate"/>, stirring once or twice.
+</Step>
+
+<Step id="pour">
+  Pour over cubed ice into wine glasses, dividing the lemon between them.
+</Step>
+
+<Step id="top">
+  Top each glass with the <Qty ref="soda"/>.
+</Step>

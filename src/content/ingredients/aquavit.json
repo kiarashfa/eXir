@@ -1,0 +1,40 @@
+{
+  "id": "aquavit",
+  "name": "Aquavit",
+  "kind": "ingredient",
+  "category": "aquavit",
+  "countryOfOrigin": "Sweden",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [{ "name": "Akvavit" }],
+    "notToBeConfusedWith": [
+      { "name": "Vodka", "note": "Both are neutral grain or potato spirits at a similar strength, but aquavit is redistilled or infused with caraway and other botanicals; a recipe naming it means that flavour rather than a plain spirit." }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Standard",
+      "proseName": "aquavit",
+      "abvPercent": 40,
+      "densityGPerMl": 0.94,
+      "densitySource": "measured",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 231,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174818",
+      "sourceNote": "FoodData Central carries no aquavit-specific record. Energy and macronutrients are carried from Alcoholic beverage, distilled, vodka, 80 proof (public domain), since an unsweetened flavoured spirit's composition is a function of its ethanol content alone; the caraway and other botanicals contribute flavour in quantities too small to move the figures. 40% ABV is the strength both O.P. Anderson and Linie, the two reference Scandinavian bottlings, are sold at, and the EU sets a 37.5% floor for the name."
+    }
+  ]
+}

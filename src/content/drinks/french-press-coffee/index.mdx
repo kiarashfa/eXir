@@ -1,0 +1,97 @@
+---
+id: classic
+label: Classic
+name: French Press Coffee
+subtitle: Coarse coffee steeped loose in the pot, then held back by a plunged mesh.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: mug
+servedOverIce: false
+bitterness: medium
+batchable: none
+batchNote: >-
+  Brewed to order and plunged just before pouring. Left standing on the
+  grounds past the plunge, the cup keeps extracting and turns bitter.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [coffee]
+  origin: [international]
+  method: [steeped]
+names:
+  alsoKnownAs:
+    - name: Cafetiere
+      region: United Kingdom
+    - name: Press pot
+      region: United States
+  notToBeConfusedWith:
+    - name: Cold Brew Coffee
+      note: Also a full-immersion steep, but in cold water over hours rather than hot water over minutes, which pulls a different set of compounds out of the grounds.
+brew:
+  method: immersion
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 94
+  grind: coarse
+  contactSec: 240
+  yieldMl: 200
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 15
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the cup and the rest stays in
+      the grounds, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 220
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: pour, durationSec: 20, type: active, phase: make }
+  - { id: steep, durationSec: 240, type: passive, phase: make }
+  - { id: plunge, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: plunge
+    text: >-
+      The plunge is pressed slowly and evenly rather than forced, because
+      driving it down fast pushes fine particles through the mesh and back
+      into the cup, clouding a brew that is meant to stay clear below its
+      natural sediment.
+  - kind: pitfall
+    text: >-
+      Coffee left in the pot after the plunge keeps extracting through the
+      wet grounds trapped under the mesh, so a cup poured a few minutes late
+      tastes noticeably more bitter than the same brew poured straight away.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead beyond grinding, and even that is better done
+    at the last moment: ground coffee loses its aromatics within minutes.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> coarse, close to the texture of sea salt.
+</Step>
+
+<Step id="pour">
+  Add the grounds to the pot and pour the <Qty ref="water"/> over them at
+  <Temp c={94}/>, wetting all of the grounds, then set the lid on without
+  plunging.
+</Step>
+
+<Step id="steep">
+  Leave to steep for <Dur step="steep"/>, undisturbed.
+</Step>
+
+<Step id="plunge">
+  Press the plunger down slowly and evenly over <Dur step="plunge"/>, then
+  pour at once.
+</Step>

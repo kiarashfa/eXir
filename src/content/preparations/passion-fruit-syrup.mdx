@@ -1,0 +1,68 @@
+---
+id: passion-fruit-syrup
+name: Passion Fruit Syrup
+kind: preparation
+category: syrup
+purchasable: true
+purchaseNote: >-
+  Sold as a tiki-bar staple, most recognisably by B.G. Reynolds'; commercial bottles vary widely
+  in how much actual fruit they carry against added colour and acid.
+yieldMl: 408
+shelfLife:
+  days: 21
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Fresh juice and sugar
+    proseName: passion fruit syrup
+    per100Basis: ml
+    abvPercent: 0
+    densityGPerMl: 1.253
+    densitySource: estimated
+    sugarGPer100: 55.75
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 215
+      carbohydrateG: 55.85
+      sugarsG: 55.75
+      proteinG: 0.2
+      fatG: 0.03
+      fibreG: 0.1
+      sodiumMg: 3.55
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      Sugar and energy are the mass balance of the passion fruit juice and the dissolved sugar,
+      summed over the two lines rather than measured in a bottle. The juice's own sugar and
+      passion fruit's own titratable acidity are not covered by the site's lemon and lime
+      convention and no other source was checked, so acidPercent is left off rather than
+      estimated, even though the syrup tastes considerably tarter than that implies. Volume is
+      estimated by adding a partial specific volume of about 0.63 ml per gram of dissolved
+      sucrose to the juice's own volume rather than assuming a simple sum of the two, and the
+      resulting density is marked estimated because a derivation is not a measurement.
+ingredients:
+  - id: juice
+    ingredientRef: passion-fruit
+    formRef: juice
+    amount: 250
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 250
+    unit: g
+steps:
+  - { id: dissolve, durationSec: 180, type: active, phase: make }
+  - { id: cool, durationSec: 1800, type: passive, phase: rest }
+---
+
+<Step id="dissolve">
+  Warm the <Qty ref="juice"/> gently with the <Qty ref="sugar"/>, stirring until it dissolves
+  completely. Do not let it boil, or the juice turns cooked and dull.
+</Step>
+
+<Step id="cool">
+  Cool to room temperature before bottling.
+</Step>

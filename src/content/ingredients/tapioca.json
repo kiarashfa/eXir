@@ -1,0 +1,36 @@
+{
+  "id": "tapioca",
+  "name": "Tapioca Pearls, Dry",
+  "kind": "ingredient",
+  "category": "grain",
+  "pantryStaple": false,
+  "names": {
+    "searchOnly": ["boba", "cassava pearls", "bubble tea pearls dry"]
+  },
+  "forms": [
+    {
+      "id": "dry",
+      "label": "Dry pearls",
+      "proseName": "dry tapioca pearls",
+      "abvPercent": 0,
+      "sugarGPer100": 3.35,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 358,
+        "carbohydrateG": 88.69,
+        "sugarsG": 3.35,
+        "proteinG": 0.19,
+        "fatG": 0.02,
+        "saturatedFatG": 0.005,
+        "fibreG": 0.9,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "169717",
+      "sourceNote": "Tapioca, pearl, dry. Public domain. No density: sold and measured dry by weight, and boiled before it is ever a component of a drink; see the tapioca-pearls preparation for the cooked form."
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+---
+id: secondary
+label: Secondary
+name: Kombucha
+subtitle: Primary kombucha flavoured with ginger and bottled sealed for a few days to build real carbonation.
+defaultDrinks: 5
+method: fermented
+dilutionClass: none
+glasswareRef: collins
+iceStyle: none
+servedOverIce: false
+serveTempC: 6
+bitterness: none
+batchable: full
+zeroProof: false
+difficulty: Hard
+tags:
+  category: [kitchen-ferment]
+  origin: [china]
+  method: [fermented]
+ferment:
+  stages:
+    - { id: f1, label: Primary, days: 8, tempC: [20, 26], sealed: false }
+    - { id: f2, label: Secondary, days: 3, tempC: [20, 24], sealed: true }
+  developsAlcohol: true
+  estimatedAbvRange: [0.5, 2]
+  safetyNote: >-
+    The second ferment is sealed on purpose, to trap the carbon dioxide
+    that carbonates it, and that is exactly what makes it a real pressure
+    hazard: use bottles actually rated for carbonation, leave headspace at
+    the top, and "burp" each bottle once a day by cracking the cap briefly
+    to release building gas. Left sealed and unchecked in a warm spot, a
+    bottle can build enough pressure to burst.
+ingredients:
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 1800
+    unit: ml
+  - id: tea
+    ingredientRef: black-tea
+    formRef: standard
+    amount: 12
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Steeped for colour and flavour, then strained out before the sugar
+      goes in; the leaves themselves are discarded.
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 190
+    unit: g
+    portions:
+      - { id: primary-sugar, amount: 150, note: dissolved into the base tea }
+      - { id: bottling-sugar, amount: 40, note: divided among the bottles for the second ferment }
+  - id: scoby
+    ingredientRef: scoby
+    formRef: standard
+    amount: 1
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Floats in the jar for the primary ferment and is lifted out before
+      bottling to start the next batch rather than being drunk.
+  - id: ginger
+    ingredientRef: ginger
+    formRef: standard
+    amount: 25
+    unit: g
+steps:
+  - { id: steep, durationSec: 600, type: active, phase: prep }
+  - { id: dissolve, durationSec: 60, type: active, phase: prep }
+  - { id: cool, durationSec: 3600, type: passive, phase: prep }
+  - { id: ferment, durationSec: 691200, type: passive, phase: rest }
+  - { id: flavor, durationSec: 120, type: active, phase: make }
+  - { id: condition, durationSec: 259200, type: passive, phase: rest }
+  - { id: chill, durationSec: 60, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: condition
+    text: >-
+      The sugar and ginger added at bottling give the culture still living
+      in the kombucha something fresh to ferment inside the sealed bottle,
+      which is what produces real carbonation rather than the faint fizz of
+      an open ferment.
+  - kind: pitfall
+    stepRef: condition
+    text: >-
+      A warm room speeds the second ferment up considerably, and a bottle
+      checked only after several days in summer heat can already be
+      dangerously over-pressured by the time it is opened; burping daily is
+      not optional at that point, it is how you find out before the glass
+      does.
+makeAhead:
+  aheadInstructions: >-
+    Both ferments are the make-ahead step. Once conditioned, refrigeration
+    slows the culture drastically and the bottles hold their carbonation
+    for a couple of weeks, though pressure should still be checked
+    occasionally.
+  batchKeepDays: 14
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="steep">
+  Steep the <Qty ref="tea"/> in freshly boiled <Qty ref="water"/> for
+  <Dur step="steep"/>, then strain the leaves out.
+</Step>
+
+<Step id="dissolve">
+  Stir the <Qty ref="primary-sugar"/> into the hot tea until it is
+  completely dissolved.
+</Step>
+
+<Step id="cool">
+  Leave the sweet tea to cool fully to room temperature before the next
+  step.
+</Step>
+
+<Step id="ferment">
+  Pour the cooled tea into a clean jar, lower in the <Qty ref="scoby"/>,
+  cover with a breathable cloth, and leave at room temperature for
+  <Dur step="ferment"/>.
+</Step>
+
+<Step id="flavor">
+  Lift out the SCOBY, then divide the kombucha among carbonation-rated
+  bottles, dropping the <Qty ref="bottling-sugar"/> and the thinly sliced
+  <Qty ref="ginger"/> into each before capping tightly.
+</Step>
+
+<Step id="condition">
+  Leave the sealed bottles at room temperature for <Dur step="condition"/>,
+  burping each once a day to release the building gas.
+</Step>
+
+<Step id="chill">
+  Strain out the ginger as you pour, over ice or straight into a chilled
+  glass.
+</Step>

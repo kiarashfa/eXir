@@ -1,0 +1,72 @@
+---
+id: classic
+label: Classic
+name: Sugarcane Juice
+subtitle: Cane pressed fresh with lime and ginger, over ice.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: partial
+batchNote: >-
+  The juice itself has to be pressed to order or bought fresh; it oxidises and ferments within
+  hours, so only the lime and ginger can be measured ahead.
+zeroProof: true
+tags:
+  category: [juice-agua-fresca]
+  origin: [south-asia]
+  method: [built]
+  occasion: [aperitivo]
+difficulty: Easy
+names:
+  alsoKnownAs:
+    - { name: "Ganne ka Ras", region: India }
+    - { name: Guarapo, region: "Latin America" }
+ingredients:
+  - id: cane
+    ingredientRef: sugarcane-juice
+    formRef: fresh
+    amount: 130
+    unit: ml
+  - id: lime
+    ingredientRef: lime-juice
+    formRef: fresh
+    amount: 10
+    unit: ml
+  - id: ginger
+    ingredientRef: ginger
+    formRef: standard
+    amount: 5
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: A few slices are pressed through with the cane for its heat and strained out; none of the fibre itself reaches the glass.
+steps:
+  - { id: press, durationSec: 90, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    text: >-
+      Ginger is fed through the press alongside the cane rather than added as a separate juice,
+      so its heat comes through diffused rather than as a sharp, separate note.
+  - kind: pitfall
+    text: >-
+      Pressed cane juice starts to ferment and turn within a couple of hours at room
+      temperature, which is why street presses everywhere the drink is sold work to order
+      rather than holding a jug of it.
+makeAhead:
+  aheadInstructions: >-
+    Not a drink to make ahead. The juice needs to be pressed close to service; only the lime
+    can be squeezed in advance.
+  freezable: false
+---
+
+<Step id="press">
+  Feed the cane through a press with the <Qty ref="ginger"/>, straining out the fibre.
+</Step>
+
+<Step id="build">
+  Stir the pressed <Qty ref="cane"/> with the <Qty ref="lime"/> in a glass filled with ice.
+</Step>

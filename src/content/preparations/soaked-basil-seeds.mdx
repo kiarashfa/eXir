@@ -1,0 +1,61 @@
+---
+id: soaked-basil-seeds
+name: Soaked Basil Seeds
+kind: preparation
+category: other
+names:
+  alsoKnownAs:
+    - name: Sabja
+purchasable: false
+purchaseNote: >-
+  Sold dry only; nobody sells them pre-soaked, since the gel coat forms within minutes of
+  contact with water and does not keep well once it has.
+yieldMl: 130
+shelfLife:
+  days: 2
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: Soaked, gel-coated
+    proseName: soaked basil seeds
+    per100Basis: ml
+    abvPercent: 0
+    densityGPerMl: 1.038
+    densitySource: estimated
+    nutritionPer100g:
+      kcal: 54
+      carbohydrateG: 4.68
+      proteinG: 1.84
+      fatG: 3.42
+      fibreG: 3.82
+      sodiumMg: 1.78
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      The dry seeds absorb almost all of the soaking water into their own gel coat, so unlike a
+      steeped spice the water is not discarded and both lines carry through into the Form. Mass
+      and volume are summed over the two lines rather than measured in a bottle, with a small
+      allowance for water that never gets taken up, so density is marked estimated. No sugar
+      figure is claimed: the dry seed's own proxy record carries none, and diluting an absent
+      figure would only manufacture a false precision.
+ingredients:
+  - id: seeds
+    ingredientRef: basil-seeds
+    formRef: dried
+    amount: 15
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 120
+    unit: ml
+steps:
+  - { id: soak, durationSec: 900, type: passive, phase: rest }
+---
+
+<Step id="soak">
+  Stir the <Qty ref="seeds"/> into the <Qty ref="water"/> and leave to soak until each seed
+  swells into its own translucent gel coat.
+</Step>

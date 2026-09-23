@@ -4,6 +4,6 @@
   "capacityMl": 400,
   "shapeFamily": "tumbler",
   "note": "A rocks glass with room for a full measure of ice and a drink that has been shaken. Anything served on the rocks that started life in a shaker wants this rather than the smaller one.",
-  "iceDisplacementMl": { "cubed": 175, "block": 130, "crushed": 220, "none": 0 },
-  "iceDisplacementNote": "Solid ice only — the liquid fills the gaps between pieces. The block figure is the same as the smaller glass because a large cube is a large cube; only the room around it changes."
+  "iceDisplacementMl": { "cubed": 175, "block": 130, "crushed": 187, "none": 0 },
+  "iceDisplacementNote": "Solid ice only — the liquid fills the gaps between pieces. The block figure is the same as the smaller glass because a large cube is a large cube; only the room around it changes. Crushed is taken as 7% above cubed: loose crushed ice weighs about 593 to 640 kg per cubic metre against 917 for solid ice, roughly 65% solid, where loose cubes run about 61%."
 }

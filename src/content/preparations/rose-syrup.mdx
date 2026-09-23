@@ -1,0 +1,67 @@
+---
+id: rose-syrup
+name: Rose Syrup
+kind: preparation
+category: sweetener
+purchasable: true
+purchaseNote: >-
+  Sold widely, most recognisably under the Rooh Afza name in South Asia; commercial bottles are
+  usually deep red with added colour, where this version is clear.
+yieldMl: 405
+shelfLife:
+  days: 30
+  storage: refrigerated and sealed
+forms:
+  - id: standard
+    label: One to one, rose-scented
+    proseName: rose syrup
+    per100Basis: ml
+    abvPercent: 0
+    densityGPerMl: 1.2279
+    densitySource: estimated
+    sugarGPer100: 61.22
+    acidPercent: 0.0
+    nutritionPer100g:
+      kcal: 237
+      carbohydrateG: 61.33
+      sugarsG: 61.22
+      sodiumMg: 1.84
+    animalOrigin: none
+    allergenTags: []
+    containsCaffeine: false
+    sourceDataset: Derived from the ingredient records
+    sourceNote: >-
+      The same one-to-one sugar syrup as the site's plain simple syrup, with some of its water
+      replaced by rosewater — a distillate this site carries with no claimed sugar, acid or
+      energy of its own, so the swap changes the aroma without changing the arithmetic. Every
+      figure here is derived from the ingredient records this recipe names, not measured in a
+      bottle, and is marked estimated on that basis.
+ingredients:
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 250
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 200
+    unit: ml
+  - id: rosewater
+    ingredientRef: rosewater
+    formRef: standard
+    amount: 50
+    unit: ml
+steps:
+  - { id: dissolve, durationSec: 180, type: active, phase: make }
+  - { id: cool, durationSec: 1800, type: passive, phase: rest }
+---
+
+<Step id="dissolve">
+  Warm the <Qty ref="water"/> with the <Qty ref="sugar"/> until clear, take off the heat and
+  stir in the <Qty ref="rosewater"/>.
+</Step>
+
+<Step id="cool">
+  Cool to room temperature before bottling.
+</Step>

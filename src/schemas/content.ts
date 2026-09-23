@@ -150,6 +150,7 @@ export const form = z
     /** TRUE density, not bulk. See the note on the engine's Form type. */
     densityGPerMl: z.number().positive().optional(),
     densitySource: z.enum(['measured', 'estimated']).optional(),
+    per100Basis: z.enum(['g', 'ml']).optional(),
     sugarGPer100: z.number().min(0).max(100).optional(),
     acidPercent: z.number().min(0).max(100).optional(),
     nutritionPer100g: nutritionPer100.optional(),
@@ -513,6 +514,7 @@ export const drinkVersion = z
     glasswareRef: slug.optional(),
     iceStyle: z.string().optional(),
     servedOverIce: z.boolean().optional(),
+    iceTopped: z.boolean().optional(),
     serveTempC: z.number().optional(),
     bitterness: z.enum(['none', 'low', 'medium', 'high']),
     batchable: z.enum(['full', 'partial', 'none']),
@@ -599,6 +601,8 @@ export const drinkVersion = z
           .min(1),
         developsAlcohol: z.boolean(),
         estimatedAbvRange: z.tuple([z.number(), z.number()]).optional(),
+        residualSugarGPerL: z.tuple([z.number().nonnegative(), z.number().nonnegative()]).optional(),
+        residualSugarNote: z.string().optional(),
         safetyNote: z.string().optional(),
       })
       .strict()
@@ -610,6 +614,15 @@ export const drinkVersion = z
             code: 'custom',
             message: 'a sealed fermentation stage requires a safetyNote',
             path: ['safetyNote'],
+          });
+        }
+        // A figure that overrides the ingredient list's own sugar has to say
+        // where it came from, or it is the one number on the page nobody can check.
+        if (v.residualSugarGPerL && !v.residualSugarNote) {
+          ctx.addIssue({
+            code: 'custom',
+            message: 'a residual sugar range needs a residualSugarNote citing its source',
+            path: ['residualSugarNote'],
           });
         }
         if (v.developsAlcohol && !v.estimatedAbvRange) {

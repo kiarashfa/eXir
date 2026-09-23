@@ -1,0 +1,41 @@
+{
+  "id": "palm-sugar",
+  "name": "Palm sugar",
+  "kind": "ingredient",
+  "category": "sweetener",
+  "pantryStaple": false,
+  "names": {
+    "alsoKnownAs": [
+      { "name": "Gula Melaka", "region": "Malaysia" },
+      { "name": "Gula Jawa", "region": "Indonesia" }
+    ]
+  },
+  "forms": [
+    {
+      "id": "standard",
+      "label": "Block, unrefined",
+      "proseName": "palm sugar",
+      "abvPercent": 0,
+      "densityGPerMl": 1.587,
+      "densitySource": "estimated",
+      "sugarGPer100": 97.02,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 380,
+        "carbohydrateG": 98.09,
+        "sugarsG": 97.02,
+        "proteinG": 0.12,
+        "fatG": 0,
+        "saturatedFatG": 0,
+        "fibreG": 0,
+        "sodiumMg": 28
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "168833",
+      "sourceNote": "Sugars, brown. Public domain. FoodData Central carries no dedicated record for palm sugar; palm sugar is unrefined sugar boiled down from palm sap and cast into a block, compositionally close to dark brown sugar and closer to it than to any refined white sugar, the same substitution this site's piloncillo record makes for cane sugar. The density is the solid-sugar class from density-classes.json, marked estimated, because the block is grated or melted rather than poured."
+    }
+  ]
+}

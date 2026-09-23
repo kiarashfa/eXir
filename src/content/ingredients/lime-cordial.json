@@ -25,6 +25,7 @@
       "id": "standard",
       "label": "Standard",
       "proseName": "lime cordial",
+      "per100Basis": "ml",
       "abvPercent": 0,
       "densityGPerMl": 1.05,
       "densitySource": "estimated",

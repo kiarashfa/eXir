@@ -1,0 +1,93 @@
+---
+id: classic
+label: Classic
+name: Sherry Cobbler
+subtitle: Sherry, sugar and orange built over crushed ice, drunk through a straw rather than sipped from the rim.
+defaultDrinks: 1
+method: built-over-ice
+dilutionClass: churned-crushed
+glasswareRef: hurricane
+iceStyle: crushed
+servedOverIce: true
+bitterness: none
+batchable: none
+batchNote: >-
+  The crushed ice is churned into the drink at the glass; there is nothing
+  here that benefits from being pre-mixed.
+zeroProof: false
+tags:
+  category: [cocktail]
+  origin: [united-states]
+  method: [built-over-ice]
+difficulty: Easy
+ingredients:
+  - id: sherry
+    ingredientRef: sherry
+    formRef: fino
+    amount: 120
+    unit: ml
+  - id: syrup
+    ingredientRef: simple-syrup
+    formRef: standard
+    amount: 15
+    unit: ml
+  - id: garnish-orange
+    ingredientRef: orange
+    formRef: standard
+    amount: 70
+    unit: g
+    garnish: true
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      Two or three slices are muddled lightly with the sugar before the
+      sherry goes in, releasing juice and oil from the peel; most of the
+      fruit's own segments are left behind and served as garnish rather
+      than drunk.
+  - id: garnish-berries
+    ingredientRef: strawberry
+    formRef: standard
+    amount: 40
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Speared on a pick for the garnish rather than muddled into the drink.
+steps:
+  - { id: muddle, durationSec: 30, type: active, phase: prep }
+  - { id: build, durationSec: 20, type: active, phase: make }
+  - { id: churn, durationSec: 20, type: active, phase: make }
+  - { id: garnish, durationSec: 20, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: churn
+    text: >-
+      The drink is churned rather than stirred: a spoon or swizzle is
+      worked up and down through the crushed ice so it packs into the glass
+      and melts faster than cubed ice would, which is what a Cobbler's
+      short drinking time depends on.
+  - kind: pitfall
+    text: >-
+      A straw is not a period detail to skip: crushed ice against bare lips
+      is the reason the Cobbler is credited with popularising the straw in
+      America in the first place, and drinking it without one is
+      uncomfortable rather than merely old-fashioned.
+---
+
+<Step id="muddle">
+  Lightly muddle two or three slices of the <Qty ref="garnish-orange"/> with
+  the <Qty ref="syrup"/> in the base of the glass.
+</Step>
+
+<Step id="build">
+  Add the <Qty ref="sherry"/> and fill the glass with crushed ice.
+</Step>
+
+<Step id="churn">
+  Churn with a bar spoon for <Dur step="churn"/> to bring the sherry up
+  through the ice.
+</Step>
+
+<Step id="garnish">
+  Top with more crushed ice and spear the <Qty ref="garnish-berries"/> on a
+  pick across the rim, with a straw.
+</Step>

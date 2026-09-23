@@ -1,0 +1,114 @@
+---
+id: classic
+label: Classic
+name: Caffe Mocha
+subtitle: Espresso and cocoa stirred to a paste, lengthened with steamed milk.
+defaultDrinks: 1
+method: brewed
+dilutionClass: none
+glasswareRef: latte-glass
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Steamed and pulled to order. Foam this light collapses within a couple of
+  minutes, so nothing here is made ahead.
+zeroProof: true
+difficulty: Easy
+tags:
+  category: [coffee]
+  origin: [international]
+  method: [brewed]
+names:
+  alsoKnownAs:
+    - name: Mocaccino
+  notToBeConfusedWith:
+    - name: Caffe Latte
+      note: No cocoa at all; a mocha is a latte with a paste of cocoa and sugar stirred into the shot before the milk goes in.
+brew:
+  method: espresso
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 93
+  grind: fine
+  contactSec: 28
+  yieldMl: 36
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 18
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the shot and the rest stays in
+      the puck, the middle of the Specialty Coffee Association's published
+      extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 50
+    unit: ml
+  - id: cocoa
+    ingredientRef: cocoa
+    formRef: unsweetened
+    amount: 10
+    unit: g
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 12
+    unit: g
+  - id: milk
+    ingredientRef: milk
+    formRef: whole
+    amount: 150
+    unit: ml
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: extract, durationSec: 28, type: active, phase: make }
+  - { id: paste, durationSec: 20, type: active, phase: make }
+  - { id: steam, durationSec: 40, type: active, phase: make }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: paste
+    text: >-
+      The cocoa and sugar are worked into the hot shot before any milk goes
+      in, because cocoa powder clumps in cold or dilute liquid; against the
+      concentrated shot it wets out into a smooth paste that then mixes
+      cleanly into the milk.
+  - kind: pitfall
+    text: >-
+      Cocoa stirred straight into the full glass of milk instead of the shot
+      leaves floating specks that never fully dissolve, because milk alone
+      does not carry enough heat or concentration to wet the powder through.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The shot is pulled and the milk steamed
+    together, in the couple of minutes before serving.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> fine for the espresso machine.
+</Step>
+
+<Step id="extract">
+  Pump the <Qty ref="water"/> through the grounds at <Temp c={93}/> for
+  <Dur step="extract"/>, into a glass large enough to take the milk after.
+</Step>
+
+<Step id="paste">
+  Stir the <Qty ref="cocoa"/> and <Qty ref="sugar"/> into the hot shot for
+  <Dur step="paste"/>, until it forms a smooth, glossy paste with no dry
+  lumps left.
+</Step>
+
+<Step id="steam">
+  Steam the <Qty ref="milk"/> to a light microfoam.
+</Step>
+
+<Step id="pour">
+  Pour the steamed milk over the paste, finishing with a thin cap of foam.
+</Step>

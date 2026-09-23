@@ -1,0 +1,114 @@
+---
+id: classic
+label: Classic
+name: Arabic Qahwa
+subtitle: Lightly roasted coffee simmered with cardamom and a thread of saffron, poured without sugar.
+defaultDrinks: 1
+method: boiled
+dilutionClass: none
+glasswareRef: cezve-cup
+servedOverIce: false
+bitterness: low
+batchable: none
+batchNote: >-
+  Simmered to order in a dallah; the pot is traditionally kept warm and
+  poured over a sitting rather than made ahead and reheated.
+zeroProof: true
+difficulty: Medium
+tags:
+  category: [coffee]
+  origin: [arabian-gulf]
+  method: [boiled]
+names:
+  alsoKnownAs:
+    - name: Gahwa
+      region: Arabian Peninsula
+    - name: Khaleeji coffee
+  notToBeConfusedWith:
+    - name: Turkish Coffee
+      note: Unsweetened, pale rather than dark, and flavoured with cardamom and saffron instead of being cooked to a foam and drunk with its own grounds settled in the cup.
+brew:
+  method: immersion
+  doseRef: coffee
+  waterRef: water
+  waterTempC: 95
+  grind: coarse
+  contactSec: 300
+  yieldMl: 40
+ingredients:
+  - id: coffee
+    ingredientRef: coffee-beans
+    formRef: roasted
+    amount: 8
+    unit: g
+    consumedFraction: 0.2
+    consumedFractionNote: >-
+      About a fifth of the dose dissolves into the pot and the rest stays in
+      the grounds, the middle of the Specialty Coffee Association's
+      published extraction band.
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 120
+    unit: ml
+  - id: cardamom
+    ingredientRef: cardamom
+    formRef: standard
+    amount: 1.5
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      Crushed pods are simmered with the coffee and strained out with the
+      grounds; they season the pot but contribute no volume of their own.
+  - id: saffron
+    ingredientRef: saffron
+    formRef: threads
+    amount: 0.05
+    unit: g
+    consumedFraction: 0
+    consumedFractionNote: >-
+      A few threads steep in the hot pot for colour and aroma and are
+      strained out with the grounds; too little dissolves to register as a
+      volume.
+steps:
+  - { id: grind, durationSec: 45, type: active, phase: prep }
+  - { id: simmer, durationSec: 300, type: active, phase: make }
+  - { id: infuse, durationSec: 120, type: passive, phase: rest }
+  - { id: pour, durationSec: 15, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: infuse
+    text: >-
+      The pot is taken off the heat before the cardamom and saffron go in
+      and left to sit rather than simmered further, because boiling the
+      spices rather than steeping them off the heat cooks off the aromatics
+      the drink is built around.
+  - kind: pitfall
+    text: >-
+      Sugar has no place in the pot. Qahwa is served unsweetened by
+      convention, alongside dates rather than with sugar stirred through it,
+      and adding any changes the drink into something else.
+makeAhead:
+  aheadInstructions: >-
+    Nothing here is made ahead. The pot is simmered and poured fresh for
+    each sitting, though it is often kept warm through several small cups.
+  freezable: false
+---
+
+<Step id="grind">
+  Grind the <Qty ref="coffee"/> coarse and lightly roasted.
+</Step>
+
+<Step id="simmer">
+  Combine the grounds with the <Qty ref="water"/> in the dallah and simmer
+  at <Temp c={95}/> for <Dur step="simmer"/>.
+</Step>
+
+<Step id="infuse">
+  Take the pot off the heat, stir in the <Qty ref="cardamom"/> and
+  <Qty ref="saffron"/>, and leave to infuse for <Dur step="infuse"/>.
+</Step>
+
+<Step id="pour">
+  Strain into small cups, filling each only a third full.
+</Step>

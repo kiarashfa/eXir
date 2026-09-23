@@ -1,0 +1,81 @@
+---
+id: cloudy
+label: Cloudy
+name: Lemonade
+subtitle: Whole squeezed lemon and sugar stirred straight into water, pulp and all.
+defaultDrinks: 1
+method: built
+dilutionClass: none
+glasswareRef: collins
+iceStyle: cubed
+servedOverIce: true
+bitterness: none
+batchable: full
+zeroProof: true
+tags:
+  category: [soft-traditional]
+  origin: [france]
+  method: [built]
+  occasion: [aperitivo]
+difficulty: Easy
+ingredients:
+  - id: lemon
+    ingredientRef: lemon-juice
+    formRef: fresh
+    amount: 30
+    unit: ml
+  - id: sugar
+    ingredientRef: granulated-sugar
+    formRef: standard
+    amount: 15
+    unit: g
+  - id: water
+    ingredientRef: water
+    formRef: standard
+    amount: 120
+    unit: ml
+  - id: garnish
+    ingredientRef: lemon
+    formRef: standard
+    amount: 10
+    unit: g
+    garnish: true
+    consumedFraction: 0
+    consumedFractionNote: A wheel set on the rim for the look and the aroma; it is not squeezed or eaten.
+steps:
+  - { id: juice, durationSec: 60, type: active, phase: prep }
+  - { id: build, durationSec: 30, type: active, phase: make }
+  - { id: garnish, durationSec: 10, type: active, phase: make }
+notes:
+  - kind: technique
+    stepRef: build
+    text: >-
+      The juice goes into the glass unstrained, pulp and all, and the sugar dissolves straight
+      into the water rather than as a pre-made syrup — the pulp suspended in the glass is what
+      gives this version its cloudy body against the still version's clear one.
+  - kind: pitfall
+    text: >-
+      Sugar stirred into cold water takes noticeably longer to dissolve than the same amount
+      warmed first, and an under-stirred glass settles sweet at the bottom and thin at the top.
+makeAhead:
+  aheadInstructions: >-
+    Batches cleanly, but the pulp settles on standing and needs a stir before serving; keeps
+    for the same span as the still version.
+  batchKeepDays: 3
+  batchStorage: sealed and refrigerated
+  freezable: false
+---
+
+<Step id="juice">
+  Squeeze the lemons for the <Qty ref="lemon"/>, leaving the pulp in rather than straining it
+  out.
+</Step>
+
+<Step id="build">
+  Stir the juice with the <Qty ref="sugar"/> and the <Qty ref="water"/> in a glass filled with
+  ice until the sugar dissolves.
+</Step>
+
+<Step id="garnish">
+  Set the <Qty ref="garnish"/> lemon wheel on the rim.
+</Step>

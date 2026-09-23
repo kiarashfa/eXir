@@ -1,0 +1,45 @@
+{
+  "id": "rhum-agricole",
+  "name": "Rhum Agricole",
+  "kind": "ingredient",
+  "category": "rhum-agricole",
+  "countryOfOrigin": "Martinique",
+  "pantryStaple": false,
+  "names": {
+    "notToBeConfusedWith": [
+      { "name": "White rum", "note": "Rum is usually distilled from molasses; rhum agricole is distilled from fresh-pressed sugarcane juice under Martinique's AOC rules and is bottled higher-proof and more vegetal than most white rum." }
+    ]
+  },
+  "generalSubstitutes": [
+    {
+      "substitute": "white-rum",
+      "note": "Molasses-based and usually lower-proof, so the drink loses the grassy, vegetal note agricole is chosen for and comes in noticeably weaker."
+    }
+  ],
+  "forms": [
+    {
+      "id": "blanc",
+      "label": "Blanc",
+      "proseName": "rhum agricole blanc",
+      "abvPercent": 50,
+      "densityGPerMl": 0.93,
+      "densitySource": "estimated",
+      "sugarGPer100": 0,
+      "acidPercent": 0,
+      "nutritionPer100g": {
+        "kcal": 289,
+        "carbohydrateG": 0,
+        "sugarsG": 0,
+        "proteinG": 0,
+        "fatG": 0,
+        "sodiumMg": 1
+      },
+      "animalOrigin": "none",
+      "allergenTags": [],
+      "containsCaffeine": false,
+      "sourceDataset": "USDA FoodData Central (SR Legacy)",
+      "sourceId": "174817",
+      "sourceNote": "FoodData Central carries no rhum agricole record. Rhum agricole blanc is typically bottled between 50% and 55% ABV under Martinique's AOC rules; 50% is taken as the representative bottling. Energy is scaled from Alcoholic beverage, distilled, rum, 80 proof (public domain, 231 kcal/100 g at 40% ABV) in proportion to alcohol content, since an unsweetened spirit's energy is a function of its ethanol alone. Density is density-classes.json's spirit-high class (0.93 g/ml), the one for overproof spirits at 50% and above, rather than the 40%-ABV rum record's own."
+    }
+  ]
+}
