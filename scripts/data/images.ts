@@ -150,8 +150,7 @@ async function doReview(
  */
 async function doOpen(query: string, limit: number, slug?: string, kind?: string): Promise<void> {
   const results = await searchOpenverse(query, limit);
-  console.log(`${results.length} free candidate(s) for "${query}" outside Commons
-`);
+  console.log(`${results.length} free candidate(s) for "${query}" outside Commons\n`);
   for (const [i, c] of results.entries()) {
     const size = c.width && c.height ? `${c.width}x${c.height}` : 'size unknown';
     console.log(`${String(i + 1).padStart(2)}. ${c.title.slice(0, 64)}`);
@@ -190,15 +189,18 @@ async function doAdoptUrl(url: string, argv: string[]): Promise<void> {
   const licenceUrl = arg('license-url', argv) ?? arg('licence-url', argv);
   const credit = arg('credit', argv);
 
-  const missing = [
-    !slug && '--slug',
-    !alt && '--alt',
-    !source && '--source',
-    !page && '--page',
-    !author && '--author',
-    !stated && '--license',
-  ].filter(Boolean);
-  if (missing.length > 0) {
+  // Written as one condition rather than a list of falsy checks: the list form
+  // does not narrow, so every one of these stayed `string | undefined` all the
+  // way down to the manifest write, and `astro check` failed in CI on it.
+  if (!slug || !alt || !source || !page || !author || !stated) {
+    const missing = [
+      !slug && '--slug',
+      !alt && '--alt',
+      !source && '--source',
+      !page && '--page',
+      !author && '--author',
+      !stated && '--license',
+    ].filter(Boolean);
     console.error(`adopt-url needs ${missing.join(', ')}.`);
     console.error('--page is the PAGE the image sits on, not the image file URL: it is what');
     console.error('makes the licence claim checkable by someone who was not here.');
@@ -214,7 +216,7 @@ async function doAdoptUrl(url: string, argv: string[]): Promise<void> {
     process.exit(1);
   }
   const licence = verdict.licence;
-  if (!/^https?:\/\//.test(page ?? '')) {
+  if (!/^https?:\/\//.test(page)) {
     console.error('--page must be a URL.');
     process.exit(1);
   }
@@ -255,10 +257,10 @@ async function doAdoptUrl(url: string, argv: string[]): Promise<void> {
   }
 
   const record: Record<string, string> = {
-    source: source as string,
+    source,
     file: url,
-    sourceUrl: page as string,
-    author: author as string,
+    sourceUrl: page,
+    author,
     license: licence.name,
     modified: 'Cropped, white-balanced, graded and re-encoded to WebP by eXir.',
   };
