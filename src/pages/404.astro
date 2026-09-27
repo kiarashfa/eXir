@@ -30,7 +30,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
  */
 const lines = [
   'The recipe called for a page. We were out.',
-  'Nothing lives at this address — the bottle is either finished, never bought, or spelled differently.',
+  'Nothing lives at this address. The bottle is either finished, never bought, or spelled differently.',
   'This one got strained off somewhere between the shaker and the glass.',
   'Diluted past the point of usefulness. There is no page here.',
 ];
@@ -41,7 +41,7 @@ const WAYS_OUT = ['/', '/ingredients/', '/families/', '/about/'];
 const routes = builtRoutes().filter((r) => WAYS_OUT.includes(r.path));
 ---
 
-<BaseLayout title="Not found — eXir" description="No page lives at this address." noindex>
+<BaseLayout title="Not found · eXir" description="No page lives at this address." noindex>
   <div class="wrap notfound">
     <p class="notfound-code">404</p>
     <h1>Not found</h1>
@@ -52,7 +52,7 @@ const routes = builtRoutes().filter((r) => WAYS_OUT.includes(r.path));
     </nav>
 
     <p class="notfound-note">
-      Or search — the field is in the header, and it reaches misspellings and regional names as
+      Or search: the button in the header reaches misspellings and regional names as
       well as titles, which is very likely what brought you here.
     </p>
   </div>

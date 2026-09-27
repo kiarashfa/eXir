@@ -44,8 +44,8 @@ function currentTheme(): 'light' | 'dark' {
 function paintTheme(theme: 'light' | 'dark'): void {
   root().dataset['theme'] = theme;
   for (const button of document.querySelectorAll<HTMLElement>('[data-theme-toggle]')) {
-    // The label names where the button GOES, not where it is.
-    button.textContent = theme === 'light' ? 'Dark' : 'Light';
+    // The label names where the button GOES, not where it is. The icon does the
+    // same, from CSS on `data-theme`, so nothing here touches the markup.
     button.setAttribute('aria-pressed', String(theme === 'light'));
     button.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
   }

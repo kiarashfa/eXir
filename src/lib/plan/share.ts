@@ -137,7 +137,7 @@ export function shoppingText(list: ShoppingLine[], options: TextOptions): string
     .map((i) => `${i.title} ×${i.drinks}${i.service === 'batch' ? ' (batched)' : ''}`)
     .join(', ');
 
-  const out = ['Shopping list — eXir', '', ...body];
+  const out = ['Shopping list · eXir', '', ...body];
   if (forLine) out.push('', `For: ${forLine}`);
   if (options.url) out.push(options.url);
   return out.join('\n');
@@ -150,7 +150,7 @@ export function shoppingText(list: ShoppingLine[], options: TextOptions): string
  * the fallback rather than the other way round, because a share sheet that is
  * dismissed leaves the reader with nothing while a copy always lands somewhere.
  */
-export async function shareText(text: string, title = 'Shopping list — eXir'): Promise<'shared' | 'copied' | 'failed'> {
+export async function shareText(text: string, title = 'Shopping list · eXir'): Promise<'shared' | 'copied' | 'failed'> {
   const nav = globalThis.navigator as Navigator | undefined;
   if (nav && typeof nav.share === 'function') {
     try {

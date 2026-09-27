@@ -63,8 +63,8 @@
    the mark sitting low. */
 .logo-mark {
   display: block;
-  width: 25px;
-  height: 25px;
+  width: 26px;
+  height: 26px;
   margin-top: -2px;
   flex: 0 0 auto;
 }
@@ -130,9 +130,65 @@
   color: var(--muted);
 }
 
-.chip-row {
+/* The header controls: one group of round icon buttons, the size and shape
+   every sibling site uses. Proportions, not palette, are what the four share. */
+.controls {
   display: flex;
+  align-items: center;
   gap: 8px;
+}
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--control-edge);
+  background: transparent;
+  color: var(--ink-soft);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    background 0.3s var(--ease);
+}
+.icon-btn:hover,
+.icon-btn:focus-visible {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+.icon-btn[aria-pressed='true'][data-glass-toggle] {
+  color: var(--accent-ink);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.icon-btn svg {
+  width: 17px;
+  height: 17px;
+}
+
+/* The theme button shows where it goes: the sun on a dark page, the moon on a
+   light one. Before the script stamps `data-theme`, the OS decides. */
+.icon-btn .theme-moon {
+  display: none;
+}
+:root[data-theme='light'] .icon-btn .theme-sun {
+  display: none;
+}
+:root[data-theme='light'] .icon-btn .theme-moon {
+  display: block;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) .icon-btn .theme-sun {
+    display: none;
+  }
+  :root:not([data-theme]) .icon-btn .theme-moon {
+    display: block;
+  }
 }
 
 .chip {
@@ -1209,31 +1265,78 @@
    Footer
    --------------------------------------------------------------------------- */
 
-.foot {
+/*
+ * The footer: one quiet row of links and the copyright, with the sibling
+ * sites underneath. The same shape on all four sibling sites.
+ */
+.site-foot {
   border-top: 1px solid var(--line);
-  padding: 34px 0 60px;
-  font-size: 12.5px;
-  color: var(--muted);
+  margin-top: 56px;
+  padding-block: 20px 32px;
+  font-size: 13px;
 }
-/* No reading measure. A footer is chrome rather than prose: three short lines
-   of 12.5px text, which a measure intended for a paragraph cuts to less than
-   half the page and leaves stranded on the left. */
-.foot-inner {
-  display: grid;
-  gap: 8px;
-}
-.foot strong {
-  color: var(--ink-soft);
-  font-weight: 500;
-}
-.foot a {
-  color: var(--ink-soft);
-}
-.foot-nav {
+.foot-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 6px;
+  align-items: center;
+  gap: 8px 24px;
+}
+.foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 20px;
+}
+.foot-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.site-foot a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.3s var(--ease);
+}
+.site-foot a:hover {
+  color: var(--accent);
+}
+.site-foot .foot-brand {
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 1;
+  color: var(--ink);
+  font-style: italic;
+}
+.site-foot .foot-brand b {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--brand-mark);
+}
+.foot-copy {
+  margin: 0 0 0 auto;
+  color: var(--muted);
+}
+.foot-family {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.site-foot .foot-family a {
+  color: var(--muted);
+}
+.foot-family [aria-current] {
+  color: var(--ink-soft);
+}
+@media (max-width: 700px) {
+  .foot-copy {
+    margin-left: 0;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -1343,19 +1446,26 @@
   .facts {
     grid-template-columns: repeat(2, 1fr);
   }
-  .nav {
-    display: none;
+  /* On a phone the nav takes its own row under the lockup and scrolls
+     sideways if it must, rather than disappearing: hidden, it left every
+     section reachable only through the footer. */
+  .masthead-inner {
+    flex-wrap: wrap;
+    row-gap: 8px;
   }
-  .nav-mobile {
-    display: flex;
+  .controls {
+    margin-left: auto;
+  }
+  .nav {
+    order: 3;
+    flex-basis: 100%;
+    margin-left: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
   }
   .spec-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (min-width: 701px) {
-  .nav-mobile {
-    display: none;
   }
 }
 

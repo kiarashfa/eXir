@@ -198,7 +198,7 @@
   }
 
   async function copyLink(): Promise<void> {
-    const outcome = await shareText(url, 'Plan — eXir');
+    const outcome = await shareText(url, 'Plan · eXir');
     shareState = outcome === 'failed' ? 'Could not copy the link.' : 'Link copied.';
     setTimeout(() => (shareState = null), 3200);
   }

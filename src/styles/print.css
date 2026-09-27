@@ -76,10 +76,10 @@
      operates, and none of them states a fact the page does not state
      elsewhere. */
   .masthead,
-  .foot,
+  .site-foot,
   .breadcrumb,
   .search-drawer,
-  .chip-row,
+  .controls,
   .stepper,
   .brew-scale,
   .segmented,

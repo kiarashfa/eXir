@@ -1,37 +1,62 @@
 ---
 /**
- * Carries the attribution line, the composition-source line and the alcohol
- * line, which appears on every page of the site.
+ * The site footer: one quiet row of links and the copyright, with the sibling
+ * sites underneath. The same shape on all four sibling sites.
  *
  * It also carries every route the four-item nav has no room for, so nothing on
- * the site is an orphan. `check:site` verifies that every link resolves; it
- * cannot tell you a page has no inbound links at all, which is why the list is
- * written down rather than remembered.
+ * the site is an orphan. `check:site` verifies that every link resolves and that
+ * every page has an inbound link, and the list is rendered from the route
+ * registry rather than remembered.
  */
-import { builtRoutes } from '../data/routes.ts';
+import { builtRoutes, primaryRoutes } from '../data/routes.ts';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const routes = builtRoutes();
+const inHeader = new Set(primaryRoutes().map((r) => r.path));
+const links = [
+  ...builtRoutes()
+    .filter((r) => !inHeader.has(r.path))
+    .map((r) => ({ href: `${base}${r.path}`, label: r.label })),
+  { href: 'https://github.com/kiarashfa/eXir', label: 'Source code' },
+];
+
+/*
+ * The first year is fixed: it is when the project began. The current year is
+ * read when the site is built, so every deploy carries the right range without
+ * anyone editing it.
+ */
+const COPYRIGHT_START_YEAR = 2026;
+const buildYear = new Date().getFullYear();
+const years = buildYear > COPYRIGHT_START_YEAR ? `${COPYRIGHT_START_YEAR}–${buildYear}` : `${COPYRIGHT_START_YEAR}`;
+
+const siblings = [
+  { name: 'Xefy', subject: 'Recipes', url: 'https://kiarashfa.github.io/Xefy/' },
+  { name: 'eXir', subject: 'Drinks', url: 'https://kiarashfa.github.io/eXir/' },
+  { name: 'Markey', subject: 'Cars', url: 'https://kiarashfa.github.io/Markey/' },
+  { name: 'ARMAG', subject: 'Firearms', url: 'https://kiarashfa.github.io/ARMAG/' },
+];
 ---
 
-<footer class="foot" data-pagefind-ignore>
+<footer class="site-foot" data-pagefind-ignore>
   <div class="wrap">
-    <div class="foot-inner">
-      <div>
-        <strong>eXir</strong> — a free, ad-free, login-free drinks encyclopedia. Nothing is
-        remembered anywhere but your own browser.
-      </div>
-      <div>
-        Alcohol figures here are calculated from the stated strength of each bottle. They
-        describe what is in a drink, not what anyone should drink.
-      </div>
-      <div>
-        Composition data from USDA FoodData Central and Open Food Facts. Photography from
-        Wikimedia Commons, credited per image.
-      </div>
-      <nav class="foot-nav" aria-label="All sections">
-        {routes.map((r) => <a href={`${base}${r.path}`}>{r.label}</a>)}
+    <div class="foot-bar">
+      <nav class="foot-links" aria-label="Site">
+        <a class="foot-brand" href={`${base}/`}>e<b>X</b>ir</a>
+        <ul>
+          {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
       </nav>
+      <p class="foot-copy">© {years} Kiarash Farajzadehahary</p>
     </div>
+    <nav class="foot-family" aria-label="Sibling sites">
+      {
+        siblings.map((s) =>
+          s.name === 'eXir' ? (
+            <span aria-current="true" title={s.subject}>{s.name}</span>
+          ) : (
+            <a href={s.url} title={s.subject}>{s.name}</a>
+          ),
+        )
+      }
+    </nav>
   </div>
 </footer>

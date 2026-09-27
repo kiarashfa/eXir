@@ -1,7 +1,7 @@
 {
   "name": "exir",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "engines": {
     "node": ">=24.0.0"
@@ -19,7 +19,8 @@
     "check:images": "node scripts/integrity/images.ts",
     "check:self": "node scripts/integrity/run.ts --content test-fixtures/broken-content --expect-failure",
     "check:fixtures": "node scripts/integrity/run.ts --content test-fixtures/engine-content",
-    "check:contrast": "node scripts/integrity/contrast.ts"
+    "check:contrast": "node scripts/integrity/contrast.ts",
+    "brand": "node scripts/brand/build.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.7",
@@ -35,7 +36,11 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@fontsource/archivo": "^5.3.0",
+    "@fontsource/bodoni-moda": "^5.3.0",
+    "@resvg/resvg-js": "^2.6.2",
     "pagefind": "^1.5.2",
+    "satori": "^0.33.5",
     "sharp": "^0.35.3",
     "tinyglobby": "^0.2.17"
   }

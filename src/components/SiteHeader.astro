@@ -36,16 +36,55 @@ const links = primaryRoutes();
         ))}
       </nav>
 
-      <div class="chip-row">
+      {/*
+        The controls, in the order every sibling site uses: this site's own
+        (the glass material), then search, theme, about. Round icon buttons of
+        one size, so the group reads as one thing at the end of the row.
+      */}
+      <div class="controls">
         <button
-          class="chip"
+          class="icon-btn"
+          data-glass-toggle
+          type="button"
+          aria-pressed="true"
+          aria-label="Turn the glass material off"
+          title="Glass"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+            <path d="M8 13.5 13.5 8M10.5 16 16 10.5" stroke-linecap="round"></path>
+          </svg>
+        </button>
+        <button
+          class="icon-btn"
           data-search-open
           type="button"
           aria-expanded="false"
           aria-controls="search-drawer"
-        >Search</button>
-        <button class="chip" data-glass-toggle type="button" aria-pressed="true">Glass</button>
-        <button class="chip" data-theme-toggle type="button" aria-pressed="false">Light</button>
+          aria-label="Search"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5"></circle>
+            <line x1="15.8" y1="15.8" x2="20.5" y2="20.5"></line>
+          </svg>
+        </button>
+        <button class="icon-btn" data-theme-toggle type="button" aria-pressed="false" aria-label="Switch to light theme">
+          {/* The icon names where the button goes: the sun on a dark page, the moon on a light one. */}
+          <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.5 1.5M18.3 18.3l1.5 1.5M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.5-1.5M18.3 5.7l1.5-1.5"></path>
+          </svg>
+          <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M20 14.2A8 8 0 1 1 9.8 4a6.3 6.3 0 0 0 10.2 10.2Z" stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <a class="icon-btn" href={`${base}/about/`} aria-label="About this site">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 11.2v5.1"></path>
+            <path d="M12 7.9h.01" stroke-linecap="round"></path>
+          </svg>
+        </a>
       </div>
     </div>
 

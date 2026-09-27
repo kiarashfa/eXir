@@ -526,7 +526,7 @@ test('the shared text is quantity first, one item per line, no markdown', () => 
   assert.equal(
     text,
     [
-      'Shopping list — eXir',
+      'Shopping list · eXir',
       '',
       '- 360 ml  London dry gin',
       '-  12     Oranges',

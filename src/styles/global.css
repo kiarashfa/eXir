@@ -83,8 +83,9 @@
   --amb-3: rgba(90, 160, 190, 0.22);
 
   /* layout and motion belong in the same layer as colour */
-  --page-max: 1180px;
-  --gutter: 40px;
+  --page-max: 1200px;
+  /* Fluid rather than stepped: 20px on a phone, 48px from a laptop up. */
+  --gutter: clamp(20px, 4vw, 48px);
   /* ABSOLUTE, not `ch`, and that is the whole point.
      `ch` resolves against the ELEMENT's own font size, so one token produced a
      380px column on an 11.5px disclaimer, a 515px one on 15.5px body prose and
@@ -212,11 +213,7 @@
    specific the selector is, and they lose silently.
    ============================================================================ */
 
-@media (max-width: 860px) {
-  :root {
-    --gutter: 20px;
-  }
-}
+/* None at present: the gutter is fluid (see --gutter). */
 
 /* ============================================================================
    BASE

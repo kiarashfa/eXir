@@ -51,7 +51,7 @@ const jsonLd = recipeJsonLd({
 const searchOnly = (fm['names'] as { searchOnly?: string[] } | undefined)?.searchOnly ?? [];
 ---
 
-<BaseLayout title={`${drink.name} — eXir`} description={description} current="drinks">
+<BaseLayout title={`${drink.name} · eXir`} description={description} current="drinks">
   <script type="application/ld+json" slot="head" set:html={jsonLd} is:inline />
 
   <DrinkPage
