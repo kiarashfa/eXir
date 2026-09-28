@@ -109,6 +109,10 @@ export async function treat(
   const { gains, dominance, applied } = whiteBalanceGains(means, wbStrength);
 
   const image = sharp(input)
+    // Honour EXIF orientation before anything else: a phone photograph is
+    // stored on its side with a tag saying which way is up, and without this
+    // the published rendition keeps the sideways pixels.
+    .rotate()
     // --- normalise -------------------------------------------------------
     .linear(gains, [0, 0, 0])
     // --- grade -----------------------------------------------------------
@@ -190,8 +194,7 @@ export async function render(
  *
  * The reason is cost, and it is not marginal. A reviewer that opens three to
  * five 800 px candidates per subject spends most of a photograph round on
- * images it is about to reject — Xefy measured 321 k tokens for 70 subjects
- * before it built the equivalent. One small sheet is a single read, and
+ * images it is about to reject. One small sheet is a single read, and
  * comparing candidates side by side is a better comparison than looking at them
  * one after another anyway.
  *

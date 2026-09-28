@@ -270,6 +270,8 @@ const factRows = built.map(({ v, spec }) => ({
         {hero && media && (
           <HeroFigure
             src={`${base}${hero.file}`}
+            srcset={media.renditions['card'] ? `${base}${media.renditions['card'].file} ${media.renditions['card'].width}w, ${base}${hero.file} ${hero.width}w` : undefined}
+            sizes="(min-width: 64rem) 30rem, 100vw"
             alt={media.alt}
             width={hero.width}
             height={hero.height}
@@ -843,17 +845,10 @@ const factRows = built.map(({ v, spec }) => ({
       </div>
 
       <div class="col-stack">
-        {/* This one genuinely is a tab list: two controls, one panel each, and
-            the panels are siblings of the strip. So it carries the whole
-            pattern — aria-controls, tabpanel roles, and a roving tabindex so
-            Tab enters the strip once and the arrows move within it. */}
-        <div class="panel-switch" role="tablist" aria-label="Recipe or About" data-panel-switch>
-          <button type="button" role="tab" id="tab-recipe" aria-controls="panel-recipe" data-value="recipe" aria-selected="true" tabindex="0">Recipe</button>
-          <button type="button" role="tab" id="tab-about" aria-controls="panel-about" data-value="about" aria-selected="false" tabindex="-1">About</button>
-        </div>
-
-        {/* Both panels ship in the built HTML; the switch is client-side state. */}
-        <div data-panel="recipe" id="panel-recipe" role="tabpanel" aria-labelledby="tab-recipe" tabindex="0">
+        {/* One reading column: the recipe first, then the About after it. A
+            drink's method is short, so a switch between the two left the
+            column far shorter than the controls beside it. */}
+        <div>
         {built.map(({ v, batch, steps }, index) => (
           <div data-version={v.version.id} hidden={index > 0}>
           <div class="right-col">
@@ -928,7 +923,7 @@ const factRows = built.map(({ v, spec }) => ({
 
         {/* One About for the drink, not one per version: where a drink comes
             from does not change because its ratio does. */}
-        <div class="right-col" data-panel="about" id="panel-about" role="tabpanel" aria-labelledby="tab-about" tabindex="0" hidden>
+        <div class="right-col drink-about" id="about">
         <div class="section-head"><h2>About</h2></div>
         {aboutRendered ? (
           <>

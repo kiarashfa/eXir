@@ -18,6 +18,15 @@
 .page {
   position: relative;
   z-index: 1;
+  /* At least one screen tall, so a short page keeps its footer at the bottom
+     instead of floating halfway up the window. */
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.page > main {
+  flex: 1 0 auto;
 }
 
 .wrap {
@@ -126,12 +135,12 @@
   display: inline-block;
   min-width: 2.2ch;
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-size: 12px;
   color: var(--muted);
 }
 
-/* The header controls: one group of round icon buttons, the size and shape
-   all four sites use. Proportions, not palette, are what the four share. */
+/* The header controls: one group of round icon buttons of one size and shape. */
 .controls {
   display: flex;
   align-items: center;
@@ -225,6 +234,9 @@
   font-size: 12px;
   color: var(--muted);
   padding: 8px 0 0;
+  /* A fixed gap below, so a hero whose text column is the taller one (an
+     ingredient beside a small square photo) does not start flush under it. */
+  margin-bottom: 22px;
 }
 .breadcrumb ol {
   display: flex;
@@ -264,7 +276,7 @@
 /* A drink with no adopted photograph gets the whole width rather than a gap
    where the frame would have been. */
 .hero-grid--text-only {
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 /* An ingredient's photograph is square rather than 4:5 — a lemon has no tall
@@ -279,7 +291,7 @@
 }
 @media (max-width: 700px) {
   .hero-grid--square {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .hero-figure--square {
     margin-left: 0;
@@ -308,7 +320,6 @@
   line-height: 1.45;
   color: var(--ink-soft);
   margin: 18px 0 0;
-  max-width: 42ch;
 }
 
 /* Most drinks render no naming line at all. Empty is the default; the block is
@@ -343,7 +354,7 @@
    required, so the column count can be stated rather than inferred. */
 .facts {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px 34px;
   margin-top: 30px;
   padding-top: 24px;
@@ -428,43 +439,17 @@
 }
 
 /* ---------------------------------------------------------------------------
-   Panel switch and version tabs
-
-   Designed together, because they are adjacent controls at different levels of
-   the same page and a reader has to be able to tell at a glance which changes
-   what. So they are deliberately NOT the same shape: the panel switch is a
-   segmented pill that swaps the whole body, and the version strip is a row of
-   underlined text tabs that lives INSIDE the recipe panel and changes only the
-   recipe. Two tab strips of the same shape competing to be the same control is
-   the failure this avoids.
+   Version tabs: a row of underlined text tabs above the recipe, changing only
+   the recipe. The drink's About follows the recipe in the same column.
    --------------------------------------------------------------------------- */
 
-/* The switch sits at the head of the reading column, which is the scope it
-   actually has. Placed above the whole body it claimed to change the serving
-   controls and the checklist as well, and then did not. */
-.panel-switch {
-  display: inline-flex;
-  border: 1px solid var(--control-edge);
-  border-radius: 999px;
-  overflow: hidden;
-  margin: 0 0 24px;
-}
-.panel-switch button {
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  font: 500 12px/1 var(--font-body);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 11px 22px;
-  cursor: pointer;
-  transition:
-    color 0.3s var(--ease),
-    background 0.3s var(--ease);
-}
-.panel-switch button[aria-selected='true'] {
-  background: var(--accent-soft);
-  color: var(--accent-ink);
+/* The About section after the method: separated by a rule and space, not by a
+   control. */
+.drink-about {
+  margin-top: 44px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 90px;
 }
 
 /* The version strip reaches both columns — a version changes the ingredient
@@ -509,9 +494,9 @@
 
 .body-grid {
   display: grid;
-  grid-template-columns: 372px 1fr;
+  grid-template-columns: 372px minmax(0, 1fr);
   gap: 44px;
-  padding: 12px 0 72px;
+  padding-block: 12px 72px;
   align-items: start;
 }
 /* Each column is a stack of per-version blocks, all but one hidden. The grid
@@ -537,8 +522,23 @@
    widened the whole column and pushed the reading column over with it, on one
    page only. The track is a fixed 372px and both columns are told to honour it,
    so a future control that does not fit is clipped or wrapped where it lives
-   rather than moving the page around it. */
+   rather than moving the page around it.
+   `min-width: 0` on the column is not enough when the column is itself a
+   grid: its implicit `auto` track still sizes to the widest child, which is
+   how a drink with an Ice control ran its cards 77px over the method. Every
+   stacking grid therefore declares a `minmax(0, 1fr)` track, and its children
+   a zero minimum, all the way down. */
 .body-grid > .col-stack {
+  min-width: 0;
+}
+.body-grid > .col-stack:first-child,
+.left-col,
+.right-col {
+  grid-template-columns: minmax(0, 1fr);
+}
+.body-grid > .col-stack > *,
+.left-col > *,
+.right-col > * {
   min-width: 0;
 }
 .left-col {
@@ -617,6 +617,7 @@
 }
 .step-count {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-size: 19px;
   font-weight: 500;
   min-width: 2ch;
@@ -658,6 +659,7 @@
   background: transparent;
   color: var(--ink);
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-size: 15px;
   font-variant-numeric: tabular-nums;
   text-align: right;
@@ -684,6 +686,7 @@
 }
 .brew-scale-unit {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-size: 12px;
   color: var(--muted);
 }
@@ -738,7 +741,7 @@
 
 .spec-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   background: var(--line);
   border: 1px solid var(--line);
@@ -772,6 +775,7 @@
 }
 .spec-val {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-size: 21px;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
@@ -818,9 +822,6 @@
   color: var(--accent-ink);
 }
 
-/* No reading measure. These sit inside cards, and a card is already the
-   measure — clamping them again left a ragged right edge in any card wider than
-   the drink page's narrow left column, which is every card on the Plan. */
 .disclaimer {
   margin: 18px 0 0;
   font-size: 11.5px;
@@ -848,7 +849,7 @@
 }
 .bar-row {
   display: grid;
-  grid-template-columns: 8ch 1fr 7ch;
+  grid-template-columns: 8ch minmax(0, 1fr) 7ch;
   gap: 12px;
   align-items: center;
 }
@@ -894,6 +895,7 @@
 
 .bar-num {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-size: 11.5px;
   color: var(--muted);
   text-align: right;
@@ -913,7 +915,7 @@
 }
 .ing-item {
   display: grid;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: auto auto minmax(0, 1fr);
   gap: 12px;
   align-items: start;
   padding: 9px 6px;
@@ -1060,7 +1062,7 @@
 }
 .step {
   display: grid;
-  grid-template-columns: 34px 1fr;
+  grid-template-columns: 34px minmax(0, 1fr);
   gap: 18px;
   counter-increment: step;
 }
@@ -1073,6 +1075,7 @@
   border: 1px solid var(--control-edge);
   background: transparent;
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-size: 13px;
   color: var(--muted);
   margin-top: 1px;
@@ -1107,7 +1110,6 @@
 .step-body {
   font-size: 15.5px;
   line-height: 1.72;
-  max-width: var(--measure);
   color: var(--ink-soft);
   margin: 0;
 }
@@ -1117,12 +1119,17 @@
 }
 
 /* A live value in prose: mono numeral, body-face noun, one span. NO underline —
-   the dotted underline means estimated and nothing else. */
-.q {
+   the dotted underline means estimated and nothing else.
+   Only the number and its unit are kept together. Holding the whole span on
+   one line made an ingredient name unbreakable ("1 dash Angostura Aromatic
+   Bitters (0.9 ml)"), and one such name widened its row past its column. */
+.q .n,
+.q .q-measure {
   white-space: nowrap;
 }
 .q .n {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-weight: 500;
   color: var(--ink);
   font-variant-numeric: tabular-nums;
@@ -1132,6 +1139,7 @@
 }
 .value {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-weight: 500;
   color: var(--ink);
   font-variant-numeric: tabular-nums;
@@ -1159,13 +1167,6 @@
   line-height: 1.6;
   color: var(--ink-soft);
 }
-/* The reading measure only where there is reading to do. A callout beside a
-   method step is prose and wants a column; the same callout inside a card is
-   part of the card and wants its width. */
-.steps .callout,
-.about-body .callout {
-  max-width: var(--measure);
-}
 
 .callout--pitfall {
   border-left-color: var(--botanical);
@@ -1179,7 +1180,8 @@
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--botanical);
+  /* The label sits on the botanical wash; pure botanical measured 4.31:1 there. */
+  color: color-mix(in oklab, var(--botanical) 78%, var(--ink));
   margin-bottom: 5px;
 }
 
@@ -1229,11 +1231,12 @@
 .allergen-box b + b {
   margin-top: 11px;
 }
-.allergen-box /* No reading measure. These sit inside cards, and a card is already the
-   measure — clamping them again left a ragged right edge in any card wider than
-   the drink page's narrow left column, which is every card on the Plan. */
-.disclaimer {
+.allergen-box .disclaimer {
   margin-top: 8px;
+}
+/* On the allergen box's tint, muted text fell to 4.15:1 in the dark theme. */
+.allergen-box .disclaimer {
+  color: var(--ink-soft);
 }
 
 /* ---------------------------------------------------------------------------
@@ -1255,7 +1258,6 @@
 .keeping-body {
   font-size: 14px;
   color: var(--ink-soft);
-  max-width: var(--measure);
   display: grid;
   gap: 10px;
   padding-bottom: 8px;
@@ -1267,7 +1269,7 @@
 
 /*
  * The footer: one quiet row of links and the copyright, with one line of
- * small print underneath. The same shape on all four sites.
+ * small print underneath.
  */
 .site-foot {
   border-top: 1px solid var(--line);
@@ -1343,7 +1345,6 @@
 .about-body p {
   font-size: 15.5px;
   line-height: 1.72;
-  max-width: var(--measure);
   color: var(--ink-soft);
   margin: 0 0 15px;
 }
@@ -1381,7 +1382,6 @@
   list-style: none;
   display: grid;
   gap: 13px;
-  max-width: var(--measure);
 }
 .sources li {
   display: flex;
@@ -1421,11 +1421,11 @@
 
 @media (max-width: 1000px) {
   .hero-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 34px;
   }
   .body-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .hero-figure {
     aspect-ratio: 16 / 10;
@@ -1437,7 +1437,7 @@
    class that also carries display-relevant styling. */
 @media (max-width: 700px) {
   .facts {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   /* On a phone the nav takes its own row under the lockup and scrolls
      sideways if it must, rather than disappearing: hidden, it left every
@@ -1459,7 +1459,7 @@
     white-space: nowrap;
   }
   .spec-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1506,13 +1506,13 @@
   height: 26px;
   border-radius: 50%;
   border: 1px solid rgb(255 255 255 / 0.25);
-  background: rgb(0 0 0 / 0.45);
+  background: rgb(0 0 0 / 0.55);
   color: var(--on-media);
   font-family: var(--font-display);
   font-style: italic;
   font-size: 13px;
   line-height: 1;
-  opacity: 0.7;
+  opacity: 0.88;
   cursor: pointer;
   display: grid;
   place-items: center;
@@ -1601,7 +1601,6 @@
   line-height: 1.5;
   color: var(--ink-soft);
   margin: 16px 0 0;
-  max-width: var(--measure-intro);
 }
 
 .card-grid {
@@ -1642,6 +1641,11 @@
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 5px;
+  /* One line, so a long origin cannot push this card's name below its
+     neighbours'. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .drink-card .card-eyebrow:empty {
   display: none;
@@ -1657,11 +1661,35 @@
   gap: 4px 10px;
   margin-top: 7px;
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-size: 11.5px;
   color: var(--muted);
 }
 .drink-card .card-meta .alc {
   color: var(--bitter);
+}
+/* Two across on a phone: one full-width portrait card per drink made the
+   catalogue some 34,000px long. */
+@media (max-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 14px;
+  }
+  .drink-card figure {
+    border-radius: 12px;
+    margin-bottom: 10px;
+  }
+  .drink-card .card-eyebrow {
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+  }
+  .drink-card h2 {
+    font-size: 17px;
+  }
+  .drink-card .card-meta {
+    font-size: 10.5px;
+    gap: 2px 8px;
+  }
 }
 .drink-card .card-blank {
   display: grid;
@@ -1731,6 +1759,7 @@
 }
 .dense td.num {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-variant-numeric: tabular-nums;
   text-align: right;
   padding-right: 20px;
@@ -1783,15 +1812,12 @@
 }
 .index-list .aside {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-size: 11.5px;
   color: var(--muted);
 }
 
-/* The wider measure. This is used for a page's closing notes as often as for
-   its body, and a reading column stranded under a full-width tool grid reads
-   as a mistake rather than as a column. */
 .prose-page {
-  max-width: var(--measure-intro);
   padding-bottom: 72px;
 }
 .prose-page h2 {
@@ -1932,7 +1958,7 @@
 
 .tool-grid {
   display: grid;
-  grid-template-columns: 420px 1fr;
+  grid-template-columns: 420px minmax(0, 1fr);
   gap: 32px;
   align-items: start;
   padding-bottom: 72px;
@@ -1943,7 +1969,7 @@
 }
 @media (max-width: 980px) {
   .tool-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -2098,6 +2124,7 @@
 
 .match-pct {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-variant-numeric: tabular-nums;
   font-size: 13px;
   color: var(--muted);
@@ -2120,6 +2147,7 @@
 .match-meta .alc {
   color: var(--bitter);
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-variant-numeric: tabular-nums;
 }
 .match-missing {
@@ -2136,6 +2164,7 @@
 }
 .unlock-count b {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-variant-numeric: tabular-nums;
   color: var(--accent-ink);
 }
@@ -2168,6 +2197,7 @@
   min-width: 8ch;
   margin-right: 10px;
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-variant-numeric: tabular-nums;
   color: var(--ink);
 }
@@ -2208,6 +2238,7 @@
 }
 .host-list b {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-variant-numeric: tabular-nums;
   font-weight: 500;
   color: var(--ink);
@@ -2230,16 +2261,79 @@
   padding: 18px 20px;
   border-radius: 16px;
   margin-bottom: 18px;
+  /* The glass blur makes this panel its own stacking context, so an open
+     menu's z-index only counted inside it and the cards below painted over
+     the menu. The panel as a whole sits above the results. */
+  position: relative;
+  z-index: 20;
 }
+/* Two rows, both filled edge to edge. The first: search takes whatever the
+   controls beside it leave. */
 .filter-top {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto auto;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
 }
 .filter-search {
-  flex: 1 1 260px;
   min-width: 0;
+  display: flex;
+}
+.filter-top .segmented {
+  height: 38px;
+}
+/* Ranges is a compact control in the first row, not a list: its panel opens
+   under it, aligned to its right edge. */
+.dd--tool > .dd-button {
+  height: 40px;
+  box-sizing: border-box;
+}
+.dd--tool > .dd-panel {
+  left: auto;
+  right: 0;
+}
+/* On a wide screen the list menus are one row of equal buttons. */
+@media (min-width: 1000px) {
+  .filter-menus {
+    display: grid;
+    grid-template-columns: repeat(var(--menus), minmax(0, 1fr));
+  }
+}
+/* One height for every control in the row. */
+.filter-top .search-input,
+.filter-top .zero-proof,
+.filter-sort select,
+.filter-sort .chip,
+.filter-top .segmented {
+  height: 40px;
+  box-sizing: border-box;
+}
+.filter-top .search-input {
+  padding-block: 0;
+}
+.filter-sort .chip {
+  display: inline-flex;
+  align-items: center;
+}
+/* On a phone the controls wrap, and every one of them grows, so each line is
+   still filled: search alone on the first, the rest sharing the second. */
+@media (max-width: 720px) {
+  .filter-top {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .filter-top > * {
+    flex: 1 1 auto;
+  }
+  .filter-search {
+    flex-basis: 100%;
+  }
+  .filter-sort select {
+    flex: 1 1 auto;
+  }
+  .filter-top .segmented button {
+    flex: 1 1 0;
+  }
 }
 
 /* Prominent rather than folded into the Strength axis: a first-class filter
@@ -2285,6 +2379,7 @@
 /* The filter menus: one button per axis, however many terms the axis holds.
    The list inside scrolls on its own and, past ten terms, can be searched, so
    an axis that grows with the catalogue never grows the control panel. */
+/* The second: every menu button grows, so each line of buttons is filled. */
 .filter-menus {
   position: relative;
   display: flex;
@@ -2296,9 +2391,11 @@
 }
 .dd {
   position: relative;
+  flex: 1 1 auto;
 }
 .dd-button {
-  display: inline-flex;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 7px;
   list-style: none;
@@ -2336,6 +2433,7 @@
 }
 .dd-count {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   letter-spacing: 0;
 }
 .dd-caret {
@@ -2412,6 +2510,7 @@
 /* How many drinks the option would leave, given every other filter. */
 .dd-n {
   font: 400 11.5px/1 var(--font-data);
+  word-spacing: -0.3em;
   color: var(--muted);
 }
 .dd-none {
@@ -2538,6 +2637,7 @@
   min-width: 0;
   width: auto;
   font: 400 13px/1 var(--font-data);
+  word-spacing: -0.3em;
   color: var(--ink);
   background: var(--surface-2);
   border: 1px solid var(--control-edge);
@@ -2621,6 +2721,7 @@
 .sub-ratio {
   margin-left: 7px;
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-style: normal;
   font-size: 12px;
   color: var(--muted);
@@ -2636,6 +2737,7 @@
 }
 .sub-impact {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-size: 11.5px;
   letter-spacing: 0.01em;
 }
@@ -2701,11 +2803,12 @@
   display: grid;
   justify-items: center;
   text-align: center;
-  padding: 90px 0 120px;
+  padding-block: 90px 120px;
   max-width: 44rem;
 }
 .notfound-code {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   font-variant-numeric: tabular-nums;
   font-size: 13px;
   letter-spacing: 0.34em;
@@ -2771,8 +2874,8 @@
    About — the person behind it, the contact card and the support links.
 
    Built out of the drink page's own furniture rather than a fresh vocabulary:
-   the body grid, the glass card, the spec cells, the About panel's reading
-   measure. The one new control is the support link, which is the outlined chip
+   the body grid, the glass card, the spec cells, the About panel's paragraph
+   rhythm. The one new control is the support link, which is the outlined chip
    carried in the accent wash.
    --------------------------------------------------------------------------- */
 
@@ -2869,8 +2972,7 @@
   flex: 0 0 auto;
 }
 
-/* The reading column. `.about-body` already carries the measure and the
-   paragraph rhythm; this adds the headings a standalone page needs and that a
+/* The reading column. `.about-body` already carries the paragraph rhythm; this adds the headings a standalone page needs and that a
    drink's About panel does not. */
 .about-page-body h2 {
   font-family: var(--font-display);
@@ -2884,6 +2986,27 @@
 }
 .about-page-body {
   padding-bottom: 72px;
+}
+.about-alcohol {
+  margin-bottom: 72px;
+}
+/* The two columns above end with their own bottom space; the band sits close. */
+.body-grid:has(+ .about-alcohol) {
+  padding-bottom: 24px;
+}
+.body-grid:has(+ .about-alcohol) .about-page-body {
+  padding-bottom: 0;
+}
+.about-alcohol .about-page-body {
+  padding: 28px 32px;
+}
+.about-columns {
+  columns: 2 22rem;
+  column-gap: 44px;
+}
+.about-columns p {
+  break-inside: avoid;
+  margin: 0 0 14px;
 }
 
 /* The checklist thumbnail is the ONLY route from a line to its ingredient page
@@ -3003,7 +3126,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   gap: 20px;
-  padding: 12px 0 80px;
+  padding-block: 12px 80px;
   align-items: start;
 }
 .note-card p {
@@ -3079,6 +3202,7 @@
 .source-tag {
   flex: 0 0 auto;
   font: 400 10px/1 var(--font-data);
+  word-spacing: -0.3em;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);
@@ -3090,7 +3214,7 @@
 
 .source-facts {
   display: grid;
-  grid-template-columns: 62px 1fr;
+  grid-template-columns: 62px minmax(0, 1fr);
   gap: 10px 14px;
   margin: 0;
 }
@@ -3109,7 +3233,7 @@
 }
 @media (max-width: 520px) {
   .source-facts {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 4px 0;
   }
   .source-facts dd {
@@ -3133,6 +3257,7 @@
    than as punctuation inside a number. */
 .formula-sep {
   font-family: var(--font-data);
+  word-spacing: -0.3em;
   color: var(--accent-ink);
   padding: 0 2px;
 }

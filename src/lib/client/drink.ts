@@ -291,8 +291,7 @@ export function initDrink(): void {
     });
   }
 
-  // --- the Recipe / About switch and the version strip -----------------------
-  wireTabs('[data-panel-switch]', '[data-panel]');
+  // --- the version strip ------------------------------------------------------
   wireTabs('[data-version-strip]', '[data-version]', () => {
     // A version can differ in whether it batches and whether it meets ice, and
     // the one Serving card describes whichever is on screen.

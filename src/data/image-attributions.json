@@ -287,19 +287,19 @@
         "file": "/images/drinks/ayran-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 110616
+        "bytes": 125754
       },
       "card": {
         "file": "/images/drinks/ayran-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 44238
+        "bytes": 50068
       },
       "thumb": {
         "file": "/images/drinks/ayran-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1882
+        "bytes": 1888
       }
     },
     "attribution": {
@@ -736,35 +736,35 @@
   "drink:buna": {
     "slug": "buna",
     "kind": "drink",
-    "alt": "A woman in traditional dress pouring buna from a jebena pot into small handleless cups",
+    "alt": "A clay jebena coffee pot on a woven tray, surrounded by small painted cups for an Ethiopian coffee ceremony",
     "renditions": {
       "hero": {
         "file": "/images/drinks/buna-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 551358
+        "bytes": 197690
       },
       "card": {
         "file": "/images/drinks/buna-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 153402
+        "bytes": 78730
       },
       "thumb": {
         "file": "/images/drinks/buna-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 2620
+        "bytes": 2178
       }
     },
     "attribution": {
       "source": "Wikimedia Commons",
-      "file": "File:Ethiopian coffee ceremony - Addis Ababa.jpg",
-      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ethiopian_coffee_ceremony_-_Addis_Ababa.jpg",
-      "author": "Irene2005",
-      "credit": "originally posted to Flickr as Ethiopian coffee ceremony, Addis Ababa",
-      "license": "CC BY 2.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "file": "File:Coffee ceremony of Ethiopia and Eritrea 4.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coffee_ceremony_of_Ethiopia_and_Eritrea_4.jpg",
+      "author": "ProtoplasmaKid",
+      "credit": "Own work",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
       "modified": "Cropped, white-balanced, graded and re-encoded to WebP by eXir."
     }
   },
@@ -2208,19 +2208,19 @@
         "file": "/images/drinks/ginger-tea-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 38980
+        "bytes": 42392
       },
       "card": {
         "file": "/images/drinks/ginger-tea-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 14304
+        "bytes": 15888
       },
       "thumb": {
         "file": "/images/drinks/ginger-tea-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1084
+        "bytes": 1124
       }
     },
     "attribution": {
@@ -2243,19 +2243,19 @@
         "file": "/images/drinks/glogg-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 76740
+        "bytes": 120480
       },
       "card": {
         "file": "/images/drinks/glogg-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 28682
+        "bytes": 44168
       },
       "thumb": {
         "file": "/images/drinks/glogg-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1444
+        "bytes": 1438
       }
     },
     "attribution": {
@@ -2278,19 +2278,19 @@
         "file": "/images/drinks/gluhwein-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 87784
+        "bytes": 100418
       },
       "card": {
         "file": "/images/drinks/gluhwein-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 33140
+        "bytes": 34424
       },
       "thumb": {
         "file": "/images/drinks/gluhwein-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1558
+        "bytes": 1530
       }
     },
     "attribution": {
@@ -2417,19 +2417,19 @@
         "file": "/images/drinks/green-smoothie-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 157770
+        "bytes": 147374
       },
       "card": {
         "file": "/images/drinks/green-smoothie-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 51638
+        "bytes": 48102
       },
       "thumb": {
         "file": "/images/drinks/green-smoothie-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1652
+        "bytes": 1656
       }
     },
     "attribution": {
@@ -2870,19 +2870,19 @@
         "file": "/images/drinks/karak-chai-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 81330
+        "bytes": 91480
       },
       "card": {
         "file": "/images/drinks/karak-chai-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 33218
+        "bytes": 37152
       },
       "thumb": {
         "file": "/images/drinks/karak-chai-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1428
+        "bytes": 1404
       }
     },
     "attribution": {
@@ -3429,19 +3429,19 @@
         "file": "/images/drinks/masala-chai-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 119116
+        "bytes": 127324
       },
       "card": {
         "file": "/images/drinks/masala-chai-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 44702
+        "bytes": 48204
       },
       "thumb": {
         "file": "/images/drinks/masala-chai-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1798
+        "bytes": 1834
       }
     },
     "attribution": {
@@ -3673,19 +3673,19 @@
         "file": "/images/drinks/mocha-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 211430
+        "bytes": 173634
       },
       "card": {
         "file": "/images/drinks/mocha-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 63754
+        "bytes": 52892
       },
       "thumb": {
         "file": "/images/drinks/mocha-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1482
+        "bytes": 1470
       }
     },
     "attribution": {
@@ -4685,19 +4685,19 @@
         "file": "/images/drinks/sherry-cobbler-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 98164
+        "bytes": 153820
       },
       "card": {
         "file": "/images/drinks/sherry-cobbler-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 39418
+        "bytes": 59604
       },
       "thumb": {
         "file": "/images/drinks/sherry-cobbler-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 2308
+        "bytes": 2292
       }
     },
     "attribution": {
@@ -4930,19 +4930,19 @@
         "file": "/images/drinks/sugarcane-juice-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 77690
+        "bytes": 112130
       },
       "card": {
         "file": "/images/drinks/sugarcane-juice-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 25318
+        "bytes": 34046
       },
       "thumb": {
         "file": "/images/drinks/sugarcane-juice-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1120
+        "bytes": 1092
       }
     },
     "attribution": {
@@ -5315,19 +5315,19 @@
         "file": "/images/drinks/turkish-coffee-hero.webp",
         "width": 1600,
         "height": 2000,
-        "bytes": 418256
+        "bytes": 418704
       },
       "card": {
         "file": "/images/drinks/turkish-coffee-card.webp",
         "width": 800,
         "height": 1000,
-        "bytes": 150770
+        "bytes": 151842
       },
       "thumb": {
         "file": "/images/drinks/turkish-coffee-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 2384
+        "bytes": 2394
       }
     },
     "attribution": {
@@ -6110,13 +6110,13 @@
         "file": "/images/ingredients/allspice-card.webp",
         "width": 800,
         "height": 800,
-        "bytes": 145112
+        "bytes": 146468
       },
       "thumb": {
         "file": "/images/ingredients/allspice-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 2590
+        "bytes": 2502
       }
     },
     "attribution": {
@@ -6801,13 +6801,13 @@
         "file": "/images/ingredients/chocolate-syrup-card.webp",
         "width": 800,
         "height": 800,
-        "bytes": 94314
+        "bytes": 95178
       },
       "thumb": {
         "file": "/images/ingredients/chocolate-syrup-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 2166
+        "bytes": 2140
       }
     },
     "attribution": {
@@ -7175,13 +7175,13 @@
         "file": "/images/ingredients/cornflour-card.webp",
         "width": 800,
         "height": 800,
-        "bytes": 42842
+        "bytes": 44202
       },
       "thumb": {
         "file": "/images/ingredients/cornflour-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1244
+        "bytes": 1292
       }
     },
     "attribution": {
@@ -7291,13 +7291,13 @@
         "file": "/images/ingredients/creme-de-mure-card.webp",
         "width": 800,
         "height": 800,
-        "bytes": 20644
+        "bytes": 21198
       },
       "thumb": {
         "file": "/images/ingredients/creme-de-mure-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1348
+        "bytes": 1362
       }
     },
     "attribution": {
@@ -7865,13 +7865,13 @@
         "file": "/images/ingredients/grapefruit-soda-card.webp",
         "width": 800,
         "height": 800,
-        "bytes": 11218
+        "bytes": 11590
       },
       "thumb": {
         "file": "/images/ingredients/grapefruit-soda-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 692
+        "bytes": 688
       }
     },
     "attribution": {
@@ -8240,13 +8240,13 @@
         "file": "/images/ingredients/koji-card.webp",
         "width": 800,
         "height": 800,
-        "bytes": 33440
+        "bytes": 33532
       },
       "thumb": {
         "file": "/images/ingredients/koji-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1632
+        "bytes": 1622
       }
     },
     "attribution": {
@@ -8356,13 +8356,13 @@
         "file": "/images/ingredients/lillet-blanc-card.webp",
         "width": 800,
         "height": 800,
-        "bytes": 28482
+        "bytes": 29078
       },
       "thumb": {
         "file": "/images/ingredients/lillet-blanc-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 730
+        "bytes": 758
       }
     },
     "attribution": {
@@ -8674,13 +8674,13 @@
         "file": "/images/ingredients/millet-card.webp",
         "width": 800,
         "height": 800,
-        "bytes": 184802
+        "bytes": 185340
       },
       "thumb": {
         "file": "/images/ingredients/millet-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1702
+        "bytes": 1646
       }
     },
     "attribution": {
@@ -9337,13 +9337,13 @@
         "file": "/images/ingredients/pineapple-juice-card.webp",
         "width": 800,
         "height": 800,
-        "bytes": 93108
+        "bytes": 92112
       },
       "thumb": {
         "file": "/images/ingredients/pineapple-juice-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 3012
+        "bytes": 3048
       }
     },
     "attribution": {
@@ -9596,13 +9596,13 @@
         "file": "/images/ingredients/rice-card.webp",
         "width": 800,
         "height": 800,
-        "bytes": 61868
+        "bytes": 62040
       },
       "thumb": {
         "file": "/images/ingredients/rice-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 2790
+        "bytes": 2808
       }
     },
     "attribution": {
@@ -10116,13 +10116,13 @@
         "file": "/images/ingredients/sugarcane-juice-card.webp",
         "width": 800,
         "height": 800,
-        "bytes": 28228
+        "bytes": 27672
       },
       "thumb": {
         "file": "/images/ingredients/sugarcane-juice-thumb.webp",
         "width": 96,
         "height": 96,
-        "bytes": 1120
+        "bytes": 1092
       }
     },
     "attribution": {

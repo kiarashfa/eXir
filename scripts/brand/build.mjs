@@ -6,11 +6,10 @@
  *   npm run brand -- --check  exit 1 if a committed asset differs from what
  *                             the current config would produce
  *
- * This file is the LAYOUT and is identical across the four sites (Xefy, eXir,
- * Markey, ARMAG), so their cards share one composition. Everything that
- * belongs to one site (name, tagline, colours, fonts, the mark) lives in
- * `brand.config.mjs` beside it. Change a site by editing its config; change the
- * layout by editing this file and copying it to the other three.
+ * This file is the LAYOUT, kept free of anything site-specific. Everything
+ * that belongs to the site (name, tagline, colours, fonts, the mark) lives in
+ * `brand.config.mjs` beside it: change the site by editing its config, and the
+ * composition by editing this file.
  *
  * The pipeline is satori (layout, and text converted to outlines, so the output
  * never depends on what fonts the machine happens to have) followed by resvg

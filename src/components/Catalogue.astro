@@ -60,7 +60,7 @@ const inOrder = (values: string[], order: readonly string[]) =>
 
 const menus = [
   { key: 'cat', label: 'Category', values: alphabetical(present((e) => e.category)) },
-  { key: 'spirit', label: 'Base spirit', values: alphabetical(present((e) => e.baseSpirits)) },
+  { key: 'spirit', label: 'Spirit', values: alphabetical(present((e) => e.baseSpirits)) },
   { key: 'origin', label: 'Origin', values: alphabetical(present((e) => e.origin)) },
   { key: 'method', label: 'Method', values: alphabetical(present((e) => e.method)) },
   {
@@ -79,7 +79,10 @@ const menus = [
     values: inOrder(present((e) => [e.difficulty.toLowerCase()]), ['easy', 'medium', 'hard']),
   },
   { key: 'diet', label: 'Diet', values: alphabetical(present((e) => e.diets)) },
-].filter((m) => m.values.length > 1);
+]
+  .filter((m) => m.values.length > 1)
+  // The menus themselves read in alphabetical order, like the options inside them.
+  .sort((a, b) => a.label.localeCompare(b.label));
 
 const allergens = alphabetical(present((e) => e.allergens));
 
@@ -133,18 +136,69 @@ const rowData = (e: CatalogEntry) => ({
         <span>Zero-proof only</span>
       </label>
 
+      <details class="dd dd--tool" data-dd>
+        <summary class="dd-button">
+          Ranges
+          <span class="dd-count" data-dd-count hidden />
+          <span class="dd-caret" aria-hidden="true">
+            ▾
+          </span>
+        </summary>
+        <div class="dd-panel dd-panel--ranges" role="group" aria-label="Ranges">
+          {
+            ranges.map((range) => (
+              <div class="filter-range">
+                <span class="filter-range-label">{range.label}</span>
+                <label class="visually-hidden" for={`min-${range.key}`}>
+                  Minimum {range.label} in {range.unit}
+                </label>
+                <input
+                  class="range-input"
+                  id={`min-${range.key}`}
+                  type="number"
+                  inputmode="numeric"
+                  placeholder="min"
+                  data-filter-min={range.key}
+                />
+                <span aria-hidden="true">to</span>
+                <label class="visually-hidden" for={`max-${range.key}`}>
+                  Maximum {range.label} in {range.unit}
+                </label>
+                <input
+                  class="range-input"
+                  id={`max-${range.key}`}
+                  type="number"
+                  inputmode="numeric"
+                  placeholder="max"
+                  data-filter-max={range.key}
+                />
+                <span class="filter-range-unit">{range.unit}</span>
+              </div>
+            ))
+          }
+          <button class="dd-clear" type="button" data-dd-clear>
+            Clear ranges
+          </button>
+        </div>
+      </details>
+
       <div class="filter-sort">
-        <label for="cat-sort">Sort</label>
+        <label class="visually-hidden" for="cat-sort">Sort by</label>
         <select id="cat-sort" data-filter-sort>
-          {sorts.map((s) => <option value={s.value}>{s.label}</option>)}
+          {sorts.map((s) => <option value={s.value}>Sort: {s.label}</option>)}
         </select>
         <button class="chip" type="button" data-filter-direction aria-pressed="false">
           <span data-direction-label>A–Z</span>
         </button>
       </div>
+
+      <div class="segmented" role="group" aria-label="Catalogue view" data-catalogue-view>
+        <button type="button" data-value="cards" aria-pressed="true">Cards</button>
+        <button type="button" data-value="table" aria-pressed="false">Table</button>
+      </div>
     </div>
 
-    <div class="filter-menus">
+    <div class="filter-menus" style={`--menus: ${menus.length + (allergens.length > 0 ? 1 : 0)}`}>
       {
         menus.map((menu) => (
           <details class="dd" data-dd>
@@ -222,62 +276,14 @@ const rowData = (e: CatalogEntry) => ({
         )
       }
 
-      <details class="dd" data-dd>
-        <summary class="dd-button">
-          Ranges
-          <span class="dd-count" data-dd-count hidden />
-          <span class="dd-caret" aria-hidden="true">
-            ▾
-          </span>
-        </summary>
-        <div class="dd-panel dd-panel--ranges" role="group" aria-label="Ranges">
-          {
-            ranges.map((range) => (
-              <div class="filter-range">
-                <span class="filter-range-label">{range.label}</span>
-                <label class="visually-hidden" for={`min-${range.key}`}>
-                  Minimum {range.label} in {range.unit}
-                </label>
-                <input
-                  class="range-input"
-                  id={`min-${range.key}`}
-                  type="number"
-                  inputmode="numeric"
-                  placeholder="min"
-                  data-filter-min={range.key}
-                />
-                <span aria-hidden="true">to</span>
-                <label class="visually-hidden" for={`max-${range.key}`}>
-                  Maximum {range.label} in {range.unit}
-                </label>
-                <input
-                  class="range-input"
-                  id={`max-${range.key}`}
-                  type="number"
-                  inputmode="numeric"
-                  placeholder="max"
-                  data-filter-max={range.key}
-                />
-                <span class="filter-range-unit">{range.unit}</span>
-              </div>
-            ))
-          }
-          <button class="dd-clear" type="button" data-dd-clear>
-            Clear ranges
-          </button>
-        </div>
-      </details>
+
     </div>
   </form>
 
   {/* What is filtering the list right now, each chip removing its own filter. */}
   <div class="active-filters" data-active-filters hidden></div>
 
-  <div class="view-switch" role="group" aria-label="Catalogue view">
-    <div class="segmented" data-catalogue-view>
-      <button type="button" data-value="cards" aria-pressed="true">Cards</button>
-      <button type="button" data-value="table" aria-pressed="false">Table</button>
-    </div>
+  <div class="view-switch">
     <span class="aside" data-filter-count aria-live="polite">{entries.length} drinks</span>
     <button class="link-button" type="button" data-filter-clear hidden>Clear all</button>
   </div>

@@ -27,15 +27,21 @@ interface Props {
   square?: boolean;
   /** Only the drink's hero is the page's largest contentful paint. */
   priority?: boolean;
+  /** A smaller rendition and how wide the slot is, so a phone or a narrow
+      column need not download the full hero. */
+  srcset?: string;
+  sizes?: string;
 }
 
-const { src, alt, width, height, attribution, square = false, priority = false } = Astro.props;
+const { src, alt, width, height, attribution, square = false, priority = false, srcset, sizes } = Astro.props;
 ---
 
 <figure class={square ? 'hero-figure hero-figure--square' : 'hero-figure'}>
   <span class="figure-frame">
     <img
       src={src}
+      srcset={srcset}
+      sizes={srcset ? sizes : undefined}
       alt={alt}
       width={width}
       height={height}

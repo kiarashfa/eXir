@@ -86,19 +86,12 @@
   --page-max: 1200px;
   /* Fluid rather than stepped: 20px on a phone, 48px from a laptop up. */
   --gutter: clamp(20px, 4vw, 48px);
-  /* ABSOLUTE, not `ch`, and that is the whole point.
-     `ch` resolves against the ELEMENT's own font size, so one token produced a
-     380px column on an 11.5px disclaimer, a 515px one on 15.5px body prose and
-     an 895px one on the 19px lede — three different measures from one name.
-     The footer wore the wide token at 12.5px and came out at 544px of an
-     1180px page, which is what "broken at half the page" looked like. A measure
-     is a width; it means one width wherever it is used. */
-  --measure: 33rem;
-  --measure-intro: 55rem;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
   --font-display: 'Bodoni Moda', 'Didot', Georgia, serif;
   --font-body: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* A monospace space is a whole digit wide, which makes "25 ml" read as two
+     spaces; every rule that sets this face also sets word-spacing: -0.3em. */
   --font-data: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 }
 
@@ -229,6 +222,26 @@ html {
   :root:not([data-theme='dark']) {
     color-scheme: light;
   }
+}
+
+/* A long URL or unbroken word breaks rather than overflowing its box. */
+body {
+  overflow-wrap: break-word;
+}
+
+/* Scrolling lists inside the page (menus, drawers, pickers) get a thin
+   thumb with no track, instead of the boxed system scrollbar. */
+:where(body *) {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+/*
+ * A fieldset's minimum width is its min-content width by default, so a long
+ * option list inside one refuses to shrink and pushes a phone page sideways.
+ */
+fieldset {
+  min-inline-size: 0;
 }
 
 body {

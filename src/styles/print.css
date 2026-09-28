@@ -87,7 +87,6 @@
   .view-switch,
   .filters,
   .no-results,
-  .panel-switch,
   .version-strip,
   .btn-wide,
   .chip,
@@ -135,17 +134,12 @@
     display: none;
   }
 
-  /* What is on screen is what is on paper: the version showing, and the panel
-     showing. Both are client-side state on one URL, so a reader who wants the
-     About text prints it by switching to it first.
-     
-     This is deliberately NOT done by un-hiding the other panel. An attempt to
-     override `[hidden]` from here cannot work: the framework's reset declares
-     `display: none !important` inside a cascade LAYER, and among important
-     declarations a layered one beats an unlayered one regardless of
-     specificity — the reverse of the ordinary rule. It is also the wrong
-     feature. A printed sheet is the recipe at the count and mode in front of
-     the reader, not every panel the page can show at once. */
+  /* What is on screen is what is on paper: the version showing, at the count
+     and mode in front of the reader, followed by the drink's About. Other
+     versions stay hidden; overriding `[hidden]` from here cannot work anyway,
+     because the framework's reset declares `display: none !important` inside a
+     cascade layer, and a layered important declaration beats an unlayered one
+     regardless of specificity. */
 
   /* --- layout ------------------------------------------------------------- */
   .page,
@@ -210,6 +204,7 @@
     left: 0;
     top: 2px;
     font-family: var(--font-data);
+    word-spacing: -0.3em;
     font-size: 12px;
     color: var(--muted);
   }

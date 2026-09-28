@@ -136,6 +136,17 @@ const contact = [
             same build that publishes it.
           </p>
         </div>
+
+        <div class="card glass">
+          <h2 class="card-title">What it keeps, and where</h2>
+          <p class="support-note">
+            There is no backend, no account and nothing to sign in to. Whatever the site remembers
+            (your shelf in <a href={`${base}/my-bar/`}>My&nbsp;Bar</a>, your
+            <a href={`${base}/plan/`}>plan</a>, your units, your theme) stays in your own browser and
+            never leaves it. That also means it lives in one browser on one device, and the site
+            cannot move it for you.
+          </p>
+        </div>
       </div>
     </aside>
 
@@ -197,7 +208,16 @@ const contact = [
           with the picture rather than living in an index.
         </p>
 
-        <h2>On alcohol</h2>
+      </div>
+    </div>
+  </div>
+
+  {/* The approved text on alcohol, full width below the two columns so neither
+      column runs long; set in two text columns at a reading measure. */}
+  <section class="wrap about-alcohol" aria-labelledby="on-alcohol">
+    <div class="card glass about-page-body">
+      <h2 id="on-alcohol">On alcohol</h2>
+      <div class="about-columns">
         <p>
           Roughly half of what eXir documents contains alcohol, and the site states how much — in
           grams of pure alcohol, and in the standard-drink measures used in the United States and
@@ -224,15 +244,7 @@ const contact = [
           start.
         </p>
 
-        <h2>What it keeps, and where</h2>
-        <p>
-          There is no backend, no account and nothing to sign in to. Whatever the site remembers —
-          your shelf in <a href={`${base}/my-bar/`}>My&nbsp;Bar</a>, your
-          <a href={`${base}/plan/`}>plan</a>, your units, your theme — stays in your own browser and
-          never leaves it. That also means it lives in one browser on one device, and the site
-          cannot move it for you.
-        </p>
       </div>
     </div>
-  </div>
+  </section>
 </BaseLayout>

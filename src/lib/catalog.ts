@@ -237,7 +237,15 @@ export interface DrinkDetail {
  * anything else falls back to the slug made readable, `bitter-aperitivo` →
  * `Bitter aperitivo`. One rule, so two views never disagree.
  */
-const LABELS = new Map<string, string>(origins.terms.map((t) => [t.id, t.label]));
+/** Categories whose slug does not read as a name once the hyphens go. */
+const CATEGORY_LABELS: [string, string][] = [
+  ['juice-agua-fresca', 'Juice & agua fresca'],
+  ['smoothie-shake', 'Smoothie & shake'],
+  ['soft-traditional', 'Traditional soft drink'],
+  ['zero-proof', 'Zero-proof'],
+];
+
+const LABELS = new Map<string, string>([...origins.terms.map((t) => [t.id, t.label] as [string, string]), ...CATEGORY_LABELS]);
 
 export const humanise = (id: string): string =>
   LABELS.get(id) ?? id.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
