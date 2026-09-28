@@ -1,37 +1,141 @@
 ---
 /**
- * The homepage is the master catalogue. Drinks is the first nav item and it
- * points here rather than at a second listing: one catalogue, one URL.
+ * The homepage: a way in, not the whole catalogue.
+ *
+ * It holds a fixed amount whatever the size of the catalogue: a featured
+ * handful that changes weekly, the families that organise the field, the
+ * busiest ways to browse, and the door to the full list at `/drinks/`.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Catalogue from '../components/Catalogue.astro';
-import { catalogEntry, published, site } from '../lib/content/site.ts';
+import DrinkCard from '../components/DrinkCard.astro';
+import { catalogEntry, defaultVersion, published, site } from '../lib/content/site.ts';
+import { humanise } from '../lib/catalog.ts';
+import { weeklyPick } from '../lib/showcase.ts';
 import attributions from '../data/image-attributions.json' with { type: 'json' };
 
 const resolved = await site();
-const entries = published(resolved)
-  .map((d) => catalogEntry(d, resolved.ingredients, attributions as never))
-  .sort((a, b) => a.title.localeCompare(b.title));
+const drinks = published(resolved);
+const entries = drinks.map((d) => catalogEntry(d, resolved.ingredients, attributions as never));
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+/* Only drinks with a photograph: a featured card is the one place a blank tile
+   would be the first thing a visitor sees. */
+const featured = weeklyPick(
+  entries.filter((e) => e.image),
+  8,
+);
+
+const families = [...resolved.families.values()]
+  .map((f) => ({
+    id: f.id,
+    name: String(f.frontmatter['name'] ?? f.id),
+    members: drinks.filter((d) => defaultVersion(d).frontmatter['family'] === f.id).length,
+  }))
+  .filter((f) => f.members > 0)
+  .sort((a, b) => a.name.localeCompare(b.name));
+
+/** Terms with counts, the busiest first, then listed alphabetically. */
+const tally = (pick: (e: (typeof entries)[number]) => string[], limit: number) => {
+  const counts = new Map<string, number>();
+  for (const e of entries) for (const id of pick(e)) counts.set(id, (counts.get(id) ?? 0) + 1);
+  const all = [...counts].map(([id, count]) => ({ id, label: humanise(id), count }));
+  return {
+    total: all.length,
+    shown: all
+      .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label))
+      .slice(0, limit)
+      .sort((a, b) => a.label.localeCompare(b.label)),
+  };
+};
+
+const spirits = tally((e) => e.baseSpirits, 12);
+const categories = tally((e) => e.category, 12);
 ---
 
 <BaseLayout
   title="eXir · Drinks encyclopedia"
-  description="A free, ad-free, login-free drinks encyclopedia where every figure on the page is computed rather than typed."
-  current="drinks"
+  description="A free drinks encyclopedia where every figure on the page is computed rather than typed."
+  current="home"
 >
   <section class="wrap page-head" data-pagefind-ignore>
-    <h1>Drinks</h1>
+    <h1>Every drink, all the arithmetic</h1>
     <p class="lede">
-      Every quantity, strength, dilution, sugar figure and total on this site is computed from
-      structured data rather than typed. Change the drink count, the service mode or the units
-      and the arithmetic follows.
+      {entries.length} drinks. Every quantity, strength, dilution, sugar figure and total is
+      computed from structured data rather than typed. Change the drink count, the service mode or
+      the units and the arithmetic follows.
     </p>
   </section>
 
-  <Catalogue entries={entries} />
-</BaseLayout>
+  <div class="wrap" data-pagefind-ignore>
+    <section class="home-section" aria-labelledby="featured-title">
+      <div class="home-section-head">
+        <h2 id="featured-title">Featured this week</h2>
+        <a href={`${base}/drinks/`}>All {entries.length} drinks →</a>
+      </div>
+      <div class="card-grid">
+        {featured.map((e) => <DrinkCard entry={e} />)}
+      </div>
+    </section>
 
-<script>
-  import { initCatalogue } from '../lib/client/catalogue.ts';
-  initCatalogue();
-</script>
+    <section class="home-section" aria-labelledby="families-title">
+      <div class="home-section-head">
+        <h2 id="families-title">Families</h2>
+        <a href={`${base}/families/`}>What a family is →</a>
+      </div>
+      <ul class="index-list">
+        {
+          families.map((f) => (
+            <li>
+              <a href={`${base}/families/${f.id}/`}>
+                <span>{f.name}</span>
+                <span class="aside">{f.members}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="home-section" aria-labelledby="spirits-title">
+      <div class="home-section-head">
+        <h2 id="spirits-title">By base spirit</h2>
+        <a href={`${base}/spirits/`}>All {spirits.total} spirits →</a>
+      </div>
+      <ul class="index-list">
+        {
+          spirits.shown.map((t) => (
+            <li>
+              <a href={`${base}/spirits/${t.id}/`}>
+                <span>{t.label}</span>
+                <span class="aside">{t.count}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="home-section" aria-labelledby="categories-title">
+      <div class="home-section-head">
+        <h2 id="categories-title">By category</h2>
+        <a href={`${base}/categories/`}>All {categories.total} categories →</a>
+      </div>
+      <ul class="index-list">
+        {
+          categories.shown.map((t) => (
+            <li>
+              <a href={`${base}/categories/${t.id}/`}>
+                <span>{t.label}</span>
+                <span class="aside">{t.count}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <div class="home-cta">
+      <a class="catalogue-more-button" href={`${base}/drinks/`}>Browse all {entries.length} drinks</a>
+    </div>
+  </div>
+</BaseLayout>

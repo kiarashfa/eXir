@@ -1,7 +1,7 @@
 ---
 /**
- * The site footer: one quiet row of links and the copyright, with the sibling
- * sites underneath. The same shape on all four sibling sites.
+ * The site footer: one quiet row of links and the copyright, with one line of
+ * small print underneath. The same shape on all four sites.
  *
  * It also carries every route the four-item nav has no room for, so nothing on
  * the site is an orphan. `check:site` verifies that every link resolves and that
@@ -28,12 +28,6 @@ const COPYRIGHT_START_YEAR = 2026;
 const buildYear = new Date().getFullYear();
 const years = buildYear > COPYRIGHT_START_YEAR ? `${COPYRIGHT_START_YEAR}–${buildYear}` : `${COPYRIGHT_START_YEAR}`;
 
-const siblings = [
-  { name: 'Xefy', subject: 'Recipes', url: 'https://kiarashfa.github.io/Xefy/' },
-  { name: 'eXir', subject: 'Drinks', url: 'https://kiarashfa.github.io/eXir/' },
-  { name: 'Markey', subject: 'Cars', url: 'https://kiarashfa.github.io/Markey/' },
-  { name: 'ARMAG', subject: 'Firearms', url: 'https://kiarashfa.github.io/ARMAG/' },
-];
 ---
 
 <footer class="site-foot" data-pagefind-ignore>
@@ -47,16 +41,8 @@ const siblings = [
       </nav>
       <p class="foot-copy">© {years} Kiarash Farajzadehahary</p>
     </div>
-    <nav class="foot-family" aria-label="Sibling sites">
-      {
-        siblings.map((s) =>
-          s.name === 'eXir' ? (
-            <span aria-current="true" title={s.subject}>{s.name}</span>
-          ) : (
-            <a href={s.url} title={s.subject}>{s.name}</a>
-          ),
-        )
-      }
-    </nav>
+    <p class="foot-note">
+      Strength, energy and allergen figures are computed from published data for reference. They describe what is in a drink, not what anyone should drink.
+    </p>
   </div>
 </footer>

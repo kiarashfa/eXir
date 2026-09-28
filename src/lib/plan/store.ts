@@ -5,7 +5,7 @@
  *
  * HARD RULE: the Plan stores REFERENCES AND SCALARS. Never a snapshot of a
  * computed value — no amounts, no ABV, no totals. Everything is recomputed from
- * the catalogue on load, which is §3.1's rule applied to persistence, and it
+ * the catalogue on load, which is rule applied to persistence, and it
  * means a month-old plan silently benefits from every correction made since.
  *
  * `drinks` is absolute rather than a multiplier, so a later change to a drink's

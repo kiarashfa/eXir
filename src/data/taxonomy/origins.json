@@ -1,0 +1,125 @@
+{
+  "note": "The closed vocabulary for a drink's origin tag, and the label each one renders as. Every id sits at the same level of abstraction (a region or a tradition, never both a region and one of its member nations), so a filter on origin never splits one tradition across two terms. A drink tagged with anything else fails check c31-origin-vocab. Add a term here, with the drink that needs it, rather than inventing one inline.",
+  "terms": [
+    {
+      "id": "united-states",
+      "label": "United States"
+    },
+    {
+      "id": "british-isles",
+      "label": "British Isles"
+    },
+    {
+      "id": "france",
+      "label": "France"
+    },
+    {
+      "id": "italy",
+      "label": "Italy"
+    },
+    {
+      "id": "iberia",
+      "label": "Iberia"
+    },
+    {
+      "id": "germanic-alpine",
+      "label": "Germanic & Alpine"
+    },
+    {
+      "id": "nordic",
+      "label": "Nordic"
+    },
+    {
+      "id": "central-eastern-europe",
+      "label": "Central & Eastern Europe"
+    },
+    {
+      "id": "balkans",
+      "label": "Balkans"
+    },
+    {
+      "id": "russia-caucasus",
+      "label": "Russia & the Caucasus"
+    },
+    {
+      "id": "caribbean",
+      "label": "Caribbean"
+    },
+    {
+      "id": "mexico-central-america",
+      "label": "Mexico & Central America"
+    },
+    {
+      "id": "south-america",
+      "label": "South America"
+    },
+    {
+      "id": "north-africa",
+      "label": "North Africa"
+    },
+    {
+      "id": "west-africa",
+      "label": "West Africa"
+    },
+    {
+      "id": "east-africa",
+      "label": "East Africa"
+    },
+    {
+      "id": "southern-africa",
+      "label": "Southern Africa"
+    },
+    {
+      "id": "levant",
+      "label": "Levant"
+    },
+    {
+      "id": "turkey-anatolia",
+      "label": "Turkey & Anatolia"
+    },
+    {
+      "id": "persia-central-asia",
+      "label": "Persia & Central Asia"
+    },
+    {
+      "id": "arabian-gulf",
+      "label": "Arabian Peninsula & Gulf"
+    },
+    {
+      "id": "south-asia",
+      "label": "South Asia"
+    },
+    {
+      "id": "southeast-asia",
+      "label": "Southeast Asia"
+    },
+    {
+      "id": "china",
+      "label": "China"
+    },
+    {
+      "id": "japan",
+      "label": "Japan"
+    },
+    {
+      "id": "korea",
+      "label": "Korea"
+    },
+    {
+      "id": "pacific-oceania",
+      "label": "Pacific & Oceania"
+    },
+    {
+      "id": "tiki",
+      "label": "Tiki"
+    },
+    {
+      "id": "anglo-indian",
+      "label": "Anglo-Indian & colonial"
+    },
+    {
+      "id": "international",
+      "label": "International"
+    }
+  ]
+}

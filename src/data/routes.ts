@@ -26,7 +26,7 @@ export interface SiteRoute {
 }
 
 export const ROUTES: SiteRoute[] = [
-  { label: 'Drinks', path: '/', built: true, primary: true },
+  { label: 'Drinks', path: '/drinks/', built: true, primary: true },
   { label: 'Ingredients', path: '/ingredients/', built: true, primary: true },
   { label: 'Techniques', path: '/techniques/', built: true, primary: true },
   { label: 'My Bar', path: '/my-bar/', built: true, primary: true, count: true },

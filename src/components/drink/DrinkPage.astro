@@ -211,7 +211,8 @@ const factRows = built.map(({ v, spec }) => ({
       <div class={hero ? 'hero-grid' : 'hero-grid hero-grid--text-only'}>
         <div>
           {eyebrow && <div class="eyebrow">{eyebrow}</div>}
-          <h1>{name}</h1>
+          {/* Weighted above body text so a search for a drink finds the drink before the ingredient pages that mention it. */}
+          <h1 data-pagefind-weight="10">{name}</h1>
           {subtitleRows.map((row, i) =>
             row.text ? (
               <p class="subtitle" data-version={row.id} hidden={i > 0}>

@@ -1,4 +1,5 @@
 ---
+import { humanise } from '../../lib/catalog.ts';
 /**
  * The drink page. One canonical URL per drink; every version ships in the HTML
  * and the tabs are client-side state, so all of it is crawlable.
@@ -26,7 +27,8 @@ const fm = primary.frontmatter;
 
 const tags = fm['tags'] as Record<string, string[]> | undefined;
 const eyebrow = [tags?.['origin']?.[0], tags?.['category']?.[0], primary.version.method]
-  .filter((v) => v && v !== 'none')
+  .filter((v): v is string => Boolean(v) && v !== 'none')
+  .map(humanise)
   .join(' · ');
 
 const description = String(

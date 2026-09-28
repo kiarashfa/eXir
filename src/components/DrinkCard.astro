@@ -1,0 +1,47 @@
+---
+/**
+ * One drink as a card: the catalogue's grid and the homepage's featured row
+ * render the same component, so a card introduces a drink the same way
+ * wherever it appears.
+ *
+ * Three rows, not two: where a drink is from and what kind of drink it is, then
+ * its name, then what the engine computed about it. The eyebrow is the same
+ * pair the drink page's own hero leads with.
+ *
+ * Any extra attributes pass through to the link, which is how the catalogue
+ * hangs its filter data on the card without a second component.
+ */
+import type { CatalogEntry } from '../lib/content/site.ts';
+import { humanise } from '../lib/catalog.ts';
+
+interface Props {
+  entry: CatalogEntry;
+  [attribute: string]: unknown;
+}
+
+const { entry: e, ...attributes } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<a class="drink-card" href={`${base}/drinks/${e.slug}/`} {...attributes}>
+  <figure>
+    {
+      e.image ? (
+        <img src={`${base}${e.image.card}`} alt={e.image.alt} width="800" height="1000" loading="lazy" />
+      ) : (
+        <span class="card-blank" aria-hidden="true">
+          {e.title.slice(0, 1)}
+        </span>
+      )
+    }
+  </figure>
+  <div class="card-eyebrow">{[...e.origin, ...e.category].map(humanise).join(' · ')}</div>
+  <h2>{e.title}</h2>
+  <div class="card-meta">
+    <span>{e.style}</span>
+    {e.abvPercent > 0 && <span class="alc">{e.abvPercent.toFixed(1)}% ABV</span>}
+    {e.abvPercent === 0 && <span class="zero">Zero-proof</span>}
+    <span>{e.totalTime}</span>
+    <span>{e.kcal} kcal</span>
+  </div>
+</a>

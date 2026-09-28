@@ -1,4 +1,5 @@
 ---
+import { humanise } from '../../lib/catalog.ts';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { catalogEntry, published, site } from '../../lib/content/site.ts';
 import attributions from '../../data/image-attributions.json' with { type: 'json' };
@@ -10,9 +11,9 @@ const entries = published(resolved).map((d) =>
 
 const counts = new Map<string, number>();
 for (const e of entries) for (const id of e.origin) counts.set(id, (counts.get(id) ?? 0) + 1);
-const rows = [...counts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+const rows = [...counts].sort((a, b) => a[0].localeCompare(b[0]));
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const cap = (s: string) => s.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
+const cap = humanise;
 ---
 
 <BaseLayout title="Origins · eXir" description="Every drinking tradition represented on eXir." current="drinks">

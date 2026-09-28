@@ -6,11 +6,11 @@
  *   npm run brand -- --check  exit 1 if a committed asset differs from what
  *                             the current config would produce
  *
- * This file is the LAYOUT and is identical across the sibling sites (Xefy,
- * eXir, Markey, ARMAG), so their cards read as one family. Everything that
+ * This file is the LAYOUT and is identical across the four sites (Xefy, eXir,
+ * Markey, ARMAG), so their cards share one composition. Everything that
  * belongs to one site (name, tagline, colours, fonts, the mark) lives in
  * `brand.config.mjs` beside it. Change a site by editing its config; change the
- * family by editing this file and copying it to the other three.
+ * layout by editing this file and copying it to the other three.
  *
  * The pipeline is satori (layout, and text converted to outlines, so the output
  * never depends on what fonts the machine happens to have) followed by resvg
@@ -28,9 +28,8 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const at = (p) => resolve(root, p);
 const check = process.argv.includes('--check');
 
-// The four sites, in the order every card lists them. The current one is
-// drawn in its accent; the others are there so a preview says whose it is.
-const FAMILY = ['Xefy', 'eXir', 'Markey', 'ARMAG'];
+// What every one of these sites promises, set in the card's bottom corner.
+const PROMISE = ['Free', 'No ads', 'No sign-up'];
 
 /* ── fonts ───────────────────────────────────────────────────────────────── */
 
@@ -89,13 +88,10 @@ function card({ width, height, pad, scale }) {
     ),
   );
 
-  const family = h(
+  const promise = h(
     'div',
     { alignItems: 'center', gap: s(14), fontFamily: config.fonts.body.family, fontSize: s(24), color: c.muted },
-    FAMILY.map((name, i) => [
-      i > 0 ? h('span', { opacity: 0.6 }, '·') : null,
-      h('span', name === config.name ? { color: c.accent, fontWeight: 600 } : {}, name),
-    ]),
+    PROMISE.map((word, i) => [i > 0 ? h('span', { color: c.accent }, '·') : null, h('span', {}, word)]),
   );
 
   return h(
@@ -121,7 +117,7 @@ function card({ width, height, pad, scale }) {
         'div',
         { alignItems: 'center', justifyContent: 'space-between', paddingTop: s(24), borderTop: `${s(2)}px solid ${c.line}` },
         h('div', { fontFamily: config.fonts.body.family, fontSize: s(24), color: c.muted }, config.url),
-        family,
+        promise,
       ),
     ),
   );
@@ -138,7 +134,7 @@ async function icon(size, padding) {
   const inner = Math.round(size * (1 - 2 * padding));
   const tree = h(
     'div',
-    { width: size, height: size, alignItems: 'center', justifyContent: 'center', backgroundColor: config.colors.iconBackground ?? config.colors.background },
+    { width: size, height: size, alignItems: 'center', justifyContent: 'center', backgroundColor: config.colors.background },
     img(markPng(config.iconTheme ?? config.cardTheme, inner * 2), inner),
   );
   const svg = await satori(tree, { width: size, height: size, fonts });

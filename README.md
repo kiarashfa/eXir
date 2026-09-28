@@ -29,10 +29,10 @@ applied to it, and the terms owed to each source are on the sources page.
 
 ---
 
-**Live site:** <https://kiarashfa.github.io/eXir/> · **Sibling encyclopedias:** [Xefy](https://kiarashfa.github.io/Xefy/) · **eXir** · [Markey](https://kiarashfa.github.io/Markey/) · [ARMAG](https://kiarashfa.github.io/ARMAG/)
+**Live site:** <https://kiarashfa.github.io/eXir/>
 
 © 2026 Kiarash Farajzadehahary.
 
 ⚖ Licensed under the [KFA Source-Available License 1.0](LICENSE).
 
-Made with ❤️ and `ABV = Σ vᵢ·aᵢ ⁄ V`
+Made with ❤️ for those who find joy in every sip.

@@ -125,7 +125,7 @@ function paintService(root: HTMLElement, mode: ServiceMode, count: number): void
  * Show the count stepper or the brew inputs, whichever asks this version's
  * question, and keep the one on screen current.
  *
- * They are two faces of one multiplier rather than two counts — §19.5's rule
+ * They are two faces of one multiplier rather than two counts — rule
  * that a fact gets exactly one display slot is why only ever one of them is
  * visible.
  */

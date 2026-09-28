@@ -22,6 +22,7 @@ import { extractQtyRefs, portionsSum } from '../../src/lib/transclusion/merge.ts
 import type { ResolvedSite, ResolvedVersion } from '../../src/lib/content/resolve.ts';
 import * as S from '../../src/schemas/content.ts';
 import type { Report } from './report.ts';
+import originTerms from '../../src/data/taxonomy/origins.json' with { type: 'json' };
 
 export interface CheckContext {
   site: ResolvedSite;
@@ -535,6 +536,24 @@ const familyRefs: Check = {
   },
 };
 
+const originVocabulary: Check = {
+  id: 'c31-origin-vocab',
+  description: 'Every origin tag is a term in the closed origin vocabulary.',
+  run({ site, report }) {
+    // A free-text origin is how one tradition ended up under two ids
+    // (united-kingdom beside british-isles) and a raw slug reached the page.
+    const known = new Set(originTerms.terms.map((t) => t.id));
+    for (const v of site.versions) {
+      const tags = v.frontmatter['tags'] as { origin?: string[] } | undefined;
+      for (const id of tags?.origin ?? []) {
+        if (!known.has(id)) {
+          report.error('c31-origin-vocab', where(v), `origin "${id}" is not in src/data/taxonomy/origins.json.`);
+        }
+      }
+    }
+  },
+};
+
 // ---------------------------------------------------------------------------
 // 19–27: warnings
 // ---------------------------------------------------------------------------
@@ -923,6 +942,7 @@ export const checks: Check[] = [
   citeRefs,
   dilutionModelRefs,
   familyRefs,
+  originVocabulary,
   unusedLines,
   partialUseUndeclared,
   timingConsistency,

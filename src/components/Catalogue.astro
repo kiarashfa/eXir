@@ -4,19 +4,25 @@
  * same rows, with filtering and sorting over both.
  *
  * Both views ship in the HTML and the switch is presentational, so everything
- * is crawlable and every drink has a real `<a>` pointing at it from the
- * homepage whichever view a reader is in.
+ * is crawlable and every drink has a real `<a>` pointing at it from this page
+ * whichever view a reader is in.
  *
- * **Filtering hides rows rather than rebuilding them from JSON.** Rendering the
- * catalogue client-side from `catalog-index.json` would be less code and would
- * throw away the thing the static HTML exists for — a real `<a>` per drink in
- * the served markup. A crawler that has to run the filter island to find any
- * drink at all is a crawler that finds none. So every row is rendered once,
- * carries its own facets as data attributes, and the island only decides what
- * is visible.
+ * **Filtering hides rows rather than rebuilding them from JSON.** A crawler
+ * that has to run the filter island to find any drink at all is a crawler that
+ * finds none. So every row is rendered once, carries its own facets as data
+ * attributes, and the script only decides what is visible, and how much of it:
+ * results are shown a page at a time, so the end of the page stays reachable.
+ *
+ * **Each axis is a menu, not a column of checkboxes.** An axis grows with the
+ * catalogue — origins most of all — and a panel of open lists grew with it
+ * until the controls were taller than the results. A menu is one button in a
+ * row however many terms it holds; its list scrolls inside it, and past ten
+ * terms it can be searched. Named vocabularies are alphabetical; the three
+ * ordinal ones (strength, served, difficulty) keep their natural order.
  */
 import type { CatalogEntry } from '../lib/content/site.ts';
 import { humanise } from '../lib/catalog.ts';
+import DrinkCard from './DrinkCard.astro';
 
 interface Props {
   entries: CatalogEntry[];
@@ -26,10 +32,8 @@ const { entries } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 /**
- * One token list per drink, read by one filter engine.
- *
- * Prefixed rather than split across eight attributes so a new axis costs a
- * prefix and nothing else, and so the client has a single string to test.
+ * One token list per drink, read by one filter engine. Prefixed rather than
+ * split across eight attributes, so a new axis costs a prefix and nothing else.
  */
 const facetsOf = (e: CatalogEntry): string =>
   [
@@ -44,38 +48,40 @@ const facetsOf = (e: CatalogEntry): string =>
     ...e.allergens.map((v) => `allergen:${v}`),
   ].join(' ');
 
-/** The vocabulary actually present, so no filter offers an empty result. */
-const collect = (pick: (e: CatalogEntry) => string[]): string[] =>
-  [...new Set(entries.flatMap(pick))].filter(Boolean).sort();
+/** The vocabulary actually present, so no menu offers an empty result. */
+const present = (pick: (e: CatalogEntry) => string[]): string[] =>
+  [...new Set(entries.flatMap(pick))].filter(Boolean);
 
-const groups = [
-  { key: 'cat', label: 'Category', values: collect((e) => e.category) },
-  { key: 'spirit', label: 'Base spirit', values: collect((e) => e.baseSpirits) },
-  { key: 'origin', label: 'Origin', values: collect((e) => e.origin) },
-  { key: 'method', label: 'Method', values: collect((e) => e.method) },
-  { key: 'strength', label: 'Strength', values: collect((e) => [e.strength]) },
-  { key: 'temp', label: 'Served', values: collect((e) => [e.servingTemp]) },
-  { key: 'diff', label: 'Difficulty', values: collect((e) => [e.difficulty.toLowerCase()]) },
-  { key: 'diet', label: 'Diet', values: collect((e) => e.diets) },
-].filter((g) => g.values.length > 1);
+const alphabetical = (values: string[]) =>
+  values.sort((a, b) => humanise(a).localeCompare(humanise(b)));
 
-/**
- * The five that matter here, not all fourteen.
- *
- * Ranked by how many drinks carry each, so the list is the catalogue's own
- * answer rather than a remembered one, and capped so the exclusion group stays
- * one column beside the rest. The vocabulary is fixed at fourteen and most of
- * it will never appear in a drink; a filter offering twelve options nobody can
- * use buries the two they can.
- */
-const allergenCounts = new Map<string, number>();
-for (const entry of entries) {
-  for (const a of entry.allergens) allergenCounts.set(a, (allergenCounts.get(a) ?? 0) + 1);
-}
-const allergens = [...allergenCounts.entries()]
-  .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-  .slice(0, 5)
-  .map(([id]) => id);
+const inOrder = (values: string[], order: readonly string[]) =>
+  values.sort((a, b) => order.indexOf(a) - order.indexOf(b));
+
+const menus = [
+  { key: 'cat', label: 'Category', values: alphabetical(present((e) => e.category)) },
+  { key: 'spirit', label: 'Base spirit', values: alphabetical(present((e) => e.baseSpirits)) },
+  { key: 'origin', label: 'Origin', values: alphabetical(present((e) => e.origin)) },
+  { key: 'method', label: 'Method', values: alphabetical(present((e) => e.method)) },
+  {
+    key: 'strength',
+    label: 'Strength',
+    values: inOrder(present((e) => [e.strength]), ['zero-proof', 'low', 'medium', 'strong']),
+  },
+  {
+    key: 'temp',
+    label: 'Served',
+    values: inOrder(present((e) => [e.servingTemp]), ['hot', 'warm', 'room', 'chilled', 'iced', 'frozen']),
+  },
+  {
+    key: 'diff',
+    label: 'Difficulty',
+    values: inOrder(present((e) => [e.difficulty.toLowerCase()]), ['easy', 'medium', 'hard']),
+  },
+  { key: 'diet', label: 'Diet', values: alphabetical(present((e) => e.diets)) },
+].filter((m) => m.values.length > 1);
+
+const allergens = alphabetical(present((e) => e.allergens));
 
 const ranges = [
   { key: 'abv', label: 'ABV', unit: '%' },
@@ -91,7 +97,18 @@ const sorts = [
   { value: 'diff', label: 'Difficulty' },
 ];
 
-const cap = (s: string): string => humanise(s);
+/** Past this many terms a list is searched, not scanned. */
+const SEARCH_FROM = 10;
+
+const rowData = (e: CatalogEntry) => ({
+  'data-slug': e.slug,
+  'data-facets': facetsOf(e),
+  'data-title': e.title,
+  'data-abv': e.abvPercent,
+  'data-time': Math.round(e.totalSec / 60),
+  'data-kcal': e.kcal,
+  'data-diff': ['easy', 'medium', 'hard'].indexOf(e.difficulty.toLowerCase()),
+});
 ---
 
 <div class="wrap" data-pagefind-ignore>
@@ -110,9 +127,7 @@ const cap = (s: string): string => humanise(s);
       </div>
 
       {/* First-class rather than a sub-option of Strength. A meaningful share
-          of readers come for exactly this, and making them open a panel and
-          find it inside another axis undercuts the claim that the coverage is
-          first-class. */}
+          of readers come for exactly this. */}
       <label class="zero-proof">
         <input type="checkbox" data-filter-zero-proof />
         <span>Zero-proof only</span>
@@ -129,79 +144,134 @@ const cap = (s: string): string => humanise(s);
       </div>
     </div>
 
-    <details class="filter-more">
-      <summary>More filters</summary>
-      <div class="filter-groups">
-        {groups.map((group) => (
-          <fieldset class="filter-group">
-            <legend>{group.label}</legend>
-            {group.values.map((value) => (
-              <label class="filter-option">
-                <input type="checkbox" data-filter-facet={`${group.key}:${value}`} />
-                <span>{cap(value)}</span>
-              </label>
-            ))}
-          </fieldset>
-        ))}
-
-        {allergens.length > 0 && (
-          <fieldset class="filter-group filter-group--exclude">
-            <legend>Exclude allergens</legend>
-            {allergens.map((value) => (
-              <label class="filter-option">
-                <input type="checkbox" data-filter-exclude={`allergen:${value}`} />
-                <span>{cap(value)}</span>
-              </label>
-            ))}
-          </fieldset>
-        )}
-
-        <fieldset class="filter-group filter-group--ranges">
-          <legend>Ranges</legend>
-          {ranges.map((range) => (
-            <div class="filter-range">
-              <span class="filter-range-label">{range.label}</span>
-              <label class="visually-hidden" for={`min-${range.key}`}>
-                Minimum {range.label} in {range.unit}
-              </label>
-              <input
-                class="range-input"
-                id={`min-${range.key}`}
-                type="number"
-                inputmode="numeric"
-                placeholder="min"
-                data-filter-min={range.key}
-              />
-              <span aria-hidden="true">–</span>
-              <label class="visually-hidden" for={`max-${range.key}`}>
-                Maximum {range.label} in {range.unit}
-              </label>
-              <input
-                class="range-input"
-                id={`max-${range.key}`}
-                type="number"
-                inputmode="numeric"
-                placeholder="max"
-                data-filter-max={range.key}
-              />
-              <span class="filter-range-unit">{range.unit}</span>
+    <div class="filter-menus">
+      {
+        menus.map((menu) => (
+          <details class="dd" data-dd>
+            <summary class="dd-button">
+              {menu.label}
+              <span class="dd-count" data-dd-count hidden />
+              <span class="dd-caret" aria-hidden="true">
+                ▾
+              </span>
+            </summary>
+            <div class="dd-panel" role="group" aria-label={menu.label}>
+              {menu.values.length > SEARCH_FROM && (
+                <input
+                  class="dd-search"
+                  type="search"
+                  placeholder={`Find ${menu.label.toLowerCase()}`}
+                  aria-label={`Find ${menu.label.toLowerCase()}`}
+                  data-dd-search
+                />
+              )}
+              <ul class="dd-list">
+                {menu.values.map((value) => (
+                  <li>
+                    <label class="dd-option">
+                      <input type="checkbox" data-filter-facet={`${menu.key}:${value}`} />
+                      <span class="dd-label">{humanise(value)}</span>
+                      <span class="dd-n" data-dd-n={`${menu.key}:${value}`} />
+                    </label>
+                  </li>
+                ))}
+              </ul>
+              <p class="dd-none" data-dd-none hidden>
+                Nothing matches.
+              </p>
+              <button class="dd-clear" type="button" data-dd-clear>
+                Clear {menu.label.toLowerCase()}
+              </button>
             </div>
-          ))}
-        </fieldset>
-      </div>
+          </details>
+        ))
+      }
 
-      {/* Under the whole grid rather than inside the allergen column: the
-          disclaimer is required wherever allergens appear, and stacking it in
-          one narrow track pushed the options it belongs to off the card. */}
-      {allergens.length > 0 && (
-        <p class="filter-note">
-          Allergen flags are computed from the ingredients listed on each page and nothing else.
-          They cannot account for cross-contamination or for the particular product you buy, and
-          they are not medical or safety guidance.
-        </p>
-      )}
-    </details>
+      {
+        allergens.length > 0 && (
+          <details class="dd dd--exclude" data-dd>
+            <summary class="dd-button">
+              Exclude
+              <span class="dd-count" data-dd-count hidden />
+              <span class="dd-caret" aria-hidden="true">
+                ▾
+              </span>
+            </summary>
+            <div class="dd-panel" role="group" aria-label="Exclude allergens">
+              <ul class="dd-list">
+                {allergens.map((value) => (
+                  <li>
+                    <label class="dd-option">
+                      <input type="checkbox" data-filter-exclude={`allergen:${value}`} />
+                      <span class="dd-label">{humanise(value)}</span>
+                      <span class="dd-n" data-dd-n={`allergen:${value}`} />
+                    </label>
+                  </li>
+                ))}
+              </ul>
+              {/* The disclaimer travels with the only control it qualifies. */}
+              <p class="dd-note">
+                Computed from the ingredients listed on each page and nothing else. It cannot account
+                for cross-contamination or the product you buy, and it is not medical advice.
+              </p>
+              <button class="dd-clear" type="button" data-dd-clear>
+                Clear exclusions
+              </button>
+            </div>
+          </details>
+        )
+      }
+
+      <details class="dd" data-dd>
+        <summary class="dd-button">
+          Ranges
+          <span class="dd-count" data-dd-count hidden />
+          <span class="dd-caret" aria-hidden="true">
+            ▾
+          </span>
+        </summary>
+        <div class="dd-panel dd-panel--ranges" role="group" aria-label="Ranges">
+          {
+            ranges.map((range) => (
+              <div class="filter-range">
+                <span class="filter-range-label">{range.label}</span>
+                <label class="visually-hidden" for={`min-${range.key}`}>
+                  Minimum {range.label} in {range.unit}
+                </label>
+                <input
+                  class="range-input"
+                  id={`min-${range.key}`}
+                  type="number"
+                  inputmode="numeric"
+                  placeholder="min"
+                  data-filter-min={range.key}
+                />
+                <span aria-hidden="true">to</span>
+                <label class="visually-hidden" for={`max-${range.key}`}>
+                  Maximum {range.label} in {range.unit}
+                </label>
+                <input
+                  class="range-input"
+                  id={`max-${range.key}`}
+                  type="number"
+                  inputmode="numeric"
+                  placeholder="max"
+                  data-filter-max={range.key}
+                />
+                <span class="filter-range-unit">{range.unit}</span>
+              </div>
+            ))
+          }
+          <button class="dd-clear" type="button" data-dd-clear>
+            Clear ranges
+          </button>
+        </div>
+      </details>
+    </div>
   </form>
+
+  {/* What is filtering the list right now, each chip removing its own filter. */}
+  <div class="active-filters" data-active-filters hidden></div>
 
   <div class="view-switch" role="group" aria-label="Catalogue view">
     <div class="segmented" data-catalogue-view>
@@ -209,63 +279,22 @@ const cap = (s: string): string => humanise(s);
       <button type="button" data-value="table" aria-pressed="false">Table</button>
     </div>
     <span class="aside" data-filter-count aria-live="polite">{entries.length} drinks</span>
-    <button class="link-button" type="button" data-filter-clear hidden>Clear filters</button>
+    <button class="link-button" type="button" data-filter-clear hidden>Clear all</button>
   </div>
 </div>
 
 <div class="wrap" data-catalogue-panel="cards" data-pagefind-ignore>
   <div class="card-grid" data-filter-list>
-    {entries.map((e) => (
-      <a
-        class="drink-card"
-        href={`${base}/drinks/${e.slug}/`}
-        data-slug={e.slug}
-        data-facets={facetsOf(e)}
-        data-title={e.title}
-        data-abv={e.abvPercent}
-        data-time={Math.round(e.totalSec / 60)}
-        data-kcal={e.kcal}
-        data-diff={['easy', 'medium', 'hard'].indexOf(e.difficulty.toLowerCase())}
-      >
-        <figure>
-          {e.image ? (
-            <img src={`${base}${e.image.card}`} alt={e.image.alt} width="800" height="1000" loading="lazy" />
-          ) : (
-            <span class="card-blank" aria-hidden="true">{e.title.slice(0, 1)}</span>
-          )}
-        </figure>
-        {/* Three rows, not two: where a drink is from and what kind of drink it
-            is, then its name, then what the engine computed about it. The
-            eyebrow is the same pair the drink page's own hero leads with, so a
-            card and the page it opens introduce the drink the same way. */}
-        <div class="card-eyebrow">
-          {[...e.origin, ...e.category].map(cap).join(' · ')}
-        </div>
-        <h2>{e.title}</h2>
-        <div class="card-meta">
-          <span>{e.style}</span>
-          {e.abvPercent > 0 && <span class="alc">{e.abvPercent.toFixed(1)}% ABV</span>}
-          {e.abvPercent === 0 && <span class="zero">Zero-proof</span>}
-          <span>{e.totalTime}</span>
-          <span>{e.kcal} kcal</span>
-        </div>
-      </a>
-    ))}
+    {entries.map((e) => <DrinkCard entry={e} {...rowData(e)} />)}
   </div>
-  <p class="no-results" data-filter-empty hidden>
-    Nothing matches all of those at once. Clearing one filter is usually enough.
-  </p>
 </div>
 
 <div class="wrap" data-catalogue-panel="table" data-pagefind-ignore hidden>
   <div class="table-wrap">
     <table class="dense">
-      {/* Diet and allergens are deliberately absent as COLUMNS. Both are lists,
-          so both are wide, and together they pushed the table past the page
-          into a horizontal scroll on a desktop screen — which costs every
-          reader something to serve the few filtering on them. Both are still
-          filterable: the filters read the row's own facet attribute, not its
-          cells, so nothing was lost by not printing them. */}
+      {/* Diet and allergens are deliberately absent as COLUMNS: both are lists,
+          so both are wide, and together they pushed the table past the page.
+          Both are still filterable, from the row's own facet attribute. */}
       <thead>
         <tr>
           <th scope="col">Drink</th>
@@ -283,31 +312,37 @@ const cap = (s: string): string => humanise(s);
         </tr>
       </thead>
       <tbody data-filter-list>
-        {entries.map((e) => (
-          <tr
-            data-slug={e.slug}
-            data-facets={facetsOf(e)}
-            data-title={e.title}
-            data-abv={e.abvPercent}
-            data-time={Math.round(e.totalSec / 60)}
-            data-kcal={e.kcal}
-            data-diff={['easy', 'medium', 'hard'].indexOf(e.difficulty.toLowerCase())}
-          >
-            <th scope="row"><a href={`${base}/drinks/${e.slug}/`}>{e.title}</a></th>
-            <td>{e.style}</td>
-            <td>{e.category.map(cap).join(', ')}</td>
-            <td>{e.baseSpirits.map(cap).join(', ') || '—'}</td>
-            <td>{e.origin.map(cap).join(', ')}</td>
-            <td>{e.method.map(cap).join(', ')}</td>
-            <td>{cap(e.strength)}</td>
-            <td class="num">{e.abvPercent > 0 ? e.abvPercent.toFixed(1) : '—'}</td>
-            <td>{cap(e.servingTemp)}</td>
-            <td class="num">{e.totalTime}</td>
-            <td class="num">{e.kcal}</td>
-            <td>{e.difficulty}</td>
-          </tr>
-        ))}
+        {
+          entries.map((e) => (
+            <tr {...rowData(e)}>
+              <th scope="row">
+                <a href={`${base}/drinks/${e.slug}/`}>{e.title}</a>
+              </th>
+              <td>{e.style}</td>
+              <td>{e.category.map(humanise).join(', ')}</td>
+              <td>{e.baseSpirits.map(humanise).join(', ') || '·'}</td>
+              <td>{e.origin.map(humanise).join(', ')}</td>
+              <td>{e.method.map(humanise).join(', ')}</td>
+              <td>{humanise(e.strength)}</td>
+              <td class="num">{e.abvPercent > 0 ? e.abvPercent.toFixed(1) : '·'}</td>
+              <td>{humanise(e.servingTemp)}</td>
+              <td class="num">{e.totalTime}</td>
+              <td class="num">{e.kcal}</td>
+              <td>{e.difficulty}</td>
+            </tr>
+          ))
+        }
       </tbody>
     </table>
+  </div>
+</div>
+
+<div class="wrap" data-pagefind-ignore>
+  <p class="no-results" data-filter-empty hidden>
+    Nothing matches all of those at once. Clearing one filter is usually enough.
+  </p>
+  <div class="catalogue-more" data-filter-more hidden>
+    <button class="catalogue-more-button" type="button" data-filter-more-button>Show more</button>
+    <span class="aside" data-filter-more-note></span>
   </div>
 </div>

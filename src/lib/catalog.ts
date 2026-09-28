@@ -11,6 +11,7 @@
  * would ship Zod to the browser.
  */
 
+import origins from '../data/taxonomy/origins.json' with { type: 'json' };
 import type { Allergen, BaseUnit, CountUnit, Diet, ServingTemp, Strength } from './math/types.ts';
 
 // ---------------------------------------------------------------------------
@@ -230,9 +231,16 @@ export interface DrinkDetail {
 // Small shared helpers
 // ---------------------------------------------------------------------------
 
-/** `bitter-aperitivo` → `Bitter aperitivo`. One rule, so two views never disagree. */
+/**
+ * The display label for a slug. A term with an authored label (the origin
+ * vocabulary: "British Isles", "Mexico & Central America") renders as that;
+ * anything else falls back to the slug made readable, `bitter-aperitivo` →
+ * `Bitter aperitivo`. One rule, so two views never disagree.
+ */
+const LABELS = new Map<string, string>(origins.terms.map((t) => [t.id, t.label]));
+
 export const humanise = (id: string): string =>
-  id.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
+  LABELS.get(id) ?? id.replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
 
 export const byId = <T extends { id: string }>(items: T[]): Map<string, T> =>
   new Map(items.map((item) => [item.id, item]));

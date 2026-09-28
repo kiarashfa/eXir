@@ -1,7 +1,7 @@
 /**
  * The payload behind the substitution control.
  *
- * §6.2's whole point is that a substitution here is not a note. In food,
+ * whole point is that a substitution here is not a note. In food,
  * swapping basil for parsley changes nothing a page can compute. Here the
  * substitute has a different strength and a different sugar figure, so
  * selecting it moves the ABV, the sugar, the standard drinks and the balance
@@ -76,7 +76,7 @@ const slim = (ingredient: Ingredient): SubIngredient => ({
  * Which substitutions can actually be offered.
  *
  * One that names an ingredient the site does not carry is dropped here rather
- * than rendered as a dead control: §6.2 requires a substitute to be a real
+ * than rendered as a dead control: requires a substitute to be a real
  * record precisely so the spec can be recomputed from it, and an option that
  * cannot recompute is the one thing this control must not have.
  */

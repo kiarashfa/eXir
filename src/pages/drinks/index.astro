@@ -1,0 +1,39 @@
+---
+/**
+ * `/drinks/` — the full catalogue, where the Drinks item in the nav leads.
+ *
+ * Every drink is rendered into the HTML as a real link, so the catalogue is
+ * crawlable and readable without JavaScript; the script filters, sorts and
+ * pages what is already there.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Catalogue from '../../components/Catalogue.astro';
+import { catalogEntry, published, site } from '../../lib/content/site.ts';
+import attributions from '../../data/image-attributions.json' with { type: 'json' };
+
+const resolved = await site();
+const entries = published(resolved)
+  .map((d) => catalogEntry(d, resolved.ingredients, attributions as never))
+  .sort((a, b) => a.title.localeCompare(b.title));
+---
+
+<BaseLayout
+  title="Drinks · eXir"
+  description="Every drink on eXir, filterable by category, base spirit, origin, method, strength and more, with every figure computed rather than typed."
+  current="drinks"
+>
+  <section class="wrap page-head" data-pagefind-ignore>
+    <h1>Drinks</h1>
+    <p class="lede">
+      {entries.length} drinks. Filter by what is in them, where they come from and how they are
+      made; every strength, sugar and energy figure here is computed rather than typed.
+    </p>
+  </section>
+
+  <Catalogue entries={entries} />
+</BaseLayout>
+
+<script>
+  import { initCatalogue } from '../../lib/client/catalogue.ts';
+  initCatalogue();
+</script>
