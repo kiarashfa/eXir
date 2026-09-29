@@ -96,7 +96,7 @@
 .nav {
   display: flex;
   gap: 22px;
-  margin-left: auto;
+  margin-left: 10px;
   font-size: 14px;
   letter-spacing: 0.01em;
 }
@@ -141,15 +141,17 @@
 }
 
 /* The header controls: one group of round icon buttons of one size and shape. */
+/* The section links sit beside the lockup; the page controls at the far end. */
 .controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  margin-left: auto;
 }
 
 .icon-btn {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
@@ -176,8 +178,8 @@
   background: var(--accent-soft);
 }
 .icon-btn svg {
-  width: 17px;
-  height: 17px;
+  width: 15px;
+  height: 15px;
 }
 
 /* The theme button shows where it goes: the sun on a dark page, the moon on a
@@ -1755,6 +1757,43 @@
 .dense thead th:first-child {
   padding-left: 12px;
 }
+/* Every column header sorts: a click sorts by it, a second click reverses. */
+.th-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+.th-sort:hover,
+[aria-sort='ascending'] .th-sort,
+[aria-sort='descending'] .th-sort {
+  color: var(--ink);
+}
+.th-dir::after {
+  content: '↕';
+  opacity: 0.35;
+  font-size: 11px;
+}
+[aria-sort='ascending'] .th-dir::after {
+  content: '↑';
+  opacity: 1;
+  color: var(--accent);
+}
+[aria-sort='descending'] .th-dir::after {
+  content: '↓';
+  opacity: 1;
+  color: var(--accent);
+}
+.dense th.num .th-sort {
+  flex-direction: row-reverse;
+}
 .dense tr > *:last-child {
   padding-right: 12px;
 }
@@ -1764,13 +1803,6 @@
 }
 .dense tbody tr:hover a {
   color: var(--accent-ink);
-}
-
-.view-switch {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 22px;
 }
 
 .index-list {
@@ -1801,6 +1833,68 @@
   color: var(--muted);
 }
 
+/* The ingredients index: one tidy grid of rows, each with its photograph (or
+   its initial), its name and category, and how many drinks use it. */
+.filter-top--index {
+  grid-template-columns: minmax(0, 1fr) auto auto;
+}
+.ing-index {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2px 26px;
+}
+.ing-index a {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--ink-soft);
+}
+.ing-index a:hover {
+  color: var(--ink);
+}
+.ing-index img,
+.ing-blank {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+.ing-blank {
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--muted);
+}
+.ing-text {
+  display: grid;
+  min-width: 0;
+}
+.ing-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ing-cat {
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.ing-uses {
+  font-family: var(--font-data);
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
 .prose-page {
   padding-bottom: 72px;
 }
@@ -1818,64 +1912,7 @@
   color: var(--accent-ink);
 }
 
-/* ---------------------------------------------------------------------------
-   Attributions
-   --------------------------------------------------------------------------- */
-
-
-/* ---------------------------------------------------------------------------
-   Search — a drawer under the header
-   --------------------------------------------------------------------------- */
-
-/* Opened rather than switched on.
-   `hidden` sets `display: none`, which no transition can cross on its own —
-   so `display` is transitioned as a discrete property and `@starting-style`
-   gives the entry animation a state to come from. An engine without either
-   ignores all of it and gets the instant show it had before, which is the
-   right degradation for a search panel. */
-.search-drawer {
-  margin-top: 10px;
-  padding: 16px 18px;
-  border-radius: 18px;
-  opacity: 1;
-  transform: translateY(0);
-  transform-origin: top center;
-  transition:
-    opacity 0.26s var(--ease),
-    transform 0.26s var(--ease),
-    display 0.26s var(--ease) allow-discrete;
-}
-.search-drawer[hidden] {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-/* The entry is a keyframe animation rather than a transition, and deliberately.
-   A transition into view needs `@starting-style` to have a state to come from,
-   which only the newest engines have; an animation simply runs whenever the
-   element begins matching the selector after being `display: none`, which every
-   engine has done for years. The exit keeps the transition, because that is the
-   direction `allow-discrete` exists for — it holds `display: block` until the
-   fade finishes. */
-.search-drawer:not([hidden]) {
-  animation: drawer-in 0.26s var(--ease);
-}
-@keyframes drawer-in {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .search-drawer {
-    transition: none;
-    animation: none;
-  }
-}
-.search-bar {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-}
+/* The text field every filter panel opens with. */
 .search-input {
   flex: 1 1 auto;
   min-width: 0;
@@ -1895,40 +1932,221 @@
   outline-offset: 1px;
 }
 
-.search-results {
+
+/* ---------------------------------------------------------------------------
+   Search in the masthead.
+
+   The search button grows leftwards into a field while the section links make
+   way, and the results drop below it; closing runs the same motion backwards.
+   Every piece is always in the DOM and moved by transitions, so the close
+   animates as well as the open.
+   --------------------------------------------------------------------------- */
+
+/* Above the page's own raised panels, so the results are never under them. */
+.masthead {
+  position: relative;
+  z-index: 50;
+}
+.hs {
+  position: relative;
+  display: flex;
+}
+.hs-field {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 32px;
+  height: 36px;
+  padding: 0 5px 0 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid var(--control-edge);
+  border-radius: 999px;
+  background: var(--surface-2);
+  transform: translateY(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    width 0.26s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.14s ease 0.12s,
+    visibility 0s linear 0.26s;
+}
+[data-hs-open] .hs-field {
+  width: var(--hs-w);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.12s ease,
+    visibility 0s;
+}
+.hs-field > svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  color: var(--muted);
+}
+.hs-field input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+}
+.hs-field input::placeholder {
+  color: var(--muted);
+}
+.hs-field input::-webkit-search-cancel-button {
+  display: none;
+}
+.hs-close {
   display: grid;
-  gap: 2px;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
 }
-.search-results:not(:empty) {
-  margin-top: 14px;
-}
-.search-hit {
-  display: block;
-  padding: 11px 0;
-  border-bottom: 1px solid var(--line);
-  text-decoration: none;
-}
-.search-hit-title {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 17px;
+.hs-close:hover {
+  background: var(--surface-3);
   color: var(--ink);
 }
-.search-hit-excerpt {
+.hs-close svg {
+  width: 14px;
+  height: 14px;
+}
+.hs-panel {
+  position: absolute;
+  z-index: 60;
+  top: calc(100% + 20px);
+  right: var(--hs-pr, 0px);
+  width: var(--hs-pw, var(--hs-w));
+  padding: 6px;
+  box-sizing: border-box;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface-3);
+  box-shadow: 0 24px 60px -24px var(--shadow);
+  opacity: 0;
+  transform: translateY(-6px);
+  visibility: hidden;
+  transition:
+    opacity 0.16s ease,
+    transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    visibility 0s linear 0.2s;
+}
+[data-hs-open] .hs-panel {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  transition:
+    opacity 0.18s ease 0.1s,
+    transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s,
+    visibility 0s;
+}
+.hs-results {
+  max-height: min(26rem, 65vh);
+  overflow-y: auto;
+}
+.hs-status {
+  margin: 0;
+  padding: 12px 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.hs-hits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.hs-hit {
   display: block;
-  font-size: 13px;
-  line-height: 1.55;
-  color: var(--muted);
-  margin-top: 3px;
+  padding: 9px 11px;
+  border-radius: 11px;
+  color: var(--ink);
+  text-decoration: none;
 }
-.search-hit mark {
+.hs-hit[data-active],
+.hs-hit:focus-visible {
   background: var(--accent-soft);
-  color: var(--accent-ink);
 }
-.search-status {
-  margin: 14px 0 0;
-  font-size: 13px;
+.hs-hit-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+.hs-kind {
+  flex: none;
+  align-self: center;
+  font: 500 10px/1 var(--font-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--muted);
+}
+.hs-hit-excerpt {
+  display: -webkit-box;
+  margin-top: 3px;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+.hs-hit-excerpt mark {
+  background: transparent;
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+.hs-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+  padding: 9px 11px 5px;
+  border-top: 1px solid var(--line);
+  font-size: 11.5px;
+  color: var(--muted);
+}
+/* What makes way for the field: out to the left, and back in once the field
+   has gone. */
+[data-hs-fade] {
+  transition:
+    opacity 0.2s ease 0.12s,
+    transform 0.26s ease 0.12s,
+    visibility 0s;
+}
+[data-hs-open] [data-hs-fade] {
+  opacity: 0;
+  transform: translateX(-8px);
+  visibility: hidden;
+  transition:
+    opacity 0.14s ease,
+    transform 0.22s ease,
+    visibility 0s linear 0.22s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hs-field,
+  .hs-panel,
+  [data-hs-fade] {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -2242,14 +2460,47 @@
    --------------------------------------------------------------------------- */
 
 .filters {
-  padding: 18px 20px;
+  padding: 0;
   border-radius: 16px;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
   /* The glass blur makes this panel its own stacking context, so an open
      menu's z-index only counted inside it and the cards below painted over
      the menu. The panel as a whole sits above the results. */
   position: relative;
   z-index: 20;
+}
+/* The console's accent edge, drawn over the glass border so that turning the
+   glass off, which repaints that border, leaves it in place. */
+.filters::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-top: 3px solid var(--accent);
+  border-radius: inherit;
+  pointer-events: none;
+}
+/* The header line: the console's name, what is shown, and what is filtering it. */
+.filters-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 13px 20px 11px;
+  border-bottom: 1px solid var(--line);
+  border-radius: 15px 15px 0 0;
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+}
+.filters-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.1;
+  color: var(--ink);
+}
+.filters-head .link-button {
+  font-size: 12.5px;
+}
+.filters-body {
+  padding: 16px 20px 18px;
 }
 /* Two rows, both filled edge to edge. The first: search takes whatever the
    controls beside it leave. */
@@ -2369,9 +2620,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
+  margin-top: 10px;
 }
 .dd {
   position: relative;
@@ -2545,7 +2794,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px 8px;
-  margin: -4px 0 14px;
+  margin-left: auto;
 }
 .filter-chip {
   display: inline-flex;
@@ -2639,9 +2888,6 @@
   text-align: center;
 }
 
-.view-switch .link-button {
-  font-size: 12.5px;
-}
 .drink-card .card-meta .zero {
   color: var(--botanical);
 }
@@ -2971,26 +3217,10 @@
 .about-page-body {
   padding-bottom: 72px;
 }
-.about-alcohol {
-  margin-bottom: 72px;
-}
-/* The two columns above end with their own bottom space; the band sits close. */
-.body-grid:has(+ .about-alcohol) {
-  padding-bottom: 24px;
-}
-.body-grid:has(+ .about-alcohol) .about-page-body {
-  padding-bottom: 0;
-}
-.about-alcohol .about-page-body {
-  padding: 28px 32px;
-}
-.about-columns {
-  columns: 2 22rem;
-  column-gap: 44px;
-}
-.about-columns p {
-  break-inside: avoid;
-  margin: 0 0 14px;
+/* The disclaimer that closes the reading column: the paragraph rhythm of the
+   prose around it, inside the site's card. */
+.about-disclaimer p:last-child {
+  margin-bottom: 0;
 }
 
 /* The checklist thumbnail is the ONLY route from a line to its ingredient page

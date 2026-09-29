@@ -99,7 +99,7 @@ const sentence = [
 
 const rows = (form: (typeof forms)[number]) =>
   [
-    ['Strength', form.abvPercent > 0 ? formatAbv(form.abvPercent) : '—'],
+    ['Strength', form.abvPercent > 0 ? formatAbv(form.abvPercent) : 'none'],
     [
       'Density',
       form.densityGPerMl
@@ -107,8 +107,8 @@ const rows = (form: (typeof forms)[number]) =>
         : 'not carried',
     ],
     ['Sugar', form.sugarGPer100 != null ? `${form.sugarGPer100} g per 100` : 'not carried'],
-    ['Acid', form.acidPercent ? `${form.acidPercent}% w/v` : '—'],
-    ['Energy', form.nutritionPer100g?.kcal != null ? `${form.nutritionPer100g.kcal} kcal per 100` : '—'],
+    ['Acid', form.acidPercent ? `${form.acidPercent}% w/v` : '·'],
+    ['Energy', form.nutritionPer100g?.kcal != null ? `${form.nutritionPer100g.kcal} kcal per 100` : 'not carried'],
     ['Animal origin', form.animalOrigin ? cap(form.animalOrigin) : 'not declared'],
     ['Allergens', form.allergenTags?.length ? form.allergenTags.map(cap).join(' · ') : 'none listed'],
   ] as const;
@@ -158,7 +158,7 @@ const rows = (form: (typeof forms)[number]) =>
                     <>
                       {i > 0 && <span> · </span>}
                       <em>{n.name}</em>
-                      <span> — {n.note}</span>
+                      <span> ({n.note})</span>
                     </>
                   ))}
                 </span>
@@ -211,7 +211,7 @@ const rows = (form: (typeof forms)[number]) =>
         {forms.map((form) => (
           <div class="card glass">
             <h2 class="card-title">
-              Composition{forms.length > 1 ? ` — ${form.label ?? form.id}` : ''}
+              Composition{forms.length > 1 ? ` · ${form.label ?? form.id}` : ''}
             </h2>
             {rows(form).map(([key, value]) => (
               <div class="control-row">
@@ -224,7 +224,7 @@ const rows = (form: (typeof forms)[number]) =>
               <p class="disclaimer">
                 {form.sourceDataset && <strong>{form.sourceDataset}</strong>}
                 {form.sourceId && <> · {form.sourceId}</>}
-                {(form.sourceDataset || form.sourceId) && <> — </>}
+                {(form.sourceDataset || form.sourceId) && form.sourceNote && <>. </>}
                 {form.sourceNote}
               </p>
             )}
@@ -280,7 +280,7 @@ const rows = (form: (typeof forms)[number]) =>
                 ) : (
                   <strong>{cap(sub.substitute)}</strong>
                 )}
-                {' — '}{sub.note}
+                {': '}{sub.note}
               </p>
             ))}
             <p class="disclaimer">

@@ -1,12 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import attributions from '../../data/image-attributions.json' with { type: 'json' };
+import { humanise } from '../../lib/catalog.ts';
 import { site, usedIn } from '../../lib/content/site.ts';
+
+type ImageRecord = { renditions: Record<string, { file: string }> };
+const manifest = attributions as Record<string, ImageRecord>;
 
 const resolved = await site();
 const rows = [...resolved.ingredients.values()]
   .filter((i) => i.kind !== 'preparation')
-  .map((i) => ({ id: i.id, name: i.name, uses: usedIn(resolved, i.id).length }))
+  .map((i) => ({
+    id: i.id,
+    name: i.name,
+    category: i.category ?? 'other',
+    uses: usedIn(resolved, i.id).length,
+    thumb: manifest[`ingredient:${i.id}`]?.renditions['thumb']?.file ?? null,
+  }))
   .sort((a, b) => a.name.localeCompare(b.name));
+const categories = [...new Set(rows.map((r) => r.category))].sort((a, b) => humanise(a).localeCompare(humanise(b)));
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
@@ -24,16 +36,61 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </p>
   </section>
 
-  <div class="wrap">
-    <ul class="index-list" data-pagefind-ignore>
+  <div class="wrap" data-ing-index data-pagefind-ignore>
+    <section class="filters card glass" aria-label="Filter the ingredients">
+      <div class="filters-head">
+        <span class="filters-title">Filter</span>
+        <span class="aside" data-ing-count aria-live="polite">{rows.length} ingredients</span>
+      </div>
+      <form class="filters-body">
+        <div class="filter-top filter-top--index">
+          <div class="filter-search">
+            <label class="visually-hidden" for="ing-q">Find an ingredient</label>
+            <input class="search-input" id="ing-q" type="search" placeholder="Find an ingredient" autocomplete="off" data-ing-q />
+          </div>
+          <div class="filter-sort">
+            <label class="visually-hidden" for="ing-cat">Category</label>
+            <select id="ing-cat" data-ing-cat>
+              <option value="">All categories</option>
+              {categories.map((c) => <option value={c}>{humanise(c)}</option>)}
+            </select>
+          </div>
+          <div class="filter-sort">
+            <label class="visually-hidden" for="ing-sort">Sort by</label>
+            <select id="ing-sort" data-ing-sort>
+              <option value="az">Sort: A–Z</option>
+              <option value="za">Sort: Z–A</option>
+              <option value="most">Sort: most used</option>
+              <option value="least">Sort: least used</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <ul class="ing-index" data-ing-list>
       {rows.map((r) => (
-        <li>
+        <li data-name={r.name} data-cat={r.category} data-uses={r.uses}>
           <a href={`${base}/ingredients/${r.id}/`}>
-            <span>{r.name}</span>
-            <span class="aside">{r.uses || '—'}</span>
+            {r.thumb ? (
+              <img src={`${base}${r.thumb}`} alt="" width="40" height="40" loading="lazy" decoding="async" />
+            ) : (
+              <span class="ing-blank" aria-hidden="true">{r.name.charAt(0)}</span>
+            )}
+            <span class="ing-text">
+              <span class="ing-name">{r.name}</span>
+              <span class="ing-cat">{humanise(r.category)}</span>
+            </span>
+            <span class="ing-uses" title={`Used in ${r.uses} ${r.uses === 1 ? 'drink' : 'drinks'}`}>{r.uses || '·'}</span>
           </a>
         </li>
       ))}
     </ul>
+    <p class="no-results" data-ing-empty hidden>No ingredient matches that.</p>
   </div>
+
+  <script>
+    import { initIngredientIndex } from '../../lib/client/ingredient-index.ts';
+    initIngredientIndex();
+  </script>
 </BaseLayout>

@@ -1,7 +1,9 @@
 ---
 /**
  * Nav is four items and that is the ceiling; anything further goes in the
- * footer. A search affordance is required rather than optional.
+ * footer. A search affordance is required rather than optional: the search
+ * button grows into a field in the masthead itself, the section links making
+ * way for it, and the results drop below it.
  *
  * Not sticky — see components.css for why. Routes come from the one registry,
  * which renders only what exists so nothing in the chrome ever 404s.
@@ -11,6 +13,20 @@ import { primaryRoutes } from '../data/routes.ts';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const { current } = Astro.props as { current?: string };
 const links = primaryRoutes();
+
+/** What each first path segment holds, for the label beside a search result. */
+const kinds = {
+  drinks: 'Drink',
+  ingredients: 'Ingredient',
+  preparations: 'Preparation',
+  techniques: 'Technique',
+  methods: 'Method',
+  categories: 'Category',
+  origins: 'Origin',
+  spirits: 'Spirit',
+  families: 'Family',
+  glassware: 'Glass',
+};
 ---
 
 <header class="masthead" data-pagefind-ignore>
@@ -19,12 +35,12 @@ const links = primaryRoutes();
       {/* The same file the tab shows. An `<img>` rather than an inline copy so
           the two cannot drift apart, and so the glass stays a hole — on the
           masthead that hole shows the frosted surface behind it. */}
-      <a class="logo" href={`${base}/`}>
+      <a class="logo" href={`${base}/`} data-hs-logo>
         <img class="logo-mark" src={`${base}/favicon.svg`} alt="" width="26" height="26" />
         <span>e<b>X</b>ir</span>
       </a>
 
-      <nav class="nav" aria-label="Main">
+      <nav class="nav" aria-label="Main" data-hs-fade>
         {links.map((l) => (
           <a
             href={`${base}${l.path}`}
@@ -37,11 +53,44 @@ const links = primaryRoutes();
       </nav>
 
       {/*
-        The controls, always in this order: this site's own
-        (the glass material), then search, theme, about. Round icon buttons of
-        one size, so the group reads as one thing at the end of the row.
+        The controls, always in this order: search, then this site's own (the
+        glass material), theme, about. Round icon buttons of one size, so the
+        group reads as one thing at the end of the row.
       */}
       <div class="controls">
+        <div class="hs" data-hs data-hs-base={base} data-hs-kinds={JSON.stringify(kinds)}>
+          <div class="hs-field" data-hs-field>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5"></circle>
+              <line x1="15.8" y1="15.8" x2="20.5" y2="20.5"></line>
+            </svg>
+            <input type="search" placeholder="Search drinks, ingredients, techniques" aria-label="Search eXir" autocomplete="off" />
+            <button class="hs-close" type="button" data-hs-close aria-label="Close search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path d="M7 7l10 10M17 7 7 17" stroke-linecap="round"></path>
+              </svg>
+            </button>
+          </div>
+          <button
+            class="icon-btn"
+            type="button"
+            data-hs-button
+            aria-expanded="false"
+            aria-controls="site-search"
+            aria-label="Search"
+            title="Search (press /)"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="11" cy="11" r="6.5"></circle>
+              <line x1="15.8" y1="15.8" x2="20.5" y2="20.5"></line>
+            </svg>
+          </button>
+          <div class="hs-panel" id="site-search" data-hs-panel>
+            <div class="hs-results" data-hs-results aria-live="polite">
+              <p class="hs-status">Every drink, ingredient and technique, by any of the names it goes by.</p>
+            </div>
+          </div>
+        </div>
         <button
           class="icon-btn"
           data-glass-toggle
@@ -53,19 +102,6 @@ const links = primaryRoutes();
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
             <rect x="4" y="4" width="16" height="16" rx="4"></rect>
             <path d="M8 13.5 13.5 8M10.5 16 16 10.5" stroke-linecap="round"></path>
-          </svg>
-        </button>
-        <button
-          class="icon-btn"
-          data-search-open
-          type="button"
-          aria-expanded="false"
-          aria-controls="search-drawer"
-          aria-label="Search"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <circle cx="11" cy="11" r="6.5"></circle>
-            <line x1="15.8" y1="15.8" x2="20.5" y2="20.5"></line>
           </svg>
         </button>
         <button class="icon-btn" data-theme-toggle type="button" aria-pressed="false" aria-label="Switch to light theme">
@@ -87,24 +123,10 @@ const links = primaryRoutes();
         </a>
       </div>
     </div>
-
-    {/* A drawer under the header rather than a page: searching happens from
-        wherever the reader already is, and losing the page they were on to do
-        it is a worse trade than the space this takes. */}
-    <div class="search-drawer card glass" id="search-drawer" data-search-drawer hidden>
-      <div class="search-bar">
-        <label class="visually-hidden" for="search-input">Search eXir</label>
-        <input
-          class="search-input"
-          id="search-input"
-          type="search"
-          placeholder="Search drinks, ingredients, techniques"
-          autocomplete="off"
-          data-search-input
-        />
-        <button class="chip" type="button" data-search-close>Close</button>
-      </div>
-      <div class="search-results" data-search-results></div>
-    </div>
   </div>
 </header>
+
+<script>
+  import { initHeaderSearch } from '../lib/client/header-search.ts';
+  initHeaderSearch();
+</script>

@@ -22,8 +22,13 @@ interface Row {
   title: string;
   facets: Set<string>;
   values: Record<string, number>;
+  /** The text columns, compared as text. */
+  texts: Record<string, string>;
   elements: HTMLElement[];
 }
+
+/** Sort keys compared as text; every other key but the title is a number. */
+const TEXT_KEYS = ['cat', 'origin', 'method', 'served'];
 
 const read = (key: string): string | null => {
   try {
@@ -148,7 +153,9 @@ function initFilters(): void {
           time: Number(el.dataset['time'] ?? '0'),
           kcal: Number(el.dataset['kcal'] ?? '0'),
           diff: Number(el.dataset['diff'] ?? '0'),
+          strength: Number(el.dataset['strength'] ?? '0'),
         },
+        texts: Object.fromEntries(TEXT_KEYS.map((key) => [key, el.dataset[key] ?? ''])),
         elements: [el],
       });
     }
@@ -228,6 +235,8 @@ function initFilters(): void {
   const compare = (a: Row, b: Row): number => {
     if (sort.key === 'title') return a.title.localeCompare(b.title);
     // Ties fall back to the name so the order is stable and reproducible.
+    if (TEXT_KEYS.includes(sort.key))
+      return (a.texts[sort.key] ?? '').localeCompare(b.texts[sort.key] ?? '') || a.title.localeCompare(b.title);
     return (a.values[sort.key] ?? 0) - (b.values[sort.key] ?? 0) || a.title.localeCompare(b.title);
   };
 
@@ -380,9 +389,25 @@ function initFilters(): void {
     direction.setAttribute('aria-pressed', String(sort.descending));
     // The label names the ORDER, not the button's next state.
     directionLabel.textContent =
-      sort.key === 'title' ? (sort.descending ? 'Z–A' : 'A–Z') : sort.descending ? 'High first' : 'Low first';
+      sort.key === 'title' || TEXT_KEYS.includes(sort.key) ? (sort.descending ? 'Z–A' : 'A–Z') : sort.descending ? 'High first' : 'Low first';
     direction.setAttribute('aria-label', sort.descending ? 'Sorted highest first' : 'Sorted lowest first');
+    // The table's own headers show the same sort.
+    for (const th of document.querySelectorAll<HTMLElement>('[data-sort-column]')) {
+      const on = th.dataset['sortColumn'] === sort.key;
+      th.setAttribute('aria-sort', on ? (sort.descending ? 'descending' : 'ascending') : 'none');
+    }
   };
+
+  // A column header sorts by that column; a second click on it reverses.
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-sort-key]')) {
+    button.addEventListener('click', () => {
+      const key = button.dataset['sortKey'] ?? 'title';
+      sort = { key, descending: sort.key === key ? !sort.descending : false };
+      if (sortSelect) sortSelect.value = key;
+      paintDirection();
+      reset();
+    });
+  }
 
   form.addEventListener('input', reset);
   form.addEventListener('change', (event) => {

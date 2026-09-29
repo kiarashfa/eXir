@@ -36,7 +36,7 @@ interface Props {
 
 const { title, subtitle = '', url, image = '', noun = 'page' } = Astro.props;
 
-const body = subtitle ? `${title} — ${subtitle}` : title;
+const body = subtitle ? `${title}: ${subtitle}` : title;
 const text = `${body}\n${url}`;
 const e = encodeURIComponent;
 

@@ -267,10 +267,10 @@ export function initDrink(): void {
 
     const note = document.querySelector<HTMLElement>('[data-plan-added]');
     if (!note) return;
-    const roundedNote = rounded ? ` Rounded up to ${planned} — the plan counts servings.` : '';
+    const roundedNote = rounded ? ` Rounded up to ${planned}, because the plan counts servings.` : '';
     note.innerHTML = saved
       ? `Added.${roundedNote} <a href="${base()}/plan/">Open the plan</a>.`
-      : 'Added for this visit — this browser is not letting the site store anything.';
+      : 'Added for this visit only. This browser is not letting the site store anything.';
     note.hidden = false;
   });
 

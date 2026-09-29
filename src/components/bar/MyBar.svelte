@@ -147,7 +147,7 @@
         </p>
         {#if basics.length}
           <button class="btn-wide" type="button" onclick={addBasics}>
-            I have the basics — add {basics.length} bottles
+            I have the basics: add {basics.length} bottles
           </button>
           <p class="aside">{basics.map(nameOf).join(' · ')}</p>
         {/if}

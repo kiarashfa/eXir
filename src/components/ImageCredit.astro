@@ -52,7 +52,7 @@ const { attribution, alt } = Astro.props;
     ) : (
       <span>{attribution.source}</span>
     )}
-    {attribution.author && <> — {attribution.author}</>}
+    {attribution.author && <> by {attribution.author}</>}
     <br />
     {attribution.licenseUrl ? (
       <a href={attribution.licenseUrl} rel="nofollow noopener">{attribution.license}</a>

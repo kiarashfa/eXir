@@ -59,8 +59,8 @@ const inOrder = (values: string[], order: readonly string[]) =>
   values.sort((a, b) => order.indexOf(a) - order.indexOf(b));
 
 const menus = [
+  // The same order as the table's columns; the filters with no column follow.
   { key: 'cat', label: 'Category', values: alphabetical(present((e) => e.category)) },
-  { key: 'spirit', label: 'Spirit', values: alphabetical(present((e) => e.baseSpirits)) },
   { key: 'origin', label: 'Origin', values: alphabetical(present((e) => e.origin)) },
   { key: 'method', label: 'Method', values: alphabetical(present((e) => e.method)) },
   {
@@ -78,11 +78,9 @@ const menus = [
     label: 'Difficulty',
     values: inOrder(present((e) => [e.difficulty.toLowerCase()]), ['easy', 'medium', 'hard']),
   },
+  { key: 'spirit', label: 'Spirit', values: alphabetical(present((e) => e.baseSpirits)) },
   { key: 'diet', label: 'Diet', values: alphabetical(present((e) => e.diets)) },
-]
-  .filter((m) => m.values.length > 1)
-  // The menus themselves read in alphabetical order, like the options inside them.
-  .sort((a, b) => a.label.localeCompare(b.label));
+].filter((m) => m.values.length > 1);
 
 const allergens = alphabetical(present((e) => e.allergens));
 
@@ -94,10 +92,29 @@ const ranges = [
 
 const sorts = [
   { value: 'title', label: 'Name' },
-  { value: 'abv', label: 'Strength' },
+  { value: 'cat', label: 'Category' },
+  { value: 'origin', label: 'Origin' },
+  { value: 'method', label: 'Method' },
+  { value: 'strength', label: 'Strength' },
+  { value: 'abv', label: 'ABV' },
+  { value: 'served', label: 'Served' },
   { value: 'time', label: 'Total time' },
   { value: 'kcal', label: 'Energy' },
   { value: 'diff', label: 'Difficulty' },
+];
+
+/** The table's columns, each one a sort key the Sort menu offers as well. */
+const columns = [
+  { key: 'title', label: 'Drink' },
+  { key: 'cat', label: 'Category' },
+  { key: 'origin', label: 'Origin' },
+  { key: 'method', label: 'Method' },
+  { key: 'strength', label: 'Strength' },
+  { key: 'abv', label: 'ABV', num: true },
+  { key: 'served', label: 'Served' },
+  { key: 'time', label: 'Time', num: true },
+  { key: 'kcal', label: 'kcal', num: true },
+  { key: 'diff', label: 'Difficulty' },
 ];
 
 /** Past this many terms a list is searched, not scanned. */
@@ -111,182 +128,187 @@ const rowData = (e: CatalogEntry) => ({
   'data-time': Math.round(e.totalSec / 60),
   'data-kcal': e.kcal,
   'data-diff': ['easy', 'medium', 'hard'].indexOf(e.difficulty.toLowerCase()),
+  'data-strength': ['zero-proof', 'low', 'medium', 'strong'].indexOf(e.strength),
+  'data-cat': e.category.map(humanise).join(', '),
+  'data-origin': e.origin.map(humanise).join(', '),
+  'data-method': e.method.map(humanise).join(', '),
+  'data-served': humanise(e.servingTemp),
 });
 ---
 
 <div class="wrap" data-pagefind-ignore>
-  <form class="filters card glass" data-catalogue-filters>
-    <div class="filter-top">
-      <div class="filter-search">
-        <label class="visually-hidden" for="cat-search">Find a drink</label>
-        <input
-          class="search-input"
-          id="cat-search"
-          type="search"
-          placeholder="Find a drink by name"
-          autocomplete="off"
-          data-filter-search
-        />
-      </div>
+  {/* The console: a header line saying what is shown and what is filtering it,
+      each filter removable on its own, then the two rows of controls. */}
+  <section class="filters card glass" aria-label="Filter the catalogue">
+    <div class="filters-head">
+      <span class="filters-title">Filter</span>
+      <span class="aside" data-filter-count aria-live="polite">{entries.length} drinks</span>
+      <div class="active-filters" data-active-filters hidden></div>
+      <button class="link-button" type="button" data-filter-clear hidden>Clear all</button>
+    </div>
+    <form class="filters-body" data-catalogue-filters>
+      <div class="filter-top">
+        <div class="filter-search">
+          <label class="visually-hidden" for="cat-search">Find a drink</label>
+          <input
+            class="search-input"
+            id="cat-search"
+            type="search"
+            placeholder="Find a drink by name"
+            autocomplete="off"
+            data-filter-search
+          />
+        </div>
 
-      {/* First-class rather than a sub-option of Strength. A meaningful share
-          of readers come for exactly this. */}
-      <label class="zero-proof">
-        <input type="checkbox" data-filter-zero-proof />
-        <span>Zero-proof only</span>
-      </label>
+        {/* First-class rather than a sub-option of Strength. A meaningful share
+            of readers come for exactly this. */}
+        <label class="zero-proof">
+          <input type="checkbox" data-filter-zero-proof />
+          <span>Zero-proof only</span>
+        </label>
 
-      <details class="dd dd--tool" data-dd>
-        <summary class="dd-button">
-          Ranges
-          <span class="dd-count" data-dd-count hidden />
-          <span class="dd-caret" aria-hidden="true">
-            ▾
-          </span>
-        </summary>
-        <div class="dd-panel dd-panel--ranges" role="group" aria-label="Ranges">
-          {
-            ranges.map((range) => (
-              <div class="filter-range">
-                <span class="filter-range-label">{range.label}</span>
-                <label class="visually-hidden" for={`min-${range.key}`}>
-                  Minimum {range.label} in {range.unit}
-                </label>
-                <input
-                  class="range-input"
-                  id={`min-${range.key}`}
-                  type="number"
-                  inputmode="numeric"
-                  placeholder="min"
-                  data-filter-min={range.key}
-                />
-                <span aria-hidden="true">to</span>
-                <label class="visually-hidden" for={`max-${range.key}`}>
-                  Maximum {range.label} in {range.unit}
-                </label>
-                <input
-                  class="range-input"
-                  id={`max-${range.key}`}
-                  type="number"
-                  inputmode="numeric"
-                  placeholder="max"
-                  data-filter-max={range.key}
-                />
-                <span class="filter-range-unit">{range.unit}</span>
-              </div>
-            ))
-          }
-          <button class="dd-clear" type="button" data-dd-clear>
-            Clear ranges
+        <details class="dd dd--tool" data-dd>
+          <summary class="dd-button">
+            Ranges
+            <span class="dd-count" data-dd-count hidden />
+            <span class="dd-caret" aria-hidden="true">
+              ▾
+            </span>
+          </summary>
+          <div class="dd-panel dd-panel--ranges" role="group" aria-label="Ranges">
+            {
+              ranges.map((range) => (
+                <div class="filter-range">
+                  <span class="filter-range-label">{range.label}</span>
+                  <label class="visually-hidden" for={`min-${range.key}`}>
+                    Minimum {range.label} in {range.unit}
+                  </label>
+                  <input
+                    class="range-input"
+                    id={`min-${range.key}`}
+                    type="number"
+                    inputmode="numeric"
+                    placeholder="min"
+                    data-filter-min={range.key}
+                  />
+                  <span aria-hidden="true">to</span>
+                  <label class="visually-hidden" for={`max-${range.key}`}>
+                    Maximum {range.label} in {range.unit}
+                  </label>
+                  <input
+                    class="range-input"
+                    id={`max-${range.key}`}
+                    type="number"
+                    inputmode="numeric"
+                    placeholder="max"
+                    data-filter-max={range.key}
+                  />
+                  <span class="filter-range-unit">{range.unit}</span>
+                </div>
+              ))
+            }
+            <button class="dd-clear" type="button" data-dd-clear>
+              Clear ranges
+            </button>
+          </div>
+        </details>
+
+        <div class="filter-sort">
+          <label class="visually-hidden" for="cat-sort">Sort by</label>
+          <select id="cat-sort" data-filter-sort>
+            {sorts.map((s) => <option value={s.value}>Sort: {s.label}</option>)}
+          </select>
+          <button class="chip" type="button" data-filter-direction aria-pressed="false">
+            <span data-direction-label>A–Z</span>
           </button>
         </div>
-      </details>
 
-      <div class="filter-sort">
-        <label class="visually-hidden" for="cat-sort">Sort by</label>
-        <select id="cat-sort" data-filter-sort>
-          {sorts.map((s) => <option value={s.value}>Sort: {s.label}</option>)}
-        </select>
-        <button class="chip" type="button" data-filter-direction aria-pressed="false">
-          <span data-direction-label>A–Z</span>
-        </button>
+        <div class="segmented" role="group" aria-label="Catalogue view" data-catalogue-view>
+          <button type="button" data-value="cards" aria-pressed="true">Cards</button>
+          <button type="button" data-value="table" aria-pressed="false">Table</button>
+        </div>
       </div>
 
-      <div class="segmented" role="group" aria-label="Catalogue view" data-catalogue-view>
-        <button type="button" data-value="cards" aria-pressed="true">Cards</button>
-        <button type="button" data-value="table" aria-pressed="false">Table</button>
+      <div class="filter-menus" style={`--menus: ${menus.length + (allergens.length > 0 ? 1 : 0)}`}>
+        {
+          menus.map((menu) => (
+            <details class="dd" data-dd>
+              <summary class="dd-button">
+                {menu.label}
+                <span class="dd-count" data-dd-count hidden />
+                <span class="dd-caret" aria-hidden="true">
+                  ▾
+                </span>
+              </summary>
+              <div class="dd-panel" role="group" aria-label={menu.label}>
+                {menu.values.length > SEARCH_FROM && (
+                  <input
+                    class="dd-search"
+                    type="search"
+                    placeholder={`Find ${menu.label.toLowerCase()}`}
+                    aria-label={`Find ${menu.label.toLowerCase()}`}
+                    data-dd-search
+                  />
+                )}
+                <ul class="dd-list">
+                  {menu.values.map((value) => (
+                    <li>
+                      <label class="dd-option">
+                        <input type="checkbox" data-filter-facet={`${menu.key}:${value}`} />
+                        <span class="dd-label">{humanise(value)}</span>
+                        <span class="dd-n" data-dd-n={`${menu.key}:${value}`} />
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+                <p class="dd-none" data-dd-none hidden>
+                  Nothing matches.
+                </p>
+                <button class="dd-clear" type="button" data-dd-clear>
+                  Clear {menu.label.toLowerCase()}
+                </button>
+              </div>
+            </details>
+          ))
+        }
+
+        {
+          allergens.length > 0 && (
+            <details class="dd dd--exclude" data-dd>
+              <summary class="dd-button">
+                Exclude
+                <span class="dd-count" data-dd-count hidden />
+                <span class="dd-caret" aria-hidden="true">
+                  ▾
+                </span>
+              </summary>
+              <div class="dd-panel" role="group" aria-label="Exclude allergens">
+                <ul class="dd-list">
+                  {allergens.map((value) => (
+                    <li>
+                      <label class="dd-option">
+                        <input type="checkbox" data-filter-exclude={`allergen:${value}`} />
+                        <span class="dd-label">{humanise(value)}</span>
+                        <span class="dd-n" data-dd-n={`allergen:${value}`} />
+                      </label>
+                    </li>
+                  ))}
+                </ul>
+                {/* The disclaimer travels with the only control it qualifies. */}
+                <p class="dd-note">
+                  Computed from the ingredients listed on each page and nothing else. It cannot account
+                  for cross-contamination or the product you buy, and it is not medical advice.
+                </p>
+                <button class="dd-clear" type="button" data-dd-clear>
+                  Clear exclusions
+                </button>
+              </div>
+            </details>
+          )
+        }
       </div>
-    </div>
-
-    <div class="filter-menus" style={`--menus: ${menus.length + (allergens.length > 0 ? 1 : 0)}`}>
-      {
-        menus.map((menu) => (
-          <details class="dd" data-dd>
-            <summary class="dd-button">
-              {menu.label}
-              <span class="dd-count" data-dd-count hidden />
-              <span class="dd-caret" aria-hidden="true">
-                ▾
-              </span>
-            </summary>
-            <div class="dd-panel" role="group" aria-label={menu.label}>
-              {menu.values.length > SEARCH_FROM && (
-                <input
-                  class="dd-search"
-                  type="search"
-                  placeholder={`Find ${menu.label.toLowerCase()}`}
-                  aria-label={`Find ${menu.label.toLowerCase()}`}
-                  data-dd-search
-                />
-              )}
-              <ul class="dd-list">
-                {menu.values.map((value) => (
-                  <li>
-                    <label class="dd-option">
-                      <input type="checkbox" data-filter-facet={`${menu.key}:${value}`} />
-                      <span class="dd-label">{humanise(value)}</span>
-                      <span class="dd-n" data-dd-n={`${menu.key}:${value}`} />
-                    </label>
-                  </li>
-                ))}
-              </ul>
-              <p class="dd-none" data-dd-none hidden>
-                Nothing matches.
-              </p>
-              <button class="dd-clear" type="button" data-dd-clear>
-                Clear {menu.label.toLowerCase()}
-              </button>
-            </div>
-          </details>
-        ))
-      }
-
-      {
-        allergens.length > 0 && (
-          <details class="dd dd--exclude" data-dd>
-            <summary class="dd-button">
-              Exclude
-              <span class="dd-count" data-dd-count hidden />
-              <span class="dd-caret" aria-hidden="true">
-                ▾
-              </span>
-            </summary>
-            <div class="dd-panel" role="group" aria-label="Exclude allergens">
-              <ul class="dd-list">
-                {allergens.map((value) => (
-                  <li>
-                    <label class="dd-option">
-                      <input type="checkbox" data-filter-exclude={`allergen:${value}`} />
-                      <span class="dd-label">{humanise(value)}</span>
-                      <span class="dd-n" data-dd-n={`allergen:${value}`} />
-                    </label>
-                  </li>
-                ))}
-              </ul>
-              {/* The disclaimer travels with the only control it qualifies. */}
-              <p class="dd-note">
-                Computed from the ingredients listed on each page and nothing else. It cannot account
-                for cross-contamination or the product you buy, and it is not medical advice.
-              </p>
-              <button class="dd-clear" type="button" data-dd-clear>
-                Clear exclusions
-              </button>
-            </div>
-          </details>
-        )
-      }
-
-
-    </div>
-  </form>
-
-  {/* What is filtering the list right now, each chip removing its own filter. */}
-  <div class="active-filters" data-active-filters hidden></div>
-
-  <div class="view-switch">
-    <span class="aside" data-filter-count aria-live="polite">{entries.length} drinks</span>
-    <button class="link-button" type="button" data-filter-clear hidden>Clear all</button>
-  </div>
+    </form>
+  </section>
 </div>
 
 <div class="wrap" data-catalogue-panel="cards" data-pagefind-ignore>
@@ -303,18 +325,14 @@ const rowData = (e: CatalogEntry) => ({
           Both are still filterable, from the row's own facet attribute. */}
       <thead>
         <tr>
-          <th scope="col">Drink</th>
-          <th scope="col">Style</th>
-          <th scope="col">Category</th>
-          <th scope="col">Base</th>
-          <th scope="col">Origin</th>
-          <th scope="col">Method</th>
-          <th scope="col">Strength</th>
-          <th scope="col" class="num">ABV</th>
-          <th scope="col">Served</th>
-          <th scope="col" class="num">Time</th>
-          <th scope="col" class="num">kcal</th>
-          <th scope="col">Difficulty</th>
+          {columns.map((c) => (
+            <th scope="col" class={c.num ? 'num' : undefined} aria-sort={c.key === 'title' ? 'ascending' : 'none'} data-sort-column={c.key}>
+              <button type="button" class="th-sort" data-sort-key={c.key}>
+                {c.label}
+                <span class="th-dir" aria-hidden="true" />
+              </button>
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody data-filter-list>
@@ -324,9 +342,7 @@ const rowData = (e: CatalogEntry) => ({
               <th scope="row">
                 <a href={`${base}/drinks/${e.slug}/`}>{e.title}</a>
               </th>
-              <td>{e.style}</td>
               <td>{e.category.map(humanise).join(', ')}</td>
-              <td>{e.baseSpirits.map(humanise).join(', ') || '·'}</td>
               <td>{e.origin.map(humanise).join(', ')}</td>
               <td>{e.method.map(humanise).join(', ')}</td>
               <td>{humanise(e.strength)}</td>

@@ -245,7 +245,7 @@ const factRows = built.map(({ v, spec }) => ({
                       <>
                         {i > 0 && <span> · </span>}
                         <em>{n.name}</em>
-                        <span> — {n.note}</span>
+                        <span> ({n.note})</span>
                       </>
                     ))}
                   </span>
@@ -372,8 +372,8 @@ const factRows = built.map(({ v, spec }) => ({
                 </div>
               )}
               <span class="control-reason" data-brew-reason hidden={!one.v.brew}>
-                The ratio between them is locked — it is in the Extraction panel below and
-                does not move — so setting either of these moves the other. Water
+                The ratio between them is locked (it is in the Extraction panel below and
+                does not move), so setting either of these moves the other. Water
                 temperature, grind and contact time do not scale with it, and a larger brew is
                 still one brew rather than several. The spec below stays per serving: brewing
                 more makes more servings rather than a bigger drink.
@@ -440,7 +440,7 @@ const factRows = built.map(({ v, spec }) => ({
           <div class="left-col">
             {/* ---- the drink spec ---- */}
             <div class="card glass" data-spec-card>
-              <h2 class="card-title">Drink spec — per drink</h2>
+              <h2 class="card-title">Drink spec, per drink</h2>
 
               {subs && (
                 <p class="sub-banner" data-sub-banner hidden>
@@ -545,7 +545,7 @@ const factRows = built.map(({ v, spec }) => ({
 
               <p class="disclaimer">
                 Every figure above is <strong>per drink</strong> and does not move with the
-                count — that is what makes the two service modes comparable. Sugar per litre,
+                count, which is what makes the two service modes comparable. Sugar per litre,
                 strength and standard drinks stay in the units their own authorities publish,
                 because they are figures for comparing rather than for pouring.
                 {spec.dilution.fraction > 0 && (
@@ -647,12 +647,12 @@ const factRows = built.map(({ v, spec }) => ({
                     <p class="disclaimer">
                       This brew works out at {v.brew.standard.gPerLitre.toFixed(1)} g of coffee
                       per litre of water, against the {v.brew.standard.gPerLitreRange[0].toFixed(1)}
-                      {' '}to {v.brew.standard.gPerLitreRange[1].toFixed(1)} g/L the standard allows —
+                      {' '}to {v.brew.standard.gPerLitreRange[1].toFixed(1)} g/L the standard allows,
                       {v.brew.standard.direction === 'within'
-                        ? ' inside it.'
+                        ? ' so it sits inside it.'
                         : v.brew.standard.direction === 'strong'
-                          ? ' stronger than it.'
-                          : ' weaker than it.'}
+                          ? ' so it is stronger than it.'
+                          : ' so it is weaker than it.'}
                       {' '}The comparison is made in grams per litre and not on the ratio, because a
                       ratio is the reciprocal of a strength and a symmetric band on one is an
                       asymmetric band on the other.
@@ -744,7 +744,7 @@ const factRows = built.map(({ v, spec }) => ({
                                   data-line={r.line.id}
                                   checked
                                 />
-                                <span>As written — {r.ingredient.name}</span>
+                                <span>As written: {r.ingredient.name}</span>
                               </label>
                               {subs.options[r.line.id]!.map((option) => (
                                 <span class="sub-choice">
@@ -909,7 +909,7 @@ const factRows = built.map(({ v, spec }) => ({
                 {batch.available ? (
                   <p>
                     Batched ahead, this keeps sealed and cold. The water line the engine adds is
-                    the dilution figure from the spec panel — it is not a rule of thumb.
+                    the dilution figure from the spec panel, not a rule of thumb.
                   </p>
                 ) : (
                   <p>{v.version.batchNote ?? 'This drink is made to order.'}</p>

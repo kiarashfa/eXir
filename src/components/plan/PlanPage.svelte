@@ -193,7 +193,7 @@
         ? 'Shared.'
         : outcome === 'copied'
           ? 'Copied to the clipboard.'
-          : 'Could not copy — select the list and copy it by hand.';
+          : 'Could not copy. Select the list and copy it by hand.';
     setTimeout(() => (shareState = null), 3200);
   }
 
@@ -398,7 +398,7 @@
           <p class="control-reason">
             {resolvedPlan.dropped.length}
             {resolvedPlan.dropped.length === 1 ? 'item was' : 'items were'} dropped:
-            {resolvedPlan.dropped.map((d) => `${d.item.drink} — ${d.reason}`).join('; ')}.
+            {resolvedPlan.dropped.map((d) => `${d.item.drink} (${d.reason})`).join('; ')}.
           </p>
         {/if}
 
@@ -437,7 +437,7 @@
                   </div>
                   <p class="aside">
                     The recipe yields {formatMetric(prep.yieldMl, 'ml')}{prep.batches > 1
-                      ? ` — ${prep.batches} batches`
+                      ? ` in ${prep.batches} batches`
                       : ''}{prep.shelfLife
                       ? `, and keeps ${prep.shelfLife.days} days ${prep.shelfLife.storage}`
                       : ''}.
@@ -471,7 +471,7 @@
 
           <h3 class="list-head">To buy</h3>
           {#if list.buy.length === 0}
-            <p class="aside">Nothing — everything is a staple or already ticked off.</p>
+            <p class="aside">Nothing. Everything is a staple or already ticked off.</p>
           {:else}
             <ul class="shop-list">
               {#each list.buy as line (line.key)}
@@ -519,7 +519,7 @@
           {#if list.staples.length}
             <details class="keeping staples">
               <summary>
-                Pantry staples ({list.staples.length}) — assumed, and not on the list
+                Pantry staples ({list.staples.length}), assumed and not on the list
               </summary>
               <div class="keeping-body">
                 <ul class="shop-list">
@@ -545,7 +545,7 @@
           {/if}
 
           <p class="aside">
-            Totals as computed, not rounded to bottle or packet sizes — eXir has no product data and
+            Totals as computed, not rounded to bottle or packet sizes: eXir has no product data and
             will not invent any. The one exception is the bottle estimate below, which states the
             size it divides by.
           </p>
@@ -597,7 +597,7 @@
               <span class="spec-key">Chilling</span>
               <span
                 class="spec-val"
-                title="Computed from the dilution model: a millilitre of water the drinks take on is a gram of ice gone. Batched drinks contribute none — their dilution is bought as water instead."
+                title="Computed from the dilution model: a millilitre of water the drinks take on is a gram of ice gone. Batched drinks contribute none, because their dilution is bought as water instead."
               >{formatBulkWeight(occasion.ice.chillingG, system)}</span>
             </div>
             <div class="spec-cell">
@@ -609,7 +609,7 @@
               <span class="spec-key">In the glass</span>
               <span
                 class="spec-val"
-                title="Weighed from the ice volume each glass displaces — the same figure the glassware fit check reads — at the density of ice."
+                title="Weighed from the ice volume each glass displaces, at the density of ice. It is the same figure the glassware fit check reads."
               >{formatBulkWeight(occasion.ice.servingG, system)}</span>
             </div>
             <div class="spec-cell">
@@ -626,7 +626,7 @@
             </div>
           </div>
           <p class="aside">
-            Chilling ice is computed from the dilution model — a millilitre of dilution is a gram of
+            Chilling ice is computed from the dilution model: a millilitre of dilution is a gram of
             ice gone. The shaker charge is a stated allowance of
             {formatMetric(ICE.mixingGPerDrink, 'g')} per drink, and the melt allowance is
             {Math.round(ICE.meltAllowance * 100)}% of everything above it. Both are marked as
@@ -636,7 +636,7 @@
             <p class="callout">
               Batching what you have batched saves
               {formatBulkWeight(occasion.ice.savedByBatchingG, system)} of ice, because a batch
-              meets no ice at all — the dilution goes in as water.
+              meets no ice at all. Its dilution goes in as water.
             </p>
           {/if}
 
@@ -688,7 +688,7 @@
             <h3 class="list-head">Make ahead</h3>
             <p class="aside">
               Everything can be made up to
-              <b>{occasion.leadTimeDays} days</b> ahead — set by the shortest keeping time, because
+              <b>{occasion.leadTimeDays} days</b> ahead. The shortest keeping time sets that, because
               the first thing to turn decides it.
             </p>
             <ul class="host-list">
