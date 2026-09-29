@@ -3,7 +3,12 @@
  * `npm run check:layout`: renders every built page in a real browser at three
  * widths and fails on layout that a screenshot pass keeps missing.
  *
- *   node scripts/integrity/layout.mjs [--widths 1440,1024,390] [--only drinks/] [--limit 50]
+ *   node scripts/integrity/layout.mjs [--widths 1440,1024,390] [--only drinks/] [--limit 50] [--sample 3]
+ *
+ * `--sample N` checks N pages per template (pages grouped by their path shape,
+ * e.g. every `drinks/<slug>/` is one template) instead of every page: minutes
+ * rather than a quarter of an hour, for routine checks. Without it every page
+ * is checked, which is the pre-release run.
  *
  * It reads the base path from the built homepage (the first segment every
  * built link starts with) and serves `dist/` itself, so it needs a build but no preview server. It drives the Chrome that
@@ -55,6 +60,7 @@ const opt = (name, fallback) => (args.includes(`--${name}`) ? args[args.indexOf(
 const widths = opt('widths', '1440,1024,390').split(',').map(Number);
 const only = opt('only', null);
 const limit = Number(opt('limit', Infinity));
+const sample = Number(opt('sample', 0));
 const DIST = 'dist';
 
 // The base path is whatever the built homepage links its own stylesheet under.
@@ -69,6 +75,19 @@ let pages = walk(DIST)
   // Redirect stubs navigate away before they can be measured, and have no layout of their own.
   .filter((p) => !/http-equiv="refresh"/i.test(readFileSync(join(DIST, p.endsWith('.html') ? p : `${p}index.html`), 'utf8')));
 if (only) pages = pages.filter((p) => p.includes(only));
+if (sample > 0) {
+  // One group per template: the first path segment plus how deep the page is.
+  const groups = new Map();
+  for (const p of pages) {
+    const parts = p.split('/').filter(Boolean);
+    const key = `${parts[0] ?? ''}/${parts.length}`;
+    groups.set(key, [...(groups.get(key) ?? []), p]);
+  }
+  // First, middle and last of each group, so one odd entry is not the only sample.
+  pages = [...groups.values()].flatMap((g) =>
+    g.length <= sample ? g : [...new Set(Array.from({ length: sample }, (_, i) => g[Math.round((i * (g.length - 1)) / (sample - 1 || 1))]))],
+  );
+}
 pages = pages.slice(0, limit);
 
 const TYPES = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.woff2': 'font/woff2', '.woff': 'font/woff' };

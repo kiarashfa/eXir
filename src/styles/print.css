@@ -118,8 +118,7 @@
      the browser's own stylesheet hides its content with `content-visibility`
      on a pseudo-element, and no author rule reaches it reliably across
      engines. These rules cover the parts that ARE author-styled. */
-  .keeping .keeping-body,
-  .filter-more .filter-groups {
+  .keeping .keeping-body {
     display: block !important;
   }
   details::details-content {

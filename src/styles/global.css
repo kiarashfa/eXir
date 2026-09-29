@@ -170,36 +170,6 @@
 }
 
 /* ============================================================================
-   Tailwind bridge
-
-   `@theme inline` rather than `@theme`: a token that references another custom
-   property is otherwise resolved at build time, and every utility bakes in
-   whichever theme happened to be active then. Inline keeps the var() reference
-   in the output so the theme switch reaches it.
-   ============================================================================ */
-
-@theme inline {
-  --color-surface: var(--surface);
-  --color-surface-2: var(--surface-2);
-  --color-surface-3: var(--surface-3);
-  --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --color-muted: var(--muted);
-  --color-line: var(--line);
-  --color-line-strong: var(--line-strong);
-  --color-control-edge: var(--control-edge);
-  --color-accent: var(--accent);
-  --color-accent-ink: var(--accent-ink);
-  --color-bitter: var(--bitter);
-  --color-botanical: var(--botanical);
-  --color-on-media: var(--on-media);
-
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
-  --font-data: var(--font-data);
-}
-
-/* ============================================================================
    Responsive token overrides
 
    UNLAYERED, deliberately. Inside @layer these lose to the base token however
