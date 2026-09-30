@@ -346,7 +346,7 @@ const rowData = (e: CatalogEntry) => ({
               <td>{e.origin.map(humanise).join(', ')}</td>
               <td>{e.method.map(humanise).join(', ')}</td>
               <td>{humanise(e.strength)}</td>
-              <td class="num">{e.abvPercent > 0 ? e.abvPercent.toFixed(1) : '·'}</td>
+              <td class="num">{e.abvPercent > 0 ? e.abvPercent.toFixed(1) : '—'}</td>
               <td>{humanise(e.servingTemp)}</td>
               <td class="num">{e.totalTime}</td>
               <td class="num">{e.kcal}</td>

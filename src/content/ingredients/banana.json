@@ -29,7 +29,7 @@
       "containsCaffeine": false,
       "sourceDataset": "USDA FoodData Central (SR Legacy)",
       "sourceId": "173944",
-      "sourceNote": "Bananas, raw. Public domain. Weighed as flesh, so a frozen banana used straight from the freezer carries the same figures — freezing changes texture, not composition. No liquid-measure density exists for this record, so the density-classes.json 'juice-sweet' class stands in as the nearest match for blended fruit flesh and the figure is marked estimated."
+      "sourceNote": "Bananas, raw. Public domain. Weighed as flesh, so a frozen banana used straight from the freezer carries the same figures: freezing changes texture, not composition. No liquid-measure density exists for this record, so the density-classes.json 'juice-sweet' class stands in as the nearest match for blended fruit flesh and the figure is marked estimated."
     }
   ]
 }

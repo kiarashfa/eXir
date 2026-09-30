@@ -49,7 +49,7 @@
       "containsCaffeine": false,
       "sourceDataset": "Producer published figures",
       "sourceId": "camparigroup.info",
-      "sourceNote": "The producer's own consumer-information page states 25% alc./vol. and, per 1.5 fl oz serving, 108 calories and 11.5 g of carbohydrate; those are restated here per 100 ml. The carbohydrate is taken as sugar because the product carries no other kind. FoodData Central has no record for Campari at all. Cross-checked against the site's own energy arithmetic: 25% alcohol plus 25.9 g of sugar comes to 242 kcal against the 243 the producer publishes, which is what makes the 25% credible - an Open Food Facts entry files the same product at 20%, and at 20% the arithmetic misses by fourteen per cent."
+      "sourceNote": "The producer's own consumer-information page states 25% alc./vol. and, per 1.5 fl oz serving, 108 calories and 11.5 g of carbohydrate; those are restated here per 100 ml. The carbohydrate is taken as sugar because the product carries no other kind. FoodData Central has no record for Campari at all. Cross-checked against the site's own energy arithmetic: 25% alcohol plus 25.9 g of sugar comes to 242 kcal against the 243 the producer publishes, which is what makes the 25% credible; an Open Food Facts entry files the same product at 20%, and at 20% the arithmetic misses by fourteen per cent."
     }
   ]
 }

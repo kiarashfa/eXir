@@ -29,7 +29,7 @@
       "containsCaffeine": false,
       "sourceDataset": "USDA FoodData Central (SR Legacy)",
       "sourceId": "168462",
-      "sourceNote": "Spinach, raw. Public domain. The record's own cup portion (0.127 g/ml) is a packing density, not a true one — the volume of a cup of whole leaves, mostly air. Once blended into a smoothie the leaf disperses into the liquid rather than displacing air, so the density-classes.json 'water-like' class stands in, since raw spinach is well over 90% water, and the figure is marked estimated."
+      "sourceNote": "Spinach, raw. Public domain. The record's own cup portion (0.127 g/ml) is a packing density, not a true one: the volume of a cup of whole leaves, mostly air. Once blended into a smoothie the leaf disperses into the liquid rather than displacing air, so the density-classes.json 'water-like' class stands in, since raw spinach is well over 90% water, and the figure is marked estimated."
     }
   ]
 }

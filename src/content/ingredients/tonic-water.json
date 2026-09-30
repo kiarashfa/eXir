@@ -29,7 +29,7 @@
       "containsCaffeine": false,
       "sourceDataset": "Open Food Facts",
       "sourceId": "3124480186850",
-      "sourceNote": "USDA carries no generic tonic water. Figures are Schweppes Indian Tonic (Open Food Facts, ODbL) as a representative bottling; the ingredient list (carbonated water, sugar, citric acid, natural flavourings, quinine, sweeteners) is entirely plant-derived, so animalOrigin is none. Sugar varies considerably by brand and by diet/slimline lines, which this record does not attempt to average - it names one real bottle rather than inventing a category mean. Density has no liquid measurement on file and is taken from the water-like class in density-classes.json, marked estimated. acidPercent left off: no titratable acidity source exists for a quinine-and-citric-acid mixer."
+      "sourceNote": "USDA carries no generic tonic water. Figures are Schweppes Indian Tonic (Open Food Facts, ODbL) as a representative bottling; the ingredient list (carbonated water, sugar, citric acid, natural flavourings, quinine, sweeteners) is entirely plant-derived, so animalOrigin is none. Sugar varies considerably by brand and by diet/slimline lines, which this record does not attempt to average; it names one real bottle rather than inventing a category mean. Density has no liquid measurement on file and is taken from the water-like class in density-classes.json, marked estimated. acidPercent left off: no titratable acidity source exists for a quinine-and-citric-acid mixer."
     }
   ]
 }

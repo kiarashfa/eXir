@@ -30,7 +30,7 @@
       "containsCaffeine": false,
       "sourceDataset": "USDA FoodData Central (SR Legacy)",
       "sourceId": "167575",
-      "sourceNote": "Ice creams, vanilla. Public domain. No measured liquid density exists for this record, so the density-classes.json 'dairy-whole' class stands in and the figure is marked estimated — this is a real simplification, since commercial ice cream is churned with 30 to 50% air by volume that this figure cannot see, so it understates the space a weighed scoop actually occupies before it is blended smooth."
+      "sourceNote": "Ice creams, vanilla. Public domain. No measured liquid density exists for this record, so the density-classes.json 'dairy-whole' class stands in and the figure is marked estimated; this is a real simplification, since commercial ice cream is churned with 30 to 50% air by volume that this figure cannot see, so it understates the space a weighed scoop actually occupies before it is blended smooth."
     }
   ]
 }

@@ -7,7 +7,7 @@
     "notToBeConfusedWith": [
       {
         "name": "Crème de cassis",
-        "note": "The blackcurrant liqueur — a different dark fruit, more tart and less jammy than the blackberry liqueur this record describes."
+        "note": "The blackcurrant liqueur. It is made from a different dark fruit, more tart and less jammy than the blackberry liqueur this record describes."
       }
     ]
   },
@@ -26,7 +26,7 @@
       "containsCaffeine": false,
       "sourceDataset": "Producer published figures",
       "sourceId": "giffard.com/en/cremes-de-fruits/422-creme-de-mures-blackberry-liqueur.html",
-      "sourceNote": "Giffard is taken as the reference producer - the bottle the Bramble is most often built with - and states 16% alc./vol. No sugar or energy figure is published, so sugarGPer100 and nutritionPer100g are left off rather than estimated; this Form's composition understates the liqueur's real sweetness. Density has no measured source and is taken from the density-classes.json 'liqueur-sweet' class."
+      "sourceNote": "Giffard is taken as the reference producer (the bottle the Bramble is most often built with) and states 16% alc./vol. No sugar or energy figure is published, so sugarGPer100 and nutritionPer100g are left off rather than estimated; this Form's composition understates the liqueur's real sweetness. Density has no measured source and is taken from the density-classes.json 'liqueur-sweet' class."
     }
   ]
 }

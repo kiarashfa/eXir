@@ -29,7 +29,7 @@
       "containsCaffeine": false,
       "sourceDataset": "USDA FoodData Central (SR Legacy)",
       "sourceId": "169109",
-      "sourceNote": "Passion-fruit juice, purple, raw. Public domain. The cup portion's own density is adopted as a true figure because the juice is poured and strained from the pulp rather than packed. No titratable acidity is reported by the dataset and no other source was checked, so acidPercent is left off rather than estimated — the fruit tastes considerably more tart than a zero figure implies."
+      "sourceNote": "Passion-fruit juice, purple, raw. Public domain. The cup portion's own density is adopted as a true figure because the juice is poured and strained from the pulp rather than packed. No titratable acidity is reported by the dataset and no other source was checked, so acidPercent is left off rather than estimated; the fruit tastes considerably more tart than a zero figure implies."
     }
   ]
 }

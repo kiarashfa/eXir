@@ -35,7 +35,7 @@
       "containsCaffeine": false,
       "sourceDataset": "USDA FoodData Central (SR Legacy)",
       "sourceId": "172194",
-      "sourceNote": "Milk, canned, evaporated, with added vitamin A. Public domain. The record's own fluid-ounce portion gives 1.0651 g/ml, adopted as a true density because it is poured. USDA reports no sugars for this record, so sugarGPer100 is left off rather than estimated — the carbohydrate figure is almost entirely the concentrated lactose."
+      "sourceNote": "Milk, canned, evaporated, with added vitamin A. Public domain. The record's own fluid-ounce portion gives 1.0651 g/ml, adopted as a true density because it is poured. USDA reports no sugars for this record, so sugarGPer100 is left off rather than estimated; the carbohydrate figure is almost entirely the concentrated lactose."
     }
   ]
 }

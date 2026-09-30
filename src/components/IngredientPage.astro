@@ -107,7 +107,7 @@ const rows = (form: (typeof forms)[number]) =>
         : 'not carried',
     ],
     ['Sugar', form.sugarGPer100 != null ? `${form.sugarGPer100} g per 100` : 'not carried'],
-    ['Acid', form.acidPercent ? `${form.acidPercent}% w/v` : '·'],
+    ['Acid', form.acidPercent ? `${form.acidPercent}% w/v` : '—'],
     ['Energy', form.nutritionPer100g?.kcal != null ? `${form.nutritionPer100g.kcal} kcal per 100` : 'not carried'],
     ['Animal origin', form.animalOrigin ? cap(form.animalOrigin) : 'not declared'],
     ['Allergens', form.allergenTags?.length ? form.allergenTags.map(cap).join(' · ') : 'none listed'],

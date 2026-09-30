@@ -57,7 +57,7 @@
       "containsCaffeine": false,
       "sourceDataset": "Producer published figures",
       "sourceId": "haymansgin.com/product/old-tom-gin",
-      "sourceNote": "Hayman's is taken as the reference bottle: it is the product most Martinez recipes assume by name, and its own page states 41.4% alc./vol. No sugar or nutrition figure is published for it or for any other Old Tom - the style is traditionally lightly sweetened, but 'lightly' is not a number, and USDA and Open Food Facts both carry nothing under this name. sugarGPer100 and nutritionPer100g are left off rather than estimated, so this Form's composition understates the style's real sweetness by whatever the undisclosed addition is. Density has no measured source and is taken from the density-classes.json 'spirit-40' class."
+      "sourceNote": "Hayman's is taken as the reference bottle: it is the product most Martinez recipes assume by name, and its own page states 41.4% alc./vol. No sugar or nutrition figure is published for it or for any other Old Tom; the style is traditionally lightly sweetened, but 'lightly' is not a number, and USDA and Open Food Facts both carry nothing under this name. sugarGPer100 and nutritionPer100g are left off rather than estimated, so this Form's composition understates the style's real sweetness by whatever the undisclosed addition is. Density has no measured source and is taken from the density-classes.json 'spirit-40' class."
     }
   ]
 }

@@ -42,7 +42,7 @@
       "countUnit": { "singular": "dash", "plural": "dashes", "ml": 0.9, "snap": "whole" },
       "sourceDataset": "USDA FoodData Central (Branded), cross-checked",
       "sourceId": "2570291",
-      "sourceNote": "FoodData Central's branded record for this exact product gives 200 kcal/100 g and 0 g carbohydrate; an independent Open Food Facts entry for the same product agrees on both figures, which is what makes them credible. Neither dataset carries an alcohol figure, because a bottled bitters sold in the US is not required to carry the Nutrition Facts panel that would state one - the 200 kcal/100 g figure is a lab analysis of the food-labelling side only. The 44.7% alc./vol. is the producer's own labelled strength, reported identically by the producer and by every retailer checked. No measured density exists for a bitters this strong with no sugar; the density-classes.json 'spirit-40' class is used as the nearest fit."
+      "sourceNote": "FoodData Central's branded record for this exact product gives 200 kcal/100 g and 0 g carbohydrate; an independent Open Food Facts entry for the same product agrees on both figures, which is what makes them credible. Neither dataset carries an alcohol figure, because a bottled bitters sold in the US is not required to carry the Nutrition Facts panel that would state one; the 200 kcal/100 g figure is a lab analysis of the food-labelling side only. The 44.7% alc./vol. is the producer's own labelled strength, reported identically by the producer and by every retailer checked. No measured density exists for a bitters this strong with no sugar; the density-classes.json 'spirit-40' class is used as the nearest fit."
     }
   ]
 }
