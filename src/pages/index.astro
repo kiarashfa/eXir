@@ -3,14 +3,14 @@
  * The homepage: a way in, not the whole catalogue.
  *
  * It holds a fixed amount whatever the size of the catalogue: a featured
- * handful that changes weekly, the families that organise the field, the
+ * handful that changes daily, the families that organise the field, the
  * busiest ways to browse, and the door to the full list at `/drinks/`.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DrinkCard from '../components/DrinkCard.astro';
 import { catalogEntry, defaultVersion, published, site } from '../lib/content/site.ts';
 import { humanise } from '../lib/catalog.ts';
-import { weeklyPick } from '../lib/showcase.ts';
+import { FEATURED_SCRIPT, featured, featuredAttributes, featuredSlice } from '../lib/showcase.ts';
 import attributions from '../data/image-attributions.json' with { type: 'json' };
 
 const resolved = await site();
@@ -19,10 +19,11 @@ const entries = drinks.map((d) => catalogEntry(d, resolved.ingredients, attribut
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 /* Only drinks with a photograph: a featured card is the one place a blank tile
-   would be the first thing a visitor sees. */
-const featured = weeklyPick(
+   would be the first thing a visitor sees. Spread by family, so a day's row is
+   not three sours side by side. */
+const picks = featured(
   entries.filter((e) => e.image),
-  8,
+  { count: 8, id: (e) => e.slug, group: (e) => e.family ?? e.category[0] ?? '' },
 );
 
 const families = [...resolved.families.values()]
@@ -67,15 +68,24 @@ const categories = tally((e) => e.category, 12);
   </section>
 
   <div class="wrap" data-pagefind-ignore>
-    <section class="home-section" aria-labelledby="featured-title">
-      <div class="home-section-head">
-        <h2 id="featured-title">Featured this week</h2>
-        <a href={`${base}/drinks/`}>All {entries.length} drinks →</a>
-      </div>
-      <div class="card-grid">
-        {featured.map((e) => <DrinkCard entry={e} />)}
-      </div>
-    </section>
+    {
+      picks.count > 0 && (
+        <section class="home-section" aria-labelledby="featured-title" {...featuredAttributes(picks)}>
+          <div class="home-section-head">
+            <h2 id="featured-title">Featured today</h2>
+            <a href={`${base}/drinks/`}>All {entries.length} drinks →</a>
+          </div>
+          {/* Every candidate, inert until the script below clones the reader's day. */}
+          <template data-featured-pool>
+            {picks.pool.map((e) => <DrinkCard entry={e} />)}
+          </template>
+          <div class="card-grid" data-featured-list>
+            {featuredSlice(picks.pool, picks.count, picks.start).map((e) => <DrinkCard entry={e} />)}
+          </div>
+          <script is:inline set:html={FEATURED_SCRIPT} />
+        </section>
+      )
+    }
 
     <section class="home-section" aria-labelledby="families-title">
       <div class="home-section-head">
